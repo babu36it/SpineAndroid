@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/btn_bg">
+
+
+    <ImageButton
+        android:id="@+id/imageButton66"
+        android:layout_width="@dimen/_150dp"
+        android:layout_height="@dimen/eight"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/round_gray_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView256"
+        style="@style/TitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginTop="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        android:text="@string/report_reason"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton66" />
+
+    <TextView
+        android:id="@+id/textView257"
+        style="@style/TitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        android:text="@string/content_is_spam"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView256" />
+
+    <View
+        android:id="@+id/view64"
+        style="@style/ViewActionLine"
+        android:layout_width="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView257"
+        app:layout_constraintStart_toStartOf="@+id/textView257"
+        app:layout_constraintTop_toBottomOf="@+id/textView257" />
+
+    <TextView
+        android:id="@+id/textView258"
+        style="@style/OnlyText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/the_spiritual_network_considers_any_posts_that_are_irrelevant_impersonal_unsolicited_promotional_or_repetitive_as_spam"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/view64"
+        app:layout_constraintStart_toStartOf="@+id/view64"
+        app:layout_constraintTop_toBottomOf="@+id/view64" />
+
+    <TextView
+        android:id="@+id/textView259"
+        style="@style/TitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/would_you_like_to_tell_us_more"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/textView258"
+        app:layout_constraintStart_toStartOf="@+id/textView258"
+        app:layout_constraintTop_toBottomOf="@+id/textView258" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:elevation="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="@+id/textView259"
+        app:layout_constraintStart_toStartOf="@+id/textView259"
+        app:layout_constraintTop_toBottomOf="@+id/textView259">
+
+        <EditText
+            android:id="@+id/editTextTextPersonName26"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100"
+            android:background="@drawable/boarder_round_btn_bg_shape"
+            android:cursorVisible="true"
+            android:elevation="@dimen/eight"
+            android:ems="10"
+            android:gravity="start"
+            android:inputType="textPostalAddress|textMultiLine"
+            android:padding="@dimen/eight"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorPrimaryDark"
+
+            />
+    </androidx.cardview.widget.CardView>
+
+
+    <Button
+        android:id="@+id/button91"
+        style="@style/ButtonRound"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:text="@string/report"
+        android:textAllCaps="true"
+        app:layout_constraintEnd_toEndOf="@+id/card_box"
+        app:layout_constraintStart_toStartOf="@+id/card_box"
+        app:layout_constraintTop_toBottomOf="@+id/card_box" />
+
+    <Button
+        android:id="@+id/button92"
+        style="@style/TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:layout_marginBottom="@dimen/eight"
+        android:text="@string/back"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/button91"
+        app:layout_constraintStart_toStartOf="@+id/button91"
+        app:layout_constraintTop_toBottomOf="@+id/button91" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

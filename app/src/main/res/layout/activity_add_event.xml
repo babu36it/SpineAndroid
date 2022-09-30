@@ -1,0 +1,892 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.events.addevents.AddEventViewmodel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/imageButton16"
+                style="@style/BackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{viewmodel.onBack}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView90"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/new_event"
+                android:textSize="@dimen/_14sdp"
+
+                />
+
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="@dimen/eight" />
+
+            <Button
+                android:id="@+id/button44"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/eight"
+                android:background="@drawable/boarder_round_btn_bg"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:onClick="@{viewmodel.onPreview}"
+                android:text="@string/preview"
+                android:textAllCaps="false"
+                android:textColor="@color/overlay_color_primary"
+                android:textSize="@dimen/_9sdp"
+                android:visibility="gone" />
+
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/eight">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/sixteen"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imageView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_200dp"
+                        android:layout_marginTop="@dimen/eight"
+                        android:background="@color/gray_tint"
+                        android:scaleType="centerCrop" />
+
+                    <Button
+                        android:id="@+id/button43"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:background="@android:color/transparent"
+                        android:drawableTop="@drawable/ic_photo_camera"
+                        android:onClick="@{viewmodel.onAddPic}"
+                        android:text="@string/add_photo"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorPrimaryDark" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/textView91"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/sixteen"
+                    android:text="@string/event_title" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/eight">
+
+                    <EditText
+                        android:id="@+id/editTextTextPersonName13"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@+id/textView92"
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="@string/event_title"
+                        android:inputType="textPersonName"
+                        android:maxLength="40"
+                        android:maxLines="1"
+                        android:textSize="@dimen/_10sdp"
+                        android:padding="@dimen/eight"
+                        android:text="@={viewmodel.title}"
+                        android:textColor="@color/day_night_both_black"
+                        android:textColorHint="@color/dark_gray_day_night" />
+
+                    <TextView
+                        android:id="@+id/textView92"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_marginEnd="@dimen/eight"
+                        android:text="40"
+                        android:textSize="@dimen/_10sdp"
+                        android:visibility="visible" />
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/textView93"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:text="@string/event_type"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/textView94"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:background="@drawable/shadow_box"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:elevation="@dimen/eight"
+                    android:onClick="@{viewmodel.selectEventType}"
+                    android:padding="@dimen/eight"
+                    android:text="@string/event_type"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_weight="5"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView95"
+                            style="@style/TitleText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/start" />
+
+                        <TextView
+                            android:id="@+id/textView97"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shadow_box"
+                            android:drawablePadding="@dimen/_6sdp"
+                            android:elevation="@dimen/eight"
+                            android:gravity="center_vertical"
+                            android:hint="@string/start_date"
+                            android:onClick="@{viewmodel.onStartDate}"
+                            android:padding="@dimen/eight"
+                            android:text="@string/start_date"
+                            android:textColor="@color/day_night_both_black"
+                            android:textColorHint="@color/dark_gray_day_night"
+                            app:drawableEndCompat="@drawable/ic_arrow_right"
+                            app:drawableStartCompat="@drawable/ic_events" />
+
+                        <TextView
+                            android:id="@+id/textView99"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shadow_box"
+                            android:drawablePadding="@dimen/_6sdp"
+                            android:elevation="@dimen/eight"
+                            android:hint="@string/start_time"
+                            android:onClick="@{viewmodel.onStartTime}"
+                            android:padding="@dimen/eight"
+                            android:text="10:00"
+                            android:textColor="@color/day_night_both_black"
+                            android:textColorHint="@color/dark_gray_day_night"
+                            app:drawableEndCompat="@drawable/ic_arrow_right"
+                            app:drawableStartCompat="@drawable/ic_time" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="5"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView96"
+                            style="@style/TitleText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/end" />
+
+                        <TextView
+                            android:id="@+id/textView98"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shadow_box"
+                            android:drawablePadding="@dimen/_6sdp"
+                            android:elevation="@dimen/eight"
+                            android:hint="@string/end_date"
+                            android:onClick="@{viewmodel.onEndDate}"
+                            android:padding="@dimen/eight"
+                            android:textColor="@color/day_night_both_black"
+                            android:textColorHint="@color/dark_gray_day_night"
+                            app:drawableEndCompat="@drawable/ic_arrow_right"
+                            app:drawableStartCompat="@drawable/ic_events" />
+
+                        <TextView
+                            android:id="@+id/textView100"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shadow_box"
+                            android:drawablePadding="@dimen/_6sdp"
+                            android:elevation="@dimen/eight"
+                            android:hint="@string/end_time"
+                            android:onClick="@{viewmodel.onEndTime}"
+                            android:padding="@dimen/eight"
+                            android:textColor="@color/day_night_both_black"
+                            app:drawableEndCompat="@drawable/ic_arrow_right"
+                            app:drawableStartCompat="@drawable/ic_time" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView101"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:text="@string/timezone" />
+
+
+                <EditText
+                    android:id="@+id/textView102"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@drawable/shadow_box"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:elevation="@dimen/eight"
+                    android:padding="@dimen/eight"
+                    android:textColor="@color/day_night_both_black"
+                    android:textColorHint="@color/dark_gray_day_night"
+                    android:visibility="gone" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:elevation="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_8sdp">
+
+                    <TextView
+                        android:id="@+id/textView115"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/eight"
+                        android:background="@drawable/shadow_box"
+                        android:padding="@dimen/eight"
+                        android:text=""
+                        android:textColor="@color/day_night_both_black"
+                        app:drawableEndCompat="@drawable/ic_arrow_right" />
+
+                    <Spinner
+                        android:id="@+id/spinnertimezone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/eight"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:gravity="start|fill_vertical"
+                        android:padding="@dimen/eight" />
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/textView103"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:text="@string/location" />
+
+                <EditText
+                    android:id="@+id/et104"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@drawable/shadow_box"
+                    android:drawableStart="@drawable/ic_location"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:elevation="@dimen/eight"
+                    android:hint="@string/address"
+                    android:inputType="textAutoComplete"
+                    android:padding="@dimen/eight"
+                    android:text="@={viewmodel.location}"
+                    android:textColor="@color/day_night_both_black"
+                    android:textColorHint="@color/dark_gray_day_night"
+                    android:textSize="@dimen/_9sdp" />
+
+                <TextView
+                    android:id="@+id/textView105"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:text="@string/add_link_to_event" />
+
+                <EditText
+                    android:id="@+id/et106"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/eight"
+                    android:hint="@string/e_g_http_facebook"
+                    android:inputType="textAutoComplete"
+                    android:padding="@dimen/eight"
+                    android:text="@={viewmodel.link}"
+                    android:textColor="@color/day_night_both_black"
+                    android:textColorHint="@color/dark_gray_day_night"
+                    android:textSize="@dimen/_9sdp" />
+
+                <TextView
+                    android:id="@+id/textView106"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:text="@string/about_the_event" />
+
+                <TextView
+                    android:id="@+id/aboutevent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@drawable/shadow_box"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:elevation="@dimen/eight"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:hint="@string/enter_description"
+                    android:padding="@dimen/eight"
+                    android:textColor="@color/day_night_both_black"
+                    android:textSize="@dimen/_9sdp" />
+
+                <EditText
+                    android:id="@+id/et107"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100"
+                    android:layout_marginTop="@dimen/eight"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/eight"
+                    android:gravity="start"
+                    android:hint="@string/who_should_join_and_why_what_will_you_do_at_your_event_minimum_50_characters"
+                    android:inputType="textAutoComplete|textMultiLine"
+                    android:padding="@dimen/eight"
+                    android:textColor="@color/day_night_both_black"
+                    android:textColorHint="@color/dark_gray_day_night"
+                    android:visibility="gone" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp">
+
+                    <TextView
+                        style="@style/TitleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/sixteen"
+                        android:text="@string/paid_events" />
+
+                    <Switch
+                        android:id="@+id/switch_paid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/sixteen"
+                        android:checked="false"
+                        android:onCheckedChanged="@{(button, on) -> viewmodel.onPaidAmountCheckedChange(on)}"
+                        android:padding="@dimen/eight"
+
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rld_paid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/textView104"
+                        style="@style/TitleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:text="@string/fee" />
+
+                    <EditText
+                        android:id="@+id/editTextTextPersonName14"
+                        android:layout_width="@dimen/_100"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/eight"
+                        android:layout_toLeftOf="@+id/textView109"
+                        android:background="@drawable/shadow_box"
+                        android:elevation="@dimen/eight"
+                        android:ems="10"
+                        android:hint="  0"
+                        android:inputType="numberDecimal"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@={viewmodel.fee}"
+                        android:textColor="@color/day_night_both_black"
+                        android:textColorHint="@color/dark_gray_day_night"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/textView109"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/eight"
+                        android:background="@drawable/shadow_box"
+                        android:elevation="@dimen/eight"
+                        android:onClick="@{viewmodel.onCurency}"
+                        android:padding="@dimen/eight"
+                        android:text="$"
+                        android:textColorHint="@color/day_night_both_black"
+                        app:drawableEndCompat="@drawable/ic_arrow_right" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/text_podcast"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:text="@string/where_book_events"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/et_book_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/eight"
+                    android:hint="@string/e_g_http_www"
+                    android:inputType="textAutoComplete"
+                    android:padding="@dimen/eight"
+                    android:text="@={viewmodel.bookeventurl}"
+                    android:textColor="@color/day_night_both_black"
+                    android:textColorHint="@color/dark_gray_day_night"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/textView110"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:text="@string/max_number_of_attendees"
+                    app:layout_constraintStart_toStartOf="@+id/textView104"
+                    app:layout_constraintTop_toBottomOf="@+id/textView104" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/eight"
+                    android:ems="10"
+                    android:hint="@string/add"
+                    android:inputType="number"
+                    android:padding="@dimen/eight"
+                    android:text="@={viewmodel.attendees}"
+                    android:textColor="@color/day_night_both_black"
+                    android:textColorHint="@color/dark_gray_day_night"
+                    android:textSize="@dimen/_9sdp" />
+
+                <TextView
+                    android:id="@+id/textView111"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:text="@string/language_the_event_is_hosted_in"
+                    app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName15"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName15" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:elevation="@dimen/eight"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp">
+
+                    <TextView
+                        android:id="@+id/textView112"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/eight"
+                        android:background="@drawable/shadow_box"
+                        android:padding="@dimen/eight"
+                        android:textColor="@color/day_night_both_black"
+                        app:drawableEndCompat="@drawable/ic_arrow_right" />
+
+                    <Spinner
+                        android:id="@+id/spinnerLang"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/eight"
+                        android:background="@android:color/transparent"
+                        android:layout_centerVertical="true"
+                        android:gravity="start|center_vertical"
+                        android:padding="@dimen/eight" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp">
+
+                    <TextView
+                        android:id="@+id/textView113"
+                        style="@style/TitleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/want_to_accept_participants" />
+
+                    <Switch
+                        android:id="@+id/switch5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/sixteen"
+                        android:checked="true"
+                        android:onCheckedChanged="@{(button, on) -> viewmodel.onAllowParticipantsCheckedChange(on)}"
+                        android:padding="@dimen/eight" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp">
+
+                    <TextView
+                        android:id="@+id/textView114"
+                        style="@style/TitleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/allow_comments" />
+
+                    <Switch
+                        android:id="@+id/switch6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/sixteen"
+                        android:checked="true"
+                        android:onCheckedChanged="@{(button, on) -> viewmodel.onCheckedChange(on)}"
+                        android:padding="@dimen/eight"
+
+                        />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/textView107"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:text="@string/event_categories" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:elevation="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_8sdp">
+
+                    <Spinner
+                        android:id="@+id/spinnerCat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/eight"
+                        android:background="@drawable/shadow_box"
+                        android:gravity="start|center_vertical"
+                        android:padding="@dimen/eight"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/tvSelectCats"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/eight"
+                        android:background="@drawable/shadow_box"
+                        android:drawableEnd="@drawable/ic_arrow_right"
+                        android:gravity="start"
+                        android:padding="@dimen/eight"
+                        android:text="@string/select"
+                        android:textColor="@color/day_night_both_black" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/textView284"
+                    style="@style/TitleText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:text="@string/choose_up_to_3_sub_categories"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView284" />
+
+                <RelativeLayout
+                    android:id="@+id/rel_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:onClick="@{viewmodel.onAddAditionalCategory}"
+                    android:visibility="gone">
+
+                    <ImageButton
+                        android:id="@+id/imageButton73"
+                        android:layout_width="@dimen/_40"
+                        android:layout_height="@dimen/_40"
+                        android:layout_marginTop="@dimen/eight"
+                        android:background="@drawable/boarder_round_btn_bg"
+                        android:src="@drawable/ic_add_new" />
+
+                    <TextView
+                        android:id="@+id/textView285"
+                        style="@style/NormalText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/eight"
+                        android:layout_toRightOf="@+id/imageButton73"
+                        android:text="@string/add_an_additional_category"
+                        android:textColor="@color/colorPrimaryDark" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp">
+
+                    <EditText
+                        android:id="@+id/editTextTextPersonName31"
+                        style="@style/ETNormal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/eight"
+                        android:layout_marginEnd="@dimen/eight"
+                        android:layout_marginBottom="@dimen/eight"
+                        android:layout_toLeftOf="@id/button101"
+                        android:ems="10"
+                        android:hint="@string/enter_a_new_category"
+                        android:inputType="textPersonName"
+                        android:text="@={viewmodel.addNewCat}"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/dark_gray_day_night"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/button101"
+                        style="@style/ButtonRound"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:onClick="@{viewmodel.onNewCategoryAdd}"
+                        android:text="@string/add"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+
+                <View
+                    android:id="@+id/view18"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="@dimen/sixteen"
+                    android:layout_marginTop="@dimen/sixteen"
+                    android:layout_marginEnd="@dimen/sixteen"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/switch6" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp">
+
+                    <Button
+                        android:id="@+id/button45"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="@android:color/transparent"
+                        android:onClick="@{viewmodel.onDelete}"
+                        android:text="@string/delete"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/button42"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/eight"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@drawable/round_button_bg"
+                    android:onClick="@{viewmodel.onPreview}"
+                    android:text="@string/preview" />
+
+                <View
+                    android:id="@+id/view19"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="@dimen/sixteen"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/sixteen"
+                    android:background="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/switch6" />
+
+                <TextView
+                    android:id="@+id/textView501"
+                    style="@style/NormalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/sixteen"
+                    android:layout_marginStart="@dimen/eight"
+                    android:text="Delete"
+                    android:onClick="@{viewmodel.onBack}"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@android:color/transparent"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_arrow_right"
+                    app:layout_constraintBottom_toBottomOf="@+id/spinnerCat"
+                    app:layout_constraintEnd_toEndOf="@+id/et107"
+                    app:layout_constraintTop_toTopOf="@+id/spinnerCat"
+                    app:tint="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/textTimeZone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/sixteen"
+                    android:layout_marginTop="@dimen/sixteen"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/eight"
+                    android:padding="@dimen/sixteen"
+                    android:text=""
+                    android:visibility="gone"
+                    android:textColor="@color/day_night_both_black"
+                    app:drawableEndCompat="@drawable/ic_arrow_right" />
+
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</layout>

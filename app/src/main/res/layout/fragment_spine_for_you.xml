@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.wiesoftware.spine.ui.home.menus.spine.foryou.SpineForYouViewModel" />
+    </data>
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.home.menus.spine.foryou.SpineForYouFragment">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/story_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_200dp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/container1"
+                        android:onClick="@{viewModel.viewAllStories}"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_150sdp"
+                        android:layout_weight="1"
+                        >
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/ivRec"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:elevation="@dimen/_4sdp"
+                            android:src="@drawable/ic_profile"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            app:civ_border_color="@color/colorPrimaryDark"
+                            app:civ_border_width="2dp"
+                            app:civ_circle_background_color="@color/gray_tint"
+                            app:layout_constraintBottom_toBottomOf="parent"
+
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+
+                            />
+<!--                        android:visibility="@{model.accountMode.equals(`1`) ? View.VISIBLE: View.GONE}"-->
+
+                        <ImageView
+                            android:id="@+id/ivBadge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:elevation="@dimen/eight"
+                            android:layout_marginEnd="4dp"
+                            android:background="@drawable/prof_badge"
+                            app:layout_constraintEnd_toEndOf="@+id/ivRec"
+                            app:layout_constraintTop_toTopOf="@+id/ivRec"
+                            />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_image2"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:src="@drawable/ic_profile"
+                            app:civ_border_color="@color/colorPrimaryDark"
+                            app:civ_border_width="2dp"
+                            android:layout_marginTop="@dimen/_40sdp"
+                            app:civ_circle_background_color="@color/gray_tint"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/ivRec"
+                            app:layout_constraintTop_toBottomOf="@+id/ivRec"
+                            app:layout_constraintTop_toTopOf="parent"
+
+                            />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_image3"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginStart="@dimen/_16sdp"
+                            android:layout_marginBottom="@dimen/_40sdp"
+                            android:src="@drawable/ic_profile"
+                            android:elevation="@dimen/_8sdp"
+                            app:civ_border_color="@color/colorPrimaryDark"
+                            app:civ_border_width="2dp"
+                            app:civ_circle_background_color="@color/gray_tint"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/ivRec"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_image2"/>
+
+                        <TextView
+                            android:id="@+id/tv_discover_story"
+                            style="@style/NormalText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:text="Discover \n Stories"
+                            android:padding="@dimen/_4sdp"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textAlignment="center"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ivRec"
+
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/container2"
+                        android:onClick="@{viewModel.recommendedFollowers}"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_150sdp"
+                        android:layout_weight="1"
+
+                        >
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                           android:id="@+id/iv_mem"
+                            android:layout_width="@dimen/_36sdp"
+                            android:layout_height="@dimen/_36sdp"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:src="@drawable/ic_profile"
+                            app:civ_border_color="@color/text_white"
+                            app:civ_border_width="2dp"
+                            app:civ_circle_background_color="@color/gray_tint"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <de.hdodenhof.circleimageview.CircleImageView
+                          android:id="@+id/iv_mem1"
+                            android:layout_width="@dimen/_36sdp"
+                            android:layout_height="@dimen/_36sdp"
+                            android:layout_marginStart="@dimen/_30sdp"
+                            android:elevation="@dimen/_4sdp"
+                            android:src="@drawable/ic_profile"
+                            app:civ_border_color="@color/text_white"
+                            app:civ_border_width="2dp"
+                            app:civ_circle_background_color="@color/gray_tint"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/iv_mem"
+                          />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_mem2"
+                            android:layout_width="@dimen/_36sdp"
+                            android:layout_height="@dimen/_36sdp"
+                            android:layout_marginStart="@dimen/_24sdp"
+                            android:elevation="@dimen/_4sdp"
+                            android:src="@drawable/ic_profile"
+                            app:civ_border_color="@color/text_white"
+                            app:civ_border_width="2dp"
+                            app:civ_circle_background_color="@color/gray_tint"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/iv_mem1"
+                            app:layout_constraintTop_toTopOf="parent"
+                          />
+                        <TextView
+                            android:id="@+id/tv_discover_members"
+                            style="@style/NormalText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:text="Discover \n Members"
+                            android:padding="@dimen/_4sdp"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13sp"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_mem1"
+
+                            />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/container3"
+                        android:onClick="@{viewModel.trendingCategories}"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_150sdp"
+                        android:layout_weight="1"
+
+                        >
+
+                       <RelativeLayout
+                           android:id="@+id/rel_container"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           app:layout_constraintStart_toStartOf="parent"
+                           app:layout_constraintEnd_toEndOf="parent"
+                           app:layout_constraintTop_toTopOf="parent"
+                           app:layout_constraintBottom_toBottomOf="parent">
+
+                           <TextView
+                               android:id="@+id/tv_yoga"
+                               style="@style/NormalText"
+                               android:background="@drawable/round_button_bg"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="YOGA"
+                               android:layout_marginEnd="@dimen/_8sdp"
+                               android:paddingVertical="@dimen/_5sdp"
+                               android:paddingHorizontal="@dimen/_10sdp"
+                               android:layout_alignParentEnd="true"
+                               android:textColor="@color/day_night_both_white"
+                               android:textSize="13sp"
+                               android:textAlignment="center"
+                               android:textStyle="bold"
+                               />
+                           <TextView
+                               android:id="@+id/tv_meditation"
+                               style="@style/NormalText"
+                               android:background="@drawable/round_button_bg"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="@dimen/_5sdp"
+                               android:text="MEDITATION"
+                               android:layout_below="@+id/tv_yoga"
+                               android:layout_marginEnd="@dimen/_8sdp"
+                               android:paddingVertical="@dimen/_5sdp"
+                               android:paddingHorizontal="@dimen/_10sdp"
+                               android:layout_alignParentEnd="true"
+                               android:textColor="@color/day_night_both_white"
+                               android:textSize="13sp"
+                               android:textAlignment="center"
+                               android:textStyle="bold"
+                               />
+                       </RelativeLayout>
+                        <TextView
+                            android:id="@+id/tv_discover_cat"
+                            style="@style/NormalText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="Discover \n Categories"
+                            android:padding="@dimen/_4sdp"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13sp"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/rel_container"
+
+
+                            />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/textView10"
+                    style="@style/NormalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/sixteen"
+                    android:layout_marginTop="@dimen/eight"
+                    android:text="@string/hello"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/big_text"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvUser"
+                    style="@style/NormalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/big_text"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@+id/textView10"
+                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/textView16"
+                    style="@style/NormalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:text="@string/welcome"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/big_text"
+                    app:layout_constraintStart_toStartOf="@+id/tvUser"
+                    app:layout_constraintTop_toBottomOf="@+id/story_container" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:visibility="gone"
+                    android:id="@+id/recyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="56dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/textView16"
+                    app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/textView17"
+                    style="@style/NormalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:text="@string/spine_impulse"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/big_text"
+                    app:layout_constraintBottom_toBottomOf="@+id/button11"
+                    app:layout_constraintStart_toStartOf="@+id/tvUser"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+                <Button
+                    android:visibility="gone"
+                    android:id="@+id/button11"
+                    style="@style/TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/sixteen"
+                    android:onClick="@{viewModel.viewAllImpulse}"
+                    android:text="@string/see_all"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:visibility="gone"
+                    android:id="@+id/rvSImpulse"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView17"
+                    app:layout_constraintTop_toBottomOf="@+id/button11" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/textView18"
+                    style="@style/NormalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/sixteen"
+                    android:text="@string/stories"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/big_text"
+                    app:layout_constraintBottom_toBottomOf="@+id/button12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/button12" />
+
+                <Button
+                    android:visibility="gone"
+                    android:id="@+id/button12"
+                    style="@style/TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/sixteen"
+
+                    android:text="@string/see_all"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rvSImpulse" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:visibility="gone"
+                    android:id="@+id/rvStories"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button12" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/textView19"
+                    style="@style/NormalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/sixteen"
+                    android:text="@string/trending_categories"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/big_text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rvStories"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <Button
+                    android:visibility="gone"
+                    android:id="@+id/button13"
+                    style="@style/TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/sixteen"
+
+                    android:text="@string/see_all"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView19"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView19" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:visibility="gone"
+                    android:id="@+id/rvTrendingCat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button13" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/textView20"
+                    style="@style/NormalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/recommended_followers"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/big_text"
+                    app:layout_constraintStart_toStartOf="@+id/textView19"
+                    app:layout_constraintTop_toBottomOf="@+id/rvTrendingCat" />
+
+                <Button
+                    android:visibility="gone"
+                    android:id="@+id/button14"
+                    style="@style/TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/sixteen"
+
+                    android:text="@string/see_all"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView20"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView20" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:visibility="gone"
+                    android:id="@+id/rvRecommendingFollowers"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button14" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvForYouContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>

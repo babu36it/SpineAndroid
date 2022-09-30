@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.profile.setting.notifications.email.EmailNotificationViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:context=".ui.home.menus.profile.setting.notifications.email.EmailNotificationFragment">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sixteen"
+                android:padding="@dimen/_5sdp"
+                android:background="@color/gray_tint"
+                android:paddingStart="@dimen/sixteen"
+                android:paddingEnd="@dimen/sixteen"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    style="@style/NormalText"
+                    android:id="@+id/textView244"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:paddingStart="@dimen/_6sdp"
+                    android:text="@string/get_email_updates"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Switch
+                    android:id="@+id/switch13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:onCheckedChanged="@{(switch, checked) -> viewmodel.onEmailUpdateChanged(checked)}"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView244"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView244" />
+
+                <TextView
+                    style="@style/NormalText"
+                    android:id="@+id/textView245"
+                    android:layout_width="0dp"
+                    android:textSize="@dimen/_10sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_50sdp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/get_email_updates_for_the_notification_types_you_choose_below"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView244"
+                    app:layout_constraintTop_toBottomOf="@+id/textView244" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/textView246"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/notification_types"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout8" />
+
+            <View
+                android:id="@+id/view51"
+                style="@style/ViewActionLine"
+                android:layout_width="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView246" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginEnd="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/textView247"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:text="@string/event_ical_attachments"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold" />
+
+                <Switch
+                    android:id="@+id/switch14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:checked="true"
+                    android:onCheckedChanged="@{(switch, checked) -> viewmodel.onICalChanged(checked)}"
+                    android:text="" />
+
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:textSize="@dimen/_10sdp"
+                android:id="@+id/textView248"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_70sdp"
+                android:fontFamily="@font/poppins_regular"
+                android:paddingStart="@dimen/_5sdp"
+                android:text="@string/send_me_email_reminders_with_ical_attachements"
+                app:layout_constraintEnd_toEndOf="@+id/switch14"
+                app:layout_constraintStart_toStartOf="@+id/textView247"
+                app:layout_constraintTop_toBottomOf="@+id/textView247" />
+
+            <View
+                android:id="@+id/view52"
+                style="@style/ViewActionLine"
+                android:layout_width="match_parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView248"
+                app:layout_constraintStart_toStartOf="@+id/textView248"
+                app:layout_constraintTop_toBottomOf="@+id/textView248" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginEnd="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/textView249"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:text="@string/messages"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold" />
+
+                <Switch
+                    android:id="@+id/switch15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:checked="true"
+                    android:onCheckedChanged="@{(switch, checked) -> viewmodel.onMessageChanged(checked)}"
+                    android:text="" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView250"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_70sdp"
+                android:fontFamily="@font/poppins_regular"
+                android:paddingStart="@dimen/_5sdp"
+                android:textSize="@dimen/_10sdp"
+                android:text="@string/email_me_when_someone_sends_me_a_message"
+                app:layout_constraintEnd_toEndOf="@+id/switch14"
+                app:layout_constraintStart_toStartOf="@+id/textView247"
+                app:layout_constraintTop_toBottomOf="@+id/textView249" />
+
+            <View
+                android:id="@+id/view53"
+                style="@style/ViewActionLine"
+                android:layout_width="match_parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView248"
+                app:layout_constraintStart_toStartOf="@+id/textView248"
+                app:layout_constraintTop_toBottomOf="@+id/textView250" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginEnd="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/tvEv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:text="@string/replies_to_my_comments"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold" />
+
+                <Switch
+                    android:id="@+id/switch16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:checked="true"
+                    android:onCheckedChanged="@{(switch, checked) -> viewmodel.onRepliesChanged(checked)}"
+                    android:text="" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvEvDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_70sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:text="@string/get_updates_from_the_event_host_changes_to_your_reservation_status_and_reminders_when_the_event_you_ve_signed_up_to_is_about_to_start"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/switch14"
+                app:layout_constraintStart_toStartOf="@+id/textView247"
+                app:layout_constraintTop_toBottomOf="@+id/tvEv" />
+
+            <View
+                android:id="@+id/view54"
+                style="@style/ViewActionLine"
+                android:layout_width="match_parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView248"
+                app:layout_constraintStart_toStartOf="@+id/textView248"
+                app:layout_constraintTop_toBottomOf="@+id/tvEvDesc" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginEnd="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/tvSaveEv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:text="@string/suggested_events_and_podcasts"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold" />
+
+                <Switch
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:id="@+id/switch17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:checked="true"
+                    android:onCheckedChanged="@{(switch, checked) -> viewmodel.onEveAndPodChanged(checked)}"
+                    android:text="" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:paddingStart="@dimen/_5sdp"
+                android:id="@+id/tvSaveEvDesc"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_70sdp"
+                android:textSize="@dimen/_10sdp"
+                android:text="@string/highlights_based_on_your_interests_and_history"
+                app:layout_constraintEnd_toEndOf="@+id/switch14"
+                app:layout_constraintStart_toStartOf="@+id/textView247"
+                app:layout_constraintTop_toBottomOf="@+id/tvSaveEv" />
+
+            <View
+                android:id="@+id/view55"
+                style="@style/ViewActionLine"
+                android:layout_width="match_parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView248"
+                app:layout_constraintStart_toStartOf="@+id/textView248"
+                app:layout_constraintTop_toBottomOf="@+id/tvSaveEvDesc" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginEnd="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/tvMsg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:text="@string/updates_from_spine_hq"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold" />
+
+                <Switch
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/switch18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:onCheckedChanged="@{(switch, checked) -> viewmodel.onSpineHQChanged(checked)}"
+                    android:text="" />
+
+
+
+            </RelativeLayout>
+
+
+
+            <TextView
+                android:id="@+id/tvMsgDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_5sdp"
+                android:textSize="@dimen/_10sdp"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_70sdp"
+                android:text="@string/tell_me_about_new_features_and_important_spine_new"
+                app:layout_constraintEnd_toEndOf="@+id/switch14"
+                app:layout_constraintStart_toStartOf="@+id/textView247"
+                app:layout_constraintTop_toBottomOf="@+id/tvMsg" />
+
+            <View
+                android:id="@+id/view56"
+                style="@style/ViewActionLine"
+                android:layout_width="match_parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView248"
+                app:layout_constraintStart_toStartOf="@+id/textView248"
+                app:layout_constraintTop_toBottomOf="@+id/tvMsgDesc" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginEnd="@dimen/_10sdp">
+
+                <TextView
+                    android:paddingStart="@dimen/_5sdp"
+                    android:id="@+id/tvActi"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:text="@string/spine_hq_surveys" />
+
+                <Switch
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/switch19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:onCheckedChanged="@{(switch, checked) -> viewmodel.onHQSurveyChanged(checked)}"
+                    android:text=""
+                    />
+
+
+
+            </RelativeLayout>
+
+
+
+            <TextView
+                android:layout_marginStart="@dimen/_10sdp"
+                android:id="@+id/tvActiDesc"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_70sdp"
+                android:text="@string/ask_me_about_things_that_could_make_spine_better"
+                app:layout_constraintEnd_toEndOf="@+id/switch14"
+                app:layout_constraintStart_toStartOf="@+id/textView247"
+                app:layout_constraintTop_toBottomOf="@+id/tvActi" />
+
+            <View
+                android:id="@+id/view57"
+                style="@style/ViewActionLine"
+                android:layout_width="match_parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView248"
+                app:layout_constraintStart_toStartOf="@+id/textView248"
+                app:layout_constraintTop_toBottomOf="@+id/tvActiDesc" />
+
+            <!-- <TextView
+                 android:id="@+id/tvNewSpine"
+                 style="@style/TitleText"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="@dimen/eight"
+                 android:text="@string/new_spine_impulses"
+                 app:layout_constraintEnd_toStartOf="@+id/switch20"
+                 app:layout_constraintStart_toStartOf="@+id/view52"
+                 app:layout_constraintTop_toBottomOf="@+id/view57" />
+             <Switch
+                 android:id="@+id/switch20"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text=""
+                 android:checked="true"
+                 app:layout_constraintBottom_toBottomOf="@+id/tvNewSpine"
+                 app:layout_constraintEnd_toEndOf="@+id/view52"
+                 app:layout_constraintTop_toTopOf="@+id/tvNewSpine" />
+             <TextView
+                 android:id="@+id/tvSpineDesc"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 style="@style/NormalText"
+                 android:padding="@dimen/eight"
+                 android:text="@string/short_inspirational_messages_and_impulses_by_spine"
+                 app:layout_constraintEnd_toEndOf="@+id/switch14"
+                 app:layout_constraintStart_toStartOf="@+id/textView247"
+                 app:layout_constraintTop_toBottomOf="@+id/tvNewSpine" />
+             <View
+                 android:id="@+id/view58"
+                 android:layout_width="0dp"
+                 style="@style/ViewActionLine"
+                 app:layout_constraintEnd_toEndOf="@+id/textView248"
+                 app:layout_constraintStart_toStartOf="@+id/textView248"
+                 app:layout_constraintTop_toBottomOf="@+id/tvSpineDesc" />
+
+             <TextView
+                 android:id="@+id/tvPost"
+                 style="@style/TitleText"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="@dimen/eight"
+                 android:text="@string/posts_from_every_member"
+                 app:layout_constraintEnd_toStartOf="@+id/switch21"
+                 app:layout_constraintStart_toStartOf="@+id/view52"
+                 app:layout_constraintTop_toBottomOf="@+id/view58" />
+             <Switch
+                 android:id="@+id/switch21"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text=""
+                 app:layout_constraintBottom_toBottomOf="@+id/tvPost"
+                 app:layout_constraintEnd_toEndOf="@+id/view52"
+                 app:layout_constraintTop_toTopOf="@+id/tvPost" />
+             <TextView
+                 android:id="@+id/tvPostDesc"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 style="@style/NormalText"
+                 android:padding="@dimen/eight"
+                 android:text="@string/get_notified_about_every_new_post"
+                 app:layout_constraintEnd_toEndOf="@+id/switch14"
+                 app:layout_constraintStart_toStartOf="@+id/textView247"
+                 app:layout_constraintTop_toBottomOf="@+id/tvPost" />
+             <View
+                 android:id="@+id/view59"
+                 android:layout_width="0dp"
+                 style="@style/ViewActionLine"
+                 app:layout_constraintEnd_toEndOf="@+id/textView248"
+                 app:layout_constraintStart_toStartOf="@+id/textView248"
+                 app:layout_constraintTop_toBottomOf="@+id/tvPostDesc" />-->
+        </LinearLayout>
+
+
+    </ScrollView>
+</layout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="modal"
+            type="com.wiesoftware.spine.data.net.reponses.WelcomeData" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <EditText
+        android:id="@+id/etThought"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimaryDark"
+        android:lines="12"
+        android:gravity="top|start"
+        android:inputType="textMultiLine"
+        android:scrollHorizontally="false"
+        android:textColorHint="@color/text_white"
+        android:paddingTop="@dimen/_48"
+        android:paddingBottom="@dimen/_48"
+        android:paddingEnd="@dimen/sixteen"
+        android:paddingStart="@dimen/sixteen"
+        android:hint="@string/post_a_question_or_share_what_s_on_your_mind"
+        android:textSize="@dimen/_32sp"
+        android:textColor="@color/text_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/nextbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:layout_marginEnd="@dimen/eight"
+        android:text="@string/next"
+        android:textAllCaps="false"
+        android:textColor="@color/text_white"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

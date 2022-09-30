@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.data.net.reponses.EventRequestData" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        app:img="@{viewmodel.profile_pic}"
+        android:id="@+id/imageView24"
+        android:layout_width="@dimen/_72"
+        android:layout_height="@dimen/_72"
+        android:layout_marginStart="@dimen/eight"
+        android:layout_marginTop="@dimen/eight"
+        android:layout_marginBottom="@dimen/eight"
+        app:civ_circle_background_color="@color/colorPrimaryDark"
+        app:civ_border_color="@color/colorPrimaryDark"
+        app:civ_border_width="2dp"
+        app:civ_border_overlay="true"
+        android:src="@drawable/demo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView146"
+        style="@style/NormalText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/eight"
+        android:layout_marginStart="@dimen/eight"
+        android:layout_marginEnd="@dimen/eight"
+        android:text="@{viewmodel.title}"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton38"
+        app:layout_constraintStart_toEndOf="@+id/imageView24"
+        app:layout_constraintTop_toTopOf="@+id/imageView24" />
+
+    <ImageButton
+        android:id="@+id/imageButton37"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/eight"
+        android:background="@android:color/transparent"
+        android:padding="@dimen/eight"
+        android:src="@drawable/ic_check"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton38"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageButton38" />
+
+    <ImageButton
+        android:id="@+id/imageButton38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:padding="@dimen/eight"
+        android:src="@drawable/ic_close"
+        android:tint="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView24"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton37"
+        app:layout_constraintTop_toTopOf="@+id/imageView24" />
+
+    <TextView
+        android:id="@+id/textView202"
+        style="@style/OnlyText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/eight"
+        android:text="@{viewmodel.email}"
+        app:layout_constraintEnd_toEndOf="@+id/textView146"
+        app:layout_constraintStart_toStartOf="@+id/textView146"
+        app:layout_constraintTop_toBottomOf="@+id/textView146" />
+
+    <TextView
+        android:id="@+id/textView203"
+        style="@style/OnlyText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/eight"
+        android:text="@{viewmodel.message}"
+        app:layout_constraintEnd_toEndOf="@+id/textView202"
+        app:layout_constraintStart_toStartOf="@+id/textView202"
+        app:layout_constraintTop_toBottomOf="@+id/textView202" />
+
+    <View
+        android:id="@+id/view38"
+        style="@style/ViewActionLine"
+        android:layout_width="0dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView203" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

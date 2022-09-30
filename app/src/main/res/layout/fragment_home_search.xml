@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.spine.homesearch.HomeSearchViewmodel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/frameLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    tools:context=".ui.home.menus.spine.homesearch.HomeSearchFragment" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/eight"
+        android:background="@drawable/rounded_boardered_background"
+        android:padding="@dimen/eight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:onClick="@{viewmodel.onPosts}"
+            android:id="@+id/button102"
+            style="@style/TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/sixteen"
+            android:paddingEnd="@dimen/sixteen"
+            android:text="@string/post"
+            android:textColor="@color/text_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button103"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:onClick="@{viewmodel.onTags}"
+            android:id="@+id/button103"
+            style="@style/TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/black_round_background"
+            android:paddingStart="@dimen/sixteen"
+            android:paddingEnd="@dimen/sixteen"
+            android:text="@string/tags"
+            android:textColor="@color/text_white"
+            app:layout_constraintBottom_toBottomOf="@+id/button102"
+            app:layout_constraintEnd_toStartOf="@+id/button104"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button102"
+            app:layout_constraintTop_toTopOf="@+id/button102" />
+
+        <TextView
+            android:onClick="@{viewmodel.onPeople}"
+            android:id="@+id/button104"
+            style="@style/TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/sixteen"
+            android:paddingEnd="@dimen/sixteen"
+            android:text="@string/people"
+            android:textColor="@color/text_black"
+            app:layout_constraintBottom_toBottomOf="@+id/button103"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button103"
+            app:layout_constraintTop_toTopOf="@+id/button103" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvHomeSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sixteen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout10" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

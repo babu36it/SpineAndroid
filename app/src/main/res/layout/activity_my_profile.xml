@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.profile.myprofile.MyProfileViewmodel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.menus.profile.myprofile.MyProfileActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.home.menus.profile.myprofile.MyProfileActivity">
+
+            <ImageView
+                android:id="@+id/imageView18"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_200dp"
+                android:background="@color/colorPrimaryDark"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/imageButton25"
+                style="@style/BackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{viewmodel.onBack}"
+                android:tint="@color/text_white"
+                app:layout_constraintStart_toStartOf="@+id/imageView18"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/imageButton26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginEnd="@dimen/eight"
+                android:background="@android:color/transparent"
+                android:onClick="@{viewmodel.onMore}"
+                android:padding="@dimen/eight"
+                android:src="@drawable/ic_more"
+                android:tint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView19"
+                android:layout_width="@dimen/_100"
+                android:layout_height="@dimen/_100"
+                android:elevation="@dimen/eight"
+                android:src="@drawable/ic_profile"
+                app:civ_border_color="@color/text_white"
+                app:civ_border_width="4dp"
+                app:civ_circle_background_color="@color/gray_tint"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/imageView18"
+                app:layout_constraintTop_toBottomOf="@+id/imageView18" />
+
+            <ImageView
+                android:id="@+id/ivBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginEnd="@dimen/eight"
+                android:background="@drawable/prof_badge"
+                android:elevation="@dimen/eight"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/imageView19"
+                app:layout_constraintTop_toTopOf="@+id/imageView19" />
+
+            <TextView
+                android:id="@+id/textView151"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_bold"
+                android:onClick="@{viewmodel.onFollowers}"
+                android:text="3k"
+                android:textColor="@color/text_black"
+                app:layout_constraintEnd_toStartOf="@+id/imageView19"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView18" />
+
+            <TextView
+                android:id="@+id/textView152"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:onClick="@{viewmodel.onFollowers}"
+                android:text="@string/followers"
+                app:layout_constraintEnd_toEndOf="@+id/textView151"
+                app:layout_constraintStart_toStartOf="@+id/textView151"
+                app:layout_constraintTop_toBottomOf="@+id/textView151" />
+
+            <TextView
+                android:id="@+id/textView153"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_bold"
+                android:onClick="@{viewmodel.onFollowing}"
+                android:text="167"
+                android:textColor="@color/text_black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView19"
+                app:layout_constraintTop_toBottomOf="@+id/imageView18" />
+
+            <TextView
+                android:id="@+id/textView154"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:onClick="@{viewmodel.onFollowing}"
+                android:text="@string/following"
+                app:layout_constraintEnd_toEndOf="@+id/textView153"
+                app:layout_constraintStart_toStartOf="@+id/textView153"
+                app:layout_constraintTop_toBottomOf="@+id/textView153" />
+
+            <TextView
+                android:id="@+id/textView155"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/eight"
+                android:fontFamily="@font/poppins_bold"
+                android:text=""
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/big_text"
+                app:layout_constraintEnd_toEndOf="@+id/imageView19"
+                app:layout_constraintStart_toStartOf="@+id/imageView19"
+                app:layout_constraintTop_toBottomOf="@+id/imageView19" />
+
+            <TextView
+                android:id="@+id/textView156"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/eight"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginEnd="@dimen/eight"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Android developer, coding maniac"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView155" />
+
+            <Button
+                android:id="@+id/button56"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/boarder_round_btn_bg"
+                android:fontFamily="@font/poppins_bold"
+                android:onClick="@{viewmodel.onEditProfile}"
+                android:text="@string/edit_profile"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="@+id/textView156"
+                app:layout_constraintStart_toStartOf="@+id/textView156"
+                app:layout_constraintTop_toBottomOf="@+id/textView156" />
+
+            <View
+                android:id="@+id/view22"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/sixteen"
+                android:layout_marginTop="@dimen/sixteen"
+                android:layout_marginEnd="@dimen/sixteen"
+                android:background="@color/gray_tint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button56" />
+
+            <TextView
+                android:id="@+id/textView157"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="0"
+                android:textColor="@color/text_black"
+                android:textFontWeight="800"
+                app:layout_constraintEnd_toEndOf="@+id/button57"
+                app:layout_constraintStart_toStartOf="@+id/button57"
+                app:layout_constraintTop_toBottomOf="@+id/view22" />
+
+            <TextView
+                android:id="@+id/textView158"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="0"
+                android:textFontWeight="800"
+                app:layout_constraintEnd_toEndOf="@+id/button58"
+                app:layout_constraintStart_toStartOf="@+id/button58"
+                app:layout_constraintTop_toTopOf="@+id/textView157" />
+
+            <TextView
+                android:id="@+id/textView159"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="0"
+                android:textFontWeight="800"
+                app:layout_constraintEnd_toEndOf="@+id/button59"
+                app:layout_constraintStart_toStartOf="@+id/button59"
+                app:layout_constraintTop_toTopOf="@+id/textView158" />
+
+            <Button
+                android:id="@+id/button57"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/poppins_bold"
+                android:onClick="@{viewmodel.onPost}"
+                android:text="@string/post_value"
+                android:textColor="@color/text_black"
+                android:textFontWeight="800"
+                app:layout_constraintEnd_toStartOf="@+id/button58"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView157" />
+
+            <Button
+                android:id="@+id/button58"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/poppins_bold"
+                android:onClick="@{viewmodel.onEvent}"
+                android:text="@string/events"
+                android:textColor="@color/text_black_light"
+                android:textFontWeight="800"
+                app:layout_constraintEnd_toStartOf="@+id/button59"
+                app:layout_constraintStart_toEndOf="@+id/button57"
+                app:layout_constraintTop_toBottomOf="@+id/textView158" />
+
+            <Button
+                android:id="@+id/button59"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/poppins_bold"
+                android:onClick="@{viewmodel.onPod}"
+                android:text="@string/pods"
+                android:textColor="@color/text_black_light"
+                android:textFontWeight="800"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/button58"
+                app:layout_constraintTop_toBottomOf="@+id/textView159" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvProfileData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginBottom="@dimen/eight"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button57" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>

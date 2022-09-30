@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewModel"
+            type="com.wiesoftware.spine.data.net.reponses.SpineImpulseData" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="@dimen/_200dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/aap_bg"
+    android:layout_margin="4dp"
+    >
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:scaleType="centerCrop"
+        app:image="@{viewModel.image}"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView"
+        android:layout_width="@dimen/_60"
+        android:layout_height="@dimen/_60"
+        android:layout_marginTop="@dimen/eight"
+        android:padding="4dp"
+        android:src="@drawable/ic_spine_home"
+        app:civ_border_color="@android:color/white"
+        app:civ_border_width="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/textView22"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_100"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginTop="@dimen/eight"
+        android:layout_marginEnd="@dimen/sixteen"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:editable="false"
+        android:padding="@dimen/eight"
+        android:text="@{viewModel.description}"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/big_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:padding="@dimen/eight"
+        android:text="30 Nov 2020"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/big_text"
+        app:layout_constraintStart_toStartOf="@+id/textView22"
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:layout_marginBottom="@dimen/eight"
+        android:drawableStart="@drawable/ic_heart"
+        android:drawablePadding="@dimen/eight"
+        android:gravity="center"
+        android:padding="@dimen/eight"
+        android:text="@{viewModel.total_like}"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/big_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_comment"
+        android:drawablePadding="@dimen/eight"
+        android:gravity="center"
+        android:padding="@dimen/eight"
+        android:text="@{viewModel.total_comment}"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/big_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView24"
+        app:layout_constraintTop_toTopOf="@+id/textView24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

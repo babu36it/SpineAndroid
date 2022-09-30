@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.spine.featuredpost.thankyou_featured.ThankYouFeaturedViewmodel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.menus.spine.featuredpost.thankyou_featured.ThanksFeaturedActivity">
+
+
+    <ImageButton
+        android:onClick="@{viewmodel.onClose}"
+        android:id="@+id/imageButton81"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/eight"
+        android:layout_marginTop="@dimen/eight"
+        android:src="@drawable/ic_close"
+        android:tint="@color/text_black"
+        android:background="@android:color/transparent"
+        android:padding="@dimen/eight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:textColor="@color/text_black"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:textSize="@dimen/_13sdp"
+        android:id="@+id/textView309"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/thank_you"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton81"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageButton81" />
+
+    <View
+        android:id="@+id/view82"
+        android:layout_width="wrap_content"
+        style="@style/ViewActionLine"
+        android:layout_marginTop="@dimen/eight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton81" />
+
+    <ImageButton
+        android:id="@+id/imageButton67"
+        android:layout_width="@dimen/_48"
+        android:layout_height="@dimen/_48"
+        android:background="@drawable/circle"
+        android:tint="@color/white"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view82"
+        />
+    <ImageButton
+        android:id="@+id/imageButton68"
+        android:layout_width="@dimen/_32dp"
+        android:layout_height="@dimen/_32dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/round_white"
+        android:src="@drawable/ic_check"
+        android:tint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton67"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton67"
+        app:layout_constraintStart_toStartOf="@+id/imageButton67"
+        app:layout_constraintTop_toTopOf="@+id/imageButton67"
+        />
+
+    <TextView
+        android:id="@+id/textView310"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_30sdp"
+        android:text="@string/once_your_ad_is_approved_and_payment_is_received_it_will_be_published_as_promoted_post_on_the_spiritual_network_this_can_take_up_to_24_hours"
+        android:textAlignment="center"
+        style="@style/NormalText"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/_12sdp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:padding="@dimen/eight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton67" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

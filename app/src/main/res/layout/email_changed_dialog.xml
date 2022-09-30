@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_5sdp"
+    android:layout_gravity="center"
+    android:layout_marginStart="@dimen/_10sdp"
+    android:layout_marginEnd="@dimen/_10sdp"
+    android:background="@drawable/newrectangle"
+    >
+
+    <TextView
+        android:id="@+id/textView204"
+        style="@style/SimpleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/request_submitted_successfully"
+        android:textAlignment="center"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView180"
+        app:layout_constraintStart_toStartOf="@+id/textView180"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView180"
+        style="@style/SimpleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView204"
+        android:layout_marginStart="@dimen/eight"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/eight"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:padding="@dimen/eight"
+        android:text="@string/please_check_your_email_to_verify_it_s_you"
+        android:textAlignment="center"
+        android:textSize="@dimen/_11sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView204" />
+
+    <View
+        android:layout_below="@id/textView180"
+        android:id="@+id/view27"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/eight"
+        android:background="@color/grey" />
+
+
+    <TextView
+        android:layout_marginTop="@dimen/_5sdp"
+        android:gravity="center"
+        android:layout_below="@id/view27"
+        android:padding="@dimen/_5sdp"
+        android:id="@+id/button24"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/eight"
+        android:background="@color/transparent"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/ok"
+        android:textColor="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView180"
+        app:layout_constraintStart_toStartOf="@+id/textView180"
+        app:layout_constraintTop_toBottomOf="@+id/view27" />
+
+
+</RelativeLayout>

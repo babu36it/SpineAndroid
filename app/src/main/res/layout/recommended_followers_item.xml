@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="model"
+            type="com.wiesoftware.spine.data.net.reponses.AllUsersData" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    >
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        app:image="@{model.profilePic}"
+        android:id="@+id/ivRec"
+        android:layout_width="@dimen/_60"
+        android:layout_height="@dimen/_60"
+        android:elevation="@dimen/eight"
+        android:src="@drawable/demo"
+        app:civ_border_color="@color/text_white"
+        app:civ_border_width="2dp"
+        app:civ_circle_background_color="@color/gray_tint"
+        app:layout_constraintBottom_toBottomOf="@+id/view6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/ivBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:visibility="@{model.accountMode.equals(`1`) ? View.VISIBLE: View.GONE}"
+        android:elevation="@dimen/eight"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/prof_badge"
+        app:layout_constraintEnd_toEndOf="@+id/ivRec"
+        app:layout_constraintTop_toTopOf="@+id/ivRec"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

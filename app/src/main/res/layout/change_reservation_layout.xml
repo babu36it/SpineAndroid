@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/transparent"
+    android:layout_width="@dimen/_350"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/imageButton32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_close"
+        android:elevation="@dimen/eight"
+        android:padding="@dimen/eight"
+        android:tint="@color/text_white"
+        android:layout_marginStart="@dimen/eight"
+        android:layout_marginTop="@dimen/sixteen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shadow_box"
+        android:padding="@dimen/sixteen"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        android:layout_marginTop="@dimen/eight"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageButton32">
+
+        <TextView
+            android:id="@+id/textView174"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TitleText"
+            android:text="Going?"
+            android:textAlignment="center"
+             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/gray_tint"
+            android:weightSum="2"
+            >
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/button68"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginStart="@dimen/eight"
+            android:layout_marginBottom="@dimen/eight"
+            android:background="@android:color/transparent"
+            android:text="@string/no"
+            android:textColor="@color/text_black"
+            />
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/button69"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginEnd="@dimen/eight"
+            android:layout_marginBottom="@dimen/eight"
+            android:background="@drawable/round_white"
+            android:textColor="@color/text_black"
+            android:text="@string/yes" />
+        </LinearLayout>
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/button70"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginEnd="@dimen/eight"
+            android:layout_marginBottom="@dimen/eight"
+            android:background="@drawable/round_button_bg"
+            android:textColor="@color/text_black"
+            android:text="@string/update" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

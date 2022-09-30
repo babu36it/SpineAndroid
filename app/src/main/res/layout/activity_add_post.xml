@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.spine.addposts.AddPostViewmodel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.menus.spine.addposts.AddPostActivity">
+
+    <ImageButton
+        android:onClick="@{viewmodel.onBack}"
+        android:id="@+id/ibComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BackButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView54"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:layout_marginEnd="@dimen/eight"
+        android:text="@string/what_would_you_like_to_post"
+        android:textSize="@dimen/big_text"
+        android:padding="@dimen/eight"
+        android:textColor="@color/text_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/ibComment"
+        app:layout_constraintTop_toBottomOf="@+id/ibComment" />
+
+    <androidx.cardview.widget.CardView
+        android:onClick="@{viewmodel.onPostThought}"
+        android:id="@+id/cvPostThought"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/textView54"
+        app:layout_constraintStart_toStartOf="@+id/textView54"
+        app:layout_constraintTop_toBottomOf="@+id/textView54"
+        android:layout_marginTop="@dimen/eight"
+        android:elevation="@dimen/eight"
+        app:cardUseCompatPadding="true"
+        >
+        <TextView
+            android:id="@+id/textView55"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/post_a_question_or_thought"
+            android:textColor="@color/text_black"
+            android:drawableStart="@drawable/ic_add"
+            android:drawableTint="@color/colorPrimaryDark"
+            android:gravity="center|start"
+            android:drawablePadding="@dimen/eight"
+            />
+    </androidx.cardview.widget.CardView>
+
+<androidx.cardview.widget.CardView
+    android:onClick="@{viewmodel.onPostVideoOrPicture}"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintEnd_toEndOf="@+id/cvPostThought"
+    app:layout_constraintStart_toStartOf="@+id/cvPostThought"
+    app:layout_constraintTop_toBottomOf="@+id/cvPostThought"
+    android:layout_marginTop="@dimen/eight"
+    android:id="@+id/cvPostVideoPic"
+    android:elevation="@dimen/eight"
+    app:cardUseCompatPadding="true"
+    >
+    <TextView
+        android:id="@+id/textView56"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/post_a_picture_or_video"
+        android:textColor="@color/text_black"
+        android:drawableStart="@drawable/ic_add"
+        android:drawableTint="@color/colorPrimaryDark"
+        android:gravity="center|start"
+        android:drawablePadding="@dimen/eight"
+        />
+</androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvPostPod"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/eight"
+        android:onClick="@{viewmodel.onPostPodcast}"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="@+id/cvPostVideoPic"
+        app:layout_constraintStart_toStartOf="@+id/cvPostVideoPic"
+        app:layout_constraintTop_toBottomOf="@+id/cvPostEvents">
+
+        <TextView
+            android:id="@+id/textView59"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_add"
+            android:drawablePadding="@dimen/eight"
+            android:drawableTint="@color/colorPrimaryDark"
+            android:gravity="center|start"
+            android:text="@string/post_a_podcast"
+            android:textColor="@color/text_black" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvPostEvents"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/eight"
+        android:onClick="@{viewmodel.onPostEvent}"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="@+id/cvPostVideoPic"
+        app:layout_constraintStart_toStartOf="@+id/cvPostVideoPic"
+        app:layout_constraintTop_toBottomOf="@+id/cvPostStory">
+
+        <TextView
+            android:id="@+id/textView58"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_add"
+            android:drawablePadding="@dimen/eight"
+            android:drawableTint="@color/colorPrimaryDark"
+            android:gravity="center|start"
+            android:text="Post an event"
+            android:textColor="@color/text_black" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvPostStory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/eight"
+        android:onClick="@{viewmodel.onPostStory}"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="@+id/cvPostVideoPic"
+        app:layout_constraintStart_toStartOf="@+id/cvPostVideoPic"
+        app:layout_constraintTop_toBottomOf="@+id/cvPostVideoPic">
+
+        <TextView
+            android:id="@+id/textView57"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_add"
+            android:drawablePadding="@dimen/eight"
+            android:drawableTint="@color/colorPrimaryDark"
+            android:gravity="center|start"
+            android:text="@string/post_a_story"
+            android:textColor="@color/text_black" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView205"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/post"
+        style="@style/TitleText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ibComment" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

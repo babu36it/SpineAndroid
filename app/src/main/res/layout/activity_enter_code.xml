@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+<data>
+    <variable
+        name="viewmodel"
+        type="com.wiesoftware.spine.ui.home.menus.podcasts.addrss.entercode.EnterCodeViewmodel" />
+</data>
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.menus.podcasts.addrss.entercode.EnterCodeActivity">
+
+    <ImageButton
+        android:onClick="@{viewmodel.onBack}"
+        android:id="@+id/imageButton36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BackButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/textView191"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_code"
+        android:textAllCaps="true"
+        style="@style/TitleText"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton36"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageButton36" />
+
+    <View
+        android:id="@+id/view70"
+        android:layout_width="0dp"
+        style="@style/ViewActionLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView191"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/eight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view70">
+
+        <TextView
+            android:id="@+id/textView281"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sixteen"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginEnd="@dimen/sixteen"
+            android:text="@string/a_verification_code_has_been_sent_to_the_email_address_of_the_entered_rss_feed"
+            android:textAlignment="center"
+            style="@style/NormalText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView282"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="(v_****@gmail.com)"
+            android:textAlignment="center"
+            style="@style/NormalText"
+            app:layout_constraintEnd_toEndOf="@+id/textView281"
+            app:layout_constraintStart_toStartOf="@+id/textView281"
+            app:layout_constraintTop_toBottomOf="@+id/textView281" />
+
+        <TextView
+            android:id="@+id/textView283"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            android:textAlignment="center"
+            style="@style/NormalText"
+            android:text="@string/enter_this_code_to_verify_you_are_the_owner_of_the_podcast_please_check_junk_folder_in_case_code_is_not_received"
+            app:layout_constraintEnd_toEndOf="@+id/textView282"
+            app:layout_constraintStart_toStartOf="@+id/textView282"
+            app:layout_constraintTop_toBottomOf="@+id/textView282" />
+
+        <EditText
+            android:visibility="gone"
+            android:id="@+id/editTextTextPersonName30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/sixteen"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@={viewmodel.code}"
+            style="@style/TitleText"
+            android:textAlignment="center"
+            android:letterSpacing="3"
+            app:layout_constraintEnd_toEndOf="@+id/textView283"
+            app:layout_constraintStart_toStartOf="@+id/textView283"
+            app:layout_constraintTop_toBottomOf="@+id/textView283" />
+
+        <EditText
+            android:id="@+id/editTextNumber"
+            android:layout_width="@dimen/_60"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/thirty_two"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:ems="10"
+            android:inputType="number"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:padding="@dimen/eight"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/big_text"
+            app:layout_constraintEnd_toStartOf="@+id/editTextNumber1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView283"/>
+
+        <EditText
+            android:id="@+id/editTextNumber1"
+            android:layout_width="@dimen/_60"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/thirty_two"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:ems="10"
+            android:inputType="number"
+            android:maxLength="1"
+            android:maxLines="1"
+
+            android:padding="@dimen/eight"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/big_text"
+            app:layout_constraintEnd_toStartOf="@+id/editTextNumber3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/editTextNumber"
+            app:layout_constraintTop_toBottomOf="@+id/textView283" />
+
+        <EditText
+            android:id="@+id/editTextNumber3"
+            android:layout_width="@dimen/_60"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/thirty_two"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:ems="10"
+            android:inputType="number"
+            android:maxLength="1"
+            android:maxLines="1"
+
+            android:padding="@dimen/eight"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/big_text"
+            app:layout_constraintEnd_toStartOf="@+id/editTextNumber4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/editTextNumber1"
+            app:layout_constraintTop_toBottomOf="@+id/textView283" />
+
+        <EditText
+            android:id="@+id/editTextNumber4"
+            android:layout_width="@dimen/_60"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/thirty_two"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:ems="10"
+            android:inputType="number"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:padding="@dimen/eight"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/big_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/editTextNumber3"
+            app:layout_constraintTop_toBottomOf="@+id/textView283" />
+
+
+        <Button
+            android:id="@+id/button98"
+            style="@style/ButtonRound"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/next"
+            android:textAllCaps="true"
+            app:layout_constraintEnd_toEndOf="@+id/editTextNumber4"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/editTextNumber"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+
+        <Button
+            android:onClick="@{viewmodel.onResendCode}"
+            android:id="@+id/button100"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            android:text="@string/resend_code"
+            style="@style/TextButton"
+            app:layout_constraintEnd_toEndOf="@+id/editTextNumber4"
+            app:layout_constraintStart_toStartOf="@+id/editTextNumber"
+            app:layout_constraintTop_toBottomOf="@+id/button98" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_10sdp"
+    android:layout_marginEnd="@dimen/_10sdp"
+    android:layout_gravity="center"
+    android:background="@drawable/newrectangle">
+
+    <TextView
+        android:id="@+id/textView180"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:fontFamily="@font/poppins_bold"
+        android:padding="@dimen/_5sdp"
+        android:text="@string/email_is_invalid"
+        style="@style/SimpleText"
+        android:textAlignment="center"
+        android:textSize="@dimen/_11sdp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_below="@id/textView180"
+        android:id="@+id/view27"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/eight"
+        android:background="@color/grey" />
+
+
+
+    <TextView
+        android:layout_marginTop="@dimen/_5sdp"
+        android:gravity="center"
+        android:layout_below="@id/view27"
+        android:padding="@dimen/_5sdp"
+        android:id="@+id/button24"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/eight"
+        android:background="@color/transparent"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/ok"
+        android:textColor="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView180"
+        app:layout_constraintStart_toStartOf="@+id/textView180"
+        app:layout_constraintTop_toBottomOf="@+id/view27" />
+
+</RelativeLayout>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+<data>
+    <variable
+        name="viewmodel"
+        type="com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.messaging.MessagingViewmodel" />
+</data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.menus.profile.setting.account_settings.messaging.MessagingActivity">
+
+    <ImageButton
+        android:id="@+id/imageButton34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/BackButton"
+        android:onClick="@{viewmodel.onBack}"
+         />
+
+    <TextView
+        android:textAllCaps="true"
+        android:id="@+id/textView181"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/messaging"
+        android:textSize="@dimen/_13sdp"
+        android:textColor="@color/text_black"
+        android:fontFamily="@font/poppins_semi_bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton34"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageButton34" />
+
+    <View
+        android:id="@+id/view28"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/eight"
+        android:background="@color/gray_tint"
+        android:elevation="@dimen/eight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton34" />
+
+    <TextView
+        android:id="@+id/textView182"
+        android:layout_width="0dp"
+        android:textSize="@dimen/_10sdp"
+        android:layout_height="wrap_content"
+        android:text="@string/who_can_message_you"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/sixteen"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:textColor="@color/text_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view28" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:onCheckedChanged="@{viewmodel.onMessagingTypeChanged}"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view28"
+        app:layout_constraintTop_toBottomOf="@+id/textView182">
+        <View
+            android:id="@+id/view29"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/eight"
+            android:background="@color/normal_grey"
+            />
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/messaging_selector"
+            android:button="@android:color/transparent"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:paddingEnd="@dimen/_32dp"
+            android:textSize="@dimen/_11sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="@string/hosts_of_an_event_you_re_going_to"
+            android:textColor="@color/text_black" />
+        <View
+            android:id="@+id/view30"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/normal_grey"
+            />
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/messaging_selector"
+            android:button="@android:color/transparent"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:paddingEnd="@dimen/_32dp"
+            android:textSize="@dimen/_11sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="@string/members_of_an_event_you_are_going_to"
+            android:textColor="@color/text_black" />
+        <View
+            android:id="@+id/view31"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/normal_grey"
+            />
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/messaging_selector"
+            android:button="@android:color/transparent"
+            android:checked="true"
+            android:textSize="@dimen/_11sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:paddingEnd="@dimen/_32dp"
+            android:text="@string/anyone_on_spine"
+            android:textColor="@color/text_black" />
+        <View
+            android:id="@+id/view32"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/normal_grey"
+            />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView183"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/_10sdp"
+        android:text="@string/control_who_can_message_you_directly_on_spine_members_will_see_a_message_icon_next_to_your_name_or_on_your_profile_when_they_re_able_to_message_you"
+        android:fontFamily="@font/poppins_regular"
+        app:layout_constraintEnd_toEndOf="@+id/radioGroup"
+        app:layout_constraintStart_toStartOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

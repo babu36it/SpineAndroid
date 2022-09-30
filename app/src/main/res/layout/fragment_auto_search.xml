@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.spine.addposts.hashtags.autosearchfrag.AutoSearchViewmodel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        tools:context=".ui.home.menus.spine.addposts.hashtags.autosearchfrag.AutoSearchFragment">
+
+        <EditText
+            android:id="@+id/editTextTextPersonName28"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/sixteen"
+            android:layout_marginStart="@dimen/eight"
+            android:layout_marginEnd="@dimen/eight"
+            android:background="@drawable/shadow_box"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="@dimen/eight"
+            android:elevation="@dimen/eight"
+            android:ems="10"
+            android:hint="@string/search"
+            android:inputType="textPersonName"
+            android:padding="@dimen/eight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            android:background="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName28" />
+
+        <ImageButton
+
+            android:onClick="@{viewmodel.onCloseautosearch}"
+            android:id="@+id/imageButton75"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/eight"
+            android:src="@drawable/ic_close"
+            android:background="@android:color/transparent"
+            android:padding="@dimen/eight"
+            android:tint="@color/text_black"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName28"
+            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName28"
+            app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName28"
+             />
+<TextView
+    android:id="@+id/tvNewHashtag"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    app:layout_constraintTop_toBottomOf="@+id/recyclerView7"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    style="@style/TitleText"
+    android:textSize="@dimen/sp18"
+    android:text=""
+    android:paddingStart="@dimen/sixteen"
+    />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

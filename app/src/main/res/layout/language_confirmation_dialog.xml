@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_10sdp"
+    android:layout_marginEnd="@dimen/_10sdp"
+    android:layout_gravity="center"
+    android:background="@drawable/newrectangle"
+    >
+
+    <TextView
+        style="@style/SimpleText"
+        android:padding="@dimen/_5sdp"
+        android:id="@+id/textView188"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/_30sdp"
+        android:gravity="center"
+        android:text="@string/select_the_language_in_your_spine_app"
+        android:textAlignment="center"
+        android:textSize="@dimen/_11sdp"
+        android:fontFamily="@font/poppins_bold" />
+
+    <TextView
+        style="@style/SimpleText"
+        android:id="@+id/textView189"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView188"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:gravity="center"
+        android:padding="@dimen/_5sdp"
+        android:text="@string/after_you_tap_continue_below_tap_language_on_the_next_screen_to_select_your_desired_language"
+        android:textSize="@dimen/_10sdp" />
+
+    <TextView
+        style="@style/SimpleText"
+        android:id="@+id/textView190"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView189"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:gravity="center"
+        android:padding="@dimen/_5sdp"
+        android:text="@string/if_you_don_t_see_a_language_setting_on_the_next_screen_go_to_your_device_s_language_region_settings_and_set_a_secondary_language_there_then_come_back_here_and_try_again"
+        android:textSize="@dimen/_10sdp" />
+
+    <View
+        android:layout_below="@id/textView190"
+        android:id="@+id/view27"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/eight"
+        android:background="@color/grey" />
+
+    <LinearLayout
+        android:weightSum="2"
+        android:layout_below="@id/view27"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:gravity="center"
+            android:padding="@dimen/_5sdp"
+            android:id="@+id/button25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/eight"
+            android:background="@color/transparent"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/cancel"
+            android:textColor="@color/blue" />
+
+        <View
+            android:layout_below="@id/textView190"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/grey" />
+
+
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:gravity="center"
+            android:padding="@dimen/_5sdp"
+            android:id="@+id/button71"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/eight"
+            android:background="@color/transparent"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/continue_"
+            android:textColor="@color/blue" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

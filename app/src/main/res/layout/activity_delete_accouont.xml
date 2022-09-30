@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+<data>
+    <variable
+        name="viewmodel"
+        type="com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.deleteAccount.DeleteAccountViewmodel" />
+</data>
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.menus.profile.setting.account_settings.deleteAccount.DeleteAccouontActivity">
+
+        <ImageButton
+            android:onClick="@{viewmodel.onBack}"
+            android:id="@+id/imageButton41"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/BackButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/textView207"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_account"
+            style="@style/TitleText"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton41"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageButton41" />
+
+        <Button
+            android:id="@+id/button80"
+            style="@style/ButtonRound"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="@{viewmodel.onDelete}"
+            android:text="@string/delete_account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView211"
+            app:layout_constraintWidth_percent=".8" />
+
+        <View
+            android:id="@+id/view40"
+            android:layout_width="wrap_content"
+            style="@style/ViewActionLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView207" />
+
+        <TextView
+            android:id="@+id/textView209"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sixteen"
+            android:layout_marginTop="@dimen/sixteen"
+            android:layout_marginEnd="@dimen/sixteen"
+            style="@style/TitleText"
+            android:text="@string/are_you_sure_you_want_to_delete_your_account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view40" />
+
+        <TextView
+            android:id="@+id/textView210"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            style="@style/NormalText"
+            android:text="@string/your_activity_posts_and_other_contributions_will_remain_on_spine_but_your_profile_and_saved_posts_will_be_removed"
+            app:layout_constraintEnd_toEndOf="@+id/textView209"
+            app:layout_constraintStart_toStartOf="@+id/textView209"
+            app:layout_constraintTop_toBottomOf="@+id/textView209" />
+
+        <TextView
+            android:id="@+id/textView211"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            style="@style/NormalText"
+            android:text="@string/if_you_decide_to_rejoine_within_30_days_you_can_sign_in_with_the_same_credentials_to_reactivate_your_account"
+            app:layout_constraintEnd_toEndOf="@+id/textView210"
+            app:layout_constraintStart_toStartOf="@+id/textView210"
+            app:layout_constraintTop_toBottomOf="@+id/textView210" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

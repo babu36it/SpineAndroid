@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="podcast_category">Podcast Category</string>
+    <string name="enter_description">Enter Description</string>
+    <string name="where_book_events">Where to book the event</string>
+    <string name="requires_meeting_in_physical_location">Requires max 24h meeting in a physical location</string>
+    <string name="virtual_event_livestream_experiences_on_the_web_zoom_youtube_etc">Virtual event/livestream experiences on the web (Zoom,Youtube etc)</string>
+    <string name="retreat">Retreat</string>
+    <string name="discard">Discard</string>
+    <string name="search_events">Search Events</string>
+    <string name="spiritual_gateways_for_2_days_spiritual_vacation">Spiritual gateways for 2+ days, spiritual vacation</string>
+    <string name="post_value">Post</string>
+    <string name="want_to_delete_your_account_for_good">Want to delete your account for good?</string>
+    <string name="deleting_your_account_means_you_won_t_be_able_to_get_your_posts_and_saved_content_back_all_of_your_spine_data_will_be_deleted">Deleting your account means you won’t be able to get your posts and saved content back. All of your Spine data will be deleted.</string>
+    <string name="delete_my_account">Delete My Account</string>
+    <string name="strictly_necessary">Strictly Necessary</string>
+    <string name="i_have_read_and_agree_to_the_terms_of_service">I have read and agree to the Terms of Service</string>
+    <string name="and_privacy_policy">and Privacy Policy</string>
+    <string name="feed">Feed</string>
+    <string name="discover">Discover</string>
+
+    <string name="metaverse_sessions">Metaverse Sessions</string>
+    <string name="metaverse_sessions_details">Coachings, Lessons, Readings and Speaches that take place in the Metaverse</string>
+
+    <string name="str_name">Name</string>
+    <string name="str_enter">Enter</string>
+    <string name="str_intersted_in">Im interested in</string>
+    <string name="str_any_text">any text for search engines in the app</string>
+    <string name="str_automatic_suggetions">Automatic suggestions</string>
+    <string name="str_categories_like">Categories I like</string>
+    <string name="str_offer_description">Offer Discription</string>
+    <string name="str_add_description">Add a description</string>
+    <string name="str_key_performance_area">Key performance areas and methods</string>
+    <string name="str_desease">Desease patterns I treat</string>
+    <string name="str_categories">Categories</string>
+    <string name="str_multiple_choice">Multiple choice</string>
+    <string name="str_language_practice">Languages of practice</string>
+    <string name="str_qualifications">Qualifications</string>
+    <string name="str_company_name">Company name</string>
+    <string name="str_company_name_corporated">Company name if corporated</string>
+    <string name="str_street">Street</string>
+    <string name="str_automatic_offers">automatic offers when entering</string>
+    <string name="str_then_automatic_fill">and then automatic fill</string>
+    <string name="str_linked_google_map">linked to the Google Map API</string>
+    <string name="str_city">City</string>
+    <string name="str_automatic_fill">Automatic fill</string>
+    <string name="str_postcode">Postcode</string>
+    <string name="str_country">Country</string>
+    <string name="str_connect_with_google_listing">Connect with my google listing</string>
+    <string name="str_manual_fill">Manual fill</string>
+    <string name="str_connect_address">Connect with my metaverse address</string>
+    <string name="str_website">Website</string>
+    <string name="str_enter_business_url">Enter your business URL</string>
+    <string name="str_contact_email">Contact email</string>
+    <string name="str_contact_email_address">Enter your contact email address</string>
+    <string name="str_business_phone_number">Business phone number (public)</string>
+    <string name="str_business_mobile_number">Business mobile number (public)</string>
+    <string name="str_about_us">About us</string>
+    <string name="str_automatic_fill_from_above">Automatic fill from above</string>
+    <string name="str_connect_with_our_google_listing">Connect with our google listing</string>
+    <string name="str_offer_description_of_our_compuny">Offer Discription of our company</string>
+    <string name="str_my_business_location"><u>My Business Location</u></string>
+    <string name="str_our_business_location"><u>Our Business Location</u></string>
+    <string name="str_more_info">the more info, the better to find your service</string>
+    <string name="str_something_about_you">Say something about you</string>
+</resources>

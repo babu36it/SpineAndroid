@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.events.addordup.AddOrDupEventViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.menus.events.addordup.AddOrDupEventActivity">
+
+        <ImageButton
+            android:id="@+id/imageButton86"
+            style="@style/BackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:layout_marginTop="@dimen/eight"
+            android:onClick="@{viewmodel.onBack}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView321"
+            style="@style/TitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_event"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton86"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageButton86" />
+
+        <View
+            android:id="@+id/view84"
+            style="@style/ViewActionLine"
+            android:layout_width="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton86" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingBottom="@dimen/eight"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view84">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvPostThought"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/sixteen"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/sixteen"
+                    android:elevation="@dimen/eight"
+                    android:onClick="@{viewmodel.onAddNewEvent}"
+                    app:cardCornerRadius="@dimen/_6sdp"
+                    app:cardUseCompatPadding="true"
+                    app:cardElevation="@dimen/_8sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView323">
+
+                    <TextView
+                        android:id="@+id/textView55"
+                        style="@style/TitleText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_add"
+                        android:drawablePadding="@dimen/eight"
+                        android:drawableTint="@color/colorPrimaryDark"
+                        android:gravity="center|start"
+                        android:text="@string/add_a_new_event"
+                        android:textColor="@color/text_black" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textView323"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/how_would_you_like_to_start"
+                    android:textSize="@dimen/normalText"
+                    app:layout_constraintEnd_toEndOf="@+id/cvPostThought"
+                    app:layout_constraintStart_toStartOf="@+id/cvPostThought"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView322"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/duplicate_an_existing_event"
+                    android:textSize="@dimen/big_text"
+                    app:layout_constraintEnd_toEndOf="@+id/cvPostThought"
+                    app:layout_constraintStart_toStartOf="@+id/cvPostThought"
+                    app:layout_constraintTop_toBottomOf="@+id/cvPostThought" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDupEvent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginBottom="@dimen/eight"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textView322"
+                    app:layout_constraintStart_toStartOf="@+id/textView322"
+                    app:layout_constraintTop_toBottomOf="@+id/textView322" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

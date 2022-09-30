@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView8"
+        android:layout_width="@dimen/_60"
+        android:layout_height="@dimen/_60"
+        android:layout_marginStart="@dimen/eight"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_profile"
+        app:civ_circle_background_color="@color/gray_tint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView129"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@{model.post_user_name}"
+        android:textColor="@color/text_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/circleImageView8"
+        app:layout_constraintTop_toTopOf="@+id/circleImageView8" />
+
+    <TextView
+        android:id="@+id/textView130"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@{model.comment}"
+        app:layout_constraintEnd_toEndOf="@+id/textView129"
+        app:layout_constraintStart_toStartOf="@+id/textView129"
+        app:layout_constraintTop_toBottomOf="@+id/textView129" />
+
+    <ImageButton
+        android:id="@+id/imageButton22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/eight"
+        android:background="@android:color/transparent"
+        android:padding="@dimen/eight"
+        android:src="@drawable/ic_heart"
+        android:tint="@color/gray_tint"
+        app:layout_constraintBottom_toBottomOf="@+id/button51"
+        app:layout_constraintStart_toEndOf="@+id/circleImageView8"
+        app:layout_constraintTop_toTopOf="@+id/button51" />
+
+    <Button
+        android:id="@+id/button51"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:text="@string/reply"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintStart_toEndOf="@+id/imageButton22"
+        app:layout_constraintTop_toBottomOf="@+id/textView130" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
