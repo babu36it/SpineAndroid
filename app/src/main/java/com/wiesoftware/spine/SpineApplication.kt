@@ -117,6 +117,7 @@ class SpineApplication : Application(),KodeinAware {
         import(androidXModule(this@SpineApplication))
 
 
+
         bind() from singleton { NetworkConnectionInterceptor(instance()) }
         bind() from singleton { Api(instance()) }
         bind() from singleton { AppDatabase(instance()) }
