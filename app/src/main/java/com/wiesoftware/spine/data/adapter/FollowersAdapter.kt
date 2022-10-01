@@ -6,9 +6,11 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.net.reponses.FollowersData
 import com.wiesoftware.spine.databinding.FollowersItemBinding
+import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
 
 /**
  * Created by Vivek kumar on 1/20/2021.
@@ -56,6 +58,12 @@ class FollowersAdapter(val dataList: List<FollowersData>,val listener: Followers
                 holder.followersItemBinding.button60.text=holder.context.resources.getString(R.string.follows)
                 holder.followersItemBinding.button60.setTextColor(ContextCompat.getColor(holder.context,R.color.text_white))
             }
+        }
+        if (!dataList[position].profile_pic.isNullOrEmpty()) {
+            val url = dataList[position].profile_pic
+            Glide.with(holder.context)
+                .load( url)
+                .into( holder.followersItemBinding.imageView20)
         }
         holder.followersItemBinding.imageView20.setOnClickListener {
             listener.onViewOthersProfile(dataList[position])

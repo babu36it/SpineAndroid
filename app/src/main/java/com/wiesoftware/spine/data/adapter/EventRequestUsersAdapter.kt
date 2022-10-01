@@ -1,6 +1,8 @@
 package com.wiesoftware.spine.data.adapter
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -33,16 +35,19 @@ class EventRequestUsersAdapter(val dataList: List<EventRequestData>,val listner:
        holder.eventRequestUserItemBinding.viewmodel=dataList[position]
         val eveRequestData: EventRequestData=dataList[position]
         val bookingStatus: String=eveRequestData.booking_status
-        bookingStatus?.let {
+        bookingStatus.let {
             if (bookingStatus.equals("0")){
                 holder.eventRequestUserItemBinding.imageButton37.setImageResource(R.drawable.ic_check)
                 holder.eventRequestUserItemBinding.imageButton38.setImageResource(R.drawable.ic_close)
             }else if (bookingStatus.equals("2")){
-                holder.eventRequestUserItemBinding.imageButton37.setImageResource(R.drawable.ic_check_circle)
-                holder.eventRequestUserItemBinding.imageButton38.setImageResource(R.drawable.ic_close)
+//                holder.eventRequestUserItemBinding.imageButton37.setImageResource(R.drawable.ic_check_circle)
+                holder.eventRequestUserItemBinding.imageButton37.setBackgroundResource(R.drawable.circle_fill)
+                holder.eventRequestUserItemBinding.imageButton37.setColorFilter(Color.argb(255, 255, 255, 255));
+//                holder.eventRequestUserItemBinding.imageButton38.setImageResource(R.drawable.ic_close)
             }else if (bookingStatus.equals("3")){
                 holder.eventRequestUserItemBinding.imageButton37.setImageResource(R.drawable.ic_check)
-                holder.eventRequestUserItemBinding.imageButton38.setImageResource(R.drawable.ic_close_circle)
+//               holder.eventRequestUserItemBinding.imageButton38.setImageResource(R.drawable.ic_close_circle)
+
             }
         }
         holder.eventRequestUserItemBinding.imageButton37.setOnClickListener {
@@ -54,6 +59,7 @@ class EventRequestUsersAdapter(val dataList: List<EventRequestData>,val listner:
             listner.onDeclienedRequest(dataList[position])
             holder.eventRequestUserItemBinding.imageButton37.setImageResource(R.drawable.ic_check)
             holder.eventRequestUserItemBinding.imageButton38.setImageResource(R.drawable.ic_close_circle)
+
         }
 
     }

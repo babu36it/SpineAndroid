@@ -131,6 +131,8 @@ dependencies {
 
     implementation 'io.github.chaosleung:pinview:1.4.4'
 
+    implementation 'com.arasthel:spannedgridlayoutmanager:2.0.1'
+
 
     // Add the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies

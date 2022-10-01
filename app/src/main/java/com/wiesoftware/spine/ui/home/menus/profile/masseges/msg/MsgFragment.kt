@@ -73,6 +73,7 @@ class MsgFragment : Fragment(),KodeinAware, EveMessageAdapter.OnUserChatListener
                 userIntent(t as User)
             }
         })
+
         return binding.root
     }
     private fun loadFragment(fragment: Fragment?) {

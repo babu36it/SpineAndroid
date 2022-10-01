@@ -60,9 +60,56 @@ class FollowersFragment : Fragment(),KodeinAware, FollowersAdapter.FollowersFoll
         lifecycleScope.launch {
             try {
                 val res=homeRepositry.getFollowers(1,100,userId)
-                if (res.status){
-                    STORY_IMAGE=res.image
-                    val dataList=res.data
+                if (!res.status){
+//                    STORY_IMAGE=res.image
+//                    val dataList=res.data
+                    val dataList= arrayListOf<FollowersData>()
+
+                    dataList.add(FollowersData(
+                        "created_on",
+                        "image",
+                        "hashtag_ids" ,
+                        "1" ,
+                        "multiplity" ,
+                        "post_backround_color_id" ,
+                        "post_user_name" ,
+                        "status" ,
+                        "title" ,
+                        "type" ,
+                        "updated_on" ,
+                        "user_id" ,
+                        "96arsh123" ,
+                        "Craig Warner",
+                        "" ,
+                        "profile_pic" ,
+                        "96arsh123" ,
+                        "0" ,
+
+                        ))
+
+                    dataList.add(FollowersData(
+                        "created_on",
+                        "image",
+                        "hashtag_ids" ,
+                        "1" ,
+                        "multiplity" ,
+                        "post_backround_color_id" ,
+                        "post_user_name" ,
+                        "status" ,
+                        "title" ,
+                        "type" ,
+                        "updated_on" ,
+                        "user_id" ,
+                        "Jo123" ,
+                        "Jo Warner",
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNLMjiyMC85Z_zNLvUTXc18evEX6bsYhPeZw&usqp=CAU" ,
+                        "asdasd" ,
+                        "i love coading" ,
+                        "1" ,
+
+                        ))
+
+
                     binding.rvFollowers.also {
                         it.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
                         it.setHasFixedSize(true)

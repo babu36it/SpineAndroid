@@ -25,6 +25,8 @@
     <color name="progress_max_active">@color/white</color>
     <color name="gray_scale">#8AFFFFFF</color>
     <color name="white">#FFFFFF</color>
+    <color name="dark_gray_text">#484848</color>
+    #
 
     <color name="light_gry">#CFD0CF</color>
 

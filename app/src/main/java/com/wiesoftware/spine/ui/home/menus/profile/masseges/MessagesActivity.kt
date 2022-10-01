@@ -1,22 +1,22 @@
 package com.wiesoftware.spine.ui.home.menus.profile.masseges
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
+import android.provider.CalendarContract
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getColor
+import androidx.core.content.res.ResourcesCompat.getColor
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.badge.BadgeDrawable
+import com.google.android.material.color.MaterialColors.getColor
 import com.google.android.material.tabs.TabLayoutMediator
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.databinding.ActivityMessagesBinding
 import com.wiesoftware.spine.ui.home.menus.profile.masseges.eve_request.EveRequestFragment
 import com.wiesoftware.spine.ui.home.menus.profile.masseges.msg.MsgFragment
-import com.wiesoftware.spine.ui.home.menus.profile.tabs.ProfileTabAdapter
-import com.wiesoftware.spine.ui.home.menus.profile.tabs.bookmark.BookmarkFragment
-import com.wiesoftware.spine.ui.home.menus.profile.tabs.events.EventsFragment
-import com.wiesoftware.spine.ui.home.menus.profile.tabs.podcasts.PodcastFragment
-import com.wiesoftware.spine.ui.home.menus.profile.tabs.posts.PostsFragment
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 
@@ -44,6 +44,17 @@ class MessagesActivity : AppCompatActivity(),KodeinAware, MessagesEventListener 
     private fun addTabs() {
         TabLayoutMediator(binding.tabLayout2,binding.viewpager2){tab, position ->
         }.attach()
+
+//        binding.tabLayout2.getTabAt(0)?.setCustomView(R.layout.tab_badge)
+//
+//        binding.tabLayout2.getTabAt(0)?.b
+        //set the badge
+        //set the badge
+        val badgeDrawable: BadgeDrawable = binding.tabLayout2.getTabAt(0)?.getOrCreateBadge()!!
+
+        badgeDrawable.setVisible(true)
+        badgeDrawable.backgroundColor = getResources().getColor(R.color.color_red);
+        badgeDrawable.horizontalOffset = -20
         binding.tabLayout2.getTabAt(0)?.text = resources.getText(R.string.message)
         binding.tabLayout2.getTabAt(1)?.text = resources.getText(R.string.events_requests)
     }

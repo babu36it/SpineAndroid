@@ -59,6 +59,8 @@ class ProfileFragment : Fragment(),KodeinAware, ProfileFragmentEventListener {
     val factory : ProfileFragmentViewModelFactory by instance()
     val homeRepositry: HomeRepositry by instance()
     lateinit var user_id: String
+    var followers:String = "0"
+    var following:String = "0"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_profile,container,false)
@@ -107,8 +109,8 @@ class ProfileFragment : Fragment(),KodeinAware, ProfileFragmentEventListener {
                             .placeholder(R.drawable.ic_spine_home)
                             .into(binding.circleImageView4)
                     }
-                    val followers=profileData.followers_records_count
-                    val following=profileData.following_records_count
+                     followers=profileData.followers_records_count
+                     following=profileData.following_records_count
                     binding.textView48.text=followers
                     binding.textView49.text=following
                     if (profileData.account_mode.equals("1")){
@@ -159,11 +161,19 @@ class ProfileFragment : Fragment(),KodeinAware, ProfileFragmentEventListener {
     }
 
     override fun onFollowers() {
-        startActivity(Intent(requireContext(),FollowActivity::class.java))
+        val intent = Intent(requireContext(),FollowActivity::class.java)
+        intent.putExtra("followers", followers)
+        intent.putExtra("following", following)
+        startActivity(intent)
+//        startActivity(Intent(requireContext(),FollowActivity::class.java))
     }
 
     override fun onFollowing() {
-        startActivity(Intent(requireContext(),FollowActivity::class.java))
+        val intent = Intent(requireContext(),FollowActivity::class.java)
+        intent.putExtra("followers", followers)
+        intent.putExtra("following", following)
+        startActivity(intent)
+//        startActivity(Intent(requireContext(),FollowActivity::class.java))
     }
 
     override fun onAddPost() {

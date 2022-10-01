@@ -158,7 +158,7 @@
             <Button
                 android:id="@+id/button56"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/boarder_round_btn_bg"
                 android:fontFamily="@font/poppins_bold"
@@ -181,82 +181,188 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button56" />
 
-            <TextView
-                android:id="@+id/textView157"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="0"
-                android:textColor="@color/text_black"
-                android:textFontWeight="800"
-                app:layout_constraintEnd_toEndOf="@+id/button57"
-                app:layout_constraintStart_toStartOf="@+id/button57"
-                app:layout_constraintTop_toBottomOf="@+id/view22" />
+            <LinearLayout
+                android:gravity="start"
+                android:id="@+id/post_btn_layout"
+                app:layout_constraintTop_toBottomOf="@+id/view22"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textView158"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:text="0"
-                android:textFontWeight="800"
-                app:layout_constraintEnd_toEndOf="@+id/button58"
-                app:layout_constraintStart_toStartOf="@+id/button58"
-                app:layout_constraintTop_toTopOf="@+id/textView157" />
+                <RelativeLayout
+                    android:onClick="@{viewmodel.onPost}"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textView159"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:text="0"
-                android:textFontWeight="800"
-                app:layout_constraintEnd_toEndOf="@+id/button59"
-                app:layout_constraintStart_toStartOf="@+id/button59"
-                app:layout_constraintTop_toTopOf="@+id/textView158" />
+                    <TextView
+                        android:id="@+id/textView157"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="0"
+                        android:textColor="@color/text_black"
+                        android:textFontWeight="800" />
 
-            <Button
-                android:id="@+id/button57"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/poppins_bold"
-                android:onClick="@{viewmodel.onPost}"
-                android:text="@string/post_value"
-                android:textColor="@color/text_black"
-                android:textFontWeight="800"
-                app:layout_constraintEnd_toStartOf="@+id/button58"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView157" />
+                    <TextView
+                        android:id="@+id/textView_post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
 
-            <Button
-                android:id="@+id/button58"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/poppins_bold"
-                android:onClick="@{viewmodel.onEvent}"
-                android:text="@string/events"
-                android:textColor="@color/text_black_light"
-                android:textFontWeight="800"
-                app:layout_constraintEnd_toStartOf="@+id/button59"
-                app:layout_constraintStart_toEndOf="@+id/button57"
-                app:layout_constraintTop_toBottomOf="@+id/textView158" />
+                        android:layout_below="@+id/textView157"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/post_value"
+                        android:textColor="@color/text_black"
+                        android:textFontWeight="800" />
 
-            <Button
-                android:id="@+id/button59"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/poppins_bold"
-                android:onClick="@{viewmodel.onPod}"
-                android:text="@string/pods"
-                android:textColor="@color/text_black_light"
-                android:textFontWeight="800"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/button58"
-                app:layout_constraintTop_toBottomOf="@+id/textView159" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginStart="20dp"
+                    android:onClick="@{viewmodel.onEvent}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView158"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="0"
+                        android:textColor="@color/text_black"
+                        android:textFontWeight="800" />
+
+                    <TextView
+                        android:id="@+id/textView_events"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textView158"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/events"
+                        android:textColor="@color/text_black"
+                        android:textFontWeight="800" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginStart="20dp"
+                    android:onClick="@{viewmodel.onPod}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/textView159"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="0"
+                        android:textColor="@color/text_black"
+                        android:textFontWeight="800"
+                        />
+
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/textView_pods"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/pods"
+                        android:textColor="@color/text_black"
+                        android:textFontWeight="800"
+                        android:layout_below="@+id/textView159"
+                        />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/textView157"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="8dp"-->
+            <!--                android:fontFamily="@font/poppins_bold"-->
+            <!--                android:text="0"-->
+            <!--                android:textColor="@color/text_black"-->
+            <!--                android:textFontWeight="800"-->
+            <!--                app:layout_constraintEnd_toEndOf="@+id/button57"-->
+            <!--                app:layout_constraintStart_toStartOf="@+id/button57"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/view22" />-->
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/textView158"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:fontFamily="@font/poppins_regular"-->
+            <!--                android:text="0"-->
+            <!--                android:textFontWeight="800"-->
+            <!--                app:layout_constraintEnd_toEndOf="@+id/button58"-->
+            <!--                app:layout_constraintStart_toStartOf="@+id/button58"-->
+            <!--                app:layout_constraintTop_toTopOf="@+id/textView157" />-->
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/textView159"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:fontFamily="@font/poppins_regular"-->
+            <!--                android:text="0"-->
+            <!--                android:textFontWeight="800"-->
+            <!--                app:layout_constraintEnd_toEndOf="@+id/button59"-->
+            <!--                app:layout_constraintStart_toStartOf="@+id/button59"-->
+            <!--                app:layout_constraintTop_toTopOf="@+id/textView158" />-->
+
+            <!--            <Button-->
+            <!--                android:id="@+id/button57"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:background="@android:color/transparent"-->
+            <!--                android:fontFamily="@font/poppins_bold"-->
+            <!--                android:onClick="@{viewmodel.onPost}"-->
+            <!--                android:text="@string/post_value"-->
+            <!--                android:textColor="@color/text_black"-->
+            <!--                android:textFontWeight="800"-->
+            <!--                android:padding="0dp"-->
+            <!--                app:layout_constraintEnd_toStartOf="@+id/button58"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/textView157" />-->
+
+            <!--            <Button-->
+            <!--                android:id="@+id/button58"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:background="@android:color/transparent"-->
+            <!--                android:fontFamily="@font/poppins_bold"-->
+            <!--                android:onClick="@{viewmodel.onEvent}"-->
+            <!--                android:text="@string/events"-->
+            <!--                android:textColor="@color/text_black_light"-->
+            <!--                android:textFontWeight="800"-->
+            <!--                app:layout_constraintEnd_toStartOf="@+id/button59"-->
+            <!--                app:layout_constraintStart_toEndOf="@+id/button57"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/textView158" />-->
+
+            <!--            <Button-->
+            <!--                android:id="@+id/button59"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:background="@android:color/transparent"-->
+            <!--                android:fontFamily="@font/poppins_bold"-->
+            <!--                android:onClick="@{viewmodel.onPod}"-->
+            <!--                android:text="@string/pods"-->
+            <!--                android:textColor="@color/text_black_light"-->
+            <!--                android:textFontWeight="800"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toEndOf="@+id/button58"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/textView159" />-->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvProfileData"
@@ -267,7 +373,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button57" />
+                app:layout_constraintTop_toBottomOf="@+id/post_btn_layout" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

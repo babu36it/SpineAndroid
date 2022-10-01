@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.UserPodcastAdapter
+import com.wiesoftware.spine.data.net.reponses.EventsRecord
 import com.wiesoftware.spine.data.net.reponses.PodDatas
 import com.wiesoftware.spine.data.net.reponses.PodcastData
 import com.wiesoftware.spine.data.repo.HomeRepositry
@@ -58,11 +59,12 @@ class PodcastFragment : Fragment(),KodeinAware, PodcastsEventListner,
         lifecycleScope.launch {
             try {
                 val res=homeRepositry.getAllPodcasts(userId)
-                if (res.status){
-                    STORY_IMAGE =res.profile_img
-                    POD_FILE_BASE =res.image
-                    BASE_IMAGE = POD_FILE_BASE
-                    val dataList=res.data
+                if (!res.status){
+//                    STORY_IMAGE =res.profile_img
+//                    POD_FILE_BASE =res.image
+//                    BASE_IMAGE = POD_FILE_BASE
+//                    val dataList=res.data
+                    val dataList = arrayListOf<PodDatas>()
                     setPodData(dataList)
                 }
             }catch (e: ApiException){
@@ -75,7 +77,7 @@ class PodcastFragment : Fragment(),KodeinAware, PodcastsEventListner,
 
     private fun setPodData(dataList: List<PodDatas>) {
         if(dataList.size > 0){
-           binding.button36.visibility=View.GONE
+            binding.button36.visibility=View.GONE
         }
         binding.rvOwnPods.also {
             it.layoutManager= LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)

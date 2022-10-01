@@ -83,8 +83,8 @@ class CometChatUserListScreen constructor() : Fragment() {
         title!!.setTypeface(FontUtils.getInstance(getActivity()).getTypeFace(FontUtils.robotoMedium))
         rvUserList = view.findViewById(R.id.rv_user_list)
         noUserLayout = view.findViewById(R.id.no_user_layout)
-        etSearch = view.findViewById(R.id.search_bar)
-        clearSearch = view.findViewById(R.id.clear_search)
+//        etSearch = view.findViewById(R.id.search_bar)
+//        clearSearch = view.findViewById(R.id.clear_search)
         rlSearchBox = view.findViewById(R.id.rl_search_box)
         shimmerFrameLayout = view.findViewById(R.id.shimmer_layout)
         if (Utils.isDarkMode(getContext()!!)) {
@@ -92,41 +92,41 @@ class CometChatUserListScreen constructor() : Fragment() {
         } else {
             title!!.setTextColor(getResources().getColor(R.color.primaryTextColor))
         }
-        etSearch!!.addTextChangedListener(object : TextWatcher {
-            public override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-            public override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-            public override fun afterTextChanged(editable: Editable) {
-                if (editable.length == 0) {
-                    // if etSearch is empty then fetch all users.
-                    usersRequest = null
-                    rvUserList!!.clear()
-                    fetchUsers()
-                } else {
-                    // Search users based on text in etSearch field.
-                    searchUser(editable.toString())
-                }
-            }
-        })
-        etSearch!!.setOnEditorActionListener(object : OnEditorActionListener {
-            public override fun onEditorAction(textView: TextView, i: Int, keyEvent: KeyEvent): Boolean {
-                if (i == EditorInfo.IME_ACTION_SEARCH) {
-                    searchUser(textView.getText().toString())
-                    clearSearch!!.setVisibility(View.VISIBLE)
-                    return true
-                }
-                return false
-            }
-        })
-        clearSearch!!.setOnClickListener(object : View.OnClickListener {
-            public override fun onClick(view: View) {
-                etSearch!!.setText("")
-                clearSearch!!.setVisibility(View.GONE)
-                searchUser(etSearch!!.getText().toString())
-                val inputMethodManager: InputMethodManager = getContext()!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                // Hide the soft keyboard
-                inputMethodManager.hideSoftInputFromWindow(etSearch!!.getWindowToken(), 0)
-            }
-        })
+//        etSearch!!.addTextChangedListener(object : TextWatcher {
+//            public override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+//            public override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+//            public override fun afterTextChanged(editable: Editable) {
+//                if (editable.length == 0) {
+//                    // if etSearch is empty then fetch all users.
+//                    usersRequest = null
+//                    rvUserList!!.clear()
+//                    fetchUsers()
+//                } else {
+//                    // Search users based on text in etSearch field.
+//                    searchUser(editable.toString())
+//                }
+//            }
+//        })
+//        etSearch!!.setOnEditorActionListener(object : OnEditorActionListener {
+//            public override fun onEditorAction(textView: TextView, i: Int, keyEvent: KeyEvent): Boolean {
+//                if (i == EditorInfo.IME_ACTION_SEARCH) {
+//                    searchUser(textView.getText().toString())
+//                    clearSearch!!.setVisibility(View.VISIBLE)
+//                    return true
+//                }
+//                return false
+//            }
+//        })
+//        clearSearch!!.setOnClickListener(object : View.OnClickListener {
+//            public override fun onClick(view: View) {
+//                etSearch!!.setText("")
+//                clearSearch!!.setVisibility(View.GONE)
+//                searchUser(etSearch!!.getText().toString())
+//                val inputMethodManager: InputMethodManager = getContext()!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+//                // Hide the soft keyboard
+//                inputMethodManager.hideSoftInputFromWindow(etSearch!!.getWindowToken(), 0)
+//            }
+//        })
 
 
         // Uses to fetch next list of user if rvUserList (RecyclerView) is scrolled in upward direction.
@@ -151,7 +151,7 @@ class CometChatUserListScreen constructor() : Fragment() {
         shimmerFrameLayout!!.stopShimmer()
         shimmerFrameLayout!!.setVisibility(View.GONE)
         //title!!.setVisibility(View.VISIBLE)
-        rlSearchBox!!.setVisibility(View.VISIBLE)
+//        rlSearchBox!!.setVisibility(View.VISIBLE)
     }
 
     public override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -3,6 +3,7 @@ package com.wiesoftware.spine.ui.home.menus.profile.myprofile
 import android.view.View
 import androidx.lifecycle.ViewModel
 import com.wiesoftware.spine.data.repo.HomeRepositry
+import kotlinx.android.synthetic.main.activity_my_profile.view.*
 
 /**
  * Created by Vivek kumar on 1/20/2021.

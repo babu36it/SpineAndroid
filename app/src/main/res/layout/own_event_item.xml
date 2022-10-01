@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+<layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
@@ -9,84 +9,108 @@
             type="com.wiesoftware.spine.data.net.reponses.EventsRecord" />
     </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    >
-
-    <ImageView
-        app:image="@{model.file}"
-        android:id="@+id/imgEvent"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_250"
-        android:background="@color/gray_tint"
-        android:scaleType="centerCrop"
-        android:src="@drawable/demo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/textView76"
-        android:layout_width="@dimen/_72"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/sixteen"
-        android:layout_marginEnd="@dimen/sixteen"
-        android:background="@color/colorPrimaryDark"
-        android:gravity="center"
-        android:paddingTop="@dimen/eight"
-        android:paddingStart="@dimen/sixteen"
-        android:paddingEnd="@dimen/sixteen"
-        android:paddingBottom="@dimen/eight"
-        android:text="9 May"
-        android:textColor="@color/white"
-        android:textSize="@dimen/big_text"
-        app:layout_constraintTop_toTopOf="@+id/imgEvent"
-        app:layout_constraintEnd_toEndOf="@+id/imgEvent"
-         />
+        android:layout_margin="4dp"
+        >
 
-    <TextView
-        android:id="@+id/textView136"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
-        android:text="@{model.language + ` | ` + model.startTime}"
-        android:drawableStart="@drawable/ic_mic"
-        android:drawablePadding="@dimen/eight"
-        android:textSize="@dimen/big_text"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:textColor="@color/text_white"
-        app:layout_constraintBottom_toBottomOf="@+id/imgEvent"
-        app:layout_constraintStart_toStartOf="@+id/imgEvent" />
+        <ImageView
+            app:image="@{model.file}"
+            android:id="@+id/imgEvent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_250"
+            android:background="@color/gray_tint"
+            android:scaleType="centerCrop"
+            android:src="@drawable/demo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView137"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_bold"
-        android:padding="@dimen/eight"
-        android:layout_marginEnd="@dimen/eight"
-        android:text="@{model.title}"
-        android:textColor="@color/text_white"
-        android:textSize="@dimen/text_22"
-        app:layout_constraintBottom_toTopOf="@+id/textView136"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView136" />
+        <RelativeLayout
+            android:layout_marginTop="@dimen/sixteen"
+            android:layout_marginEnd="@dimen/sixteen"
+            android:gravity="center"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="vertical"
+            android:layout_width="@dimen/_72"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp"
+            app:layout_constraintTop_toTopOf="@+id/imgEvent"
+            app:layout_constraintEnd_toEndOf="@+id/imgEvent"
+            >
 
-    <TextView
-        android:id="@+id/textView138"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Online"
-        android:textAllCaps="true"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/text_white"
-        android:padding="@dimen/eight"
-        android:textSize="@dimen/big_text"
-        app:layout_constraintBottom_toTopOf="@+id/textView137"
-        app:layout_constraintStart_toStartOf="@+id/textView136" />
+            <TextView
+                android:id="@+id/textView_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/big_text"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                />
+
+            <TextView
+                android:layout_marginTop="-10dp"
+                android:id="@+id/textView_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="May"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/big_text"
+                android:layout_below="@+id/textView_day"
+                />
+
+        </RelativeLayout>
+
+<!--        android:text="@{model.language + ` | ` + model.startTime}"-->
+        <TextView
+            android:id="@+id/textView136"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:drawableStart="@drawable/ic_mic"
+            android:drawablePadding="@dimen/eight"
+            android:textSize="@dimen/big_text"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/text_white"
+            app:layout_constraintBottom_toBottomOf="@+id/imgEvent"
+            app:layout_constraintStart_toStartOf="@+id/imgEvent" />
+
+<!--        android:text="@{model.title}"-->
+        <TextView
+            android:id="@+id/textView137"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:padding="@dimen/eight"
+            android:layout_marginEnd="@dimen/twelve"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_22"
+            app:layout_constraintBottom_toTopOf="@+id/textView136"
+
+            app:layout_constraintStart_toStartOf="@+id/textView136" />
+
+        <TextView
+            android:id="@+id/textView138"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:background="@color/colorPrimaryDark"
+            android:fontFamily="@font/aclonica"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_6sdp"
+            android:text="Online"
+            android:textAllCaps="true"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/big_text"
+            android:textStyle="bold"
+
+            app:layout_constraintBottom_toTopOf="@+id/textView137"
+            app:layout_constraintStart_toStartOf="@+id/textView136" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

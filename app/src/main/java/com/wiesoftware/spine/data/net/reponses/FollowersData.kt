@@ -27,3 +27,4 @@ data class FollowersData(
     val bio: String,
     val is_follow: String
 )
+
