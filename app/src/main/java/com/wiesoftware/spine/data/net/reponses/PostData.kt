@@ -45,3 +45,10 @@ data class PostData(
     val file:String,
     var files: String
 ): Serializable
+
+data class DemoPostData(
+    val created_on: String,
+    val type:String,
+    val data:String,
+
+): Serializable

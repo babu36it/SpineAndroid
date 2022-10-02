@@ -16,15 +16,26 @@
     tools:context=".ui.home.menus.profile.masseges.eve_request.EveRequestFragment">
 
 
+    <TextView
+        android:id="@+id/tv_new_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/event_request"
+        android:textColor="@color/text_black"
+        android:textSize="14sp"
+        android:visibility="visible"
+        android:layout_margin="@dimen/sixteen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvEveRequests"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/eight"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/eight"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_new_message" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

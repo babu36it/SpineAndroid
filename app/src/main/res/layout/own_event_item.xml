@@ -16,53 +16,57 @@
         >
 
         <ImageView
-            app:image="@{model.file}"
             android:id="@+id/imgEvent"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_250"
             android:background="@color/gray_tint"
             android:scaleType="centerCrop"
             android:src="@drawable/demo"
+            app:image="@{model.file}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/sixteen"
             android:layout_marginEnd="@dimen/sixteen"
-            android:gravity="center"
             android:background="@color/colorPrimaryDark"
+            android:gravity="center"
             android:orientation="vertical"
-            android:layout_width="@dimen/_72"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_5sdp"
-            app:layout_constraintTop_toTopOf="@+id/imgEvent"
+            android:paddingHorizontal="@dimen/_4sdp"
             app:layout_constraintEnd_toEndOf="@+id/imgEvent"
-            >
+            app:layout_constraintTop_toTopOf="@+id/imgEvent">
 
             <TextView
                 android:id="@+id/textView_day"
+                style="@style/TitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="9"
                 android:layout_centerHorizontal="true"
+                android:fontFamily="@font/poppins_bold"
+                android:text="9"
                 android:textColor="@color/white"
-                android:textSize="@dimen/big_text"
 
                 />
 
             <TextView
-                android:layout_marginTop="-10dp"
                 android:id="@+id/textView_month"
+                style="@style/TitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="May"
-                android:layout_centerHorizontal="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/big_text"
                 android:layout_below="@+id/textView_day"
-                />
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-20dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="May"
+                android:textAllCaps="true"
+                android:textColor="@color/white" />
 
         </RelativeLayout>
 
@@ -75,40 +79,37 @@
             android:layout_marginBottom="8dp"
             android:drawableStart="@drawable/ic_mic"
             android:drawablePadding="@dimen/eight"
-            android:textSize="@dimen/big_text"
-            android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/text_white"
+           style="@style/SimpleText_Sami_bold"
+            android:text="sadadasdasdad"
             app:layout_constraintBottom_toBottomOf="@+id/imgEvent"
             app:layout_constraintStart_toStartOf="@+id/imgEvent" />
 
 <!--        android:text="@{model.title}"-->
         <TextView
             android:id="@+id/textView137"
+            style="@style/EventTitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_bold"
+            android:layout_marginEnd="@dimen/thirty_two"
+            android:layout_marginStart="@dimen/twelve"
             android:padding="@dimen/eight"
-            android:layout_marginEnd="@dimen/twelve"
-            android:textColor="@color/text_white"
-            android:textSize="@dimen/text_22"
+            android:textAlignment="textStart"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/textView136"
-
-            app:layout_constraintStart_toStartOf="@+id/textView136" />
+            app:layout_constraintStart_toStartOf="@+id/imgEvent" />
 
         <TextView
             android:id="@+id/textView138"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_30sdp"
             android:background="@color/colorPrimaryDark"
-            android:fontFamily="@font/aclonica"
             android:paddingHorizontal="@dimen/_8sdp"
             android:paddingVertical="@dimen/_6sdp"
             android:text="Online"
             android:textAllCaps="true"
-            android:textColor="@color/text_white"
-            android:textSize="@dimen/big_text"
-            android:textStyle="bold"
-
+            style="@style/TitleText"
+            android:textSize="@dimen/sixteen"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/textView137"
             app:layout_constraintStart_toStartOf="@+id/textView136" />
 

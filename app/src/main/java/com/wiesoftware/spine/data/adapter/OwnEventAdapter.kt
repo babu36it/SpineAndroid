@@ -79,10 +79,57 @@ class OwnEventAdapter(val  data: List<EventsRecord>, val listener: OnEventDetail
             if (type.equals("1")){
                 holder.ownEventItemBinding.textView138.text=""
 
-                holder.ownEventItemBinding.textView137.text="harsh Online Meditation"
+                holder.ownEventItemBinding.textView137.text="Meditation WorkShop"
                 holder.ownEventItemBinding.textView136.text = "Ahemdabad | 2 days"
                 holder.ownEventItemBinding.textView138.visibility = View.GONE
-                holder.ownEventItemBinding.textView136.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_location, 0, 0, 0);
+
+                Glide.with(holder.context)
+                    .load( "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqX_jf1yMr-Ebm57KUywlNC-8PamCYvT6VbSd8vlusV2fW2sIx1620PP63XxLdwgR3si4&usqp=CAU")
+                    .into( holder.ownEventItemBinding.imgEvent)
+
+                holder.ownEventItemBinding.textView136.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_location_white_foreground, 0, 0, 0);
+            }else{
+
+            }
+
+        }
+
+        if(position == 0){
+
+            val type="1"
+            if (type.equals("1")){
+                holder.ownEventItemBinding.textView138.text=""
+
+                holder.ownEventItemBinding.textView137.text="Marathon"
+                holder.ownEventItemBinding.textView136.text = "Mumbai | 2 hours"
+                holder.ownEventItemBinding.textView138.visibility = View.GONE
+
+                Glide.with(holder.context)
+                    .load( "https://i.pinimg.com/originals/2c/d8/5a/2cd85ae8290c7713eb012e4cc1e79395.jpg")
+                    .into( holder.ownEventItemBinding.imgEvent)
+
+                holder.ownEventItemBinding.textView136.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_location_white_foreground, 0, 0, 0);
+            }else{
+
+            }
+
+        }
+
+        if(position == 3){
+
+            val type="0"
+            if (type.equals("0")){
+                holder.ownEventItemBinding.textView138.text=""
+
+                holder.ownEventItemBinding.textView137.text="Health IT Conference "
+                holder.ownEventItemBinding.textView136.text = "10:00 | 1 hour"
+                holder.ownEventItemBinding.textView138.visibility = View.GONE
+
+                Glide.with(holder.context)
+                    .load( "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaEJhKC7Qfg1WtKCe_JZXxyD-PeOqjqdXy_vZl3iGFJdVjjJQZsnPUrShb4vOv8dX4vs8&usqp=CAU")
+                    .into( holder.ownEventItemBinding.imgEvent)
+
+                holder.ownEventItemBinding.textView136.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_location_white_foreground, 0, 0, 0);
             }else{
 
             }
@@ -98,5 +145,5 @@ class OwnEventAdapter(val  data: List<EventsRecord>, val listener: OnEventDetail
     }
 
 
-    override fun getItemCount() = 2
+    override fun getItemCount() = 4
 }

@@ -59,8 +59,8 @@ class ProfileFragment : Fragment(),KodeinAware, ProfileFragmentEventListener {
     val factory : ProfileFragmentViewModelFactory by instance()
     val homeRepositry: HomeRepositry by instance()
     lateinit var user_id: String
-    var followers:String = "0"
-    var following:String = "0"
+    var followers:String = "30k"
+    var following:String = "30k"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_profile,container,false)

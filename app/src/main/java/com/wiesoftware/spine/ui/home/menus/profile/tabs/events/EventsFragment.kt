@@ -66,11 +66,11 @@ class EventsFragment : Fragment(),KodeinAware, EventsEventListener,
 //
 //                    Log.e("imageon",res.image)
 //                    val data= res.data
-//                    if (data.size > 0){
-//                        binding.button37.visibility=View.GONE
-//                    }
-                    val data = arrayListOf<EventsRecord>()
 
+                    val data = arrayListOf<EventsRecord>()
+//                    if (data.size > 0){
+//                        binding.tvNoEvent.visibility=View.GONE
+//                    }
 //                    data.add(
 //                        EventsRecord(
 //                            "1", "Sahaja Yoga Online Meditation","18:00, 2hrs","En")

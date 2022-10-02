@@ -51,10 +51,14 @@ class MessagesActivity : AppCompatActivity(),KodeinAware, MessagesEventListener 
         //set the badge
         //set the badge
         val badgeDrawable: BadgeDrawable = binding.tabLayout2.getTabAt(0)?.getOrCreateBadge()!!
-
         badgeDrawable.setVisible(true)
         badgeDrawable.backgroundColor = getResources().getColor(R.color.color_red);
         badgeDrawable.horizontalOffset = -20
+
+        val badgeDrawable2: BadgeDrawable = binding.tabLayout2.getTabAt(1)?.getOrCreateBadge()!!
+        badgeDrawable2.setVisible(true)
+        badgeDrawable2.backgroundColor = getResources().getColor(R.color.color_red);
+        badgeDrawable2.horizontalOffset = -20
         binding.tabLayout2.getTabAt(0)?.text = resources.getText(R.string.message)
         binding.tabLayout2.getTabAt(1)?.text = resources.getText(R.string.events_requests)
     }

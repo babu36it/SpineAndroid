@@ -1,6 +1,7 @@
 package com.wiesoftware.spine.data.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -16,7 +17,7 @@ import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
  * Created by Vivek kumar on 1/20/2021.
  * Email: vivekpcst.kumar@gmail.com.
  */
-class FollowersAdapter(val dataList: List<FollowersData>,val listener: FollowersFollowListener): RecyclerView.Adapter<FollowersAdapter.FollowersHolder>() {
+class FollowersAdapter(var dataList: List<FollowersData>,val listener: FollowersFollowListener): RecyclerView.Adapter<FollowersAdapter.FollowersHolder>() {
     class FollowersHolder(val followersItemBinding: FollowersItemBinding,val context: Context): RecyclerView.ViewHolder(followersItemBinding.root) {
 
     }
@@ -40,6 +41,7 @@ class FollowersAdapter(val dataList: List<FollowersData>,val listener: Followers
         val isFollow=dataList[position].is_follow
         if (isFollow.equals("0")){
             holder.followersItemBinding.button60.background=ContextCompat.getDrawable(holder.context,R.drawable.round_button_bg)
+            holder.followersItemBinding.button60.setBackgroundTintList(holder.context.getResources().getColorStateList(R.color.colorPrimaryDark));
             holder.followersItemBinding.button60.text=holder.context.resources.getString(R.string.follows)
             holder.followersItemBinding.button60.setTextColor(ContextCompat.getColor(holder.context,R.color.text_white))
         }else{
@@ -59,15 +61,24 @@ class FollowersAdapter(val dataList: List<FollowersData>,val listener: Followers
                 holder.followersItemBinding.button60.setTextColor(ContextCompat.getColor(holder.context,R.color.text_white))
             }
         }
-        if (!dataList[position].profile_pic.isNullOrEmpty()) {
+        if (dataList[position].profile_pic != "") {
             val url = dataList[position].profile_pic
             Glide.with(holder.context)
                 .load( url)
+                .into( holder.followersItemBinding.imageView20)
+        }else{
+            Glide.with(holder.context)
+                .load( R.drawable.ic_profile)
                 .into( holder.followersItemBinding.imageView20)
         }
         holder.followersItemBinding.imageView20.setOnClickListener {
             listener.onViewOthersProfile(dataList[position])
         }
+    }
+
+    fun filterList(filterlist: ArrayList<FollowersData>) {
+        dataList = filterlist
+        notifyDataSetChanged()
     }
 
     override fun getItemCount() = dataList.size

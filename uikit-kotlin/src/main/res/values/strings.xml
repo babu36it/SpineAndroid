@@ -160,6 +160,10 @@
     <string name="member_unbanned_success">%1$s unbanned from %2$s</string>
     <string name="unban_error">Unable to unban %1$s</string>
     <string name="unread_message">You have 1 unread message</string>
+    <string name="event_request">You have 2 new event requests</string>
+    <string name="no_post_found">This is where you will see your published posts.</string>
+    <string name="no_events_found">This is where you will see your own events.</string>
+    <string name="no_podcast_found">This is where you will see your own podcasts.</string>
 
 
     <string name="enter_group_desc">Enter Group Description</string>
