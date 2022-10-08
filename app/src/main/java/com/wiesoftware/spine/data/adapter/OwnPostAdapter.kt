@@ -52,7 +52,9 @@ class OwnPostAdapter(val postList: List<PostData>,val listener: OwnPostSelectedL
         }
 
         if (position == 3){
-            url = "https://miro.medium.com/max/1400/1*61Vk6EDAFTD6j4s7X6y2NA.png"
+//            url = "https://miro.medium.com/max/1400/1*61Vk6EDAFTD6j4s7X6y2NA.png"
+            holder.ownPostItemBinding.textContent.visibility = View.VISIBLE
+            holder.ownPostItemBinding.imgContent.visibility = View.GONE
         }
 
         if (position == 4){
@@ -68,13 +70,18 @@ class OwnPostAdapter(val postList: List<PostData>,val listener: OwnPostSelectedL
         if (position == 7){
             url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsISEKeeDKAl0gAMw0MMVi3gggbna6F62OvA&usqp=CAU"
         }
+        if (position == 8){
+//            url = "https://miro.medium.com/max/1400/1*61Vk6EDAFTD6j4s7X6y2NA.png"
+            holder.ownPostItemBinding.textContent.visibility = View.VISIBLE
+            holder.ownPostItemBinding.imgContent.visibility = View.GONE
+        }
 
         if (postType.equals("1")){
             holder.ownPostItemBinding.imgContent.visibility=View.VISIBLE
             Glide.with(holder.itemView.context)
                 .load( url)
                 .into( holder.ownPostItemBinding.imageView15)
-            holder.ownPostItemBinding.textContent.visibility=View.GONE
+//            holder.ownPostItemBinding.textContent.visibility=View.GONE
         }else{
 //            holder.ownPostItemBinding.imgContent.visibility=View.GONE
 //            holder.ownPostItemBinding.textContent.visibility=View.VISIBLE
@@ -90,7 +97,7 @@ class OwnPostAdapter(val postList: List<PostData>,val listener: OwnPostSelectedL
 //        }
     }
 
-    override fun getItemCount() = 7
+    override fun getItemCount() = 9
 
     interface OwnPostSelectedListener{
         fun onPostSelected(postData: PostData)
@@ -100,7 +107,7 @@ class OwnPostAdapter(val postList: List<PostData>,val listener: OwnPostSelectedL
         super.onViewAttachedToWindow(holder)
         val lp: ViewGroup.LayoutParams = holder.itemView.getLayoutParams()
         if (lp != null && lp is StaggeredGridLayoutManager.LayoutParams
-            && (holder.getLayoutPosition() === 3 || holder.getLayoutPosition() === 13)
+            && (holder.getLayoutPosition() === 3 || holder.getLayoutPosition() === 8)
         ) {
             lp.isFullSpan = true
         }

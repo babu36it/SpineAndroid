@@ -16,6 +16,7 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.databinding.ActivityMessagesBinding
 import com.wiesoftware.spine.ui.home.menus.profile.masseges.eve_request.EveRequestFragment
+import com.wiesoftware.spine.ui.home.menus.profile.masseges.feedback.FeedBackFragment
 import com.wiesoftware.spine.ui.home.menus.profile.masseges.msg.MsgFragment
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -61,12 +62,14 @@ class MessagesActivity : AppCompatActivity(),KodeinAware, MessagesEventListener 
         badgeDrawable2.horizontalOffset = -20
         binding.tabLayout2.getTabAt(0)?.text = resources.getText(R.string.message)
         binding.tabLayout2.getTabAt(1)?.text = resources.getText(R.string.events_requests)
+        binding.tabLayout2.getTabAt(2)?.text = resources.getText(R.string.feedback)
     }
 
     private fun setUpViewPager() {
         val adapter= MessagesTabadapter(this)
         adapter.addFragment(MsgFragment())
         adapter.addFragment(EveRequestFragment())
+        adapter.addFragment(FeedBackFragment())
         binding.viewpager2.offscreenPageLimit=2
         binding.viewpager2.adapter=adapter
     }

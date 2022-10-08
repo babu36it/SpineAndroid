@@ -15,7 +15,6 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.UserPodcastAdapter
 import com.wiesoftware.spine.data.net.reponses.PodDatas
-import com.wiesoftware.spine.data.net.reponses.PodcastData
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityUserPodcastBinding
 import com.wiesoftware.spine.ui.home.menus.podcasts.podcastdetails.PodcastDetailActivity

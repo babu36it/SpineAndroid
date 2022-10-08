@@ -39,6 +39,31 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
 
+        <ImageButton
+            android:id="@+id/imageButtonshare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:background="@android:color/transparent"
+            android:padding="@dimen/eight"
+            android:src="@drawable/ic_share"
+            android:tint="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/imageButtonMusic"
+            app:layout_constraintTop_toTopOf="@+id/imageButtonMusic" />
+
+        <ImageButton
+            android:id="@+id/imageButtonMusic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:background="@android:color/transparent"
+            android:padding="@dimen/eight"
+            android:src="@drawable/ic_podcasts"
+            android:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imgEvent" />
+
+
 
         <LinearLayout
             android:gravity="center"
@@ -54,7 +79,7 @@
                 style="@style/OnlyText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_mic"
+                android:drawableStart="@drawable/ic_new_mic"
                 android:drawablePadding="@dimen/eight"
                 android:drawableTint="@color/gray_tint"
                 android:text="en"
@@ -66,7 +91,7 @@
             <View
                 android:id="@+id/view45"
                 style="@style/ViewActionHorizontalLine"
-                android:layout_height="@dimen/_16sdp"
+                android:layout_height="@dimen/_14sdp"
                 />
             <TextView
                 android:id="@+id/textView214"

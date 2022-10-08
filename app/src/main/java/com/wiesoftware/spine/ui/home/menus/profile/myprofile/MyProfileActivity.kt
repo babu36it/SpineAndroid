@@ -35,9 +35,8 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.OwnEventAdapter
 import com.wiesoftware.spine.data.adapter.OwnPostAdapter
-import com.wiesoftware.spine.data.net.reponses.EventsRecord
-import com.wiesoftware.spine.data.net.reponses.PostData
-import com.wiesoftware.spine.data.net.reponses.ProfileData
+import com.wiesoftware.spine.data.adapter.UserPodcastAdapter
+import com.wiesoftware.spine.data.net.reponses.*
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityMyProfileBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
@@ -53,7 +52,6 @@ import com.wiesoftware.spine.util.getFbImage
 import com.wiesoftware.spine.util.toast
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -235,9 +233,10 @@ class MyProfileActivity : AppCompatActivity(),KodeinAware, MyProfileEventListene
         lifecycleScope.launch {
             try {
                 val postRes=homeRepositry.getAllPosts(1,200,userId,0,1)
-                if (postRes.status){
-                    BASE_IMAGE =postRes.image
-                    postList = postRes.data
+                if (!postRes.status){
+//                    BASE_IMAGE =postRes.image
+//                    postList = postRes.data
+                    postList = arrayListOf<PostData>()
                     binding.rvProfileData.also{
                         it.layoutManager= StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
                         it.setHasFixedSize(true)
@@ -271,9 +270,10 @@ class MyProfileActivity : AppCompatActivity(),KodeinAware, MyProfileEventListene
         lifecycleScope.launch {
             try {
                 val res=homeRepositry.getOwnEvents(userId)
-                if (res.status){
-                    BASE_IMAGE=res.image
-                    val evedata= res.data
+                if (!res.status){
+//                    BASE_IMAGE=res.image
+//                    val evedata= res.data
+                    val evedata = arrayListOf<EventsRecord>()
                     binding.rvProfileData.also {
                         it.layoutManager=
                             LinearLayoutManager(this@MyProfileActivity,RecyclerView.VERTICAL,false)
@@ -295,11 +295,37 @@ class MyProfileActivity : AppCompatActivity(),KodeinAware, MyProfileEventListene
         evedata.clear()
         eveAdapter.notifyDataSetChanged()
         postList.clear()
-        binding.rvProfileData.visibility=View.GONE
+        binding.rvProfileData.visibility=View.VISIBLE
         adapter.notifyDataSetChanged()
         setTvAndBtnColor(binding.textView157,binding.textViewPost,R.color.text_black_light)
         setTvAndBtnColor(binding.textView158,binding.textViewEvents,R.color.text_black_light)
         setTvAndBtnColor(binding.textView159,binding.textViewPods,R.color.text_black)
+        getPods()
+    }
+
+    private fun getPods() {
+        lifecycleScope.launch {
+            try {
+                val res=homeRepositry.getOwnEvents(userId)
+                if (!res.status){
+//                    BASE_IMAGE=res.image
+//                    val evedata= res.data
+                    val poddata = arrayListOf<PodDatas>()
+                    binding.rvProfileData.also {
+                        it.layoutManager=
+                            LinearLayoutManager(this@MyProfileActivity,RecyclerView.VERTICAL,false)
+                        it.setHasFixedSize(true)
+
+//                        it.adapter= UserPodcastAdapter(poddata,)
+                        eveAdapter.notifyDataSetChanged()
+                    }
+                }
+            }catch (e: com.wiesoftware.spine.util.ApiException){
+                e.printStackTrace()
+            }catch (e: NoInternetException){
+                e.printStackTrace()
+            }
+        }
     }
 
     override fun onFollowers() {

@@ -15,12 +15,15 @@ import com.wiesoftware.spine.data.net.reponses.PodDatas
 import com.wiesoftware.spine.data.net.reponses.PodcastData
 
 import com.wiesoftware.spine.databinding.NewListPodItemBinding
+import com.wiesoftware.spine.ui.home.menus.podcasts.userpodcast.UserPodcastActivity
+import com.wiesoftware.spine.ui.home.menus.profile.myprofile.MyProfileActivity
+import com.wiesoftware.spine.ui.home.menus.profile.tabs.podcasts.PodcastFragment
 
 /**
  * Created by Vivek kumar on 2/18/2021.
  * Email: vivekpcst.kumar@gmail.com.
  */
-class UserPodcastAdapter(val dataList: List<PodDatas>,val listener: OnPodEveListener): RecyclerView.Adapter<UserPodcastAdapter.PodHolder>() {
+class UserPodcastAdapter(val dataList: List<PodDatas>, val listener: OnPodEveListener): RecyclerView.Adapter<UserPodcastAdapter.PodHolder>() {
     class PodHolder(val listenPodItemBinding: NewListPodItemBinding,val context: Context): RecyclerView.ViewHolder(listenPodItemBinding.root) {
         fun setTextViewDrawableColor(textView: TextView) {
             for (drawable in textView.compoundDrawablesRelative) {

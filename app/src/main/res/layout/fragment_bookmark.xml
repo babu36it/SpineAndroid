@@ -99,7 +99,6 @@
         android:onClick="@{viewmodel.allStories}"
         android:text="@string/stories"
         android:textColor="@color/text_black"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/recyclerView6"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView6" />
 
@@ -113,9 +112,104 @@
         android:onClick="@{viewmodel.allPodcasts}"
         android:text="@string/podcasts"
         android:textColor="@color/text_black"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/recyclerView5"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView5" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/recyclerView5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button63" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/recyclerView6"
+        app:layout_constraintTop_toBottomOf="@+id/button64" />
+
+    <Button
+        android:id="@+id/button66"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/eight"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/poppins_bold"
+        android:onClick="@{viewmodel.allStories}"
+        android:text="@string/images"
+        android:textColor="@color/text_black"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView7"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView7" />
+
+    <Button
+        android:id="@+id/button67"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/eight"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/poppins_bold"
+        android:onClick="@{viewmodel.allPodcasts}"
+            android:text="@string/videos"
+        android:textColor="@color/text_black"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView8"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView8" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView9"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/recyclerView5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button66" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/recyclerView6"
+        app:layout_constraintTop_toBottomOf="@+id/button67" />
+
+    <Button
+        android:id="@+id/button68"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/eight"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/poppins_bold"
+        android:onClick="@{viewmodel.allStories}"
+        android:text="QUESTIONS"
+        android:textColor="@color/text_black"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView9"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView9" />
+
+    <Button
+        android:id="@+id/button69"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/eight"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/poppins_bold"
+        android:onClick="@{viewmodel.allPodcasts}"
+        android:text="SPINE IMPULSES"
+        android:textColor="@color/text_black"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView10"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView10" />
 </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
