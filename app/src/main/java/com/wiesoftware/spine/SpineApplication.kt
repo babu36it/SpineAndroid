@@ -116,6 +116,8 @@ class SpineApplication : Application(),KodeinAware {
     override val kodein = Kodein.lazy {
         import(androidXModule(this@SpineApplication))
 
+
+
         bind() from singleton { NetworkConnectionInterceptor(instance()) }
         bind() from singleton { Api(instance()) }
         bind() from singleton { AppDatabase(instance()) }
@@ -235,7 +237,6 @@ class SpineApplication : Application(),KodeinAware {
         if (simpleCache == null) {
             simpleCache = SimpleCache(cacheDir, leastRecentlyUsedCacheEvictor, databaseProvider)
         }
-
     }
 
     override fun onTerminate() {

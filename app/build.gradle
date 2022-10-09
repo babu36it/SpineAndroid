@@ -128,12 +128,10 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.tbuonomo:dotsindicator:4.2'
-
+    implementation "me.relex:circleindicator:2.1.6"
     implementation 'io.github.chaosleung:pinview:1.4.4'
-
-    implementation 'com.arasthel:spannedgridlayoutmanager:2.0.1'
-
-
+//    implementation 'me.relex:circleindicator:2.1.6'
+//    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:3.0.3'
     // Add the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-auth-ktx'

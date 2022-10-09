@@ -50,13 +50,13 @@ class HashtagActivity : AppCompatActivity(),KodeinAware, HashtagEventListener,
         val viewmodel=ViewModelProvider(this, factory).get(HashtagViewmodel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.hashtagEventListener=this
-        getHashtags()
+       // getHashtags()
         binding.etHashtag.setOnClickListener {
             //openHashtagDialog()
-            supportFragmentManager
+          /*  supportFragmentManager
                 .beginTransaction()
                 .add(R.id.searchAuto, AutoSearchFragment(), "spine search")
-                .commit()
+                .commit()*/
         }
         binding.editTextTextPersonName32.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {

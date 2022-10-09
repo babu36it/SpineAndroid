@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.RadioButton
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
@@ -34,6 +35,7 @@ class PostThoughtActivity : AppCompatActivity(), KodeinAware, PostThoughtEventLi
     var activated_bg: String? = null
     var colors = ArrayList<ThoughtsData>()
     lateinit var adapter: PostOptionsAdapter
+    lateinit var viewadapter: ViewPagerAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,23 +46,47 @@ class PostThoughtActivity : AppCompatActivity(), KodeinAware, PostThoughtEventLi
         binding.viewmodel = viewmodel
         viewmodel.postThoughtEventListener = this
 
-        bg_color.addAll(arrayOf("#B89A8A", "#D7C5B9", "#C86845", "#2196F3"))
+        bg_color.addAll(arrayOf("#B89A8A", "#E42E11", "#008000", "#2196F3"))
         colors.addAll(
             arrayOf(
                 ThoughtsData(R.color.colorPrimaryDark, ""),
-                ThoughtsData(R.color.colorPrimary, ""),
-                ThoughtsData(R.color.colorAccent, ""),
+                ThoughtsData(R.color.color_red, ""),
+                ThoughtsData(R.color.green, ""),
                 ThoughtsData(R.color.blue, "")
             )
         )
         activated_bg = bg_color[0]
         adapter = PostOptionsAdapter(colors, this, this)
         binding.vp2.adapter = adapter
+        binding.indicator.setViewPager(binding.vp2)
+
         binding.rgBtn.setOnCheckedChangeListener { radioGroup, i ->
             val rb: RadioButton = radioGroup.findViewById(i)
             val index: Int = radioGroup.indexOfChild(rb)
             binding.vp2.setCurrentItem(index)
         }
+
+/*
+        binding.vp2.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+
+            }
+
+            override fun onPageSelected(position: Int) {
+
+                activated_bg = bg_color[position]
+
+                */
+/*val rBtnId = binding.rgBtn.getChildAt(position).id
+                binding.rgBtn.check(rBtnId)*//*
+
+            }
+        })
+*/
 
         binding.vp2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageScrolled(
@@ -101,6 +127,10 @@ class PostThoughtActivity : AppCompatActivity(), KodeinAware, PostThoughtEventLi
             thoughtsData.thought = thought
         }
         adapter.notifyDataSetChanged()
+    }
+
+    override fun onbackpressed() {
+        finish()
     }
 
 }

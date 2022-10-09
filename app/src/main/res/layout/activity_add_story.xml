@@ -1,222 +1,292 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewmodel"
             type="com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory.AddStoryViewmodel" />
     </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.menus.spine.addposts.poststory.AddStoryActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.home.menus.spine.addposts.poststory.AddStoryActivity">
 
-    <ImageButton
-        android:onClick="@{viewmodel.onBAck}"
-        android:id="@+id/imageButton10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/BackButton"
-         />
-    <ProgressBar
-        android:id="@+id/progressBar5"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/eight"
-        app:layout_constraintBottom_toBottomOf="@+id/textView58"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView58" />
-    <Button
-        android:onClick="@{viewmodel.onPostStory}"
-        android:id="@+id/button29"
-        style="@style/RoundButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/eight"
-        android:text="@string/post"
-        android:textAllCaps="true"
-        app:layout_constraintBottom_toBottomOf="@+id/textView58"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView58" />
-
-    <TextView
-        android:id="@+id/textView58"
-        style="@style/TitleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_story"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton10"
-        app:layout_constraintEnd_toStartOf="@+id/button29"
-        app:layout_constraintStart_toEndOf="@+id/imageButton10"
-        app:layout_constraintTop_toTopOf="@+id/imageButton10" />
-
-    <View
-        android:id="@+id/view9"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/eight"
-        android:background="@color/gray_tint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView58" />
-
-    <TextView
-        android:id="@+id/textView59"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/sixteen"
-        android:layout_marginTop="@dimen/eight"
-        style="@style/TitleText"
-        android:text="@string/add_image_s_or_video_s"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view9" />
-
-    <Button
-        android:id="@+id/button30"
-        android:layout_width="@dimen/_100"
-        android:layout_height="@dimen/_100"
-        android:layout_marginTop="@dimen/eight"
-        android:background="@color/gray_tint"
-        android:drawableTop="@drawable/ic_photo_camera"
-        android:onClick="@{viewmodel.onAdd}"
-        android:padding="@dimen/sixteen"
-        android:text="@string/add"
-        app:layout_constraintStart_toStartOf="@+id/textView59"
-        app:layout_constraintTop_toBottomOf="@+id/textView59" />
-
-    <TextView
-        android:id="@+id/textView60"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/eight"
-        android:text="@string/add_title"
-        style="@style/TitleText"
-        app:layout_constraintStart_toStartOf="@+id/button30"
-        app:layout_constraintTop_toBottomOf="@+id/button30" />
-
-    <TextView
-        android:id="@+id/textView61"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/sixteen"
-        android:text="(0/90 characters)"
-        app:layout_constraintBottom_toBottomOf="@+id/textView60"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView60" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/sixteen"
-        android:elevation="@dimen/sixteen"
-        android:padding="@dimen/sixteen"
-        app:cardBackgroundColor="@color/text_white"
-        app:cardCornerRadius="@dimen/sixteen"
-        app:layout_constraintEnd_toEndOf="@+id/textView61"
-        app:layout_constraintStart_toStartOf="@+id/textView60"
-        app:layout_constraintTop_toBottomOf="@+id/textView60">
-
-        <EditText
-            android:id="@+id/editTextTextPersonName6"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/_8sdp">
+
+            <ImageButton
+                android:id="@+id/imageButton10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/app_name"
+                android:onClick="@{viewmodel.onBAck}"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_back" />
+
+            <ProgressBar
+                android:id="@+id/progressBar5"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/eight"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_marginTop="@dimen/_2sdp"
+                android:id="@+id/textView58"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@string/add_story"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_13sdp" />
+
+            <TextView
+                android:id="@+id/button29"
+                style="@style/RoundButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:onClick="@{viewmodel.onPostStory}"
+                android:paddingStart="@dimen/_20sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_20sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:text="@string/post"
+                android:textAllCaps="true"
+                app:layout_constraintBottom_toBottomOf="@+id/textView58"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView58" />
+
+
+        </RelativeLayout>
+
+
+        <View
+            android:id="@+id/view9"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/eight"
+            android:background="@color/normal_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView59"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/sixteen"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:textColor="@color/text_black"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/add_image_s_or_video_s"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/button30"
+                    android:layout_width="@dimen/_100"
+                    android:layout_height="@dimen/_100"
+                    android:background="@color/gray_tint"
+                    android:drawableTop="@drawable/ic_photo_camera"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:gravity="center"
+                    android:onClick="@{viewmodel.onAdd}"
+                    android:padding="@dimen/_20sdp"
+                    android:text="@string/add"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSelectedImages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_toRightOf="@id/button30" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/textView60"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/add_title"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold" />
+
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/box2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_8sdp"
             android:background="@drawable/shadow_box"
-            android:ems="10"
-            android:text="@={viewmodel.thoughts}"
-            android:hint="@string/want_to_give_your_story_a_title_or_motto"
-            android:inputType="textPersonName"
-            android:padding="@dimen/eight" />
-    </androidx.cardview.widget.CardView>
+            android:elevation="@dimen/_5sdp"
+            android:gravity="center">
 
-    <Switch
-        android:id="@+id/switch3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/sixteen"
-        android:checked="@={viewmodel.allowComments}"
-        app:layout_constraintEnd_toEndOf="@+id/cardView3"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
-
-    <TextView
-        android:id="@+id/textView62"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/allow_comments"
-        app:layout_constraintBottom_toBottomOf="@+id/switch3"
-        app:layout_constraintStart_toStartOf="@+id/cardView3"
-        app:layout_constraintTop_toTopOf="@+id/switch3" />
-
-    <Switch
-        android:id="@+id/switch4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="@={viewmodel.story_time}"
-        android:layout_marginTop="@dimen/eight"
-        app:layout_constraintEnd_toEndOf="@+id/switch3"
-        app:layout_constraintTop_toBottomOf="@+id/switch3" />
-
-    <TextView
-        android:id="@+id/textView63"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/delete_story_after_24_hours"
-        app:layout_constraintBottom_toBottomOf="@+id/switch4"
-        app:layout_constraintStart_toStartOf="@+id/textView62"
-        app:layout_constraintTop_toTopOf="@+id/switch4" />
-
-    <View
-        android:id="@+id/view10"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/gray_tint"
-        android:layout_marginTop="@dimen/eight"
-        app:layout_constraintEnd_toEndOf="@+id/switch4"
-        app:layout_constraintStart_toStartOf="@+id/textView63"
-        app:layout_constraintTop_toBottomOf="@+id/switch4" />
-
-    <Button
-        android:onClick="@{viewmodel.onPreview}"
-        android:id="@+id/button31"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/eight"
-        android:text="@string/preview"
-        style="@style/TextButton"
-        app:layout_constraintEnd_toEndOf="@+id/view10"
-        app:layout_constraintTop_toBottomOf="@+id/view10"
-         />
-
-    <Button
-        android:onClick="@{viewmodel.onDelete}"
-        android:id="@+id/button32"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/eight"
-        android:text="@string/delete"
-        style="@style/TextButton"
-        app:layout_constraintStart_toStartOf="@+id/view10"
-        app:layout_constraintTop_toBottomOf="@+id/view10"
-         />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvSelectedImages"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/button30"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button30"
-        app:layout_constraintTop_toTopOf="@+id/button30" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:maxLength="90"
+                android:id="@+id/editTextTextPersonName6"
+                style="@style/ETNormal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:padding="@dimen/eight"
+                android:background="@android:color/transparent"
+                android:layout_toLeftOf="@id/textView61"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="@string/want_to_give_your_story_a_title_or_motto"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:singleLine="true"
+                android:text="@={viewmodel.thoughts}"
+                android:textColorHint="@color/dark_gray_day_night"
+                android:textSize="@dimen/_11sdp" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textView61"
+                style="@style/NormalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="90"
+                android:textSize="@dimen/_11sdp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/textView62"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/allow_comments"
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/text_black"
+                android:textStyle="bold" />
+
+            <Switch
+                android:id="@+id/switch3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:checked="@={viewmodel.allowComments}" />
+
+
+        </RelativeLayout>
+
+
+        <Switch
+            android:id="@+id/switch4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            android:checked="@={viewmodel.story_time}"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/switch3"
+            app:layout_constraintTop_toBottomOf="@+id/switch3" />
+
+        <TextView
+            android:id="@+id/textView63"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_story_after_24_hours"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/switch4"
+            app:layout_constraintStart_toStartOf="@+id/textView62"
+            app:layout_constraintTop_toTopOf="@+id/switch4" />
+
+        <View
+            android:id="@+id/view10"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:background="@color/normal_grey" />
+
+        <Button
+            android:id="@+id/button31"
+            style="@style/TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            android:onClick="@{viewmodel.onPreview}"
+            android:text="@string/preview"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/view10"
+            app:layout_constraintTop_toBottomOf="@+id/view10" />
+
+        <TextView
+            android:id="@+id/button32"
+            style="@style/NormalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:onClick="@{viewmodel.onDelete}"
+            android:text="@string/delete"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
 </layout>
