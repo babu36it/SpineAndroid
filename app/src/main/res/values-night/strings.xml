@@ -86,4 +86,7 @@
     <string name="str_our_business_location"><u>Our Business Location</u></string>
     <string name="str_more_info">the more info, the better to find your service</string>
     <string name="str_something_about_you">Say something about you</string>
+    <string name="mark_friends">Mark Friends</string>
+    <string name="link_place">Link Place</string>
+    <string name="str_like_to"><u>Would you like to promote your post, click here</u></string>
 </resources>

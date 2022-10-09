@@ -237,7 +237,6 @@ class SpineApplication : Application(),KodeinAware {
         if (simpleCache == null) {
             simpleCache = SimpleCache(cacheDir, leastRecentlyUsedCacheEvictor, databaseProvider)
         }
-
     }
 
     override fun onTerminate() {

@@ -19,7 +19,7 @@
     <color name="dark_gray_day_night">#6D6D6D</color>
     <color name="day_night_both_white">#FFFFFF</color>
     <color name="day_night_both_black">#000000</color>
-
+    <color name="green">#008000</color>
 
     <color name="progress_primary">@color/white</color>
     <color name="progress_secondary">@color/gray_scale</color>

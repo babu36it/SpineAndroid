@@ -63,8 +63,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListener,
-    SelectedImageAdapter.ImageRemoveListener, HashtagAutocompleteAdapter.OnHashtagSelectedListener,AutoSearchFragment.OnHashSelectedListener {
+class PostMediaActivity : AppCompatActivity(), KodeinAware, PostMediaEventListener,
+    SelectedImageAdapter.ImageRemoveListener, HashtagAutocompleteAdapter.OnHashtagSelectedListener,
+    AutoSearchFragment.OnHashSelectedListener {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base?.let { RuntimeLocaleChanger.wrapContext(it) })
@@ -79,10 +80,10 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
         android.Manifest.permission.READ_EXTERNAL_STORAGE
     )
     var bitmaps: ArrayList<Bitmap> = ArrayList<Bitmap>()
-    lateinit var adapter: SelectedImageAdapter
-    var currentPhotoPath: String?=null
+    private var adapter: SelectedImageAdapter?=null
+    var currentPhotoPath: String? = null
     lateinit var photoURI: Uri
-    var featuredPost="0"
+    var featuredPost = "0"
 
     var currentPhotoPathList: MutableList<String> = ArrayList<String>()
     var photoURIList: MutableList<Uri> = ArrayList<Uri>()
@@ -100,17 +101,18 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_post_media)
-        binding=DataBindingUtil.setContentView(this, R.layout.activity_post_media)
-        val viewmodel=ViewModelProvider(this, factory).get(PostMediaViewmodel::class.java)
-        binding.viewmodel=viewmodel
-        viewmodel.postMediaEventListener=this
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_post_media)
+        val viewmodel = ViewModelProvider(this, factory).get(PostMediaViewmodel::class.java)
+        binding.viewmodel = viewmodel
+        viewmodel.postMediaEventListener = this
 
-        bitmaps=ArrayList()
+        bitmaps = ArrayList()
 
         homeRepositry.getUser().observe(this, androidx.lifecycle.Observer { user ->
             userId = user.users_id!!
         })
-        getHashtags()
+        //   getHashtags()
+/*
         binding.editTextTextPersonName66.setOnClickListener {
             binding.editTextTextPersonName66.isEnabled = false
             binding.button31.visibility = View.GONE
@@ -121,8 +123,10 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
                 .commit()
             //openHashtagDialog()
         }
+*/
+/*
         binding.editTextTextPersonName66.setOnFocusChangeListener { v, hasFocus ->
-            if (hasFocus){
+            if (hasFocus) {
                 binding.editTextTextPersonName66.isEnabled = false
                 binding.button31.visibility = View.GONE
                 binding.progressBar6.visibility = View.GONE
@@ -134,34 +138,75 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
                 //openHashtagDialog()
             }
         }
+*/
+
+        val mNameTextWatcher: TextWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                binding.tvCounter.setText((140 - s.length).toString())
+                //This sets a textview to the current length
+//                binding.tvNameCounter.setText(40-s.length);
+            }
+
+            override fun afterTextChanged(s: Editable) {
+            }
+        }
+
+        binding.editTextTextPersonName6.addTextChangedListener(mNameTextWatcher)
 
 
-        val  isFromGallery=intent.getBooleanExtra(IS_FROM_GALLERY,false)
-        if (isFromGallery){
-            val photoPath= Prefs.getString(CURR_PHOTO_PATH_FROM_CAM_X,"")
-            val photoUri= Prefs.getString(CURR_PHOTO_URI_FROM_CAM_X,"")
+        val mHashTagTextWatcher: TextWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if (s.length <= 5) {
+                    val str = "(" + ((5 - s.length).toString()) + "/5 characters)"
+                    binding.textView99.setText(str)
+                }
+
+                //This sets a textview to the current length
+//                binding.tvNameCounter.setText(40-s.length);
+            }
+
+            override fun afterTextChanged(s: Editable) {
+            }
+        }
+
+        binding.editTextTextPersonName66.addTextChangedListener(mHashTagTextWatcher)
+
+
+        val isFromGallery = intent.getBooleanExtra(IS_FROM_GALLERY, false)
+        if (isFromGallery) {
+            val photoPath = Prefs.getString(CURR_PHOTO_PATH_FROM_CAM_X, "")
+            val photoUri = Prefs.getString(CURR_PHOTO_URI_FROM_CAM_X, "")
             currentPhotoPathList.add(photoPath.toString())
             photoUriList.add(photoUri.toString())
             photoURIList.add(Uri.parse(photoUri))
             try {
-                val mImageBitmap = BitmapFactory.decodeFile(photoPath) //MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
+                val mImageBitmap =
+                    BitmapFactory.decodeFile(photoPath) //MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
                 bitmaps.add(mImageBitmap)
                 binding.rvSelectedImages.also {
-                    it.layoutManager= LinearLayoutManager(
+                    it.layoutManager = LinearLayoutManager(
                         this,
                         RecyclerView.HORIZONTAL,
                         false
                     )
                     it.setHasFixedSize(true)
-                    adapter=SelectedImageAdapter(bitmaps, this)
-                    it.adapter=adapter
-                    adapter.notifyDataSetChanged()
+                    adapter = SelectedImageAdapter(bitmaps, this)
+                    it.adapter = adapter
+                    adapter!!.notifyDataSetChanged()
                 }
             } catch (e: IOException) {
                 e.printStackTrace()
             }
-            Prefs.putAny(CURR_PHOTO_URI_FROM_CAM_X,"")
-            Prefs.putAny(CURR_PHOTO_PATH_FROM_CAM_X,"")
+            Prefs.putAny(CURR_PHOTO_URI_FROM_CAM_X, "")
+            Prefs.putAny(CURR_PHOTO_PATH_FROM_CAM_X, "")
         }
 
 
@@ -169,27 +214,27 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
 
     private fun getHashtags() {
         lifecycleScope.launch {
-            val hastagRes= homeRepositry.getHashtagList()
-            if (hastagRes.status){
-                hashtagDataList=hastagRes.data
+            val hastagRes = homeRepositry.getHashtagList()
+            if (hastagRes.status) {
+                hashtagDataList = hastagRes.data
             }
         }
     }
 
 
     override fun onBack() {
-        val intent=Intent(this,HomeActivity::class.java)
-        intent.flags= Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        val intent = Intent(this, HomeActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
 
     override fun onPost(thought: String, hashtags: String) {
-        val imgList:MutableList<MultipartBody.Part> = ArrayList<MultipartBody.Part>()
+        val imgList: MutableList<MultipartBody.Part> = ArrayList<MultipartBody.Part>()
         for (item in currentPhotoPathList.indices) {
             val file: File = File(currentPhotoPathList[item])
-            var mediaType=contentResolver.getType(photoURIList[item])
-            Log.e("mediaType:",""+mediaType)
-            if (mediaType == null){
+            var mediaType = contentResolver.getType(photoURIList[item])
+            Log.e("mediaType:", "" + mediaType)
+            if (mediaType == null) {
                 mediaType = "image/jpeg"
             }
             val requestFile: RequestBody = RequestBody.create(
@@ -204,10 +249,10 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
             imgList.add(img_file)
             Log.e("MediaList:", currentPhotoPathList[item])
         }
-        val multi: Int =  if (currentPhotoPathList.size > 1) {
+        val multi: Int = if (currentPhotoPathList.size > 1) {
             1
         } else {
-           0
+            0
         }
 
 
@@ -220,7 +265,7 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
             "multipart/form-data".toMediaTypeOrNull(),
             hashtags
         )
-        val color: RequestBody =RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "-")
+        val color: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "-")
         val type: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "1")
         val multiplity: RequestBody = RequestBody.create(
             "multipart/form-data".toMediaTypeOrNull(),
@@ -231,11 +276,11 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
             featuredPost
         )
 
-        binding.button31.visibility=View.INVISIBLE
+        binding.button31.visibility = View.INVISIBLE
 
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.addUserImgVideoPost(
+                val res = homeRepositry.addUserImgVideoPost(
                     featured,
                     type,
                     uid,
@@ -245,18 +290,18 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
                     multiplity,
                     imgList
                 )
-                if (res.status){
-                    binding.button31.visibility=View.VISIBLE
+                if (res.status) {
+                    binding.button31.visibility = View.VISIBLE
                     "Post added successfully.".toast(this@PostMediaActivity)
                     val intent = Intent(this@PostMediaActivity, HomeActivity::class.java)
-                    intent.flags= Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 }
-            }catch (e: ApiException){
-                binding.button31.visibility=View.VISIBLE
+            } catch (e: ApiException) {
+                binding.button31.visibility = View.VISIBLE
                 e.printStackTrace()
-            }catch (e: NoInternetException){
-                binding.button31.visibility=View.VISIBLE
+            } catch (e: NoInternetException) {
+                binding.button31.visibility = View.VISIBLE
                 e.printStackTrace()
             }
         }
@@ -267,8 +312,8 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
     }
 
     override fun onPreview() {
-        val thought=binding.editTextTextPersonName6.text.toString()
-        val postPreview=PostPreview(
+        val thought = binding.editTextTextPersonName6.text.toString()
+        val postPreview = PostPreview(
             selectedHashtags,
             userId,
             currentPhotoPathList,
@@ -276,7 +321,7 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
             featuredPost,
             thought
         )
-        val intent=Intent(this, PostPreviewActivity::class.java)
+        val intent = Intent(this, PostPreviewActivity::class.java)
         intent.putExtra("POST_PREVIEW", postPreview)
         startActivity(intent)
 
@@ -287,14 +332,19 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
         builder.setTitle(getString(R.string.spine_alert))
         builder.setMessage(getString(R.string.r_u_sure_to_delete))
         builder.setPositiveButton(getString(R.string.yes)) { dialog, which ->
-            photoUriList.clear()
-            photoURIList.clear()
-            currentPhotoPathList.clear()
-            bitmaps.clear()
-            adapter.notifyDataSetChanged()
-            binding.editTextTextPersonName6.setText("")
-            binding.editTextTextPersonName66.setText("")
-            dialog.dismiss()
+            if (adapter != null) {
+                photoUriList.clear()
+                photoURIList.clear()
+                currentPhotoPathList.clear()
+                bitmaps.clear()
+                adapter!!.notifyDataSetChanged()
+                binding.editTextTextPersonName6.setText("")
+                binding.editTextTextPersonName66.setText("")
+                dialog.dismiss()
+            } else {
+                dialog.dismiss()
+            }
+
         }
         builder.setNegativeButton(R.string.no) { dialog, which ->
             dialog.dismiss()
@@ -303,7 +353,11 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
     }
 
     override fun onCheckedChange(isFeatured: Boolean) {
-        featuredPost=if (isFeatured) { "3" } else { "0" }
+        featuredPost = if (isFeatured) {
+            "3"
+        } else {
+            "0"
+        }
     }
 
     private fun showPicker() {
@@ -327,21 +381,21 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
         view.btnCan.setOnClickListener {
             dialog.dismiss()
         }
-        view.btnFollow.visibility=View.GONE
+        view.btnFollow.visibility = View.GONE
         view.btnFollow.setOnClickListener {
-            if (hasPermissions(this, permissions)){
+            if (hasPermissions(this, permissions)) {
                 openCustomPicker()
                 //dispatchTakePictureIntent()
-            }else{
+            } else {
                 makeRequest()
             }
             dialog.dismiss()
         }
         view.btnOnline.setOnClickListener {
             //startActivity(Intent(this, CustomCameraActivity::class.java))
-            if (hasPermissions(this, permissions)){
+            if (hasPermissions(this, permissions)) {
                 openGallery()
-            }else{
+            } else {
                 makeRequest()
             }
             dialog.dismiss()
@@ -374,10 +428,6 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
     }
 
 
-
-
-
-
     private fun dispatchTakePictureIntent() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             takePictureIntent.resolveActivity(packageManager)?.also {
@@ -401,9 +451,11 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
             }
         }
     }
+
     @Throws(IOException::class)
     private fun createImageFile(): File {
-        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val timeStamp: String =
+            SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val storageDir: File = getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
         return File.createTempFile(
             "JPEG_${timeStamp}_",
@@ -413,22 +465,24 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
             currentPhotoPath = absolutePath
         }
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK ) {
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
             try {
                 currentPhotoPathList.add(currentPhotoPath!!)
                 photoURIList.add(photoURI)
                 photoUriList.add(photoURI.toString())
 
-                val mImageBitmap = BitmapFactory.decodeFile(currentPhotoPath) //MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
+                val mImageBitmap =
+                    BitmapFactory.decodeFile(currentPhotoPath) //MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
                 bitmaps.add(mImageBitmap)
                 binding.rvSelectedImages.also {
-                    it.layoutManager= LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+                    it.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
                     it.setHasFixedSize(true)
-                    adapter=SelectedImageAdapter(bitmaps, this)
-                    it.adapter=adapter
-                    adapter.notifyDataSetChanged()
+                    adapter = SelectedImageAdapter(bitmaps, this)
+                    it.adapter = adapter
+                    adapter!!.notifyDataSetChanged()
                 }
 
                 //"{$currentPhotoPath}".toast(this)
@@ -436,14 +490,14 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
                 e.printStackTrace()
             }
         }
-        if (requestCode == GALLERY_REQ && resultCode == RESULT_OK){
+        if (requestCode == GALLERY_REQ && resultCode == RESULT_OK) {
 
-            if(data?.clipData != null){
-                val clipData: ClipData=data.clipData!!
-               val count = (clipData.itemCount - 1)
-                for (i in 0..count){
-                    val imgUri=clipData.getItemAt(i).uri
-                    photoURI= imgUri/*data?.data!!*/
+            if (data?.clipData != null) {
+                val clipData: ClipData = data.clipData!!
+                val count = (clipData.itemCount - 1)
+                for (i in 0..count) {
+                    val imgUri = clipData.getItemAt(i).uri
+                    photoURI = imgUri/*data?.data!!*/
                     val uriPathHelper = UriPathHelper()
                     currentPhotoPath = uriPathHelper.getPath(this, photoURI)
                     currentPhotoPathList.add(currentPhotoPath!!)
@@ -452,54 +506,57 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
 
                     //"path:  $currentPhotoPath ".toast(this)
                     try {
-                        val mImageBitmap = BitmapFactory.decodeFile(currentPhotoPath) //MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
+                        val mImageBitmap =
+                            BitmapFactory.decodeFile(currentPhotoPath) //MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
                         bitmaps.add(mImageBitmap)
                         binding.rvSelectedImages.also {
-                            it.layoutManager= LinearLayoutManager(
+                            it.layoutManager = LinearLayoutManager(
                                 this,
                                 RecyclerView.HORIZONTAL,
                                 false
                             )
                             it.setHasFixedSize(true)
-                            adapter=SelectedImageAdapter(bitmaps, this)
-                            it.adapter=adapter
-                            adapter.notifyDataSetChanged()
+                            adapter = SelectedImageAdapter(bitmaps, this)
+                            it.adapter = adapter
+                            adapter!!.notifyDataSetChanged()
                         }
                     } catch (e: IOException) {
                         e.printStackTrace()
                     }
                 }
-            }else{
-                photoURI= data?.data!!
-                    val uriPathHelper = UriPathHelper()
-                    currentPhotoPath = uriPathHelper.getPath(this, photoURI)
-                    currentPhotoPathList.add(currentPhotoPath!!)
-                    photoURIList.add(photoURI)
-                    photoUriList.add(photoURI.toString())
+            } else {
+                photoURI = data?.data!!
+                val uriPathHelper = UriPathHelper()
+                currentPhotoPath = uriPathHelper.getPath(this, photoURI)
+                currentPhotoPathList.add(currentPhotoPath!!)
+                photoURIList.add(photoURI)
+                photoUriList.add(photoURI.toString())
 
-                    //"path:  $currentPhotoPath ".toast(this)
-                    try {
-                        val mImageBitmap = BitmapFactory.decodeFile(currentPhotoPath) //MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
-                        bitmaps.add(mImageBitmap)
-                        binding.rvSelectedImages.also {
-                            it.layoutManager= LinearLayoutManager(
-                                this,
-                                RecyclerView.HORIZONTAL,
-                                false
-                            )
-                            it.setHasFixedSize(true)
-                            adapter=SelectedImageAdapter(bitmaps, this)
-                            it.adapter=adapter
-                            adapter.notifyDataSetChanged()
-                        }
-                    } catch (e: IOException) {
-                        e.printStackTrace()
+                //"path:  $currentPhotoPath ".toast(this)
+                try {
+                    val mImageBitmap =
+                        BitmapFactory.decodeFile(currentPhotoPath) //MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
+                    bitmaps.add(mImageBitmap)
+                    binding.rvSelectedImages.also {
+                        it.layoutManager = LinearLayoutManager(
+                            this,
+                            RecyclerView.HORIZONTAL,
+                            false
+                        )
+                        it.setHasFixedSize(true)
+                        adapter = SelectedImageAdapter(bitmaps, this)
+                        it.adapter = adapter
+                        adapter!!.notifyDataSetChanged()
                     }
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
             }
 
 
         }
     }
+
     private fun openGallery() {
         val intent = Intent()
         intent.type = "image/* , video/*"
@@ -513,14 +570,20 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
 //        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         startActivityForResult(intent, GALLERY_REQ)
     }
-    fun hasPermissions(context: Context, permissions: Array<String>): Boolean{
-        for(p in permissions){
-            if(ActivityCompat.checkSelfPermission(context, p) != PackageManager.PERMISSION_GRANTED){
+
+    fun hasPermissions(context: Context, permissions: Array<String>): Boolean {
+        for (p in permissions) {
+            if (ActivityCompat.checkSelfPermission(
+                    context,
+                    p
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
                 return false
             }
         }
         return true
     }
+
     fun makeRequest() {
         ActivityCompat.requestPermissions(this, permissions, PERMISSION_REQUEST_CODE)
     }
@@ -530,8 +593,9 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
         photoUriList.removeAt(position)
         currentPhotoPathList.removeAt(position)
         bitmaps.removeAt(position)
-        adapter.notifyItemRemoved(position)
+        adapter!!.notifyItemRemoved(position)
     }
+
     lateinit var hashtagName: TextView
     fun openHashtagDialog() {
         val dialog = Dialog(this)
@@ -539,12 +603,12 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
         dialog.getWindow()?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.open_hashtag_dialog)
-        hashtagName=dialog.findViewById(R.id.textView267) as TextView
+        hashtagName = dialog.findViewById(R.id.textView267) as TextView
         val add = dialog.findViewById(R.id.Button71) as Button
         val cancel = dialog.findViewById(R.id.imageButton70) as ImageButton
         val etSearch = dialog.findViewById(R.id.editTextTextPersonName27) as EditText
-        val rvHashtagList=dialog.findViewById(R.id.rvHashtagList) as RecyclerView
-        hashAdapter= HashtagAutocompleteAdapter(hashtagDataList, this)
+        val rvHashtagList = dialog.findViewById(R.id.rvHashtagList) as RecyclerView
+        hashAdapter = HashtagAutocompleteAdapter(hashtagDataList, this)
         etSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
@@ -561,9 +625,9 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
         })
 
         rvHashtagList.also {
-            it.layoutManager=LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+            it.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
             it.setHasFixedSize(true)
-            it.adapter=hashAdapter
+            it.adapter = hashAdapter
 
         }
         add.setOnClickListener {
@@ -576,19 +640,19 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
         dialog.show()
     }
 
-    var selectedHashtags=""
+    var selectedHashtags = ""
     override fun onHashtagSelected(hashtagData: HashtagData) {
-        val hashtag=if (hashtagData.hash_title.contains("#")){
+        val hashtag = if (hashtagData.hash_title.contains("#")) {
             hashtagData.hash_title
-        }else{
-            "#"+hashtagData.hash_title
+        } else {
+            "#" + hashtagData.hash_title
         }
-        if (selectedHashtags.isEmpty()){
-            selectedHashtags=hashtag
-        }else{
-            selectedHashtags=selectedHashtags+","+hashtag
+        if (selectedHashtags.isEmpty()) {
+            selectedHashtags = hashtag
+        } else {
+            selectedHashtags = selectedHashtags + "," + hashtag
         }
-        hashtagName.text=selectedHashtags
+        hashtagName.text = selectedHashtags
         binding.editTextTextPersonName66.setText(selectedHashtags)
     }
 
@@ -596,15 +660,15 @@ class PostMediaActivity : AppCompatActivity(),KodeinAware, PostMediaEventListene
         binding.editTextTextPersonName66.isEnabled = true
         binding.button31.visibility = View.VISIBLE
         binding.progressBar6.visibility = View.VISIBLE
-        val hashtag=if (hashtagData.hash_title.contains("#")){
+        val hashtag = if (hashtagData.hash_title.contains("#")) {
             hashtagData.hash_title
-        }else{
-            "#"+hashtagData.hash_title
+        } else {
+            "#" + hashtagData.hash_title
         }
-        if (selectedHashtags.isEmpty()){
-            selectedHashtags=hashtag
-        }else{
-            selectedHashtags=selectedHashtags+","+hashtag
+        if (selectedHashtags.isEmpty()) {
+            selectedHashtags = hashtag
+        } else {
+            selectedHashtags = selectedHashtags + "," + hashtag
         }
         //hashtagName.text=selectedHashtags
         binding.editTextTextPersonName66.setText(selectedHashtags)
@@ -625,4 +689,4 @@ data class PostPreview(
     var photoURIList: MutableList<String>,
     var featuredPost: String,
     var description: String
-): Serializable {}
+) : Serializable {}

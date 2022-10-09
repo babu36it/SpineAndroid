@@ -75,7 +75,7 @@ class ReviewPostActivity : AppCompatActivity(),KodeinAware, ReviewPostEventListe
     }
 
     override fun onPost() {
-        binding.button41.visibility=View.INVISIBLE
+        binding.button41.visibility=View.VISIBLE
         val uid: RequestBody = RequestBody.create(
             "multipart/form-data".toMediaTypeOrNull(),
             user_id
