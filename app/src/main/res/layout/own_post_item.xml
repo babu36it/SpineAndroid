@@ -16,32 +16,33 @@
     android:layout_margin="4dp"
     >
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:id="@+id/imgContent"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-    <ImageView
-        app:image="@{model.files}"
-        android:id="@+id/imageView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/demo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-         />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_margin="4dp"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/imageView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/demo"
+            app:image="@{model.files}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </RelativeLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:maxHeight="@dimen/_150sdp"
         android:id="@+id/textContent"
+        android:visibility="gone"
         android:background="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,32 +54,29 @@
             android:id="@+id/textView134"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/eight"
-            android:layout_marginTop="@dimen/eight"
-            android:layout_marginEnd="@dimen/eight"
-            android:text="@{model.title}"
-            android:padding="@dimen/eight"
+            android:maxLines="6"
+            android:text="@string/loremIpsum"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_25sdp"
             android:textColor="@color/text_white"
-            android:textSize="@dimen/big_text"
-            app:layout_constraintBottom_toTopOf="@+id/textView135"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView135"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/eight"
-            android:layout_marginEnd="@dimen/eight"
-            android:layout_marginBottom="@dimen/eight"
-            android:text="@{model.hashtag_ids}"
-            android:textColor="@color/text_white"
-            android:textSize="@dimen/big_text"
-            android:padding="@dimen/eight"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView135"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="@dimen/eight"-->
+<!--            android:layout_marginEnd="@dimen/eight"-->
+<!--            android:layout_marginBottom="@dimen/eight"-->
+<!--            android:text="@{model.hashtag_ids}"-->
+<!--            android:textColor="@color/text_white"-->
+<!--            android:textSize="@dimen/big_text"-->
+<!--            android:padding="@dimen/eight"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent" />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -15,41 +15,51 @@
         android:layout_margin="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <RelativeLayout
-        android:id="@+id/rl_search_box"
-        android:visibility="gone"
-        tools:visibility="visible"
-        android:layout_below="@id/tv_title"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:focusedByDefault="false"
-            android:id="@+id/search_bar"
-            android:hint="@string/search"
-            android:imeOptions="actionSearch"
-            android:maxLines="1"
-            android:inputType="text"
-            android:drawableStart="@drawable/ic_search_24dp"
-            android:drawablePadding="5dp"
-            android:padding="8dp"
-            android:background="@drawable/search_box"
-            android:layout_width="match_parent"
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/rl_search_box"-->
+<!--        android:visibility="gone"-->
+<!--        tools:visibility="visible"-->
+<!--        android:layout_below="@id/tv_title"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:layout_marginRight="16dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <EditText-->
+<!--            android:focusedByDefault="false"-->
+<!--            android:id="@+id/search_bar"-->
+<!--            android:hint="@string/search"-->
+<!--            android:imeOptions="actionSearch"-->
+<!--            android:maxLines="1"-->
+<!--            android:inputType="text"-->
+<!--            android:drawableStart="@drawable/ic_search_24dp"-->
+<!--            android:drawablePadding="5dp"-->
+<!--            android:padding="8dp"-->
+<!--            android:background="@drawable/search_box"-->
+<!--            android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"/>-->
+<!--        <ImageView-->
+<!--            android:visibility="gone"-->
+<!--            android:clickable="true"-->
+<!--            android:layout_marginRight="8sp"-->
+<!--            android:foreground="?attr/selectableItemBackground"-->
+<!--            android:id="@+id/clear_search"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:src="@drawable/ic_close_24dp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
+<!--    </RelativeLayout>-->
+
+    <TextView
+        android:id="@+id/tv_new_message"
+        android:text="@string/unread_message"
+        android:visibility="visible"
+        android:textColor="@color/grey"
+        android:textSize="12sp"
+        android:layout_margin="16dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-        <ImageView
-            android:visibility="gone"
-            android:clickable="true"
-            android:layout_marginRight="8sp"
-            android:foreground="?attr/selectableItemBackground"
-            android:id="@+id/clear_search"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_close_24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
     <LinearLayout
         android:id="@+id/no_user_layout"
         android:visibility="gone"
@@ -78,7 +88,7 @@
         tools:listitem="@layout/user_list_row"
         android:layout_height="match_parent"/>
 
-    <include layout="@layout/user_list_placeholder"/>
+    <include layout="@layout/user_list_placeholder" />
 
 
 

@@ -15,19 +15,37 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.menus.profile.tabs.podcasts.PodcastFragment">
 
-    <Button
-        android:onClick="@{viewmodel.onAddPodcast}"
-        android:id="@+id/button36"
-        android:layout_width="wrap_content"
+<!--    <Button-->
+<!--        android:onClick="@{viewmodel.onAddPodcast}"-->
+<!--        android:id="@+id/button36"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/gray_tint"-->
+<!--        android:textColor="@color/colorPrimaryDark"-->
+<!--        android:layout_marginTop="@dimen/sixteen"-->
+<!--        android:text="@string/add_a_podcast"-->
+<!--        android:textAllCaps="false"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <TextView
+        android:id="@+id/tv_no_podcast"
+        style="@style/SimpleText_Sami_bold"
+        android:layout_width="@dimen/_250sdp"
         android:layout_height="wrap_content"
-        android:background="@color/gray_tint"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_marginTop="@dimen/sixteen"
-        android:text="@string/add_a_podcast"
-        android:textAllCaps="false"
+        android:layout_marginStart="@dimen/_18sdp"
+        android:layout_marginEnd="@dimen/_18sdp"
+        android:layout_marginTop="@dimen/twelve"
+        android:text="@string/no_podcast_found"
+        android:textAlignment="center"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/_12sdp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvOwnPods"
@@ -38,6 +56,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button36" />
+         />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

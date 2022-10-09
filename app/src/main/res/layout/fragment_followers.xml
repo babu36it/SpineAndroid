@@ -27,8 +27,12 @@
         android:drawablePadding="@dimen/eight"
         android:ems="10"
         android:hint="@string/search"
+        android:textColorHint="@color/grey"
         android:inputType="textPersonName"
         android:padding="@dimen/eight"
+        android:textSize="@dimen/twelve"
+        style="@style/SimpleText_Sami_bold"
+        android:textColor="@color/quantum_black_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

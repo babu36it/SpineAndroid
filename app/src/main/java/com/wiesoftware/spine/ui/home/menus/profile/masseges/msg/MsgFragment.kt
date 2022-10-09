@@ -60,19 +60,23 @@ class MsgFragment : Fragment(),KodeinAware, EveMessageAdapter.OnUserChatListener
         val viewmodel=ViewModelProvider(this,factory).get(MsgFragmentViewmodel::class.java)
         binding.viewmodel=viewmodel
 
+        user_id = "7"
+        setUsers()
+
         viewmodel.getLoggedInUser().observe(viewLifecycleOwner, Observer { user->
             user_id=user.users_id!!
             userName=user.name!!
-            //setUsers()
+//            setUsers()
             login(user_id,"")
         })
 
-        loadFragment(CometChatUserListScreen())
+//        loadFragment(CometChatUserListScreen())
         CometChatUserListScreen.setItemClickListener(object : OnItemClickListener<Any>() {
             override fun OnItemClick(t: Any, position: Int) {
                 userIntent(t as User)
             }
         })
+
         return binding.root
     }
     private fun loadFragment(fragment: Fragment?) {
@@ -93,9 +97,10 @@ class MsgFragment : Fragment(),KodeinAware, EveMessageAdapter.OnUserChatListener
         lifecycleScope.launch {
             try {
                 val res=homeRepositry.getEventMsgUsers(1,100,user_id)
-                if (res.status){
-                    STORY_IMAGE=res.image
-                    val data=res.data
+                if (!res.status){
+//                    STORY_IMAGE=res.image
+//                    val data=res.data
+                    val  data = arrayListOf<EveMsgUserData>()
                     binding.rvEveMsg.also {
                         it.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
                         it.setHasFixedSize(true)

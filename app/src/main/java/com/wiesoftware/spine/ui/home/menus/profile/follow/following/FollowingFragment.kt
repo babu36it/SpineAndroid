@@ -2,10 +2,13 @@ package com.wiesoftware.spine.ui.home.menus.profile.follow.following
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -36,6 +39,8 @@ class FollowingFragment : Fragment(), KodeinAware,
     lateinit var binding: FragmentFollowingBinding
     val homeRepositry: HomeRepositry by instance()
     var userId: String=""
+    lateinit var adapter:FollowingAdapter
+    lateinit var dataList:ArrayList<FollowersData>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,20 +60,197 @@ class FollowingFragment : Fragment(), KodeinAware,
             getFollowings()
         })
 
+
+
+        binding.editTextTextPersonName19.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable) {}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int,
+                                           count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int,
+                                       before: Int, count: Int) {
+
+                filter(s.toString())
+            }
+        })
+
         return binding.root
+    }
+
+    private fun filter(text: String) {
+        // creating a new array list to filter our data.
+        val filteredlist: ArrayList<FollowersData> = ArrayList()
+
+        // running a for loop to compare elements.
+        for (item in dataList) {
+            // checking if the entered string matched with any item of our recycler view.
+            if (item.displayName.toLowerCase().contains(text.toLowerCase())) {
+                // if the item is matched we are
+                // adding it to our filtered list.
+                filteredlist.add(item)
+            }
+        }
+        if (filteredlist.isEmpty()) {
+            // if no item is added in filtered list we are
+            // displaying a toast message as no data found.
+            Toast.makeText(requireContext(), "No Data Found..", Toast.LENGTH_SHORT).show()
+        } else {
+            // at last we are passing that filtered
+            // list to our adapter class.
+            adapter.filterList(filteredlist)
+        }
     }
 
     private fun getFollowings() {
         lifecycleScope.launch {
             try {
                 val res=homeRepositry.getFollowingList(1,100,userId)
-                if (res.status){
-                    STORY_IMAGE=res.image
-                    val dataList=res.data
+                if (!res.status){
+//                    STORY_IMAGE=res.image
+//                    val dataList=res.data
+
+                     dataList= arrayListOf<FollowersData>()
+
+                    dataList.add(FollowersData(
+                        "created_on",
+                        "image",
+                        "hashtag_ids" ,
+                        "1" ,
+                        "multiplity" ,
+                        "post_backround_color_id" ,
+                        "post_user_name" ,
+                        "status" ,
+                        "title" ,
+                        "type" ,
+                        "updated_on" ,
+                        "user_id" ,
+                        "96arsh123" ,
+                        "Craig Warner",
+                        "" ,
+                        "profile_pic" ,
+                        "96arsh123" ,
+                        "0" ,
+
+                        ))
+
+
+                    dataList.add(FollowersData(
+                        "created_on",
+                        "image",
+                        "hashtag_ids" ,
+                        "4" ,
+                        "multiplity" ,
+                        "post_backround_color_id" ,
+                        "post_user_name" ,
+                        "status" ,
+                        "title" ,
+                        "type" ,
+                        "updated_on" ,
+                        "user_id" ,
+                        "2345as" ,
+                        "Nilesh Smith",
+                        "" ,
+                        "asdasd" ,
+                        getRandomString(10) ,
+                        "1" ,
+
+                        ))
+                    dataList.add(FollowersData(
+                        "created_on",
+                        "image",
+                        "hashtag_ids" ,
+                        "4" ,
+                        "multiplity" ,
+                        "post_backround_color_id" ,
+                        "post_user_name" ,
+                        "status" ,
+                        "title" ,
+                        "type" ,
+                        "updated_on" ,
+                        "user_id" ,
+                        "2345as" ,
+                        "Mahi Patel",
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVtCMt6WAKwJLit-pkDeK-qPowGhMMcLlsGSl-YFChzQ&s" ,
+                        "asdasd" ,
+                        getRandomString(10) ,
+                        "1" ,
+
+                        ))
+                    dataList.add(FollowersData(
+                        "created_on",
+                        "image",
+                        "hashtag_ids" ,
+                        "4" ,
+                        "multiplity" ,
+                        "post_backround_color_id" ,
+                        "post_user_name" ,
+                        "status" ,
+                        "title" ,
+                        "type" ,
+                        "updated_on" ,
+                        "user_id" ,
+                        "2345as" ,
+                        "Roni Smith",
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK_vjpKVAjkub5O0sFL7ij3mIzG-shVt-6KKLNdxq4&sU" ,
+                        "asdasd" ,
+                        getRandomString(10) ,
+                        "1" ,
+
+                        ))
+
+                    dataList.add(FollowersData(
+                        "created_on",
+                        "image",
+                        "hashtag_ids" ,
+                        "4" ,
+                        "multiplity" ,
+                        "post_backround_color_id" ,
+                        "post_user_name" ,
+                        "status" ,
+                        "title" ,
+                        "type" ,
+                        "updated_on" ,
+                        "user_id" ,
+                        "2345as" ,
+                        "Dhruv Clark",
+                        "https://res.cloudinary.com/demo/image/facebook/65646572251.jpg" ,
+                        "asdasd" ,
+                        getRandomString(10) ,
+                        "1" ,
+
+                        ))
+
+                    dataList.add(FollowersData(
+                        "created_on",
+                        "image",
+                        "hashtag_ids" ,
+                        "4" ,
+                        "multiplity" ,
+                        "post_backround_color_id" ,
+                        "post_user_name" ,
+                        "status" ,
+                        "title" ,
+                        "type" ,
+                        "updated_on" ,
+                        "user_id" ,
+                        "2345as" ,
+                        "Anjali Sonejee",
+                        "" ,
+                        "asdasd" ,
+                        getRandomString(10) ,
+                        "1" ,
+
+                        ))
+
+
+                    adapter = FollowingAdapter(dataList,this@FollowingFragment)
                     binding.rvFollowing.also {
                         it.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
                         it.setHasFixedSize(true)
-                        it.adapter=FollowingAdapter(dataList,this@FollowingFragment)
+                        it.adapter=adapter
                     }
                 }
 
@@ -101,6 +283,13 @@ class FollowingFragment : Fragment(), KodeinAware,
         val intent= Intent(requireContext(), SomeOneProfileActivity::class.java)
         intent.putExtra(SomeOneProfileActivity.SOME_ONES_USER_ID,followersData.tbl_users_user_id)
         startActivity(intent)
+    }
+
+    fun getRandomString(length: Int) : String {
+        val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+        return (1..length)
+            .map { allowedChars.random() }
+            .joinToString("")
     }
 
 

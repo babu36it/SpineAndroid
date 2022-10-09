@@ -78,3 +78,10 @@ data class EventsRecord(
     var isSelected: Boolean
 
 ): Serializable
+
+//data class DemoEventsRecord(
+//    val type:String,
+//    val title:String,
+//    val time:String,
+//    val location:String,
+//    )

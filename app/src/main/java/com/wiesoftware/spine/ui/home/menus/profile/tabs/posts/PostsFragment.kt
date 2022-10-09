@@ -13,8 +13,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.arasthel.spannedgridlayoutmanager.SpanSize
+import com.arasthel.spannedgridlayoutmanager.SpannedGridLayoutManager
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.OwnPostAdapter
+import com.wiesoftware.spine.data.net.reponses.DemoPostData
 import com.wiesoftware.spine.data.net.reponses.PostData
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.FragmentPostsBinding
@@ -57,16 +60,35 @@ class PostsFragment : Fragment(),KodeinAware, PostEventListner,
         lifecycleScope.launch {
             try {
                 val postRes=homeRepositry.getAllPosts(1,200,userId,0,1)
-                if (postRes.status){
-                    BASE_IMAGE =postRes.image
-                    profileImgBase=postRes.profilImage
-                    val postList:List<PostData> = postRes.data
-                    if (postList.size > 0){
-                        binding.button36.visibility=View.GONE
-                    }
-                    binding.rvPost.also{
+                if (!postRes.status){
+//                    BASE_IMAGE =postRes.image
+//                    profileImgBase=postRes.profilImage
+//                    val postList:List<PostData> = postRes.data
+//                    if (postList.size > 0){
+//                        binding.tvNoPost.visibility=View.GONE
+//                    }
+
+                    val postList = arrayListOf<PostData>()
+//
+//                    postList.add(DemoPostData("","0","asdsadasdddsasd"))
+//
+//                    postList.add(DemoPostData("","0","asdsadasdddsasd"))
+//
+//                    postList.add(DemoPostData("","1","sdvsdvdsdsvdscdscdsc"))
+
+
+
+
+//                    val spannedGridLayoutManager = SpannedGridLayoutManager(
+//
+//                        orientation = SpannedGridLayoutManager.Orientation.VERTICAL,
+//
+//                        spans = 4)
+//                    binding.rvPost.layoutManager = spannedGridLayoutManager
+
+                   binding.rvPost.also{
                         it.layoutManager=StaggeredGridLayoutManager(2,RecyclerView.VERTICAL)
-                        it.setHasFixedSize(true)
+                        it.setHasFixedSize(false)
                         it.adapter=OwnPostAdapter(postList,this@PostsFragment)
                     }
                 }

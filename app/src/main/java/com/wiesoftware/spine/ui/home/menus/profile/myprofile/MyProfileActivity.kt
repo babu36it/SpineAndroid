@@ -14,10 +14,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.Gravity
 import android.view.View
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.PopupMenu
-import android.widget.TextView
+import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -38,9 +35,8 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.OwnEventAdapter
 import com.wiesoftware.spine.data.adapter.OwnPostAdapter
-import com.wiesoftware.spine.data.net.reponses.EventsRecord
-import com.wiesoftware.spine.data.net.reponses.PostData
-import com.wiesoftware.spine.data.net.reponses.ProfileData
+import com.wiesoftware.spine.data.adapter.UserPodcastAdapter
+import com.wiesoftware.spine.data.net.reponses.*
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityMyProfileBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
@@ -56,7 +52,6 @@ import com.wiesoftware.spine.util.getFbImage
 import com.wiesoftware.spine.util.toast
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -95,6 +90,8 @@ class MyProfileActivity : AppCompatActivity(),KodeinAware, MyProfileEventListene
     val homeRepositry: HomeRepositry by instance()
     var userId: String=""
     lateinit var binding: ActivityMyProfileBinding
+    var followers:String = "0"
+    var following:String = "0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -162,8 +159,8 @@ class MyProfileActivity : AppCompatActivity(),KodeinAware, MyProfileEventListene
             intent.putExtra(ViewMediaInLargeActivity.MEDIA_TYPE,"0")
             startActivity(intent)
         }
-        val followers=profileData.followers_records_count
-        val following=profileData.following_records_count
+         followers=profileData.followers_records_count
+         following=profileData.following_records_count
         val displayName=profileData.display_name ?: profileData.name
         val category=profileData.categoryName
         val bgImg=profileData.bg_image
@@ -201,7 +198,7 @@ class MyProfileActivity : AppCompatActivity(),KodeinAware, MyProfileEventListene
     }
 
     override fun onMore() {
-    showPopupMenu()
+        showPopupMenu()
     }
 
     fun showPopupMenu() {
@@ -219,13 +216,13 @@ class MyProfileActivity : AppCompatActivity(),KodeinAware, MyProfileEventListene
 
 
     override fun onEditProfile() {
-      startActivity(Intent(this,EditProfileActivity::class.java))
+        startActivity(Intent(this,EditProfileActivity::class.java))
     }
 
     override fun onPost() {
-        setTvAndBtnColor(binding.textView157,binding.button57,R.color.text_black)
-        setTvAndBtnColor(binding.textView158,binding.button58,R.color.text_black_light)
-        setTvAndBtnColor(binding.textView159,binding.button59,R.color.text_black_light)
+        setTvAndBtnColor(binding.textView157,binding.textViewPost,R.color.text_black)
+        setTvAndBtnColor(binding.textView158,binding.textViewEvents,R.color.text_black_light)
+        setTvAndBtnColor(binding.textView159,binding.textViewPods,R.color.text_black_light)
         getOwnPost()
         binding.rvProfileData.visibility=View.VISIBLE
     }
@@ -236,9 +233,10 @@ class MyProfileActivity : AppCompatActivity(),KodeinAware, MyProfileEventListene
         lifecycleScope.launch {
             try {
                 val postRes=homeRepositry.getAllPosts(1,200,userId,0,1)
-                if (postRes.status){
-                    BASE_IMAGE =postRes.image
-                    postList = postRes.data
+                if (!postRes.status){
+//                    BASE_IMAGE =postRes.image
+//                    postList = postRes.data
+                    postList = arrayListOf<PostData>()
                     binding.rvProfileData.also{
                         it.layoutManager= StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
                         it.setHasFixedSize(true)
@@ -259,9 +257,9 @@ class MyProfileActivity : AppCompatActivity(),KodeinAware, MyProfileEventListene
     override fun onEvent() {
         postList.clear()
         adapter.notifyDataSetChanged()
-        setTvAndBtnColor(binding.textView157,binding.button57,R.color.text_black_light)
-        setTvAndBtnColor(binding.textView158,binding.button58,R.color.text_black)
-        setTvAndBtnColor(binding.textView159,binding.button59,R.color.text_black_light)
+        setTvAndBtnColor(binding.textView157,binding.textViewPost,R.color.text_black_light)
+        setTvAndBtnColor(binding.textView158,binding.textViewEvents,R.color.text_black)
+        setTvAndBtnColor(binding.textView159,binding.textViewPods,R.color.text_black_light)
         getOwnEvents()
         binding.rvProfileData.visibility=View.VISIBLE
     }
@@ -272,9 +270,10 @@ class MyProfileActivity : AppCompatActivity(),KodeinAware, MyProfileEventListene
         lifecycleScope.launch {
             try {
                 val res=homeRepositry.getOwnEvents(userId)
-                if (res.status){
-                    BASE_IMAGE=res.image
-                    val evedata= res.data
+                if (!res.status){
+//                    BASE_IMAGE=res.image
+//                    val evedata= res.data
+                    val evedata = arrayListOf<EventsRecord>()
                     binding.rvProfileData.also {
                         it.layoutManager=
                             LinearLayoutManager(this@MyProfileActivity,RecyclerView.VERTICAL,false)
@@ -296,22 +295,52 @@ class MyProfileActivity : AppCompatActivity(),KodeinAware, MyProfileEventListene
         evedata.clear()
         eveAdapter.notifyDataSetChanged()
         postList.clear()
-        binding.rvProfileData.visibility=View.GONE
+        binding.rvProfileData.visibility=View.VISIBLE
         adapter.notifyDataSetChanged()
-        setTvAndBtnColor(binding.textView157,binding.button57,R.color.text_black_light)
-        setTvAndBtnColor(binding.textView158,binding.button58,R.color.text_black_light)
-        setTvAndBtnColor(binding.textView159,binding.button59,R.color.text_black)
+        setTvAndBtnColor(binding.textView157,binding.textViewPost,R.color.text_black_light)
+        setTvAndBtnColor(binding.textView158,binding.textViewEvents,R.color.text_black_light)
+        setTvAndBtnColor(binding.textView159,binding.textViewPods,R.color.text_black)
+        getPods()
+    }
+
+    private fun getPods() {
+        lifecycleScope.launch {
+            try {
+                val res=homeRepositry.getOwnEvents(userId)
+                if (!res.status){
+//                    BASE_IMAGE=res.image
+//                    val evedata= res.data
+                    val poddata = arrayListOf<PodDatas>()
+                    binding.rvProfileData.also {
+                        it.layoutManager=
+                            LinearLayoutManager(this@MyProfileActivity,RecyclerView.VERTICAL,false)
+                        it.setHasFixedSize(true)
+
+//                        it.adapter= UserPodcastAdapter(poddata,)
+                        eveAdapter.notifyDataSetChanged()
+                    }
+                }
+            }catch (e: com.wiesoftware.spine.util.ApiException){
+                e.printStackTrace()
+            }catch (e: NoInternetException){
+                e.printStackTrace()
+            }
+        }
     }
 
     override fun onFollowers() {
-        startActivity(Intent(this,FollowActivity::class.java))
+        val intent = Intent(Intent(this,FollowActivity::class.java))
+        intent.putExtra("followers", followers)
+        intent.putExtra("following", following)
+        startActivity(intent)
+//        startActivity(Intent(this,FollowActivity::class.java))
     }
 
     override fun onFollowing() {
         startActivity(Intent(this,FollowActivity::class.java))
     }
 
-    fun setTvAndBtnColor(tv: TextView,btn: Button,color: Int){
+    fun setTvAndBtnColor(tv: TextView,btn: TextView,color: Int){
         tv.setTextColor(ContextCompat.getColor(this,color))
         btn.setTextColor(ContextCompat.getColor(this,color))
     }

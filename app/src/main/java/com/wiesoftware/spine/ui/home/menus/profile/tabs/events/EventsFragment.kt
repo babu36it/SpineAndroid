@@ -60,15 +60,33 @@ class EventsFragment : Fragment(),KodeinAware, EventsEventListener,
         lifecycleScope.launch {
             try {
                 val res=homeRepositry.getOwnEvents(userId)
-                if (res.status){
-                    Log.e("image",res.image)
-                    BASE_IMAGE=res.image
+                if (!res.status){
+//                    Log.e("image",res.image)
+//                    BASE_IMAGE=res.image
+//
+//                    Log.e("imageon",res.image)
+//                    val data= res.data
 
-                    Log.e("imageon",res.image)
-                    val data= res.data
-                    if (data.size > 0){
-                        binding.button37.visibility=View.GONE
-                    }
+                    val data = arrayListOf<EventsRecord>()
+//                    if (data.size > 0){
+//                        binding.tvNoEvent.visibility=View.GONE
+//                    }
+//                    data.add(
+//                        EventsRecord(
+//                            "1", "Sahaja Yoga Online Meditation","18:00, 2hrs","En")
+//                    )
+//                    data.add(
+//                        EventsRecord(
+//                            "0", "Sahaja Yoga Online Meditation","18:00, 2hrs","En")
+//                    )
+//                    data.add(
+//                        EventsRecord(
+//                            "0", "harsh Online Meditation","06:00, 1hrs","En")
+//                    )
+//                    data.add(
+//                        EventsRecord(
+//                            "1", " Health is wealth","2 Days","Ahmedabad")
+//                    )
                     binding.rvOwnEvents.also {
                         it.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
                         it.setHasFixedSize(true)
