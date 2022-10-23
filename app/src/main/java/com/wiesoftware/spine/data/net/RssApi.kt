@@ -16,7 +16,9 @@ import java.util.concurrent.TimeUnit
 interface RssApi {
 
     companion object{
-        const val RSS_BASE_URL="https://api.rss2json.com/"
+        const val RSS_BASE_URL="http://162.214.165.52/~pirituc5/apisecure/"
+
+       // const val RSS_BASE_URL="https://api.rss2json.com/"
         private const val H1="Content-Type: application/json"
 
         operator fun invoke(networkConnectionInterceptor: NetworkConnectionInterceptor):RssApi{
