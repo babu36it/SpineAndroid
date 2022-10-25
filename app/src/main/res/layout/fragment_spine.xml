@@ -16,16 +16,18 @@
     tools:context=".ui.home.menus.spine.SpineFragment">
 
     <ImageButton
-        android:onClick="@{viewModel.onAddBtnClick}"
+        android:contentDescription="@string/about_spine"
         android:id="@+id/imageButton2"
         android:layout_width="@dimen/thirty_two"
         android:layout_height="@dimen/thirty_two"
         android:layout_marginStart="@dimen/sixteen"
         android:background="@android:color/transparent"
+        android:onClick="@{viewModel.onAddBtnClick}"
         android:src="@drawable/ic_add_new"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardView" />
+        app:layout_constraintTop_toTopOf="@+id/cardView"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -54,10 +56,11 @@
         android:id="@+id/tabLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:tabIndicatorHeight="4dp"
+        android:contentDescription="@string/add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:tabIndicatorHeight="4dp" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
