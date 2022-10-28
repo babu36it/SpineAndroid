@@ -1,5 +1,6 @@
 package com.wiesoftware.spine.ui.home.menus.profile.tabs.podcasts
 
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -57,7 +58,7 @@ class PodcastFragment : Fragment(),KodeinAware, PodcastsEventListner,
     private fun getOwnPodcasts(userId: String) {
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.getAllPodcasts(userId)
+                val res=homeRepositry.getAllPodcasts()
                 if (res.status){
                     STORY_IMAGE =res.profile_img
                     POD_FILE_BASE =res.image
@@ -93,5 +94,4 @@ class PodcastFragment : Fragment(),KodeinAware, PodcastsEventListner,
         intent.putExtra(WatchPodcastsFragment.POD_ID,podcastData.id)
         startActivity(intent)
     }
-
 }

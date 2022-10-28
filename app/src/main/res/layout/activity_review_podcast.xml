@@ -1,249 +1,271 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewmodel"
             type="com.wiesoftware.spine.ui.home.menus.podcasts.reviewpodcast.ReviewPodcastViewmodel" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.menus.podcasts.reviewpodcast.ReviewPodcastActivity">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vD">
+        android:layout_height="match_parent"
+        tools:context=".ui.home.menus.podcasts.reviewpodcast.ReviewPodcastActivity">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/vD">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout6"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_200dp"
-                android:background="@color/colorPrimary"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageButton
-                    android:id="@+id/imageButton47"
-                    style="@style/BackButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:tint="@color/text_white"
-                    android:visibility="invisible"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout6"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_200dp"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageView27"
-                    android:layout_width="@dimen/_350"
-                    android:layout_height="@dimen/_250"
-                    android:src="@drawable/demo"
-                    app:civ_border_color="@color/gray_tint"
-                    app:civ_border_width="2dp"
-                    app:layout_constraintStart_toEndOf="@+id/guideline5"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <ImageButton
+                        android:id="@+id/imageButton47"
+                        style="@style/BackButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="@color/text_white"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <View
-                    android:layout_width="@dimen/_350"
-                    android:layout_height="@dimen/_250"
-                    android:background="@color/overlay_color_primary"
-                    app:layout_constraintStart_toEndOf="@+id/guideline5"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imageView27"
+                        android:layout_width="@dimen/_350"
+                        android:layout_height="@dimen/_250"
+                        android:src="@drawable/demo"
+                        android:visibility="gone"
+                        app:civ_border_color="@color/gray_tint"
+                        app:civ_border_width="2dp"
+                        app:layout_constraintStart_toEndOf="@+id/guideline5"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:visibility="gone"
+                        android:layout_width="@dimen/_350"
+                        android:layout_height="@dimen/_250"
+                        android:background="@color/overlay_color_primary"
+                        app:layout_constraintStart_toEndOf="@+id/guideline5"
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
-                <TextView
-                    android:id="@+id/textView78"
-                    style="@style/TitleText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/text_white"
-                    app:layout_constraintStart_toEndOf="@+id/imageButton47"
-                    app:layout_constraintTop_toBottomOf="@+id/imageButton47" />
+<!--
+                    <TextView
+                        android:id="@+id/textView78"
+                        style="@style/TitleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/text_white"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toEndOf="@+id/imageButton47"
+                        app:layout_constraintTop_toBottomOf="@+id/imageButton47" />
+-->
 
-                <TextView
-                    android:id="@+id/textView219"
-                    style="@style/NormalText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/eight"
-                    android:layout_marginTop="@dimen/eight"
-                    android:text=""
-                    android:textColor="@color/gray_tint"
-                    app:layout_constraintStart_toStartOf="@+id/textView78"
-                    app:layout_constraintTop_toBottomOf="@+id/textView78" />
+<!--
+                    <TextView
+                        android:id="@+id/textView219"
+                        style="@style/NormalText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/eight"
+                        android:layout_marginTop="@dimen/eight"
+                        android:text=""
+                        android:textColor="@color/gray_tint"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="@+id/textView78"
+                        app:layout_constraintTop_toBottomOf="@+id/textView78" />
+-->
+
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:visibility="gone"
+                        android:id="@+id/guideline5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent=".5" />
+
+
+                    <ImageView
+                        android:id="@+id/podImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/demo"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                 <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline5"
+                    android:visibility="gone"
+                    android:id="@+id/guideline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent=".5" />
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent=".3" />
 
-
-                <ImageView
-                    android:id="@+id/podImg"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clAutherDetails"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/demo"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent=".3" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clAutherDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
-
-                <TextView
-                    android:id="@+id/tvAutherName"
-                    style="@style/NormalText"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/eight"
-                    android:layout_marginTop="@dimen/_54"
-                    android:paddingStart="@dimen/eight"
-                    android:text=""
-                    android:textColor="@color/text_white"
-                    android:textSize="@dimen/sp18"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvPodTitle"
-                    style="@style/TitleText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/eight"
-                    android:text=""
-                    android:textColor="@color/text_white"
-                    android:textSize="@dimen/text_22"
+                    android:background="@color/colorPrimaryDark"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/tvAutherName"
-                    app:layout_constraintTop_toBottomOf="@+id/tvAutherName" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
 
-                <TextView
-                    android:id="@+id/tvEpisodes"
-                    style="@style/NormalText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/eight"
-                    android:text=""
-                    android:textColor="@color/text_white"
-                    android:textSize="@dimen/sp18"
-                    app:layout_constraintStart_toStartOf="@+id/tvAutherName"
-                    app:layout_constraintTop_toBottomOf="@+id/tvPodTitle" />
+                    <TextView
+                        android:paddingStart="@dimen/_8sdp"
+                        android:id="@+id/tvAutherName"
+                        style="@style/NormalText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_60sdp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:text=""
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/_11sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:paddingStart="@dimen/_8sdp"
+                        android:id="@+id/tvPodTitle"
+                        style="@style/NormalText"
+                        android:maxLines="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:text=""
+                        android:singleLine="true"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/_13sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tvAutherName"
+                        app:layout_constraintTop_toBottomOf="@+id/tvAutherName" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imageView28"
-                android:layout_width="@dimen/_100"
-                android:layout_height="@dimen/_100"
-                android:src="@drawable/demo"
-                app:civ_border_color="@color/text_white"
-                app:civ_border_width="4dp"
-                app:civ_circle_background_color="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout6"
-                app:layout_constraintEnd_toEndOf="@+id/constraintLayout6"
-                app:layout_constraintStart_toStartOf="@+id/constraintLayout6"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
+                    <TextView
+                        android:paddingStart="@dimen/_8sdp"
+                        android:id="@+id/tvEpisodes"
+                        style="@style/NormalText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:text=""
+                        android:paddingBottom="@dimen/_8sdp"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/_11sdp"
+                        app:layout_constraintStart_toStartOf="@+id/tvAutherName"
+                        app:layout_constraintTop_toBottomOf="@+id/tvPodTitle" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/clAutherDetails">
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageView28"
+                    android:layout_width="@dimen/_100"
+                    android:layout_height="@dimen/_100"
+                    android:src="@drawable/demo"
+                    app:civ_border_color="@color/text_white"
+                    app:civ_border_width="4dp"
+                    app:civ_circle_background_color="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/constraintLayout6"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintLayout6"
+                    app:layout_constraintStart_toStartOf="@+id/constraintLayout6"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvUserPod"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/clAutherDetails">
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvUserPod"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </ScrollView>
+        </ScrollView>
 
         <ImageButton
-            android:onClick="@{viewmodel.onBack}"
             android:id="@+id/imageButton48"
             style="@style/BackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{viewmodel.onBack}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView291"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/review_podcast"
-        style="@style/TitleText"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton48"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageButton48" />
+        <TextView
+            android:textColor="@color/text_black"
+            android:id="@+id/textView291"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/review_podcast"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton48"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageButton48" />
 
-    <Button
-        android:onClick="@{viewmodel.onSubmitPodcast}"
-        android:id="@+id/button105"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/ButtonRound"
-        android:text="@string/submit"
-        android:layout_marginEnd="@dimen/eight"
-        app:layout_constraintBottom_toBottomOf="@+id/textView291"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView291" />
-    <View
-        android:id="@+id/vD"
-        android:layout_width="match_parent"
-        style="@style/ViewActionLine"
-        app:layout_constraintTop_toBottomOf="@+id/button105"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-/>
+        <TextView
+            android:id="@+id/button105"
+            style="@style/ButtonRound"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_marginEnd="@dimen/eight"
+            android:paddingStart="@dimen/_20sdp"
+            android:paddingEnd="@dimen/_20sdp"
+            android:onClick="@{viewmodel.onSubmitPodcast}"
+            android:text="@string/submit"
+            app:layout_constraintBottom_toBottomOf="@+id/textView291"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView291" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/vD"
+            style="@style/ViewActionLine"
+            android:layout_width="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button105" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

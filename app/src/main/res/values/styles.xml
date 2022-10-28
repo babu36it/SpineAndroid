@@ -1,4 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -35,6 +36,7 @@
         <item name="android:layout_marginTop">@dimen/eight</item>
         <item name="android:src">@drawable/ic_back</item>
     </style>
+
     <style name="HeadingText" parent="android:Widget.TextView">
         <item name="android:layout_marginStart">@dimen/eight</item>
         <item name="android:layout_marginEnd">@dimen/eight</item>
@@ -44,11 +46,13 @@
         <item name="android:textColor">@color/text_black</item>
         <item name="fontFamily">@font/poppins_bold</item>
     </style>
+
     <style name="RoundButton" parent="android:Widget.Button">
         <item name="android:background">@drawable/round_button_bg</item>
         <item name="android:textColor">@color/text_white</item>
         <item name="fontFamily">@font/poppins_bold</item>
     </style>
+
     <style name="TitleText" parent="android:Widget.TextView">
         <item name="android:textSize">@dimen/_12sdp</item>
         <item name="android:padding">@dimen/_5sdp</item>
@@ -64,6 +68,11 @@
 
 
     <style name="NormalText" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+
+
+    <style name="spinnerText" parent="android:Widget.TextView">
         <item name="android:textColor">@color/text_black</item>
     </style>
 
@@ -124,7 +133,6 @@
     </style>
 
 
-
     <style name="ButtonSetting" parent="android:Widget.Button">
         <item name="android:layout_marginStart">@dimen/_10sdp</item>
         <item name="android:layout_marginEnd">@dimen/_10sdp</item>
@@ -136,6 +144,7 @@
         <item name="android:textColor">@color/text_black</item>
         <item name="fontFamily">@font/poppins_regular</item>
     </style>
+
     <style name="ButtonSettingtwo" parent="android:Widget.Button">
         <item name="android:layout_marginStart">@dimen/sixteen</item>
         <item name="android:layout_marginEnd">@dimen/sixteen</item>
@@ -192,6 +201,16 @@
         <item name="android:background">@drawable/spinner_background</item>
     </style>
 
+
+    <style name="languagespinner" parent="android:Widget.Spinner">
+        <item name="android:background">@drawable/spinner_background</item>
+        <item name="android:backgroundTint">@color/text_black</item>
+        <item name="android:textSize">@dimen/_10sdp</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+
     <style name="tab_layout">
         <item name="tabSelectedTextColor">@color/text_black</item>
         <item name="tabIndicatorHeight">3dp</item>
@@ -202,6 +221,7 @@
         <item name="android:fontFamily">@font/poppins_bold</item>
         <item name="android:textColor">@color/grey</item>
     </style>
+
     <style name="IconTextView" parent="Widget.AppCompat.TextView">
         <item name="android:drawableStart">@drawable/ic_date</item>
         <item name="android:drawableTint">@color/grey</item>
@@ -209,4 +229,12 @@
         <item name="android:textColor">@color/text_black</item>
         <item name="android:iconTint">@color/text_black</item>
     </style>
+
+    <style name="closeIcon" parent="Widget.AppCompat.ImageButton">
+        <item name="android:src">@drawable/ic_close</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:tint">@color/white</item>
+    </style>
+
+
 </resources>

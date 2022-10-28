@@ -3,6 +3,33 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/drawable/boarder_round_btn_bg.xml" value="0.206" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/drawable/ic_add_new.xml" value="0.206" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/drawable/ic_close.xml" value="0.206" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/drawable/ic_minus.xml" value="0.206" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/drawable/round_border.xml" value="0.206" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_add_podcast.xml" value="0.2" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_add_rss.xml" value="0.21" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_edit_profile.xml" value="0.16576086956521738" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_enter_code.xml" value="0.22" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_home.xml" value="0.10597826086956522" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_post_media.xml" value="0.10597826086956522" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_review_podcast.xml" value="0.25" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_thanks_pod.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_user_podcast.xml" value="0.10597826086956522" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/eve_cat_item.xml" value="0.10597826086956522" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/for_you_content_item.xml" value="0.16576086956521738" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/fragment_activities.xml" value="0.17889492753623187" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/fragment_event.xml" value="0.17889492753623187" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/fragment_listen_podcasts.xml" value="0.17889492753623187" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/fragment_podcasts.xml" value="0.10597826086956522" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/fragment_spine.xml" value="0.10597826086956522" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/fragment_spine_for_you.xml" value="0.16576086956521738" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/pod_subcat_list.xml" value="0.17889492753623187" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/rss_episode_item.xml" value="0.25" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/search_text_item.xml" value="0.10597826086956522" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/txt_dropdown_item.xml" value="0.17889492753623187" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/menu/bottom_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/e drive/Freelancing/SpineAndroid/app/src/main/res/layout/activity_account_settings.xml" value="0.20416666666666666" />
         <entry key="..\:/e drive/Freelancing/SpineAndroid/app/src/main/res/layout/activity_add_podcast.xml" value="0.21" />
         <entry key="..\:/e drive/Freelancing/SpineAndroid/app/src/main/res/layout/activity_add_rss.xml" value="0.13958333333333334" />
