@@ -1,7 +1,12 @@
 package com.wiesoftware.spine.data.net.reponses
 
 data class RssResponse(
+    val data: DataFeed,
+
+    val status: Boolean
+)
+
+data class DataFeed(
     val feed: RssFeed,
-    val items: List<RssItem>,
-    val status: String
+    val items: ArrayList<RssItem>,
 )

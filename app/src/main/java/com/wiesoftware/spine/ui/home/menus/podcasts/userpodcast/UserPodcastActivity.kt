@@ -62,7 +62,7 @@ class UserPodcastActivity : AppCompatActivity(),KodeinAware, UserPodcastEventLis
     private fun getUserPodcast(podUserId: String?) {
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.getAllPodcasts(podUserId!!)
+                val res=homeRepositry.getAllPodcasts()
                 if (res.status){
                     STORY_IMAGE =res.profile_img
                     POD_FILE_BASE =res.image

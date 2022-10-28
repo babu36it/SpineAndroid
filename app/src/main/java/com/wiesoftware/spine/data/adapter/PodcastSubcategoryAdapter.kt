@@ -1,10 +1,13 @@
 package com.wiesoftware.spine.data.adapter
 
 import android.content.Context
+import android.graphics.Color
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -40,19 +43,26 @@ class PodcastSubcategoryAdapter(
 
     val checkedItemList: MutableMap<String, Boolean> = mutableMapOf()
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: SubcategoryHolder, position: Int) {
         holder.podSubcatListBinding.model = dataList[position]
         if (checkedItemList.containsKey(dataList[position].id)) {
             if (checkedItemList.get(dataList[position].id)!!) {
                 holder.podSubcatListBinding.itemLayout.background =
                     ContextCompat.getDrawable(holder.context, R.drawable.round_button_bg)
+                holder.podSubcatListBinding.textView28.setTextAppearance(R.style.spinnerText)
+
             } else {
                 holder.podSubcatListBinding.itemLayout.background =
                     ContextCompat.getDrawable(holder.context, R.drawable.boarder_round_btn_bg)
+                holder.podSubcatListBinding.textView28.setTextAppearance(R.style.spinnerText)
+
             }
         } else {
             holder.podSubcatListBinding.itemLayout.background =
                 ContextCompat.getDrawable(holder.context, R.drawable.boarder_round_btn_bg)
+            holder.podSubcatListBinding.textView28.setTextAppearance(R.style.spinnerText)
+
         }
 
         holder.podSubcatListBinding.itemLayout.setOnClickListener {
@@ -62,6 +72,8 @@ class PodcastSubcategoryAdapter(
                 listener.onPodSubCatSelectedList(list)
                 holder.podSubcatListBinding.itemLayout.background =
                     ContextCompat.getDrawable(holder.context, R.drawable.boarder_round_btn_bg)
+                holder.podSubcatListBinding.textView28.setTextAppearance(R.style.spinnerText)
+
             } else {
                 if (list.size > 2) {
                     Toast.makeText(
@@ -73,6 +85,7 @@ class PodcastSubcategoryAdapter(
                     list.add(dataList[position].id)
                     holder.podSubcatListBinding.itemLayout.background =
                         ContextCompat.getDrawable(holder.context, R.drawable.round_button_bg)
+                    holder.podSubcatListBinding.textView28.setTextAppearance(R.style.spinnerText)
                     listener.onPodSubCatSelectedList(list)
                 }
 

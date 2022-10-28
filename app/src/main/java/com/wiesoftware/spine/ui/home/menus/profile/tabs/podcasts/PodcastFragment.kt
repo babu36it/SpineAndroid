@@ -1,5 +1,6 @@
 package com.wiesoftware.spine.ui.home.menus.profile.tabs.podcasts
 
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,13 +16,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.UserPodcastAdapter
 import com.wiesoftware.spine.data.net.reponses.PodDatas
+import com.wiesoftware.spine.data.net.reponses.PodcastData
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.FragmentPodcastBinding
+import com.wiesoftware.spine.ui.home.menus.podcasts.addpodcasts.AddPodcastActivity
 import com.wiesoftware.spine.ui.home.menus.podcasts.addrss.AddRssActivity
 import com.wiesoftware.spine.ui.home.menus.podcasts.podcastdetails.PodcastDetailActivity
 import com.wiesoftware.spine.ui.home.menus.podcasts.watch.WatchPodcastsFragment
+import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
+import com.wiesoftware.spine.ui.home.menus.spine.foryou.STORY_IMAGE
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
+import com.wiesoftware.spine.util.POD_FILE_BASE
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
@@ -52,13 +58,12 @@ class PodcastFragment : Fragment(),KodeinAware, PodcastsEventListner,
     private fun getOwnPodcasts(userId: String) {
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.getAllPodcasts(userId)
-                if (!res.status){
-//                    STORY_IMAGE =res.profile_img
-//                    POD_FILE_BASE =res.image
-//                    BASE_IMAGE = POD_FILE_BASE
-//                    val dataList=res.data
-                    val dataList = arrayListOf<PodDatas>()
+                val res=homeRepositry.getAllPodcasts()
+                if (res.status){
+                    STORY_IMAGE =res.profile_img
+                    POD_FILE_BASE =res.image
+                    BASE_IMAGE = POD_FILE_BASE
+                    val dataList=res.data
                     setPodData(dataList)
                 }
             }catch (e: ApiException){
@@ -70,9 +75,9 @@ class PodcastFragment : Fragment(),KodeinAware, PodcastsEventListner,
     }
 
     private fun setPodData(dataList: List<PodDatas>) {
-//        if(dataList.size > 0){
-//            binding.tvNoPodcast.visibility=View.GONE
-//        }
+        if(dataList.size > 0){
+           binding.button36.visibility=View.GONE
+        }
         binding.rvOwnPods.also {
             it.layoutManager= LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
             it.setHasFixedSize(true)
@@ -89,5 +94,4 @@ class PodcastFragment : Fragment(),KodeinAware, PodcastsEventListner,
         intent.putExtra(WatchPodcastsFragment.POD_ID,podcastData.id)
         startActivity(intent)
     }
-
 }

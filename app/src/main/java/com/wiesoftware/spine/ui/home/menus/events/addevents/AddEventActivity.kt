@@ -187,7 +187,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     override fun onAddNewCategory(category: String) {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.addPodcastSubcategory(parent_id, category, user_id)
+                val res = homeRepositry.addPodcastSubcategory(parent_id, category)
                 if (res.status) {
                     binding.editTextTextPersonName31.setText("")
                     getSubcatgery()
@@ -530,7 +530,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     private fun getSubcatgery() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getPodcastSubcategory(parent_id, user_id)
+                val res = homeRepositry.getPodcastSubcategory(parent_id)
                 if (res.status) {
                     val dataList = res.data
                     binding.recyclerView9.also {

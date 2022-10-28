@@ -69,15 +69,15 @@ class HomeRepositry(
         return apiRequest { api.getAdDuration(user_id) }
     }
 
-    suspend fun addRssfeedPodcast(user_id:String,title:String,description:String,language:String,category: String,subcategory:String,allow_comment: String,media_file:String,rss_feed:String):SingleRes{
-        return apiRequest { api.addRssfeedPodcast(user_id, title, description, language, category, subcategory, allow_comment, media_file, rss_feed) }
+    suspend fun addRssfeedPodcast(title:String,description:String,language:String,category: String,subcategory:String,allow_comment: String,rss_feed:String,media_file:String,thumbnail:String):SingleRes{
+        return apiRequest { api.addRssfeedPodcast(title, description, language, category, subcategory, allow_comment,rss_feed, media_file, thumbnail) }
     }
 
-    suspend fun addPodcastSubcategory(parent_id: String,subcategory_name:String,user_id:String):SingleRes{
-        return apiRequest { api.addPodcastSubcategory(parent_id, subcategory_name,user_id) }
+    suspend fun addPodcastSubcategory(parent_id: String,subcategory_name:String):SingleRes{
+        return apiRequest { api.addPodcastSubcategory(parent_id, subcategory_name) }
     }
-    suspend fun getPodcastSubcategory(parentId:String,user_id: String):PodcastSubCategoryRes{
-        return apiRequest { api.getPodcastSubcategory(parentId,user_id) }
+    suspend fun getPodcastSubcategory(parentId:String):PodcastSubCategoryRes{
+        return apiRequest { api.getPodcastSubcategory(parentId) }
     }
 
     suspend fun sendVerificationCodeOnEmail(email: String):EmailVerificationRes{
@@ -182,12 +182,13 @@ class HomeRepositry(
         return  apiRequest { api.managePodcastLikes(userId, podId) }
     }
 
-    suspend fun getAllPodcasts(user_id: String): PodRes{
-        return apiRequest { api.getAllPodcasts(user_id) }
+    suspend fun getAllPodcasts(): PodRes{
+        return apiRequest { api.getAllPodcasts() }
     }
 
-    suspend fun addPodcasts(user_id: RequestBody,type: RequestBody,title: RequestBody,description: RequestBody,language: RequestBody,category: RequestBody,allow_comment: RequestBody,media_file: MultipartBody.Part,thumbnail: MultipartBody.Part): SingleRes{
-        return apiRequest { api.addPodcasts(user_id, type, title, description, language, category, allow_comment,media_file, thumbnail) }
+    suspend fun addPodcasts(title: RequestBody,description: RequestBody,language: RequestBody,category: RequestBody,subcategory: RequestBody,rssFeed:RequestBody,
+                            allow_comment: RequestBody,media_file:RequestBody,thumbnail:RequestBody): SingleRes{
+        return apiRequest { api.addPodcasts(title, description, language, category,subcategory,rssFeed, allow_comment,media_file, thumbnail) }
     }
 
     suspend fun getCurrency():CurrencyRes{
@@ -334,7 +335,7 @@ class HomeRepositry(
     }
 
     suspend fun getEventCatRes(searchText:String):EventCatRes{
-        return apiRequest { api.getEventCategories(searchText) }
+        return apiRequest { api.getProdcastCategories(searchText) }
     }
 
     suspend fun getActivities(page: Int,per_page: Int,user_id: String,followers: Int):ActivitiesRes{

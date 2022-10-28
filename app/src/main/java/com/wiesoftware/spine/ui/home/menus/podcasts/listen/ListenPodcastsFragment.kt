@@ -76,7 +76,7 @@ class ListenPodcastsFragment : Fragment(),KodeinAware, ListenPodcastAdapter.PodC
     private fun getAllPodcasts() {
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.getAllPodcasts(userId)
+                val res=homeRepositry.getAllPodcasts()
                 if (res.status){
                     STORY_IMAGE =res.profile_img
                     POD_FILE_BASE=res.image
@@ -105,11 +105,13 @@ class ListenPodcastsFragment : Fragment(),KodeinAware, ListenPodcastAdapter.PodC
             try {
                 val rssRes=rssRepository.getPodsFromRss(rssLink)
             //    Log.e("responxce", rssRes.toString())
+/*
                 if (rssRes.status.equals("ok")){
                     val rssEpisodes = rssRes.items
                 //    Log.e("responxcelistt", rssEpisodes.toString())
                     setRssData(rssEpisodes)
                 }
+*/
             }catch (e: Exception){
                 e.printStackTrace()
             }
