@@ -188,4 +188,11 @@
         <item name="android:textColor">@color/text_white</item>
         <item name="android:iconTint">@color/text_white</item>
     </style>
+    <style name="StoryTitleText" parent="android:Widget.TextView">
+        <item name="android:textSize">@dimen/_10sdp</item>
+        <item name="android:padding">@dimen/_5sdp</item>
+        <item name="fontFamily">@font/poppins_semi_bold</item>
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+
 </resources>

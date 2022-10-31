@@ -162,7 +162,10 @@ class LoginActivity : AppCompatActivity(), LoginEventListener, KodeinAware {
                             "Oops! Login failed".toast(this@LoginActivity)
                             return@launch
                         }
-                        onLoginSuccess( true, response.token, response.token_type)
+                        response.token?.let { it1 ->
+                            onLoginSuccess( true,
+                                it1, response.token_type)
+                        }
                         //authRepositry.saveUser(it)
                         return@launch
                     }

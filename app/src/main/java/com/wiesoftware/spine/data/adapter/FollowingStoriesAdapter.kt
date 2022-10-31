@@ -40,7 +40,7 @@ class FollowingStoriesAdapter(val storyData: List<FollwingData>,val listener: Fo
         val img=storyData[position].stories_data[0].media_file
         Glide.with(holder.storiesFollowingItemBinding.circleImageView2)
             .load(STORY_IMAGE+img)
-            .placeholder(R.drawable.ic_profile)
+            .placeholder(R.drawable.ef_folder_placeholder)
             .into(holder.storiesFollowingItemBinding.circleImageView2)
 
         holder.storiesFollowingItemBinding.circleImageView2.setOnClickListener {

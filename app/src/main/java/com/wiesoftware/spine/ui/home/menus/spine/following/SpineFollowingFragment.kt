@@ -129,9 +129,6 @@ class SpineFollowingFragment : Fragment(), KodeinAware, SpineFollowingEventListe
                 if (res.status) {
                     STORY_IMAGE = res.image
                     val storyData = res.data
-
-
-
                     binding.rvFollowingStories.also {
                         it.layoutManager =
                             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)

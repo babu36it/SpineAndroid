@@ -27,8 +27,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+    <ImageView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        style="@style/imageViewRedDot"
+        android:id="@+id/ivBadge"
+        app:layout_constraintEnd_toEndOf="@+id/circleImageView2"
+        app:layout_constraintTop_toTopOf="@+id/circleImageView2"
+        />
     <TextView
+        style="@style/StoryTitleText"
         android:id="@+id/textView26"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -41,18 +49,21 @@
         app:layout_constraintTop_toBottomOf="@+id/circleImageView2" />
 
     <TextView
+        android:padding="0dp"
+        style="@style/SimpleText"
         android:id="@+id/textView27"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/eight"
         android:text="@{modal.town}"
         android:textAlignment="center"
-        android:textColor="@color/text_black"
+        android:maxLines="3"
         app:layout_constraintEnd_toEndOf="@+id/textView26"
         app:layout_constraintStart_toStartOf="@+id/textView26"
         app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
+    <!--according to new design MT-->
     <Button
+        android:visibility="gone"
         android:id="@+id/button15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

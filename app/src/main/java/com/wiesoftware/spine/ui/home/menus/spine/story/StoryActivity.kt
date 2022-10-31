@@ -19,6 +19,7 @@ import com.wiesoftware.spine.data.net.reponses.FollwingData
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityStoryBinding
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
+import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.STORY_IMAGE
 import com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.ViewStoryActivity
 import com.wiesoftware.spine.util.ApiException
@@ -53,12 +54,11 @@ class StoryActivity : AppCompatActivity(),KodeinAware, StoryEventListener,
             setStory()
         })
 
-
     }
 
     private fun setStory() {
 
-       /* lifecycleScope.launch {
+        lifecycleScope.launch {
             try {
                 val allUsersRes=homeRepositry.getAllUsers(1,100,userId)
                 if (allUsersRes.status){
@@ -76,9 +76,10 @@ class StoryActivity : AppCompatActivity(),KodeinAware, StoryEventListener,
             }catch (e: NoInternetException){
                 e.printStackTrace()
             }
-        }*/
+        }
 
-        lifecycleScope.launch {
+     /*  comment for temp MT checking
+     lifecycleScope.launch {
             try {
                 val storyRes=homeRepositry.getFollowingUsersStoryList(1, 100, userId)//homeRepositry.getYourStories(userId)
                 if (storyRes.status){
@@ -96,7 +97,7 @@ class StoryActivity : AppCompatActivity(),KodeinAware, StoryEventListener,
             }catch (e: NoInternetException){
                 e.printStackTrace()
             }
-        }
+        }*/
 
 
 

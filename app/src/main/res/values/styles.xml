@@ -239,4 +239,23 @@
         <item name="android:textColor">@color/text_black</item>
         <item name="android:iconTint">@color/text_black</item>
     </style>
+
+    <!--MT for stories listing page from homw -->
+    <style name="StoryTitleText" parent="android:Widget.TextView">
+        <item name="android:textSize">@dimen/_10sdp</item>
+        <item name="android:padding">@dimen/_5sdp</item>
+        <item name="fontFamily">@font/poppins_semi_bold</item>
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+    <style name="imageViewRedDot" parent="android:Widget">
+        <item name="fontFamily">@font/poppins_semi_bold</item>
+        <item name="android:height">@dimen/_18sdp</item>
+        <item name="android:width">@dimen/_18sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_8sdp</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:elevation">@dimen/_4sdp</item>
+        <item name="android:background">@drawable/prof_badge</item>
+        <item name="contentDescription">@string/profile</item>
+    </style>
+
 </resources>

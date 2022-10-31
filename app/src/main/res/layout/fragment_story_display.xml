@@ -169,7 +169,7 @@
         <ImageButton
             android:onClick="@{viewmodel.onSelectTime}"
             android:layout_width="@dimen/_100"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_4sdp"
             android:padding="4dp"
             android:background="@drawable/round_gray_back"
             app:layout_constraintStart_toStartOf="parent"

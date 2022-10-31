@@ -143,13 +143,32 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
 
         getTrendingCat()
 
-        /*binding.rvForYouContent.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (recyclerView.canScrollVertically(RecyclerView.FOCUS_DOWN)) {
-                    scrollToView(recyclerView)
+       /* binding.rvForYouContent.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    // Show your view again.. If you want to show them..
+                    binding.constraintLayout. animate()
+                        .alpha(1.0f)
+                        .setDuration(300);
+                    binding.constraintLayout.visibility=View.VISIBLE
+                } else if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                    // Hide your view..
+                    binding.constraintLayout. animate()
+                        .alpha(0.0f)
+                        .setDuration(200);
+                    binding.constraintLayout.visibility=View.GONE
                 }
+                super.onScrollStateChanged(recyclerView, newState)
+
             }
+           *//* override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+
+
+                if (recyclerView.canScrollVertically(RecyclerView.FOCUS_DOWN)) {
+
+                }
+                super.onScrolled(recyclerView, dx, dy)
+            }*//*
         })*/
 
 
@@ -252,8 +271,8 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
                 if (hashtagRes.status) {
                     val hashtagDataList = hashtagRes.data
                     try {
-                        binding.tvYoga.setText(hashtagDataList[0].hash_title)
-                        binding.tvMeditation.setText(hashtagDataList[1].hash_title)
+                        //binding.tvYoga.setText(hashtagDataList[0].hash_title)
+                       // binding.tvMeditation.setText(hashtagDataList[1].hash_title)
                     } catch (e: Exception) {
 
                     }
@@ -289,7 +308,6 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
                 if (storyRes.status) {
                     STORY_IMAGE = storyRes.user_image
                     val storyList: List<FollwingData> = storyRes.data
-
                     if (storyRes.data.size > 2) {
                         var user_pic_one = storyRes.data[0].profilePic
                         var user_pic_two = storyRes.data[1].profilePic
@@ -299,6 +317,7 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
                         var user_pic_one = storyRes.data[0].profilePic
                         setPic(user_pic_one, "", "")
                     }
+
 
                     binding.rvStories.also {
                         it.layoutManager = LinearLayoutManager(
