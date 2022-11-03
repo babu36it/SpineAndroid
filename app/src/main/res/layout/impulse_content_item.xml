@@ -13,13 +13,14 @@
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        app:image="@{viewModel.image}"
+        app:imgPro="@{viewModel.image}"
         android:id="@+id/imageView4"
         android:layout_width="@dimen/_80"
         android:layout_height="@dimen/_80"
         android:layout_marginStart="@dimen/sixteen"
         android:layout_marginTop="@dimen/eight"
-        android:src="@drawable/demo"
+        android:src="@drawable/ic_spine_home"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,6 +32,7 @@
         android:layout_marginEnd="@dimen/eight"
         android:maxLines="1"
         android:text="@{viewModel.name}"
+        style="@style/SimpleText"
         android:textColor="@color/text_black"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toStartOf="@+id/textView30"
@@ -132,7 +134,22 @@
         app:layout_constraintEnd_toEndOf="@+id/imageButton5"
         app:layout_constraintStart_toStartOf="@+id/textView31"
         app:layout_constraintTop_toBottomOf="@+id/textView31" />
-
+    <TextView
+        android:id="@+id/textSpine"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/eight"
+        android:padding="@dimen/eight"
+        android:text="SPINE IMPULSE"
+        android:inputType="textCapSentences"
+        android:textAlignment="center"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/normalText"
+        android:layout_marginTop="@dimen/margin_small"
+        android:fontFamily="@font/poppins_semi_bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageView5"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="@+id/imageView5" />
     <TextView
         android:id="@+id/textView43"
         android:layout_width="0dp"
@@ -146,6 +163,7 @@
         android:textAlignment="center"
         android:textColor="@color/text_white"
         android:textSize="@dimen/big_text"
+        android:fontFamily="@font/poppins_semi_bold"
         app:layout_constraintBottom_toTopOf="@+id/textView44"
         app:layout_constraintEnd_toEndOf="@+id/imageView5"
         app:layout_constraintStart_toStartOf="@+id/imageView5"

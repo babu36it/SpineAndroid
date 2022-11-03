@@ -249,14 +249,14 @@
                             app:layout_constraintTop_toTopOf="parent"
                             />
                         <ImageView
+                            app:layout_constraintTop_toBottomOf="@+id/iv_iv_practiciner2"
                             android:id="@+id/ivBadgePracticioner"
                             android:layout_width="@dimen/_18sdp"
                             android:layout_height="@dimen/_18sdp"
-                            android:layout_marginTop="2dp"
+                            android:layout_marginTop="@dimen/_3sdp"
                             android:elevation="@dimen/eight"
                             android:layout_marginEnd="4dp"
                             android:background="@drawable/prof_badge"
-                            app:layout_constraintBottom_toTopOf="@+id/tv_discover_cat"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             />
