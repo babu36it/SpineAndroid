@@ -31,7 +31,6 @@ import com.wiesoftware.spine.data.net.reponses.*
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.FragmentSpineForYouBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
-import com.wiesoftware.spine.ui.home.menus.events.PROFILE_PIC_URL
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
 import com.wiesoftware.spine.ui.home.menus.profile.myprofile.MyProfileActivity
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
@@ -40,6 +39,8 @@ import com.wiesoftware.spine.ui.home.menus.profile.tabs.posts.PostsFragment
 import com.wiesoftware.spine.ui.home.menus.spine.categories.TrendingCatActivity
 import com.wiesoftware.spine.ui.home.menus.spine.comment.impulsecomment.ImpulseCommentActivity
 import com.wiesoftware.spine.ui.home.menus.spine.comment.postcomment.PostCommentActivity
+import com.wiesoftware.spine.ui.home.menus.spine.homefeed.FeedAdapter
+import com.wiesoftware.spine.ui.home.menus.spine.homefeed.HomeFeedModel
 import com.wiesoftware.spine.ui.home.menus.spine.impulse.ImpulseActivity
 import com.wiesoftware.spine.ui.home.menus.spine.postdetails.PostDetailsActivity
 import com.wiesoftware.spine.ui.home.menus.spine.rec_followers.RecommendedFollowersActivity
@@ -51,13 +52,11 @@ import com.wiesoftware.spine.ui.home.menus.spine.welcome.ViewWelcomeActivity
 import com.wiesoftware.spine.util.*
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 import kotlinx.android.synthetic.main.fragment_spine_for_you.*
-import kotlinx.android.synthetic.main.poor_quality_or_spam.view.*
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button91
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button92
 import kotlinx.android.synthetic.main.report_reason.view.*
 import kotlinx.android.synthetic.main.share_bottomsheet.*
 import kotlinx.android.synthetic.main.share_bottomsheet.view.*
-import kotlinx.android.synthetic.main.why_r_u_reporting.view.*
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.cardView2
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.imageButton66
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.radioGroup
@@ -79,7 +78,7 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
     SpineImpulseAdapter.SpineImpulseEventListener, WelcomeDataAdapter.WelcomeEventListener,
     ForYouContentAdapter.ForYouContentEventListener, StoriesAdapter.StoryEventListener,
     RecommendedFollowersAdapter.RecommendedFollowersEventListener,
-    SelectFollowersAdapter.FollowersEventListener {
+    SelectFollowersAdapter.FollowersEventListener, FeedAdapter.FeedEventListener {
 
     companion object {
         val EVENT_POST_ID = "eventPostId"
@@ -132,6 +131,7 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
             getRecommnededFollowers()
             getSpineImpulse()
             getUserDetails()
+            getHomeFeedTemp()
         })
 
         val isWelcomeSeen = Prefs.getBoolean(IS_WELCOME_SEEN, false)
@@ -338,7 +338,35 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
         }
 
     }
+    /*MT all feed with dummy data*/
+    private fun getHomeFeedTemp(){
+        Coroutines.main {
+            try {
 
+                var homeFeedList = ArrayList<HomeFeedModel> ()
+                homeFeedList.add(HomeFeedModel(1,"PROMOTED",0))
+                homeFeedList.add(HomeFeedModel(2,"PROMOTED",0))
+                homeFeedList.add(HomeFeedModel(3,"PROMOTED",0))
+                homeFeedList.add(HomeFeedModel(4,"PROMOTED",0))
+                binding.rvHomeFeed.also {
+                    it.layoutManager = LinearLayoutManager(
+                        requireContext(),
+                        RecyclerView.VERTICAL,
+                        false
+                    )
+                    it.setHasFixedSize(true)
+                    it.adapter = FeedAdapter(homeFeedList, this)
+                }
+
+            } catch (e: ApiException) {
+                e.printStackTrace()
+                context?.let { "${e.message}".toast(it) }
+            } catch (e: NoInternetException) {
+                e.printStackTrace()
+                context?.let { "${e.message}".toast(it) }
+            }
+        }
+    }
     private fun getSpineImpulse() {
         Coroutines.main {
             try {
@@ -1190,6 +1218,10 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
             Log.e("datavalue0", e.toString())
         }
 
+
+    }
+    /*MT temp click event*/
+    override fun onPromotedClicked(postData: HomeFeedModel) {
 
     }
 
