@@ -26,7 +26,7 @@ class FeedAdapter(
         return when (viewType) {
             POST_TYPE_PROMOTED -> {
                 view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.for_you_content_item, parent, false)
+                    .inflate(R.layout.promoted_by_new, parent, false)
                 return PromotedPostViewHolder(view)
             }
             POST_TYPE_SPINE -> {
@@ -60,12 +60,12 @@ class FeedAdapter(
          when(dataModel.type){
              POST_TYPE_PROMOTED->{
                  val viewHolder = holder as PromotedPostViewHolder
-                 viewHolder.textName.text=context.getString(R.string.oliver)
+                // viewHolder.textName.text=context.getString(R.string.oliver)
              }
              POST_TYPE_SPINE->{
                  val viewHolder = holder as SpineViewHolder
                  Glide.with(context).load(R.drawable.ic_spine_home)
-                     .error(R.drawable.ic_photo) .transform(RoundedCorners(80)).into(viewHolder.imageView4)
+                     .error(R.drawable.ic_photo) .transform(RoundedCorners(100)).into(viewHolder.imageView4)
 
                  viewHolder.description.text=context.getString(R.string.spine_dumy_description)
                  viewHolder.titleName.text=context.getString(R.string.spine)
@@ -101,7 +101,7 @@ class FeedAdapter(
 
    inner class PromotedPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-       var textName: TextView =itemView.textView29
+      /* var textName: TextView =itemView.textView29*/
 
     }
     inner class PostForYouViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
