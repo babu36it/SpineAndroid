@@ -6,23 +6,37 @@ import com.google.gson.GsonBuilder
 import com.wiesoftware.spine.data.net.reponses.*
 import com.wiesoftware.spine.data.net.reponses.welcompageresponse.WelcomePageReponse
 import com.wiesoftware.spine.ui.home.menus.events.TimeZoneResponse
-import okhttp3.MultipartBody
-import okhttp3.OkHttpClient
-import okhttp3.RequestBody
-import okhttp3.ResponseBody
+import com.wiesoftware.spine.util.Prefs
+import com.wiesoftware.spine.util.getToken
+import com.wiesoftware.spine.util.putAny
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+import retrofit2.http.Headers
 import java.util.concurrent.TimeUnit
 
+class AuthInterceptor(): Interceptor {
 
+  override  fun intercept(chain: Interceptor.Chain): okhttp3.Response {
+
+        var request = chain.request()
+      val token =  getToken()
+        request = request.newBuilder()
+            .header("X-API-KEY:", " 123run")
+            .header("Authorization", token!!).build()
+
+        return chain.proceed(request)
+    }
+}
 interface Api {
 
     companion object{
-        private const val HEADER_1="X-API-KEY: 123run"
-        private const val HEADER_2="Authorization: Basic ZGV2cGFua2FqOmRldnBhbmthag=="
+//        private const val HEADER_1="X-API-KEY: 123run"
+//        private const val HEADER_2="Authorization: Basic ZGV2cGFua2FqOmRldnBhbmthag=="
+//        private const val TestToken = "Authorization:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiNzUiLCJmdWxsbmFtZSI6Ijk2YXJzaCIsImVtYWlsIjoicHRsaHJzMTk5OEBnbWFpbC5jb20iLCJBUElfVElNRSI6MTY2NTkwODA3M30.fPLTLmTZyEfJ72bWkIyZBy1cN-YMzkguzU1FLhoigYg"
         private const val HEADER_3="Content-Type: application/json"
         const val BASE_LINK="http://thespiritualnetwork.com/api/v1/"
 //        const val BASE_URL=BASE_LINK+"apisecure/"
@@ -42,14 +56,19 @@ interface Api {
                 .setLenient()
                 .create()
 
+
+
+
             val logging = HttpLoggingInterceptor()
             logging.level = HttpLoggingInterceptor.Level.BODY
+
 
             val okHttpClient = OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
                 .connectTimeout(100, TimeUnit.SECONDS)
                 .readTimeout(100, TimeUnit.SECONDS)
                 .addInterceptor(logging)
+                .addInterceptor(AuthInterceptor())
                 .addInterceptor(networkConnectionInterceptor)
                 .build()
 
@@ -62,14 +81,16 @@ interface Api {
         }
     }
 
+
+
     //http://162.214.165.52/~pirituc5/apisecure/post/addFeaturedAds
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @Multipart
     @POST("post/getAdsListViaStatus")
     suspend fun getMyAdList():Response<MyAdRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @Multipart
     @POST("post/addFeaturedAds")
     suspend fun addFeaturedAds(
@@ -88,7 +109,7 @@ interface Api {
         @Part("longitude") longitude: RequestBody
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @Multipart
     @POST("post/addFeaturedAds")
     suspend fun addEventFeaturedAds(
@@ -117,7 +138,7 @@ interface Api {
     ):Response<SingleRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("post/getAdsDuration")
     suspend fun getAdDuration(
@@ -125,7 +146,7 @@ interface Api {
     ):Response<AdDurationRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("podcasts/addPodcasts")
     suspend fun addRssfeedPodcast(
@@ -140,7 +161,7 @@ interface Api {
         @Field("rss_feed")rss_feed:String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, TestToken)
     @FormUrlEncoded
     @POST("podcasts/addPodcastsSubcategory")
     suspend fun addPodcastSubcategory(
@@ -149,7 +170,7 @@ interface Api {
         @Field("user_id")user_id:String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, TestToken)
     @GET("podcasts/getPodcastsSubcategory/{parentId}/{user_id}")
     suspend fun getPodcastSubcategory(
         @Path("parentId")parentId:String,
@@ -157,14 +178,14 @@ interface Api {
     ):Response<PodcastSubCategoryRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("podcasts/sendEmailOTP")
     suspend fun sendVerificationCodeOnEmail(
         @Field("email")email: String
     ):Response<EmailVerificationRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("podcasts/sendEmailOTPVerification")
     suspend fun verifyEmailVerificationCode(
@@ -173,7 +194,7 @@ interface Api {
     ):Response<EmailVerificationRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("podcasts/podcastShare")
     suspend fun sharePodcasts(
@@ -181,11 +202,11 @@ interface Api {
     ):Response<SingleRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("post/getUserHashtags")
     suspend fun getUserHashtags():Response<HashtagRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("events/getUserGoingEventsList/{page}/{perPage}/{userId}/{goingPast}")//0 for going
     suspend fun getGoingPastEventsList(
         @Path("page") page: Int,
@@ -194,7 +215,7 @@ interface Api {
         @Path("goingPast") goingPast: Int
     ): Response<EventsRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("stories/getStoryListByMonthWithYear/{userId}/{monthId}/{year}")
     suspend fun getStoryListByMonthWithYear(
         @Path("userId") userId: String,
@@ -203,28 +224,28 @@ interface Api {
     ):Response<FollowingStoriesRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("stories/storyMonthWithYear/{userId}")
     suspend fun getStoriesMonthYear(
         @Path("userId") userId: String
     ): Response<StoryMonthRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("stories/removeStoriesCommentReply/{story_comment_or_reply_id}")
     suspend fun removeStoryCommentReply(
         @Path("story_comment_or_reply_id") story_comment_or_reply_id: String
     ):Response<SingleRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("stories/storyCommentReplyList/{story_comment_id}")
     suspend fun storyCommentReplyList(
         @Path("story_comment_id") story_comment_id: String
     ):Response<StoriesCommentRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("spineReportUserPostStory")
     suspend fun spineReportUserPostStory(
@@ -237,13 +258,13 @@ interface Api {
     ):Response<SingleRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("stories/storyCommentsList/{storyId}")
     suspend fun storyCommentsList(
         @Path("storyId") storyId: String
     ):Response<StoriesCommentRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("stories/spineStoriesComment")
     suspend fun spineStoriesComment(
@@ -253,33 +274,33 @@ interface Api {
         @Field("comment") comment: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("stories/spineStoriesShare")
     suspend fun spineStoriesShare(
         @FieldMap data: Map<String, String>
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("stories/spineStoriesLike/{story_id}/{user_id}")
     suspend fun spineStoriesLike(
         @Path("story_id") story_id: String,
         @Path("user_id") user_id: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("impluse/removeCommentOnImpluse/{comment_or_reply_id}")
     suspend fun removeCommentOnImpluse(
         @Path("comment_or_reply_id") comment_or_reply_id: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("post/spinePostCommentRemove/{post_comment_id}")
     suspend fun spinePostCommentRemove(
         @Path("post_comment_id") post_comment_id: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("follow/recommendedFollowersListByCategories/{page}/{per_page}/{your_users_id}")
     suspend fun recommendedFollowersListByCategories(
         @Path("page") page: Int,
@@ -287,60 +308,60 @@ interface Api {
         @Path("your_users_id") your_users_id: String
     ): Response<AllUsersRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("post/getSpinePostReplys/{your_post_comment_id}")
     suspend fun getSpinePostReplys(
         @Path("your_post_comment_id") your_post_comment_id: String
     ):Response<CommentReplyRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("impluse/followUnfollowImpluse/{user_id}/{status}")
     suspend fun followUnfollowImpluse(
         @Path("user_id") user_id: String,
         @Path("status") status: Int
     ): Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("podcasts/podcastsView/{podcast_id}")
     suspend fun increasePodcastViews(
         @Path("podcast_id") podcast_id: String
     ): Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("podcasts/gePodcastDetail/{userId}/{podId}")
     suspend fun getPodcastDetails(
         @Path("userId") userId: String,
         @Path("podId") podId: String
     ):Response<PodcastDetailsRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("podcasts/manageBookmark/{userId}/{podId}")
     suspend fun managePodcastBookmarks(
         @Path("userId") userId: String,
         @Path("podId") podId: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("podcasts/manageLikeUnlike/{userId}/{podId}")
     suspend fun managePodcastLikes(
         @Path("userId") userId: String,
         @Path("podId") podId: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("podcasts/getPodcasts/{user_id}")
     suspend fun getAllPodcasts(
         @Path("user_id") user_id: String
     ): Response<PodRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("podcasts/getUserPodcasts/{user_id}")
     suspend fun getUserPodcasts(
         @Path("user_id") user_id: String
     ): Response<PodcastRes>
 
-    @Headers(HEADER_1, HEADER_2, HEADER_3)
+    //@Headers(HEADER_1, HEADER_2, HEADER_3)
     @Multipart
     @POST("podcasts/addPodcasts")
     suspend fun addPodcasts(
@@ -356,32 +377,37 @@ interface Api {
         @Part thumbnail: MultipartBody.Part
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("deactiveAccount/{user_id}")
     suspend fun deactivateAccount(
         @Path("user_id") user_id: String
     ): Response<SingleRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("deleteSpineAccount/{user_id}")
     suspend fun deleteSpineAccount(
         @Path("user_id") user_id: String
     ): Response<SingleRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
-    @GET("eventCurrency")
+
+//    //@Headers(HEADER_1, HEADER_2)
+//    @GET("eventCurrency")
+//    suspend fun getCurrency():Response<CurrencyRes>
+
+//    Harsh: chnage for new api
+    //@Headers(HEADER_1, HEADER_2)
+    @GET("currency")
     suspend fun getCurrency():Response<CurrencyRes>
 
-    @Headers(HEADER_1, HEADER_2)
-    @GET("events/getEventsDetail/{event_id}/{userId}")
+    //@Headers(HEADER_1, HEADER_2)
+    @GET("events/getEventDetail/{EventId}")
     suspend fun getEventDetails(
-        @Path("event_id") event_id: String,
-        @Path("userId") userId: String
+        @Path("EventId") event_id: String
     ):Response<EventDetailsRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("saveEventToCalender")
     suspend fun saveStatusToCalendarStatus(
@@ -389,7 +415,7 @@ interface Api {
         @Field("calender_status") calender_status: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("eventMessagingAutho")
     suspend fun whoCanMessage(
@@ -397,7 +423,7 @@ interface Api {
         @Field("message_auth") message_auth: String
     ): Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("requestToChangeEmail")
     suspend fun requestToChangeEmail(
@@ -405,7 +431,7 @@ interface Api {
         @Field("email") email: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("events/getEventBookings/{page}/{perPage}/{userId}")
     suspend fun getEventRequestUserList(
         @Path("page") page: Int,
@@ -413,22 +439,32 @@ interface Api {
         @Path("userId") userId: String
     ):Response<EventRequestResponse>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("events/changeEventBookingStatus/{event_booking_id}/{status}")
     suspend fun changeBookingStatus(
         @Path("event_booking_id") event_booking_id: String,
         @Path("status") status: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
-    @GET("podcasts/getPodcastsLanguage")
+//    //@Headers(HEADER_1, HEADER_2)
+//    @GET("podcasts/getPodcastsLanguage")
+//    suspend fun getPodcastLanguage():Response<LangRes>
+
+//    < Harsh: Changed Endpoint of time zone api: 16/10/22>
+    //@Headers(HEADER_1, TestToken)
+    @GET("languages")
     suspend fun getPodcastLanguage():Response<LangRes>
 
-    @Headers(HEADER_1, HEADER_2)
-    @GET("getAllTimezones")
+//    //@Headers(HEADER_1, HEADER_2)
+//    @GET("getAllTimezones")
+//    suspend fun getAllTimezones():Response<TimeZoneResponse>
+
+//    < Harsh: Changed Endpoint of time zone api: 16/10/22>
+    //@Headers(HEADER_1, TestToken)
+    @GET("timezones")
     suspend fun getAllTimezones():Response<TimeZoneResponse>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("events/getEventBookingUserList/{page}/{perPage}/{eventId}")
     suspend fun getGoingUsers(
         @Path("page") page: Int,
@@ -436,32 +472,30 @@ interface Api {
         @Path("eventId") eventId: String
     ):Response<GoingUsersRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
-    @POST("events/addEventBooking")
+    @POST("events/addEventBooking/{EventId}")
     suspend fun bookEvent(
-        @Field("user_id") user_id: String,
-        @Field("type") type: String,
-        @Field("spine_event_id") spine_event_id: String,
+        @Path("EventId") type: String,
         @Field("message") message: String,
         @Field("amount") amount: String
     ): Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("userNotification")
     suspend fun getUserNotifications(
         @Field("user_id") user_id: String
     ):Response<NotificationsRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("deleteAccount")
     suspend fun deleteAccount(
         @Field("user_id") user_id: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("changePassword")
     suspend fun changePassword(
@@ -470,20 +504,20 @@ interface Api {
         @Field("new_password") new_password: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("stories/getSpineStorySave/{user_id}")
     suspend fun getAllSavedStory(
         @Path("user_id") user_id: String
     ):Response<StoryRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("stories/storySave/{user_id}/{story_id}")
     suspend fun saveStory(
         @Path("user_id") user_id: String,
         @Path("story_id") story_id: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("events/getSpineEventsSave/{page}/{per_page}/{user_id}")
     suspend fun getAllSavedEvents(
         @Path("page") page: Int,
@@ -491,20 +525,20 @@ interface Api {
         @Path("user_id") user_id: String
     ):Response<EventsRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("post/getSpinePostSave/{user_id}")
     suspend fun getAllSavedPosts(
         @Path("user_id") user_id: String
     ):Response<PostRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("follow/removeSpineUserFollowing/{user_id}/{unfollow_user_id}")
     suspend fun unFollowUser(
         @Path("user_id") user_id: String,
         @Path("unfollow_user_id") unfollow_user_id: String
     ): Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("follow/getFollowingList/{page}/{per_page}/{user_id}")
     suspend fun getFollowingList(
         @Path("page") page: Int,
@@ -512,7 +546,7 @@ interface Api {
         @Path("user_id") user_id: String
     ):Response<FollowersRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("events/getSpineEventsMessage/{page}/{per_page}/{event_user_id}/{second_user_id}")
     suspend fun getEventChatMsg(
         @Path("page") page: Int,
@@ -521,7 +555,7 @@ interface Api {
         @Path("second_user_id") second_user_id: String
     ):Response<ChatMsgRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("events/getSpineEventsMessageUsers/{page}/{per_page}/{user_id}")
     suspend fun getEventsMsgUsers(
         @Path("page") page: Int,
@@ -529,7 +563,7 @@ interface Api {
         @Path("user_id") user_id: String
     ):Response<EveMsgUserRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("events/setSpineEventsMessage")
     suspend fun sendEventMessage(
@@ -540,13 +574,20 @@ interface Api {
         @Field("type") type: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
-    @GET("events/getOwnEventsList/{userID}")
+//    //@Headers(HEADER_1, HEADER_2)
+//    @GET("events/getOwnEventsList/{userID}")
+//    suspend fun getOwnEvents(
+//        @Path(value = "userID") userID: String
+//    ):Response<OwnEventsRes>
+
+//    Harsh: changed endporint for new api:17-10-22
+    //@Headers(HEADER_1, TestToken)
+    @GET("events/getUserEvents/")
     suspend fun getOwnEvents(
-        @Path(value = "userID") userID: String
+
     ):Response<OwnEventsRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("events/getEventsListFilter")
     suspend fun getFilteredEvents(
@@ -561,18 +602,18 @@ interface Api {
         @Field("category") category: String
     ):Response<EventsRes>
 
-    @Headers(HEADER_1, HEADER_2)
-    @GET("events/getDistanceUsersEventsList/{page}/{per_page}/{your_user_id}/{latitude}/{longitude}/{distance}")
+    //@Headers(HEADER_1, HEADER_2)
+    @GET("events/getDistanceUsersEventsList/{latitude}/{longitude}/{distance}")
     suspend fun getNearbyEvents(
-        @Path("page") page: Int,
-        @Path("per_page") per_page: Int,
-        @Path("your_user_id") your_user_id: String,
+//        @Path("page") page: Int,
+//        @Path("per_page") per_page: Int,
+//        @Path("your_user_id") your_user_id: String,
         @Path("latitude") latitude: Double,
         @Path("longitude") longitude: Double,
         @Path("distance") distance: Int
     ):Response<EventsRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("events/getOnlineUsersEventsList/{page}/{per_page}/{your_user_id}")
     suspend fun getOnlineEventsList(
         @Path("page") page: Int,
@@ -580,41 +621,51 @@ interface Api {
         @Path("your_user_id") your_user_id: String
     ):Response<EventsRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("events/getSpineEventsReplys/{your_events_comment_id}")
     suspend fun getSpineEventReplys(
         @Path("your_events_comment_id") your_events_comment_id: String
     ):Response<EventCommentRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("events/getUsersEventsList/{page}/{perpage}/{user_id}/{type}")
-    suspend fun getAllEventsList(
+    suspend fun getAllUserList(
         @Path("page") page: Int,
         @Path("perpage") perpage: Int,
         @Path("user_id") user_id: String,
         @Path("type") type: String
     ):Response<EventsRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
+    @FormUrlEncoded
+    @POST("events/getAllEvents")
+    suspend fun getAllEventsList(
+        @Field("page") page: Int,
+        @Field("per_page") perpage: Int,
+        @Field("type") type: String,
+        @Field("event_type_id") eventtypeid: String
+    ):Response<EventsRes>
+
+    //@Headers(HEADER_1, HEADER_2)
     @GET("events/removeSpineEvents/{your_event_id}")
     suspend fun removeSpineEvent(
         @Path("your_event_id") your_event_id: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("events/removeEventSave/{your_user_id}/{your_spine_event_id}")
     suspend fun removeEventSave(
         @Path("your_user_id") your_user_id: String,
         @Path("your_spine_event_id") your_spine_event_id: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("events/getSpineEventsComment/{your_events_id}")
     suspend fun getSpineEventComments(
         @Path(value = "your_events_id") your_events_id: String
     ):Response<EventCommentRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("events/spineEventsComment")
     suspend fun spineEventsComment(
@@ -625,26 +676,31 @@ interface Api {
     ):Response<SingleRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("events/spineEventsShare")
     suspend fun shareSpineEvents(
         @FieldMap data: Map<String, String>
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("post/getSpinePostComment/{post_id}")
     suspend fun getSpinePostComments(
         @Path(value = "post_id") post_id: String
     ):Response<SpineCommentRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, TestToken)
     @GET("events/getEventsCategory")
     suspend fun getEventCategories(
         @Query("searchText") searchText: String
     ):Response<EventCatRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    ////@Headers(HEADER_1, TestToken)
+    @GET("events/getEventsCategory")
+    suspend fun getSpinEventCategories(
+    ):Response<EventCatRes>
+
+    //@Headers(HEADER_1, HEADER_2)
     @GET("post/getSpineUserActivityList/{page}/{per_page}/{user_id}/{followers}")
     suspend fun getActivities(
         @Path(value = "page") page: Int,
@@ -653,26 +709,26 @@ interface Api {
         @Path(value = "followers") followers: Int
     ):Response<ActivitiesRes>
 
-    @Headers(HEADER_1)
+    //@Headers(HEADER_1)
     @GET("userDetails")
     suspend fun getUserDetails(
         @Header("Authorization") token: String
     ):Response<ProfileRes>
 
-    @Headers(HEADER_1)
+    //@Headers(HEADER_1)
     @GET("userDetails")
     suspend fun getUserDetailAuth(
         @Header("Authorization") token: String
     ):Response<SignupResponse>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("userDetailsMSGPermision/{detailsUser}/{LoginUserId}")
     suspend fun getuserDetailsMSGPermision(
         @Path(value = "detailsUser") detailsUser: String,
         @Path(value = "LoginUserId") LoginUserId: String
     ):Response<ProfileRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @Multipart
     @POST("profile/userProfilePic")
     suspend fun updateUserProfilePic(
@@ -680,7 +736,7 @@ interface Api {
         @Part("user_id") user_id: RequestBody
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @Multipart
     @POST("profile/userBgProfilePic")
     suspend fun updateUserBgProfilePic(
@@ -688,7 +744,7 @@ interface Api {
         @Part("user_id") user_id: RequestBody
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("profile/profileEdit")
     suspend fun profileEdit(
@@ -706,7 +762,7 @@ interface Api {
     ):Response<SingleRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @Multipart
     @POST("post/addUserPost")
     suspend fun addUserPost(
@@ -720,7 +776,7 @@ interface Api {
     ):Response<SingleRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @Multipart
     @POST("post/addUserPost")
     suspend fun addUserImgVideoPost(
@@ -734,15 +790,24 @@ interface Api {
         @Part files: List<MultipartBody.Part>
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
-    @GET("stories/getFollowingUsersStorieList/{page}/{per_page}/{your_user_id}")
+//    //@Headers(HEADER_1, HEADER_2)
+//    @GET("stories/getFollowingUsersStorieList/{page}/{per_page}/{your_user_id}")
+//    suspend fun getFollowingUsersStorieList(
+//        @Path(value = "page") page: Int,
+//        @Path(value = "per_page") per_page: Int,
+//        @Path(value = "your_user_id") your_user_id: String
+//    ):Response<FollowingStoriesRes>
+
+
+//    Harsh: change fro new api:18-10-22
+    //@Headers(HEADER_1, HEADER_2)
+    @GET("stories/getFollowingUsersStorieList/{page}/{per_page}")
     suspend fun getFollowingUsersStorieList(
         @Path(value = "page") page: Int,
         @Path(value = "per_page") per_page: Int,
-        @Path(value = "your_user_id") your_user_id: String
     ):Response<FollowingStoriesRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("follow/addUserFollow")
     suspend fun addUserFollow(
@@ -750,21 +815,21 @@ interface Api {
         @Field("follow_user_id") follow_user_id: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("post/postSave/{your_user_id}/{your_spine_post_id}")
     suspend fun onPostSave(
         @Path(value = "your_user_id") your_user_id: String,
         @Path(value = "your_spine_post_id") your_spine_post_id: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("impluse/removeImpluseLike/{your_user_id}/{your_spine_impluse_id}")
     suspend fun unlikeImpulse(
         @Path(value = "your_user_id") your_user_id: String,
         @Path(value = "your_spine_impluse_id") your_spine_impluse_id: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("follow/allUserList/{page}/{per_page}/{your_users_id}")
     suspend fun getAllUsers(
         @Path(value = "page") page: Int,
@@ -773,14 +838,14 @@ interface Api {
     ):Response<AllUsersRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("post/spinePostShare")
     suspend fun sharePost(
         @FieldMap data: Map<String, String>
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("post/spinePostComment")
     suspend fun postComment(
@@ -790,18 +855,18 @@ interface Api {
         @Field("comment") comment: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("post/spinePostLike/{your_post_id}/{user_id}")
     suspend fun likePost(
         @Path(value = "your_post_id") your_post_id: String,
         @Path(value = "user_id") user_id: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("hashtag/hashtagList")
     suspend fun getHashtagList():Response<HashtagRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("follow/getFollowersList/{page}/{per_page}/{user_id}")
     suspend fun getFollowersList(
         @Path(value = "page") page: Int,
@@ -809,23 +874,23 @@ interface Api {
         @Path(value = "user_id") user_id: String
     ):Response<FollowersRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("stories/getOwnStorieList/{your_user_id}")
     suspend fun getYourStories(
         @Path(value = "your_user_id") your_user_id: String
     ): Response<StoryRes>
 
-    @Headers(HEADER_1, HEADER_2)
-    @GET("post/getSpineUserFollowersPostList/{page}/{per_page}/{your_user_id}/{followers}/{only_user_post}")
+    //@Headers(HEADER_1, HEADER_2)
+    @GET("post/getSpineUserFollowersPostList/{Page}/{PerPage}/{UserId}/{Followers}/{OnlyUserPost}")
     suspend fun getAllPosts(
-        @Path(value = "page") page: Int,
-        @Path(value = "per_page") per_page: Int,
-        @Path(value = "your_user_id") your_user_id: String,
-        @Path(value = "followers") followers: Int,
-        @Path(value = "only_user_post") only_user_post: Int
+        @Path(value = "Page") page: Int,
+        @Path(value = "PerPage") per_page: Int,
+        @Path(value = "UserId") your_user_id: String,
+        @Path(value = "Followers") followers: Int,
+        @Path(value = "OnlyUserPost") only_user_post: Int
     ):Response<PostRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @Multipart
     @POST("stories/addUserStories")
     suspend fun addStory(
@@ -837,7 +902,7 @@ interface Api {
         @Part("delete_story_after_24_hr") delete_story_after_24_hr: RequestBody
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("post/getSpineUserActivityList/{page}/{per_page}/{your_user_id}/{followers}")
     suspend fun getActivitiesList(
         @Path(value = "page") page: Int,
@@ -846,14 +911,14 @@ interface Api {
         @Path(value = "followers") followers: Int
     ):Response<ResponseBody>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("impluse/impluseLike/{your_user_id}/{your_spine_impluse_id}")
     suspend fun likeImpulse(
         @Path(value = "your_user_id") your_user_id: String,
         @Path(value = "your_spine_impluse_id") your_spine_impluse_id: String
     ):Response<ResponseBody>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("impluse/impluseComments/{your_page_id}/{your_per_page_no}/{your_spine_id}")
     suspend fun getComments(
         @Path(value = "your_page_id", encoded = true) your_page_id: Int,
@@ -861,7 +926,7 @@ interface Api {
         @Path(value = "your_spine_id", encoded = true) your_spine_id: String
     ):Response<CommentResponse>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("impluse/saveCommentOnImpluse")
     suspend fun saveImpulseComment(
@@ -871,7 +936,7 @@ interface Api {
         @Field("comment") comment: String
     ): Response<ResponseBody>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("impluse/impluseList/{page_no}/{page_item_count}/{user_id}")
     suspend fun getSpineImpulseData(
         @Path(value = "page_no", encoded = true) page_no: Int,
@@ -879,11 +944,11 @@ interface Api {
         @Path(value = "user_id", encoded = true) user_id: String
     ):Response<SpineImpulseResponse>
 
-    @Headers(HEADER_1)
+    //@Headers(HEADER_1)
     @GET("other/getWelcomeData")
     suspend fun getWelcomeData(@Header("Authorization") token: String):Response<WelcomeResponse>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("login/socialLogin")
     suspend fun socialLoigin(
@@ -897,7 +962,7 @@ interface Api {
         @Field("notify_device_type") notify_device_type: String
     ):Response<SignupResponse>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("login/loginUsers")
     suspend fun userLogin(
@@ -907,13 +972,13 @@ interface Api {
         @Field("notify_device_type") notify_device_type: String
     ):Response<SignupResponse>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("login/forgetPassword")
     suspend fun forgotPassword(@Field("email") email: String): Response<ResponseBody>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("login/registerUsers")
     suspend fun userSignup(
@@ -928,13 +993,13 @@ interface Api {
     ):Response<SignupResponse>
 
 
-    @Headers(HEADER_1)
+    //@Headers(HEADER_1)
     @GET("login/accountVerify/{user_id}")
     suspend fun verifyAccount(@Header("Authorization") token: String,
         @Path(value = "user_id", encoded = true) user_id: String
     ): Response<SignupResponse>
 
-    @Headers(HEADER_1)
+    //@Headers(HEADER_1)
     @GET("login/accountVerify/{user_id}")
     suspend fun reSendCode(
         @Header("Authorization") token: String,
@@ -942,7 +1007,7 @@ interface Api {
     ):Response<SignupResponse>
 
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("login/verificationCodeOnMobile")
     suspend fun verificationCodeOnMobile(
@@ -950,13 +1015,44 @@ interface Api {
         @Field("user_id") user_id: String
     ):Response<SignupResponse>
 
-    @Headers(HEADER_1, HEADER_2)
+//    //@Headers(HEADER_1, HEADER_2)
+//    @Multipart
+//    @POST("events/addUserEvents")
+//    suspend fun addUserEvents(
+//        @Part("user_id") user_id: RequestBody,
+//        @Part("type") type: RequestBody,
+//        @Part("allow_comments") allow_comments: RequestBody,
+//        @Part("title") title: RequestBody,
+//        @Part("description") description: RequestBody,
+//        @Part("start_time") start_time: RequestBody,
+//        @Part("start_date") start_date: RequestBody,
+//        @Part("end_time") end_time: RequestBody,
+//        @Part("end_date") end_date: RequestBody,
+//        @Part("timezone") timezone: RequestBody,
+//        @Part("location") location: RequestBody,
+//        @Part("link_of_event") link_of_event: RequestBody,
+//        @Part("event_categories") event_categories: RequestBody,
+//        @Part("fee") fee: RequestBody,
+//        @Part("fee_currency") fee_currency: RequestBody,
+//        @Part("max_attendees") max_attendees: RequestBody,
+//        @Part("language") language: RequestBody,
+//        @Part("accept_participants") accept_participants: RequestBody,
+//        @Part("multiple") multiple: RequestBody,
+//        @Part("latitude") latitude: RequestBody,
+//        @Part("longitude") longitude: RequestBody,
+//        @Part("booking_url") booking_url: RequestBody,
+//        @Part("event_subcategories") event_subcategories: RequestBody,
+//        @Part files: List<MultipartBody.Part>
+//    ):Response<SingleRes>
+
+//    <Harsh : change endpoint for new apu:16-10-22>
+    //@Headers(HEADER_1, TestToken)
     @Multipart
-    @POST("events/addUserEvents")
+    @POST("events/publishEvent")
     suspend fun addUserEvents(
-        @Part("user_id") user_id: RequestBody,
+    @Part("status") status: Int,
         @Part("type") type: RequestBody,
-        @Part("allow_comments") allow_comments: RequestBody,
+        @Part("allow_comments") allow_comments: Int,
         @Part("title") title: RequestBody,
         @Part("description") description: RequestBody,
         @Part("start_time") start_time: RequestBody,
@@ -966,12 +1062,13 @@ interface Api {
         @Part("timezone") timezone: RequestBody,
         @Part("location") location: RequestBody,
         @Part("link_of_event") link_of_event: RequestBody,
+    @Part("join_event_link") join_event_link: RequestBody,
         @Part("event_categories") event_categories: RequestBody,
-        @Part("fee") fee: RequestBody,
+        @Part("fee") fee: Int,
         @Part("fee_currency") fee_currency: RequestBody,
         @Part("max_attendees") max_attendees: RequestBody,
-        @Part("language") language: RequestBody,
-        @Part("accept_participants") accept_participants: RequestBody,
+        @Part("language") language: Int,
+        @Part("accept_participants") accept_participants: Int,
         @Part("multiple") multiple: RequestBody,
         @Part("latitude") latitude: RequestBody,
         @Part("longitude") longitude: RequestBody,
@@ -980,7 +1077,13 @@ interface Api {
         @Part files: List<MultipartBody.Part>
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+
+    //@Headers(HEADER_1, HEADER_2)
+    @GET("events/getEventTypes")
+    suspend fun getEventType(
+    ):Response<EventTypeRes>
+
+    //@Headers(HEADER_1, HEADER_2)
     @GET("events/getFollowingUsersEventsList/{page}/{per_page}/{your_user_id}")
     suspend fun getFollowingUsersEventList(
         @Path(value = "page") page: Int,
@@ -988,18 +1091,18 @@ interface Api {
         @Path(value = "your_user_id") your_user_id: String
     ):Response<EventsRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("events/eventSave/{your_user_id}/{your_spine_event_id}")
     suspend fun saveEvents(
         @Path(value = "your_user_id") your_user_id: String,
         @Path(value = "your_spine_event_id") your_spine_event_id: String
     ):Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @GET("splash/splashScreens")
     suspend fun getWelcomePages():Response<WelcomePageReponse>
 
-    @Headers(HEADER_1, HEADER_2)
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("spineBlockUsers")
     suspend fun blockuser(

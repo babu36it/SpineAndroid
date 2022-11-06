@@ -49,6 +49,10 @@ fun SharedPreferences.remove(name:String){
     edit().remove(name).apply()
 }
 
+ fun getToken(): String? {
+  return   Prefs.getString("AuthToken","")
+}
+
 
 fun Fragment.hideKeyboard() {
     view?.let { activity?.hideKeyboard(it) }

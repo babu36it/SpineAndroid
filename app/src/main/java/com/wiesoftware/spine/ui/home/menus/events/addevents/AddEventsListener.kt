@@ -19,7 +19,6 @@ interface AddEventsListener {
     fun onPreview(
         title: String,
         description: String,
-        timeZone: String,
         location: String,
         link: String,
         fee: String,

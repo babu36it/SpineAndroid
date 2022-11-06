@@ -10,7 +10,7 @@ interface EventDetailEventListener {
     fun onShareEvent()
     fun onEventSaved()
     fun onRequestToAttend()
-    fun postEventComment(eve_comment: String)
+    fun postEventComment()
     fun onShowPopupMenu()
     fun editRegistration()
     fun onProfileView()

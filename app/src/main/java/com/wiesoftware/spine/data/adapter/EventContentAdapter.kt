@@ -1,13 +1,16 @@
 package com.wiesoftware.spine.data.adapter
 
 import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.net.reponses.EventsRecord
 import com.wiesoftware.spine.databinding.RvEventContentItemBinding
@@ -24,7 +27,7 @@ import kotlin.collections.ArrayList
  * E-mail:- vivekpcst.kumar@gmail.com
  */
 class EventContentAdapter(val requireContext: Context,
-                          val recordsList: List<EventsRecord>,val listener: SaveEventListener) : RecyclerView.Adapter<EventContentAdapter.ContentHolder>() {
+                          val recordsList: List<EventsRecord>,val listener: SaveEventListener) : RecyclerView.Adapter<EventContentAdapter.ContentHolder>()  {
     class ContentHolder(
         val rvEventContentItemBinding: RvEventContentItemBinding,
         val context: Context
@@ -51,11 +54,38 @@ class EventContentAdapter(val requireContext: Context,
     override fun onBindViewHolder(holder: ContentHolder, position: Int) {
         holder.rvEventContentItemBinding.model=recordsList[position]
         val eveType=recordsList[position].type
-        if (eveType.equals("1")){
-            holder.rvEventContentItemBinding.textView201.text=holder.context.getString(R.string.online)
-        }else{
-            holder.rvEventContentItemBinding.textView201.text=holder.context.getString(R.string.local)
+
+//        Harsh: its tempeory line code because olg logic count event type from 0
+        if (eveType.equals("0")) {
+            holder.rvEventContentItemBinding.textView36.text=holder.context.getString(R.string.local_event)
         }
+
+        if (eveType.equals("1")) {
+            holder.rvEventContentItemBinding.textView36.text=holder.context.getString(R.string.local_event)
+        } else if (eveType.equals("2")) {
+            holder.rvEventContentItemBinding.textView36.text=holder.context.getString(R.string.online_event)
+        } else if(eveType.equals("3")) {
+            holder.rvEventContentItemBinding.textView36.text=holder.context.getString(R.string.retreat_event)
+        } else if(eveType.equals("4")) {
+            holder.rvEventContentItemBinding.textView36.text=holder.context.getString(R.string.metaverse_event)
+        }
+            if(recordsList[position].hostedProfilePic != null && recordsList[position].hostedProfilePic.isNotEmpty()){
+
+
+            }
+
+        Glide.with(holder.context)
+            .load("https://thespiritualnetwork.com/assets/upload/profile/"+recordsList[position].hostedProfilePic)
+            .circleCrop()
+            .placeholder( ColorDrawable(ContextCompat.getColor(holder.context, R.color.light_gry)))
+            .error( ColorDrawable(ContextCompat.getColor(holder.context, R.color.light_gry)))
+            .dontAnimate()
+            .into(holder.rvEventContentItemBinding.circleImageView3);
+
+        if(recordsList[position].title.toString().isNotEmpty()){
+            holder.rvEventContentItemBinding.textView37.text= recordsList[position].title.capitalize()
+        }
+
 
         holder.rvEventContentItemBinding.circleImageView3.setOnClickListener {
             listener.onEventDetails(recordsList[position])
@@ -132,6 +162,7 @@ class EventContentAdapter(val requireContext: Context,
 
 
     }
+
 
     override fun getItemCount() = recordsList.size
 }

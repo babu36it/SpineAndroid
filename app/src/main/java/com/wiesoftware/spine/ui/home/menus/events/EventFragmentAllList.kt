@@ -140,13 +140,19 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
     private fun setEventList() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getAllEvents(1, 100, user_id, "all")
+                val res = homeRepositry.getAllEvents(1, 100, "all", "")
                 dataList.clear()
                 if (res.status) {
                     STORY_IMAGE = res.user_image
                     PROFILE_PIC_URL = res.image
                     Log.e("imagetwo", res.image)
-                    dataList = res.data
+
+//                    dataList = mutableListOf()
+
+                        var list = mutableListOf<EventsRecord>()
+
+
+                  dataList = res.data
                     adapter =
                         EventListAdapter(requireContext(), dataList, this@EventFragmentAllList, 0)
                     binding.rvEventList.also {
@@ -343,8 +349,6 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
                 for (data in row.records) {
                     if ((data.title).toLowerCase(Locale.ROOT)
                             .contains(newText!!.toLowerCase(Locale.ROOT))
-                        || (data.displayName ?: data.useName).toLowerCase(Locale.ROOT)
-                            .contains(newText!!.toLowerCase(Locale.ROOT))
                         || (data.location).toLowerCase(Locale.ROOT)
                             .contains(newText!!.toLowerCase(Locale.ROOT))
                         || (data.description).toLowerCase(Locale.ROOT)
@@ -382,6 +386,7 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
                 )
                 dataList.clear()
                 if (res.status) {
+
                     STORY_IMAGE = res.image
                     dataList = res.data
                     Log.e("filteredRes: ", "" + dataList)

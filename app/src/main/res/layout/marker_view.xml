@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/eight"
-    app:cardBackgroundColor="@color/dot_dark_screen4"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/_20"
     app:cardUseCompatPadding="true"
     android:id="@+id/cardView"
@@ -18,12 +18,16 @@
         android:id="@+id/textView173"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_8sdp"
+        android:textStyle="bold"
+
+        android:layout_gravity="center"
+        android:gravity="center"
         android:fontFamily="@font/poppins_bold"
         android:paddingStart="@dimen/_12sdp"
         android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_4sdp"
         android:paddingEnd="@dimen/_12sdp"
         android:text="@string/free"
-        android:textColor="@color/white"
+        android:textColor="@color/colorPrimaryDark"
         android:textFontWeight="800" />
 </androidx.cardview.widget.CardView>

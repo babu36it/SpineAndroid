@@ -604,7 +604,7 @@ class EventFragmentOnLineList : Fragment(), KodeinAware, EventFragmentEventListe
     private fun setOnLineEvents() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getOnLineEventsList(1, 100, user_id)
+                val res = homeRepositry.getAllEvents(1, 100, "online", "")
                 dataList.clear()
                 if (res.status) {
                     STORY_IMAGE = res.image

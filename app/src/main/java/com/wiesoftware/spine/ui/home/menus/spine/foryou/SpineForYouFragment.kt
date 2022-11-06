@@ -216,24 +216,25 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
         lifecycleScope.launch {
             try {
                 Log.e("user_id::", userId)
-                val allUsersRes = homeRepositry.recommendedFollowersListByCategories(1, 10, userId)
-                if (allUsersRes.status) {
-                    BASE_IMAGE = allUsersRes.image
-                    val allUsersData = allUsersRes.data
-                    setPicMember(allUsersRes.data, allUsersRes.image)
-                    binding.rvRecommendingFollowers.also {
-                        it.layoutManager = LinearLayoutManager(
-                            requireContext(),
-                            RecyclerView.HORIZONTAL,
-                            false
-                        )
-                        it.setHasFixedSize(true)
-                        it.adapter = RecommendedFollowersAdapter(
-                            allUsersData,
-                            this@SpineForYouFragment
-                        )
-                    }
-                }
+//                Harsh: Tempeory Desible because Api not working:21-10-22
+//                val allUsersRes = homeRepositry.recommendedFollowersListByCategories(1, 10, userId)
+//                if (allUsersRes.status) {
+//                    BASE_IMAGE = allUsersRes.image
+//                    val allUsersData = allUsersRes.data
+//                    setPicMember(allUsersRes.data, allUsersRes.image)
+//                    binding.rvRecommendingFollowers.also {
+//                        it.layoutManager = LinearLayoutManager(
+//                            requireContext(),
+//                            RecyclerView.HORIZONTAL,
+//                            false
+//                        )
+//                        it.setHasFixedSize(true)
+//                        it.adapter = RecommendedFollowersAdapter(
+//                            allUsersData,
+//                            this@SpineForYouFragment
+//                        )
+//                    }
+//                }
             } catch (e: ApiException) {
                 e.printStackTrace()
             } catch (e: NoInternetException) {

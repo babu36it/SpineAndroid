@@ -2,10 +2,7 @@ package com.wiesoftware.spine.ui.home.menus.events.addevents
 
 
 import android.Manifest
-import android.app.Activity
-import android.app.DatePickerDialog
-import android.app.Dialog
-import android.app.TimePickerDialog
+import android.app.*
 import android.content.ClipData
 import android.content.Context
 import android.content.Intent
@@ -15,7 +12,9 @@ import android.graphics.BitmapFactory
 import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
-import android.os.*
+import android.os.Build
+import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
@@ -51,10 +50,9 @@ import com.wiesoftware.spine.data.net.reponses.LangData
 import com.wiesoftware.spine.data.net.reponses.PodcastSubCategoryData
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityAddEventBinding
-import com.wiesoftware.spine.ui.home.HomeActivity
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.events.EVE_RECORD
-import com.wiesoftware.spine.ui.home.menus.events.TimeZoneResponse
+import com.wiesoftware.spine.ui.home.menus.events.TimezoneData
 import com.wiesoftware.spine.ui.home.menus.events.addordup.AddOrDupEventActivity
 import com.wiesoftware.spine.ui.home.menus.events.preview_event.PreviewEventActivity
 import com.wiesoftware.spine.ui.home.menus.profile.setting.currency.CurrencyActivity
@@ -62,8 +60,6 @@ import com.wiesoftware.spine.ui.home.menus.profile.setting.currency.CurrencyActi
 import com.wiesoftware.spine.ui.home.menus.profile.setting.currency.CurrencyActivity.Companion.CURRENCY_SYMBOL
 import com.wiesoftware.spine.util.*
 import kotlinx.android.synthetic.main.activity_add_event.*
-import kotlinx.android.synthetic.main.activity_featured_post.*
-import kotlinx.android.synthetic.main.activity_view_story.*
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 import kotlinx.android.synthetic.main.eve_cat_selection.*
 import kotlinx.coroutines.launch
@@ -78,7 +74,6 @@ import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
@@ -143,6 +138,8 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         var isAddNewEvent = false
     }
 
+    var subCatedataList = listOf<PodcastSubCategoryData>()
+
     private fun getLocationUpdates() {
         locationRequest.interval = 50000
         locationRequest.fastestInterval = 50000
@@ -183,6 +180,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
             binding.imageButton73.setImageResource(R.drawable.ic_add_new)
         }
     }
+
 
     override fun onAddNewCategory(category: String) {
         lifecycleScope.launch {
@@ -278,14 +276,20 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         }
 
         type = intent.getStringExtra("event_type")!!.toInt()
-        if (type == 0) {
-            binding.textView90.text = "LOCAL EVENT (MAX 24H)"
-        } else if (type == 1) {
+        if (type == 1) {
+            binding.textView90.text = "LOCAL EVENT ( MAX 24H )"
+            binding.texlinkToJoin.visibility = View.GONE
+            binding.etlinkToJoin.visibility = View.GONE
+        } else if (type == 2) {
             binding.textView90.text = "ONLINE EVENT"
-        } else if(type == 2) {
+            binding.texlinkToJoin.text = "Add link to join online event"
+        } else if(type == 3) {
             binding.textView90.text = "RETREAT EVENT"
-        } else {
+            binding.texlinkToJoin.visibility = View.GONE
+            binding.etlinkToJoin.visibility = View.GONE
+        } else if(type == 4) {
             binding.textView90.text = "METAVERSE SESSIONS"
+            binding.texlinkToJoin.text = "Add link to join metaverse event"
         }
 
 
@@ -349,6 +353,11 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
 
 
+        textView109.setOnClickListener {
+            var intent = Intent(this, CurrencyActivity::class.java)
+            startActivityForResult(intent, code)
+        }
+
         aboutevent.setOnClickListener {
             var intent = Intent(this, AddAboutEventActivity::class.java)
             startActivityForResult(intent, code)
@@ -399,13 +408,13 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         viewmodel?.bookeventurl = eventsRecord.booking_url
         viewmodel?.link = eventsRecord.linkOfEvent
         viewmodel?.attendees = eventsRecord.maxAttendees
-        allow_participants = eventsRecord.acceptParticipants
+        allow_participants = eventsRecord.acceptParticipants.toString()
         allow_comments = eventsRecord.allowComments.toInt()
 
     }
 
     var lanngData: List<LangData> = ArrayList<LangData>()
-    var timeData: List<String> = ArrayList<String>()
+    var timeData: List<TimezoneData> = ArrayList<TimezoneData>()
     private fun getLanguages() {
         lifecycleScope.launch {
             try {
@@ -452,11 +461,11 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         }
     }
 
-    private fun setTimeZone(timeData: List<String>) {
+    private fun setTimeZone(timeData: List<TimezoneData>) {
         val list: MutableList<String> = ArrayList()
-        list.add(getString(R.string.select))
+//        list.add(getString(R.string.select))
         for (data in timeData) {
-            list.add(data)
+            list.add(data.timezone + " GMT "+ data.gmt_offset)
         }
         val aa = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinnerItem, list)
         with(spinnertimezone) {
@@ -465,6 +474,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
             onItemSelectedListener = this@AddEventActivity
             prompt = getString(R.string.select)
         }
+        timeZone = timeData.first().id
     }
 
     private fun getEventCategories(value: String) {
@@ -532,11 +542,11 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
             try {
                 val res = homeRepositry.getPodcastSubcategory(parent_id, user_id)
                 if (res.status) {
-                    val dataList = res.data
+                     subCatedataList = res.data
                     binding.recyclerView9.also {
                         it.layoutManager = GridLayoutManager(this@AddEventActivity, 2)
                         it.setHasFixedSize(true)
-                        it.adapter = PodcastSubcategoryAdapter(this@AddEventActivity,dataList, this@AddEventActivity)
+                        it.adapter = PodcastSubcategoryAdapter(this@AddEventActivity,subCatedataList, this@AddEventActivity)
                     }
                 }
             } catch (e: Exception) {
@@ -570,7 +580,30 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     }
 
     override fun onBack() {
-        onBackPressed()
+
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setMessage("Are you sure you want to delete this event ??")
+            .setTitle("Delete Event")
+
+        builder.setPositiveButton("Delete") { dialog, id ->
+            // User clicked OK button
+            onBackPressed()
+        }
+
+        builder.setNegativeButton(
+            "Cancel"
+        ) { dialog, id ->
+            // User clicked cancel button
+            dialog.dismiss()
+        }
+
+        val alert: AlertDialog = builder.create()
+
+
+
+      alert.show()
+
+
     }
 
     var flag: Int = 0
@@ -730,62 +763,66 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
         val event_subcategories: RequestBody =
             RequestBody.create("multipart/form-data".toMediaTypeOrNull(), subCatIds.toString())
+
+        val status: RequestBody =
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "0")
         binding.button42.visibility = View.INVISIBLE
-        if (flag == 0) {
-            flag = 1
-            lifecycleScope.launch {
-                try {
-                    val res = homeRepositry.addUserEvent(
-                        uid,
-                        types,
-                        allow_cmnt,
-                        title,
-                        description,
-                        sTime,
-                        sDate,
-                        eTime,
-                        eDate,
-                        timeZone,
-                        location,
-                        link,
-                        eveCat,
-                        fee,
-                        feeCurency,
-                        attendees,
-                        language,
-                        paticipants,
-                        multiple,
-                        latitude,
-                        longitude,
-                        bookingurl,
-                        event_subcategories,
-                        imgList
-                    )
-                    binding.button42.visibility = View.VISIBLE
-                    Log.e("eveRes::", "" + res)
-                    if (res.status) {
-                        Utils.showToast(this@AddEventActivity, res.message)
-                        //  "Event added successfully.".toast(this@AddEventActivity)
-                        flag = 0
-                        startActivity(Intent(this@AddEventActivity, AddEventSuccessActivity::class.java))
-                        finish()
-                        /// onBackPressed()
-                    } else {
-                        flag = 0
-                        Utils.showToast(this@AddEventActivity, res.message)
-                        //  "Oops! Something went wrong.".toast(this@AddEventActivity)
-                    }
-                } catch (e: ApiException) {
-                    binding.button42.visibility = View.VISIBLE
-                    flag = 0
-                    e.printStackTrace()
-                } catch (e: NoInternetException) {
-                    binding.button42.visibility = View.VISIBLE
-                    flag = 0
-                    e.printStackTrace()
-                }
-            }
-        }
+//        if (flag == 0) {
+//            flag = 1
+//            lifecycleScope.launch {
+//                try {
+//                    val res = homeRepositry.addUserEvent(
+//                        status,
+//                        uid,
+//                        types,
+//                        allow_cmnt,
+//                        title,
+//                        description,
+//                        sTime,
+//                        sDate,
+//                        eTime,
+//                        eDate,
+//                        timeZone,
+//                        location,
+//                        link,
+//                        eveCat,
+//                        fee,
+//                        feeCurency,
+//                        attendees,
+//                        language,
+//                        paticipants,
+//                        multiple,
+//                        latitude,
+//                        longitude,
+//                        bookingurl,
+//                        event_subcategories,
+//                        imgList
+//                    )
+//                    binding.button42.visibility = View.VISIBLE
+//                    Log.e("eveRes::", "" + res)
+//                    if (res.status) {
+//                        Utils.showToast(this@AddEventActivity, res.message)
+//                        //  "Event added successfully.".toast(this@AddEventActivity)
+//                        flag = 0
+//                        startActivity(Intent(this@AddEventActivity, AddEventSuccessActivity::class.java))
+//                        finish()
+//                        /// onBackPressed()
+//                    } else {
+//                        flag = 0
+//                        Utils.showToast(this@AddEventActivity, res.message)
+//                        //  "Oops! Something went wrong.".toast(this@AddEventActivity)
+//                    }
+//                } catch (e: ApiException) {
+//                    binding.button42.visibility = View.VISIBLE
+//                    flag = 0
+//                    e.printStackTrace()
+//                } catch (e: NoInternetException) {
+//                    binding.button42.visibility = View.VISIBLE
+//                    flag = 0
+//                    e.printStackTrace()
+//                }
+//            }
+//        }
     }
 
     override fun onDelete() {
@@ -804,14 +841,14 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     override fun onPreview(
         title: String,
         description: String,
-        timeZone: String,
         location: String,
         link: String,
         fee: String,
         attendees: String,
         book_event_url: String
     ) {
-
+          val  event_title = binding.editTextTextPersonName13.text.toString()
+        val  event_location = binding.et104.text.toString()
 
         val sdf = SimpleDateFormat("hh:mm")
         val sdfDate = SimpleDateFormat("dd-MM-yyyy")
@@ -819,42 +856,24 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         if (currentPhotoPath.isNullOrEmpty()) {
             "Please add Picture".toast(this)
             return
-        } else if (title.equals("")) {
+        } else if (event_title.equals("")) {
             binding.editTextTextPersonName13.error =
                 "Required."; binding.editTextTextPersonName13.requestFocus(); return
         } else if (endDate.equals("")) {
             "Select Start Date and End Date".toast(this)
             return
+        } else if (endTime == "") {
+            "Select Start Time And End Time".toast(this)
+            return
         }
-        else if (sdfDate.parse(startDate).equals(sdfDate.parse(endDate))) {
-
-            if (endTime == "") {
-                "Select Start Time And End Time".toast(this)
-                return
-            } else if (!isTimeAfter(sdf.parse(startTime), sdf.parse(endTime))) {
-                "End Time Should be Greater Than Start Time".toast(this)
-                return
-
-            } else if (about.equals("")) {
-                Utils.showToast(this, "Enter About")
-                // binding.et106.error = "Required."; binding.et106.requestFocus(); return
-            }
-            else if (location.equals("")) {
-                Utils.showToast(this, "Enter Location")
-                binding.et104.error = "Required.";binding.et104.requestFocus(); return
-            }
-            else if (language == "1") {
-                Utils.showToast(this, "Select Language")
-                // binding.et104.error = "Required.";binding.et104.requestFocus(); return
-            }
-
-
+        else if (!isTimeAfter(sdf.parse(startTime), sdf.parse(endTime))) {
+            "End Time Should be Greater Than Start Time".toast(this)
 
         }  else if (about.equals("")) {
             Utils.showToast(this, "Enter About")
             // binding.et106.error = "Required."; binding.et106.requestFocus(); return
         }
-        else if (location.equals("")) {
+        else if (event_location.equals("")) {
             Utils.showToast(this, "Enter Location")
             binding.et104.error = "Required.";binding.et104.requestFocus(); return
         }
@@ -864,32 +883,44 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         }
         else {
 
+
+
             var endDateTime = endDate +" "+ endTime
             var startDateTime = startDate +" "+ startTime
+            val fuldate = SimpleDateFormat("dd-MM-yyyy hh:mm")
+            if(!isTimeAfter(fuldate.parse(startDateTime), fuldate.parse(endDateTime))){
+                "End Date Should be Greater Than Start Date".toast(this)
+                return
+            }
+
+            var join_link = binding.etlinkToJoin.text.toString()
+
+
             val records : EventsRecord = EventsRecord(
-                allow_participants,
+                allow_participants.toInt(),
                 endDateTime,
                 startDateTime,
-                allow_comments.toString(),
+                allow_comments,
                 startDate,
                 about,
                 endDate,
                 endTime,
                 category,
-                fee,
-                curency,
+                subCatIds,
+                fee.toInt(),
+                currencyId,
                 "",
                 user_id,
-                language,
+                language.toInt(),
                 link,
-                location,
+                event_location,
                 attendees,
                 categoryIds,
                 startDate,
                 startTime,
-                subCatIds,
+                1,
                 timeZone,
-                title,
+                event_title,
                 type.toString(),
                 startDate,
                 user_id,
@@ -904,11 +935,13 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
                 lon.toString(),
                 "",
                 "",
-                "$",
-            "",
+                curency,
+                "",
                 languagenname,
                 book_event_url,
-                false
+                false,
+                join_link
+
             )
 //            val record: EventsRecord = EventsRecord(
 //                allow_participants,
@@ -954,6 +987,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 //                et_book_event.text.toString(),
 //                false
 //            )
+            Log.e("Harsh::",records.toString())
             val intent = Intent(this, PreviewEventActivity::class.java)
             intent.putExtra(EVE_RECORD, records)
             intent.putExtra(B_IMG_URL, imgPaths)
@@ -962,6 +996,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         }
 
     }
+
 
     override fun onAdPic() {
         showPhotoPicker()
@@ -974,8 +1009,10 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     override fun onAllowComments(isChecked: Boolean) {
         if (isChecked) {
             allow_comments = 1
+            binding.switch6.setBackgroundTintList(this.getResources().getColorStateList(R.color.colorPrimaryDark));
         } else {
             allow_comments = 0
+            binding.switch6.setBackgroundTintList(this.getResources().getColorStateList(R.color.light_gry));
         }
     }
 
@@ -984,11 +1021,15 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
             binding.rldPaid.visibility = View.VISIBLE
             binding.textPodcast.visibility=View.VISIBLE
             binding.etBookEvent.visibility=View.VISIBLE
+            binding.switchPaid.setBackgroundTintList(this.getResources().getColorStateList(R.color.colorPrimaryDark));
+
+
 
         } else {
             binding.rldPaid.visibility = View.GONE
             binding.textPodcast.visibility=View.GONE
-            binding.etBookEvent.visibility=View.GONE
+           binding.etBookEvent.visibility=View.GONE
+            binding.switchPaid.setBackgroundTintList(this.getResources().getColorStateList(R.color.light_gry));
         }
     }
 
@@ -1002,8 +1043,11 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     override fun onAllowParticipants(isChecked: Boolean) {
         if (isChecked) {
             allow_participants = "1"
+            binding.switch5.setBackgroundTintList(this.getResources().getColorStateList(R.color.colorPrimaryDark));
         } else {
             allow_participants = "0"
+
+            binding.switch5.setBackgroundTintList(this.getResources().getColorStateList(R.color.light_gry));
         }
     }
 
@@ -1397,16 +1441,34 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         val pos = p2 - 1
-        if (pos > 0) {
+        val ppp = p3
+
+       var ppppp =  p0!!.id
+
+        if(ppppp == binding.spinnerLang.id){
+
+
             try{
+
                 language = lanngData[pos].id
                 languagenname = lanngData[pos].name
-                var time=timeData[pos]
-                timeZone=time
-                binding.et104.setText(" ")
+//                binding.et104.setText(" ")
             }catch (e:Exception){
 
             }
+        }
+        if (ppppp == binding.spinnertimezone.id){
+            try{
+
+                var time=timeData[pos]
+                timeZone=time.id
+//                binding.et104.setText(" ")
+            }catch (e:Exception){
+
+            }
+        }
+        if (pos > 0) {
+
         //    binding.textView112.text=languagenname
          //   binding.textTimeZone.text = timeZone
         }
@@ -1525,6 +1587,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         parent_id = Event.id
         binding.tvSelectCats.text = Event.category_name
         category = Event.category_name
+        categoryIds = Event.id
         Log.e("list", Event.id)
         getSubcatgery()
 
@@ -1533,6 +1596,8 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         binding.relAdd.visibility = View.VISIBLE
         binding.textView284.text="Choose up to 3 sub-categories of "+Event.category_name
     }
+
+
 
 
 }

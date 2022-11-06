@@ -13,9 +13,6 @@ import com.wiesoftware.spine.data.net.reponses.EventsRecord
 import com.wiesoftware.spine.databinding.DupEventListItemBinding
 import com.wiesoftware.spine.util.Utils
 import kotlinx.android.synthetic.main.dup_event_list_item.view.*
-import java.time.LocalDate
-import java.time.Month
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 /**
@@ -42,36 +39,44 @@ class DupEventAdapter(
     override fun onBindViewHolder(holder: DupEventHolder, position: Int) {
 
 
+        if (data[position].type == "1") {
+            holder.itemView.textView324.text = "Local Event"
+//                holder.itemView.textView327.visibility = View.GONE
+        } else if (data[position].type == "2") {
+            holder.itemView.textView324.text = "Online Event"
+//                holder.itemView.textView327.visibility = View.GONE
+        } else if(data[position].type == "3") {
+            holder.itemView.textView324.text = "Retreat Event"
+//                holder.itemView.textView327.visibility = View.VISIBLE
+        } else if(data[position].type == "4") {
+            holder.itemView.textView324.text = "Metaverse Sessions"
+//                holder.itemView.textView327.visibility = View.GONE
+        }
+
+        if (data[position].status == 0){
+            holder.itemView.textView327.visibility = View.VISIBLE
+        }else{
+            holder.itemView.textView327.visibility = View.GONE
+        }
+
 
         try {
             holder.dupEventListItemBinding.model = data[position]
             holder.dupEventListItemBinding.root.setOnClickListener {
                 dupEveEventListener.onDupEventClick(data[position])
             }
-            var startdate=data[position].startDate
-            var enddate=data[position].endDate
+            var startdate=data[position].startDate + " "+ data[position].startTime
+            var enddate=data[position].endDate + " "+ data[position].endTime
 
-            var startvalue= Utils.dateTimeformat(startdate)
-            var endValue=Utils.dateTimeformat(enddate)
+            var startvalue= Utils.dateTimeformat(removeSecond(startdate)!!)
+            var endValue=Utils.dateTimeformat(removeSecond(enddate)!!)
 
 
             holder.itemView.textView326.text= startvalue.dayOfMonth.toString()+" "+startvalue.month+" - "+
                     endValue.dayOfMonth.toString()+" "+endValue.month + " " +startvalue.year.toString() + ", " + Utils.dateTimeformat(startvalue)
 
 
-            if (data[position].type == "0") {
-                holder.itemView.textView324.text = "LOCAL EVENT"
-                holder.itemView.textView327.visibility = View.GONE
-            } else if (data[position].type == "1") {
-                holder.itemView.textView324.text = "Online Event"
-                holder.itemView.textView327.visibility = View.GONE
-            } else if(data[position].type == "2") {
-                holder.itemView.textView324.text = "Retreat Event"
-                holder.itemView.textView327.visibility = View.VISIBLE
-            } else {
-                holder.itemView.textView324.text = "Metaverse Sessions"
-                holder.itemView.textView327.visibility = View.GONE
-            }
+
 
         }catch (e:Exception){
 
@@ -81,6 +86,14 @@ class DupEventAdapter(
 
 
 
+    }
+
+    fun removeSecond(str: String?): String? {
+        var str = str
+        if (str != null && str.length > 0) {
+            str = str.substring(0, str.length - 3)
+        }
+        return str
     }
 
     override fun getItemCount() = data.size

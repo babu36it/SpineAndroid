@@ -195,7 +195,7 @@ class MapviewEventsActivity : AppCompatActivity(), OnMapReadyCallback, KodeinAwa
                         addCurrentMarker(lati, longi)
 
                         mMap?.let {
-                            getAllEvents()
+//                            getAllEvents()
                         }
                     }
                 }
@@ -331,7 +331,7 @@ class MapviewEventsActivity : AppCompatActivity(), OnMapReadyCallback, KodeinAwa
 
                     addCurrentMarker(lati, longi)
                     mMap?.let {
-                        getAllEvents()
+//                        getAllEvents()
                     }
                 }
             }
@@ -360,7 +360,7 @@ class MapviewEventsActivity : AppCompatActivity(), OnMapReadyCallback, KodeinAwa
                 val title = record.title
                 val fee =/*record.feeCurrency+" "+*/record.fee
                 val symbol = record.symbol
-                addMarker(fee, title, latlng, -1, symbol, record.isSelected)
+                addMarker(fee.toString(), title, latlng, -1, symbol, record.isSelected)
 
 
                 val cameraPosition = CameraPosition.Builder()
@@ -394,9 +394,10 @@ class MapviewEventsActivity : AppCompatActivity(), OnMapReadyCallback, KodeinAwa
                 val res = homeRepositry.getAllEvents(
                     1,
                     100,
-                    userId,
-                    "localevent"
-                )//homeRepositry.getNearbyEvents(1,100,userId,lati,longi,10)
+                    "all",
+                    "1"
+                )
+                //homeRepositry.getNearbyEvents(1,100,userId,lati,longi,10)
                 if (res.status) {
                     STORY_IMAGE = res.image
                     val dataList = res.data
@@ -436,12 +437,12 @@ class MapviewEventsActivity : AppCompatActivity(), OnMapReadyCallback, KodeinAwa
                         val l: Double = lat.toDouble()
                         val ll: Double = lon.toDouble()
                         Log.e("latlongs:", lat + " " + lon)
-                        addMarker(fee, title, LatLng(l, ll), id.toInt(), symbol, isSelected)
+                        addMarker(fee.toString(), title, LatLng(l, ll), id.toInt(), symbol, isSelected)
                     } catch (e: Exception) {
                         e.printStackTrace()
                         Log.e("latlongssss:", lat + " " + lon)
                         getCurrentLocation()
-                        addMarker(fee, title, LatLng(lati, longi), id.toInt(), symbol, isSelected)
+                        addMarker(fee.toString(), title, LatLng(lati, longi), id.toInt(), symbol, isSelected)
                     }
                 }
                 k++
@@ -507,7 +508,7 @@ class MapviewEventsActivity : AppCompatActivity(), OnMapReadyCallback, KodeinAwa
             card.setCardBackgroundColor(
                 ContextCompat.getColor(
                     this@MapviewEventsActivity,
-                    R.color.gray_tint
+                    R.color.white
                 )
             )
             tv.setTextColor(
@@ -572,11 +573,11 @@ class MapviewEventsActivity : AppCompatActivity(), OnMapReadyCallback, KodeinAwa
                 try {
                     val l: Double = lat.toDouble()
                     val ll: Double = lon.toDouble()
-                    addMarker(fee, title, LatLng(l, ll), id.toInt(), symbol, isSelected)
+                    addMarker(fee.toString(), title, LatLng(l, ll), id.toInt(), symbol, isSelected)
                 } catch (e: Exception) {
                     e.printStackTrace()
                     getCurrentLocation()
-                    addMarker(fee, title, LatLng(lati, longi), id.toInt(), symbol, isSelected)
+                    addMarker(fee.toString(), title, LatLng(lati, longi), id.toInt(), symbol, isSelected)
                 }
             }
         }

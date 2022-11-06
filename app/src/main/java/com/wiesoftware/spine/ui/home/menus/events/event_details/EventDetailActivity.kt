@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -227,10 +228,10 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
             if (file.contains(",")) {
                 var files = file.split(",")
                 for (path in files) {
-                    imgList.add(ImageData( path))
+                    imgList.add(ImageData( "https://thespiritualnetwork.com/assets/upload/spine-post/"+path))
                 }
             } else {
-                imgList.add(ImageData(file))
+                imgList.add(ImageData("https://thespiritualnetwork.com/assets/upload/spine-post/"+file))
             }
 
             val adapter = EventsDetailsImageAdapter(imgList)
@@ -312,7 +313,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         }
 
 
-        getUserDetails(eve_user_id)
+        getUserDetails("https://thespiritualnetwork.com/assets/upload/profile/"+record.hostedProfilePic ?: "",record.displayName ?:"")
 
         ///  getEventDetails()
 
@@ -327,7 +328,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         event_link = record.linkOfEvent
         desc = record.description
         val total_cmnt = record.totalComment
-        fee = record.fee
+        fee = record.fee.toString()
         val currency = if ((record.symbol).isNullOrEmpty()) {
             "$"
         } else {
@@ -383,16 +384,38 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         }
 
 
-        if (eventType.equals("1")) {
-            binding.textView108.text = getString(R.string.online_event)
-            binding.textView118.text = getString(R.string.online)
 
-        } else {
-            binding.textView108.text = getString(R.string.local_event)
+        //        Harsh: its tempeory line code because olg logic count event type from 0
+        if (eventType.equals("0")) {
+            binding.textView108.text= getString(R.string.local_event)
             binding.textView118.text = getString(R.string.local)
             binding.button47.text = getString(R.string.reserve_spot)
             binding.button47.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
         }
+
+        if (eventType.equals("1")) {
+            binding.textView108.text=getString(R.string.local_event)
+            binding.textView118.text = getString(R.string.local)
+            binding.button47.text = getString(R.string.reserve_spot)
+            binding.button47.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+        } else if (eventType.equals("2")) {
+            binding.textView108.text=getString(R.string.online_event)
+            binding.textView118.text = getString(R.string.online)
+        } else if(eventType.equals("3")) {
+            binding.textView108.text=getString(R.string.retreat_event)
+        } else if(eventType.equals("4")) {
+            binding.textView108.text=getString(R.string.metaverse_event)
+        }
+
+
+//        if (eventType.equals("1")) {
+//            binding.textView108.text = getString(R.string.online_event)
+//            binding.textView118.text = getString(R.string.online)
+//
+//        } else {
+//            binding.textView108.text = getString(R.string.local_event)
+//
+//        }
 
         //  setBookingStatus()
         Bookingstataus()
@@ -418,7 +441,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
             if (bookingStatus.equals("0")) {
                 //request sent
                 binding.button48.visibility = View.GONE
-                if (eventType.equals("0")) {
+                if (eventType.equals("1")) {
                     binding.textView108.text = getString(R.string.local_event)
                     binding.textView118.text = getString(R.string.local)
                     if (fee.equals("0")) {
@@ -473,7 +496,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
     fun Bookingstataus() {
         if (bookingStatus != null) {
 
-            if (eventType.equals("0")) {
+            if (eventType.equals("1")) {
 
                 if (bookingStatus.equals("book_event")) {
                     binding.button47.text = getString(R.string.book_event)
@@ -521,6 +544,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
                 if (bookingStatus.equals("request_to_attend_online")) {
                     binding.button47.setOnClickListener {
                         sendOnlineRequestDialog()
+
                     }
                 } else if (bookingStatus.equals("you_sent_a_request_to_join")) {
                     binding.button48.visibility = View.GONE
@@ -565,37 +589,50 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         }
     }
 
-    private fun getUserDetails(userId: String) {
-        lifecycleScope.launch {
-            try {
-                Log.e("idd", userId)
-                val userProfile = homeRepositry.getUserDetails(userId)
-                if (userProfile.status) {
-                    img_base = userProfile.image
-                    val userData = userProfile.data
-                    try {
-                        if (!userData.profile_pic.isNullOrEmpty()) {
-                            img = userData.profile_pic
-                            img.let {
-                                Glide.with(this@EventDetailActivity)
-                                    .load(img_base + img)
-                                    .placeholder(R.drawable.ic_profile)
-                                    .into(binding.circleImageView7)
-                            }
-                        }
-                        name = userData.display_name ?: userData.name!!
-                        binding.textView122.text = name
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
+    private fun getUserDetails(image: String,name:String) {
 
-                }
-            } catch (e: ApiException) {
-                e.printStackTrace()
-            } catch (e: NoInternetException) {
-                e.printStackTrace()
-            }
-        }
+
+        binding.textView122.text = name
+        img_base = image
+        Glide.with(this)
+            .load(image)
+            .centerCrop()
+            .placeholder(R.drawable.ic_profile)
+            .error( ColorDrawable(getColor(this, R.color.light_gry)))
+            .dontAnimate()
+            .into(binding.circleImageView7);
+
+//        Harsh: Not necceary for new api
+//        lifecycleScope.launch {
+//            try {
+//                Log.e("idd", userId)
+//                val userProfile = homeRepositry.getUserDetails(userId)
+//                if (userProfile.status) {
+//                    img_base = userProfile.image
+//                    val userData = userProfile.data
+//                    try {
+//                        if (!userData.profile_pic.isNullOrEmpty()) {
+//                            img = userData.profile_pic
+//                            img.let {
+//                                Glide.with(this@EventDetailActivity)
+//                                    .load(img_base + img)
+//                                    .placeholder(R.drawable.ic_profile)
+//                                    .into(binding.circleImageView7)
+//                            }
+//                        }
+//                        name = userData.display_name ?: userData.name!!
+//                        binding.textView122.text = name
+//                    } catch (e: Exception) {
+//                        e.printStackTrace()
+//                    }
+//
+//                }
+//            } catch (e: ApiException) {
+//                e.printStackTrace()
+//            } catch (e: NoInternetException) {
+//                e.printStackTrace()
+//            }
+//        }
     }
 
     override fun onBack() {
@@ -610,9 +647,9 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         dialog.setContentView(R.layout.eve_msg_dialog)
         val cImg = dialog.findViewById(R.id.imageView14) as CircleImageView
         val nameTv = dialog.findViewById(R.id.textView128) as TextView
-        nameTv.text = name
+        nameTv.text =  binding.textView122.text.toString()
         Glide.with(this@EventDetailActivity)
-            .load(img_base + img)
+            .load(img_base)
             .placeholder(R.drawable.ic_profile)
             .into(cImg)
         val send = dialog.findViewById(R.id.button49) as Button
@@ -821,8 +858,9 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
     override fun onRequestToAttend() {
         if (bookingStatus != null) {
             if (bookingStatus.equals("0")) {
-                if (eventType.equals("1")) {
-                    sendOnlineRequestDialog()
+                if (eventType.equals("2")) {
+                   sendOnlineRequestDialog()
+
                 } else {
                     sendRequestDialog()
                 }
@@ -879,11 +917,17 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         }
     }
 
-    override fun postEventComment(eve_comment: String) {
+    override fun postEventComment() {
         //eve_comment.toast(this)
+
+        if (binding.etCmnt.text.toString().isEmpty()){
+            return
+        }
+
+
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.spineEventsComment(event_id, user_id, "0", eve_comment)
+                val res = homeRepositry.spineEventsComment(event_id, user_id, "0", binding.etCmnt.text.toString())
                 if (res.status) {
                     //"Comment added successfully".toast(this@EventDetailActivity)
                     binding.etCmnt.setText("")
@@ -1110,7 +1154,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
                     BASE_IMAGE = res.image
                     Log.e("datanidhi", res.image)
                     getRecords(1)
-                    setEventDetails(record)
+                   setEventDetails(record)
                     if (record.bookingId.equals("")) {
                         bookingId = "0"
                     } else {
@@ -1147,7 +1191,20 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.join_online_event)
         val tvEventTitle = dialog.findViewById(R.id.tvEventTitle) as TextView
+        val tvEventTime = dialog.findViewById(R.id.textView176) as TextView
         tvEventTitle.text = title
+
+        val simpleDateFormat = SimpleDateFormat("yyyy-M-dd", Locale.getDefault())
+        try {
+            val date1: Date = simpleDateFormat.parse(eve_date)
+            val dd = SimpleDateFormat("EEE, dd MMM yyyy", Locale.getDefault())
+            val ss: String = dd.format(date1)
+            tvEventTime.text = ss +", "+ start_time
+        } catch (e: ParseException) {
+            e.printStackTrace()
+            Log.e("fmtDate: ", e.message.toString())
+        }
+
 
         //name
         val send = dialog.findViewById(R.id.button68) as Button
@@ -1177,7 +1234,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
             val dd = SimpleDateFormat("EEE, dd MMM yyyy", Locale.getDefault())
             val ss: String = dd.format(date1)
             Log.e("fmtDate: ", ss)
-            tvEventDate.text = ss
+            tvEventDate.text = ss + ", "+ start_time
 
         } catch (e: ParseException) {
             e.printStackTrace()

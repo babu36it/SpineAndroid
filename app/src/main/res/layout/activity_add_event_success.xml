@@ -20,7 +20,8 @@
 
         <TextView
             android:id="@+id/textView191"
-            style="@style/TitleText"
+            style="@style/OnlyText"
+            android:textSize="@dimen/_14sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="THANK YOU"
@@ -49,11 +50,14 @@
 
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/_16sdp"
-                android:src="@drawable/ic_add" />
+                android:padding="@dimen/_4sdp"
+                app:backgroundTint="@color/colorPrimaryDark"
+                android:background="@drawable/boarder_round_btn_bg"
+                android:src="@drawable/ic_check" />
 
 
             <TextView
@@ -71,6 +75,7 @@
 
             <Button
                 android:id="@+id/button97"
+                app:backgroundTint="@color/colorPrimaryDark"
                 style="@style/ButtonRound"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -80,6 +85,7 @@
 
             <Button
                 android:id="@+id/button98"
+                app:backgroundTint="@color/colorPrimaryDark"
                 style="@style/ButtonRound"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

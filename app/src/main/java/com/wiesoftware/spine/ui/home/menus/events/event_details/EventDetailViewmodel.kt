@@ -31,10 +31,8 @@ class EventDetailViewmodel(val homeRepositry: HomeRepositry): ViewModel() {
         eventDetailEventListener?.onRequestToAttend()
     }
     fun postEventComment(view: View){
-        if (eve_comment.isEmpty()){
-            return
-        }
-        eventDetailEventListener?.postEventComment(eve_comment)
+
+        eventDetailEventListener?.postEventComment()
     }
     fun onShowPopupMenu(view:View){
         eventDetailEventListener?.onShowPopupMenu()

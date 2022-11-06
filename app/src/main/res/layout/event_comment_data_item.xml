@@ -29,7 +29,7 @@
             android:id="@+id/textView129"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="12dp"
             android:layout_marginEnd="8dp"
             android:text="@{model.post_user_name}"
             android:textSize="@dimen/normalText"
@@ -61,16 +61,28 @@
             app:layout_constraintStart_toEndOf="@+id/circleImageView8"
             app:layout_constraintTop_toTopOf="@+id/button51" />
 
-        <Button
+<!--        <Button-->
+<!--            android:id="@+id/button51"-->
+<!--            android:layout_width="@dimen/_60sdp"-->
+<!--            android:layout_height="@dimen/_30sdp"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:text="@string/reply"-->
+<!--            android:textSize="@dimen/_10sdp"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:gravity="center"-->
+<!--            android:textColor="@color/colorPrimaryDark"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/imageButton22"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView130" />-->
+
+        <TextView
             android:id="@+id/button51"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@android:color/transparent"
-            android:text="@string/reply"
-            android:textSize="@dimen/normalText"
-            android:textAllCaps="false"
+            android:layout_marginEnd="@dimen/sixteen"
+            android:text="Reply"
+            style="@style/OnlyText"
+            android:textSize="@dimen/_10sdp"
             android:textColor="@color/colorPrimaryDark"
             app:layout_constraintStart_toEndOf="@+id/imageButton22"
             app:layout_constraintTop_toBottomOf="@+id/textView130" />
@@ -140,6 +152,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/sixteen"
             android:text="1d"
+            style="@style/OnlyText"
+            android:textSize="@dimen/_10sdp"
+            android:textColor="@color/light_gry"
             app:layout_constraintBottom_toBottomOf="@+id/button51"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/button51" />
