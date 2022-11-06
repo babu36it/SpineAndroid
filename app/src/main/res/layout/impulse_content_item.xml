@@ -10,17 +10,18 @@
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_8sdp">
 <!-- app:imgPro="@{viewModel.image}"-->
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView4"
-        android:layout_width="@dimen/_72sdp"
-        android:layout_height="@dimen/_72sdp"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
         android:layout_marginStart="@dimen/sixteen"
         android:layout_marginTop="@dimen/eight"
         android:src="@drawable/ic_spine_home"
-        android:scaleType="centerCrop"
-        android:background="@color/colorPrimaryDark"
+        app:civ_circle_background_color="@color/colorPrimaryDark"
+        app:civ_border_width="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -168,7 +169,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView44"
         app:layout_constraintEnd_toEndOf="@+id/imageView5"
         app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textSpine" />
 
     <TextView
         android:id="@+id/textView44"

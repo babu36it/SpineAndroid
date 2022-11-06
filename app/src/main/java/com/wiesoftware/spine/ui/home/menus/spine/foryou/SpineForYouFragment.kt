@@ -345,9 +345,10 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
 
                 var homeFeedList = ArrayList<HomeFeedModel> ()
                 homeFeedList.add(HomeFeedModel(1,"PROMOTED",0))
-                homeFeedList.add(HomeFeedModel(2,"PROMOTED",0))
-                homeFeedList.add(HomeFeedModel(3,"PROMOTED",0))
+                homeFeedList.add(HomeFeedModel(2,"SPINE",0))
                 homeFeedList.add(HomeFeedModel(4,"PROMOTED",0))
+                homeFeedList.add(HomeFeedModel(3,"ONLINE",0))
+                homeFeedList.add(HomeFeedModel(3,"LOCAL",0))
                 binding.rvHomeFeed.also {
                     it.layoutManager = LinearLayoutManager(
                         requireContext(),
@@ -1218,11 +1219,14 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
             Log.e("datavalue0", e.toString())
         }
 
-
     }
     /*MT temp click event*/
     override fun onPromotedClicked(postData: HomeFeedModel) {
+       Log.d("---->Click",postData.text)
+    }
 
+    override fun viewAllSpineImpulse_(postData: HomeFeedModel) {
+        startActivity(Intent(requireContext(), ImpulseActivity::class.java))
     }
 
 }
