@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
 interface RssApi {
 
     companion object{
-        //const val RSS_BASE_URL="http://thespiritualnetwork.com/api/v1"
+       // const val RSS_BASE_URL="http://thespiritualnetwork.com/api/v1"
 
          const val RSS_BASE_URL="https://api.rss2json.com/"
         private const val H1="Content-Type: application/json"

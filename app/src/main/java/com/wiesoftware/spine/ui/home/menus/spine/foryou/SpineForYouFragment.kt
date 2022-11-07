@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.wiesoftware.spine.BuildConfig
+import org.kodein.di.android.BuildConfig
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.*
 import com.wiesoftware.spine.data.net.reponses.*
@@ -435,7 +435,8 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
     }
 
     override fun trendingCategories() {
-        startActivity(Intent(requireContext(), TrendingCatActivity::class.java))
+       // startActivity(Intent(requireContext(), TrendingCatActivity::class.java))
+        requireContext().toast("Inprogress")
     }
 
     override fun recommendedFollowers() {
