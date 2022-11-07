@@ -2,6 +2,7 @@ package com.wiesoftware.spine.data.net
 
 import com.google.gson.GsonBuilder
 import com.wiesoftware.spine.data.net.reponses.*
+import com.wiesoftware.spine.data.net.reponses.episode.EpisodeModel
 import com.wiesoftware.spine.data.net.reponses.welcompageresponse.WelcomePageReponse
 import com.wiesoftware.spine.ui.home.menus.events.TimeZoneResponse
 import com.wiesoftware.spine.util.Prefs
@@ -22,17 +23,18 @@ interface Api {
         private const val HEADER_2 = "Authorization: Basic ZGV2cGFua2FqOmRldnBhbmthag=="
         private const val HEADER_3 = "Content-Type: application/json"
         const val BASE_LINK = "http://thespiritualnetwork.com/api/v1/"
+        const val NewBASE_LINK = "http://162.214.165.52/~pirituc5/"
 
         //        const val BASE_LINK="http://162.214.165.52/~pirituc5/apisecure/"
 //        const val BASE_URL=BASE_LINK+"apisecure/"
         const val BASE_URL = BASE_LINK
         const val BASE_URL_VIDEO = BASE_LINK + "assets/upload/welcome/"
 
-        const val ABOUT_SPINE = BASE_LINK + "about-us"
-        const val HELP_SPINE = BASE_LINK + "spine-help"
-        const val GUIDELINE_SPINE = BASE_LINK + "spine-guidelines"
-        const val TERMS_SPINE = BASE_LINK + "spine-terms"
-        const val PRIVACY_SPINE = BASE_LINK + "spine-privacy"
+        const val ABOUT_SPINE = NewBASE_LINK + "about-us"
+        const val HELP_SPINE = NewBASE_LINK + "spine-help"
+        const val GUIDELINE_SPINE = NewBASE_LINK + "spine-guidelines"
+        const val TERMS_SPINE = NewBASE_LINK + "spine-terms"
+        const val PRIVACY_SPINE = NewBASE_LINK + "spine-privacy"
 
         operator fun invoke(
             networkConnectionInterceptor: NetworkConnectionInterceptor
@@ -48,6 +50,7 @@ interface Api {
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
             val client: OkHttpClient = OkHttpClient.Builder()
                 .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .addInterceptor(interceptor)
                 .addInterceptor(Interceptor { chain ->
@@ -328,6 +331,9 @@ interface Api {
     @GET("podcasts/getPodcastsCustom}")
     suspend fun getAllPodcasts(): Response<PodRes>
 
+    @GET("podcasts/getPodcastsEpisodeCustom")
+    suspend fun getAllEpisodeCustom(): Response<EpisodeModel>
+
 
     @Headers(HEADER_1, HEADER_2)
     @GET("podcasts/getUserPodcasts/{user_id}")
@@ -349,11 +355,8 @@ interface Api {
         @Part("thumbnail") thumbnail: RequestBody
     ): Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
-    @GET("deactiveAccount/{user_id}")
-    suspend fun deactivateAccount(
-        @Path("user_id") user_id: String
-    ): Response<SingleRes>
+    @GET("deactiveAccount")
+    suspend fun deactivateAccount(): Response<SingleRes>
 
 
     @Headers(HEADER_1, HEADER_2)
@@ -363,8 +366,7 @@ interface Api {
     ): Response<SingleRes>
 
 
-    @Headers(HEADER_1, HEADER_2)
-    @GET("eventCurrency")
+    @GET("currency")
     suspend fun getCurrency(): Response<CurrencyRes>
 
     @Headers(HEADER_1, HEADER_2)
@@ -374,27 +376,21 @@ interface Api {
         @Path("userId") userId: String
     ): Response<EventDetailsRes>
 
-    @Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("saveEventToCalender")
     suspend fun saveStatusToCalendarStatus(
-        @Field("user_id") user_id: String,
         @Field("calender_status") calender_status: String
     ): Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("eventMessagingAutho")
     suspend fun whoCanMessage(
-        @Field("user_id") user_id: String,
         @Field("message_auth") message_auth: String
     ): Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("requestToChangeEmail")
     suspend fun requestToChangeEmail(
-        @Field("user_id") user_id: String,
         @Field("email") email: String
     ): Response<SingleRes>
 
@@ -446,12 +442,8 @@ interface Api {
         @Field("user_id") user_id: String
     ): Response<NotificationsRes>
 
-    @Headers(HEADER_1, HEADER_2)
-    @FormUrlEncoded
-    @POST("deleteAccount")
-    suspend fun deleteAccount(
-        @Field("user_id") user_id: String
-    ): Response<SingleRes>
+    @DELETE("deleteAccount")
+    suspend fun deleteAccount(): Response<SingleRes>
 
     @Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
@@ -1003,6 +995,41 @@ interface Api {
     suspend fun blockuser(
         @Field("user_id") user_id: String,
         @Field("blocked_user_id") title: String
+    ): Response<SingleRes>
+
+    @FormUrlEncoded
+    @POST("PrivacyAllSetting")
+    suspend fun getAllPrivarcySettings(
+        @Field("p_findability") p_findability: String,
+        @Field("p_customization") p_customization: String,
+        @Field("p_necessary") p_necessary: String,
+        @Field("p_personalized") p_personalized: String
+    ): Response<SingleRes>
+
+    @FormUrlEncoded
+    @POST("emailAllNotification")
+    suspend fun getAllEmailNotification(
+        @Field("e_notify_status") e_notify_status: String,
+        @Field("e_event_attach_status") e_event_attach_status: String,
+        @Field("e_message_status") e_message_status: String,
+        @Field("e_comment_reply_status") e_comment_reply_status: String,
+        @Field("e_event_podcast_status") e_event_podcast_status: String,
+        @Field("e_update_from_spine_status") e_update_from_spine_status: String,
+        @Field("e_spine_surveys_status") e_spine_surveys_status: String
+    ): Response<SingleRes>
+
+    @FormUrlEncoded
+    @POST("mobileAllNotification")
+    suspend fun getAllMobileNotifications(
+        @Field("m_notify_status") m_notify_status: String,
+        @Field("m_like_notify_status") m_like_notify_status: String,
+        @Field("m_comment_notify_status") m_comment_notify_status: String,
+        @Field("m_update_and_reminders_status") m_update_and_reminders_status: String,
+        @Field("m_save_event_reminders_status") m_save_event_reminders_status: String,
+        @Field("m_message_status") m_message_status: String,
+        @Field("m_follow_status") m_follow_status: String,
+        @Field("m_spine_impulse_status") m_spine_impulse_status: String,
+        @Field("m_any_post_status") m_any_post_status: String
     ): Response<SingleRes>
 
 }

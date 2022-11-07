@@ -16,7 +16,6 @@
             android:hint="Search Result"
             android:padding="@dimen/_8sdp"
             android:text="AGENCY"
-            android:textColor="@color/text_black"
             android:textSize="@dimen/_11sdp"
             android:textStyle="normal" />
 

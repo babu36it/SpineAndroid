@@ -52,7 +52,6 @@
                     android:id="@+id/switch13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
                     android:onCheckedChanged="@{(switch, checked) -> viewmodel.onEmailUpdateChanged(checked)}"
                     app:layout_constraintBottom_toBottomOf="@+id/textView244"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -120,7 +119,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:checked="true"
                     android:onCheckedChanged="@{(switch, checked) -> viewmodel.onICalChanged(checked)}"
                     android:text="" />
 
@@ -174,7 +172,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:checked="true"
                     android:onCheckedChanged="@{(switch, checked) -> viewmodel.onMessageChanged(checked)}"
                     android:text="" />
 
@@ -227,7 +224,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:checked="true"
                     android:onCheckedChanged="@{(switch, checked) -> viewmodel.onRepliesChanged(checked)}"
                     android:text="" />
 
@@ -276,12 +272,11 @@
                     android:textStyle="bold" />
 
                 <Switch
-                    android:layout_marginTop="@dimen/_3sdp"
                     android:id="@+id/switch17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:checked="true"
+                    android:layout_marginTop="@dimen/_3sdp"
                     android:onCheckedChanged="@{(switch, checked) -> viewmodel.onEveAndPodChanged(checked)}"
                     android:text="" />
 
@@ -330,11 +325,10 @@
                     android:textStyle="bold" />
 
                 <Switch
-                    android:layout_alignParentEnd="true"
                     android:id="@+id/switch18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
+                    android:layout_alignParentEnd="true"
                     android:onCheckedChanged="@{(switch, checked) -> viewmodel.onSpineHQChanged(checked)}"
                     android:text="" />
 
@@ -386,14 +380,12 @@
                     android:text="@string/spine_hq_surveys" />
 
                 <Switch
-                    android:layout_alignParentEnd="true"
                     android:id="@+id/switch19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
+                    android:layout_alignParentEnd="true"
                     android:onCheckedChanged="@{(switch, checked) -> viewmodel.onHQSurveyChanged(checked)}"
-                    android:text=""
-                    />
+                    android:text="" />
 
 
 

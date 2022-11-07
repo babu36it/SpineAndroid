@@ -444,11 +444,13 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
     override fun onAddAditionalCategory() {
         if (isAdditionalBtnClick) {
             binding.editTextTextPersonName31.visibility = View.VISIBLE
+            binding.rrAddNewCategory.visibility = View.VISIBLE
             binding.button101.visibility = View.VISIBLE
             isAdditionalBtnClick = false
             binding.imageButton73.setImageResource(R.drawable.ic_minus)
         } else {
             binding.editTextTextPersonName31.visibility = View.GONE
+            binding.rrAddNewCategory.visibility = View.GONE
             binding.button101.visibility = View.GONE
             isAdditionalBtnClick = true
             binding.imageButton73.setImageResource(R.drawable.ic_add_new)

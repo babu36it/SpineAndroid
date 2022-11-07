@@ -52,7 +52,6 @@
                     android:id="@+id/switch13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
                     android:onCheckedChanged="@{(switch, checked) -> viewmodel.onPushNotificationChanged(checked)}"
                     app:layout_constraintBottom_toBottomOf="@+id/textView244"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -125,7 +124,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:checked="true"
                         android:onCheckedChanged="@{(switch, checked) -> viewmodel.onLikeNotificationChanged(checked)}"
                         android:text="" />
 
@@ -184,7 +182,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:checked="true"
                     android:onCheckedChanged="@{(switch, checked) -> viewmodel.onCommentNotificationChanged(checked)}"
                     android:text="" />
 
@@ -239,7 +236,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:checked="true"
                     android:onCheckedChanged="@{(switch, checked) -> viewmodel.onEventUpdateNotificationChanged(checked)}"
                     android:text="" />
 
@@ -293,7 +289,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:checked="true"
                     android:onCheckedChanged="@{(switch, checked) -> viewmodel.onSavedEventNotificationChanged(checked)}"
                     android:text="" />
 
@@ -344,7 +339,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:checked="true"
                     android:onCheckedChanged="@{(switch, checked) -> viewmodel.onMessageNotificationChanged(checked)}"
                     android:text="" />
 
@@ -398,7 +392,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:checked="true"
                     android:onCheckedChanged="@{(switch, checked) -> viewmodel.onActivityFollowNotificationChanged(checked)}"
                     android:text="" />
 
@@ -450,7 +443,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:checked="true"
                     android:onCheckedChanged="@{(switch, checked) -> viewmodel.onImpulseNotificationChanged(checked)}"
                     android:text="" />
 
@@ -505,7 +497,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:checked="true"
                     android:onCheckedChanged="@{(switch, checked) -> viewmodel.onEveryMemberNotificationChanged(checked)}"
                     android:text="" />
 

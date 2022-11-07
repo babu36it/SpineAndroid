@@ -1,8 +1,10 @@
 package com.wiesoftware.spine.ui.home.menus.profile.setting.currency
 
+import android.app.ProgressDialog
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -37,6 +39,7 @@ class CurrencyActivity : AppCompatActivity(),KodeinAware, CurrencyEventListener,
     val homeRepositry: HomeRepositry by instance()
     lateinit var binding: ActivityCurrencyBinding
     lateinit var userId: String
+    lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +48,7 @@ class CurrencyActivity : AppCompatActivity(),KodeinAware, CurrencyEventListener,
         val viewmodel=ViewModelProvider(this,factory).get(CurreencyViewmodel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.currencyEventListener=this
+        progressDialog = ProgressDialog(this)
         viewmodel.getLoggedInUser().observe(this, Observer { user->
             userId=user.users_id!!
         })
@@ -55,19 +59,25 @@ class CurrencyActivity : AppCompatActivity(),KodeinAware, CurrencyEventListener,
     private fun getCurrency() {
         lifecycleScope.launch {
             try {
+                showProgressDialog()
                 val  res=homeRepositry.getCurrency()
                 if (res.status){
+                    dismissProgressDailog()
                     val currencyList=res.data
                     binding.rvCurrency.also {
                         it.layoutManager=LinearLayoutManager(this@CurrencyActivity,RecyclerView.VERTICAL,false)
                         it.setHasFixedSize(true)
                         it.adapter=CurrencyAdapter(currencyList,this@CurrencyActivity)
                     }
+                }else{
+                    Toast.makeText(this@CurrencyActivity,res.message,Toast.LENGTH_SHORT).show()
                 }
             }catch (e: ApiException){
                 e.printStackTrace()
+                dismissProgressDailog()
             }catch (e: NoInternetException){
                 e.printStackTrace()
+                dismissProgressDailog()
             }
         }
     }
@@ -87,5 +97,15 @@ class CurrencyActivity : AppCompatActivity(),KodeinAware, CurrencyEventListener,
         val CURRENCY_ID="currencyId"
         val CURRENCY_SYMBOL="currencySymbol"
         val CURRENCY_NAME="currencyName"
+    }
+
+    private fun showProgressDialog() {
+        progressDialog.setMessage("Please wait...")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+    }
+
+    private fun dismissProgressDailog() {
+        progressDialog.dismiss()
     }
 }

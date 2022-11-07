@@ -37,6 +37,7 @@ interface RssApi {
             val client: OkHttpClient = OkHttpClient.Builder()
                 .readTimeout(60, TimeUnit.SECONDS)
                 .connectTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60,TimeUnit.SECONDS)
                 .addInterceptor(interceptor)
                 .addInterceptor(Interceptor { chain ->
                     val request: Request = chain.request().newBuilder()

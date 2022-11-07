@@ -80,7 +80,7 @@
                     android:layout_marginStart="@dimen/_5sdp"
                     android:drawablePadding="@dimen/eight"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="0h 0min"
+                    android:text="@{model.time}"
                     android:textColor="@color/grey"
                     android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
@@ -181,7 +181,8 @@
                     android:layout_marginStart="@dimen/_5sdp"
                     android:drawableTint="@color/gray_tint"
                     android:fontFamily="@font/poppins_semi_bold"
-                    android:text="0"
+                    android:text="@{model.like}"
+                    android:textColor="@color/grey"
                     android:textSize="@dimen/_11sdp" />
 
             </LinearLayout>
@@ -212,6 +213,7 @@
                     android:layout_marginStart="@dimen/_5sdp"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:text="0"
+                    android:textColor="@color/grey"
                     android:textSize="@dimen/_11sdp" />
 
             </LinearLayout>

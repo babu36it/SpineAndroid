@@ -12,12 +12,27 @@ class PrivacySettingViewmodel(val homeRepositry: HomeRepositry) : ViewModel() {
     var privacySettingEventListener: PrivacySettingEventListener? = null
 
     fun getLoggedInUser() = homeRepositry.getUser()
-    fun onBack(view: View){
+    fun onBack(view: View) {
         privacySettingEventListener?.onBack()
     }
-    fun onPrivacyPolicy(view: View){
+
+    fun onPrivacyPolicy(view: View) {
         privacySettingEventListener?.onPrivacyPolicy()
     }
 
+    fun findabilityOnCheckedChanged(isChecked: Boolean) {
+        privacySettingEventListener?.findabilityOnchanged(isChecked)
+    }
 
+    fun personalizedOnCheckedChanged(isChecked: Boolean) {
+        privacySettingEventListener?.personalizedOnChanged(isChecked)
+    }
+
+    fun customizationOnCheckedChanged(isChecked: Boolean) {
+        privacySettingEventListener?.customizationOnChanged(isChecked)
+    }
+
+    fun necessaryOnCheckedChanged(isChecked: Boolean) {
+        privacySettingEventListener?.necessaryOnChanged(isChecked)
+    }
 }
