@@ -171,6 +171,7 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
         } else {
             messagesStatus = "0";
         }
+
         mNetworkCallMessagesStatusAPI(messagesStatus)
     }
 
