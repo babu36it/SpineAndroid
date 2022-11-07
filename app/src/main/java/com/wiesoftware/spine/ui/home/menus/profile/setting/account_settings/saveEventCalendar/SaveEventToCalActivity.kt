@@ -1,8 +1,10 @@
 package com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.saveEventCalendar
 
+import android.app.ProgressDialog
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -30,6 +32,7 @@ class SaveEventToCalActivity : AppCompatActivity(),KodeinAware, SaveEventEventLi
     lateinit var binding: ActivitySaveEventToCalBinding
     lateinit var userId: String
     var status=0;
+    lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +41,7 @@ class SaveEventToCalActivity : AppCompatActivity(),KodeinAware, SaveEventEventLi
         val viewmodel=ViewModelProvider(this,factory).get(SaveEventViewmodel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.saveEventEventListener=this
+        progressDialog = ProgressDialog(this)
         viewmodel.getLoggedInUser().observe(this, Observer { user->
             userId=user.users_id!!
         })
@@ -65,17 +69,23 @@ class SaveEventToCalActivity : AppCompatActivity(),KodeinAware, SaveEventEventLi
     private fun saveEventsToCalendarStatus(status: Int) {
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.saveStatusToCalendarStatus(userId,""+status)
+                showProgressDialog()
+                val res=homeRepositry.saveStatusToCalendarStatus(status.toString())
                 if (res.status){
-                    getString(R.string.status_changed_successfully).toast(this@SaveEventToCalActivity)
+                    dismissProgressDailog()
+                    Toast.makeText(this@SaveEventToCalActivity,res.message,Toast.LENGTH_SHORT).show()
                     val calStatus=if (status==0){"Off"}else{"On"}
                     Prefs.putAny(CAL_STATUS,calStatus)
                 }else{
-                    getString(R.string.oops_something_wrong).toast(this@SaveEventToCalActivity)
+                    dismissProgressDailog()
+                    Toast.makeText(this@SaveEventToCalActivity,res.message,Toast.LENGTH_SHORT).show()
+
                 }
             }catch (e: ApiException){
+                dismissProgressDailog()
                 e.printStackTrace()
             }catch (e: NoInternetException){
+                dismissProgressDailog()
                 e.printStackTrace()
             }
         }
@@ -83,5 +93,15 @@ class SaveEventToCalActivity : AppCompatActivity(),KodeinAware, SaveEventEventLi
 
     companion object{
         val CAL_STATUS="calStatus"
+    }
+
+    private fun showProgressDialog() {
+        progressDialog.setMessage("Please wait...")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+    }
+
+    private fun dismissProgressDailog() {
+        progressDialog.dismiss()
     }
 }

@@ -375,6 +375,8 @@
                     </LinearLayout>
 
                     <RelativeLayout
+                        android:id="@+id/rrAddNewCategory"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp">
@@ -384,7 +386,6 @@
                             style="@style/ETNormal"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_35sdp"
-                            android:layout_margin="@dimen/_5sdp"
                             android:layout_marginStart="@dimen/_5sdp"
                             android:layout_marginTop="@dimen/_5sdp"
                             android:layout_marginEnd="@dimen/_5sdp"

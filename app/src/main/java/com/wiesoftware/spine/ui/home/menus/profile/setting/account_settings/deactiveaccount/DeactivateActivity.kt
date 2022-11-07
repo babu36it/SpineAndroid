@@ -2,12 +2,14 @@ package com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.dea
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
 import android.widget.Button
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -41,6 +43,8 @@ class DeactivateActivity : AppCompatActivity(),KodeinAware, DeactivateEventListe
     lateinit var userId: String
     lateinit var user: User
     var isLogin=true
+    lateinit var progressDialog: ProgressDialog
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +53,7 @@ class DeactivateActivity : AppCompatActivity(),KodeinAware, DeactivateEventListe
         val viewmodel=ViewModelProvider(this,factory).get(DeactivateViewmodel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.deactivateEventListener=this
+        progressDialog=ProgressDialog(this)
         viewmodel.getloggedInUser().observe(this, Observer { user->
             if (isLogin){
                 this.user=user
@@ -138,18 +143,27 @@ class DeactivateActivity : AppCompatActivity(),KodeinAware, DeactivateEventListe
     fun delete(){
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.deleteAccount(userId)
+                showProgressDialog()
+                val res=homeRepositry.deleteAccount()
                 if (res.status){
+                    dismissProgressDailog()
+                    Toast.makeText(this@DeactivateActivity,res.message,Toast.LENGTH_SHORT).show()
+
                     homeRepositry.logoutUser(user)
                     isLogin=false
                     val intent=Intent(this@DeactivateActivity,WelcomeActivity::class.java)
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
+                }else{
+                    dismissProgressDailog()
+                    Toast.makeText(this@DeactivateActivity,res.message,Toast.LENGTH_SHORT).show()
                 }
             }catch (e: ApiException){
                 e.printStackTrace()
+                dismissProgressDailog()
             }catch (e: NoInternetException){
                 e.printStackTrace()
+                dismissProgressDailog()
             }
         }
     }
@@ -157,19 +171,37 @@ class DeactivateActivity : AppCompatActivity(),KodeinAware, DeactivateEventListe
     fun deactivate(){
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.deactivateAccount(userId)
+                showProgressDialog()
+                val res=homeRepositry.deactivateAccount()
                 if (res.status){
+                    dismissProgressDailog()
+                    Toast.makeText(this@DeactivateActivity,res.message,Toast.LENGTH_SHORT).show()
                     homeRepositry.logoutUser(user)
                     isLogin=false
                     val intent=Intent(this@DeactivateActivity,WelcomeActivity::class.java)
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
+                }else{
+                    dismissProgressDailog()
+                    Toast.makeText(this@DeactivateActivity,res.message,Toast.LENGTH_SHORT).show()
                 }
             }catch (e: ApiException){
                 e.printStackTrace()
+                dismissProgressDailog()
             }catch (e: NoInternetException){
                 e.printStackTrace()
+                dismissProgressDailog()
             }
         }
+    }
+
+    private fun showProgressDialog() {
+        progressDialog.setMessage("Please wait...")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+    }
+
+    private fun dismissProgressDailog() {
+        progressDialog.dismiss()
     }
 }

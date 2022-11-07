@@ -1,9 +1,11 @@
 package com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.messaging
 
+import android.app.ProgressDialog
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -30,6 +32,7 @@ class MessagingActivity : AppCompatActivity(),KodeinAware, MessagingEventListene
     val homeRepositry: HomeRepositry by instance()
     lateinit var binding: ActivityMessagingBinding
     lateinit var userId: String
+    lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +41,7 @@ class MessagingActivity : AppCompatActivity(),KodeinAware, MessagingEventListene
         val viewmodel=ViewModelProvider(this,factory).get(MessagingViewmodel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.messagingEventListener=this
+        progressDialog = ProgressDialog(this)
         viewmodel.getLoggedInUser().observe(this, Observer { user->
             userId=user.users_id!!
         })
@@ -74,20 +78,37 @@ class MessagingActivity : AppCompatActivity(),KodeinAware, MessagingEventListene
     private fun whoCanMessage(msg_auth:String){
         lifecycleScope.launch {
             try{
-                val res=homeRepositry.whoCanMessage(userId,msg_auth)
+                showProgressDialog()
+                val res=homeRepositry.whoCanMessage(msg_auth)
                 if (res.status){
-                    getString(R.string.status_changed_successfully).toast(this@MessagingActivity)
+                    dismissProgressDailog()
+                    Toast.makeText(this@MessagingActivity,res.message,Toast.LENGTH_SHORT).show()
                     Prefs.putAny(MSG_AUTH,msg_auth)
+                }else{
+                    dismissProgressDailog()
+                    Toast.makeText(this@MessagingActivity,res.message,Toast.LENGTH_SHORT).show()
                 }
             }catch (e: ApiException){
                 e.printStackTrace()
+                dismissProgressDailog()
             }catch (e: NoInternetException){
                 e.printStackTrace()
+                dismissProgressDailog()
             }
         }
     }
 
     companion object{
         val MSG_AUTH="msgAuth"
+    }
+
+    private fun showProgressDialog() {
+        progressDialog.setMessage("Please wait...")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+    }
+
+    private fun dismissProgressDailog() {
+        progressDialog.dismiss()
     }
 }

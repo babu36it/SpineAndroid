@@ -20,7 +20,7 @@
 
         <TextView
             android:id="@+id/textView28"
-            style="@style/spinnerText"
+            style="@style/newspinnerText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"

@@ -49,14 +49,14 @@ class UserPodcastAdapter(val dataList: List<PodDatas>,val listener: OnPodEveList
 //        val podcast: PodcastData=dataList[position]
 //        val bookmark=podcast.bookmarks
 //        val userLike=podcast.user_like
-        holder.listenPodItemBinding.textView217.visibility=View.INVISIBLE
+      /*  holder.listenPodItemBinding.textView217.visibility=View.INVISIBLE
         holder.listenPodItemBinding.imageButton46.visibility=View.INVISIBLE
         holder.listenPodItemBinding.imageView25.setOnClickListener {
             listener.onPodDetails(dataList[position])
         }
         holder.listenPodItemBinding.imageButton45.setOnClickListener {
             listener.onPodDetails(dataList[position])
-        }
+        }*/
        /* if (userLike.equals("1")){
             holder.setTextViewDrawableColor(holder.listenPodItemBinding.textView217)
         }

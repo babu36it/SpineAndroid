@@ -50,18 +50,18 @@ class PodcastSubcategoryAdapter(
             if (checkedItemList.get(dataList[position].id)!!) {
                 holder.podSubcatListBinding.itemLayout.background =
                     ContextCompat.getDrawable(holder.context, R.drawable.round_button_bg)
-                holder.podSubcatListBinding.textView28.setTextAppearance(R.style.spinnerText)
+                holder.podSubcatListBinding.textView28.setTextAppearance(R.style.newspinnerText)
 
             } else {
                 holder.podSubcatListBinding.itemLayout.background =
                     ContextCompat.getDrawable(holder.context, R.drawable.boarder_round_btn_bg)
-                holder.podSubcatListBinding.textView28.setTextAppearance(R.style.spinnerText)
+                holder.podSubcatListBinding.textView28.setTextAppearance(R.style.newspinnerText)
 
             }
         } else {
             holder.podSubcatListBinding.itemLayout.background =
                 ContextCompat.getDrawable(holder.context, R.drawable.boarder_round_btn_bg)
-            holder.podSubcatListBinding.textView28.setTextAppearance(R.style.spinnerText)
+            holder.podSubcatListBinding.textView28.setTextAppearance(R.style.newspinnerText)
 
         }
 
@@ -72,7 +72,7 @@ class PodcastSubcategoryAdapter(
                 listener.onPodSubCatSelectedList(list)
                 holder.podSubcatListBinding.itemLayout.background =
                     ContextCompat.getDrawable(holder.context, R.drawable.boarder_round_btn_bg)
-                holder.podSubcatListBinding.textView28.setTextAppearance(R.style.spinnerText)
+                holder.podSubcatListBinding.textView28.setTextAppearance(R.style.newspinnerText)
 
             } else {
                 if (list.size > 2) {
@@ -85,7 +85,7 @@ class PodcastSubcategoryAdapter(
                     list.add(dataList[position].id)
                     holder.podSubcatListBinding.itemLayout.background =
                         ContextCompat.getDrawable(holder.context, R.drawable.round_button_bg)
-                    holder.podSubcatListBinding.textView28.setTextAppearance(R.style.spinnerText)
+                    holder.podSubcatListBinding.textView28.setTextAppearance(R.style.newspinnerText)
                     listener.onPodSubCatSelectedList(list)
                 }
 
