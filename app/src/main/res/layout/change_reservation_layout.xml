@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
     android:background="@android:color/transparent"
     android:layout_width="@dimen/_350"
     android:layout_height="match_parent">
@@ -21,74 +22,109 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shadow_box"
-        android:padding="@dimen/sixteen"
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="@dimen/_10sdp"
         android:layout_marginStart="@dimen/sixteen"
         android:layout_marginEnd="@dimen/sixteen"
         android:layout_marginTop="@dimen/eight"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageButton32">
-
-        <TextView
-            android:id="@+id/textView174"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TitleText"
-            android:text="Going?"
-            android:textAlignment="center"
-             />
+        app:layout_constraintTop_toBottomOf="@id/imageButton32"
+        app:contentPadding="@dimen/_16sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/gray_tint"
-            android:weightSum="2"
-            >
 
-        <Button
-            android:layout_weight="1"
-            android:id="@+id/button68"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/eight"
-            android:layout_marginStart="@dimen/eight"
-            android:layout_marginBottom="@dimen/eight"
-            android:background="@android:color/transparent"
-            android:text="@string/no"
-            android:textColor="@color/text_black"
-            />
+            android:orientation="vertical"
+          >
 
-        <Button
-            android:layout_weight="1"
-            android:id="@+id/button69"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/eight"
-            android:layout_marginEnd="@dimen/eight"
-            android:layout_marginBottom="@dimen/eight"
-            android:background="@drawable/round_white"
-            android:textColor="@color/text_black"
-            android:text="@string/yes" />
+            <TextView
+                android:id="@+id/textView174"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                style="@style/EventTitleText"
+                android:text="Going?"
+                android:textAlignment="center"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold"
+                />
+
+            <androidx.cardview.widget.CardView
+                app:cardBackgroundColor="@color/gray_tint"
+                card_view:cardElevation="0dp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    >
+
+                    <Button
+                        android:layout_weight="1"
+                        android:id="@+id/button68"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        android:background="@android:color/transparent"
+                        android:text="@string/no"
+                        android:textColor="@color/text_black"
+                        />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_weight="1"
+                        app:cardCornerRadius="@dimen/_2sdp"
+                        app:cardBackgroundColor="@color/white"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_2sdp"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <Button
+
+                            android:id="@+id/button69"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:backgroundTint="@color/white"
+                            android:background="@color/white"
+                            android:textColor="@color/text_black"
+                            android:text="@string/yes" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/button70"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/thirty_two"
+                android:layout_marginEnd="@dimen/eight"
+                android:layout_marginBottom="@dimen/thirty_two"
+                app:backgroundTint="@color/colorPrimaryDark"
+                android:background="@drawable/round_button_bg"
+                android:textColor="@color/white"
+                android:text="@string/update" />
         </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-        <Button
-            android:layout_weight="1"
-            android:id="@+id/button70"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/eight"
-            android:layout_marginEnd="@dimen/eight"
-            android:layout_marginBottom="@dimen/eight"
-            android:background="@drawable/round_button_bg"
-            android:textColor="@color/text_black"
-            android:text="@string/update" />
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

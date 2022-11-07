@@ -233,7 +233,7 @@ class MyProfileActivity : AppCompatActivity(),KodeinAware, MyProfileEventListene
         lifecycleScope.launch {
             try {
                 val postRes=homeRepositry.getAllPosts(1,200,userId,0,1)
-                if (!postRes.status){
+                if (postRes.status){
 //                    BASE_IMAGE =postRes.image
 //                    postList = postRes.data
                     postList = arrayListOf<PostData>()
@@ -270,7 +270,7 @@ class MyProfileActivity : AppCompatActivity(),KodeinAware, MyProfileEventListene
         lifecycleScope.launch {
             try {
                 val res=homeRepositry.getOwnEvents(userId)
-                if (!res.status){
+                if (res.status){
 //                    BASE_IMAGE=res.image
 //                    val evedata= res.data
                     val evedata = arrayListOf<EventsRecord>()
@@ -307,7 +307,7 @@ class MyProfileActivity : AppCompatActivity(),KodeinAware, MyProfileEventListene
         lifecycleScope.launch {
             try {
                 val res=homeRepositry.getOwnEvents(userId)
-                if (!res.status){
+                if (res.status){
 //                    BASE_IMAGE=res.image
 //                    val evedata= res.data
                     val poddata = arrayListOf<PodDatas>()

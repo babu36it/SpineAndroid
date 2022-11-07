@@ -15,6 +15,7 @@
     <color name="deactivated_color">#CFD0CF</color>
     <color name="color_red">#E42E11</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="off_white">#f3f3f3</color>
     <color name="overlay_color_primary">#E9D7C5B9</color>
     <color name="dark_gray_day_night">#6D6D6D</color>
     <color name="green">#008000</color>

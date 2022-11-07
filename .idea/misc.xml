@@ -3,63 +3,104 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/drawable/boarder_round_btn_bg.xml" value="0.206" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/drawable/ic_add_new.xml" value="0.206" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/drawable/ic_close.xml" value="0.206" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.14" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/drawable/ic_minus.xml" value="0.206" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/drawable/round_border.xml" value="0.206" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_account_settings.xml" value="0.25" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_add_podcast.xml" value="0.2" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_add_rss.xml" value="0.21" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_change_email.xml" value="0.16576086956521738" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_currency.xml" value="0.16576086956521738" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_deactivate.xml" value="0.25" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_edit_profile.xml" value="0.16576086956521738" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_enter_code.xml" value="0.22" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_help.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_home.xml" value="0.10597826086956522" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_messaging.xml" value="0.16576086956521738" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_post_media.xml" value="0.10597826086956522" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_privacy_setting.xml" value="0.16576086956521738" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_review_podcast.xml" value="0.25" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_save_event_to_cal.xml" value="0.10597826086956522" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_settings.xml" value="0.16576086956521738" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_thanks_pod.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_user_podcast.xml" value="0.10597826086956522" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/email_changed_dialog.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/eve_cat_item.xml" value="0.10597826086956522" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/for_you_content_item.xml" value="0.16576086956521738" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/fragment_activities.xml" value="0.17889492753623187" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/fragment_email_notification.xml" value="0.16576086956521738" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/fragment_event.xml" value="0.17889492753623187" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/fragment_listen_podcasts.xml" value="0.17889492753623187" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/fragment_mobile_notification.xml" value="0.10597826086956522" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/fragment_podcasts.xml" value="0.10597826086956522" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/fragment_spine.xml" value="0.10597826086956522" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/fragment_spine_for_you.xml" value="0.16576086956521738" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/listen_pod_item.xml" value="0.21" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/pod_subcat_list.xml" value="0.17889492753623187" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/rss_episode_item.xml" value="0.25" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/search_text_item.xml" value="0.10597826086956522" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/txt_dropdown_item.xml" value="0.17889492753623187" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/menu/bottom_menu.xml" value="0.20416666666666666" />
-        <entry key="..\:/e drive/Freelancing/SpineAndroid/app/src/main/res/layout/activity_account_settings.xml" value="0.20416666666666666" />
-        <entry key="..\:/e drive/Freelancing/SpineAndroid/app/src/main/res/layout/activity_add_podcast.xml" value="0.21" />
-        <entry key="..\:/e drive/Freelancing/SpineAndroid/app/src/main/res/layout/activity_add_rss.xml" value="0.13958333333333334" />
-        <entry key="..\:/e drive/Freelancing/SpineAndroid/app/src/main/res/layout/activity_add_story.xml" value="0.22" />
-        <entry key="..\:/e drive/Freelancing/SpineAndroid/app/src/main/res/layout/activity_change_email.xml" value="0.20416666666666666" />
-        <entry key="..\:/e drive/Freelancing/SpineAndroid/app/src/main/res/layout/activity_edit_profile.xml" value="0.16576086956521738" />
-        <entry key="..\:/e drive/Freelancing/SpineAndroid/app/src/main/res/layout/activity_hashtag.xml" value="0.25" />
-        <entry key="..\:/e drive/Freelancing/SpineAndroid/app/src/main/res/layout/activity_post_media.xml" value="0.22134387351778656" />
-        <entry key="..\:/e drive/Freelancing/SpineAndroid/app/src/main/res/layout/activity_post_thought.xml" value="0.16576086956521738" />
-        <entry key="..\:/e drive/Freelancing/SpineAndroid/app/src/main/res/layout/activity_review_post.xml" value="0.18" />
-        <entry key="..\:/e drive/Freelancing/SpineAndroid/app/src/main/res/layout/activity_settings.xml" value="0.16576086956521738" />
-        <entry key="..\:/e drive/Freelancing/SpineAndroid/app/src/main/res/layout/thought_options_item.xml" value="0.33" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable-night/ic_email_message.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable-night/ic_setting.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable-xxhdpi/ic_minusprimary.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/ads_rectangle.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/bg_pin_grey.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/boarder_round_btn_bg.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/button_round_corners.xml" value="0.1" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/circle.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/circle_fill.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/dark_button.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/ic_add_new.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/ic_check.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/ic_email_message.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/ic_location_white_foreground.xml" value="0.104" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/ic_new_event.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/ic_new_location.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/ic_new_mic.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/ic_search.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/ic_send.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/ic_setting.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/ic_share.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/off_white_button_bg.xml" value="0.1255" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/round_button_bg.xml" value="0.1265" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/search.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/shadow_box.xml" value="0.104" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/single_line_background.xml" value="0.104" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/spinner_background.xml" value="0.104" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/swithc_bg.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/top_two_round_back.xml" value="0.1535" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_account_settings.xml" value="0.264" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_add_about_event.xml" value="0.264" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_add_event.xml" value="0.23606331727460428" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_add_event_success.xml" value="0.2" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_add_or_dup_event.xml" value="0.1234375" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_add_post.xml" value="0.13055555555555556" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_currency.xml" value="0.13055555555555556" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_edit_profile.xml" value="0.337037037037037" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_event_detail.xml" value="0.264" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_follow.xml" value="0.23229166666666667" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_home.xml" value="0.152" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_login.xml" value="0.13055555555555556" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_mapview_events.xml" value="0.20208333333333334" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_messages.xml" value="0.23229166666666667" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_my_profile.xml" value="0.23229166666666667" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_preview_event.xml" value="0.264" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_settings.xml" value="0.6" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/adp_inprogress.xml" value="0.2" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/bottom_eventtype_picker.xml" value="0.264" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/change_reservation_layout.xml" value="0.536" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/dup_event_list_item.xml" value="0.264" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/eve_cat_selection.xml" value="0.1" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/eve_msg_dialog.xml" value="0.23229166666666667" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/event_comment_data_item.xml" value="0.4" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/event_request_user_item.xml" value="0.264" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/evnet_init_layout.xml" value="0.1554054054054054" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/followers_item.xml" value="0.3263888888888889" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/fragment_bookmark.xml" value="0.1" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/fragment_eve_request.xml" value="0.1" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/fragment_event.xml" value="0.2" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/fragment_events.xml" value="0.1" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/fragment_events_list.xml" value="0.1" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/fragment_feed_back.xml" value="0.1" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/fragment_followers.xml" value="0.1" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/fragment_following.xml" value="0.1" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/fragment_msg.xml" value="0.23229166666666667" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/fragment_podcast.xml" value="0.13055555555555556" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/fragment_posts.xml" value="0.264" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/going_user_item.xml" value="0.10092592592592593" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/iteam_event_type.xml" value="0.2" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/item_currency.xml" value="0.13055555555555556" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/item_spinner.xml" value="0.1" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/join_layout.xml" value="0.264" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/join_online_event.xml" value="0.21666666666666667" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/listen_pod_item.xml" value="0.10092592592592593" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/marker_view.xml" value="0.4" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/msg_user_item.xml" value="0.23229166666666667" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/new_list_pod_item.xml" value="0.23229166666666667" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/online_you_are_going.xml" value="0.21666666666666667" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/own_event_item.xml" value="0.4" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/own_post_item.xml" value="0.13055555555555556" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/pod_subcat_list.xml" value="0.16799999999999998" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/post_image_item.xml" value="0.23229166666666667" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/preview_img_item.xml" value="0.10092592592592593" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/rv_event_content_item.xml" value="0.264" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/rv_event_list_item.xml" value="0.2" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/saved_pod_item.xml" value="0.1" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/slider_img_item.xml" value="0.10092592592592593" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/tab_badge.xml" value="0.264" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/menu/bottom_menu.xml" value="0.1" />
+        <entry key="..\:/H/SpineAndroid/uikit-kotlin/src/main/res/drawable/search_box_shimmer.xml" value="0.1595" />
+        <entry key="..\:/H/SpineAndroid/uikit-kotlin/src/main/res/layout/activity_cometchat_unified.xml" value="0.23229166666666667" />
+        <entry key="..\:/H/SpineAndroid/uikit-kotlin/src/main/res/layout/fragment_user_list_screen.xml" value="0.23229166666666667" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

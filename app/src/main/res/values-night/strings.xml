@@ -30,7 +30,7 @@
     <string name="podcast_category">Podcast Category</string>
     <string name="enter_description">Enter Description</string>
     <string name="where_book_events">Where to book the event</string>
-    <string name="requires_meeting_in_physical_location">Requires max 24h meeting in a physical location</string>
+    <string name="requires_meeting_in_physical_location">Requires meeting in a physical location</string>
     <string name="virtual_event_livestream_experiences_on_the_web_zoom_youtube_etc">Virtual event/livestream experiences on the web (Zoom,Youtube etc)</string>
     <string name="retreat">Retreat</string>
     <string name="spiritual_gateways_for_2_days_spiritual_vacation">Spiritual gateways for 2+ days, spiritual vacation</string>

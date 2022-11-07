@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/constraintLayout4"
         android:layout_width="350dp"
-        android:layout_height="@dimen/_230sdp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/sixteen"
         android:layout_marginEnd="@dimen/sixteen"
         android:padding="@dimen/sixteen"
@@ -31,56 +31,86 @@
                 android:id="@+id/textView128"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_45sdp"
                 android:text="Vivek vsking"
+                style="@style/OnlyText"
                 android:textColor="@color/text_black"
-                android:textSize="@dimen/normalText"
+                android:textSize="@dimen/_16sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName17"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_100"
-                android:layout_marginStart="@dimen/eight"
-                android:layout_marginTop="@dimen/sixteen"
-                android:layout_marginEnd="@dimen/eight"
-                android:layout_marginBottom="@dimen/sixteen"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp"
                 android:background="@drawable/shadow_box"
+                android:elevation="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginHorizontal="@dimen/_15sdp"
                 android:ems="10"
                 android:gravity="start"
                 android:hint="@string/type_a_message"
-                android:inputType="textPersonName|textMultiLine"
-                android:padding="@dimen/eight"
                 android:textSize="@dimen/normalText"
-                app:layout_constraintBottom_toTopOf="@+id/button48"
+                android:inputType="textPersonName|textMultiLine"
+                android:paddingHorizontal="@dimen/sixteen"
+                android:paddingVertical="@dimen/twelve"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView128" />
+                app:layout_constraintTop_toBottomOf="@+id/textView128"
+                />
+
+<!--            <EditText-->
+<!--                android:id="@+id/editTextTextPersonName17"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="@dimen/_100"-->
+<!--                android:layout_marginStart="@dimen/eight"-->
+<!--                android:layout_marginTop="@dimen/sixteen"-->
+<!--                android:layout_marginEnd="@dimen/eight"-->
+<!--                android:layout_marginBottom="@dimen/sixteen"-->
+<!--                android:background="@drawable/shadow_box"-->
+<!--                android:ems="10"-->
+<!--                android:gravity="start"-->
+<!--                android:hint="@string/type_a_message"-->
+<!--                android:inputType="textPersonName|textMultiLine"-->
+<!--                android:padding="@dimen/eight"-->
+<!--                android:textSize="@dimen/normalText"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/button48"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView128" />-->
 
             <Button
                 android:id="@+id/button48"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/eight"
-                android:layout_marginBottom="@dimen/eight"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/thirty_two"
+                android:layout_marginBottom="@dimen/_16sdp"
+
                 android:background="@drawable/round_button_bg"
+                android:paddingHorizontal="@dimen/_20sdp"
                 android:text="@string/cancel"
                 android:textSize="@dimen/normalText"
+                app:backgroundTint="@color/colorPrimaryDark"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName17"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName17" />
 
             <Button
                 android:id="@+id/button49"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/eight"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/thirty_two"
+                android:layout_marginBottom="@dimen/_16sdp"
                 android:background="@drawable/round_button_bg"
+                android:paddingHorizontal="@dimen/_25sdp"
                 android:text="@string/send"
                 android:textSize="@dimen/normalText"
-                app:layout_constraintBottom_toBottomOf="@+id/button48"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:backgroundTint="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName17"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName17" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -92,7 +122,7 @@
         android:elevation="@dimen/eight"
         android:src="@drawable/ic_profile"
         app:civ_border_color="@color/white"
-        app:civ_border_width="2dp"
+        app:civ_border_width="4dp"
         app:civ_circle_background_color="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
         app:layout_constraintEnd_toEndOf="@+id/constraintLayout4"

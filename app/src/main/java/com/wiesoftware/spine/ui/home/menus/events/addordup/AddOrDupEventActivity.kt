@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.wiesoftware.spine.R
+import com.wiesoftware.spine.data.net.reponses.EventTypeData
 import com.wiesoftware.spine.data.net.reponses.EventsRecord
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityAddOrDupEventBinding
@@ -29,13 +30,13 @@ import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 
 class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventListener,
-    DupEventAdapter.DupEveEventListener {
+    DupEventAdapter.DupEveEventListener,EventTypeAdapter.EventCliclListener {
 
     override val kodein by kodein()
     val homeRepositry: HomeRepositry by instance()
     lateinit var binding: ActivityAddOrDupEventBinding
     lateinit var userId: String
-
+    lateinit var data : MutableList<EventTypeData>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_or_dup_event)
@@ -44,7 +45,9 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
         viewModel.addOrDupEventListener = this
         homeRepositry.getUser().observe(this, Observer { user ->
             userId = user.users_id!!
+            getEventType()
             getOwnEvents()
+
         })
     }
 
@@ -78,10 +81,28 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
         }
     }
 
+    private fun getEventType() {
+        lifecycleScope.launch {
+            try {
+                val res = homeRepositry.getEventType()
+                if (res.status) {
+                     data = res.data
+
+                }
+            } catch (e: ApiException) {
+                e.printStackTrace()
+            } catch (e: NoInternetException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
     override fun addNewEvent() {
         showEventPicker()
 
     }
+
+
 
     override fun onDupEventClick(eveRecord: EventsRecord) {
         val intent = Intent(this, AddEventActivity::class.java)
@@ -114,26 +135,38 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
             it.setBackgroundDrawableResource(android.R.color.transparent)
             dialog.setCancelable(true)
         }
-        view.rl_local.setOnClickListener {
 
-            goonAddEventsActivity("0")
-            dialog.dismiss()
+        view.rv_eventtype.also {
+            it.layoutManager =
+                LinearLayoutManager(
+                    this@AddOrDupEventActivity,
+                    RecyclerView.VERTICAL,
+                    false
+                )
+            it.setHasFixedSize(true)
+            it.adapter = EventTypeAdapter(data,this@AddOrDupEventActivity)
         }
 
-        view.rl_online.setOnClickListener {
-            goonAddEventsActivity("1")
-            dialog.dismiss()
-        }
-
-        view.rl_retreat.setOnClickListener {
-            goonAddEventsActivity("2")
-            dialog.dismiss()
-        }
-
-        view.rl_metaverse.setOnClickListener {
-            goonAddEventsActivity("3")
-            dialog.dismiss()
-        }
+//        view.rl_local.setOnClickListener {
+//
+//            goonAddEventsActivity("0")
+//            dialog.dismiss()
+//        }
+//
+//        view.rl_online.setOnClickListener {
+//            goonAddEventsActivity("1")
+//            dialog.dismiss()
+//        }
+//
+//        view.rl_retreat.setOnClickListener {
+//            goonAddEventsActivity("2")
+//            dialog.dismiss()
+//        }
+//
+//        view.rl_metaverse.setOnClickListener {
+//            goonAddEventsActivity("3")
+//            dialog.dismiss()
+//        }
 
         dialog.show()
     }
@@ -143,6 +176,10 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
     }
 
     fun goonAddEventsActivity(valueEvent: String) {
+
+    }
+
+    override fun onEventClick(valueEvent: String) {
         startActivity(Intent(this, AddEventActivity::class.java).putExtra("event_type", valueEvent))
     }
 }

@@ -96,6 +96,8 @@ class LoginActivity : AppCompatActivity(), LoginEventListener, KodeinAware {
     override fun onLoginSuccess(isVerified: Boolean, token: String, tokenType: String) {
         isFromLoginAPI = isVerified
         Prefs.putAny("AuthToken", token)
+
+        getToken()?.let { Log.e("Harsh", it) }
         viewModel.getUserDetails()
     }
 

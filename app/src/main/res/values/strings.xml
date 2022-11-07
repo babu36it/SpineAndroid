@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="facebook_app_id">792925301515255</string>
     <string name="fb_login_protocol_scheme">fb792925301515255</string>
     <string name="app_name">Spine</string>
@@ -84,7 +84,7 @@
     <string name="add_image_s_or_video_s">Add image(s) or video(s)</string>
     <string name="add_title">Give your story a meaning</string>
     <string name="want_to_give_your_story_a_title_or_motto">Want to give your story a title or motto?</string>
-    <string name="allow_comments">Allow comments</string>
+    <string name="allow_comments">Allow comments<font color='#000'>*</font></string>
     <string name="add">Add</string>
     <string name="delete_story_after_24_hours">Delete story after 24 hours</string>
     <string name="preview">Preview</string>
@@ -105,7 +105,7 @@
     <string name="create_a_post">+ Create a post</string>
     <string name="filter">FILTER</string>
     <string name="what_can_we_help_you_find">What can we help you find?</string>
-    <string name="location">Location</string>
+    <string name="location">Location<font color='#000'>*</font></string>
     <string name="dates">Dates</string>
     <string name="add_dates">Add dates</string>
     <string name="all_event_categories">All event categories</string>
@@ -122,23 +122,26 @@
     <string name="enter_up_to_5_hastags_e_g_lorem_lorem">Enter up to 5 hastags, e.g. #lorem #lorem</string>
     <string name="review_post">REVIEW POST</string>
     <string name="add_a_short_bio">Add a short bio</string>
-    <string name="new_event">NEW EVENT</string>
+    <string name="new_event">NEW EVENT ( MAX 24H )</string>
     <string name="add_photo">Add photo(s)</string>
+    <string name="event_title_mandatory" tools:ignore="MissingTranslation">Event Title<font color='#000'>*</font></string>
     <string name="event_title">Event Title</string>
     <string name="event_type">Event Type</string>
-    <string name="start">Start</string>
-    <string name="end">End</string>
+    <string name="start">Start<font color='#000'>*</font></string>
+    <string name="end">End<font color='#000'>*</font></string>
     <string name="end_date">End date</string>
     <string name="start_time">Start time</string>
     <string name="end_time">End time</string>
-    <string name="timezone">Timezone</string>
+    <string name="timezone">Timezone<font color='#000'>*</font></string>
     <string name="add_link_to_event">Add link to event website</string>
-    <string name="e_g_http_facebook">e.gpromote_your_ad_optional. http://facebook…</string>
+    <string name="add_link_to_join_online" translatable="false">Add link to join online event</string>
+    <string name="e_g_http_facebook">e.g http://facebook…</string>
+    <string name="e_g_http_zoom" tools:ignore="DuplicateDefinition">e.g http://zoom…</string>
     <string name="e_g_http_www">e.g. http://www…</string>
     <string name="about_the_event">About the event*</string>
     <string name="about_the_events">ABOUT THE EVENT</string>
     <string name="who_should_join_and_why_what_will_you_do_at_your_event_minimum_50_characters">Who should join, and why? What will you do at your event? (minimum 50 characters)</string>
-    <string name="event_categories">Event category* / multiple choise</string>
+    <string name="event_categories">Event category*</string>
     <string name="add_categories">Add categories</string>
     <string name="fee">Fee</string>
     <string name="max_number_of_attendees">Max. number of attendees</string>
@@ -147,7 +150,12 @@
     <string name="select_event_type">Select event type</string>
     <string name="local_event">Local event</string>
     <string name="online_event">Online event</string>
-    <string name="want_to_accept_participants">Want to accept participants?</string>
+    <string name="want_to_accept_participants">Want to accept participants?<font color='#000'>*</font></string>
+    <string name="want_to_accept_participants_subtext" translatable="false">(Your event link will then only be shared with
+    people you accepted)</string>
+    <string name="promote_post_text" translatable="false"><u>Would you like to promote your post, click here</u></string>
+
+
     <string name="link_visible_for_attendees">Link visible for attendees</string>
     <string name="hosted_in">Hosted in</string>
     <string name="host">Host</string>
@@ -450,9 +458,10 @@
     <string name="enter_description">Enter Description</string>
     <string name="save_amp_exit" translatable="false"><![CDATA[Save & Exit]]></string>
     <string name="where_book_events">Where to book the event</string>
-    <string name="requires_meeting_in_physical_location">Requires max 24h meeting in a physical location</string>
+    <string name="requires_meeting_in_physical_location">Requires meeting in a physical location</string>
     <string name="virtual_event_livestream_experiences_on_the_web_zoom_youtube_etc">Virtual event/livestream experiences on the web (Zoom,Youtube etc)</string>
     <string name="retreat">Retreat</string>
+    <string name="retreat_event" translatable="false">Retreat Event</string>
     <string name="discard">Discard</string>
     <string name="save_change">Want to save your changes?</string>
     <string name="save_details">You will lose your changes if you coninue without saving them.</string>
@@ -468,6 +477,7 @@
     <string name="discover">Discover</string>
 
     <string name="metaverse_sessions">Metaverse Sessions</string>
+    <string name="metaverse_event" translatable="false">Metaverse Event</string>
     <string name="metaverse_sessions_details">Coachings, Lessons, Readings and Speaches that take place in the Metaverse</string>
     <string name="str_name">Name</string>
     <string name="str_enter">Enter</string>

@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -14,13 +15,17 @@ import android.widget.FrameLayout
 import androidx.annotation.Nullable
 import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import androidx.viewpager.widget.ViewPager
+import com.bumptech.glide.Glide
 import com.google.android.gms.location.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
@@ -39,6 +44,7 @@ import com.wiesoftware.spine.ui.home.menus.spine.addposts.postthought.PostThough
 import com.wiesoftware.spine.ui.home.menus.spine.featuredpost.FeaturedPostActivity
 import com.wiesoftware.spine.util.*
 import kotlinx.android.synthetic.main.add_post_bottomheet.*
+import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
@@ -113,6 +119,11 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
             setupViewPager(binding.viewPager)
             binding.tabLayout.setupWithViewPager(binding.viewPager)
         })
+
+
+
+        setintImages()
+
 
 
         binding.searchSpine?.setOnQueryTextFocusChangeListener { v, hasFocus ->
@@ -196,6 +207,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
         adapter.addFragment(EventFragmentOnLineList.newInstance("ONLINE", user_id)!!, "ONLINE")
         adapter.addFragment(EventFragmentNearByList.newInstance("NEARBY", user_id)!!, "NEARBY")
         adapter.addFragment(EventFragmentPastList.newInstance("PAST", user_id)!!, "PAST")
+        adapter.addFragment(EventFragmentMetaList.newInstance("META", user_id)!!, "METAVERSE")
 
         // setting adapter to view pager.
         viewpager.adapter = adapter
@@ -221,6 +233,60 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
 
         currentFragment = adapter.fragmentList1.get(0)
     }
+
+
+    fun setintImages() {
+
+
+
+        binding.viewPager.visibility = View.GONE
+        binding.initLayout.initLiner.visibility = View.VISIBLE
+
+        binding.initLayout.initLiner.setOnClickListener {
+
+            binding.viewPager.visibility = View.VISIBLE
+            binding.initLayout.initLiner.visibility = View.GONE
+        }
+
+
+
+        lifecycleScope.launch {
+            try {
+                val res = homeRepositry.getEventType()
+                if (res.status) {
+                  var  data = res.data
+
+                    val circularProgressDrawable = CircularProgressDrawable(requireContext())
+                    circularProgressDrawable.strokeWidth = 5f
+                    circularProgressDrawable.centerRadius = 30f
+                    circularProgressDrawable.start()
+                    Glide.with(requireContext())
+                        .load("https://thespiritualnetwork.com/assets/upload/spine-types/"+data[0].typeimage)
+                        .placeholder(circularProgressDrawable)
+                        .error( ColorDrawable(ContextCompat.getColor(requireContext(), R.color.light_gry)))
+                        .into(binding.initLayout.previewLocal);
+
+                    Glide.with(requireContext())
+                        .load("https://thespiritualnetwork.com/assets/upload/spine-types/"+data[1].typeimage)
+                        .placeholder(circularProgressDrawable)
+                        .error( ColorDrawable(ContextCompat.getColor(requireContext(), R.color.light_gry)))
+                        .into(binding.initLayout.previewRetraint);
+
+                    Glide.with(requireContext())
+                        .load("https://thespiritualnetwork.com/assets/upload/spine-types/"+data[2].typeimage)
+                        .placeholder(circularProgressDrawable)
+                        .error( ColorDrawable(ContextCompat.getColor(requireContext(), R.color.light_gry)))
+                        .into(binding.initLayout.previewMeta);
+
+                }
+            } catch (e: ApiException) {
+                e.printStackTrace()
+            } catch (e: NoInternetException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
 
 //    listOf("ALL", "GOING", "SAVED", "FOLLOWING", "ONLINE", "NEARBY", "PAST")
 

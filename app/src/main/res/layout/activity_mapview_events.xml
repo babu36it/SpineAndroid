@@ -26,33 +26,93 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:onClick="@{viewmodel.onBack}"
-        android:id="@+id/imageButton30"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:padding="@dimen/eight"
-        android:layout_marginStart="@dimen/eight"
-        android:src="@drawable/ic_close"
-        android:tint="@color/text_black"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardView" />
+    <LinearLayout
+        android:id="@+id/toplayout"
+        android:weightSum="4"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <ImageButton
-        android:onClick="@{viewmodel.onFilter}"
-        android:id="@+id/imageButton31"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/eight"
-        android:src="@drawable/ic_tune"
-        android:background="@android:color/transparent"
-        android:padding="@dimen/eight"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardView"
-         />
+        <ImageButton
+            android:layout_weight="1"
+            android:id="@+id/imageButton30"
+            android:layout_width="@dimen/thirty_two"
+            android:layout_height="@dimen/thirty_two"
+            android:layout_marginStart="@dimen/sixteen"
+            android:background="@android:color/transparent"
+            android:onClick="@{viewmodel.onBack}"
+            android:src="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cardView" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_weight="2"
+            android:id="@+id/cardView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/twelve"
+            android:layout_marginEnd="@dimen/twelve"
+            android:layout_marginBottom="@dimen/eight"
+            android:layout_marginTop="@dimen/eight"
+            app:cardCornerRadius="@dimen/eight"
+            app:cardElevation="@dimen/eight"
+            >
+
+            <androidx.appcompat.widget.SearchView
+                app:theme="@style/AppSearchView"
+                android:id="@+id/searchSpine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:defaultQueryHint="@string/search_events"
+                app:iconifiedByDefault="false"
+                app:queryBackground="@android:color/transparent"
+                app:queryHint="@string/search_event" />
+        </androidx.cardview.widget.CardView>
+
+        <ImageButton
+            android:layout_weight="1"
+            android:id="@+id/imageButton31"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="@dimen/sixteen"
+            android:background="@android:color/transparent"
+            android:onClick="@{viewmodel.onFilter}"
+            android:tint="@color/text_black"
+            android:src="@drawable/ic_tune"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cardView" />
+    </LinearLayout>
+
+<!--    <ImageButton-->
+<!--        android:onClick="@{viewmodel.onBack}"-->
+<!--        android:id="@+id/imageButton30"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:padding="@dimen/eight"-->
+<!--        android:layout_marginStart="@dimen/eight"-->
+<!--        android:src="@drawable/ic_close"-->
+<!--        android:tint="@color/text_black"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/cardView"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/cardView" />-->
+
+<!--    <ImageButton-->
+<!--        android:onClick="@{viewmodel.onFilter}"-->
+<!--        android:id="@+id/imageButton31"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="@dimen/eight"-->
+<!--        android:src="@drawable/ic_tune"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:padding="@dimen/eight"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/cardView"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/cardView"-->
+<!--         />-->
 
 
 
@@ -73,13 +133,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/eight"
-        android:layout_marginTop="@dimen/sixteen"
+        android:layout_marginTop="@dimen/eight"
         android:layout_marginEnd="@dimen/eight"
         app:cardElevation="@dimen/eight"
         app:cardCornerRadius="@dimen/eight"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton31"
-        app:layout_constraintStart_toEndOf="@+id/imageButton30"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toplayout"
         >
         <fragment
             android:id="@+id/autocomplete_fragment"
@@ -88,28 +148,28 @@
             android:layout_height="wrap_content"
             />
     </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="0dp"
-        android:visibility="invisible"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/eight"
-        android:layout_marginTop="@dimen/sixteen"
-        android:layout_marginEnd="@dimen/eight"
-        app:cardElevation="@dimen/eight"
-        app:cardCornerRadius="@dimen/eight"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton31"
-        app:layout_constraintStart_toEndOf="@+id/imageButton30"
-        app:layout_constraintTop_toTopOf="parent">
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/cardView"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:visibility="invisible"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="@dimen/eight"-->
+<!--        android:layout_marginTop="@dimen/sixteen"-->
+<!--        android:layout_marginEnd="@dimen/eight"-->
+<!--        app:cardElevation="@dimen/eight"-->
+<!--        app:cardCornerRadius="@dimen/eight"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/imageButton31"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/imageButton30"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchSpine"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:defaultQueryHint="@string/search_event"
-            app:iconifiedByDefault="false"
-            app:queryBackground="@android:color/transparent"
-            app:queryHint="@string/search_event" />
-    </androidx.cardview.widget.CardView>
+<!--        <androidx.appcompat.widget.SearchView-->
+<!--            android:id="@+id/searchSpine"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            app:defaultQueryHint="@string/search_event"-->
+<!--            app:iconifiedByDefault="false"-->
+<!--            app:queryBackground="@android:color/transparent"-->
+<!--            app:queryHint="@string/search_event" />-->
+<!--    </androidx.cardview.widget.CardView>-->
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

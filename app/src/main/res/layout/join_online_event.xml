@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="@dimen/_350"
     android:layout_height="match_parent"
     android:background="@android:color/transparent">
 
@@ -19,74 +19,93 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="@dimen/_10sdp"
         android:layout_marginStart="@dimen/sixteen"
         android:layout_marginTop="@dimen/eight"
         android:layout_marginEnd="@dimen/sixteen"
-        android:background="@drawable/shadow_box"
-        android:orientation="vertical"
-        android:padding="@dimen/sixteen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageButton32">
+        app:layout_constraintTop_toBottomOf="@id/imageButton32"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textView174"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_bold"
-            android:text="@string/i_d_like_to_join"
-            android:textAlignment="center"
-            android:textColor="@color/text_black"
-            android:textSize="@dimen/big_text" />
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_15sdp"
+            android:paddingVertical="@dimen/_20sdp"
+            >
 
-        <TextView
-            android:id="@+id/tvEventTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/eight"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Yoga Weekend Retreat -
+            <TextView
+                android:id="@+id/textView174"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                style="@style/OnlyText"
+                android:text="@string/i_d_like_to_join"
+                android:textAlignment="center"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold"  />
+
+            <TextView
+                android:id="@+id/tvEventTitle"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                style="@style/OnlyText"
+                android:layout_gravity="center"
+                android:text="Yoga Weekend Retreat -
 Reclaiming Your Center"
-            android:textAlignment="center"
-            android:textColor="@color/darkback"
-            android:textSize="@dimen/normalText" />
+                android:textAlignment="center"
+                android:textColor="@color/darkback"
+                android:textSize="@dimen/normalText"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView176"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/eight"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Sat, 09 May 2020, 18:00"
-            android:textAlignment="center"
-            android:textColor="@color/darkback"
-            android:textSize="@dimen/normalText" />
+            <TextView
+                android:id="@+id/textView176"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/eight"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Sat, 09 May 2020, 18:00"
+                android:textAlignment="center"
+                android:textColor="@color/darkback"
+                android:textSize="@dimen/normalText" />
 
-        <TextView
-            android:id="@+id/textView177"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_32dp"
-            android:fontFamily="@font/poppins_regular"
-            android:text="@string/once_the_host_accepts_your_request_the_link_to_the_event_is_shared_with_you"
-            android:textAlignment="center"
-            android:textColor="@color/darkback"
-            android:textSize="@dimen/normalText" />
+            <TextView
+                android:id="@+id/textView177"
+                android:layout_width="@dimen/_190sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/once_the_host_accepts_your_request_the_link_to_the_event_is_shared_with_you"
+                android:textAlignment="center"
+                android:textColor="@color/darkback"
+                android:textSize="@dimen/normalText" />
 
 
-        <Button
-            android:id="@+id/button68"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/eight"
-            android:layout_marginBottom="@dimen/eight"
-            android:background="@drawable/round_button_bg"
-            android:text="Send request to host" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/button68"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                app:backgroundTint="@color/colorPrimaryDark"
+                android:background="@drawable/round_button_bg"
+                android:text="Send request to host" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

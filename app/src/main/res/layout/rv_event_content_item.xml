@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:paddingHorizontal="@dimen/eight"
             android:background="@color/text_white">
 
 
@@ -35,8 +36,8 @@
                     android:layout_height="@dimen/_50sdp"
                     android:layout_marginStart="@dimen/_4sdp"
                     android:layout_marginTop="@dimen/_4sdp"
-                    android:src="@drawable/demo"
-                    app:img="@{model.hostedProfilePic}"/>
+
+                   />
 
                 <TextView
                     android:id="@+id/textView35"
@@ -51,14 +52,14 @@
 
             </LinearLayout>
 
-
-
             <View
                 android:id="@+id/view5"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@color/gray_tint"
                 android:visibility="visible"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintTop_toBottomOf="@+id/textView40"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
@@ -75,11 +76,12 @@
                 android:layout_marginStart="@dimen/sixteen"
                 android:layout_marginTop="@dimen/eight"
                 android:layout_marginEnd="@dimen/eight"
-                android:fontFamily="@font/poppins_bold"
+                style="@style/AddEventTitleText"
+                android:textStyle="bold"
+               android:padding="@dimen/_1sdp"
                 android:maxLines="1"
-                android:text="@{model.type.equals(`1`) ? `ONLINE EVENT`: `LOCAL EVENT`}"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp"
                 app:layout_constraintEnd_toStartOf="@+id/imageButton8"
                 app:layout_constraintStart_toEndOf="@+id/llProfilePic"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -111,9 +113,9 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:fontFamily="@font/poppins_regular"
-                android:text="@{model.title}"
+                style="@style/OnlyText"
                 android:maxLines="2"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="@dimen/_11sdp"
                 android:textColor="@color/text_black"
                 app:layout_constraintEnd_toEndOf="@+id/textView36"
                 app:layout_constraintStart_toStartOf="@+id/textView36"
@@ -126,7 +128,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="@{model.location}"
                 android:maxLines="2"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="@dimen/_11sdp"
                 android:ellipsize="end"
                 app:layout_constraintEnd_toEndOf="@+id/textView37"
                 app:layout_constraintStart_toStartOf="@+id/textView37"
@@ -138,8 +140,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/eight"
                 android:fontFamily="@font/poppins_semi_bold"
-                android:text=""
-                android:textSize="@dimen/_10sdp"
+                style="@style/OnlyText"
+                android:textSize="@dimen/_11sdp"
                 android:textColor="@color/text_black"
                 app:layout_constraintEnd_toStartOf="@+id/textView40"
                 app:layout_constraintStart_toStartOf="@+id/textView38"
@@ -152,20 +154,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/eight"
                 android:fontFamily="@font/poppins_semi_bold"
+                style="@style/OnlyText"
                 android:text=""
-                android:textSize="@dimen/_10sdp"
+                android:textSize="@dimen/_11sdp"
+                android:textAlignment="textStart"
                 android:textColor="@color/text_black"
                 app:layout_constraintEnd_toStartOf="@+id/textView40"
-                app:layout_constraintStart_toStartOf="@+id/textView39"
-                app:layout_constraintTop_toBottomOf="@+id/textView39" />
+                app:layout_constraintStart_toStartOf="@+id/textView38"
+                app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
             <TextView
                 android:id="@+id/textView40"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/eight"
-                android:text="@{ (model.fee.equals(`0`)? `FREE` :(model.symbol ?? `$`) +model.fee) }"
+                style="@style/OnlyText"
+                android:text="@{ (model.fee == 0? `FREE` :(model.symbol ?? `$`) +model.fee) }"
                 android:textColor="@color/text_black"
+                android:textStyle="bold"
                 android:textSize="@dimen/_11sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView39" />

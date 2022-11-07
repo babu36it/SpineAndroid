@@ -52,7 +52,7 @@ class AddEventViewmodel(val homeRepositry: HomeRepositry):ViewModel() {
         addEventsListener?.onDelete()
     }
     fun onPreview(view: View){
-        addEventsListener?.onPreview(title,about,timeZone,location,link,fee,attendees,bookeventurl)
+        addEventsListener?.onPreview(title,about,location,link,fee,attendees,bookeventurl)
     }
     fun onStartDate(view: View){
         addEventsListener?.onStartDate()
