@@ -130,7 +130,7 @@ class MyProfileActivity : AppCompatActivity(),KodeinAware, MyProfileEventListene
     private fun getUserDetails() {
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.getUserDetails(userId)
+                val res=homeRepositry.getUserDetails()
                 if (res.status){
                     val img=res.image
                     val profileData=res.data

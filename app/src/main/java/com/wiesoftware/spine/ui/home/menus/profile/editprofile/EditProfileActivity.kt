@@ -310,7 +310,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
     private fun setUserDetails() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getUserDetails(user_id)
+                val res = homeRepositry.getUserDetails()
                 if (res.status) {
                     BASE_IMAGE = res.image
                     val data = res.data

@@ -56,17 +56,20 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
         val emailUpdateStatus = Prefs.getString(EmailNotificationFragment.emailUpdateStatus, "Off")
         if (emailUpdateStatus.equals("On")) {
             binding.switch13.isChecked = true
+            getAllNotifications()
+        } else {
+            offAllNotifications()
+
         }
 
         val eventAttachStatus = Prefs.getString(EmailNotificationFragment.eventAttachStatus, "Off")
         if (eventAttachStatus.equals("On")) {
             binding.switch14.isChecked = true
-            getAllNotifications()
-        }else{
-            offAllNotifications()
+
         }
 
-        val messageAttachStatus = Prefs.getString(EmailNotificationFragment.messageAttachStatus, "Off")
+        val messageAttachStatus =
+            Prefs.getString(EmailNotificationFragment.messageAttachStatus, "Off")
         if (messageAttachStatus.equals("On")) {
             binding.switch15.isChecked = true
         }
@@ -103,14 +106,15 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
         }
         mNetworkCallEmailUpdateStatus(emailUpdateStatus)
 
-      /*  if (isChecked) {
-            getAllNotifications()
-        } else {
-            offAllNotifications()
-        }*/
+        /*  if (isChecked) {
+              getAllNotifications()
+          } else {
+              offAllNotifications()
+          }*/
     }
 
     fun getAllNotifications() {
+        binding.switch13.isChecked = true
         binding.switch14.isChecked = true
         binding.switch15.isChecked = true
         binding.switch16.isChecked = true
@@ -120,6 +124,7 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
     }
 
     fun offAllNotifications() {
+        binding.switch13.isChecked = false
         binding.switch14.isChecked = false
         binding.switch15.isChecked = false
         binding.switch16.isChecked = false
@@ -187,19 +192,17 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getAllEmailNotification(status,"" , "", "", "", "", "")
+                val res = homeRepositry.getAllEmailNotification(status, "", "", "", "", "", "")
                 if (res.status) {
                     dismissProgressDailog()
-                    Toast.makeText(context, res.message, Toast.LENGTH_SHORT)
-                        .show()
-                    val emailUpdateStatus = if (status == "0") {
-                        "Off"
+                    val emailstatus = if (status == "0") {
                         offAllNotifications()
+                        "Off"
                     } else {
-                        "On"
                         getAllNotifications()
+                        "On"
                     }
-                    Prefs.putAny(EmailNotificationFragment.emailUpdateStatus, emailUpdateStatus)
+                    Prefs.putAny(EmailNotificationFragment.emailUpdateStatus, emailstatus)
                 } else {
                     dismissProgressDailog()
                     Toast.makeText(context, res.message, Toast.LENGTH_SHORT)
@@ -225,8 +228,6 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
                 val res = homeRepositry.getAllEmailNotification("", status, "", "", "", "", "")
                 if (res.status) {
                     dismissProgressDailog()
-                    Toast.makeText(context, res.message, Toast.LENGTH_SHORT)
-                        .show()
                     val eventAttachStatus = if (status == "0") {
                         "Off"
                     } else {
@@ -258,8 +259,6 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
                 val res = homeRepositry.getAllEmailNotification("", "", status, "", "", "", "")
                 if (res.status) {
                     dismissProgressDailog()
-                    Toast.makeText(context, res.message, Toast.LENGTH_SHORT)
-                        .show()
                     val messageAttachStatus = if (status == "0") {
                         "Off"
                     } else {
@@ -284,7 +283,6 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
     }
 
 
-
     private fun mNetworkCallCommentStatus(status: String) {
         lifecycleScope.launch {
             try {
@@ -292,8 +290,6 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
                 val res = homeRepositry.getAllEmailNotification("", "", "", status, "", "", "")
                 if (res.status) {
                     dismissProgressDailog()
-                    Toast.makeText(context, res.message, Toast.LENGTH_SHORT)
-                        .show()
                     val commentStatus = if (status == "0") {
                         "Off"
                     } else {
@@ -325,8 +321,6 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
                 val res = homeRepositry.getAllEmailNotification("", "", "", "", status, "", "")
                 if (res.status) {
                     dismissProgressDailog()
-                    Toast.makeText(context, res.message, Toast.LENGTH_SHORT)
-                        .show()
                     val eventPodStatus = if (status == "0") {
                         "Off"
                     } else {
@@ -358,8 +352,6 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
                 val res = homeRepositry.getAllEmailNotification("", "", "", "", "", status, "")
                 if (res.status) {
                     dismissProgressDailog()
-                    Toast.makeText(context, res.message, Toast.LENGTH_SHORT)
-                        .show()
                     val spineHqStatus = if (status == "0") {
                         "Off"
                     } else {
@@ -390,8 +382,6 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
                 val res = homeRepositry.getAllEmailNotification("", "", "", "", "", "", status)
                 if (res.status) {
                     dismissProgressDailog()
-                    Toast.makeText(context, res.message, Toast.LENGTH_SHORT)
-                        .show()
                     val spineServeyStatus = if (status == "0") {
                         "Off"
                     } else {

@@ -76,7 +76,7 @@ class ImpulseActivity : AppCompatActivity(), ImpulseEventListener,KodeinAware,
     private fun getUserDetails() {
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.getUserDetails(userId)
+                val res=homeRepositry.getUserDetails()
                 if (res.status){
                  val data=res.data
                     status=data.impulseFollow

@@ -83,8 +83,8 @@ class AccountSettingsActivity : AppCompatActivity(),KodeinAware, AccountSettingE
         binding.textView48.text=currencySymbol
         val CAL_STATUS= Prefs.getString(SaveEventToCalActivity.CAL_STATUS,"Off")
         binding.textView46.text=CAL_STATUS
-        val langName= Prefs.getString(LANG_NAME,"English")
-        binding.textView47.text=langName
+        //val langName= Prefs.getString(LANG_NAME,"English")
+       // binding.textView47.text=langName
     }
 
     fun openChngPwdDialog() {

@@ -1,5 +1,6 @@
 package com.wiesoftware.spine.data.net
 
+import android.util.Log
 import com.google.gson.GsonBuilder
 import com.wiesoftware.spine.data.net.reponses.*
 import com.wiesoftware.spine.data.net.reponses.episode.EpisodeModel
@@ -54,8 +55,9 @@ interface Api {
                 .addInterceptor(interceptor)
                 .addInterceptor(Interceptor { chain ->
                     val request: Request = chain.request().newBuilder()
-                        .addHeader("Authorization", "Bearer ${Prefs.getString("AuthToken", "")}")
+                        .addHeader("Authorization", "Bearer " + Prefs.getString("AuthToken", ""))
                         .build()
+                    Log.e("AuthorizationToken", "=" + "Bearer " + Prefs.getString("AuthToken", ""))
                     chain.proceed(request)
                 }).build()
 
@@ -168,7 +170,6 @@ interface Api {
         @Field("email") email: String
     ): Response<EmailVerificationRes>
 
-    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("podcasts/sendEmailOTPVerification")
     suspend fun verifyEmailVerificationCode(
@@ -357,14 +358,6 @@ interface Api {
         @Part("subcategory") subcategory: RequestBody,
         @Part("rss_feed") rss_feed: RequestBody,
         @Part("allow_comment") allow_comment: RequestBody,
-        @Part media_file: MultipartBody.Part,
-        @Part thumbnail: MultipartBody.Part
-    ):Response<SingleRes>
-
-    //@Headers(HEADER_1, HEADER_2)
-    @GET("deactiveAccount/{user_id}")
-    suspend fun deactivateAccount(
-        @Path("user_id") user_id: String
         @Part("media_file") media_file: RequestBody,
         @Part("thumbnail") thumbnail: RequestBody
     ): Response<SingleRes>
@@ -411,7 +404,6 @@ interface Api {
         @Field("message_auth") message_auth: String
     ): Response<SingleRes>
 
-    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("requestToChangeEmail")
     suspend fun requestToChangeEmail(
@@ -706,7 +698,6 @@ interface Api {
     //@Headers(HEADER_1)
     @GET("userDetails")
     suspend fun getUserDetails(
-        @Header("Authorization") token: String
     ): Response<ProfileRes>
 
     //@Headers(HEADER_1)
@@ -939,7 +930,7 @@ interface Api {
 
     //@Headers(HEADER_1)
     @GET("other/getWelcomeData")
-    suspend fun getWelcomeData(@Header("Authorization") token: String): Response<WelcomeResponse>
+    suspend fun getWelcomeData(): Response<WelcomeResponse>
 
     //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded

@@ -83,7 +83,7 @@ class ReviewPodcastActivity : AppCompatActivity(), KodeinAware, ReviewPodcastEve
     private fun getUserDetails() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getUserDetails(userId)
+                val res = homeRepositry.getUserDetails()
                 if (res.status) {
                     val baseImg = res.image
                     val data = res.data

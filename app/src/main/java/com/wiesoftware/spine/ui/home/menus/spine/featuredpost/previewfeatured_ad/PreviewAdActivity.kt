@@ -111,7 +111,7 @@ class PreviewAdActivity : AppCompatActivity(),KodeinAware, PreviewAdEventListene
     private fun getUserDetails(userId: String) {
         lifecycleScope.launch {
             try {
-                val uRes = homeRepositry.getUserDetails(userId)
+                val uRes = homeRepositry.getUserDetails()
                 if (uRes.status){
                     val username = uRes.data.display_name ?: uRes.data.name
                     val img= uRes.image+uRes.data.profile_pic
