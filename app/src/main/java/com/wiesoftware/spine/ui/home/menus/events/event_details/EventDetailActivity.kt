@@ -569,7 +569,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         lifecycleScope.launch {
             try {
                 Log.e("idd", userId)
-                val userProfile = homeRepositry.getUserDetails(userId)
+                val userProfile = homeRepositry.getUserDetails()
                 if (userProfile.status) {
                     img_base = userProfile.image
                     val userData = userProfile.data

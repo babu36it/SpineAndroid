@@ -622,8 +622,8 @@ class HomeRepositry(
         return apiRequest { api.getActivities(page, per_page, user_id, followers) }
     }
 
-    suspend fun getUserDetails(your_user_id: String): ProfileRes {
-        return apiRequest { api.getUserDetails(Prefs.getString("AuthToken", "")!!) }
+    suspend fun getUserDetails(): ProfileRes {
+        return apiRequest { api.getUserDetails() }
     }
 
     suspend fun getuserDetailsMSGPermision(detailsUser: String, LoginUserId: String): ProfileRes {
@@ -837,7 +837,7 @@ class HomeRepositry(
     }
 
     suspend fun getWelcomeData(): WelcomeResponse {
-        return apiRequest { api.getWelcomeData(Prefs.getString("AuthToken", "")!!) }
+        return apiRequest { api.getWelcomeData() }
     }
 
     suspend fun getSpineImpulse(

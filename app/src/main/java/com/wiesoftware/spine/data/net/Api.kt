@@ -1,5 +1,6 @@
 package com.wiesoftware.spine.data.net
 
+import android.util.Log
 import com.google.gson.GsonBuilder
 import com.wiesoftware.spine.data.net.reponses.*
 import com.wiesoftware.spine.data.net.reponses.episode.EpisodeModel
@@ -55,8 +56,9 @@ interface Api {
                 .addInterceptor(interceptor)
                 .addInterceptor(Interceptor { chain ->
                     val request: Request = chain.request().newBuilder()
-                        .addHeader("Authorization", "Bearer ${Prefs.getString("AuthToken", "")}")
+                        .addHeader("Authorization", "Bearer " + Prefs.getString("AuthToken", ""))
                         .build()
+                    Log.e("AuthorizationToken", "=" + "Bearer " + Prefs.getString("AuthToken", ""))
                     chain.proceed(request)
                 }).build()
 
@@ -644,10 +646,8 @@ interface Api {
         @Path(value = "followers") followers: Int
     ): Response<ActivitiesRes>
 
-    @Headers(HEADER_1)
     @GET("userDetails")
     suspend fun getUserDetails(
-        @Header("Authorization") token: String
     ): Response<ProfileRes>
 
     @GET("userDetails")
@@ -868,9 +868,8 @@ interface Api {
         @Path(value = "user_id", encoded = true) user_id: String
     ): Response<SpineImpulseResponse>
 
-    @Headers(HEADER_1)
     @GET("other/getWelcomeData")
-    suspend fun getWelcomeData(@Header("Authorization") token: String): Response<WelcomeResponse>
+    suspend fun getWelcomeData(): Response<WelcomeResponse>
 
     @Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
@@ -985,11 +984,9 @@ interface Api {
         @Path(value = "your_spine_event_id") your_spine_event_id: String
     ): Response<SingleRes>
 
-    @Headers(HEADER_1, HEADER_2)
     @GET("splash/splashScreens")
     suspend fun getWelcomePages(): Response<WelcomePageReponse>
 
-    @Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("spineBlockUsers")
     suspend fun blockuser(

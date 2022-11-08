@@ -40,6 +40,7 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
     private var followStatus: String = ""
     private var impulsesStatus: String = ""
     private var eventMemberStatus: String = ""
+    private var pushNotificationStatus: String = ""
 
 
     override fun onCreateView(
@@ -60,6 +61,15 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
         viewModel.getLoggedInUser().observe(viewLifecycleOwner, Observer { user ->
             userId = user.users_id!!
         })
+
+        val pushNotifictaionStatus = Prefs.getString(MobileNotificationFragment.mobilePushStatus, "Off")
+        if (pushNotifictaionStatus.equals("On")) {
+            binding.switch13.isChecked = true
+            getAllNotifications()
+        } else {
+            removeAllNotifications()
+
+        }
 
         val likeMyStuffStatus = Prefs.getString(MobileNotificationFragment.likeMyStuffStatus, "Off")
         if (likeMyStuffStatus.equals("On")) {
@@ -108,11 +118,19 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
     }
 
     override fun onPushNotificationChanged(isChecked: Boolean) {
+
         if (isChecked) {
+            pushNotificationStatus = "1";
+        } else {
+            pushNotificationStatus = "0";
+        }
+        mNetworkCallPushNotificationAPI(pushNotificationStatus)
+
+    /*    if (isChecked) {
             getAllNotifications()
         } else {
             removeAllNotifications()
-        }
+        }*/
     }
 
     private fun removeAllNotifications() {
@@ -210,6 +228,44 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
         mNetworkCallLikeAPI(likeMyStuffStatus)
     }
 
+
+    private fun mNetworkCallPushNotificationAPI(status: String) {
+        lifecycleScope.launch {
+            try {
+                showProgressDialog()
+                val res = homeRepositry.getAllMobileNotifications(
+                    status, "", "", "", "", "", "",
+                    "", ""
+                )
+                if (res.status) {
+                    dismissProgressDailog()
+                    val mobilestatus = if (status == "0") {
+                        removeAllNotifications()
+                        "Off"
+                    } else {
+                        getAllNotifications()
+                        "On"
+                    }
+                    Prefs.putAny(MobileNotificationFragment.mobilePushStatus, mobilestatus)
+                } else {
+                    dismissProgressDailog()
+                    Toast.makeText(context, res.message, Toast.LENGTH_SHORT)
+                        .show()
+
+                }
+            } catch (e: ApiException) {
+                dismissProgressDailog()
+                e.printStackTrace()
+            } catch (e: NoInternetException) {
+                dismissProgressDailog()
+                e.printStackTrace()
+            }
+
+        }
+
+    }
+
+
     private fun mNetworkCallLikeAPI(status: String) {
         lifecycleScope.launch {
             try {
@@ -220,8 +276,6 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
                 )
                 if (res.status) {
                     dismissProgressDailog()
-                    Toast.makeText(context, res.message, Toast.LENGTH_SHORT)
-                        .show()
                     val likeMyStuffStatus = if (status == "0") {
                         "Off"
                     } else {
@@ -256,8 +310,6 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
                 )
                 if (res.status) {
                     dismissProgressDailog()
-                    Toast.makeText(context, res.message, Toast.LENGTH_SHORT)
-                        .show()
                     val commentStatus = if (status == "0") {
                         "Off"
                     } else {
@@ -292,8 +344,6 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
                 )
                 if (res.status) {
                     dismissProgressDailog()
-                    Toast.makeText(context, res.message, Toast.LENGTH_SHORT)
-                        .show()
                     val eventUpdateStatus = if (status == "0") {
                         "Off"
                     } else {
@@ -328,8 +378,6 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
                 )
                 if (res.status) {
                     dismissProgressDailog()
-                    Toast.makeText(context, res.message, Toast.LENGTH_SHORT)
-                        .show()
                     val eventReminderStatus = if (status == "0") {
                         "Off"
                     } else {
@@ -367,8 +415,6 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
                 )
                 if (res.status) {
                     dismissProgressDailog()
-                    Toast.makeText(context, res.message, Toast.LENGTH_SHORT)
-                        .show()
                     val messagesStatus = if (status == "0") {
                         "Off"
                     } else {
@@ -404,8 +450,7 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
                 )
                 if (res.status) {
                     dismissProgressDailog()
-                    Toast.makeText(context, res.message, Toast.LENGTH_SHORT)
-                        .show()
+
                     val followStatus = if (status == "0") {
                         "Off"
                     } else {
@@ -440,8 +485,6 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
                 )
                 if (res.status) {
                     dismissProgressDailog()
-                    Toast.makeText(context, res.message, Toast.LENGTH_SHORT)
-                        .show()
                     val impulsesStatus = if (status == "0") {
                         "Off"
                     } else {
@@ -477,8 +520,7 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
                 )
                 if (res.status) {
                     dismissProgressDailog()
-                    Toast.makeText(context, res.message, Toast.LENGTH_SHORT)
-                        .show()
+
                     val eventMemberStatus = if (status == "0") {
                         "Off"
                     } else {
@@ -505,6 +547,7 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
 
 
     companion object {
+        val mobilePushStatus = "mobilePushStatus"
         val likeMyStuffStatus = "likeMyStuffStatus"
         val commentStatus = "commentStatus"
         val eventUpdateStatus = "eventUpdateStatus"

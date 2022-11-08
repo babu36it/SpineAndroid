@@ -87,7 +87,7 @@ class ProfileFragment : Fragment(),KodeinAware, ProfileFragmentEventListener {
 
                 })
             }
-            getUsersDetails()
+           // getUsersDetails()
         })
 
         return binding.root
@@ -96,7 +96,7 @@ class ProfileFragment : Fragment(),KodeinAware, ProfileFragmentEventListener {
     private fun getUsersDetails() {
         lifecycleScope.launch {
             try {
-                val profileRes=homeRepositry.getUserDetails(user_id)
+                val profileRes=homeRepositry.getUserDetails()
                 if (profileRes.status){
                     val profileData=profileRes.data
                     BASE_IMAGE=profileRes.image
