@@ -27,7 +27,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:onClick="@{viewmodel.onBack}" />
+                android:onClick="@{viewmodel.onBack}"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -49,7 +50,8 @@
                 android:background="@drawable/btn_bg"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:onClick="@{viewmodel.onSave}"
-                android:text="@string/save" />
+                android:text="@string/save"
+                tools:ignore="TouchTargetSizeCheck" />
         </RelativeLayout>
 
         <View
@@ -131,7 +133,6 @@
                 </FrameLayout>
 
 
-
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -143,7 +144,8 @@
                     android:text="@string/add_profile_image"
                     android:textColor="@color/light_gry"
                     android:textSize="@dimen/_12sdp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="TextContrastCheck" />
 
 
                 <LinearLayout
@@ -206,7 +208,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="8dp"
-                        android:fontFamily="@font/poppin_bold"
+                        android:fontFamily="@font/poppins_bold"
                         android:text="@string/str_name"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/_11sdp"
@@ -239,7 +241,8 @@
                             android:padding="@dimen/eight"
                             android:singleLine="true"
                             android:text="@={viewmodel.user_name}"
-                            android:textSize="@dimen/_11sdp" />
+                            android:textSize="@dimen/_11sdp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
                         <TextView
                             style="@style/NormalText"
@@ -261,7 +264,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/poppin_bold"
+                        android:fontFamily="@font/poppins_bold"
                         android:text="@string/display_name"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/_11sdp"
@@ -298,7 +301,8 @@
                             android:text="@={viewmodel.display_name}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
-                            android:textSize="@dimen/_11sdp" />
+                            android:textSize="@dimen/_11sdp"
+                            tools:ignore="TouchTargetSizeCheck" />
 
                         <TextView
                             style="@style/NormalText"
@@ -384,7 +388,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/poppin_bold"
+                        android:fontFamily="@font/poppins_bold"
                         android:text="@string/str_intersted_in"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/_11sdp"
@@ -417,7 +421,8 @@
                             android:text=""
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
-                            android:textSize="@dimen/_11sdp" />
+                            android:textSize="@dimen/_11sdp"
+                            tools:ignore="TouchTargetSizeCheck" />
 
                         <TextView
                             style="@style/NormalText"
@@ -438,7 +443,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/poppin_bold"
+                        android:fontFamily="@font/poppins_bold"
                         android:text="@string/str_categories_like"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/_11sdp"
@@ -471,7 +476,8 @@
                             android:text=""
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
-                            android:textSize="@dimen/_11sdp" />
+                            android:textSize="@dimen/_11sdp"
+                            tools:ignore="TouchTargetSizeCheck" />
 
                         <TextView
                             style="@style/NormalText"
@@ -503,7 +509,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="8dp"
-                        android:fontFamily="@font/poppin_bold"
+                        android:fontFamily="@font/poppins_bold"
                         android:text="@string/str_name"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/_11sdp"
@@ -559,7 +565,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/poppin_bold"
+                        android:fontFamily="@font/poppins_bold"
                         android:text="@string/display_name"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/_11sdp"
@@ -993,7 +999,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/poppin_semi_bold"
+                        android:fontFamily="@font/poppins_semi_bold"
                         android:text="@string/str_my_business_location"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/_12sdp" />
@@ -1003,7 +1009,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:fontFamily="@font/poppin_semi_bold"
+                        android:fontFamily="@font/poppins_semi_bold"
                         android:text="@string/str_more_info"
                         android:textColor="@color/text_black"
                         android:textStyle="italic"
@@ -1747,7 +1753,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="8dp"
-                        android:fontFamily="@font/poppin_bold"
+                        android:fontFamily="@font/poppins_bold"
                         android:text="@string/str_company_name"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/_11sdp"
@@ -1804,7 +1810,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/poppin_bold"
+                        android:fontFamily="@font/poppins_bold"
                         android:text="@string/display_name"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/_11sdp"
@@ -2235,7 +2241,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/poppin_semi_bold"
+                        android:fontFamily="@font/poppins_semi_bold"
                         android:text="@string/str_our_business_location"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/_12sdp" />
@@ -2245,7 +2251,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:fontFamily="@font/poppin_semi_bold"
+                        android:fontFamily="@font/poppins_semi_bold"
                         android:text="@string/str_more_info"
                         android:textColor="@color/text_black"
                         android:textStyle="italic"
@@ -3227,15 +3233,15 @@
                     android:layout_marginBottom="@dimen/_10sdp">
 
                     <TextView
-                        android:textAllCaps="true"
                         android:id="@+id/tvSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:background="@android:color/transparent"
-                        android:onClick=""
                         android:text="@string/switch_to_professional_account"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryDark"
+                        tools:ignore="TouchTargetSizeCheck" />
 
 
                     <androidx.appcompat.widget.SwitchCompat

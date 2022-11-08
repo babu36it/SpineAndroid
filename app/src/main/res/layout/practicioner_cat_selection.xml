@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/_5sdp"
+    android:background="@drawable/shadow_box"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/textView131"
+        style="@style/TitleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_back_black"
+        android:text="Select Item"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/day_night_both_black" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="Select Categories"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="@dimen/_14sdp"
+        android:layout_marginStart="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:textColor="@color/day_night_both_black"
+        android:layout_height="wrap_content"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_7sdp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        android:elevation="@dimen/_6sdp"
+        app:cardCornerRadius="@dimen/_6sdp">
+
+        <EditText
+            android:id="@+id/edt_search_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/search"
+            android:drawablePadding="@dimen/_6sdp"
+            android:hint="Search"
+            android:maxLines="1"
+            android:padding="@dimen/_7sdp"
+            android:textColor="@color/text_black"
+            android:textColorHint="@color/dark_gray_day_night">
+
+        </EditText>
+    </androidx.cardview.widget.CardView>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvcats"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/rel_bottom"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginEnd="@dimen/_7sdp"
+            android:layout_marginBottom="@dimen/_7sdp" />
+
+        <RelativeLayout
+            android:id="@+id/rel_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:id="@+id/button52"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/sixteen"
+                android:layout_marginBottom="@dimen/eight"
+                android:background="@drawable/round_border"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/cancel"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/buttonApplyFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/eight"
+                android:background="@drawable/round_border"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Apply Filter"
+                android:textAllCaps="true"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

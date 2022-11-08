@@ -87,6 +87,7 @@ import com.wiesoftware.spine.ui.home.menus.spine.comment.storycomment.StoryComme
 import com.wiesoftware.spine.ui.home.menus.spine.following.SpineFollowingViewmodelFactory
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.SpineForYouViewModelFactory
 import com.wiesoftware.spine.ui.home.menus.spine.impulse.ImpulseViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.spine.practicioners.PracticionerModelFactory
 import com.wiesoftware.spine.ui.home.menus.spine.rec_followers.RecommendedFollowersViewmodelFactory
 import com.wiesoftware.spine.ui.home.menus.spine.selectfollowers.SelectFollowersViewmodelFactory
 import com.wiesoftware.spine.ui.home.menus.spine.story.StoryViewmodelFactory
@@ -190,6 +191,7 @@ class SpineApplication : Application(),KodeinAware {
         bind() from provider { EventReplyViewmodelFactory(instance()) }
         bind() from provider { DeleteAccountViewmodelFactory(instance()) }
         bind() from provider { StoryCommentViewmodelFactory(instance()) }
+        bind() from provider { PracticionerModelFactory(instance()) }
     }
 
     override fun onCreate() {

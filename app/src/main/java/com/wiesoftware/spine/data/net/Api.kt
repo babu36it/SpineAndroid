@@ -24,7 +24,7 @@ interface Api {
         private const val HEADER_1="X-API-KEY: 123run"
         private const val HEADER_2="Authorization: Basic ZGV2cGFua2FqOmRldnBhbmthag=="
         private const val HEADER_3="Content-Type: application/json"
-        const val BASE_LINK="http://thespiritualnetwork.com/api/v1/"
+        const val BASE_LINK="https://thespiritualnetwork.com/api/v1/"
                 //const val BASE_URL=BASE_LINK+"apisecure/"
         const val BASE_URL=BASE_LINK
         const val BASE_URL_VIDEO=BASE_LINK+"assets/upload/welcome/"

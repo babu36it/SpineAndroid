@@ -43,6 +43,7 @@ import com.wiesoftware.spine.ui.home.menus.spine.homefeed.FeedAdapter
 import com.wiesoftware.spine.ui.home.menus.spine.homefeed.HomeFeedModel
 import com.wiesoftware.spine.ui.home.menus.spine.impulse.ImpulseActivity
 import com.wiesoftware.spine.ui.home.menus.spine.postdetails.PostDetailsActivity
+import com.wiesoftware.spine.ui.home.menus.spine.practicioners.PracticionersActivity
 import com.wiesoftware.spine.ui.home.menus.spine.rec_followers.RecommendedFollowersActivity
 import com.wiesoftware.spine.ui.home.menus.spine.selectfollowers.SelectFollowersAdapter
 import com.wiesoftware.spine.ui.home.menus.spine.story.StoryActivity
@@ -435,8 +436,8 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
     }
 
     override fun trendingCategories() {
-       // startActivity(Intent(requireContext(), TrendingCatActivity::class.java))
-        requireContext().toast("Inprogress")
+        startActivity(Intent(requireContext(), PracticionersActivity::class.java))
+        //requireContext().toast("Inprogress")
     }
 
     override fun recommendedFollowers() {
