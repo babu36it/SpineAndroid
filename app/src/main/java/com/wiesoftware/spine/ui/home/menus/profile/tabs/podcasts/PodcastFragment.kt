@@ -76,7 +76,7 @@ class PodcastFragment : Fragment(),KodeinAware, PodcastsEventListner,
 
     private fun setPodData(dataList: List<PodDatas>) {
         if(dataList.size > 0){
-           binding.button36.visibility=View.GONE
+      //     binding.button36.visibility=View.GONE
         }
         binding.rvOwnPods.also {
             it.layoutManager= LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
