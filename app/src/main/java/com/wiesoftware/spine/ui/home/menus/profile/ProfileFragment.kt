@@ -89,7 +89,7 @@ class ProfileFragment : Fragment(),KodeinAware, ProfileFragmentEventListener {
 
                 })
             }
-           // getUsersDetails()
+             getUsersDetails()
         })
 
         return binding.root

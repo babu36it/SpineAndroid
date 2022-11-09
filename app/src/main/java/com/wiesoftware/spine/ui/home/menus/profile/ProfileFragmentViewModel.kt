@@ -14,6 +14,7 @@ class ProfileFragmentViewModel(val homeRepositry: HomeRepositry): ViewModel() {
 
     fun getLoggedInUser()=homeRepositry.getUser()
 
+
     fun onSettingButtonClick(view: View){
         profileFragmentEventListener?.onSettingBtnClick()
     }
