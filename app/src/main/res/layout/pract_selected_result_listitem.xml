@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/text_white"
+    android:layout_margin="@dimen/_4sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/llProfilePic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageView3"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:src="@drawable/demo"
+             />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/eight"
+            android:singleLine="true"
+            android:text="Craig"
+            style="@style/SimpleText"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/_10sdp" />
+        <!-- android:text="@{model.displayName ?? model.useName}"-->
+
+    </LinearLayout>
+
+
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gray_tint"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!--
+        "@{model.title}
+            @{model.accountMode.equals(`1`) ? View.VISIBLE: View.GONE}
+        -->
+
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sixteen"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginEnd="@dimen/eight"
+            android:fontFamily="@font/poppins_bold"
+            android:maxLines="1"
+            android:text="Salubrius work"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton7"
+            app:layout_constraintStart_toEndOf="@+id/llProfilePic"
+            app:layout_constraintTop_toTopOf="parent" />
+           <!--android:text="@{model.type.equals(`1`) ? `ONLINE EVENT`: `LOCAL EVENT`}"-->
+
+
+        <ImageButton
+            android:id="@+id/imageButton7"
+            android:layout_width="@dimen/_20"
+            android:layout_height="@dimen/_20"
+            android:layout_marginEnd="@dimen/dp4"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_bookmark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView36" />
+
+        <TextView
+            android:id="@+id/textView37"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Craig worner"
+            android:maxLines="2"
+            android:textSize="@dimen/_10sdp"
+            android:textColor="@color/text_black"
+            app:layout_constraintEnd_toEndOf="@+id/textView36"
+            app:layout_constraintStart_toStartOf="@+id/textView36"
+            app:layout_constraintTop_toBottomOf="@+id/textView36" />
+    <!--android:text="@{model.title}"-->
+
+
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/eight"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/spine_dumy_description"
+            android:textSize="@dimen/_10sdp"
+            android:textColor="@color/text_black"
+            app:layout_constraintStart_toStartOf="@+id/textView37"
+            app:layout_constraintTop_toBottomOf="@+id/textView37"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/textViewLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Berlyn, Germany"
+        android:maxLines="2"
+        android:textSize="@dimen/_10sdp"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toEndOf="@+id/textViewDescription"
+        app:layout_constraintStart_toStartOf="@+id/textViewDescription"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
+         <!--   android:text="@{model.location}"-->
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,28 +1,21 @@
 package com.wiesoftware.spine.ui.home.menus.spine.practicioners
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import android.widget.CompoundButton
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.wiesoftware.spine.R
-import com.wiesoftware.spine.data.net.reponses.EventCatData
-import com.wiesoftware.spine.databinding.EveCatItemBinding
-import kotlinx.android.synthetic.main.eve_catmuti_item.view.*
 import kotlinx.android.synthetic.main.eve_catmuti_item.view.checkBox
-import kotlinx.android.synthetic.main.pract_catmuti_item.view.*
-import java.util.*
 
 /**
  * Created by Vivek kumar on 1/14/2021.
  * E-mail:- vivekpcst.kumar@gmail.com
  */
 class PractCatAdapter(
-    val list: List<EventCatData>,
+    val list: List<PractiCatDDataTemp>,
     val listener: OnEveItemChecked,
+    val id: Int,
 ) : RecyclerView.Adapter<PractCatAdapter.CatHolder>() {
 
 
@@ -32,7 +25,7 @@ class PractCatAdapter(
 
 
     interface OnEveItemChecked {
-        fun onEventItemChecked(eveCataData: EventCatData, b: Boolean)
+        fun onEventItemChecked(eveCataData: PractiCatDDataTemp, b: Boolean)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatHolder {
@@ -50,6 +43,8 @@ class PractCatAdapter(
 
         holder.checkbox.setOnCheckedChangeListener { compoundButton, b ->
             model.isSelect = b
+            model.fromClick=id.toString()
+            listener.onEventItemChecked(model,b)
 
         }
 

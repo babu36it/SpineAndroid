@@ -8,11 +8,11 @@
 
     <CheckBox
         android:id="@+id/checkBox"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/eight"
         android:text="@string/add_categories"
-        android:padding="@dimen/_4sdp"
+        android:padding="@dimen/_2sdp"
         android:textColor="@color/text_black"
         android:fontFamily="@font/poppins_regular"
         app:layout_constraintBottom_toBottomOf="parent"

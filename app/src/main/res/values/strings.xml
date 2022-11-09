@@ -517,4 +517,5 @@
     <string name="str_desease_pattern">Desease patterns ( multiple choice )</string>
     <string name="categories_selection">Categories ( multiple selection )</string>
     <string name="find_practicioners">Find Practicioners</string>
+    <string name="your_selection_practicioner">Your selection of practicioner</string>
 </resources>

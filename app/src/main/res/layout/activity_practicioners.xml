@@ -13,7 +13,7 @@ xmlns:tools="http://schemas.android.com/tools">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.menus.events.filter.FilterEventActivity">
+    tools:context=".ui.home.menus.spine.practicioners.PracticionersActivity">
 
     <TextView
         android:id="@+id/textViewTitle"
@@ -75,10 +75,11 @@ xmlns:tools="http://schemas.android.com/tools">
         app:layout_constraintTop_toBottomOf="@+id/textView79"
         app:layout_constraintStart_toStartOf="@+id/textView79"
         android:text="browse worldwide"
-
-
+        style="@style/SimpleText"
+        android:padding="0dp"
         />
     <CheckBox
+        android:padding="0dp"
         android:layout_marginStart="@dimen/_minus5sdp"
         android:id="@+id/checkBoxCountry"
         android:layout_width="wrap_content"
@@ -86,7 +87,7 @@ xmlns:tools="http://schemas.android.com/tools">
         app:layout_constraintTop_toBottomOf="@+id/checkBoxWorld"
         app:layout_constraintStart_toStartOf="@+id/checkBoxWorld"
         android:text="browse by country"
-
+        style="@style/SimpleText"
          />
 
     <TextView
@@ -101,6 +102,7 @@ xmlns:tools="http://schemas.android.com/tools">
         app:layout_constraintTop_toBottomOf="@+id/checkBoxCountry" />
 
     <EditText
+        android:drawableEnd="@drawable/ic_arrow_right"
         android:id="@+id/editTextByCity"
         style="@style/EditTextSpine"
         android:layout_width="0dp"
@@ -113,34 +115,17 @@ xmlns:tools="http://schemas.android.com/tools">
         android:ems="10"
         android:hint="@string/location"
         android:textSize="@dimen/_9sdp"
-        android:inputType="textPersonName"
         android:text="@={viewmodel.location}"
+        android:inputType="none"
+        android:focusableInTouchMode="false"
+        android:focusable="false"
+        android:onClick="@{viewmodel.onLocationClick}"
         android:textColor="@color/day_night_both_black"
         android:textColorHint="@color/dark_gray_day_night"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView80" />
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/_32dp"
-        app:cardCornerRadius="@dimen/eight"
-        app:cardElevation="@dimen/eight"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextByCity"
-        app:layout_constraintEnd_toEndOf="@+id/editTextByCity"
-        app:layout_constraintStart_toStartOf="@+id/editTextByCity"
-        app:layout_constraintTop_toTopOf="@+id/editTextByCity">
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/autocomplete_fragment"
-            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </androidx.cardview.widget.CardView>
-
-
     <TextView
         android:id="@+id/textView81"
         android:layout_width="wrap_content"
@@ -155,6 +140,7 @@ xmlns:tools="http://schemas.android.com/tools">
         app:layout_constraintTop_toBottomOf="@+id/editTextByCity" />
 
     <EditText
+        android:drawableEnd="@drawable/ic_arrow_right"
         android:id="@+id/editTextKEyPerformance"
         style="@style/EditTextSpine"
         android:layout_width="0dp"
@@ -186,6 +172,7 @@ xmlns:tools="http://schemas.android.com/tools">
         app:layout_constraintTop_toBottomOf="@+id/editTextKEyPerformance" />
 
     <EditText
+        android:drawableEnd="@drawable/ic_arrow_right"
         android:id="@+id/editTextDeasesPattern"
         style="@style/EditTextSpine"
         android:layout_width="0dp"
@@ -218,6 +205,7 @@ xmlns:tools="http://schemas.android.com/tools">
         app:layout_constraintTop_toBottomOf="@+id/editTextDeasesPattern" />
 
     <EditText
+        android:drawableEnd="@drawable/ic_arrow_right"
         android:id="@+id/editTextCategory"
         style="@style/EditTextSpine"
         android:layout_width="0dp"
@@ -239,7 +227,6 @@ xmlns:tools="http://schemas.android.com/tools">
         tools:ignore="TouchTargetSizeCheck" />
 
     <Button
-
         android:id="@+id/button38"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -249,6 +236,7 @@ xmlns:tools="http://schemas.android.com/tools">
         android:text="@string/find_practicioners"
         android:textAllCaps="true"
         android:textColor="@color/white"
+        android:onClick="@{viewmodel.findPracticioner}"
         app:layout_constraintEnd_toEndOf="@+id/editTextCategory"
         app:layout_constraintStart_toStartOf="@+id/editTextCategory"
         app:layout_constraintTop_toBottomOf="@+id/editTextCategory" />
