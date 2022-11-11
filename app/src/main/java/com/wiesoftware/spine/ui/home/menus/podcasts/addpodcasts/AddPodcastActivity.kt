@@ -192,7 +192,7 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val catRes = homeRepositry.getEventCatRes(value)
+                val catRes = homeRepositry.getPodcastCatRes(value)
                 if (catRes.status) {
                     dismissProgressDailog()
                     catData = catRes.data

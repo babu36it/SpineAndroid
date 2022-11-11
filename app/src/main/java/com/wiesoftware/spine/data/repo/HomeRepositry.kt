@@ -610,7 +610,13 @@ class HomeRepositry(
     }
 
     suspend fun getEventCatRes(searchText: String): EventCatRes {
-        return apiRequest { api.getProdcastCategories(searchText) }
+        return apiRequest { api.getEventCategories(searchText) }
+    }
+
+    suspend fun getPodcastCatRes(searchText: String):EventCatRes{
+        return apiRequest {
+            api.getProdcastCategories(searchText)
+        }
     }
 
     suspend fun getActivities(

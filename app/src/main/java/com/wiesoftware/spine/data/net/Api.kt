@@ -624,11 +624,11 @@ interface Api {
         @Path(value = "post_id") post_id: String
     ): Response<SpineCommentRes>
 
-    @Headers(HEADER_1, HEADER_2)
     @GET("events/getEventsCategory")
     suspend fun getEventCategories(
         @Query("searchText") searchText: String
     ): Response<EventCatRes>
+
 
 
     @GET("podcasts/getPodcastsCategory")

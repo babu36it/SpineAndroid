@@ -2,6 +2,7 @@ package com.wiesoftware.spine.ui.home.menus.profile.editprofile
 
 import android.Manifest
 import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -98,12 +99,15 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
     var businessAddress: String = "."
 
     var catData: List<EventCatData> = ArrayList<EventCatData>()
+    lateinit var progressDialog: ProgressDialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile)
         val viewmodel = ViewModelProvider(this, factory).get(EditProfileViewmodel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.editProfileEventListener = this
+        progressDialog = ProgressDialog(this)
         viewmodel.getLoggedInUser().observe(this, Observer { user ->
             user_id = user.users_id!!
             val u_name: String = user.name!!
@@ -327,19 +331,19 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
                         .into(binding.cvProfile)
                     accountType = "0"
                     binding.tvSwitch.text = getString(R.string.switch_to_professional_account)
-                  /*  if (data.account_mode.equals("1")) {
-                        binding.ivBadge.visibility = View.VISIBLE
-                        accountType = "1"
-                        binding.constraintLayout5.visibility = View.VISIBLE
-                        binding.TvEvCat.text = data.categoryName
-                        binding.website.setText(data.website)
-                        binding.contactEmail.setText(data.contact_email)
-                        binding.bPhoneNumber.setText(data.business_phone)
-                        binding.bAdd.setText(data.address.toString())
-                        binding.tvSwitch.text = getString(R.string.back_to_normal_account)
-                    } else {
-                        binding.ivBadge.visibility = View.INVISIBLE
-                    }*/
+                    /*  if (data.account_mode.equals("1")) {
+                          binding.ivBadge.visibility = View.VISIBLE
+                          accountType = "1"
+                          binding.constraintLayout5.visibility = View.VISIBLE
+                          binding.TvEvCat.text = data.categoryName
+                          binding.website.setText(data.website)
+                          binding.contactEmail.setText(data.contact_email)
+                          binding.bPhoneNumber.setText(data.business_phone)
+                          binding.bAdd.setText(data.address.toString())
+                          binding.tvSwitch.text = getString(R.string.back_to_normal_account)
+                      } else {
+                          binding.ivBadge.visibility = View.INVISIBLE
+                      }*/
                 }
             } catch (e: ApiException) {
                 e.printStackTrace()
@@ -596,15 +600,22 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
     private fun getEventCategories(value: String) {
         lifecycleScope.launch {
             try {
+                showProgressDialog()
                 val catRes = homeRepositry.getEventCatRes(value)
                 if (catRes.status) {
+                    dismissProgressDailog()
                     catData = catRes.data
                     setEventCategories(catData)
+                } else {
+                    Toast.makeText(this@EditProfileActivity, catRes.message, Toast.LENGTH_SHORT)
+                        .show()
                 }
             } catch (e: ApiException) {
                 e.printStackTrace()
+                dismissProgressDailog()
             } catch (e: NoInternetException) {
                 e.printStackTrace()
+                dismissProgressDailog()
             }
         }
     }
@@ -803,4 +814,13 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
         }
     }
 
+    private fun showProgressDialog() {
+        progressDialog.setMessage("Please wait...")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+    }
+
+    private fun dismissProgressDailog() {
+        progressDialog.dismiss()
+    }
 }

@@ -15,7 +15,7 @@
         <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_change_email.xml" value="0.16576086956521738" />
         <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_currency.xml" value="0.16576086956521738" />
         <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_deactivate.xml" value="0.25" />
-        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_edit_profile.xml" value="0.16576086956521738" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_edit_profile.xml" value="0.21" />
         <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_enter_code.xml" value="0.22" />
         <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_help.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_home.xml" value="0.10597826086956522" />
@@ -29,6 +29,7 @@
         <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/activity_user_podcast.xml" value="0.10597826086956522" />
         <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/email_changed_dialog.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/eve_cat_item.xml" value="0.10597826086956522" />
+        <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/eve_cat_selection.xml" value="0.17" />
         <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/for_you_content_item.xml" value="0.16576086956521738" />
         <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/fragment_activities.xml" value="0.17889492753623187" />
         <entry key="..\:/Users/Rushabh Desai/SpineAndroid/app/src/main/res/layout/fragment_email_notification.xml" value="0.16576086956521738" />
