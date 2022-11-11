@@ -42,6 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/rvFollowingStories" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
         android:id="@+id/rvFollowingContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,6 +51,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view4" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/_4sdp"
+        android:id="@+id/rvHomeFeed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view4"/>
 
     <TextView
         android:id="@+id/textView34"
@@ -57,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/eight"
         android:text="@string/stories"
-        android:textSize="@dimen/big_text"
+        android:textSize="@dimen/normalText"
         android:textColor="@color/text_black"
         android:padding="@dimen/eight"
         app:layout_constraintStart_toStartOf="@+id/rvFollowingStories"

@@ -11,22 +11,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
     >
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:layout_marginEnd="8dp"
-        android:paddingStart="@dimen/sixteen"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="4sp"
+        android:paddingStart="@dimen/_20sdp"
         android:paddingEnd="@dimen/sixteen"
         app:cardBackgroundColor="@color/colorPrimaryDark"
         app:cardCornerRadius="@dimen/_20"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/follow"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -47,6 +44,7 @@
                 android:paddingEnd="@dimen/sixteen"
                 android:text="@{model.hash_title}"
                 android:textColor="@color/text_white"
+                android:textAllCaps="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -64,8 +62,15 @@
         android:textSize="@dimen/_12sp"
         app:layout_constraintBottom_toBottomOf="@+id/cv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cv"
         app:layout_constraintTop_toTopOf="@+id/cv" />
+    <View
+        android:layout_marginTop="@dimen/_4sdp"
+        app:layout_constraintEnd_toEndOf="@+id/follow"
+        app:layout_constraintStart_toStartOf="@+id/cv"
+        app:layout_constraintTop_toBottomOf="@+id/follow"
+        style="@style/ViewActionLine"
+        android:layout_width="match_parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

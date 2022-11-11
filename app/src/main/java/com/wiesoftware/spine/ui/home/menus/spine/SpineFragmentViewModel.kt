@@ -2,7 +2,6 @@ package com.wiesoftware.spine.ui.home.menus.spine
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.ui.home.menus.spine.SpineFragmentEventListener
 
 /**
  * Created by Vivek kumar on 8/12/2020.
@@ -14,5 +13,11 @@ class SpineFragmentViewModel : ViewModel() {
 
     fun onAddBtnClick(view: View){
     spineFragmentEventListner?.onAddButtonClicked()
+    }
+    fun onSearchBtnClick(view: View){
+    spineFragmentEventListner?.onSearchButtonClicked()
+    }
+    fun closeSearchview(view: View){
+    spineFragmentEventListner?.closeSearchView()
     }
 }

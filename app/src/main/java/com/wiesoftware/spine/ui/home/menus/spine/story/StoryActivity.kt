@@ -60,7 +60,7 @@ class StoryActivity : AppCompatActivity(),KodeinAware, StoryEventListener,
 
         lifecycleScope.launch {
             try {
-                val allUsersRes=homeRepositry.getAllUsers(1,100,userId)
+                /*val allUsersRes=homeRepositry.getAllUsers(1,100,userId)   Temp Commented MT
                 if (allUsersRes.status){
                     BASE_IMAGE=allUsersRes.image
                     val allUsersData=allUsersRes.data
@@ -69,6 +69,19 @@ class StoryActivity : AppCompatActivity(),KodeinAware, StoryEventListener,
                         it.setHasFixedSize(true)
                         it.adapter=StoryAdapter(allUsersData,this@StoryActivity)
                     }
+                }*/
+                var allUsersData : MutableList<AllUsersData>  = ArrayList()
+                allUsersData.add(AllUsersData("","","Sophia","","","","","",""))
+                allUsersData.add(AllUsersData("","","Json","","","","","",""))
+                allUsersData.add(AllUsersData("","","Oliver","","","","","",""))
+                allUsersData.add(AllUsersData("","","Brendon","","","","","",""))
+                allUsersData.add(AllUsersData("","","Jay","","","","","",""))
+                allUsersData.add(AllUsersData("","","Colline","","","","","",""))
+                allUsersData.add(AllUsersData("","","Sophia","","","","","",""))
+                binding.rvStory.also {
+                    it.layoutManager=GridLayoutManager(this@StoryActivity,3,RecyclerView.VERTICAL,false)
+                    it.setHasFixedSize(true)
+                    it.adapter=StoryAdapter(allUsersData,this@StoryActivity)
                 }
 
             }catch (e: ApiException){

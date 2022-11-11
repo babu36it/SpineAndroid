@@ -41,6 +41,10 @@ class SearchPracticionerViewmodel(val homeRepositry: HomeRepositry): ViewModel()
     fun mapView(view: View){
         selectedPageClick?.mapViews()
     }
+    fun onCloseList(view: View){
+        selectedPageClick?.onCloseLists()
+    }
+
 
 
    init{

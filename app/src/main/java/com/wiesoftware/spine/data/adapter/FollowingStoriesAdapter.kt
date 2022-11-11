@@ -36,18 +36,19 @@ class FollowingStoriesAdapter(val storyData: List<FollwingData>,val listener: Fo
         )
 
     override fun onBindViewHolder(holder: StoriesHolder, position: Int) {
-        holder.storiesFollowingItemBinding.model=storyData[position]
-        val img=storyData[position].stories_data[0].media_file
+       holder.storiesFollowingItemBinding.model=storyData[position]
+        /*val img=storyData[position].stories_data[0].media_file   Temp commented MT
         Glide.with(holder.storiesFollowingItemBinding.circleImageView2)
             .load(STORY_IMAGE+img)
             .placeholder(R.drawable.ef_folder_placeholder)
             .into(holder.storiesFollowingItemBinding.circleImageView2)
-
+*/
+        holder.storiesFollowingItemBinding. textView26.text = storyData[position].name
         holder.storiesFollowingItemBinding.circleImageView2.setOnClickListener {
             listener.onClick(storyData[position])
         }
     }
 
-    override fun getItemCount() = storyData.size
+    override fun getItemCount() =storyData.size
 
 }

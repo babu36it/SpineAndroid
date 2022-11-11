@@ -17,12 +17,12 @@
     <de.hdodenhof.circleimageview.CircleImageView
         app:image="@{modal.profilePic}"
         android:id="@+id/circleImageView2"
-        android:layout_width="@dimen/_90"
-        android:layout_height="@dimen/_90"
+        android:layout_width="@dimen/_80"
+        android:layout_height="@dimen/_80"
         android:layout_marginTop="@dimen/eight"
-        android:src="@drawable/ic_profile"
+        android:src="@drawable/profile_circle"
         app:civ_border_color="@color/colorPrimaryDark"
-        app:civ_border_width="4dp"
+        app:civ_border_width="@dimen/_2sdp"
         app:civ_circle_background_color="@color/gray_tint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +35,7 @@
         app:layout_constraintEnd_toEndOf="@+id/circleImageView2"
         app:layout_constraintTop_toTopOf="@+id/circleImageView2"
         />
+    <!--  android:text="@{modal.userName}"-->
     <TextView
         style="@style/StoryTitleText"
         android:id="@+id/textView26"
@@ -42,21 +43,21 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:maxLines="1"
-        android:text="@{modal.userName}"
+        android:text="Sophia"
         android:textColor="@color/text_black"
         app:layout_constraintEnd_toEndOf="@+id/circleImageView2"
         app:layout_constraintStart_toStartOf="@+id/circleImageView2"
         app:layout_constraintTop_toBottomOf="@+id/circleImageView2" />
-
+    <!-- android:text="@{modal.town}"-->
     <TextView
         android:padding="0dp"
         style="@style/SimpleText"
         android:id="@+id/textView27"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@{modal.town}"
+        android:text="Living with mental illness"
         android:textAlignment="center"
-        android:maxLines="3"
+        android:textSize="@dimen/normalText_12"
         app:layout_constraintEnd_toEndOf="@+id/textView26"
         app:layout_constraintStart_toStartOf="@+id/textView26"
         app:layout_constraintTop_toBottomOf="@+id/textView26" />

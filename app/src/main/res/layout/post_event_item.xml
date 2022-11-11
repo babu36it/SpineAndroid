@@ -9,14 +9,11 @@
     <!-- app:imgPro="@{model.profilePic}"-->
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/userImage"
-        android:layout_width="@dimen/_60"
-        android:layout_height="@dimen/_60"
+        android:layout_width="@dimen/profile_size"
+        android:layout_height="@dimen/profile_size"
         android:layout_marginStart="@dimen/sixteen"
         android:layout_marginTop="@dimen/eight"
-        android:src="@drawable/demo"
-        app:civ_circle_background_color="@color/colorPrimaryDark"
-        app:civ_border_width="4dp"
-        app:civ_border_color="@color/gray_tint"
+        android:src="@drawable/profile_circle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <!--        android:visibility="@{model.accountMode.equals(`1`) ? View.VISIBLE: View.GONE}"
@@ -25,9 +22,9 @@
         android:id="@+id/ivBadge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="@dimen/eight"
-        android:layout_marginEnd="@dimen/eight"
-        android:background="@drawable/prof_badge"
+        android:elevation="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:background="@drawable/prof_badge_small"
         app:layout_constraintEnd_toEndOf="@+id/userImage"
         app:layout_constraintTop_toTopOf="@+id/userImage"
         />
@@ -72,6 +69,8 @@
         android:layout_marginEnd="@dimen/sixteen"
         android:maxLines="1"
         android:text="2 days ago"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/light_gry"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/llTopText"
         app:layout_constraintBottom_toBottomOf="@+id/llTopText"
@@ -90,7 +89,9 @@
         />
 
     <TextView
-        android:padding="@dimen/_4sdp"
+        android:textSize="@dimen/normalText_12"
+        android:layout_marginStart="@dimen/sixteen"
+        android:padding="@dimen/eight"
         android:id="@+id/textViewDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -114,6 +115,7 @@
         android:padding="@dimen/eight"
         android:text="09 \nMay"
         style="@style/TitleText"
+        android:textSize="@dimen/normalText_12"
         android:textColor="@color/white"
         app:layout_constraintTop_toTopOf="@+id/imageViewPostBig"
         app:layout_constraintEnd_toEndOf="@+id/imageViewPostBig" />
@@ -159,13 +161,15 @@
         android:drawablePadding="@dimen/eight"
         android:drawableTint="@color/white"
         android:drawableStart="@drawable/ic_location"
-        android:textColor="@color/white"
+        android:textColor="@color/gray_tint"
+        android:textSize="@dimen/normalText_12"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewPostBig"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingStart="@dimen/_4sdp"
+        app:layout_constraintStart_toStartOf="@id/textViewDescription"
         android:id="@+id/constraint_likesharecomment"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewPostBig"
         android:layout_width="match_parent"
@@ -175,10 +179,9 @@
             android:id="@+id/textViewLike"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/sixteen"
             android:layout_marginTop="0dp"
             android:drawableStart="@drawable/ic_heart"
-            android:drawablePadding="@dimen/eight"
+            android:drawablePadding="@dimen/_4sdp"
             android:drawableTint="@color/gray_tint"
             android:gravity="center"
             android:padding="@dimen/eight"
@@ -190,7 +193,6 @@
             android:id="@+id/textView32"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/eight"
             android:drawableStart="@drawable/ic_comment"
             android:drawablePadding="8dp"
             android:drawableTint="@color/gray_tint"

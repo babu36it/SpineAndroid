@@ -3,6 +3,7 @@ package com.wiesoftware.spine.ui.home.menus.spine.practicioners
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -10,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.wiesoftware.spine.R
-import com.wiesoftware.spine.data.adapter.EventContentAdapter
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityPracticionerSelectionListBinding
 import com.wiesoftware.spine.ui.home.menus.events.maps.MapviewEventsActivity
@@ -38,7 +38,8 @@ class PracticionerSelectionListActivity : AppCompatActivity(), KodeinAware, Sele
 
         viewmodel.selectedPageClick = this
        viewmodel.sendDateToOther= Gson().fromJson(intent.getStringExtra("data"),SendDateToOther::class.java)
-       Log.e("data",viewmodel.sendDateToOther.category)
+
+        Log.e("data",viewmodel.sendDateToOther.category)
        Log.e("data",viewmodel.sendDateToOther.location!!)
         binding.rvselecctionList.also {
             it.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
@@ -46,10 +47,15 @@ class PracticionerSelectionListActivity : AppCompatActivity(), KodeinAware, Sele
             it.adapter = PractSelectlistAdapter(this)
         }
 
+        if(viewmodel.sendDateToOther.category.isEmpty() || viewmodel.sendDateToOther.location!!.isEmpty())  binding.rlFilterData.visibility=View.GONE
 
     }
 
     override fun mapViews() {
         startActivity(Intent(this, MapviewEventsActivity::class.java))
+    }
+
+    override fun onCloseLists() {
+        finish()
     }
 }

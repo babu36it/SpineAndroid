@@ -8,4 +8,6 @@ interface HomeSearchEventListener {
     fun onPosts()
     fun onTags()
     fun onPeople()
+    fun onPracticioner()
+    fun onCategories()
 }

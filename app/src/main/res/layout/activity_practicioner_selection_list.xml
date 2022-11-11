@@ -21,32 +21,38 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content">
            <ImageButton
+               android:padding="@dimen/eight"
+
                app:layout_constraintTop_toTopOf="parent"
                app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintBottom_toBottomOf="parent"
                android:id="@+id/imageAddButton"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
+               android:layout_width="@dimen/thirty_two"
+               android:layout_height="@dimen/thirty_two"
                android:layout_marginEnd="@dimen/_4sdp"
                android:background="@android:color/transparent"
-               android:padding="@dimen/_4sdp"
                android:onClick="@{viewmodel.onCloseFilter}"
                android:tint="@color/text_black"
                app:srcCompat="@drawable/ic_add"
                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
            <TextView
+               android:layout_marginTop="@dimen/_4sdp"
+               android:gravity="center_vertical"
                android:id="@+id/textViewTitle"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="@string/your_selection_practicioner"
                android:textAllCaps="true"
+               android:maxLines="1"
+               android:ellipsize="end"
                android:textColor="@color/text_black"
+               style="@style/TitleTextNoPadding"
                android:textSize="@dimen/_13sdp"
-               style="@style/TitleText"
                app:layout_constraintBottom_toBottomOf="parent"
-               app:layout_constraintEnd_toStartOf="@+id/imageCloseButton"
                app:layout_constraintStart_toEndOf="@+id/imageAddButton"
+               app:layout_constraintEnd_toStartOf="@+id/imageCloseButton"
                app:layout_constraintTop_toTopOf="parent"
-               android:paddingBottom="@dimen/_4sdp"/>
+               />
 
            <ImageButton
                android:id="@+id/imageCloseButton"
@@ -56,7 +62,7 @@
                android:layout_marginEnd="@dimen/eight"
                android:background="@android:color/transparent"
                android:padding="@dimen/eight"
-               android:onClick="@{viewmodel.onCloseFilter}"
+               android:onClick="@{viewmodel.onCloseList}"
                android:tint="@color/text_black"
                app:layout_constraintTop_toTopOf="parent"
                app:layout_constraintEnd_toEndOf="parent"
@@ -93,30 +99,31 @@
                 android:layout_marginStart="@dimen/eight"
                 android:layout_marginEnd="@dimen/eight"
                 android:layout_centerVertical="true"
-                android:fontFamily="@font/poppins_bold"
+                style="@style/TitleTextNoPadding"
                 android:text="@{viewmodel.sendDateToOther.location+viewmodel.sendDateToOther.category}"
                 android:textColor="@color/text_black"
                 android:textSize="@dimen/_12sdp" />
-
+            <ImageView
+                android:layout_marginEnd="@dimen/eight"
+                android:id="@+id/txt_cross"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_close_circle"
+                app:tint="@color/black_overlay"/>
             <TextView
+                android:layout_below="@+id/txt_cross"
                 android:layout_alignParentRight="true"
                 android:id="@+id/textedit_fltr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Edit"
-                android:layout_centerVertical="true"
                 android:fontFamily="@font/poppins_bold"
                 android:layout_marginEnd="@dimen/eight"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/_12sdp" />
 
-            <ImageView
-                android:id="@+id/txt_cross"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
-                android:layout_toRightOf="@+id/textedit_fltr"
-                android:src="@drawable/ic_close_circle"
-                app:tint="@color/black_overlay"/>
+
 
         </RelativeLayout>
 
@@ -132,14 +139,14 @@
         <Button
             android:id="@+id/mapView"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_30sdp"
             android:layout_marginBottom="@dimen/eight"
             android:background="@drawable/round_button_bg"
             android:onClick="@{viewmodel.mapView}"
-            android:paddingHorizontal="@dimen/_7sdp"
+            android:paddingHorizontal="@dimen/_4sdp"
             android:text="Map view"
             android:textAllCaps="false"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/normalText_12"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

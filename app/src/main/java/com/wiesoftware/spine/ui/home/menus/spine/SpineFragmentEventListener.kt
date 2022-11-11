@@ -6,4 +6,6 @@ package com.wiesoftware.spine.ui.home.menus.spine
  */
 interface SpineFragmentEventListener {
     fun onAddButtonClicked()
+    fun onSearchButtonClicked()
+    fun closeSearchView()
 }

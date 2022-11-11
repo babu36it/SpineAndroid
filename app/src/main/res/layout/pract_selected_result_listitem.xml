@@ -17,11 +17,11 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/circleImageView3"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/profile_size"
+            android:layout_height="@dimen/profile_size"
             android:layout_marginStart="@dimen/_4sdp"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:src="@drawable/demo"
+            android:layout_marginTop="@dimen/sixteen"
+            android:src="@drawable/profile_circle"
              />
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/eight"
+            android:layout_marginTop="@dimen/_4sdp"
             android:singleLine="true"
             android:text="Craig"
             style="@style/SimpleText"

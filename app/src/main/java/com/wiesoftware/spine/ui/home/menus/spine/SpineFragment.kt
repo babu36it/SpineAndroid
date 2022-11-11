@@ -68,6 +68,25 @@ var searchListener: OnSearchHomeListener? =null
         showAddBottomsheet()
     }
 
+    override fun onSearchButtonClicked() {
+        childFragmentManager
+            .beginTransaction()
+            .replace(R.id.searchHomeAuto, HomeSearchFragment(), "spineHomeSearch")
+            .commit()
+        searchListener?.onSearch(requireContext(),"0")
+         /*to hide the tab view , plus icon and view line */
+          binding.constraintOne.visibility=View.GONE
+          binding.constraintTwo.visibility=View.VISIBLE
+
+    }
+
+    override fun closeSearchView() {
+        val fragment: Fragment? = childFragmentManager.findFragmentByTag("spineHomeSearch")
+        if (fragment != null) childFragmentManager.beginTransaction().remove(fragment)
+            .commit()
+        showHiddenView()
+    }
+
     private fun showAddBottomsheet() {
         val view: View = layoutInflater.inflate(R.layout.add_post_bottomheet, null)
         val dialog: BottomSheetDialog = BottomSheetDialog(requireContext())
@@ -104,6 +123,7 @@ var searchListener: OnSearchHomeListener? =null
             val fragment: Fragment? = childFragmentManager.findFragmentByTag("spineHomeSearch")
             if (fragment != null) childFragmentManager.beginTransaction().remove(fragment)
                 .commit()
+            showHiddenView()
         }else {
             childFragmentManager
                 .beginTransaction()
@@ -113,6 +133,12 @@ var searchListener: OnSearchHomeListener? =null
 
         }
         return true
+    }
+
+    private fun showHiddenView() {
+
+        binding.constraintOne.visibility=View.VISIBLE
+        binding.constraintTwo.visibility=View.GONE
     }
 
     public interface OnSearchHomeListener{

@@ -77,7 +77,7 @@ class FeedAdapter(
                 viewHolder.imageView4.setImageDrawable(
                     ContextCompat.getDrawable(
                         context,
-                        R.drawable.ic_spine_home
+                        R.drawable.profile_circle
                     )
                 )
                 viewHolder.description.text = context.getString(R.string.spine_dumy_description)

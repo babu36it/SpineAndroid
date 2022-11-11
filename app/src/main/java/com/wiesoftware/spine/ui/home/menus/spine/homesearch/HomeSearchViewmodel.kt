@@ -20,4 +20,10 @@ class HomeSearchViewmodel():ViewModel() {
     fun onPeople(view: View){
         homeSearchEventListener?.onPeople()
     }
+    fun onPracticioners(view: View){
+        homeSearchEventListener?.onPracticioner()
+    }
+    fun onCategory(view: View){
+        homeSearchEventListener?.onCategories()
+    }
 }
