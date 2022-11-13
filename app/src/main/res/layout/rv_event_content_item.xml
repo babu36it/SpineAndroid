@@ -105,7 +105,8 @@
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_bookmark"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView36" />
+                app:layout_constraintTop_toTopOf="@+id/textView36"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/textView37"

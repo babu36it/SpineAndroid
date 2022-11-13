@@ -22,7 +22,7 @@
            android:layout_height="wrap_content">
            <ImageButton
                android:padding="@dimen/eight"
-
+               android:visibility="invisible"
                app:layout_constraintTop_toTopOf="parent"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintBottom_toBottomOf="parent"

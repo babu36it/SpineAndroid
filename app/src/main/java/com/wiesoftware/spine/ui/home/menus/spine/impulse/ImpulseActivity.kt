@@ -97,6 +97,20 @@ class ImpulseActivity : AppCompatActivity(), ImpulseEventListener,KodeinAware,
     private fun getImpulseData(pageNo: Int, pagePerCount: Int) {
         Coroutines.main{
             try{
+
+                val impulseList: MutableList<SpineImpulseData> = ArrayList()
+                impulseList.add(SpineImpulseData("",getString(R.string.spine_dumy_description),"","","Spine","1","10","","","","","","1"))
+                impulseList.add(SpineImpulseData("",getString(R.string.spine_dumy_description),"","","Spine","0","2","","","","","","0"))
+                impulseList.add(SpineImpulseData("",getString(R.string.spine_dumy_description),"","","Spine","1","4","","","","","","1"))
+                impulseList.add(SpineImpulseData("",getString(R.string.spine_dumy_description),"","","Spine","1","12","","","","","","0"))
+                binding.rvImpulse.also {
+                    it.layoutManager=LinearLayoutManager(this,RecyclerView.VERTICAL,false)
+                    it.setHasFixedSize(true)
+                    val adapter= ImpulseAdapter(impulseList,this)
+                    it.adapter=adapter
+                    adapter.notifyDataSetChanged()
+                }
+                /*  Temparary commented MT
                 val impulseResponse=homeRepositry.getSpineImpulse(pageNo,pagePerCount,userId)
                 if (impulseResponse.status){
                     page_no++
@@ -111,7 +125,7 @@ class ImpulseActivity : AppCompatActivity(), ImpulseEventListener,KodeinAware,
                     }
                 }else{
                     page_no=1
-                }
+                }*/
 
             }catch(e: ApiException){
                 e.printStackTrace()

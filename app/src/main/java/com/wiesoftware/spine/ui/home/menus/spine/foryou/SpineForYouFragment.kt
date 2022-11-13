@@ -351,6 +351,7 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
                 homeFeedList.add(HomeFeedModel(4,"PROMOTED",0))
                 homeFeedList.add(HomeFeedModel(3,"ONLINE",0))
                 homeFeedList.add(HomeFeedModel(3,"LOCAL",0))
+
                 binding.rvHomeFeed.also {
                     it.layoutManager = LinearLayoutManager(
                         requireContext(),
@@ -1232,4 +1233,32 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
         startActivity(Intent(requireContext(), ImpulseActivity::class.java))
     }
 
+    fun RecyclerView.addOnScrollHiddenView(
+        hiddenView: View,
+        translationX: Float = 0F,
+        translationY: Float = 0F,
+        duration: Long = 200L
+    ) {
+        var isViewShown = true
+        this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                when{
+                    dy> 0 && isViewShown -> {
+                        isViewShown = false
+                        hiddenView.animate()
+                            .translationX(translationX)
+                            .translationY(translationY)
+                            .duration = duration
+                    }
+                    dy < 0 && !isViewShown ->{
+                        isViewShown = true
+                        hiddenView.animate()
+                            .translationX(0f)
+                            .translationY(0f)
+                            .duration = duration
+                    }
+                }
+            }
+        })
+    }
 }

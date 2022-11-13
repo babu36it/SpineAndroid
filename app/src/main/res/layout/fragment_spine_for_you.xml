@@ -10,13 +10,16 @@
             type="com.wiesoftware.spine.ui.home.menus.spine.foryou.SpineForYouViewModel" />
     </data>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
         >
-
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -510,6 +513,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:overScrollMode="never"
                     android:id="@+id/rvHomeFeed"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -521,6 +525,7 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </layout>
