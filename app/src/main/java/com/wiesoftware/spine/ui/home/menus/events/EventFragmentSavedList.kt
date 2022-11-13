@@ -462,7 +462,7 @@ class EventFragmentSavedList : Fragment(), KodeinAware, EventFragmentEventListen
     private fun saved() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getAllSavedEvents(1, 100, user_id)
+                val res =homeRepositry.getAllEvents(1, 100, "saved", "")
                 dataList.clear()
                 if (res.status) {
                     BASE_IMAGE = res.image

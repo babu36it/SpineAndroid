@@ -195,7 +195,7 @@ class HomeRepositry(
     }
 
     suspend fun getEventDetails(event_id: String,userId: String): EventDetailsRes{
-        return apiRequest { api.getEventDetails(event_id,userId) }
+        return apiRequest { api.getEventDetails(event_id) }
     }
     suspend fun saveStatusToCalendarStatus(user_id: String,calender_status: String):SingleRes{
         return apiRequest { api.saveStatusToCalendarStatus(user_id, calender_status) }
@@ -229,7 +229,7 @@ class HomeRepositry(
     }
 
     suspend fun bookEvents(user_id: String,type: String,spine_event_id: String,message: String,amount: String): SingleRes{
-        return apiRequest { api.bookEvent(user_id, type, spine_event_id, message, amount) }
+        return apiRequest { api.bookEvent( spine_event_id, message, amount) }
     }
 
     suspend fun getUserNotifications(user_id: String): NotificationsRes{
@@ -278,7 +278,7 @@ class HomeRepositry(
     }
 
     suspend fun getOwnEvents(userID: String): OwnEventsRes{
-        return apiRequest { api.getOwnEvents(userID) }
+        return apiRequest { api.getOwnEvents() }
     }
 
     suspend fun getFilteredEventList(page: Int,per_page: Int,user_id: String,lat: String,lon: String,distance: Int,start_date: String,end_date:String,category: String): EventsRes{
@@ -286,7 +286,7 @@ class HomeRepositry(
     }
 
     suspend fun getNearbyEvents(page:Int,per_page:Int,your_user_id:String,latitude:Double,longitude:Double,distance:Int):EventsRes{
-       return apiRequest { api.getNearbyEvents(page, per_page, your_user_id, latitude, longitude, distance) }
+       return apiRequest { api.getNearbyEvents( latitude, longitude, distance) }
     }
 
     suspend fun getOnLineEventsList(page: Int,per_page: Int,user_id: String):EventsRes{
@@ -297,8 +297,8 @@ class HomeRepositry(
         return apiRequest { api.getSpineEventReplys(your_events_comment_id) }
     }
 
-    suspend fun getAllEvents(page:Int,perpage: Int,user_id:String,type:String):EventsRes{
-        return apiRequest { api.getAllEventsList(page, perpage, user_id,type) }
+    suspend fun getAllEvents(page:Int,perpage: Int,type:String,typeID:String):EventsRes{
+        return apiRequest { api.getAllEventsList(page, perpage, type,typeID) }
     }
 
     suspend fun removeSpineEvent(your_event_id: String):SingleRes{
@@ -333,8 +333,12 @@ class HomeRepositry(
         return apiRequest { api.getFollowingUsersEventList(page, per_page, your_user_id) }
     }
 
+     suspend fun getEventType():EventTypeRes{
+         return apiRequest { api.getEventType() }
+     }
+
     suspend fun getEventCatRes(searchText:String):EventCatRes{
-        return apiRequest { api.getEventCategories(searchText) }
+        return apiRequest { api.getSpinEventCategories() }
     }
 
     suspend fun getActivities(page: Int,per_page: Int,user_id: String,followers: Int):ActivitiesRes{
@@ -368,7 +372,7 @@ class HomeRepositry(
         return apiRequest { api.addUserImgVideoPost(feature_post,type, user_id, title, hashtag_ids, post_backround_color_id, multiplity,files) }
     }
     suspend fun getFollowingUsersStoryList(page: Int,per_page: Int,your_user_id: String): FollowingStoriesRes{
-        return apiRequest { api.getFollowingUsersStorieList(page, per_page, your_user_id) }
+        return apiRequest { api.getFollowingUsersStorieList(page, per_page) }
     }
 
     suspend fun addUserFollow(user_id: String,follow_user_id: String):SingleRes{
@@ -436,16 +440,17 @@ class HomeRepositry(
         return apiRequest { api.getSpineImpulseData(page_no,page_item_count,user_id) }
     }
 
-    suspend fun addUserEvent(user_id: RequestBody, type: RequestBody, allow_comments: RequestBody,
-                             title: RequestBody, description: RequestBody, start_time: RequestBody,
-                             start_date: RequestBody, end_time: RequestBody, end_date: RequestBody,
-                             timezone: RequestBody,location: RequestBody, link_of_event: RequestBody,
-                             event_categories: RequestBody, fee: RequestBody, fee_currency: RequestBody,
-                             max_attendees: RequestBody, language: RequestBody, accept_participants: RequestBody,
-                             multiple: RequestBody,latitude: RequestBody, longitude: RequestBody,
-                             booking_url:RequestBody,event_subcategories:RequestBody,
-                             files: List<MultipartBody.Part>):SingleRes{
-        return apiRequest { api.addUserEvents(user_id, type, allow_comments, title, description, start_time, start_date, end_time, end_date, timezone, location, link_of_event, event_categories, fee, fee_currency, max_attendees, language, accept_participants, multiple,latitude,longitude,booking_url, event_subcategories,files) }
+    suspend fun addUserEvent(
+        status: Int, user_id: RequestBody, type: RequestBody, allow_comments: Int,
+        title: RequestBody, description: RequestBody, start_time: RequestBody,
+        start_date: RequestBody, end_time: RequestBody, end_date: RequestBody,
+        timezone: RequestBody, location: RequestBody, link_of_event: RequestBody,
+        event_categories: RequestBody, fee: Int, fee_currency: RequestBody,
+        max_attendees: RequestBody, language: Int, accept_participants: Int,
+        multiple: RequestBody, latitude: RequestBody, longitude: RequestBody,
+        booking_url:RequestBody, event_subcategories:RequestBody,
+        files: List<MultipartBody.Part>,join_event_link:RequestBody):SingleRes{
+        return apiRequest { api.addUserEvents(status, type, allow_comments, title, description, start_time, start_date, end_time, end_date, timezone, location, link_of_event, join_event_link,event_categories, fee, fee_currency, max_attendees, language, accept_participants, multiple,latitude,longitude,booking_url, event_subcategories,files) }
     }
 
 

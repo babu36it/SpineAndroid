@@ -1,11 +1,13 @@
 package com.wiesoftware.spine.ui.auth.login
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
 import com.wiesoftware.spine.data.repo.AuthRepositry
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.Coroutines
 import com.wiesoftware.spine.util.NoInternetException
+import com.wiesoftware.spine.util.getToken
 import org.json.JSONObject
 
 class LoginViewModel(
@@ -65,6 +67,8 @@ class LoginViewModel(
     fun getUserDetails() {
         Coroutines.main {
             try {
+                var token = getToken()
+                Log.e("Harsh::",token!!);
                 val response= authRepositry.getUserDetails()
                 val msg: String=response.message!!
 //                if (msg.contains("Your account is not verify",true) ||

@@ -6,13 +6,12 @@
 
     <TextView
         android:id="@+id/tvSpinnerItem"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/_8sdp"
-        android:paddingTop="@dimen/_4sdp"
-        android:textSize="@dimen/_9sdp"
-        android:textColor="@color/dark_gray_day_night"
-        android:paddingBottom="@dimen/_4sdp"
+        android:textSize="@dimen/_10sdp"
+        android:textColor="@color/text_black"
+        android:layout_marginVertical="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

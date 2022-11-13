@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:context=".ui.home.menus.events.event_details.EventDetailActivity">
 
 
@@ -91,6 +91,7 @@
                     android:paddingTop="@dimen/eight"
                     android:paddingEnd="@dimen/sixteen"
                     android:paddingBottom="@dimen/eight"
+                    style="@style/TitleText"
                     android:text="9 May"
                     android:textColor="@color/white"
                     android:textSize="@dimen/normalText"
@@ -112,50 +113,57 @@
                         android:id="@+id/constraintLayout3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/_14sdp"
                         android:background="@color/colorPrimaryDark">
 
                         <TextView
                             android:id="@+id/textView108"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/sixteen"
                             android:layout_marginTop="16dp"
-                            android:fontFamily="@font/poppin_bold"
+                            style="@style/TitleText"
+                            android:padding="@dimen/_1sdp"
+                            android:textStyle="bold"
                             android:text="@string/online_event"
                             android:textAllCaps="true"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_10sdp"
+                            android:textSize="@dimen/normalText"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/textView115"
-                            android:layout_width="0dp"
+                            android:layout_width="250dp"
+                            android:maxWidth="@dimen/_25sdp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_4sdp"
+                            android:layout_marginTop="@dimen/eight"
                             android:layout_marginEnd="16dp"
-                            android:fontFamily="@font/poppin_bold"
-                            android:text=""
+                            android:text="Sahaja Yoga Online Meditation"
+                            style="@style/EventTitleText"
+                            android:textStyle="bold"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/text_22"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            android:textSize="@dimen/_16sdp"
+                            android:padding="0dp"
+
                             app:layout_constraintStart_toStartOf="@+id/textView108"
                             app:layout_constraintTop_toBottomOf="@+id/textView108" />
 
                         <TextView
                             android:id="@+id/textView116"
+                            style="@style/OnlyText"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:drawableStart="@drawable/ic_events"
+                            android:layout_marginTop="@dimen/_7sdp"
+                            android:drawableStart="@drawable/ic_new_event"
                             android:drawablePadding="@dimen/eight"
                             android:drawableTint="@color/white"
                             android:fontFamily="@font/poppin_regular"
-                            android:onClick="@{viewmodel.onCalenderEvent}"
+                            android:padding="0dp"
                             android:text="Sat, 09 May 2020"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/normalText"
-                            app:layout_constraintEnd_toEndOf="@+id/textView115"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@+id/imageButton21"
                             app:layout_constraintStart_toStartOf="@+id/textView115"
                             app:layout_constraintTop_toBottomOf="@+id/textView115" />
 
@@ -163,70 +171,90 @@
                             android:id="@+id/textView117"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/thirty_two"
-                            android:onClick="@{viewmodel.onCalenderEvent}"
-                            android:text=""
+                            android:layout_marginStart="@dimen/_18sdp"
+                            android:text="18:00-19:00 CEST"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/normalText"
+                            android:textSize="@dimen/_10sdp"
                             app:layout_constraintEnd_toEndOf="@+id/textView116"
                             app:layout_constraintStart_toStartOf="@+id/textView116"
                             app:layout_constraintTop_toBottomOf="@+id/textView116" />
-
 
                         <TextView
                             android:id="@+id/textView118"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:drawableStart="@drawable/ic_location"
+                            android:layout_marginTop="@dimen/_7sdp"
+                            android:drawableStart="@drawable/ic_new_location"
                             android:drawablePadding="@dimen/eight"
                             android:drawableTint="@color/white"
                             android:text="Online"
+                            style="@style/OnlyText"
+                            android:textStyle="bold"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/normalText"
+                            android:textSize="@dimen/_12sdp"
                             app:layout_constraintEnd_toEndOf="@+id/textView117"
                             app:layout_constraintStart_toStartOf="@+id/textView116"
                             app:layout_constraintTop_toBottomOf="@+id/textView117" />
-
-                        // android:onClick="@{viewmodel.onLinkClicked}"
 
                         <TextView
                             android:id="@+id/textView119"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/thirty_two"
-                            android:onClick="@{viewmodel.onEventClick}"
+                            android:layout_marginStart="@dimen/_18sdp"
                             android:text="@string/link_visible_for_attendees"
                             android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp"
                             app:layout_constraintEnd_toEndOf="@+id/textView117"
                             app:layout_constraintStart_toStartOf="@+id/textView118"
                             app:layout_constraintTop_toBottomOf="@+id/textView118" />
+
+
+                        <TextView
+                            android:id="@+id/textView521"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_7sdp"
+                            android:drawableStart="@drawable/ic_keyboard_arrow_up_green_24dp"
+                            android:drawablePadding="@dimen/eight"
+                            android:drawableTint="@color/white"
+                            android:text="Website"
+                            style="@style/OnlyText"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12sdp"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="@+id/textView118"
+                            app:layout_constraintStart_toStartOf="@+id/textView118"
+                            app:layout_constraintTop_toBottomOf="@+id/textView119" />
+
 
                         <TextView
                             android:id="@+id/textView120"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:drawableStart="@drawable/ic_mic"
+                            android:layout_marginTop="@dimen/_7sdp"
+                            android:drawableStart="@drawable/ic_new_mic"
                             android:drawablePadding="@dimen/eight"
                             android:drawableTint="@color/white"
                             android:text="@string/hosted_in"
+                            style="@style/OnlyText"
+                            android:textStyle="bold"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/normalText"
+                            android:textSize="@dimen/_12sdp"
                             app:layout_constraintEnd_toEndOf="@+id/textView118"
                             app:layout_constraintStart_toStartOf="@+id/textView118"
-                            app:layout_constraintTop_toBottomOf="@+id/textView119" />
+                            app:layout_constraintTop_toBottomOf="@+id/textView521" />
 
-                        // android:onClick="@{viewmodel.onHostedIn}"
 
                         <TextView
                             android:id="@+id/textView121"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/thirty_two"
+                            android:layout_marginStart="@dimen/_18sdp"
                             android:layout_marginBottom="8dp"
-                            android:text=""
+                            android:text="German"
                             android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@+id/textView119"
                             app:layout_constraintStart_toStartOf="@+id/textView120"
@@ -241,7 +269,7 @@
                             android:src="@drawable/ic_arrow_right"
                             android:tint="@color/white"
                             app:layout_constraintBottom_toBottomOf="@+id/textView117"
-                            app:layout_constraintEnd_toEndOf="@+id/textView116"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/textView116" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -271,6 +299,7 @@
                         android:elevation="@dimen/_2sdp" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:paddingHorizontal="@dimen/_10sdp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -294,12 +323,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/_30sdp"
                             android:layout_marginEnd="@dimen/sixteen"
+                            app:backgroundTint="@color/off_white"
                             android:background="@drawable/round_button_bg"
                             android:onClick="@{viewmodel.openMessageDialog}"
                             android:paddingStart="@dimen/sixteen"
                             android:paddingEnd="@dimen/sixteen"
                             android:text="@string/message"
                             android:textSize="@dimen/_12sp"
+                            android:textColor="@color/colorPrimaryDark"
                             app:layout_constraintBottom_toBottomOf="@+id/circleImageView7"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/circleImageView7" />
@@ -320,9 +351,9 @@
                                 android:id="@+id/textView122"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-
                                 android:layout_marginEnd="@dimen/eight"
                                 android:text=""
+                                style="@style/OnlyText"
                                 android:maxLines="1"
                                 android:ellipsize="end"
                                 android:textColor="@color/text_black" />
@@ -334,7 +365,8 @@
                                 android:fontFamily="@font/poppins_semi_bold"
                                 android:text="@string/host"
                                 android:textAllCaps="true"
-                                android:textSize="@dimen/normalText"
+                                android:textSize="@dimen/_11sdp"
+                                android:textColor="@color/text_black"
                                 app:layout_constraintEnd_toEndOf="@+id/textView122"
                                 app:layout_constraintStart_toStartOf="@+id/textView122"
                                 app:layout_constraintTop_toBottomOf="@+id/textView122" />
@@ -379,46 +411,91 @@
                             app:layout_constraintStart_toStartOf="@+id/textView125"
                             app:layout_constraintTop_toBottomOf="@+id/textView125" />
 
+
                         <LinearLayout
                             android:id="@+id/editTextTextPersonName16"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/eight"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginStart="@dimen/twelve"
+                            android:layout_marginEnd="@dimen/twelve"
+                            android:layout_marginBottom="@dimen/twelve"
+                            android:layout_marginTop="@dimen/twelve"
                             android:background="@drawable/shadow_box"
-                            android:elevation="@dimen/eight"
+                            android:elevation="@dimen/_5sdp"
                             android:orientation="horizontal"
+                            android:visibility="visible"
                             android:weightSum="3"
-                            app:layout_constraintEnd_toEndOf="@+id/textView125"
-                            app:layout_constraintStart_toStartOf="@+id/textView126"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView126">
 
                             <EditText
                                 android:id="@+id/etCmnt"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="2"
                                 android:background="@android:color/transparent"
                                 android:ems="10"
+                                android:gravity="center_vertical"
                                 android:hint="@string/add_public_comments"
-                                android:inputType="textPersonName|textMultiLine"
-                                android:padding="@dimen/eight"
-                                android:text="@={viewmodel.eve_comment}"
+                                android:inputType="textPersonName"
+                                android:paddingVertical="@dimen/eight"
+                                android:paddingHorizontal="@dimen/_12sdp"
                                 android:textColor="@color/text_black"
                                 android:textSize="@dimen/_10sdp"
-                                app:onFocusChangeListener="@{viewmodel::onTargetFocusChanged}" />
+                                android:visibility="visible" />
 
                             <Button
                                 android:id="@+id/button50"
-                                android:layout_width="0dp"
+                                android:layout_width="@dimen/_120sdp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:background="@android:color/transparent"
                                 android:onClick="@{viewmodel.postEventComment}"
+                                android:background="@android:color/transparent"
                                 android:text="@string/post"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:visibility="gone" />
+                                android:textColor="@color/colorPrimaryDark" />
 
                         </LinearLayout>
+<!--                        <LinearLayout-->
+<!--                            android:id="@+id/editTextTextPersonName16"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="@dimen/eight"-->
+<!--                            android:background="@drawable/shadow_box"-->
+<!--                            android:elevation="@dimen/eight"-->
+<!--                            android:orientation="horizontal"-->
+<!--                            android:weightSum="3"-->
+<!--                            app:layout_constraintEnd_toEndOf="@+id/textView125"-->
+<!--                            app:layout_constraintStart_toStartOf="@+id/textView126"-->
+<!--                            app:layout_constraintTop_toBottomOf="@+id/textView126">-->
+
+<!--                            <EditText-->
+<!--                                android:id="@+id/etCmnt"-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="2"-->
+<!--                                android:background="@android:color/transparent"-->
+<!--                                android:ems="10"-->
+<!--                                android:hint="@string/add_public_comments"-->
+<!--                                android:inputType="textPersonName|textMultiLine"-->
+<!--                                android:padding="@dimen/eight"-->
+<!--                                android:text="@={viewmodel.eve_comment}"-->
+<!--                                android:textColor="@color/text_black"-->
+<!--                                android:textSize="@dimen/_10sdp"-->
+<!--                                app:onFocusChangeListener="@{viewmodel::onTargetFocusChanged}" />-->
+
+<!--                            <Button-->
+<!--                                android:id="@+id/button50"-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:background="@android:color/transparent"-->
+<!--                                android:onClick="@{viewmodel.postEventComment}"-->
+<!--                                android:text="@string/post"-->
+<!--                                android:textColor="@color/colorPrimaryDark"-->
+<!--                                android:visibility="gone" />-->
+
+<!--                        </LinearLayout>-->
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerView2"
@@ -426,6 +503,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:layout_marginBottom="@dimen/eight"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -439,9 +517,10 @@
                     android:id="@+id/view20"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="@dimen/eight"
+                    android:layout_marginBottom="@dimen/twelve"
                     android:background="@color/gray_tint"
-                    app:layout_constraintBottom_toTopOf="@+id/textView127"
+
+                    app:layout_constraintBottom_toTopOf="@+id/button47"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -461,16 +540,18 @@
                 <Button
                     android:id="@+id/button47"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_marginEnd="@dimen/eight"
                     android:layout_marginBottom="@dimen/eight"
+                    app:backgroundTint="@color/colorPrimaryDark"
                     android:background="@drawable/round_button_bg"
                     android:onClick="@{viewmodel.onRequestToAttend}"
-                    android:paddingStart="@dimen/eight"
-                    android:paddingEnd="@dimen/eight"
+                    android:paddingStart="@dimen/_25sdp"
+                    android:paddingEnd="@dimen/_25sdp"
+                    android:gravity="center"
                     android:textAllCaps="false"
                     android:text="@string/request_to_attend_online"
-                    android:textSize="@dimen/_9sdp"
+                    android:textSize="@dimen/_10sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/button48" />
 

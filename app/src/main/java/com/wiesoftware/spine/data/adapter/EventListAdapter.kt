@@ -16,12 +16,11 @@ import com.wiesoftware.spine.data.net.reponses.EventsData
 import com.wiesoftware.spine.data.net.reponses.EventsRecord
 import com.wiesoftware.spine.databinding.RvEventListItemBinding
 import com.wiesoftware.spine.ui.home.menus.events.filter.FilterEventActivity
-import com.wiesoftware.spine.util.printDifference
 import kotlinx.android.synthetic.main.rv_event_list_item.view.*
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 /**
  * Created by Vivek kumar on 9/10/2020.
@@ -71,6 +70,7 @@ class EventListAdapter(
 
     override fun onBindViewHolder(holder: EventContentHolder, position: Int) {
         val eve_date = filterDataList[position].startDate
+//        val eve_date = "2022-10-23"
         val simpleDateFormat = SimpleDateFormat("yyyy-M-dd", Locale.getDefault())
 
         try {
@@ -103,13 +103,14 @@ class EventListAdapter(
             e.printStackTrace()
             Log.e("fmtDate: ", e.message.toString())
         }
-        //holder.rvEventListItemBinding.model=dataList[position]
+        holder.rvEventListItemBinding.model=dataList[position]
         val recordsList = filterDataList[position].records
+        var adapter = EventContentAdapter(requireContext, recordsList, this)
         if (recordsList.size > 0) {
             holder.rvEventContent.also {
                 it.layoutManager = LinearLayoutManager(requireContext, RecyclerView.VERTICAL, false)
                 it.setHasFixedSize(true)
-                it.adapter = EventContentAdapter(requireContext, recordsList, this)
+                it.adapter = adapter
             }
         }
 
@@ -129,6 +130,7 @@ class EventListAdapter(
         listener.onEventShare(record)
     }
 
+
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
@@ -141,8 +143,6 @@ class EventListAdapter(
                     for (row in dataList) {
                         for (data in row.records) {
                             if ((data.title).toLowerCase(Locale.ROOT)
-                                    .contains(charSearch.toLowerCase(Locale.ROOT))
-                                || (data.displayName ?: data.useName).toLowerCase(Locale.ROOT)
                                     .contains(charSearch.toLowerCase(Locale.ROOT))
                                 || (data.location).toLowerCase(Locale.ROOT)
                                     .contains(charSearch.toLowerCase(Locale.ROOT))

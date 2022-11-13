@@ -21,84 +21,109 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shadow_box"
-        android:padding="@dimen/sixteen"
-        android:layout_marginStart="@dimen/sixteen"
-        android:layout_marginEnd="@dimen/sixteen"
-        android:layout_marginTop="@dimen/eight"
-        android:orientation="vertical"
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageButton32">
+        app:layout_constraintTop_toBottomOf="@id/imageButton32"
+        android:layout_marginStart="@dimen/eight"
+        android:layout_marginEnd="@dimen/eight"
+        android:layout_marginTop="@dimen/eight"
+       app:contentPaddingLeft="@dimen/eight"
+        app:contentPaddingRight="@dimen/eight"
+        app:contentPaddingBottom="@dimen/twelve"
+        app:contentPaddingTop="@dimen/twelve"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textView174"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_bold"
-            android:text="@string/you_re_going"
-            android:textAlignment="center"
-            android:textColor="@color/text_black"
-            android:textSize="@dimen/text_22" />
+            android:orientation="vertical"
+            >
 
-        <TextView
-            android:id="@+id/tvEventTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_marginTop="@dimen/eight"
-            android:text="Yoga Weekend Retreat -
+            <TextView
+                android:id="@+id/textView174"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                style="@style/OnlyText"
+                android:text="@string/you_re_going"
+                android:textAlignment="center"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold"  />
+
+            <TextView
+                android:id="@+id/tvEventTitle"
+                android:layout_width="@dimen/_180sdp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                style="@style/OnlyText"
+                android:layout_gravity="center"
+                android:text="Yoga Weekend Retreat -
 Reclaiming Your Center"
-            android:textAlignment="center"
-            android:textColor="@color/darkback"
-            android:textSize="@dimen/big_text" />
-        <TextView
-            android:id="@+id/textView176"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_marginTop="@dimen/eight"
-            android:text="Sat, 09 May 2020, 18:00"
-            android:textAlignment="center"
-            android:textColor="@color/darkback"
-            android:textSize="@dimen/big_text" />
-        <TextView
-            android:id="@+id/textView177"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_marginTop="@dimen/_32dp"
-            android:text="@string/the_link_to_join_the_online_event_is_now_available_on_the_event_screen_for_you"
-            android:textAlignment="center"
-            android:textColor="@color/darkback"
-            android:textSize="@dimen/big_text" />
+                android:textAlignment="center"
+                android:textColor="@color/darkback"
+                android:textSize="@dimen/normalText"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textView176"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/eight"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Sat, 09 May 2020, 18:00"
+                android:textAlignment="center"
+                android:textColor="@color/darkback"
+                android:textSize="@dimen/_12sdp" />
+            <TextView
+                android:id="@+id/textView177"
+                android:layout_width="@dimen/_190sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/the_link_to_join_the_online_event_is_now_available_on_the_event_screen_for_you"
+                android:textAlignment="center"
+                android:textColor="@color/darkback"
+                android:textSize="@dimen/normalText" />
 
 
 
-        <Button
-            android:id="@+id/button68"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/eight"
-            android:layout_marginEnd="@dimen/eight"
-            android:layout_marginBottom="@dimen/eight"
-            android:background="@drawable/round_button_bg"
-            android:text="@string/forward_to_a_friend" />
+            <Button
+                android:id="@+id/button68"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginEnd="@dimen/twelve"
+                android:layout_marginStart="@dimen/twelve"
+                android:layout_marginBottom="@dimen/eight"
+                android:paddingHorizontal="@dimen/_15sdp"
+                app:backgroundTint="@color/colorPrimaryDark"
+                android:background="@drawable/round_button_bg"
+                android:text="@string/forward_to_a_friend" />
 
-        <Button
-            android:id="@+id/button69"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/eight"
-            android:layout_marginEnd="@dimen/eight"
-            android:layout_marginBottom="@dimen/eight"
-            android:background="@android:color/transparent"
-            android:textColor="@color/text_black"
-            android:text="@string/added_to_your_calendar" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/button69"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginEnd="@dimen/eight"
+                android:layout_marginBottom="@dimen/eight"
+                android:background="@android:color/transparent"
+                android:textColor="@color/grey"
+
+                android:text="@string/added_to_your_calendar" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

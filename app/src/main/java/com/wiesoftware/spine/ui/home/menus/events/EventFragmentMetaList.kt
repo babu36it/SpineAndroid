@@ -6,15 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.location.*
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.EventListAdapter
 import com.wiesoftware.spine.data.adapter.EventMenuAdapter
@@ -27,7 +24,6 @@ import com.wiesoftware.spine.ui.home.menus.events.filter.FilterEventActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.STORY_IMAGE
 import com.wiesoftware.spine.util.*
-import kotlinx.android.synthetic.main.add_post_bottomheet.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
@@ -36,12 +32,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-val EVE_RECORD = "eve_record"
-val B_IMG_URL = "base_url"
-val IS_FROM_EVENT_DETAILS = "isFromEventDetails"
-var PROFILE_PIC_URL = ""
-
-class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListener,
+class EventFragmentMetaList : Fragment(), KodeinAware, EventFragmentEventListener,
     EventListAdapter.OnEventSaveListener, EventMenuAdapter.OnMenuSelectedListener {
 
     val PERMISSION_REQUEST_CODE = 94
@@ -66,7 +57,7 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
 
     companion object {
         fun newInstance(fragmentArgumentsValue: String?, userID: String?): Fragment? {
-            val f = EventFragmentGoingList()
+            val f = EventFragmentMetaList()
             val bun = Bundle()
             bun.putString("type", fragmentArgumentsValue)
             bun.putString("userID", userID)
@@ -83,16 +74,60 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
         val viewmodel = ViewModelProvider(this, factory).get(EventFragmentViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.eventFragmentEventListener = this
-        viewmodel.getLoggedInUser().observe(viewLifecycleOwner, Observer { user ->
-            user_id = user.users_id!!
-        })
+//        viewmodel.getLoggedInUser().observe(viewLifecycleOwner, Observer { user ->
+//            user_id = user.users_id!!
+//        })
+
+        viewmodel.getLoggedInUser().observe(viewLifecycleOwner, androidx.lifecycle.Observer { user -> user_id = user.users_id!!  })
 
         arguments?.let {
             argString = it.getString("type").toString()
             user_id = it.getString("userID").toString()
         }
 
-
+//        EventFragment.searchView?.setOnQueryTextFocusChangeListener { v, hasFocus ->
+//            /*if (hasFocus){
+//                    startActivity(Intent(requireContext(),FilterEventActivity::class.java))
+//                }
+//                binding.searchSpine.clearFocus()*/
+//        }
+//        EventFragment.searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//
+//            override fun onQueryTextChange(newText: String?): Boolean {
+////                adapter?.filter?.filter(newText)
+//
+//                println("Sanjay....."+newText)
+//
+//                dataListTemp.clear()
+//                if (newText!!.isEmpty()) {
+//                    dataListTemp = dataList
+//                } else {
+//                    for (row in dataList) {
+//                        for (data in row.records) {
+//                            if ((data.title).toLowerCase(Locale.ROOT)
+//                                    .contains(newText!!.toLowerCase(Locale.ROOT))
+//                                || (data.displayName ?: data.useName).toLowerCase(Locale.ROOT)
+//                                    .contains(newText!!.toLowerCase(Locale.ROOT))
+//                                || (data.location).toLowerCase(Locale.ROOT)
+//                                    .contains(newText!!.toLowerCase(Locale.ROOT))
+//                                || (data.description).toLowerCase(Locale.ROOT)
+//                                    .contains(newText!!.toLowerCase(Locale.ROOT))
+//                            ) {
+//                                dataListTemp.add(row)
+//                            }
+//                        }
+//                    }
+//                }
+//
+//                adapter?.setFilterData(dataListTemp)
+//
+//                return true
+//            }
+//
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                return true
+//            }
+//        })
 
         when (argString) {
             "ALL" -> {
@@ -123,23 +158,53 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
             "PAST" -> {
                 past()
             }
+
+            "META" -> {
+                meta()
+            }
         }
 
         binding.texteditFltr.setOnClickListener {
             startActivity(
                 Intent(
-                    requireActivity(),
-                    FilterEventActivity::class.java
-                )
+                requireActivity(),
+                FilterEventActivity::class.java
+            )
             )
         }
 
         binding.txtCross.setOnClickListener {
-            going()
+            setOnLineEvents()
             binding.rlFilterData.visibility = View.GONE
         }
 
         return binding.root
+    }
+
+
+    fun setFilterDataOnLine(newText: String) {
+        dataListTemp.clear()
+        if (newText!!.isEmpty()) {
+            dataListTemp = dataList
+        } else {
+            for (row in dataList) {
+                for (data in row.records) {
+                    if ((data.title).toLowerCase(Locale.ROOT)
+                            .contains(newText!!.toLowerCase(Locale.ROOT))
+                        || (data.displayName ?: data.useName).toLowerCase(Locale.ROOT)
+                            .contains(newText!!.toLowerCase(Locale.ROOT))
+                        || (data.location).toLowerCase(Locale.ROOT)
+                            .contains(newText!!.toLowerCase(Locale.ROOT))
+                        || (data.description).toLowerCase(Locale.ROOT)
+                            .contains(newText!!.toLowerCase(Locale.ROOT))
+                    ) {
+                        dataListTemp.add(row)
+                    }
+                }
+            }
+        }
+        println("Sanjay OnLine...."+newText+"......"+dataListTemp.size)
+        adapter?.setFilterData(dataListTemp)
     }
 
 
@@ -154,7 +219,7 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
                     Log.e("imagetwo", res.image)
                     dataList = res.data
                     adapter =
-                        EventListAdapter(requireContext(), dataList, this@EventFragmentGoingList, 0)
+                        EventListAdapter(requireContext(), dataList, this@EventFragmentMetaList, 0)
                     binding.rvEventList.also {
                         it.layoutManager =
                             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
@@ -164,8 +229,7 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
                     }
 
                     if (dataList.size > 0)
-                        EventFragment.tabLayout?.getTabAt(0)
-                            ?.setText("ALL (" + dataList.size + ")");
+                        EventFragment.tabLayout?.getTabAt(0)?.setText("ALL ("+dataList.size+")");
                     else
                         EventFragment.tabLayout?.getTabAt(0)?.setText("ALL");
                 }
@@ -229,31 +293,6 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
 
     }
 
-    fun setFilterDataGoing(newText: String) {
-        dataListTemp.clear()
-        if (newText!!.isEmpty()) {
-            dataListTemp = dataList
-        } else {
-            for (row in dataList) {
-                for (data in row.records) {
-                    if ((data.title).toLowerCase(Locale.ROOT)
-                            .contains(newText!!.toLowerCase(Locale.ROOT))
-                        || (data.displayName ?: data.useName).toLowerCase(Locale.ROOT)
-                            .contains(newText!!.toLowerCase(Locale.ROOT))
-                        || (data.location).toLowerCase(Locale.ROOT)
-                            .contains(newText!!.toLowerCase(Locale.ROOT))
-                        || (data.description).toLowerCase(Locale.ROOT)
-                            .contains(newText!!.toLowerCase(Locale.ROOT))
-                    ) {
-                        dataListTemp.add(row)
-                    }
-                }
-            }
-        }
-        println("Sanjay Going...." + newText + "......" + dataListTemp.size)
-        adapter?.setFilterData(dataListTemp)
-    }
-
     override fun onEventDetails(record: EventsRecord) {
         val intent = Intent(requireContext(), EventDetailActivity::class.java)
         intent.putExtra(EVE_RECORD, record)
@@ -302,65 +341,43 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
                 val dd = SimpleDateFormat("dd MMM", Locale.getDefault())
 
                 var combineDate: String = ""
-                if (Prefs.getString("date", "") != "") {
+                if(Prefs.getString("date", "") != "") {
                     var firstDateMonth: List<String> = Prefs.getString("date", "")?.split("-")!!
-                    var secondDateMonth: List<String> = Prefs.getString("datetwo", "")?.split("-")!!
+                    var secondDateMonth: List<String>  = Prefs.getString("datetwo", "")?.split("-")!!
 
-                    combineDate = if (firstDateMonth[1] == secondDateMonth[1]) {
-                        firstDateMonth[2] + " - " + dd.format(
-                            simpleDateFormat.parse(
-                                Prefs.getString(
-                                    "datetwo",
-                                    ""
-                                )
-                            )
-                        )
+                    combineDate = if(firstDateMonth[1] == secondDateMonth[1]) {
+                        firstDateMonth[2] + " - "  +dd.format(simpleDateFormat.parse(Prefs.getString("datetwo", "")))
                     } else {
-                        dd.format(
-                            simpleDateFormat.parse(
-                                Prefs.getString(
-                                    "date",
-                                    ""
-                                )
-                            )
-                        ) + " - " + dd.format(
-                            simpleDateFormat.parse(
-                                Prefs.getString(
-                                    "datetwo",
-                                    ""
-                                )
-                            )
-                        )
+                        dd.format(simpleDateFormat.parse(Prefs.getString("date", ""))) + " - "  +dd.format(simpleDateFormat.parse(
+                            Prefs.getString("datetwo", "")))
                     }
                 }
 
                 var totalCategories: Int = 0
-                if (Prefs.getString("category", "") != "") {
+                if(Prefs.getString("category", "") != "") {
                     var categories: List<String> = Prefs.getString("category", "")?.split(",")!!
                     totalCategories = categories.size
                 }
 
                 var filterText = ""
 
-                if (Prefs.getString("location", "") != "") {
-                    if (Prefs.getString("location", "")!!.contains(",")) {
+                if(Prefs.getString("location", "") != "") {
+                    if(Prefs.getString("location", "")!!.contains(",")) {
                         filterText = Prefs.getString("location", "")?.split(",")!![0] + ", "
                     } else {
                         filterText = Prefs.getString("location", "") + ", "
                     }
                 }
 
-                if (combineDate != "") {
+                if(combineDate != "") {
                     filterText = filterText + combineDate + ", "
                 }
 
-                if (totalCategories > 0) {
-                    if (totalCategories > 1)
-                        binding.textView33.text =
-                            filterText + totalCategories.toString() + "categories"
+                if(totalCategories > 0) {
+                    if(totalCategories > 1)
+                        binding.textView33.text = filterText + totalCategories.toString() + "categories"
                     else
-                        binding.textView33.text =
-                            filterText + totalCategories.toString() + "category"
+                        binding.textView33.text = filterText + totalCategories.toString() + "category"
                 } else {
                     binding.textView33.text = method(filterText)
                 }
@@ -404,7 +421,7 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
                     dataList = res.data
                     Log.e("filteredRes: ", "" + dataList)
                     adapter =
-                        EventListAdapter(requireContext(), dataList, this@EventFragmentGoingList, 0)
+                        EventListAdapter(requireContext(), dataList, this@EventFragmentMetaList, 0)
                     binding.rvEventList.also {
                         it.layoutManager =
                             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
@@ -420,9 +437,9 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
                     }
 
                     if (count > 0)
-                        EventFragment.tabLayout?.getTabAt(1)?.setText("GOING (" + count + ")");
+                        EventFragment.tabLayout?.getTabAt(4)?.setText("ONLINE (" + count + ")");
                     else
-                        EventFragment.tabLayout?.getTabAt(1)?.setText("GOING");
+                        EventFragment.tabLayout?.getTabAt(4)?.setText("ONLINE");
 
                 } else {
                     "${res.message}".toast(requireContext())
@@ -455,7 +472,7 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
                     BASE_IMAGE = res.image
                     dataList = res.data
                     adapter =
-                        EventListAdapter(requireContext(), dataList, this@EventFragmentGoingList, 0)
+                        EventListAdapter(requireContext(), dataList, this@EventFragmentMetaList, 0)
                     binding.rvEventList.also {
                         it.layoutManager =
                             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
@@ -465,7 +482,39 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
                 }
 
                 if (dataList.size > 0)
-                    EventFragment.tabLayout?.getTabAt(2)?.setText("SAVED (" + dataList.size + ")");
+                    EventFragment.tabLayout?.getTabAt(2)?.setText("SAVED ("+dataList.size+")");
+                else
+                    EventFragment.tabLayout?.getTabAt(2)?.setText("SAVED");
+
+                adapter?.notifyDataSetChanged()
+            } catch (e: ApiException) {
+                e.printStackTrace()
+            } catch (e: NoInternetException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    private fun meta() {
+        lifecycleScope.launch {
+            try {
+                val res = homeRepositry.getAllSavedEvents(1, 100, user_id)
+                dataList.clear()
+                if (res.status) {
+                    BASE_IMAGE = res.image
+                    dataList = res.data
+                    adapter =
+                        EventListAdapter(requireContext(), dataList, this@EventFragmentMetaList, 0)
+                    binding.rvEventList.also {
+                        it.layoutManager =
+                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+                        it.setHasFixedSize(true)
+                        it.adapter = adapter
+                    }
+                }
+
+                if (dataList.size > 0)
+                    EventFragment.tabLayout?.getTabAt(2)?.setText("SAVED ("+dataList.size+")");
                 else
                     EventFragment.tabLayout?.getTabAt(2)?.setText("SAVED");
 
@@ -485,13 +534,13 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
     private fun getGoingPastEventList(goingPast: Int) {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getAllEvents(1, 100, "going", "")
+                val res = homeRepositry.getGoingPastEventsList(1, 100, user_id, goingPast)
                 dataList.clear()
                 if (res.status) {
                     BASE_IMAGE = res.image
                     dataList = res.data
                     adapter =
-                        EventListAdapter(requireContext(), dataList, this@EventFragmentGoingList, 0)
+                        EventListAdapter(requireContext(), dataList, this@EventFragmentMetaList, 0)
                     binding.rvEventList.also {
                         it.layoutManager =
                             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
@@ -500,22 +549,14 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
                     }
                 }
 
-                var count = 0
-                if (dataList.size > 0) {
-                    for (list in dataList) {
-                        if (list.records != null) count += list.records.size
-                    }
-                }
-
-
-                if (goingPast == 0) {
-                    if (count > 0)
-                        EventFragment.tabLayout?.getTabAt(1)?.setText("GOING (" + count + ")");
+                if(goingPast == 0) {
+                    if (dataList.size > 0)
+                        EventFragment.tabLayout?.getTabAt(1)?.setText("GOING ("+dataList.size+")");
                     else
                         EventFragment.tabLayout?.getTabAt(1)?.setText("GOING");
                 } else {
-                    if (count > 0)
-                        EventFragment.tabLayout?.getTabAt(6)?.setText("PAST (" + count + ")");
+                    if (dataList.size > 0)
+                        EventFragment.tabLayout?.getTabAt(6)?.setText("PAST ("+dataList.size+")");
                     else
                         EventFragment.tabLayout?.getTabAt(6)?.setText("PAST");
                 }
@@ -541,7 +582,7 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
                     dataList = res.data
                     Log.e("latlongRes: ", "" + dataList)
                     adapter =
-                        EventListAdapter(requireContext(), dataList, this@EventFragmentGoingList, 0)
+                        EventListAdapter(requireContext(), dataList, this@EventFragmentMetaList, 0)
                     binding.rvEventList.also {
                         it.layoutManager =
                             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
@@ -551,7 +592,7 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
                 }
 
                 if (dataList.size > 0)
-                    EventFragment.tabLayout?.getTabAt(5)?.setText("NEARBY (" + dataList.size + ")");
+                    EventFragment.tabLayout?.getTabAt(5)?.setText("NEARBY ("+dataList.size+")");
                 else
                     EventFragment.tabLayout?.getTabAt(5)?.setText("NEARBY");
 
@@ -573,7 +614,7 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
                     STORY_IMAGE = res.image
                     dataList = res.data
                     adapter =
-                        EventListAdapter(requireContext(), dataList, this@EventFragmentGoingList, 0)
+                        EventListAdapter(requireContext(), dataList, this@EventFragmentMetaList, 0)
                     binding.rvEventList.also {
                         it.layoutManager =
                             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
@@ -583,8 +624,7 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
                 }
 
                 if (dataList.size > 0)
-                    EventFragment.tabLayout?.getTabAt(3)
-                        ?.setText("FOLLOWING (" + dataList.size + ")");
+                    EventFragment.tabLayout?.getTabAt(3)?.setText("FOLLOWING ("+dataList.size+")");
                 else
                     EventFragment.tabLayout?.getTabAt(3)?.setText("FOLLOWING");
 
@@ -600,13 +640,13 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
     private fun setOnLineEvents() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getOnLineEventsList(1, 100, user_id)
+                val res = homeRepositry.getAllEvents(1, 100, "online", "")
                 dataList.clear()
                 if (res.status) {
                     STORY_IMAGE = res.image
                     dataList = res.data
                     adapter =
-                        EventListAdapter(requireContext(), dataList, this@EventFragmentGoingList, 0)
+                        EventListAdapter(requireContext(), dataList, this@EventFragmentMetaList, 0)
                     binding.rvEventList.also {
                         it.layoutManager =
                             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
@@ -615,8 +655,20 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
                     }
                 }
 
-                if (dataList.size > 0)
-                    EventFragment.tabLayout?.getTabAt(4)?.setText("ONLINE (" + dataList.size + ")");
+//                if (dataList.size > 0)
+//                    EventFragment.tabLayout?.getTabAt(4)?.setText("ONLINE ("+dataList.size+")");
+//                else
+//                    EventFragment.tabLayout?.getTabAt(4)?.setText("ONLINE");
+
+                var count = 0
+                if (dataList.size > 0) {
+                    for (list in dataList) {
+                        if (list.records != null) count += list.records.size
+                    }
+                }
+
+                if (count > 0)
+                    EventFragment.tabLayout?.getTabAt(4)?.setText("ONLINE (" + count + ")");
                 else
                     EventFragment.tabLayout?.getTabAt(4)?.setText("ONLINE");
 

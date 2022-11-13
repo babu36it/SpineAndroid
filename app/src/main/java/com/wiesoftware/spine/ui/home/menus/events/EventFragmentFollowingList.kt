@@ -570,7 +570,7 @@ class EventFragmentFollowingList : Fragment(), KodeinAware, EventFragmentEventLi
     private fun setFollowingEvents() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getFollowingUsersEventsList(1, 100, user_id)
+                val res = homeRepositry.getAllEvents(1, 100, "following", "")
                 dataList.clear()
                 if (res.status) {
                     STORY_IMAGE = res.image
