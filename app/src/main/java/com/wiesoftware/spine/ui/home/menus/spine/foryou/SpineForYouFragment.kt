@@ -1233,6 +1233,12 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
         startActivity(Intent(requireContext(), ImpulseActivity::class.java))
     }
 
+    override fun onViewSomeonesProfile(postData: HomeFeedModel) {
+        val intent= Intent(requireContext(), SomeOneProfileActivity::class.java)
+        intent.putExtra(SomeOneProfileActivity.SOME_ONES_USER_ID,postData.text)
+        startActivity(intent)
+    }
+
     fun RecyclerView.addOnScrollHiddenView(
         hiddenView: View,
         translationX: Float = 0F,
