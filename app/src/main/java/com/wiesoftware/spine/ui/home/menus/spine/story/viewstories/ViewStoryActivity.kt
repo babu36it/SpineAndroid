@@ -93,11 +93,7 @@ class ViewStoryActivity : AppCompatActivity(),
             }else{
                 getStoriesData()
             }
-
-
         })
-
-
 
     }
 
@@ -111,9 +107,7 @@ class ViewStoryActivity : AppCompatActivity(),
              if (res.status){
                  STORY_IMAGE=res.image
                  storyUser = res.data
-
                  //preLoadStories(storyUser)
-
                  setUpPager(storyUser)
              }
          }catch (e: Exception){
@@ -223,16 +217,24 @@ class ViewStoryActivity : AppCompatActivity(),
             Glide.with(this).load(imageStory).preload()
         }
     }
+
     private fun getStoriesData() {
+        storyUser = ArrayList()
+        var list : ArrayList<FollowingStoriesData> = ArrayList()
+        list.add(FollowingStoriesData("","","","","https://demonuts.com/Demonuts/SampleImages/W-03.JPG","","Awesome","","1",12,5,1,1))
+        list.add(FollowingStoriesData("","","","","https://tableforchange.com/wp-content/uploads/2017/06/yoga-quotes-11-min.png","","Sky","","1",1,25,1,1))
         lifecycleScope.launch {
+
             try {
-                val storyRes=homeRepositry.getFollowingUsersStoryList(1,100,user_id)//homeRepositry.getYourStories(userId)
+                storyUser.add(FollwingData("","",list,"",""))
+                setUpPager(storyUser)
+            /*    val storyRes=homeRepositry.getFollowingUsersStoryList(1,100,user_id)//homeRepositry.getYourStories(userId)
                 if (storyRes.status){
                     STORY_IMAGE=storyRes.image
                     storyUser = storyRes.data
                     //preLoadStories(storyUser)
                     setUpPager(storyUser)
-                }
+                } Temparary commented MT*/
 
             }catch (e: ApiException){
                 e.printStackTrace()
