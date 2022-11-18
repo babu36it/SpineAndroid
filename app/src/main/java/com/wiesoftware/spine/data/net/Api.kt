@@ -645,21 +645,18 @@ interface Api {
     @Multipart
     @POST("profile/userProfilePic")
     suspend fun updateUserProfilePic(
-        @Part image: MultipartBody.Part?,
-        @Part("user_id") user_id: RequestBody
+        @Part image: MultipartBody.Part?
     ): Response<SingleRes>
 
     @Multipart
     @POST("profile/userBgProfilePic")
     suspend fun updateUserBgProfilePic(
         @Part image: MultipartBody.Part,
-        @Part("user_id") user_id: RequestBody
     ): Response<SingleRes>
 
     @FormUrlEncoded
     @POST("profile/profileEdit")
     suspend fun profileEdit(
-        @Field("user_id") user_id: String,
         @Field("account_type") account_type: String,
         @Field("name") name: String,
         @Field("display_name") display_name: String,
@@ -671,6 +668,39 @@ interface Api {
         @Field("business_address") business_address: String,
         @Field("address") address: String
     ): Response<SingleRes>
+
+    @FormUrlEncoded
+    @POST("profile/profileEdit")
+    suspend fun editProfile(
+        @Field("account_type") account_type: String,
+        @Field("listing_type") listing_type: String,
+        @Field("name") name: String,
+        @Field("display_name") display_name: String,
+        @Field("bio") bio: String,
+        @Field("category") category: String,
+        @Field("interested") interested: String,
+        @Field("offer_desciption") offer_desciption: String,
+        @Field("key_perfomance") key_perfomance: String,
+        @Field("desease_pattern") desease_pattern: String,
+        @Field("languages") languages: String,
+        @Field("qualification") qualification: String,
+        @Field("company_name") company_name: String,
+        @Field("street_1") street_1: String,
+        @Field("street_2") street_2: String,
+        @Field("street_3") street_3: String,
+        @Field("city") city: String,
+        @Field("postcode") postcode: String,
+        @Field("country") country: String,
+        @Field("address") address: String,
+        @Field("metaverse_address") metaverse_address: String,
+        @Field("website") website: String,
+        @Field("contact_email") contact_email: String,
+        @Field("business_phone") business_phone: String,
+        @Field("business_mobile") business_mobile: String,
+        @Field("business_phone_code")business_phone_code:String,
+        @Field("business_mobile_code")business_mobile_code:String
+
+        ): Response<SingleRes>
 
 
     @Multipart

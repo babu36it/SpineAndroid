@@ -6,5 +6,6 @@ data class LangData(
     val id: String,
     val name: String,
     @SerializedName("iso_639-1")
-    val iso_639: String
+    val iso_639: String,
+    var isSelect:Boolean
 )

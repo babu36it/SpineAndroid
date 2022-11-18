@@ -326,7 +326,7 @@ class HomeRepositry(
         return apiRequest { api.getCurrency() }
     }
 
-    suspend fun getEventDetails(event_id: String,userId: String): EventDetailsRes{
+    suspend fun getEventDetails(event_id: String, userId: String): EventDetailsRes {
         return apiRequest { api.getEventDetails(event_id) }
     }
 
@@ -367,26 +367,26 @@ class HomeRepositry(
     ): SingleRes {
         return apiRequest {
             api.getAllEmailNotification(
-                e_notify_status,e_event_attach_status,
-                e_message_status,e_comment_reply_status,
-                e_event_podcast_status,e_update_from_spine_status,
+                e_notify_status, e_event_attach_status,
+                e_message_status, e_comment_reply_status,
+                e_event_podcast_status, e_update_from_spine_status,
                 e_spine_surveys_status
             )
         }
     }
 
     suspend fun getAllMobileNotifications(
-        m_notify_status:String,
-        m_like_notify_status:String,
-        m_comment_notify_status:String,
-        m_update_and_reminders_status:String,
-        m_save_event_reminders_status:String,
-        m_message_status:String,
-        m_follow_status:String,
-        m_spine_impulse_status:String,
-        m_any_post_status:String
-    ):SingleRes{
-        return  apiRequest {
+        m_notify_status: String,
+        m_like_notify_status: String,
+        m_comment_notify_status: String,
+        m_update_and_reminders_status: String,
+        m_save_event_reminders_status: String,
+        m_message_status: String,
+        m_follow_status: String,
+        m_spine_impulse_status: String,
+        m_any_post_status: String
+    ): SingleRes {
+        return apiRequest {
             api.getAllMobileNotifications(
                 m_notify_status,
                 m_like_notify_status,
@@ -425,8 +425,14 @@ class HomeRepositry(
         return apiRequest { api.getGoingUsers(page, perPage, eventId) }
     }
 
-    suspend fun bookEvents(user_id: String,type: String,spine_event_id: String,message: String,amount: String): SingleRes{
-        return apiRequest { api.bookEvent( spine_event_id, message, amount) }
+    suspend fun bookEvents(
+        user_id: String,
+        type: String,
+        spine_event_id: String,
+        message: String,
+        amount: String
+    ): SingleRes {
+        return apiRequest { api.bookEvent(spine_event_id, message, amount) }
     }
 
     suspend fun getUserNotifications(user_id: String): NotificationsRes {
@@ -500,7 +506,7 @@ class HomeRepositry(
         }
     }
 
-    suspend fun getOwnEvents(userID: String): OwnEventsRes{
+    suspend fun getOwnEvents(userID: String): OwnEventsRes {
         return apiRequest { api.getOwnEvents() }
     }
 
@@ -530,8 +536,15 @@ class HomeRepositry(
         }
     }
 
-    suspend fun getNearbyEvents(page:Int,per_page:Int,your_user_id:String,latitude:Double,longitude:Double,distance:Int):EventsRes{
-       return apiRequest { api.getNearbyEvents( latitude, longitude, distance) }
+    suspend fun getNearbyEvents(
+        page: Int,
+        per_page: Int,
+        your_user_id: String,
+        latitude: Double,
+        longitude: Double,
+        distance: Int
+    ): EventsRes {
+        return apiRequest { api.getNearbyEvents(latitude, longitude, distance) }
     }
 
     suspend fun getOnLineEventsList(page: Int, per_page: Int, user_id: String): EventsRes {
@@ -542,19 +555,19 @@ class HomeRepositry(
         return apiRequest { api.getSpineEventReplys(your_events_comment_id) }
     }
 
-    suspend fun getAllEvents(page:Int,perpage: Int,type:String,typeID:String):EventsRes{
-        return apiRequest { api.getAllEventsList(page, perpage, type,typeID) }
+    suspend fun getAllEvents(page: Int, perpage: Int, type: String, typeID: String): EventsRes {
+        return apiRequest { api.getAllEventsList(page, perpage, type, typeID) }
     }
 
     suspend fun removeSpineEvent(your_event_id: String): SingleRes {
         return apiRequest { api.removeSpineEvent(your_event_id) }
     }
 
-    suspend fun removeEventSave(your_user_id:String,your_spine_event_id:String):SingleRes{
+    suspend fun removeEventSave(your_user_id: String, your_spine_event_id: String): SingleRes {
         return apiRequest { api.removeEventSave(your_user_id, your_spine_event_id) }
     }
 
-    suspend fun getSpineEventsComment(your_events_id: String):EventCommentRes{
+    suspend fun getSpineEventsComment(your_events_id: String): EventCommentRes {
         return apiRequest { api.getSpineEventComments(your_events_id) }
     }
 
@@ -587,12 +600,18 @@ class HomeRepositry(
         return apiRequest { api.getFollowingUsersEventList(page, per_page, your_user_id) }
     }
 
-     suspend fun getEventType():EventTypeRes{
-         return apiRequest { api.getEventType() }
-     }
+    suspend fun getEventType(): EventTypeRes {
+        return apiRequest { api.getEventType() }
+    }
 
-    suspend fun getEventCatRes(searchText:String):EventCatRes{
+    suspend fun getEventCatRes(searchText: String): EventCatRes {
         return apiRequest { api.getSpinEventCategories() }
+    }
+
+    suspend fun newgetEventCatRes(searchText: String): EventCatRes {
+        return apiRequest {
+            api.getEventCategories(searchText)
+        }
     }
 
     suspend fun getActivities(
@@ -612,16 +631,15 @@ class HomeRepositry(
         return apiRequest { api.getuserDetailsMSGPermision(detailsUser, LoginUserId) }
     }
 
-    suspend fun updateUserProfilePic(image: MultipartBody.Part?, user_id: RequestBody): SingleRes {
-        return apiRequest { api.updateUserProfilePic(image, user_id) }
+    suspend fun updateUserProfilePic(image: MultipartBody.Part?): SingleRes {
+        return apiRequest { api.updateUserProfilePic(image) }
     }
 
-    suspend fun updateUserBgProfilePic(image: MultipartBody.Part, user_id: RequestBody): SingleRes {
-        return apiRequest { api.updateUserBgProfilePic(image, user_id) }
+    suspend fun updateUserBgProfilePic(image: MultipartBody.Part): SingleRes {
+        return apiRequest { api.updateUserBgProfilePic(image) }
     }
 
     suspend fun profileEdit(
-        user_id: String,
         account_type: String,
         name: String,
         display_name: String,
@@ -635,7 +653,6 @@ class HomeRepositry(
     ): SingleRes {
         return apiRequest {
             api.profileEdit(
-                user_id,
                 account_type,
                 name,
                 display_name,
@@ -646,6 +663,55 @@ class HomeRepositry(
                 business_phone,
                 business_address,
                 address
+            )
+        }
+    }
+
+    suspend fun editProfille(
+        account_type: String,
+        listing_type: String,
+        name: String,
+        display_name: String,
+        bio: String,
+        category: String,
+        interested: String,
+        offer_desciption: String,
+        key_perfomance: String,
+        desease_pattern: String,
+        languages: String,
+        qualification: String,
+        company_name: String,
+        street_1: String,
+        street_2: String,
+        street_3: String,
+        city: String,
+        postcode: String,
+        country: String,
+        address: String,
+        metaverse_address: String,
+        website: String,
+        contact_email: String,
+        business_phone: String,
+        business_mobile: String,
+        business_phone_code: String,
+        business_mobile_code: String
+
+
+    ): SingleRes {
+        return apiRequest {
+            api.editProfile(
+                account_type,
+                listing_type,
+                name,
+                display_name,
+                bio,
+                category,
+                interested, offer_desciption, key_perfomance,
+                desease_pattern, languages, qualification,
+                company_name, street_1, street_2, street_3, city,
+                postcode, country, address, metaverse_address, website,
+                contact_email, business_phone, business_mobile,
+                business_phone_code, business_mobile_code
             )
         }
     }
@@ -695,7 +761,12 @@ class HomeRepositry(
             )
         }
     }
-    suspend fun getFollowingUsersStoryList(page: Int,per_page: Int,your_user_id: String): FollowingStoriesRes{
+
+    suspend fun getFollowingUsersStoryList(
+        page: Int,
+        per_page: Int,
+        your_user_id: String
+    ): FollowingStoriesRes {
         return apiRequest { api.getFollowingUsersStorieList(page, per_page) }
     }
 
@@ -833,9 +904,38 @@ class HomeRepositry(
         event_categories: RequestBody, fee: Int, fee_currency: RequestBody,
         max_attendees: RequestBody, language: Int, accept_participants: Int,
         multiple: RequestBody, latitude: RequestBody, longitude: RequestBody,
-        booking_url:RequestBody, event_subcategories:RequestBody,
-        files: List<MultipartBody.Part>,join_event_link:RequestBody):SingleRes{
-        return apiRequest { api.addUserEvents(status, type, allow_comments, title, description, start_time, start_date, end_time, end_date, timezone, location, link_of_event, join_event_link,event_categories, fee, fee_currency, max_attendees, language, accept_participants, multiple,latitude,longitude,booking_url, event_subcategories,files) }
+        booking_url: RequestBody, event_subcategories: RequestBody,
+        files: List<MultipartBody.Part>, join_event_link: RequestBody
+    ): SingleRes {
+        return apiRequest {
+            api.addUserEvents(
+                status,
+                type,
+                allow_comments,
+                title,
+                description,
+                start_time,
+                start_date,
+                end_time,
+                end_date,
+                timezone,
+                location,
+                link_of_event,
+                join_event_link,
+                event_categories,
+                fee,
+                fee_currency,
+                max_attendees,
+                language,
+                accept_participants,
+                multiple,
+                latitude,
+                longitude,
+                booking_url,
+                event_subcategories,
+                files
+            )
+        }
     }
 
 

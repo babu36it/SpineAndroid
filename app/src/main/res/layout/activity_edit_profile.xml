@@ -40,16 +40,22 @@
                 android:textColor="@color/text_black"
                 android:textSize="@dimen/_13sdp" />
 
-            <Button
+            <TextView
                 android:id="@+id/button33"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_alignParentRight="true"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/btn_bg"
+                android:background="@drawable/round_border"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="center"
                 android:onClick="@{viewmodel.onSave}"
-                android:text="@string/save" />
+                android:paddingStart="@dimen/_30sdp"
+                android:paddingEnd="@dimen/_30sdp"
+                android:text="@string/save"
+                android:textAllCaps="true"
+                android:textColor="@color/white" />
         </RelativeLayout>
 
         <View
@@ -66,6 +72,7 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:scrollbars="none">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -73,40 +80,88 @@
                 android:padding="@dimen/_10sdp">
 
                 <RelativeLayout
-                    android:id="@+id/rrProfile"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_80sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:gravity="right|center">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/cvProfile"
-                        android:layout_width="@dimen/_70sdp"
-                        android:layout_height="@dimen/_70sdp"
-                        android:src="@drawable/demo"
-                        app:civ_border_color="@color/text_white"
-                        app:civ_border_width="4dp" />
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_100sdp">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:id="@+id/ivBadge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignEnd="@id/cvProfile"
-                        android:src="@drawable/prof_badge" />
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/lytmain"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_100sdp"
+                            app:cardCornerRadius="@dimen/_8sdp"
+                            app:cardElevation="0dp">
+
+                            <ImageView
+                                android:id="@+id/bgProfile"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_100sdp"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/bgimage"
+                                android:contentDescription="@string/app_name"
+                                android:scaleType="fitXY" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivCamera"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignEnd="@id/lytmain"
+                                android:layout_gravity="end"
+                                android:layout_marginBottom="@dimen/_40sdp"
+                                android:onClick="@{viewmodel.addbgProfilePic}"
+                                android:src="@drawable/ic_camera"
+                                android:tint="@color/colorAccent"
+                                app:tint="@color/quantum_orange" />
 
 
+                        </androidx.cardview.widget.CardView>
+
+
+                    </FrameLayout>
+
+
+                    <RelativeLayout
+
+                        android:id="@+id/rrProfile"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_60sdp"
+                        android:gravity="right|center">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/cvProfile"
+                            android:layout_width="@dimen/_70sdp"
+                            android:layout_height="@dimen/_70sdp"
+                            android:src="@drawable/userprofile"
+                            app:civ_border_color="@color/text_white"
+                            app:civ_border_width="4dp" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+
+                            android:id="@+id/ivBadge"
+                            android:layout_width="@dimen/_8sdp"
+                            android:layout_height="@dimen/_8sdp"
+                            android:layout_alignEnd="@id/cvProfile"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_8sdp"
+                            android:src="@drawable/prof_badge" />
+
+
+                    </RelativeLayout>
 
                 </RelativeLayout>
 
 
                 <FrameLayout
-                    android:visibility="gone"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="@dimen/_80sdp"
@@ -117,19 +172,18 @@
                         app:civ_border_width="4dp" />
 
                     <ImageView
-                        android:layout_gravity="end"
-                        android:layout_alignParentEnd="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
                         android:layout_marginTop="@dimen/eight"
-                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
                         android:background="@drawable/prof_badge"
                         android:elevation="@dimen/eight"
                         android:visibility="visible" />
 
 
                 </FrameLayout>
-
 
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -159,35 +213,35 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvPracticionarListing"
+                        style="@style/TabText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:background="@drawable/dark_button"
-                        android:gravity="center"
                         android:fontFamily="@font/poppins_semi_bold"
-                        style="@style/TabText"
-                        android:textStyle="bold"
+                        android:gravity="center"
                         android:padding="@dimen/_4sdp"
                         android:text="Practicionar listing"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
 
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:fontFamily="@font/poppins_semi_bold"
-                        style="@style/TabText"
-                        android:textStyle="bold"
                         android:id="@+id/tvCompanyListing"
+                        style="@style/TabText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:background="@null"
+                        android:fontFamily="@font/poppins_semi_bold"
                         android:gravity="center"
                         android:padding="@dimen/_4sdp"
                         android:text="Company listing"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -238,12 +292,12 @@
                             android:maxLength="40"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text="@={viewmodel.user_name}"
+                            android:text="@={viewmodel.normalname}"
                             android:textSize="@dimen/_11sdp" />
 
                         <TextView
-                            style="@style/NormalText"
                             android:id="@+id/tvNameCounter"
+                            style="@style/NormalText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -295,14 +349,14 @@
                             android:maxLength="40"
                             android:maxLines="1"
                             android:padding="@dimen/eight"
-                            android:text="@={viewmodel.display_name}"
+                            android:text="@={viewmodel.normaldisplay_name}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
 
                         <TextView
-                            style="@style/NormalText"
                             android:id="@+id/tvDisplayNameCounter"
+                            style="@style/NormalText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -328,19 +382,19 @@
 
 
                     <RelativeLayout
-                        android:layout_gravity="start"
-                        android:gravity="start"
                         android:id="@+id/box3"
-                        android:padding="@dimen/eight"
                         android:layout_width="fill_parent"
                         android:layout_height="@dimen/_70sdp"
+                        android:layout_gravity="start"
                         android:layout_margin="@dimen/_8sdp"
                         android:background="@drawable/shadow_box"
-                        android:elevation="@dimen/_5sdp">
+                        android:elevation="@dimen/_5sdp"
+                        android:gravity="start"
+                        android:padding="@dimen/eight">
 
 
                         <EditText
-                            android:id="@+id/editTextTextPersonName9"
+                            android:id="@+id/edtAboutUs"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -362,14 +416,14 @@
                             android:scrollbars="none"
                             android:scrollHorizontally="false"
                             android:singleLine="false"
-                            android:text="@={viewmodel.short_bio}"
+                            android:text="@={viewmodel.normalbio}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
 
                         <TextView
-                            style="@style/NormalText"
                             android:id="@+id/tvAboutCounter"
+                            style="@style/NormalText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -414,14 +468,14 @@
                             android:maxLength="40"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.interested}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
 
                         <TextView
-                            style="@style/NormalText"
                             android:id="@+id/tvInterstedCounter"
+                            style="@style/NormalText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -449,7 +503,8 @@
                         android:layout_height="@dimen/_35sdp"
                         android:layout_margin="@dimen/_8sdp"
                         android:background="@drawable/shadow_box"
-                        android:elevation="5dp">
+                        android:elevation="5dp"
+                        android:visibility="gone">
 
                         <EditText
                             android:id="@+id/edtAutomaticSuggetions"
@@ -474,8 +529,8 @@
                             android:textSize="@dimen/_11sdp" />
 
                         <TextView
-                            style="@style/NormalText"
                             android:id="@+id/tvAutomaticSuggetions"
+                            style="@style/NormalText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -486,6 +541,59 @@
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
                     </RelativeLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/ll1"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/_8sdp"
+                        android:background="@drawable/shadow_box"
+                        android:elevation="@dimen/_5sdp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="visible"
+                        android:weightSum="10">
+
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:background="@android:color/transparent"
+                            android:padding="@dimen/sixteen"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_arrow_right"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/TvEvCat"
+                            style="@style/NormalText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/ic_arrow_right"
+                            android:drawableTint="@color/text_black"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:hint="@string/all_event_categories"
+                            android:maxLines="1"
+                            android:onClick="@{viewmodel.onCategorySelect}"
+                            android:padding="@dimen/eight"
+                            android:singleLine="true"
+                            android:text="@={viewmodel.normalcategory_name}"
+                            android:textColor="@color/day_night_both_black"
+                            android:textColorHint="@color/dark_gray_day_night"
+                            android:textSize="@dimen/_11sdp" />
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -534,14 +642,14 @@
                             android:maxLength="40"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text="@={viewmodel.user_name}"
+                            android:text="@={viewmodel.proffessionalname}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
 
                         <TextView
-                            style="@style/NormalText"
                             android:id="@+id/tvProffesionalCounter"
+                            style="@style/NormalText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -592,14 +700,14 @@
                             android:maxLength="40"
                             android:maxLines="1"
                             android:padding="@dimen/eight"
-                            android:text="@={viewmodel.display_name}"
+                            android:text="@={viewmodel.proffessionaldisplay_name}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
 
                         <TextView
-                            style="@style/NormalText"
                             android:id="@+id/tvProffesionalDisplayNameCounter"
+                            style="@style/NormalText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -632,6 +740,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtProffessionalAboutUs"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -647,11 +756,10 @@
                             android:maxLines="4"
                             android:padding="@dimen/eight"
                             android:singleLine="false"
-                            android:text=""
+                            android:text="@={viewmodel.proffessionalbio}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
-                            android:textSize="@dimen/_11sdp"
-                            />
+                            android:textSize="@dimen/_11sdp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -687,6 +795,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtOfferDescriptions"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -702,11 +811,10 @@
                             android:maxLines="4"
                             android:padding="@dimen/eight"
                             android:singleLine="false"
-                            android:text="@={viewmodel.short_bio}"
+                            android:text="@={viewmodel.proffessionaloffer_desciption}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
-                            android:textSize="@dimen/_11sdp"
-                            />
+                            android:textSize="@dimen/_11sdp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -741,6 +849,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtKeyPerformance"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -756,7 +865,7 @@
                             android:maxLines="4"
                             android:padding="@dimen/eight"
                             android:singleLine="false"
-                            android:text=""
+                            android:text="@={viewmodel.proffessionalkey_perfomance}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -794,6 +903,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtDeseasePattern"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -809,7 +919,7 @@
                             android:maxLines="4"
                             android:padding="@dimen/eight"
                             android:singleLine="false"
-                            android:text=""
+                            android:text="@={viewmodel.proffessionaldesease_pattern}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -844,7 +954,8 @@
                         android:layout_height="@dimen/_35sdp"
                         android:layout_margin="@dimen/_8sdp"
                         android:background="@drawable/shadow_box"
-                        android:elevation="@dimen/_5sdp">
+                        android:elevation="@dimen/_5sdp"
+                        android:visibility="gone">
 
                         <EditText
                             android:layout_width="match_parent"
@@ -855,17 +966,16 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
+                            android:gravity="start|center_vertical"
                             android:hint="@string/str_multiple_choice"
                             android:inputType="text"
                             android:lines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.proffessionalcategory_name}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
-                            android:textSize="@dimen/_11sdp"
-                            />
+                            android:textSize="@dimen/_11sdp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -879,6 +989,58 @@
                             android:textStyle="bold"
                             android:visibility="gone" />
                     </RelativeLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/_8sdp"
+                        android:background="@drawable/shadow_box"
+                        android:elevation="@dimen/_5sdp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="visible"
+                        android:weightSum="10">
+
+                        <Spinner
+                            android:id="@+id/proCat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:background="@android:color/transparent"
+                            android:padding="@dimen/sixteen"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_arrow_right"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tvProffessionalCat"
+                            style="@style/NormalText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/ic_arrow_right"
+                            android:drawableTint="@color/text_black"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:hint="@string/all_event_categories"
+                            android:maxLines="1"
+                            android:onClick="@{viewmodel.onCategorySelect}"
+                            android:padding="@dimen/eight"
+                            android:singleLine="true"
+                            android:text="@={viewmodel.proffessionalcategory_name}"
+                            android:textColor="@color/day_night_both_black"
+                            android:textColorHint="@color/dark_gray_day_night"
+                            android:textSize="@dimen/_11sdp" />
+
+                    </LinearLayout>
 
 
                     <TextView
@@ -897,7 +1059,8 @@
                         android:layout_height="@dimen/_35sdp"
                         android:layout_margin="@dimen/_8sdp"
                         android:background="@drawable/shadow_box"
-                        android:elevation="@dimen/_5sdp">
+                        android:elevation="@dimen/_5sdp"
+                        android:visibility="gone">
 
                         <EditText
                             android:layout_width="match_parent"
@@ -908,13 +1071,14 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
+                            android:gravity="start|center_vertical"
                             android:hint="@string/str_multiple_choice"
                             android:inputType="text"
                             android:lines="1"
+                            android:onClick="@{viewmodel.onLanguageSelect}"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.proffessionallanguages}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -931,6 +1095,58 @@
                             android:textStyle="bold"
                             android:visibility="gone" />
                     </RelativeLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/_8sdp"
+                        android:background="@drawable/shadow_box"
+                        android:elevation="@dimen/_5sdp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="visible"
+                        android:weightSum="10">
+
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:background="@android:color/transparent"
+                            android:padding="@dimen/sixteen"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_arrow_right"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tvProffessionalLanguages"
+                            style="@style/NormalText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/ic_arrow_right"
+                            android:drawableTint="@color/text_black"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:hint="@string/str_multiple_choice"
+                            android:maxLines="1"
+                            android:onClick="@{viewmodel.onLanguageSelect}"
+                            android:padding="@dimen/eight"
+                            android:singleLine="true"
+                            android:text="@={viewmodel.proffessionallanguages}"
+                            android:textColor="@color/day_night_both_black"
+                            android:textColorHint="@color/dark_gray_day_night"
+                            android:textSize="@dimen/_11sdp" />
+
+                    </LinearLayout>
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -952,6 +1168,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtQualifications"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -967,11 +1184,10 @@
                             android:maxLines="4"
                             android:padding="@dimen/eight"
                             android:singleLine="false"
-                            android:text=""
+                            android:text="@={viewmodel.proffessionalqualification}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
-                            android:textSize="@dimen/_11sdp"
-                            />
+                            android:textSize="@dimen/_11sdp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -988,12 +1204,12 @@
 
 
                     <TextView
-                        android:padding="3dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/poppin_semi_bold"
+                        android:padding="3dp"
                         android:text="@string/str_my_business_location"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/_12sdp" />
@@ -1006,9 +1222,8 @@
                         android:fontFamily="@font/poppin_semi_bold"
                         android:text="@string/str_more_info"
                         android:textColor="@color/text_black"
-                        android:textStyle="italic"
-                        android:textSize="@dimen/_12sdp" />
-
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="italic" />
 
 
                     <TextView
@@ -1031,6 +1246,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtProffessionalCompanyName"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -1039,14 +1255,14 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
+                            android:gravity="start|center_vertical"
                             android:hint="@string/str_company_name_corporated"
                             android:inputType="text"
                             android:maxLength="100"
                             android:maxLines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.proffessionalcompany_name}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -1085,6 +1301,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtProffessioanlStreet1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -1093,14 +1310,14 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
-                            android:hint="@string/str_automatic_offers"
+                            android:gravity="start|center_vertical"
+                            android:hint="Street"
                             android:inputType="textMultiLine"
                             android:maxLength="100"
                             android:maxLines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.proffessionalstreet_1}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -1129,6 +1346,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtProffessionalStreet2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -1137,14 +1355,14 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
-                            android:hint="@string/str_then_automatic_fill"
+                            android:gravity="start|center_vertical"
+                            android:hint="Street"
                             android:inputType="text"
                             android:maxLength="100"
                             android:maxLines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.proffessionalstreet_2}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -1174,6 +1392,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtProffessioanlStreet3"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -1182,18 +1401,17 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
-                            android:hint="@string/str_linked_google_map"
+                            android:gravity="start|center_vertical"
+                            android:hint="Street"
                             android:inputType="text"
                             android:maxLength="100"
                             android:maxLines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.proffessionalstreet_3}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
-                            android:textSize="@dimen/_11sdp"
-                            />
+                            android:textSize="@dimen/_11sdp" />
 
 
                         <TextView
@@ -1229,6 +1447,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtProffessionalCity"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -1237,13 +1456,13 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
-                            android:hint="@string/str_automatic_fill"
+                            android:gravity="start|center_vertical"
+                            android:hint="City"
                             android:inputType="text"
                             android:lines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.proffessionalcity}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -1281,6 +1500,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtProffessioanlPostCode"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -1289,13 +1509,14 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
-                            android:hint="@string/str_automatic_fill"
-                            android:inputType="text"
+                            android:gravity="start|center_vertical"
+                            android:hint="PostCode"
+                            android:inputType="number"
                             android:lines="1"
+                            android:maxLength="6"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.proffessionalpostcode}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -1333,6 +1554,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtProffeCountry"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -1341,13 +1563,13 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
-                            android:hint="@string/str_automatic_fill"
+                            android:gravity="start|center_vertical"
+                            android:hint="Country"
                             android:inputType="text"
                             android:lines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.proffessionalcountry}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -1375,16 +1597,19 @@
                         android:text="@string/str_connect_with_google_listing"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/_11sdp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:visibility="gone" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
                         android:layout_margin="@dimen/_8sdp"
                         android:background="@drawable/shadow_box"
-                        android:elevation="@dimen/_5sdp">
+                        android:elevation="@dimen/_5sdp"
+                        android:visibility="gone">
 
                         <EditText
+                            android:id="@+id/edtProffessionalAddress"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -1393,13 +1618,13 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
-                            android:hint="@string/str_manual_fill"
+                            android:gravity="start|center_vertical"
+                            android:hint="Address"
                             android:inputType="text"
                             android:lines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.proffessionaladdress}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -1437,6 +1662,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtMetavarseAddress"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -1445,13 +1671,13 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
-                            android:hint="@string/str_manual_fill"
+                            android:gravity="start|center_vertical"
+                            android:hint="Metaverse Address"
                             android:inputType="text"
                             android:lines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.proffessionalmetaverse_address}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -1489,6 +1715,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtProffessionalWebsite"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -1497,17 +1724,16 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
+                            android:gravity="start|center_vertical"
                             android:hint="@string/enter_your_business_url"
                             android:inputType="text"
                             android:lines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.proffessionalwebsite}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
-                            android:textSize="@dimen/_11sdp"
-                            />
+                            android:textSize="@dimen/_11sdp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1542,6 +1768,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtProffessionalEmail"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -1550,13 +1777,13 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
+                            android:gravity="start|center_vertical"
                             android:hint="@string/str_contact_email_address"
                             android:inputType="text"
                             android:lines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.proffessionalemail}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -1601,20 +1828,21 @@
                             android:gravity="center">
 
                             <EditText
+                                android:id="@+id/edtBusinessIsoCode"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_35sdp"
                                 android:layout_alignParentLeft="true"
                                 android:layout_centerVertical="true"
                                 android:background="@android:color/transparent"
                                 android:fontFamily="@font/poppins_semi_bold"
-                                android:gravity="start"
+                                android:gravity="start|center_vertical"
                                 android:hint=""
                                 android:inputType="text"
                                 android:lines="1"
                                 android:maxLength="3"
                                 android:padding="@dimen/eight"
                                 android:singleLine="true"
-                                android:text="+44"
+                                android:text="@={viewmodel.proffessionalbusiness_phone_code}"
                                 android:textColor="@color/day_night_both_black"
                                 android:textColorHint="@color/dark_gray_day_night"
                                 android:textSize="@dimen/_11sdp" />
@@ -1633,18 +1861,19 @@
                             android:gravity="center">
 
                             <EditText
+                                android:id="@+id/edtProffeBusinessPhoneNumber"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@android:color/transparent"
                                 android:fontFamily="@font/poppins_semi_bold"
-                                android:gravity="start"
+                                android:gravity="start|center_vertical"
                                 android:hint=""
                                 android:inputType="number"
                                 android:lines="1"
                                 android:maxLength="10"
                                 android:padding="@dimen/eight"
                                 android:singleLine="true"
-                                android:text="9099242856"
+                                android:text="@={viewmodel.proffessionalbusiness_phone}"
                                 android:textColor="@color/day_night_both_black"
                                 android:textColorHint="@color/dark_gray_day_night"
                                 android:textSize="@dimen/_11sdp" />
@@ -1679,20 +1908,21 @@
                             android:gravity="center">
 
                             <EditText
+                                android:id="@+id/edtProffMobileNumberIso"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_35sdp"
                                 android:layout_alignParentLeft="true"
                                 android:layout_centerVertical="true"
                                 android:background="@android:color/transparent"
                                 android:fontFamily="@font/poppins_semi_bold"
-                                android:gravity="start"
+                                android:gravity="start|center_vertical"
                                 android:hint=""
                                 android:inputType="text"
                                 android:lines="1"
                                 android:maxLength="3"
                                 android:padding="@dimen/eight"
                                 android:singleLine="true"
-                                android:text="+44"
+                                android:text="@={viewmodel.proffessionalbusiness_mobile_code}"
                                 android:textColor="@color/day_night_both_black"
                                 android:textColorHint="@color/dark_gray_day_night"
                                 android:textSize="@dimen/_11sdp" />
@@ -1711,18 +1941,19 @@
                             android:gravity="center">
 
                             <EditText
+                                android:id="@+id/edtProffessionalMobileNumber"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@android:color/transparent"
                                 android:fontFamily="@font/poppins_semi_bold"
-                                android:gravity="start"
+                                android:gravity="start|center_vertical"
                                 android:hint=""
                                 android:inputType="number"
                                 android:lines="1"
                                 android:maxLength="10"
                                 android:padding="@dimen/eight"
                                 android:singleLine="true"
-                                android:text="9099258585"
+                                android:text="@={viewmodel.proffessionalbusiness_mobile}"
                                 android:textColor="@color/day_night_both_black"
                                 android:textColorHint="@color/dark_gray_day_night"
                                 android:textSize="@dimen/_11sdp" />
@@ -1748,7 +1979,7 @@
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/poppin_bold"
-                        android:text="@string/str_company_name"
+                        android:text="@string/str_name"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/_11sdp"
                         android:textStyle="bold" />
@@ -1762,7 +1993,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
-                            android:id="@+id/edtCompanyName"
+                            android:id="@+id/edtCName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -1778,14 +2009,14 @@
                             android:maxLength="40"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text="@={viewmodel.user_name}"
+                            android:text="@={viewmodel.companyname}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
 
                         <TextView
-                            style="@style/NormalText"
                             android:id="@+id/tvcomapnyCounter"
+                            style="@style/NormalText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -1794,8 +2025,7 @@
                             android:fontFamily="@font/poppins_semi_bold"
                             android:text="40"
                             android:textColorHint="@color/dark_gray_day_night"
-                            android:textSize="@dimen/_11sdp"
-                            />
+                            android:textSize="@dimen/_11sdp" />
                     </RelativeLayout>
 
 
@@ -1821,7 +2051,7 @@
                         android:gravity="center">
 
                         <EditText
-                            android:id="@+id/tvCompanyDisplayName"
+                            android:id="@+id/edtCompanyDisplayName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
@@ -1837,14 +2067,14 @@
                             android:maxLength="40"
                             android:maxLines="1"
                             android:padding="@dimen/eight"
-                            android:text="@={viewmodel.display_name}"
+                            android:text="@={viewmodel.companydisplay_name}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
 
                         <TextView
-                            style="@style/NormalText"
                             android:id="@+id/tvCompanyDisplayNameCounter"
+                            style="@style/NormalText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -1853,8 +2083,7 @@
                             android:layout_marginEnd="@dimen/_8sdp"
                             android:fontFamily="@font/poppins_semi_bold"
                             android:text="40"
-                            android:textSize="@dimen/_11sdp"
-                            />
+                            android:textSize="@dimen/_11sdp" />
                     </RelativeLayout>
 
 
@@ -1878,6 +2107,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtCompanyAboutUs"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -1893,7 +2123,7 @@
                             android:maxLines="4"
                             android:padding="@dimen/eight"
                             android:singleLine="false"
-                            android:text=""
+                            android:text="@={viewmodel.companybio}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -1932,6 +2162,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtCompanyOffer"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -1947,7 +2178,7 @@
                             android:maxLines="4"
                             android:padding="@dimen/eight"
                             android:singleLine="false"
-                            android:text="@={viewmodel.short_bio}"
+                            android:text="@={viewmodel.companyoffer_desciption}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -1985,6 +2216,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtCompanyKey"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -2000,11 +2232,10 @@
                             android:maxLines="4"
                             android:padding="@dimen/eight"
                             android:singleLine="false"
-                            android:text=""
+                            android:text="@={viewmodel.companykey_perfomance}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
-                            android:textSize="@dimen/_11sdp"
-                            />
+                            android:textSize="@dimen/_11sdp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -2039,6 +2270,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtCompanyPattern"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -2054,7 +2286,7 @@
                             android:maxLines="4"
                             android:padding="@dimen/eight"
                             android:singleLine="false"
-                            android:text=""
+                            android:text="@={viewmodel.companydesease_pattern}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -2089,7 +2321,8 @@
                         android:layout_height="@dimen/_35sdp"
                         android:layout_margin="@dimen/_8sdp"
                         android:background="@drawable/shadow_box"
-                        android:elevation="@dimen/_5sdp">
+                        android:elevation="@dimen/_5sdp"
+                        android:visibility="gone">
 
                         <EditText
                             android:layout_width="match_parent"
@@ -2123,6 +2356,56 @@
                             android:textStyle="bold"
                             android:visibility="gone" />
                     </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/_8sdp"
+                        android:background="@drawable/shadow_box"
+                        android:elevation="@dimen/_5sdp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="visible"
+                        android:weightSum="10">
+
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:background="@android:color/transparent"
+                            android:padding="@dimen/sixteen"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_arrow_right"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tvCompanyCat"
+                            style="@style/NormalText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/ic_arrow_right"
+                            android:drawableTint="@color/text_black"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:hint="@string/all_event_categories"
+                            android:maxLines="1"
+                            android:onClick="@{viewmodel.onCategorySelect}"
+                            android:padding="@dimen/eight"
+                            android:singleLine="true"
+                            android:text="@={viewmodel.companycategory_name}"
+                            android:textColor="@color/day_night_both_black"
+                            android:textColorHint="@color/dark_gray_day_night"
+                            android:textSize="@dimen/_11sdp" />
+
+                    </LinearLayout>
 
 
                     <TextView
@@ -2141,7 +2424,8 @@
                         android:layout_height="@dimen/_35sdp"
                         android:layout_margin="@dimen/_8sdp"
                         android:background="@drawable/shadow_box"
-                        android:elevation="@dimen/_5sdp">
+                        android:elevation="@dimen/_5sdp"
+                        android:visibility="gone">
 
                         <EditText
                             android:layout_width="match_parent"
@@ -2175,6 +2459,58 @@
                             android:textStyle="bold"
                             android:visibility="gone" />
                     </RelativeLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/_8sdp"
+                        android:background="@drawable/shadow_box"
+                        android:elevation="@dimen/_5sdp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="visible"
+                        android:weightSum="10">
+
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:background="@android:color/transparent"
+                            android:padding="@dimen/sixteen"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_arrow_right"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tvCompanyLanguage"
+                            style="@style/NormalText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/ic_arrow_right"
+                            android:drawableTint="@color/text_black"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:hint="@string/str_multiple_choice"
+                            android:maxLines="1"
+                            android:onClick="@{viewmodel.onLanguageSelect}"
+                            android:padding="@dimen/eight"
+                            android:singleLine="true"
+                            android:text="@={viewmodel.companylanguages}"
+                            android:textColor="@color/day_night_both_black"
+                            android:textColorHint="@color/dark_gray_day_night"
+                            android:textSize="@dimen/_11sdp" />
+
+                    </LinearLayout>
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -2196,6 +2532,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtCompanyQualifications"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -2211,7 +2548,7 @@
                             android:maxLines="4"
                             android:padding="@dimen/eight"
                             android:singleLine="false"
-                            android:text=""
+                            android:text="@={viewmodel.companyqualification}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -2230,12 +2567,12 @@
                     </RelativeLayout>
 
                     <TextView
-                        android:padding="3dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/poppin_semi_bold"
+                        android:padding="3dp"
                         android:text="@string/str_our_business_location"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/_12sdp" />
@@ -2248,9 +2585,8 @@
                         android:fontFamily="@font/poppin_semi_bold"
                         android:text="@string/str_more_info"
                         android:textColor="@color/text_black"
-                        android:textStyle="italic"
-                        android:textSize="@dimen/_12sdp" />
-
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="italic" />
 
 
                     <TextView
@@ -2273,6 +2609,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtCompanyName"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -2281,14 +2618,14 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
-                            android:hint="@string/str_automatic_fill_from_above"
+                            android:gravity="start|center_vertical"
+                            android:hint="Company Name"
                             android:inputType="text"
                             android:maxLength="100"
                             android:maxLines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.comcompany_name}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -2327,6 +2664,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtCompanyStreet1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -2335,14 +2673,14 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
-                            android:hint="@string/str_automatic_offers"
+                            android:gravity="start|center_vertical"
+                            android:hint="Street"
                             android:inputType="textMultiLine"
                             android:maxLength="100"
                             android:maxLines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.companystreet_1}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -2371,6 +2709,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtCompanyStreet2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -2379,14 +2718,14 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
-                            android:hint="@string/str_then_automatic_fill"
+                            android:gravity="start|center_vertical"
+                            android:hint="Street"
                             android:inputType="text"
                             android:maxLength="100"
                             android:maxLines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.companystreet_2}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -2416,6 +2755,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtCompanyStreet3"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -2424,14 +2764,14 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
-                            android:hint="@string/str_linked_google_map"
+                            android:gravity="start|center_vertical"
+                            android:hint="Street"
                             android:inputType="text"
                             android:maxLength="100"
                             android:maxLines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.companystreet_3}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -2470,6 +2810,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtCompanyCity"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -2478,13 +2819,13 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
-                            android:hint="@string/str_automatic_fill"
+                            android:gravity="start|center_vertical"
+                            android:hint="City"
                             android:inputType="text"
                             android:lines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.companycity}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -2522,6 +2863,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtCompanyPostCode"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -2530,13 +2872,14 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
-                            android:hint="@string/str_automatic_fill"
-                            android:inputType="text"
+                            android:gravity="start|center_vertical"
+                            android:hint="Post Code"
+                            android:inputType="number"
                             android:lines="1"
+                            android:maxLength="6"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.companypostcode}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -2574,6 +2917,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtCompanyCountry"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -2582,13 +2926,13 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
-                            android:hint="@string/str_automatic_fill"
+                            android:gravity="start|center_vertical"
+                            android:hint="Country"
                             android:inputType="text"
                             android:lines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.companycountry}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -2616,16 +2960,19 @@
                         android:text="@string/str_connect_with_our_google_listing"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/_11sdp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:visibility="gone" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
                         android:layout_margin="@dimen/_8sdp"
                         android:background="@drawable/shadow_box"
-                        android:elevation="@dimen/_5sdp">
+                        android:elevation="@dimen/_5sdp"
+                        android:visibility="gone">
 
                         <EditText
+                            android:id="@+id/edtCompanyAddress"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -2634,13 +2981,13 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
-                            android:hint="@string/str_manual_fill"
+                            android:gravity="start|center_vertical"
+                            android:hint="Address"
                             android:inputType="text"
                             android:lines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.companyaddress}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -2678,6 +3025,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtCompanyMetavarseAddress"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -2686,13 +3034,13 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
-                            android:hint="@string/str_manual_fill"
+                            android:gravity="start|center_vertical"
+                            android:hint="Metaverse Address"
                             android:inputType="text"
                             android:lines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.companymetaverse_address}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -2730,6 +3078,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtCompanyWebsite"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -2738,13 +3087,13 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
+                            android:gravity="start|center_vertical"
                             android:hint="@string/enter_your_business_url"
                             android:inputType="text"
                             android:lines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.companywebsite}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -2782,6 +3131,7 @@
                         android:elevation="@dimen/_5sdp">
 
                         <EditText
+                            android:id="@+id/edtCompanyEmail"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -2790,13 +3140,13 @@
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:gravity="start"
+                            android:gravity="start|center_vertical"
                             android:hint="@string/str_contact_email_address"
                             android:inputType="text"
                             android:lines="1"
                             android:padding="@dimen/eight"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewmodel.companyemail}"
                             android:textColor="@color/day_night_both_black"
                             android:textColorHint="@color/dark_gray_day_night"
                             android:textSize="@dimen/_11sdp" />
@@ -2841,20 +3191,21 @@
                             android:gravity="center">
 
                             <EditText
+                                android:id="@+id/edtBusinessPhoneIso"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_35sdp"
                                 android:layout_alignParentLeft="true"
                                 android:layout_centerVertical="true"
                                 android:background="@android:color/transparent"
                                 android:fontFamily="@font/poppins_semi_bold"
-                                android:gravity="start"
+                                android:gravity="start|center_vertical"
                                 android:hint=""
                                 android:inputType="text"
                                 android:lines="1"
                                 android:maxLength="3"
                                 android:padding="@dimen/eight"
                                 android:singleLine="true"
-                                android:text="+44"
+                                android:text="@={viewmodel.companybusiness_phone_code}"
                                 android:textColor="@color/day_night_both_black"
                                 android:textColorHint="@color/dark_gray_day_night"
                                 android:textSize="@dimen/_11sdp" />
@@ -2873,18 +3224,19 @@
                             android:gravity="center">
 
                             <EditText
+                                android:id="@+id/edtCompanyBusinessPhone"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@android:color/transparent"
                                 android:fontFamily="@font/poppins_semi_bold"
-                                android:gravity="start"
+                                android:gravity="start|center_vertical"
                                 android:hint=""
                                 android:inputType="number"
                                 android:lines="1"
                                 android:maxLength="10"
                                 android:padding="@dimen/eight"
                                 android:singleLine="true"
-                                android:text="9099242856"
+                                android:text="@={viewmodel.companybusiness_phone}"
                                 android:textColor="@color/day_night_both_black"
                                 android:textColorHint="@color/dark_gray_day_night"
                                 android:textSize="@dimen/_11sdp" />
@@ -2919,20 +3271,21 @@
                             android:gravity="center">
 
                             <EditText
+                                android:id="@+id/edtCompanyMobileIso"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_35sdp"
                                 android:layout_alignParentLeft="true"
                                 android:layout_centerVertical="true"
                                 android:background="@android:color/transparent"
                                 android:fontFamily="@font/poppins_semi_bold"
-                                android:gravity="start"
+                                android:gravity="start|center_vertical"
                                 android:hint=""
                                 android:inputType="text"
                                 android:lines="1"
                                 android:maxLength="3"
                                 android:padding="@dimen/eight"
                                 android:singleLine="true"
-                                android:text="+44"
+                                android:text="@={viewmodel.companybusiness_mobile_code}"
                                 android:textColor="@color/day_night_both_black"
                                 android:textColorHint="@color/dark_gray_day_night"
                                 android:textSize="@dimen/_11sdp" />
@@ -2951,18 +3304,19 @@
                             android:gravity="center">
 
                             <EditText
+                                android:id="@+id/edtCompanyBusinessMobile"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@android:color/transparent"
                                 android:fontFamily="@font/poppins_semi_bold"
-                                android:gravity="start"
+                                android:gravity="start|center_vertical"
                                 android:hint=""
                                 android:inputType="number"
                                 android:lines="1"
                                 android:maxLength="10"
                                 android:padding="@dimen/eight"
                                 android:singleLine="true"
-                                android:text="9099258585"
+                                android:text="@={viewmodel.companybusiness_mobile}"
                                 android:textColor="@color/day_night_both_black"
                                 android:textColorHint="@color/dark_gray_day_night"
                                 android:textSize="@dimen/_11sdp" />
@@ -2972,7 +3326,6 @@
 
 
                     <LinearLayout
-                        android:id="@+id/ll1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/shadow_box"
@@ -2985,7 +3338,6 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView147">
 
                         <Spinner
-                            android:id="@+id/proCat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -3004,7 +3356,6 @@
                             android:visibility="gone" />
 
                         <TextView
-                            android:id="@+id/TvEvCat"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/eight"
@@ -3227,7 +3578,6 @@
                     android:layout_marginBottom="@dimen/_10sdp">
 
                     <TextView
-                        android:textAllCaps="true"
                         android:id="@+id/tvSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -3235,6 +3585,7 @@
                         android:background="@android:color/transparent"
                         android:onClick=""
                         android:text="@string/switch_to_professional_account"
+                        android:textAllCaps="true"
                         android:textColor="@color/colorPrimaryDark" />
 
 
