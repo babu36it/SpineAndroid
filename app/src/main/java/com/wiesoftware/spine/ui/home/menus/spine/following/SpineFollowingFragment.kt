@@ -5,7 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +15,7 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil.inflate
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -31,18 +31,19 @@ import com.wiesoftware.spine.data.net.reponses.FollwingData
 import com.wiesoftware.spine.data.net.reponses.PostData
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.FragmentSpineFollowingBinding
+
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
 import com.wiesoftware.spine.ui.home.menus.profile.tabs.posts.PostsFragment
 import com.wiesoftware.spine.ui.home.menus.spine.comment.postcomment.PostCommentActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.*
+import com.wiesoftware.spine.ui.home.menus.spine.homefeed.FeedAdapter
+import com.wiesoftware.spine.ui.home.menus.spine.homefeed.HomeFeedModel
+import com.wiesoftware.spine.ui.home.menus.spine.impulse.ImpulseActivity
 import com.wiesoftware.spine.ui.home.menus.spine.postdetails.PostDetailsActivity
 import com.wiesoftware.spine.ui.home.menus.spine.selectfollowers.SelectFollowersAdapter
 import com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.ViewStoryActivity
 import com.wiesoftware.spine.ui.home.menus.spine.viewmedia.ViewMediaInLargeActivity
-import com.wiesoftware.spine.util.ApiException
-import com.wiesoftware.spine.util.NoInternetException
-import com.wiesoftware.spine.util.hideKeyboard
-import com.wiesoftware.spine.util.toast
+import com.wiesoftware.spine.util.*
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.*
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button91
@@ -64,7 +65,7 @@ import org.kodein.di.generic.instance
 class SpineFollowingFragment : Fragment(), KodeinAware, SpineFollowingEventListener,
     FollowingStoriesAdapter.FollowingStoryEventListener,
     FollowingContentAdapter.FollowingContentEventListener,
-    SelectFollowersAdapter.FollowersEventListener {
+    SelectFollowersAdapter.FollowersEventListener, FeedAdapter.FeedEventListener {
 
     override val kodein by kodein()
     val homeRepositry: HomeRepositry by instance()
@@ -89,7 +90,8 @@ class SpineFollowingFragment : Fragment(), KodeinAware, SpineFollowingEventListe
             user_id = user.users_id!!
             setFollowers()
             getFollowingStories()
-            getFollowingContent()
+         //   getFollowingContent()  Temp commented MT
+            getHomeFeedTemp()
         })
 
 
@@ -125,19 +127,29 @@ class SpineFollowingFragment : Fragment(), KodeinAware, SpineFollowingEventListe
 
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getFollowingUsersStoryList(1, 10, user_id)
-                if (res.status) {
-                    STORY_IMAGE = res.image
-                    val storyData = res.data
-
-
-
-                    binding.rvFollowingStories.also {
-                        it.layoutManager =
-                            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-                        it.setHasFixedSize(true)
-                        it.adapter = FollowingStoriesAdapter(storyData, this@SpineFollowingFragment)
-                    }
+                /* val res = homeRepositry.getFollowingUsersStoryList(1, 10, user_id)
+                 if (res.status) {  Temp commented MT
+                     STORY_IMAGE = res.image
+                     val storyData = res.data
+                     binding.rvFollowingStories.also {
+                         it.layoutManager =
+                             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+                         it.setHasFixedSize(true)
+                         it.adapter = FollowingStoriesAdapter(storyData, this@SpineFollowingFragment)
+                     }
+                 }*/
+                var storyData : MutableList<FollwingData> = ArrayList()
+                storyData.add(FollwingData("Sophia","", ArrayList(),"",""))
+                storyData.add(FollwingData("Oliver","",ArrayList(),"",""))
+                storyData.add(FollwingData("Sophia","",ArrayList(),"",""))
+                storyData.add(FollwingData("Brendon","",ArrayList(),"",""))
+                storyData.add(FollwingData("Dale","",ArrayList(),"",""))
+                storyData.add(FollwingData("David","",ArrayList(),"",""))
+                binding.rvFollowingStories.also {
+                    it.layoutManager =
+                        LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+                    it.setHasFixedSize(true)
+                    it.adapter = FollowingStoriesAdapter(storyData, this@SpineFollowingFragment)
                 }
             } catch (e: ApiException) {
                 e.printStackTrace()
@@ -146,6 +158,36 @@ class SpineFollowingFragment : Fragment(), KodeinAware, SpineFollowingEventListe
             }
         }
 
+    }
+
+    private fun getHomeFeedTemp(){
+        Coroutines.main {
+            try {
+
+                var homeFeedList = ArrayList<HomeFeedModel> ()
+                homeFeedList.add(HomeFeedModel(1,"PROMOTED",0))
+                homeFeedList.add(HomeFeedModel(2,"SPINE",0))
+                homeFeedList.add(HomeFeedModel(4,"PROMOTED",0))
+                homeFeedList.add(HomeFeedModel(3,"ONLINE",0))
+                homeFeedList.add(HomeFeedModel(3,"LOCAL",0))
+                binding.rvHomeFeed.also {
+                    it.layoutManager = LinearLayoutManager(
+                        requireContext(),
+                        RecyclerView.VERTICAL,
+                        false
+                    )
+                    it.setHasFixedSize(true)
+                    it.adapter = FeedAdapter(homeFeedList, this)
+                }
+
+            } catch (e: ApiException) {
+                e.printStackTrace()
+                context?.let { "${e.message}".toast(it) }
+            } catch (e: NoInternetException) {
+                e.printStackTrace()
+                context?.let { "${e.message}".toast(it) }
+            }
+        }
     }
 
     override fun onClick(storyData: FollwingData) {
@@ -780,6 +822,14 @@ class SpineFollowingFragment : Fragment(), KodeinAware, SpineFollowingEventListe
             e.printStackTrace()
             false
         }
+    }
+
+    override fun onPromotedClicked(postData: HomeFeedModel) {
+
+    }
+
+    override fun viewAllSpineImpulse_(postData: HomeFeedModel) {
+        startActivity(Intent(requireContext(), ImpulseActivity::class.java))
     }
 
 }

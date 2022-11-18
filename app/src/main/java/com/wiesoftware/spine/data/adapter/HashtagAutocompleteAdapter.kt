@@ -42,6 +42,9 @@ class HashtagAutocompleteAdapter(val dataList: MutableList<HashtagData>, val lis
         holder.hashtagAutoItemBinding.textView268.setOnClickListener {
             listener.onHashtagSelected(filterDataList[position])
         }
+        /*temp code*/
+        holder.hashtagAutoItemBinding.textView268.text=filterDataList[position].hash_title
+        holder.hashtagAutoItemBinding.textView271.text=filterDataList[position].totalCount
     }
 
     override fun getItemCount() = filterDataList.size

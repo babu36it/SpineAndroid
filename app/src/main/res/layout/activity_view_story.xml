@@ -40,7 +40,7 @@
                 android:layout_gravity="top"
                 android:onClick="@{viewmodel.onBack}"
                 app:tint="@color/text_white" />
-
+            <!--accroding to new desi-->
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgProfile"
                 android:layout_width="50dp"

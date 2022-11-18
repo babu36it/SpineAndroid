@@ -19,6 +19,7 @@ import com.wiesoftware.spine.data.net.reponses.FollwingData
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityStoryBinding
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
+import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.STORY_IMAGE
 import com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.ViewStoryActivity
 import com.wiesoftware.spine.util.ApiException
@@ -53,14 +54,13 @@ class StoryActivity : AppCompatActivity(),KodeinAware, StoryEventListener,
             setStory()
         })
 
-
     }
 
     private fun setStory() {
 
-       /* lifecycleScope.launch {
+        lifecycleScope.launch {
             try {
-                val allUsersRes=homeRepositry.getAllUsers(1,100,userId)
+                /*val allUsersRes=homeRepositry.getAllUsers(1,100,userId)   Temp Commented MT
                 if (allUsersRes.status){
                     BASE_IMAGE=allUsersRes.image
                     val allUsersData=allUsersRes.data
@@ -69,6 +69,19 @@ class StoryActivity : AppCompatActivity(),KodeinAware, StoryEventListener,
                         it.setHasFixedSize(true)
                         it.adapter=StoryAdapter(allUsersData,this@StoryActivity)
                     }
+                }*/
+                var allUsersData : MutableList<AllUsersData>  = ArrayList()
+                allUsersData.add(AllUsersData("","","Sophia","","","","","",""))
+                allUsersData.add(AllUsersData("","","Json","","","","","",""))
+                allUsersData.add(AllUsersData("","","Oliver","","","","","",""))
+                allUsersData.add(AllUsersData("","","Brendon","","","","","",""))
+                allUsersData.add(AllUsersData("","","Jay","","","","","",""))
+                allUsersData.add(AllUsersData("","","Colline","","","","","",""))
+                allUsersData.add(AllUsersData("","","Sophia","","","","","",""))
+                binding.rvStory.also {
+                    it.layoutManager=GridLayoutManager(this@StoryActivity,3,RecyclerView.VERTICAL,false)
+                    it.setHasFixedSize(true)
+                    it.adapter=StoryAdapter(allUsersData,this@StoryActivity)
                 }
 
             }catch (e: ApiException){
@@ -76,9 +89,10 @@ class StoryActivity : AppCompatActivity(),KodeinAware, StoryEventListener,
             }catch (e: NoInternetException){
                 e.printStackTrace()
             }
-        }*/
+        }
 
-        lifecycleScope.launch {
+     /*  comment for temp MT checking
+     lifecycleScope.launch {
             try {
                 val storyRes=homeRepositry.getFollowingUsersStoryList(1, 100, userId)//homeRepositry.getYourStories(userId)
                 if (storyRes.status){
@@ -96,7 +110,7 @@ class StoryActivity : AppCompatActivity(),KodeinAware, StoryEventListener,
             }catch (e: NoInternetException){
                 e.printStackTrace()
             }
-        }
+        }*/
 
 
 

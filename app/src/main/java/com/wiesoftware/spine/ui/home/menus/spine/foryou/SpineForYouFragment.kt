@@ -24,14 +24,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.wiesoftware.spine.BuildConfig
+import org.kodein.di.android.BuildConfig
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.*
 import com.wiesoftware.spine.data.net.reponses.*
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.FragmentSpineForYouBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
-import com.wiesoftware.spine.ui.home.menus.events.PROFILE_PIC_URL
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
 import com.wiesoftware.spine.ui.home.menus.profile.myprofile.MyProfileActivity
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
@@ -40,8 +39,11 @@ import com.wiesoftware.spine.ui.home.menus.profile.tabs.posts.PostsFragment
 import com.wiesoftware.spine.ui.home.menus.spine.categories.TrendingCatActivity
 import com.wiesoftware.spine.ui.home.menus.spine.comment.impulsecomment.ImpulseCommentActivity
 import com.wiesoftware.spine.ui.home.menus.spine.comment.postcomment.PostCommentActivity
+import com.wiesoftware.spine.ui.home.menus.spine.homefeed.FeedAdapter
+import com.wiesoftware.spine.ui.home.menus.spine.homefeed.HomeFeedModel
 import com.wiesoftware.spine.ui.home.menus.spine.impulse.ImpulseActivity
 import com.wiesoftware.spine.ui.home.menus.spine.postdetails.PostDetailsActivity
+import com.wiesoftware.spine.ui.home.menus.spine.practicioners.PracticionersActivity
 import com.wiesoftware.spine.ui.home.menus.spine.rec_followers.RecommendedFollowersActivity
 import com.wiesoftware.spine.ui.home.menus.spine.selectfollowers.SelectFollowersAdapter
 import com.wiesoftware.spine.ui.home.menus.spine.story.StoryActivity
@@ -51,13 +53,11 @@ import com.wiesoftware.spine.ui.home.menus.spine.welcome.ViewWelcomeActivity
 import com.wiesoftware.spine.util.*
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 import kotlinx.android.synthetic.main.fragment_spine_for_you.*
-import kotlinx.android.synthetic.main.poor_quality_or_spam.view.*
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button91
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button92
 import kotlinx.android.synthetic.main.report_reason.view.*
 import kotlinx.android.synthetic.main.share_bottomsheet.*
 import kotlinx.android.synthetic.main.share_bottomsheet.view.*
-import kotlinx.android.synthetic.main.why_r_u_reporting.view.*
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.cardView2
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.imageButton66
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.radioGroup
@@ -79,7 +79,7 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
     SpineImpulseAdapter.SpineImpulseEventListener, WelcomeDataAdapter.WelcomeEventListener,
     ForYouContentAdapter.ForYouContentEventListener, StoriesAdapter.StoryEventListener,
     RecommendedFollowersAdapter.RecommendedFollowersEventListener,
-    SelectFollowersAdapter.FollowersEventListener {
+    SelectFollowersAdapter.FollowersEventListener, FeedAdapter.FeedEventListener {
 
     companion object {
         val EVENT_POST_ID = "eventPostId"
@@ -132,6 +132,7 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
             getRecommnededFollowers()
             getSpineImpulse()
             getUserDetails()
+            getHomeFeedTemp()
         })
 
         val isWelcomeSeen = Prefs.getBoolean(IS_WELCOME_SEEN, false)
@@ -143,13 +144,32 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
 
         getTrendingCat()
 
-        /*binding.rvForYouContent.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (recyclerView.canScrollVertically(RecyclerView.FOCUS_DOWN)) {
-                    scrollToView(recyclerView)
+       /* binding.rvForYouContent.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    // Show your view again.. If you want to show them..
+                    binding.constraintLayout. animate()
+                        .alpha(1.0f)
+                        .setDuration(300);
+                    binding.constraintLayout.visibility=View.VISIBLE
+                } else if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                    // Hide your view..
+                    binding.constraintLayout. animate()
+                        .alpha(0.0f)
+                        .setDuration(200);
+                    binding.constraintLayout.visibility=View.GONE
                 }
+                super.onScrollStateChanged(recyclerView, newState)
+
             }
+           *//* override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+
+
+                if (recyclerView.canScrollVertically(RecyclerView.FOCUS_DOWN)) {
+
+                }
+                super.onScrolled(recyclerView, dx, dy)
+            }*//*
         })*/
 
 
@@ -253,8 +273,8 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
                 if (hashtagRes.status) {
                     val hashtagDataList = hashtagRes.data
                     try {
-                        binding.tvYoga.setText(hashtagDataList[0].hash_title)
-                        binding.tvMeditation.setText(hashtagDataList[1].hash_title)
+                        //binding.tvYoga.setText(hashtagDataList[0].hash_title)
+                       // binding.tvMeditation.setText(hashtagDataList[1].hash_title)
                     } catch (e: Exception) {
 
                     }
@@ -290,7 +310,6 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
                 if (storyRes.status) {
                     STORY_IMAGE = storyRes.user_image
                     val storyList: List<FollwingData> = storyRes.data
-
                     if (storyRes.data.size > 2) {
                         var user_pic_one = storyRes.data[0].profilePic
                         var user_pic_two = storyRes.data[1].profilePic
@@ -300,6 +319,7 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
                         var user_pic_one = storyRes.data[0].profilePic
                         setPic(user_pic_one, "", "")
                     }
+
 
                     binding.rvStories.also {
                         it.layoutManager = LinearLayoutManager(
@@ -320,7 +340,36 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
         }
 
     }
+    /*MT all feed with dummy data*/
+    private fun getHomeFeedTemp(){
+        Coroutines.main {
+            try {
 
+                var homeFeedList = ArrayList<HomeFeedModel> ()
+                homeFeedList.add(HomeFeedModel(1,"PROMOTED",0))
+                homeFeedList.add(HomeFeedModel(2,"SPINE",0))
+                homeFeedList.add(HomeFeedModel(4,"PROMOTED",0))
+                homeFeedList.add(HomeFeedModel(3,"ONLINE",0))
+                homeFeedList.add(HomeFeedModel(3,"LOCAL",0))
+                binding.rvHomeFeed.also {
+                    it.layoutManager = LinearLayoutManager(
+                        requireContext(),
+                        RecyclerView.VERTICAL,
+                        false
+                    )
+                    it.setHasFixedSize(true)
+                    it.adapter = FeedAdapter(homeFeedList, this)
+                }
+
+            } catch (e: ApiException) {
+                e.printStackTrace()
+                context?.let { "${e.message}".toast(it) }
+            } catch (e: NoInternetException) {
+                e.printStackTrace()
+                context?.let { "${e.message}".toast(it) }
+            }
+        }
+    }
     private fun getSpineImpulse() {
         Coroutines.main {
             try {
@@ -388,7 +437,8 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
     }
 
     override fun trendingCategories() {
-        startActivity(Intent(requireContext(), TrendingCatActivity::class.java))
+        startActivity(Intent(requireContext(), PracticionersActivity::class.java))
+        //requireContext().toast("Inprogress")
     }
 
     override fun recommendedFollowers() {
@@ -1172,7 +1222,14 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
             Log.e("datavalue0", e.toString())
         }
 
+    }
+    /*MT temp click event*/
+    override fun onPromotedClicked(postData: HomeFeedModel) {
+       Log.d("---->Click",postData.text)
+    }
 
+    override fun viewAllSpineImpulse_(postData: HomeFeedModel) {
+        startActivity(Intent(requireContext(), ImpulseActivity::class.java))
     }
 
 }

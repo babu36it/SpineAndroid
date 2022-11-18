@@ -31,7 +31,7 @@ class LoginViewModel(
                 val response= authRepositry.userLogin(email!!,password!!)
                 val msg: String=response.message!!
                 if (msg.contains("Your account is not verify",true) ||
-                    msg.contains("Login successfully",true)){
+                    msg.contains("Login successfully.",true)){
 //                    response.data?.let {
                         var isVerified: Boolean=false
                         if (msg.contains("Your account is not verify",true)){
@@ -40,8 +40,12 @@ class LoginViewModel(
                             isVerified=true
                         }
                         isVisibles=false
-                        loginEventListener?.onLoginSuccess(isVerified, response.token, response.token_type)
-//                        //authRepositry.saveUser(it)
+
+                    response.token?.let {
+                        loginEventListener?.onLoginSuccess(isVerified,
+                            it, response.token_type)
+                    }
+//                        authRepositry.saveUser(it)
 //                        return@main
 //                    }
                 }else{

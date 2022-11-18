@@ -30,4 +30,5 @@
     <color name="grey_light">#f3f3f4</color>
     <color name="normal_grey">#E6E6E6</color>
     <color name="simplegrey">#CFD0CF</color>
+    <color name="transparent_white">#80FFFFFF</color>
 </resources>

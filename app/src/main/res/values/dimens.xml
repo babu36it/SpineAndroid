@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="big_text">18sp</dimen>
+    <dimen name="normalText_12">12sp</dimen>
+    <dimen name="normalText_10">10sp</dimen>
     <dimen name="normalText">14sp</dimen>
     <dimen name="thirty_two">32dp</dimen>
     <dimen name="eight">8dp</dimen>
@@ -68,4 +70,6 @@
     <dimen name="slide_title">30dp</dimen>
     <dimen name="slide_desc">16dp</dimen>
     <dimen name="desc_padding">40dp</dimen>
+    <dimen name="profile_size">@dimen/_45sdp</dimen>
+    <dimen name="bedge_small">@dimen/_12sdp</dimen>
 </resources>

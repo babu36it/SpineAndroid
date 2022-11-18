@@ -13,6 +13,7 @@ import com.wiesoftware.spine.databinding.CatItemBinding
  * E-mail:- vivekpcst.kumar@gmail.com
  */
 class CategoryAdapter(val hashtagDataList: List<HashtagData>,val listener:HashtagEventListener) : RecyclerView.Adapter<CategoryAdapter.CategoryHolder>() {
+
     class CategoryHolder(val catItemBinding: CatItemBinding):RecyclerView.ViewHolder(catItemBinding.root) {
 
     }

@@ -12,17 +12,13 @@ import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.SpineFragmentTabAdapter
 import com.wiesoftware.spine.databinding.FragmentSpineBinding
-import com.wiesoftware.spine.ui.home.menus.events.addevents.AddEventActivity
 import com.wiesoftware.spine.ui.home.menus.events.addordup.AddOrDupEventActivity
 import com.wiesoftware.spine.ui.home.menus.podcasts.addrss.AddRssActivity
-import com.wiesoftware.spine.ui.home.menus.spine.addposts.AddPostActivity
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.postmedia.PostMediaActivity
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory.AddStoryActivity
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.postthought.PostThoughtActivity
@@ -30,14 +26,7 @@ import com.wiesoftware.spine.ui.home.menus.spine.featuredpost.FeaturedPostActivi
 import com.wiesoftware.spine.ui.home.menus.spine.following.SpineFollowingFragment
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.SpineForYouFragment
 import com.wiesoftware.spine.ui.home.menus.spine.homesearch.HomeSearchFragment
-import com.wiesoftware.spine.ui.home.menus.spine.selectfollowers.SelectFollowersAdapter
-import com.wiesoftware.spine.util.toast
 import kotlinx.android.synthetic.main.add_post_bottomheet.*
-import kotlinx.android.synthetic.main.share_bottomsheet.*
-import kotlinx.android.synthetic.main.share_bottomsheet.view.*
-import kotlinx.android.synthetic.main.why_r_u_reporting.view.*
-import kotlinx.android.synthetic.main.why_r_u_reporting.view.cardView2
-import kotlinx.android.synthetic.main.why_r_u_reporting.view.imageButton66
 
 
 class SpineFragment : Fragment(),
@@ -79,6 +68,25 @@ var searchListener: OnSearchHomeListener? =null
         showAddBottomsheet()
     }
 
+    override fun onSearchButtonClicked() {
+        childFragmentManager
+            .beginTransaction()
+            .replace(R.id.searchHomeAuto, HomeSearchFragment(), "spineHomeSearch")
+            .commit()
+        searchListener?.onSearch(requireContext(),"0")
+         /*to hide the tab view , plus icon and view line */
+          binding.constraintOne.visibility=View.GONE
+          binding.constraintTwo.visibility=View.VISIBLE
+
+    }
+
+    override fun closeSearchView() {
+        val fragment: Fragment? = childFragmentManager.findFragmentByTag("spineHomeSearch")
+        if (fragment != null) childFragmentManager.beginTransaction().remove(fragment)
+            .commit()
+        showHiddenView()
+    }
+
     private fun showAddBottomsheet() {
         val view: View = layoutInflater.inflate(R.layout.add_post_bottomheet, null)
         val dialog: BottomSheetDialog = BottomSheetDialog(requireContext())
@@ -115,6 +123,7 @@ var searchListener: OnSearchHomeListener? =null
             val fragment: Fragment? = childFragmentManager.findFragmentByTag("spineHomeSearch")
             if (fragment != null) childFragmentManager.beginTransaction().remove(fragment)
                 .commit()
+            showHiddenView()
         }else {
             childFragmentManager
                 .beginTransaction()
@@ -124,6 +133,12 @@ var searchListener: OnSearchHomeListener? =null
 
         }
         return true
+    }
+
+    private fun showHiddenView() {
+
+        binding.constraintOne.visibility=View.VISIBLE
+        binding.constraintTwo.visibility=View.GONE
     }
 
     public interface OnSearchHomeListener{

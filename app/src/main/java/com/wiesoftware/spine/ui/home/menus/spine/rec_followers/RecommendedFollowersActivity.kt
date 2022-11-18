@@ -10,9 +10,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
+import com.wiesoftware.spine.data.adapter.DiscoverMemberStaggeredAdapter
+import com.wiesoftware.spine.data.adapter.OwnPostAdapter
 import com.wiesoftware.spine.data.net.reponses.AllUsersData
+import com.wiesoftware.spine.data.net.reponses.PostData
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityRecommendedFollowersBinding
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
@@ -26,7 +30,8 @@ import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 
 class RecommendedFollowersActivity : AppCompatActivity(),KodeinAware,
-    RecommendedFollowersEventListener, RecommendedFollowersAdapter.RecommendedFollowersListener {
+    RecommendedFollowersEventListener, RecommendedFollowersAdapter.RecommendedFollowersListener,
+     DiscoverMemberStaggeredAdapter.OwnPostSelectedListener {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base?.let { RuntimeLocaleChanger.wrapContext(it) })
@@ -48,7 +53,26 @@ class RecommendedFollowersActivity : AppCompatActivity(),KodeinAware,
             userId=user.users_id!!
             getMembers()
         })
+        getImageStaggered()
 
+    }
+
+    private fun getImageStaggered() {
+        lifecycleScope.launch {
+            try {
+                var postList:MutableList<PostData> = ArrayList<PostData>()
+
+                binding.rvmembersImages.also {
+                    it.layoutManager=StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
+                    it.setHasFixedSize(true)
+                    it.adapter=DiscoverMemberStaggeredAdapter(postList,this@RecommendedFollowersActivity)
+                }
+            }catch (e: ApiException){
+                e.printStackTrace()
+            }catch (e: NoInternetException){
+                e.printStackTrace()
+            }
+        }
     }
 
     private fun getMembers() {
@@ -114,5 +138,10 @@ class RecommendedFollowersActivity : AppCompatActivity(),KodeinAware,
             }
         }
     }
+
+    override fun onPostSelected(postData: PostData) {
+
+    }
+
 
 }

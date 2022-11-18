@@ -39,7 +39,8 @@
             android:tint="@color/text_black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_close" />
+            app:srcCompat="@drawable/ic_close"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <View
             android:id="@+id/view15"
@@ -108,7 +109,7 @@
             app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName10"
             app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName10">
 
-            <fragment
+            <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/autocomplete_fragment"
                 android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
                 android:layout_width="match_parent"
@@ -167,15 +168,16 @@
             android:elevation="@dimen/sixteen"
             android:ems="10"
             android:hint="@string/all_event_categories"
-            android:textSize="@dimen/_9sdp"
             android:inputType="textPersonName"
             android:onClick="@{viewmodel.openDialog}"
             android:text="@={viewmodel.category}"
             android:textColor="@color/day_night_both_black"
             android:textColorHint="@color/dark_gray_day_night"
+            android:textSize="@dimen/_9sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView82" />
+            app:layout_constraintTop_toBottomOf="@+id/textView82"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/button38"

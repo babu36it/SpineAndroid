@@ -15,68 +15,135 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.menus.spine.SpineFragment">
 
-    <ImageButton
-        android:onClick="@{viewModel.onAddBtnClick}"
-        android:id="@+id/imageButton2"
-        android:layout_width="@dimen/thirty_two"
-        android:layout_height="@dimen/thirty_two"
-        android:layout_marginStart="@dimen/sixteen"
-        android:background="@android:color/transparent"
-        android:tint="@color/colorPrimaryDark"
-        android:src="@drawable/ic_add_new"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardView" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="visible"
+        android:id="@+id/constraintOne"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageButton
+            android:contentDescription="@string/about_spine"
+            android:id="@+id/imageButton2"
+            android:layout_width="@dimen/thirty_two"
+            android:layout_height="@dimen/thirty_two"
+            android:layout_marginStart="@dimen/sixteen"
+            android:background="@android:color/transparent"
+            android:onClick="@{viewModel.onAddBtnClick}"
+            android:src="@drawable/ic_add_new"
+            app:layout_constraintBottom_toBottomOf="@+id/tabLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tabLayout"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        <ImageButton
+            android:onClick="@{viewModel.onSearchBtnClick}"
+            android:layout_marginEnd="@dimen/eight"
+            android:contentDescription="@string/about_spine"
+            android:id="@+id/imageSearch"
+            android:layout_width="@dimen/thirty_two"
+            android:layout_height="@dimen/thirty_two"
+            android:paddingEnd="@dimen/eight"
+            android:background="@android:color/transparent"
+            android:src="@drawable/search"
+            android:backgroundTint="@color/text_black"
+            app:layout_constraintBottom_toBottomOf="@+id/tabLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tabLayout"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/eight"
-        android:layout_marginStart="@dimen/eight"
-        android:layout_marginTop="@dimen/eight"
-        android:layout_marginEnd="@dimen/sixteen"
-        app:cardElevation="@dimen/eight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton2"
-        app:layout_constraintTop_toTopOf="parent">
+        <com.google.android.material.tabs.TabLayout
+            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_4sdp"
+            app:layout_constraintEnd_toStartOf="@+id/imageSearch"
+            app:layout_constraintStart_toEndOf="@+id/imageButton2"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/tabLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/add"
+            app:tabIndicatorHeight="4dp" />
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchSpine"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+        <View
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/view3"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_2sdp"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:background="@color/light_gry"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="gone"
+        android:id="@+id/constraintTwo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/tempImage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"/>
+        <androidx.cardview.widget.CardView
+            app:layout_constraintStart_toEndOf="@+id/tempImage"
+            android:paddingStart="@dimen/sixteen"
+            app:layout_constraintEnd_toStartOf="@+id/imageClose"
+            android:visibility="visible"
+            android:id="@+id/cardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/eight"
+            android:layout_marginStart="@dimen/eight"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginEnd="@dimen/sixteen"
+            app:cardElevation="@dimen/eight"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.SearchView
+
+                android:id="@+id/searchSpine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:defaultQueryHint="@string/search_spine"
+                app:iconifiedByDefault="false"
+                app:queryBackground="@android:color/transparent"
+                app:queryHint="@string/search_spine" />
+        </androidx.cardview.widget.CardView>
+        <androidx.fragment.app.FragmentContainerView
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            android:id="@+id/searchHomeAuto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:defaultQueryHint="@string/search_spine"
-            app:iconifiedByDefault="false"
-            app:queryBackground="@android:color/transparent"
-            app:queryHint="@string/search_spine" />
-    </androidx.cardview.widget.CardView>
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:tabIndicatorHeight="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+             />
+        <ImageButton
+            android:onClick="@{viewModel.closeSearchview}"
+            android:layout_marginEnd="@dimen/eight"
+            android:contentDescription="@string/about_spine"
+            android:id="@+id/imageClose"
+            android:layout_width="@dimen/thirty_two"
+            android:layout_height="@dimen/thirty_two"
+            android:paddingEnd="@dimen/eight"
+            android:src="@drawable/close_black"
+            android:background="@color/transparent"
+            android:backgroundTint="@color/text_black"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cardView"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/searchHomeAuto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

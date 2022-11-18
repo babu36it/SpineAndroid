@@ -3,13 +3,12 @@ package com.wiesoftware.spine.ui.home.menus.spine.homesearch
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -27,11 +26,12 @@ import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActiv
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
 import com.wiesoftware.spine.ui.home.menus.profile.tabs.posts.PostsFragment
 import com.wiesoftware.spine.ui.home.menus.spine.SpineFragment
-import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
+import com.wiesoftware.spine.ui.home.menus.spine.categories.CategoryAdapter
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.POST_BASE_IMG_FILE
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.POST_BASE_IMG_PRO
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.SpineForYouFragment
 import com.wiesoftware.spine.ui.home.menus.spine.postdetails.PostDetailsActivity
+import com.wiesoftware.spine.ui.home.menus.spine.practicioners.PractSelectlistAdapter
 import com.wiesoftware.spine.ui.home.menus.spine.rec_followers.RecommendedFollowersAdapter
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
@@ -48,7 +48,7 @@ import org.kodein.di.generic.instance
 class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
     SpineFragment.OnSearchHomeListener, HashtagAutocompleteAdapter.OnHashtagSelectedListener,
     RecommendedFollowersAdapter.RecommendedFollowersListener,
-    SearchForUContentAdapter.SearchForUContentListener {
+    SearchForUContentAdapter.SearchForUContentListener, CategoryAdapter.HashtagEventListener {
 
     override val kodein by kodein()
     lateinit var binding: FragmentHomeSearchBinding
@@ -118,25 +118,75 @@ class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
     }
 
     override fun onTags() {
+        dataList.clear()
         getUserHashtags()
         binding.button102.setBackgroundResource(0)
         binding.button103.setBackgroundResource(R.drawable.black_round_background)
         binding.button104.setBackgroundResource(0)
+        binding.buttonPracticioners.setBackgroundResource(0)
         binding.button102.setTextColor(ContextCompat.getColor(requireContext(),R.color.text_black))
         binding.button103.setTextColor(ContextCompat.getColor(requireContext(),R.color.text_white))
         binding.button104.setTextColor(ContextCompat.getColor(requireContext(),R.color.text_black))
+        binding.buttonPracticioners.setTextColor(ContextCompat.getColor(requireContext(),R.color.text_black))
     }
 
     override fun onPeople() {
         getMembers()
         dataList.clear()
         adapter.notifyDataSetChanged()
+        binding.button104.setBackgroundResource(0)
+        binding.button103.setBackgroundResource(0)
+        binding.buttonPracticioners.setBackgroundResource(0)
+        binding.button102.setBackgroundResource(R.drawable.black_round_background)
+        binding.button104.setTextColor(ContextCompat.getColor(requireContext(),R.color.text_black))
+        binding.button103.setTextColor(ContextCompat.getColor(requireContext(),R.color.text_black))
+        binding.button102.setTextColor(ContextCompat.getColor(requireContext(),R.color.text_white))
+        binding.buttonPracticioners.setTextColor(ContextCompat.getColor(requireContext(),R.color.text_black))
+    }
+
+    override fun onPracticioner() {
+         dataList.clear()
+        lifecycleScope.launch {
+            binding.rvHomeSearch.also {
+                it.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+                it.setHasFixedSize(true)
+                it.adapter = PractSelectlistAdapter(requireContext())
+            }
+
+            binding.button102.setBackgroundResource(0)
+            binding.button103.setBackgroundResource(0)
+            binding.button104.setBackgroundResource(0)
+            binding.buttonPracticioners.setBackgroundResource(R.drawable.black_round_background)
+            binding.button102.setTextColor(ContextCompat.getColor(requireContext(),R.color.text_black))
+            binding.button103.setTextColor(ContextCompat.getColor(requireContext(),R.color.text_black))
+            binding.button104.setTextColor(ContextCompat.getColor(requireContext(),R.color.text_black))
+            binding.buttonPracticioners.setTextColor(ContextCompat.getColor(requireContext(),R.color.text_white))
+        }
+
+    }
+
+    override fun onCategories() {
+        dataList.clear()
+
+            dataList.add(HashtagData("","Boxing","","","306,325"))
+            dataList.add(HashtagData("","Yoga","","","306,325"))
+            dataList.add(HashtagData("","Life Transformation","","","306,325"))
+            dataList.add(HashtagData("","Soccer","","","306,325"))
+
+            binding.rvHomeSearch.also {
+                it.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
+                it.setHasFixedSize(true)
+                it.adapter= CategoryAdapter(dataList,this)
+            }
         binding.button102.setBackgroundResource(0)
         binding.button103.setBackgroundResource(0)
+        binding.buttonPracticioners.setBackgroundResource(0)
         binding.button104.setBackgroundResource(R.drawable.black_round_background)
         binding.button102.setTextColor(ContextCompat.getColor(requireContext(),R.color.text_black))
         binding.button103.setTextColor(ContextCompat.getColor(requireContext(),R.color.text_black))
+        binding.buttonPracticioners.setTextColor(ContextCompat.getColor(requireContext(),R.color.text_black))
         binding.button104.setTextColor(ContextCompat.getColor(requireContext(),R.color.text_white))
+
     }
 
 
@@ -144,7 +194,7 @@ class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
 
         lifecycleScope.launch {
             try {
-                val allUsersRes=homeRepositry.getAllUsers(1,100,userId)
+                /*val allUsersRes=homeRepositry.getAllUsers(1,100,userId)   Temp commented MT
                 if (allUsersRes.status){
                     BASE_IMAGE =allUsersRes.image
                     val allUsersData=allUsersRes.data
@@ -153,6 +203,17 @@ class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
                         it.setHasFixedSize(true)
                         it.adapter= RecommendedFollowersAdapter(allUsersData,this@HomeSearchFragment)
                     }
+                }*/
+                var allUsersData : ArrayList<AllUsersData> = ArrayList()
+                allUsersData.add(AllUsersData("","Lorem Ipsome","Craig Warner","1","","","","Craig Warner",""))
+                allUsersData.add(AllUsersData("","Lorem Ipsome","Craig Warner","1","","","","Craig Warner",""))
+                allUsersData.add(AllUsersData("","Lorem Ipsome","Craig Warner","1","","","","Craig Warner",""))
+                allUsersData.add(AllUsersData("","Lorem Ipsome","Craig Warner","1","","","","Craig Warner",""))
+                allUsersData.add(AllUsersData("","Lorem Ipsome","Craig Warner","1","","","","Craig Warner",""))
+                binding.rvHomeSearch.also {
+                    it.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
+                    it.setHasFixedSize(true)
+                    it.adapter= RecommendedFollowersAdapter(allUsersData,this@HomeSearchFragment)
                 }
             }catch (e: ApiException){
                 e.printStackTrace()
@@ -165,8 +226,8 @@ class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
     private fun getUserHashtags() {
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.getUserHashtags()
-                if (res.status){
+               // val res=homeRepositry.getUserHashtags()   MT comment for prototype
+               /* if (!res.status){
                     dataList=res.data
                     adapter= HashtagAutocompleteAdapter(dataList,this@HomeSearchFragment)
                     binding.rvHomeSearch.also {
@@ -176,6 +237,19 @@ class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
                         it.adapter=adapter
                         adapter.notifyDataSetChanged()
                     }
+                }
+*/
+                dataList.add(HashtagData("","#lamborgini","","","306,325"))
+                dataList.add(HashtagData("","#lamborgini","","","306,325"))
+                dataList.add(HashtagData("","#lamborgini","","","306,325"))
+                dataList.add(HashtagData("","#lamborgini","","","306,325"))
+                adapter= HashtagAutocompleteAdapter(dataList,this@HomeSearchFragment)
+                binding.rvHomeSearch.also {
+                    it.layoutManager=
+                        LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
+                    it.setHasFixedSize(true)
+                    it.adapter=adapter
+                    adapter.notifyDataSetChanged()
                 }
             }catch (e: ApiException){
                 e.printStackTrace()
@@ -257,5 +331,9 @@ class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
             intent.putExtra(PostsFragment.PROFILE_IMG_BASE, POST_BASE_IMG_PRO)
             startActivity(intent)
         }
+    }
+
+    override fun onTrendingFollow(hashtag: HashtagData) {
+
     }
 }

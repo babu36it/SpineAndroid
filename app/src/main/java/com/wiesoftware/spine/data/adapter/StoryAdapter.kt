@@ -37,6 +37,7 @@ class StoryAdapter(val  allUsersData: List<AllUsersData>,val listener: StoryEven
                 .following)
             listener.onStoryFollowing(allUsersData[position])
         }
+        holder.storyItemBinding.textView26.text = allUsersData[position].userName
         holder.storyItemBinding.circleImageView2.setOnClickListener {
             listener.onViewSomeonesProfile(allUsersData[position])
         }

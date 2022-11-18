@@ -44,6 +44,7 @@
         android:textColor="@color/colorPrimaryDark"
         android:text="@string/follow"
         android:textAllCaps="false"
+        android:fontFamily="@font/poppins_regular"
         android:drawableStart="@drawable/ic_add"
         android:drawablePadding="@dimen/eight"
         android:drawableTint="@color/colorPrimaryDark"

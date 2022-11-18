@@ -11,21 +11,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
+    android:layout_marginStart="@dimen/_4sdp"
+    android:layout_marginEnd="@dimen/_4sdp"
     >
 
     <de.hdodenhof.circleimageview.CircleImageView
         app:image="@{model.profilePic}"
         android:id="@+id/imageView9"
-        android:layout_width="@dimen/_60"
-        android:layout_height="@dimen/_60"
+        android:layout_width="@dimen/profile_size"
+        android:layout_height="@dimen/profile_size"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:src="@drawable/demo"
-        app:civ_border_width="2dp"
-        app:civ_border_color="@color/colorPrimaryDark"
-        app:civ_circle_background_color="@color/gray_tint"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:src="@drawable/profile_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,16 +37,19 @@
         android:text="@{model.displayName ?? model.userName}"
         android:textColor="@color/text_black"
         app:layout_constraintEnd_toStartOf="@+id/follow_btn"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="@dimen/normalText_12"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
         app:layout_constraintTop_toTopOf="@+id/follow_btn" />
 
     <Button
         android:id="@+id/follow_btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_30sdp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/round_button_bg"
         android:text="@string/follows"
+        android:textSize="@dimen/normalText_12"
         app:layout_constraintBottom_toBottomOf="@+id/imageView9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView9" />
@@ -58,6 +59,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@{model.town}"
+        android:textSize="@dimen/normalText_10"
         app:layout_constraintEnd_toEndOf="@+id/textView84"
         app:layout_constraintStart_toStartOf="@+id/textView84"
         app:layout_constraintTop_toBottomOf="@+id/textView84" />
@@ -69,7 +71,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@color/gray_tint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
