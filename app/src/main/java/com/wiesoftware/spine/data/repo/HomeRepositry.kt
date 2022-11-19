@@ -401,6 +401,13 @@ class HomeRepositry(
         }
     }
 
+    suspend fun getQuetionsThought(title: String, postType: String, hashTags: String): SingleRes {
+        return apiRequest {
+            api.addQuestionThought(title, postType, hashTags)
+        }
+    }
+
+
     suspend fun getEventRequestUserList(
         page: Int,
         perPage: Int,
@@ -762,6 +769,20 @@ class HomeRepositry(
         }
     }
 
+    suspend fun userImageVideoPost(
+        title: RequestBody, type: RequestBody, hashtags: RequestBody,
+        mark_friends: RequestBody, place_link: RequestBody,
+        files: List<MultipartBody.Part>
+    ): SingleRes {
+        return apiRequest {
+            api.UserImgVideoPost(
+                title, type, hashtags,
+                mark_friends, place_link,
+                files
+            )
+        }
+    }
+
     suspend fun getFollowingUsersStoryList(
         page: Int,
         per_page: Int,
@@ -835,20 +856,16 @@ class HomeRepositry(
 
     suspend fun postAStory(
         file: List<MultipartBody.Part>,
-        user_id: RequestBody,
         title: RequestBody,
         type: RequestBody,
         allow_comment: RequestBody,
-        delete_story_after_24_hr: RequestBody
     ): SingleRes {
         return apiRequest {
             api.addStory(
                 file,
-                user_id,
                 title,
                 type,
                 allow_comment,
-                delete_story_after_24_hr
             )
         }
     }

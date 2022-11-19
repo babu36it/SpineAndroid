@@ -1,5 +1,6 @@
 package com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory
 
+import android.app.ProgressDialog
 import android.content.ClipData
 import android.content.ContentResolver
 import android.content.Context
@@ -18,6 +19,7 @@ import android.view.Gravity
 import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -27,10 +29,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.wiesoftware.spine.BuildConfig
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
+import com.wiesoftware.spine.data.adapter.StoryImageCommonAdapter
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityAddStoryBinding
 import com.wiesoftware.spine.ui.home.HomeActivity
@@ -79,7 +83,7 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
     var photoUriList: MutableList<String> = ArrayList<String>()
 
 
-    lateinit var bitmaps: ArrayList<Bitmap>
+    private var bitmaps: ArrayList<Bitmap> = arrayListOf()
     lateinit var adapter: SelectedImageAdapter
     var currentPhotoPath: String? = null
     lateinit var photoURI: Uri
@@ -88,6 +92,8 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
     lateinit var userid: String
     val homeRepositry: HomeRepositry by instance()
     val factory: AddStoryViewmodelFactory by instance()
+    lateinit var progressDialog: ProgressDialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_story)
@@ -95,7 +101,7 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
         binding.viewmodel = viewmodel
         viewmodel.addStoryEventListener = this
         bitmaps = ArrayList()
-
+        progressDialog = ProgressDialog(this)
         homeRepositry.getUser().observe(this, androidx.lifecycle.Observer { user ->
             userid = user.users_id!!
 //            userid.toast(this)
@@ -108,7 +114,7 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
 
-                    binding.textView61.setText((90 - s.length).toString())
+                binding.textView61.setText((90 - s.length).toString())
 
                 //This sets a textview to the current length
 //                binding.tvNameCounter.setText(40-s.length);
@@ -151,6 +157,8 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
             Prefs.putAny(CURR_PHOTO_PATH_FROM_CAM_X, "")
         }
 
+        setAdapter()
+
     }
 
     override fun onBack() {
@@ -159,7 +167,22 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
         startActivity(intent)
     }
 
+    private fun setAdapter() {
+        binding.rvSelectedImages.also {
+            it.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+            it.setHasFixedSize(true)
+            adapter = SelectedImageAdapter(bitmaps, this)
+            it.adapter = adapter
+            adapter.notifyDataSetChanged()
+        }
+    }
+
     override fun onAdd() {
+        if (adapter.itemCount >= 5) {
+            Toast.makeText(this, "You can not select more than 5 pictures", Toast.LENGTH_SHORT)
+                .show()
+            return
+        }
         showPicker()
     }
 
@@ -176,6 +199,8 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
             bottomSheet.background = null
         }
 
+        view.textView64.text = "Add image(s)"
+
         dialog.window?.let {
             it.setGravity(Gravity.BOTTOM)
             it.setBackgroundDrawableResource(android.R.color.transparent)
@@ -184,15 +209,23 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
         view.btnCan.setOnClickListener {
             dialog.dismiss()
         }
+        view.btnOnline.text = "Choose existing photo"
 
-        view.btnFollow.visibility = View.GONE
+        view.btnFollow.visibility = View.VISIBLE
         view.btnFollow.setOnClickListener {
             if (hasPermissions(this, permissions)) {
                 //dispatchTakePictureIntent()
                 //startActivity(Intent(this,CustomCameraActivity::class.java))
-                Prefs.putAny(IS_FROM, ADD_STORY)
-                startActivity(Intent(this, CustomCameraActivity::class.java))
+                /*    Prefs.putAny(IS_FROM, ADD_STORY)
+                    startActivity(Intent(this, CustomCameraActivity::class.java))*/
 
+                /*ImagePicker.with(this)
+
+                    .compress(1024)
+                    .maxResultSize(1080, 1080)
+                    .galleryOnly()
+                    .start(Constant.REQ_PICK_IMAGE)*/
+                dispatchTakePictureIntent()
             } else {
                 makeRequest()
             }
@@ -201,6 +234,13 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
         view.btnOnline.setOnClickListener {
             //startActivity(Intent(this, CustomCameraActivity::class.java))
             if (hasPermissions(this, permissions)) {
+
+                /*  ImagePicker.with(this)
+
+                      .compress(1024)
+                      .maxResultSize(1080, 1080)
+                      .galleryOnly()
+                      .start(Constant.REQ_PICK_IMAGE)*/
                 openGallery()
             } else {
                 makeRequest()
@@ -216,7 +256,7 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
 //        startActivityForResult(intent, GALLERY_REQ)
 
         val intent = Intent()
-        intent.type = "image/* , video/*"
+        intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(intent, GALLERY_REQ)
@@ -224,7 +264,7 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
 
     override fun onPreview() {
         if (currentPhotoPath.isNullOrEmpty()) {
-            "Please select image or video".toast(this)
+            "Please select image".toast(this)
             return
         }
         val allocmnt = binding.switch3.isChecked
@@ -280,12 +320,16 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
         return extension
     }
 
-    override fun onPostStory(thoughts: String, allowComments: Boolean, story_time: Boolean) {
-        /* val file: File = File(currentPhotoPath!!)
-         if (photoURI == null){
-             "Please add image or video".toast(this)
-             return
-         }*/
+    override fun onPostStory(allowComments: Boolean) {
+
+        if (currentPhotoPathList.size == 0) {
+            Toast.makeText(this, "Please select images", Toast.LENGTH_SHORT).show()
+            return
+        } else if (binding.editTextTextPersonName6.text.toString().trim().isEmpty()) {
+            Toast.makeText(this, "Please add story title", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val imgList: MutableList<MultipartBody.Part> = ArrayList<MultipartBody.Part>()
         if (currentPhotoPathList != null && currentPhotoPathList.size > 0) {
 
@@ -308,9 +352,6 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
                 imgList.add(img_file)
                 Log.e("MediaList:", currentPhotoPathList[item])
             }
-        } else {
-            "Please add image or video".toast(this)
-            return
         }
 
 
@@ -323,52 +364,38 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
             )
         ) {
             types = "1"
-        } else {
+        } /*else {
             types = "2"
         }
-        /*val requestFile: RequestBody = RequestBody.create(
-            MediaType.parse(contentResolver.getType(photoURI)),
-            file
-        )
-        val img_file: MultipartBody.Part = MultipartBody.Part.createFormData(
-            "media_file",
-            file.name,
-            requestFile
-        )*/
-        val uid: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), userid)
+*/
         val thoughts: RequestBody = RequestBody.create(
             "multipart/form-data".toMediaTypeOrNull(),
-            thoughts
+            binding.editTextTextPersonName6.text.toString().trim()
         )
         val allowComments: RequestBody = RequestBody.create(
             "multipart/form-data".toMediaTypeOrNull(),
             allowComments.toString()
         )
-        val story_time: RequestBody = RequestBody.create(
-            "multipart/form-data".toMediaTypeOrNull(),
-            story_time.toString()
-        )
+
 
         val type: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), types)
-        binding.button29.visibility = View.INVISIBLE
         lifecycleScope.launch {
             try {
+                showProgressDialog()
                 val res = homeRepositry.postAStory(
                     imgList,
-                    uid,
                     thoughts,
                     type,
                     allowComments,
-                    story_time
                 )
                 if (res.status) {
-                    binding.button29.visibility = View.VISIBLE
-                    "Your story is added successfuly.".toast(this@AddStoryActivity)
+                    dismissProgressDailog()
+                    Toast.makeText(this@AddStoryActivity, res.message, Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@AddStoryActivity, HomeActivity::class.java))
+                    finish()
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                binding.button29.visibility = View.VISIBLE
             }
         }
 
@@ -412,6 +439,17 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
             currentPhotoPath = absolutePath
         }
     }
+
+    private fun showProgressDialog() {
+        progressDialog.setMessage("Please wait...")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+    }
+
+    private fun dismissProgressDailog() {
+        progressDialog.dismiss()
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -517,10 +555,20 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
 
     override fun onImageRemoved(position: Int) {
         photoURIList.removeAt(position)
-        photoUriList.removeAt(position)
         currentPhotoPathList.removeAt(position)
         bitmaps.removeAt(position)
         adapter.notifyItemRemoved(position)
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun onItemImageRemoved(position: Int, bitmaps: ArrayList<Bitmap>) {
+        for (i in 0..bitmaps.size - 1) {
+            photoURIList.removeAt(i)
+            photoUriList.removeAt(i)
+            currentPhotoPathList.removeAt(i)
+            bitmaps.removeAt(i)
+            adapter.notifyItemRemoved(i)
+        }
     }
 }
 

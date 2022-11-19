@@ -247,7 +247,7 @@
                 android:resource="@xml/file_paths"
                 tools:replace="android:resource" />
 
-            <path-permission android:pathPrefix="/my_downloads" />
+      <!--      <path-permission android:pathPrefix="/my_downloads" />
             <path-permission android:pathPrefix="/all_downloads" />
             <path-permission android:pathPrefix="/download" />
 
@@ -256,7 +256,7 @@
 
             <path-permission android:pathPrefix="/public_downloads" />
 
-            <grant-uri-permission android:pathPrefix="/public_downloads/" />
+            <grant-uri-permission android:pathPrefix="/public_downloads/" />-->
         </provider>
     </application>
 

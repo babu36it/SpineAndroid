@@ -697,10 +697,10 @@ interface Api {
         @Field("contact_email") contact_email: String,
         @Field("business_phone") business_phone: String,
         @Field("business_mobile") business_mobile: String,
-        @Field("business_phone_code")business_phone_code:String,
-        @Field("business_mobile_code")business_mobile_code:String
+        @Field("business_phone_code") business_phone_code: String,
+        @Field("business_mobile_code") business_mobile_code: String
 
-        ): Response<SingleRes>
+    ): Response<SingleRes>
 
 
     @Multipart
@@ -728,6 +728,18 @@ interface Api {
         @Part("multiplity") multiplity: RequestBody,
         @Part files: List<MultipartBody.Part>
     ): Response<SingleRes>
+
+    @Multipart
+    @POST("post/addPost")
+    suspend fun UserImgVideoPost(
+        @Part("title") title: RequestBody,
+        @Part("type") type: RequestBody,
+        @Part("hashtags") hashtag_ids: RequestBody,
+        @Part("mark_friends") mark_friends: RequestBody,
+        @Part("place_link") place_link: RequestBody,
+        @Part files: List<MultipartBody.Part>
+    ): Response<SingleRes>
+
 
 //    //@Headers(HEADER_1, HEADER_2)
 //    @GET("stories/getFollowingUsersStorieList/{page}/{per_page}/{your_user_id}")
@@ -821,11 +833,9 @@ interface Api {
     @POST("stories/addUserStories")
     suspend fun addStory(
         @Part media_file: List<MultipartBody.Part>,
-        @Part("user_id") user_id: RequestBody,
         @Part("title") title: RequestBody,
         @Part("type") type: RequestBody,
         @Part("allow_comment") allow_comment: RequestBody,
-        @Part("delete_story_after_24_hr") delete_story_after_24_hr: RequestBody
     ): Response<SingleRes>
 
     @GET("post/getSpineUserActivityList/{page}/{per_page}/{your_user_id}/{followers}")
@@ -1053,5 +1063,14 @@ interface Api {
         @Field("m_spine_impulse_status") m_spine_impulse_status: String,
         @Field("m_any_post_status") m_any_post_status: String
     ): Response<SingleRes>
+
+    @FormUrlEncoded
+    @POST("post/addPost")
+    suspend fun addQuestionThought(
+        @Field("title") title: String,
+        @Field("type") type: String,
+        @Field("hashtags") hashtags: String
+    ): Response<SingleRes>
+
 
 }

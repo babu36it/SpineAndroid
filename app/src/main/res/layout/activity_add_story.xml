@@ -42,11 +42,11 @@
                 android:visibility="gone" />
 
             <TextView
-                android:layout_marginTop="@dimen/_2sdp"
                 android:id="@+id/textView58"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:text="@string/add_story"
                 android:textAlignment="center"
@@ -97,18 +97,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/sixteen"
                 android:layout_marginEnd="@dimen/_8sdp"
-                android:textColor="@color/text_black"
                 android:fontFamily="@font/poppins_bold"
-                android:text="@string/add_image_s_or_video_s"
+                android:text="Add Image(s)"
+                android:textColor="@color/text_black"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
 
             <RelativeLayout
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_10sdp">
 
                 <TextView
                     android:id="@+id/button30"
@@ -156,7 +156,6 @@
                 android:textStyle="bold" />
 
 
-
         </RelativeLayout>
 
 
@@ -171,22 +170,22 @@
             android:gravity="center">
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:maxLength="90"
                 android:id="@+id/editTextTextPersonName6"
                 style="@style/ETNormal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:padding="@dimen/eight"
-                android:background="@android:color/transparent"
+                android:layout_marginEnd="@dimen/_3sdp"
                 android:layout_toLeftOf="@id/textView61"
+                android:background="@android:color/transparent"
+                android:ems="10"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="@string/want_to_give_your_story_a_title_or_motto"
                 android:inputType="textPersonName"
+                android:maxLength="90"
                 android:maxLines="1"
-                android:layout_marginEnd="@dimen/_3sdp"
+                android:padding="@dimen/eight"
                 android:singleLine="true"
-                android:text="@={viewmodel.thoughts}"
+                android:text="@={viewmodel.title}"
                 android:textColorHint="@color/dark_gray_day_night"
                 android:textSize="@dimen/_11sdp" />
 
@@ -218,8 +217,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/allow_comments"
-                android:textSize="@dimen/_11sdp"
                 android:textColor="@color/text_black"
+                android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
 
             <Switch
@@ -238,7 +237,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/eight"
-            android:checked="@={viewmodel.story_time}"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/switch3"
             app:layout_constraintTop_toBottomOf="@+id/switch3" />

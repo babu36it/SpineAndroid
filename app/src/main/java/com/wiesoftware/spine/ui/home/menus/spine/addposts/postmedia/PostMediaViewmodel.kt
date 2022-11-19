@@ -17,7 +17,7 @@ class PostMediaViewmodel(val homeRepositry: HomeRepositry) : ViewModel() {
         postMediaEventListener?.onBack()
     }
     fun onPost(view: View){
-        postMediaEventListener?.onPost(thoughts,hashtags)
+        postMediaEventListener?.onPost()
     }
     fun onAdd(view: View){
         postMediaEventListener?.onAdd()

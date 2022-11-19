@@ -1,6 +1,7 @@
 package com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory
 
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.wiesoftware.spine.data.repo.HomeRepositry
 
@@ -8,31 +9,31 @@ import com.wiesoftware.spine.data.repo.HomeRepositry
  * Created by Vivek kumar on 10/19/2020.
  * E-mail:- vivekpcst.kumar@gmail.com
  */
-class AddStoryViewmodel(val homeRepositry: HomeRepositry): ViewModel() {
+class AddStoryViewmodel(val homeRepositry: HomeRepositry) : ViewModel() {
 
 
-    var allowComments: Boolean=true
-    var story_time: Boolean=true
-    var thoughts: String?=null
-    var addStoryEventListener: AddStoryEventListener?= null
+    var allowComments: Boolean = true
+    var title: String? = null
+    var addStoryEventListener: AddStoryEventListener? = null
 
-    fun onBAck(view: View){
+    fun onBAck(view: View) {
         addStoryEventListener?.onBack()
     }
-    fun onAdd(view: View){
+
+    fun onAdd(view: View) {
         addStoryEventListener?.onAdd()
     }
-    fun onPreview(view: View){
+
+    fun onPreview(view: View) {
         addStoryEventListener?.onPreview()
     }
-    fun onDelete(view: View){
+
+    fun onDelete(view: View) {
         addStoryEventListener?.onDelete()
     }
-    fun onPostStory(view: View){
-        if (thoughts.isNullOrEmpty()){
-            return
-        }
-        addStoryEventListener?.onPostStory(thoughts!!,allowComments,story_time)
+
+    fun onPostStory(view: View) {
+        addStoryEventListener?.onPostStory(allowComments)
     }
 
 }
