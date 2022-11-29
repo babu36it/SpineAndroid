@@ -1,76 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewmodel"
             type="com.wiesoftware.spine.ui.home.menus.spine.addposts.postthought.PostThoughtViewmodel" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.menus.spine.addposts.postthought.PostThoughtActivity">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vp2"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        android:orientation="vertical"
+        tools:context=".ui.home.menus.spine.addposts.postthought.PostThoughtActivity">
 
-    </androidx.viewpager2.widget.ViewPager2>
-    <RadioGroup
-        android:id="@+id/rgBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/eight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/vp2"
-        >
-        <RadioButton
-            android:id="@+id/radioButton"
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/imageView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:buttonTint="@color/text_white"
-            />
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/text_white"
-            />
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/text_white"
-            />
-        <RadioButton
-            android:id="@+id/radioButton4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/text_white"
-            />
-    </RadioGroup>
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@android:color/transparent"
+            android:onClick="@{viewmodel.onBack}"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/ic_back" />
 
-    <ImageView
-        android:onClick="@{viewmodel.onBack}"
-        android:id="@+id/imageView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/BackButton"
-        app:tint="@color/text_white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </androidx.viewpager2.widget.ViewPager2>
+
+            <me.relex.circleindicator.CircleIndicator3
+                android:id="@+id/indicator"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_alignParentBottom="true"
+                app:ci_gravity="center"
+                app:ci_height="5dp"
+                app:ci_margin="5dp"
+                app:ci_orientation="horizontal"
+                app:ci_width="5dp" />
+
+        </RelativeLayout>
+
+        <RadioGroup
+            android:id="@+id/rgBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/eight"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/vp2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/text_white"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:buttonTint="@color/text_white" />
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:buttonTint="@color/text_white" />
+
+            <RadioButton
+                android:id="@+id/radioButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:buttonTint="@color/text_white" />
+        </RadioGroup>
+
+
+    </LinearLayout>
 </layout>

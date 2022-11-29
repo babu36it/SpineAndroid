@@ -18,7 +18,7 @@
     <color name="off_white">#f3f3f3</color>
     <color name="overlay_color_primary">#E9D7C5B9</color>
     <color name="dark_gray_day_night">#6D6D6D</color>
-
+    <color name="green">#008000</color>
     <color name="day_night_both_white">#FFFFFF</color>
     <color name="day_night_both_black">#000000</color>
     <color name="progress_primary">@color/white</color>

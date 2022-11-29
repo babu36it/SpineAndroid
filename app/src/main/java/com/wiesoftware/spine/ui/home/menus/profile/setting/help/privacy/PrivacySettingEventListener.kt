@@ -7,4 +7,8 @@ package com.wiesoftware.spine.ui.home.menus.profile.setting.help.privacy
 interface PrivacySettingEventListener {
     fun onBack()
     fun onPrivacyPolicy()
+    fun findabilityOnchanged(isChecked: Boolean)
+    fun personalizedOnChanged(isChecked: Boolean)
+    fun customizationOnChanged(isChecked: Boolean)
+    fun necessaryOnChanged(isChecked: Boolean)
 }

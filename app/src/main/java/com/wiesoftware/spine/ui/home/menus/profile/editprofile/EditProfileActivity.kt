@@ -2,6 +2,7 @@ package com.wiesoftware.spine.ui.home.menus.profile.editprofile
 
 import android.Manifest
 import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -34,9 +35,12 @@ import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
+import com.wiesoftware.spine.data.adapter.MultiLanguageAdapter
 import com.wiesoftware.spine.data.net.reponses.EventCatData
+import com.wiesoftware.spine.data.net.reponses.LangData
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityEditProfileBinding
+import com.wiesoftware.spine.ui.home.menus.events.addevents.MutilpeSpineCatAdapter
 import com.wiesoftware.spine.ui.home.menus.events.addevents.SpinerCatAdapter
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
 import com.wiesoftware.spine.util.ApiException
@@ -44,6 +48,7 @@ import com.wiesoftware.spine.util.NoInternetException
 import com.wiesoftware.spine.util.toast
 import kotlinx.android.synthetic.main.activity_add_event.*
 import kotlinx.android.synthetic.main.activity_edit_profile.*
+import kotlinx.android.synthetic.main.adp_lng_selections.*
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 import kotlinx.android.synthetic.main.eve_cat_selection.*
 import kotlinx.coroutines.launch
@@ -63,8 +68,9 @@ import java.util.*
 
 
 class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventListener,
-    AdapterView.OnItemSelectedListener, SpinerCatAdapter.OnEveItemChecked,
-    SpinerCatAdapter.ListValue {
+    AdapterView.OnItemSelectedListener, MutilpeSpineCatAdapter.OnEveItemChecked,
+    MutilpeSpineCatAdapter.ListValue, MultiLanguageAdapter.OnLanguageItemChecked,
+    MultiLanguageAdapter.ListValue {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base?.let { RuntimeLocaleChanger.wrapContext(it) })
@@ -79,6 +85,8 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
     private val TAG = "PermissionDemo"
     var imageUriSign: Uri? = null
     var mFilePathSign = ""
+
+
     var picname: String? = null
     val RECORD_REQUEST_CODE = 101
 
@@ -87,24 +95,31 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
     val factory: EditProfileViewmodelFactory by instance()
     val homeRepositry: HomeRepositry by instance()
     lateinit var binding: ActivityEditProfileBinding
+    lateinit var editProfileViewModel: EditProfileViewmodel
     lateinit var user_id: String
-    var accountType: String = "0"
+
     var category: String = ""
     var categoryIds: String = "0"
-    var website: String = ".";
+    var Langauge: String = ""
+    var LanguageIds: String = "0"
+    var website: String = "."
     var contactEmail: String = "."
-    var businessPhone: String = ".";
-    var buisinessLocation: String = "1";
+    var businessPhone: String = "."
+    var buisinessLocation: String = "1"
     var businessAddress: String = "."
+    lateinit var progressDialog: ProgressDialog
+    var lanngData: List<LangData> = ArrayList()
 
     var catData: List<EventCatData> = ArrayList<EventCatData>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile)
-        val viewmodel = ViewModelProvider(this, factory).get(EditProfileViewmodel::class.java)
-        binding.viewmodel = viewmodel
-        viewmodel.editProfileEventListener = this
-        viewmodel.getLoggedInUser().observe(this, Observer { user ->
+        editProfileViewModel =
+            ViewModelProvider(this, factory).get(EditProfileViewmodel::class.java)
+        binding.viewmodel = editProfileViewModel
+        editProfileViewModel.editProfileEventListener = this
+        progressDialog = ProgressDialog(this)
+        editProfileViewModel.getLoggedInUser().observe(this, Observer { user ->
             user_id = user.users_id!!
             val u_name: String = user.name!!
             binding.edtName.setText(u_name)
@@ -128,6 +143,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
 //            binding.tvCompanyListing.setBackgroundResource(null)
             binding.constraintLayout5.visibility = View.VISIBLE
             binding.llCompanyListing.visibility = View.GONE
+            editProfileViewModel.listingType = "1"
         }
 
         binding.tvCompanyListing.setOnClickListener {
@@ -135,13 +151,14 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
             binding.tvPracticionarListing.setBackgroundDrawable(null)
             binding.constraintLayout5.visibility = View.GONE
             binding.llCompanyListing.visibility = View.VISIBLE
+            editProfileViewModel.listingType = "2"
         }
 
-        binding.editTextTextPersonName9.movementMethod = ScrollingMovementMethod()
-        binding.editTextTextPersonName9.inputType =
+        binding.edtAboutUs.movementMethod = ScrollingMovementMethod()
+        binding.edtAboutUs.inputType =
             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE
-        binding.editTextTextPersonName9.isSingleLine = false
-        binding.editTextTextPersonName9.imeOptions = EditorInfo.IME_FLAG_NO_ENTER_ACTION
+        binding.edtAboutUs.isSingleLine = false
+        binding.edtAboutUs.imeOptions = EditorInfo.IME_FLAG_NO_ENTER_ACTION
 
         val mNameTextWatcher: TextWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -149,7 +166,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                binding.tvNameCounter.setText((40 - s.length).toString())
+                binding.tvNameCounter.text = (40 - s.length).toString()
                 //This sets a textview to the current length
 //                binding.tvNameCounter.setText(40-s.length);
             }
@@ -166,7 +183,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                binding.tvDisplayNameCounter.setText((40 - s.length).toString())
+                binding.tvDisplayNameCounter.text = (40 - s.length).toString()
                 //This sets a textview to the current length
 //                binding.tvNameCounter.setText(40-s.length);
             }
@@ -184,7 +201,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                binding.tvAboutCounter.setText((140 - s.length).toString())
+                binding.tvAboutCounter.text = (140 - s.length).toString()
                 //This sets a textview to the current length
 //                binding.tvNameCounter.setText(40-s.length);
             }
@@ -193,7 +210,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
             }
         }
 
-        binding.editTextTextPersonName9.addTextChangedListener(mAboutmeTextWatcher)
+        binding.edtAboutUs.addTextChangedListener(mAboutmeTextWatcher)
 
 
         val mInterstedInTextWatcher: TextWatcher = object : TextWatcher {
@@ -202,7 +219,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                binding.tvInterstedCounter.setText((40 - s.length).toString())
+                binding.tvInterstedCounter.text = (40 - s.length).toString()
                 //This sets a textview to the current length
 //                binding.tvNameCounter.setText(40-s.length);
             }
@@ -220,7 +237,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                binding.tvAutomaticSuggetions.setText((40 - s.length).toString())
+                binding.tvAutomaticSuggetions.text = (40 - s.length).toString()
                 //This sets a textview to the current length
 //                binding.tvNameCounter.setText(40-s.length);
             }
@@ -237,7 +254,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                binding.tvProffesionalCounter.setText((40 - s.length).toString())
+                binding.tvProffesionalCounter.text = (40 - s.length).toString()
                 //This sets a textview to the current length
 //                binding.tvNameCounter.setText(40-s.length);
             }
@@ -255,7 +272,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                binding.tvProffesionalDisplayNameCounter.setText((40 - s.length).toString())
+                binding.tvProffesionalDisplayNameCounter.text = (40 - s.length).toString()
                 //This sets a textview to the current length
 //                binding.tvNameCounter.setText(40-s.length);
             }
@@ -275,7 +292,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                binding.tvcomapnyCounter.setText((40 - s.length).toString())
+                binding.tvcomapnyCounter.text = (40 - s.length).toString()
                 //This sets a textview to the current length
 //                binding.tvNameCounter.setText(40-s.length);
             }
@@ -284,7 +301,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
             }
         }
 
-        binding.edtCompanyName.addTextChangedListener(mCompanyNameTextWatcher)
+        binding.edtCName.addTextChangedListener(mCompanyNameTextWatcher)
 
 
         val mCompanyDisplayNameTextWatcher: TextWatcher = object : TextWatcher {
@@ -293,7 +310,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                binding.tvCompanyDisplayNameCounter.setText((40 - s.length).toString())
+                binding.tvCompanyDisplayNameCounter.text = (40 - s.length).toString()
                 //This sets a textview to the current length
 //                binding.tvNameCounter.setText(40-s.length);
             }
@@ -302,107 +319,347 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
             }
         }
 
-        binding.tvCompanyDisplayName.addTextChangedListener(mCompanyDisplayNameTextWatcher)
+        binding.edtCompanyDisplayName.addTextChangedListener(mCompanyDisplayNameTextWatcher)
 
         getEventCategories("")
+
+        getLanguages()
     }
 
     private fun setUserDetails() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getUserDetails(user_id)
+                showProgressDialog()
+                val res = homeRepositry.getUserDetails()
                 if (res.status) {
+                    dismissProgressDailog()
                     BASE_IMAGE = res.image
                     val data = res.data
                     val name = data.name
                     val display_name = data.display_name
                     val bio = data.bio
-                    val pic = data.profile_pic
+                    val pic = data.user_image
                     binding.edtName.setText(name)
                     binding.edtDisplayName.setText(display_name)
-                    binding.editTextTextPersonName9.setText(bio)
+                    binding.edtAboutUs.setText(bio)
+                    binding.edtIntersted.setText(data.interested)
+                    binding.TvEvCat.text = data.categoryName
+
+                    //practicionar Listing
+                    binding.edtProfessionalName.setText(data.name)
+                    binding.edtProffesionalDisplayName.setText(data.display_name)
+                    binding.edtProffessionalAboutUs.setText(data.bio)
+                    binding.edtOfferDescriptions.setText(data.offer_desciption)
+                    binding.edtKeyPerformance.setText(data.key_perfomance)
+                    binding.edtDeseasePattern.setText(data.desease_pattern)
+                    binding.edtQualifications.setText(data.qualification)
+                    binding.edtProffessionalCompanyName.setText(data.company_name)
+                    binding.edtProffessioanlStreet1.setText(data.street_1)
+                    binding.edtProffessionalStreet2.setText(data.street_2)
+                    binding.edtProffessioanlStreet3.setText(data.street_3)
+                    binding.edtProffessionalCity.setText(data.city)
+                    binding.edtProffessioanlPostCode.setText(data.postcode)
+                    binding.edtProffeCountry.setText(data.country)
+                    binding.tvProffessionalCat.text = data.categoryName
+                    binding.tvProffessionalLanguages.setText(data.languages)
+                    binding.edtProffessionalAddress.setText(data.address.toString())
+                    binding.edtMetavarseAddress.setText(data.metaverse_address)
+                    binding.edtProffessionalWebsite.setText(data.website)
+                    binding.edtProffessionalEmail.setText(data.email)
+                    binding.edtProffeBusinessPhoneNumber.setText(data.business_phone)
+                    binding.edtProffessionalMobileNumber.setText(data.business_mobile)
+                    binding.edtBusinessIsoCode.setText(data.business_phone_code)
+                    binding.edtProffMobileNumberIso.setText(data.business_mobile_code)
+
+                    //company listing
+                    binding.edtCName.setText(data.name)
+                    binding.edtCompanyDisplayName.setText(data.display_name)
+                    binding.edtCompanyAboutUs.setText(data.bio)
+                    binding.edtCompanyOffer.setText(data.offer_desciption)
+                    binding.edtCompanyKey.setText(data.key_perfomance)
+                    binding.edtCompanyPattern.setText(data.desease_pattern)
+                    binding.edtCompanyQualifications.setText(data.qualification)
+                    binding.edtCompanyName.setText(data.company_name)
+                    binding.edtCompanyStreet1.setText(data.street_1)
+                    binding.edtCompanyStreet2.setText(data.street_2)
+                    binding.edtCompanyStreet3.setText(data.street_3)
+                    binding.edtCompanyCity.setText(data.city)
+                    binding.edtCompanyPostCode.setText(data.postcode)
+                    binding.edtCompanyCountry.setText(data.country)
+                    binding.edtCompanyAddress.setText(data.address)
+                    binding.edtCompanyMetavarseAddress.setText(data.metaverse_address)
+                    binding.edtCompanyWebsite.setText(data.website)
+                    binding.edtCompanyEmail.setText(data.email)
+                    binding.tvCompanyCat.text = data.categoryName
+                    binding.tvCompanyLanguage.setText(data.languages)
+                    binding.edtCompanyBusinessMobile.setText(data.business_mobile)
+                    binding.edtCompanyBusinessPhone.setText(data.business_phone)
+                    binding.edtBusinessPhoneIso.setText(data.business_phone_code)
+                    binding.edtCompanyMobileIso.setText(data.business_mobile_code)
+
+                    categoryIds = data.category
+
                     Glide.with(this@EditProfileActivity)
-                        .load(BASE_IMAGE + pic)
-                        .placeholder(R.drawable.ic_spine_home)
+                        .load("https://thespiritualnetwork.com/assets/upload/profile/" + pic)
+                        .placeholder(R.drawable.userprofile)
                         .into(binding.cvProfile)
-                    accountType = "0"
+
+                    Glide.with(this@EditProfileActivity)
+                        .load("https://thespiritualnetwork.com/assets/upload/profile/" + data.bg_image)
+                        .placeholder(R.drawable.bgimage)
+                        .into(binding.bgProfile)
+
+                    editProfileViewModel.accountType = "0"
                     binding.tvSwitch.text = getString(R.string.switch_to_professional_account)
-                  /*  if (data.account_mode.equals("1")) {
-                        binding.ivBadge.visibility = View.VISIBLE
-                        accountType = "1"
-                        binding.constraintLayout5.visibility = View.VISIBLE
-                        binding.TvEvCat.text = data.categoryName
-                        binding.website.setText(data.website)
-                        binding.contactEmail.setText(data.contact_email)
-                        binding.bPhoneNumber.setText(data.business_phone)
-                        binding.bAdd.setText(data.address.toString())
-                        binding.tvSwitch.text = getString(R.string.back_to_normal_account)
-                    } else {
-                        binding.ivBadge.visibility = View.INVISIBLE
-                    }*/
+                    /*  if (data.account_mode.equals("1")) {
+                          binding.ivBadge.visibility = View.VISIBLE
+                          accountType = "1"
+                          binding.constraintLayout5.visibility = View.VISIBLE
+                          binding.TvEvCat.text = data.categoryName
+                          binding.website.setText(data.website)
+                          binding.contactEmail.setText(data.contact_email)
+                          binding.bPhoneNumber.setText(data.business_phone)
+                          binding.bAdd.setText(data.address.toString())
+                          binding.tvSwitch.text = getString(R.string.back_to_normal_account)
+                      } else {
+                          binding.ivBadge.visibility = View.INVISIBLE
+                      }*/
+                } else {
+                    Toast.makeText(this@EditProfileActivity, res.message, Toast.LENGTH_SHORT).show()
                 }
             } catch (e: ApiException) {
                 e.printStackTrace()
+                dismissProgressDailog()
             } catch (e: NoInternetException) {
                 e.printStackTrace()
+                dismissProgressDailog()
             }
         }
     }
+
 
     override fun onBack() {
         onBackPressed()
     }
 
-    override fun onSaveProfile(user_name: String, display_name: String, short_bio: String) {
-
-        website = binding.website.text.toString()
-        contactEmail = binding.contactEmail.text.toString()
-        businessPhone = binding.bPhoneNumber.text.toString()
-        businessAddress = binding.bAdd.text.toString()
+    override fun onSaveProfile(
+        accountType1: String,
+        user_name: String,
+        display_name: String,
+        short_bio: String,
+        intersted: String,
+        category: String
+    ) {
 
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.profileEdit(
-                    user_id,
-                    accountType,
-                    user_name,
-                    display_name,
-                    short_bio,
+                showProgressDialog()
+                val res = homeRepositry.editProfille(
+                    editProfileViewModel.accountType,
+                    if (editProfileViewModel.accountType.equals("1")) editProfileViewModel.listingType else "",
+
+                    if (editProfileViewModel.accountType.equals("0")) binding.edtName.text.toString()
+                        .trim() else if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtProfessionalName.text.toString()
+                        .trim()
+                    else binding.edtCName.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("0")) binding.edtDisplayName.text.toString()
+                        .trim()
+                    else if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtProffesionalDisplayName.text.toString()
+                        .trim()
+                    else binding.edtCompanyDisplayName.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("0")) binding.edtAboutUs.text.toString()
+                        .trim()
+                    else if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtProffessionalAboutUs.text.toString()
+                        .trim()
+                    else binding.edtCompanyAboutUs.text.toString().trim(),
+
                     categoryIds,
-                    website,
-                    contactEmail,
-                    businessPhone,
-                    buisinessLocation,
-                    businessAddress
+
+                    binding.edtIntersted.text.toString().trim(),
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtOfferDescriptions.text.toString()
+                        .trim()
+                    else binding.edtCompanyOffer.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtKeyPerformance.text.toString()
+                        .trim()
+                    else binding.edtCompanyKey.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtDeseasePattern.text.toString()
+                        .trim()
+                    else binding.edtCompanyPattern.text.toString().trim(),
+
+                    Langauge,
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtQualifications.text.toString()
+                        .trim()
+                    else binding.edtCompanyQualifications.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtProffessionalCompanyName.text.toString()
+                        .trim()
+                    else binding.edtCompanyName.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtProffessioanlStreet1.text.toString()
+                        .trim()
+                    else binding.edtCompanyStreet1.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtProffessionalStreet2.text.toString()
+                        .trim()
+                    else binding.edtCompanyStreet2.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtProffessioanlStreet3.text.toString()
+                        .trim()
+                    else binding.edtCompanyStreet3.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtProffessionalCity.text.toString()
+                        .trim()
+                    else binding.edtCompanyCity.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtProffessioanlPostCode.text.toString()
+                        .trim()
+                    else binding.edtCompanyPostCode.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtProffeCountry.text.toString()
+                        .trim()
+                    else binding.edtCompanyCountry.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtMetavarseAddress.text.toString()
+                        .trim()
+                    else binding.edtCompanyMetavarseAddress.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtMetavarseAddress.text.toString()
+                        .trim()
+                    else binding.edtCompanyMetavarseAddress.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtProffessionalWebsite.text.toString()
+                        .trim()
+                    else binding.edtCompanyWebsite.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtProffessionalEmail.text.toString()
+                        .trim()
+                    else binding.edtCompanyEmail.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtProffeBusinessPhoneNumber.text.toString()
+                        .trim()
+                    else binding.edtCompanyBusinessPhone.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtProffessionalMobileNumber.text.toString()
+                        .trim()
+                    else binding.edtCompanyBusinessMobile.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtBusinessIsoCode.text.toString()
+                        .trim()
+                    else binding.edtBusinessPhoneIso.text.toString().trim(),
+
+                    if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                            "1"
+                        )
+                    ) binding.edtProffMobileNumberIso.text.toString()
+                        .trim()
+                    else binding.edtCompanyMobileIso.text.toString().trim(),
                 )
                 if (res.status) {
+                    dismissProgressDailog()
                     setUserDetails()
-                    "Profile updated successfully.".toast(this@EditProfileActivity)
+                    Toast.makeText(this@EditProfileActivity, res.message, Toast.LENGTH_SHORT).show()
+                    finish()
                 } else {
-                    "Oops! Something went wrong.".toast(this@EditProfileActivity)
+                    dismissProgressDailog()
+                    Toast.makeText(
+                        this@EditProfileActivity,
+                        res.message,
+                        Toast.LENGTH_SHORT
+                    ).duration
                 }
             } catch (e: ApiException) {
                 e.printStackTrace()
+                display_name
             } catch (e: NoInternetException) {
                 e.printStackTrace()
+                dismissProgressDailog()
             }
         }
     }
 
     override fun switchAccount() {
-        if (accountType.equals("0")) {
+        if (editProfileViewModel.accountType.equals("0")) {
             binding.llTabbar.visibility = View.VISIBLE
             binding.constraintLayout5.visibility = View.VISIBLE
             binding.llCompanyListing.visibility = View.GONE
             binding.llProfile.visibility = View.GONE
-            accountType = "1"
+            editProfileViewModel.accountType = "1"
+            editProfileViewModel.listingType = "1"
             binding.tvSwitch.text = getString(R.string.back_to_normal_account)
         } else {
             binding.llTabbar.visibility = View.GONE
             binding.constraintLayout5.visibility = View.GONE
             binding.llCompanyListing.visibility = View.GONE
             binding.llProfile.visibility = View.VISIBLE
-            accountType = "0"
+            editProfileViewModel.accountType = "0"
+            editProfileViewModel.listingType = ""
             binding.tvSwitch.text = getString(R.string.switch_to_professional_account)
         }
     }
@@ -411,9 +668,18 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
         showPicker()
     }
 
+    override fun bgProfilePic() {
+        showBgPicker()
+    }
+
     override fun onCategorySelect() {
         openEventDialog()
     }
+
+    override fun onLanguageSelect() {
+        openLanguageDialog()
+    }
+
 
     private fun showPicker() {
         val view: View = layoutInflater.inflate(R.layout.bottomsheet_picker, null)
@@ -459,6 +725,50 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
     }
 
 
+    private fun showBgPicker() {
+        val view: View = layoutInflater.inflate(R.layout.bottomsheet_picker, null)
+        val dialog: BottomSheetDialog = BottomSheetDialog(this)
+        dialog.setContentView(view)
+
+        dialog.setOnShowListener {
+            val dialogTmp: BottomSheetDialog = it as BottomSheetDialog
+            val bottomSheet: FrameLayout =
+                dialogTmp.findViewById(R.id.design_bottom_sheet) as FrameLayout?
+                    ?: return@setOnShowListener
+            bottomSheet.background = null
+        }
+
+        dialog.window?.let {
+            it.setGravity(Gravity.BOTTOM)
+            it.setBackgroundDrawableResource(android.R.color.transparent)
+            dialog.setCancelable(false)
+        }
+        view.btnCan.setOnClickListener {
+            dialog.dismiss()
+        }
+        view.btnFollow.setOnClickListener {
+            picname = "profileBgpic"
+            if (checkpermission()!!) {
+                selectImage(this, 0)
+            } else {
+                setupPermissions()
+            }
+            dialog.dismiss()
+        }
+        view.btnOnline.setOnClickListener {
+            //startActivity(Intent(this, CustomCameraActivity::class.java))
+            picname = "profileBgpic"
+            if (checkpermission()!!) {
+                selectImage(this, 1)
+            } else {
+                setupPermissions()
+            }
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
+
     private fun updateProfilePic() {
 
         val multiPartRepeatString = "application/image"
@@ -489,20 +799,77 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
 
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.updateUserProfilePic(facility_image, uid)
+                showProgressDialog()
+                val res = homeRepositry.updateUserProfilePic(facility_image)
                 if (res.status) {
-                    "Profile picture updated successfully.".toast(this@EditProfileActivity)
+                    dismissProgressDailog()
+                    Toast.makeText(this@EditProfileActivity, res.message, Toast.LENGTH_SHORT).show()
                 } else {
+                    dismissProgressDailog()
                     Log.e("error", res.message)
                     //    "Oops! Something went wrong".toast(this@EditProfileActivity)
                 }
             } catch (e: ApiException) {
                 e.printStackTrace()
+                dismissProgressDailog()
             } catch (e: NoInternetException) {
                 e.printStackTrace()
+                dismissProgressDailog()
             }
         }
     }
+
+
+    private fun updateBgProfilePic() {
+
+        val multiPartRepeatString = "application/image"
+        var facility_image: MultipartBody.Part? = null
+
+        if (imageUriSign != null && imageUriSign!!.path != null) {
+            val file = File(mFilePathSign)
+            val signPicBody = file.asRequestBody(multiPartRepeatString.toMediaTypeOrNull())
+            facility_image = MultipartBody.Part.createFormData("image", file.name, signPicBody)
+            // val signPicBody = RequestBody.create(parse.parse(multiPartRepeatString), file)
+
+            //facility_image = createFormData.createFormData("profile_image", file.name, signPicBody)
+        }
+
+
+        /* val file: File = File(currentPhotoPath!!)
+         val requestFile: RequestBody = RequestBody.create(
+             contentResolver.getType(photoURI)?.let { it.toMediaTypeOrNull() },
+             file
+         )
+         val img_file: MultipartBody.Part = MultipartBody.Part.createFormData(
+             "image",
+             file.name,
+             requestFile
+         )*/
+
+        val uid: RequestBody = user_id.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+
+        lifecycleScope.launch {
+            try {
+                showProgressDialog()
+                val res = homeRepositry.updateUserBgProfilePic(facility_image!!)
+                if (res.status) {
+                    dismissProgressDailog()
+                    Toast.makeText(this@EditProfileActivity, res.message, Toast.LENGTH_SHORT).show()
+                } else {
+                    dismissProgressDailog()
+                    Log.e("error", res.message)
+                    //    "Oops! Something went wrong".toast(this@EditProfileActivity)
+                }
+            } catch (e: ApiException) {
+                e.printStackTrace()
+                dismissProgressDailog()
+            } catch (e: NoInternetException) {
+                e.printStackTrace()
+                dismissProgressDailog()
+            }
+        }
+    }
+
 
     private fun setEventCategories(catData: List<EventCatData>) {
         val list: MutableList<String> = ArrayList()
@@ -528,15 +895,16 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCancelable(true)
-        dialog.setContentView(R.layout.eve_cat_selection)
+        dialog.setContentView(R.layout.adp_cat_selection)
         dialog.rvcats.also { rv ->
-            rv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+            rv.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
             rv.setHasFixedSize(true)
             catData.let {
-                rv.adapter = SpinerCatAdapter(it, this, this)
+                rv.adapter =
+                    MutilpeSpineCatAdapter(it, this@EditProfileActivity, this@EditProfileActivity)
             }
         }
-        val send = dialog.findViewById(R.id.button53) as Button
+        val send = dialog.findViewById(R.id.button53) as TextView
         val textView131 = dialog.findViewById(R.id.textView131) as TextView
         val cancel = dialog.findViewById(R.id.button52) as Button
         val edt_search_category = dialog.findViewById<EditText>(R.id.edt_search_category)
@@ -561,8 +929,11 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
                         LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
                     rv.setHasFixedSize(true)
                     catData.let {
-                        rv.adapter =
-                            SpinerCatAdapter(it, this@EditProfileActivity, this@EditProfileActivity)
+                        rv.adapter = MutilpeSpineCatAdapter(
+                            it,
+                            this@EditProfileActivity,
+                            this@EditProfileActivity
+                        )
                     }
                 }
 
@@ -585,7 +956,85 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
                     LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
                 rv.setHasFixedSize(true)
                 catData.let {
-                    rv.adapter = SpinerCatAdapter(it, this@EditProfileActivity, this)
+                    rv.adapter = MutilpeSpineCatAdapter(it, this, this)
+                }
+            }
+        }
+        dialog.show()
+    }
+
+
+    fun openLanguageDialog() {
+        Langauge = ""
+        LanguageIds = ""
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.adp_lng_selections)
+        dialog.rvLanguage.also { rv ->
+            rv.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
+            rv.setHasFixedSize(true)
+            lanngData.let {
+                rv.adapter =
+                    MultiLanguageAdapter(it, this@EditProfileActivity, this@EditProfileActivity)
+            }
+        }
+        val send = dialog.findViewById(R.id.button53) as TextView
+        val textView131 = dialog.findViewById(R.id.textView131) as TextView
+        val cancel = dialog.findViewById(R.id.button52) as Button
+        val edt_search_category = dialog.findViewById<EditText>(R.id.edt_search_category)
+        send.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        textView131.setOnClickListener {
+            dialog.dismiss()
+        }
+
+/*
+        edt_search_category.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                var value = s.toString()
+                Log.e("valueee", value.toString())
+
+                getEventCategories(value)
+
+                dialog.rvcats.also { rv ->
+
+                    rv.layoutManager =
+                        LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
+                    rv.setHasFixedSize(true)
+                    catData.let {
+                        rv.adapter = MutilpeSpineCatAdapter(
+                            it,
+                            this@EditProfileActivity,
+                            this@EditProfileActivity
+                        )
+                    }
+                }
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                var s = s.toString()
+                Log.e("datatat", s.toString())
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
+*/
+        cancel.setOnClickListener {
+
+            dialog.dismiss()
+            getLanguages()
+            dialog.rvLanguage.also { rv ->
+                rv.layoutManager =
+                    LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
+                rv.setHasFixedSize(true)
+                lanngData.let {
+                    rv.adapter = MultiLanguageAdapter(it, this, this)
                 }
             }
         }
@@ -596,18 +1045,52 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
     private fun getEventCategories(value: String) {
         lifecycleScope.launch {
             try {
-                val catRes = homeRepositry.getEventCatRes(value)
+                showProgressDialog()
+                val catRes = homeRepositry.newgetEventCatRes(value)
                 if (catRes.status) {
+                    dismissProgressDailog()
                     catData = catRes.data
-                    setEventCategories(catData)
+                    //setEventCategories(catData)
+                } else {
+                    Toast.makeText(this@EditProfileActivity, catRes.message, Toast.LENGTH_SHORT)
+                        .show()
                 }
             } catch (e: ApiException) {
                 e.printStackTrace()
+                dismissProgressDailog()
             } catch (e: NoInternetException) {
                 e.printStackTrace()
+                dismissProgressDailog()
             }
         }
     }
+
+
+    private fun getLanguages() {
+        lifecycleScope.launch {
+            try {
+                showProgressDialog()
+                val res = homeRepositry.getPodcastLanguage()
+                if (res.status) {
+                    dismissProgressDailog()
+                    lanngData = res.data
+                    // setLanguages(lanngData)
+                } else {
+                    dismissProgressDailog()
+                    Toast.makeText(this@EditProfileActivity, res.message, Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: ApiException) {
+                e.printStackTrace()
+                dismissProgressDailog()
+
+            } catch (e: NoInternetException) {
+                e.printStackTrace()
+                dismissProgressDailog()
+
+            }
+        }
+    }
+
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         p0?.selectedItem?.toast(this)
@@ -631,11 +1114,31 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
             categoryIds = categoryIds.replace(eveCataData.id + ",", "")
             category = category.replace(eveCataData.category_name + ",", "")
         }
-        binding.TvEvCat.text = category
+        if (editProfileViewModel.accountType.equals("0")) {
+            binding.TvEvCat.text = category
+        } else if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                "1"
+            )
+        ) {
+            binding.tvProffessionalCat.text = category
+
+        } else {
+            binding.tvCompanyCat.setText(category)
+        }
+
     }
 
     override fun onclick(Event: EventCatData) {
-        binding.TvEvCat.text = Event.category_name
+        if (editProfileViewModel.accountType.equals("0")) {
+            binding.TvEvCat.text = Event.category_name
+        } else if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                "1"
+            )
+        ) {
+            binding.tvProffessionalCat.text = Event.category_name
+        } else {
+            binding.tvCompanyCat.setText(Event.category_name)
+        }
         categoryIds = Event.id
         category = Event.category_name
         Log.e("list", Event.id)
@@ -667,7 +1170,6 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
 
                         var datacamera = data.extras!!.get("data") as Bitmap
 
-
                         imageUriSign = getImageUri(this, datacamera)
                         mFilePathSign = getAbsolutePath(imageUriSign)
                         Log.e("paths", mFilePathSign)
@@ -680,6 +1182,12 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
                             // Log.e("imageses",images.toString())
                             //  profileimageString = Base64.encodeToString(images, Base64.DEFAULT)
                             updateProfilePic()
+                        } else if (picname == "profileBgpic") {
+                            binding.bgProfile.setImageBitmap(datacamera)
+                            val baos = ByteArrayOutputStream()
+                            datacamera.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                            val images = baos.toByteArray()
+                            updateBgProfilePic()
                         }
                     }
                 1 ->
@@ -699,8 +1207,14 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
                         mFilePathSign = cursor.getString(columnIndex)
                         Log.e("paths", mFilePathSign)
                         cursor.close()
-                        binding.cvProfile.setImageBitmap(selectedImage4)
-                        updateProfilePic()
+                        if (picname == "profilepic") {
+                            binding.cvProfile.setImageBitmap(selectedImage4)
+                            updateProfilePic()
+                        } else if (picname == "profileBgpic") {
+                            binding.bgProfile.setImageBitmap(selectedImage4)
+                            updateBgProfilePic()
+                        }
+
                         // imageView.tag = "profile";
                     } catch (e: IOException) {
                         e.printStackTrace()
@@ -803,4 +1317,52 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
         }
     }
 
+    private fun showProgressDialog() {
+        progressDialog.setMessage("Please wait...")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+    }
+
+    private fun dismissProgressDailog() {
+        progressDialog.dismiss()
+    }
+
+    override fun onLanguageClick(lang: LangData) {
+        if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                "1"
+            )
+        ) {
+            binding.tvProffessionalLanguages.text = Langauge
+        } else {
+            binding.tvCompanyLanguage.text = Langauge
+
+        }
+        LanguageIds = lang.id
+        Langauge = lang.name
+        Log.e("list", lang.id)
+    }
+
+    override fun onLanguageItemChecked(langData: LangData, b: Boolean) {
+        if (b) {
+            if (Langauge.isEmpty()) {
+                Langauge = langData.name
+                LanguageIds = langData.id
+            } else {
+                Langauge = Langauge + "," + langData.name
+                LanguageIds = LanguageIds + "," + langData.id
+            }
+        } else {
+            LanguageIds = LanguageIds.replace(langData.id + ",", "")
+            Langauge = Langauge.replace(langData.name + ",", "")
+        }
+        if (editProfileViewModel.accountType.equals("1") && editProfileViewModel.listingType.equals(
+                "1"
+            )
+        ) {
+            binding.tvProffessionalLanguages.text = Langauge
+        } else {
+            binding.tvCompanyLanguage.text = Langauge
+
+        }
+    }
 }

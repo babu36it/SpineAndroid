@@ -49,7 +49,7 @@ class BookmarkFragment : Fragment(),KodeinAware, BookmarkEventListener,
     val homeRepositry: HomeRepositry by instance()
     val factory: BookmarkViewmodelFactory by instance()
     lateinit var binding: FragmentBookmarkBinding
-    var userId: String="7"
+    var userId: String=""
     var allEvents: MutableList<EventsRecord> = ArrayList<EventsRecord>()
 
 
@@ -79,30 +79,24 @@ class BookmarkFragment : Fragment(),KodeinAware, BookmarkEventListener,
 
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.getAllPodcasts(userId)
-//                if (res.status){
-//                    STORY_IMAGE =res.profile_img
-//                    POD_FILE_BASE =res.image
-//                    BASE_IMAGE = POD_FILE_BASE
-//                    val dataList=res.data
-//                    for (data in dataList){
-//                        val d=data.bookmarks
-//                        if (d.equals("1")){
-//                            datalist.add(data)
-//                        }
-//                    }
-//                    binding.recyclerView5.also {
-//                        it.layoutManager=GridLayoutManager(requireContext(),2,RecyclerView.VERTICAL,false)
-//                        it.setHasFixedSize(true)
-//                        it.adapter=SavedPodcastAdapter(datalist)
-//                    }
-//
-//                }
+                val res=homeRepositry.getAllPodcasts()
+                if (res.status){
+                    STORY_IMAGE =res.profile_img
+                    POD_FILE_BASE =res.image
+                    BASE_IMAGE = POD_FILE_BASE
+                    val dataList=res.data
+                    for (data in dataList){
+                        val d=data.bookmarks
+                        if (d.equals("1")){
+                            datalist.add(data)
+                        }
+                    }
+                    binding.recyclerView5.also {
+                        it.layoutManager=GridLayoutManager(requireContext(),2,RecyclerView.VERTICAL,false)
+                        it.setHasFixedSize(true)
+                        it.adapter=SavedPodcastAdapter(datalist)
+                    }
 
-                binding.recyclerView5.also {
-                    it.layoutManager=GridLayoutManager(requireContext(),2,RecyclerView.VERTICAL,false)
-                    it.setHasFixedSize(true)
-                    it.adapter=SavedPodcastAdapter(datalist)
                 }
             }catch (e: ApiException){
                 e.printStackTrace()
@@ -123,40 +117,14 @@ class BookmarkFragment : Fragment(),KodeinAware, BookmarkEventListener,
         lifecycleScope.launch {
             try {
                 val res=homeRepositry.getAllSavedStory(userId)
-//                if (res.status){
-//                    BASE_IMAGE=res.image
-//                    val dataList=res.data
-//                    binding.recyclerView6.also {
-//                        it.layoutManager=GridLayoutManager(requireContext(),2,RecyclerView.VERTICAL,false)
-//                        it.setHasFixedSize(true)
-//                        it.adapter=SaveStoryAdapter(dataList,this@BookmarkFragment)
-//                    }
-//                }
-                var dataList = arrayListOf<StoryData>()
-                binding.recyclerView6.also {
-                    it.layoutManager=GridLayoutManager(requireContext(),2,RecyclerView.VERTICAL,false)
-                    it.setHasFixedSize(true)
-                    it.adapter=SaveStoryAdapter(dataList,this@BookmarkFragment)
-                }
-                binding.recyclerView7.also {
-                    it.layoutManager=GridLayoutManager(requireContext(),2,RecyclerView.VERTICAL,false)
-                    it.setHasFixedSize(true)
-                    it.adapter=SaveStoryAdapter(dataList,this@BookmarkFragment)
-                }
-                binding.recyclerView8.also {
-                    it.layoutManager=GridLayoutManager(requireContext(),2,RecyclerView.VERTICAL,false)
-                    it.setHasFixedSize(true)
-                    it.adapter=SaveStoryAdapter(dataList,this@BookmarkFragment)
-                }
-                binding.recyclerView9.also {
-                    it.layoutManager=GridLayoutManager(requireContext(),2,RecyclerView.VERTICAL,false)
-                    it.setHasFixedSize(true)
-                    it.adapter=SaveStoryAdapter(dataList,this@BookmarkFragment)
-                }
-                binding.recyclerView10.also {
-                    it.layoutManager=GridLayoutManager(requireContext(),2,RecyclerView.VERTICAL,false)
-                    it.setHasFixedSize(true)
-                    it.adapter=SaveStoryAdapter(dataList,this@BookmarkFragment)
+                if (res.status){
+                    BASE_IMAGE=res.image
+                    val dataList=res.data
+                    binding.recyclerView6.also {
+                        it.layoutManager=GridLayoutManager(requireContext(),2,RecyclerView.VERTICAL,false)
+                        it.setHasFixedSize(true)
+                        it.adapter=SaveStoryAdapter(dataList,this@BookmarkFragment)
+                    }
                 }
             }catch (e: ApiException){
                 e.printStackTrace()
@@ -198,22 +166,16 @@ class BookmarkFragment : Fragment(),KodeinAware, BookmarkEventListener,
         lifecycleScope.launch {
             try {
                 val res=homeRepositry.getAllSavedPost(userId)
-//                if (res.status){
-//                    BASE_IMAGE =res.image
-//                    Log.e("baseimageone", BASE_IMAGE.toString())
-//                    //profileImgBase=res.profilImage
-//                    val dataList=res.data
-//                    binding.recyclerView4.also {
-//                        it.layoutManager=GridLayoutManager(requireContext(),2,RecyclerView.VERTICAL,false)
-//                        it.setHasFixedSize(true)
-//                        it.adapter=PostSavedAdapter(dataList,this@BookmarkFragment)
-//                    }
-//                }
-               var dataList = arrayListOf<PostData>()
-                binding.recyclerView4.also {
-                    it.layoutManager=GridLayoutManager(requireContext(),2,RecyclerView.VERTICAL,false)
-                    it.setHasFixedSize(true)
-                    it.adapter=PostSavedAdapter(dataList,this@BookmarkFragment)
+                if (res.status){
+                    BASE_IMAGE =res.image
+                    Log.e("baseimageone", BASE_IMAGE.toString())
+                    //profileImgBase=res.profilImage
+                    val dataList=res.data
+                    binding.recyclerView4.also {
+                        it.layoutManager=GridLayoutManager(requireContext(),2,RecyclerView.VERTICAL,false)
+                        it.setHasFixedSize(true)
+                        it.adapter=PostSavedAdapter(dataList,this@BookmarkFragment)
+                    }
                 }
             }catch (e: ApiException){
                 e.printStackTrace()

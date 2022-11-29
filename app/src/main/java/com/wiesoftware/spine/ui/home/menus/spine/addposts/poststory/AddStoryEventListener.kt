@@ -9,5 +9,5 @@ interface AddStoryEventListener {
     fun onAdd()
     fun onPreview()
     fun onDelete()
-    fun onPostStory(thoughts: String, allowComments: Boolean, story_time: Boolean)
+    fun onPostStory(allowComments: Boolean)
 }

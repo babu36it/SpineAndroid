@@ -7,7 +7,7 @@ package com.wiesoftware.spine.ui.home.menus.spine.addposts.postmedia
 interface PostMediaEventListener {
 
     fun onBack()
-    fun onPost(thoughts: String = "-", hashtags: String = "-")
+    fun onPost()
     fun onAdd()
     fun onPreview()
     fun onDelete()

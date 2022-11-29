@@ -179,7 +179,7 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
     private fun getUserDetails() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getUserDetails(userId)
+                val res = homeRepositry.getUserDetails()
                 if (res.status) {
                     val data = res.data
                     binding.tvUser.text = data.display_name ?: data.name

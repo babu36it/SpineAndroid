@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp"
+    android:background="@drawable/shadow_box"
+    android:orientation="vertical"
+    android:padding="@dimen/_5sdp">
+
+
+    <TextView
+        android:id="@+id/textView131"
+        style="@style/TabText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_back_black"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:padding="@dimen/_5sdp"
+        android:text="Select Languages"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/day_night_both_black"
+        android:textSize="@dimen/_11sdp"
+        android:textStyle="normal" />
+
+    <TextView
+        style="@style/TabText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Select event categories"
+        android:textColor="@color/day_night_both_black"
+        android:textSize="@dimen/_11sdp"
+        android:visibility="gone" />
+
+    <TextView
+        android:visibility="gone"
+        style="@style/TabText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_7sdp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="multiple selection possible"
+        android:textColor="@color/day_night_both_black"
+        android:textSize="@dimen/_10sdp"
+        android:textStyle="normal" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_7sdp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        android:elevation="@dimen/_6sdp"
+        app:cardCornerRadius="@dimen/_6sdp">
+
+        <EditText
+            android:id="@+id/edt_search_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/search"
+            android:drawablePadding="@dimen/_6sdp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:hint="Search Categories"
+            android:maxLines="1"
+            android:padding="@dimen/_6sdp"
+            android:textColor="@color/text_black"
+            android:textColorHint="@color/dark_gray_day_night"
+            android:textSize="@dimen/_10sdp"
+            android:visibility="gone">
+
+        </EditText>
+    </androidx.cardview.widget.CardView>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/rel_bottom"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginEnd="@dimen/_7sdp"
+            android:layout_marginBottom="@dimen/_7sdp" />
+
+        <RelativeLayout
+
+            android:id="@+id/rel_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/_5sdp">
+
+            <Button
+                android:id="@+id/button52"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/sixteen"
+                android:layout_marginBottom="@dimen/eight"
+                android:background="@drawable/round_border"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/cancel"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/button53"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_alignParentRight="true"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/eight"
+                android:background="@drawable/round_border"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="center"
+                android:text="Update Results"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -10,5 +10,8 @@ data class RssItem(
     val link: String,
     val pubDate: String,
     val thumbnail: String,
-    val title: String
+    val title: String,
+    val time: String,
+    val like: String,
+    val favourite: String
 )

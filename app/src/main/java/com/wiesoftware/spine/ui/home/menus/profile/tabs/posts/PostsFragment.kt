@@ -13,8 +13,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.arasthel.spannedgridlayoutmanager.SpanSize
-import com.arasthel.spannedgridlayoutmanager.SpannedGridLayoutManager
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.OwnPostAdapter
 import com.wiesoftware.spine.data.net.reponses.DemoPostData

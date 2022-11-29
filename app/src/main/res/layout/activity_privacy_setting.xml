@@ -38,10 +38,10 @@
             app:layout_constraintTop_toTopOf="@+id/imageButton56" />
 
         <View
-            android:layout_height="@dimen/_1sdp"
             android:id="@+id/view47"
-            android:background="@color/normal_grey"
             android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/normal_grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageButton56" />
@@ -87,6 +87,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="@dimen/_3sdp"
+                        android:onCheckedChanged="@{(switch, checked) -> viewmodel.findabilityOnCheckedChanged(checked)}"
                         app:layout_constraintBottom_toBottomOf="@+id/textView232"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/textView232" />
@@ -141,7 +142,8 @@
                         android:id="@+id/switch9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true" />
+                        android:layout_alignParentEnd="true"
+                        android:onCheckedChanged="@{(switch, checked) -> viewmodel.personalizedOnCheckedChanged(checked)}" />
 
 
                 </RelativeLayout>
@@ -194,7 +196,8 @@
                         android:id="@+id/switch10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true" />
+                        android:layout_alignParentEnd="true"
+                        android:onCheckedChanged="@{(switch, checked) -> viewmodel.customizationOnCheckedChanged(checked)}" />
 
 
                 </RelativeLayout>
@@ -217,6 +220,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView236" />
 
                 <View
+                    android:visibility="gone"
                     android:id="@+id/view50"
                     style="@style/ViewActionLine"
                     android:layout_width="match_parent"
@@ -225,6 +229,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView237" />
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
@@ -244,12 +249,12 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_marginEnd="@dimen/_10sdp"
                         android:id="@+id/textView239"
                         android:layout_width="@dimen/_80"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="@dimen/eight"
+                        android:layout_marginEnd="@dimen/_10sdp"
                         android:fontFamily="@font/poppins_regular"
                         android:text="@string/always_on"
                         android:textAlignment="center"
@@ -261,6 +266,7 @@
 
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/textView240"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -275,6 +281,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView239" />
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
@@ -303,6 +310,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
@@ -332,7 +340,6 @@
 
 
                 <TextView
-                    android:paddingStart="@dimen/_5sdp"
                     android:id="@+id/textView243"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -340,6 +347,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_20sdp"
                     android:onClick="@{viewmodel.onPrivacyPolicy}"
+                    android:paddingStart="@dimen/_5sdp"
                     android:text="@string/for_details_on_how_we_securely_use_your_data_see_our"
                     android:textColor="@color/grey"
                     android:textSize="@dimen/_11sdp"

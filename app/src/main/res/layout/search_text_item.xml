@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/spinnerText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Search Result"
+            android:padding="@dimen/_8sdp"
+            android:text="AGENCY"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="normal" />
+
+    </LinearLayout>
+</layout>

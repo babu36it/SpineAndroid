@@ -70,7 +70,7 @@ class LoginViewModel(
                 var token = getToken()
                 Log.e("Harsh::",token!!);
                 val response= authRepositry.getUserDetails()
-                val msg: String=response.message!!
+                val msg: String=response.message
 //                if (msg.contains("Your account is not verify",true) ||
 //                    msg.contains("Login successfully",true)){
                     loginEventListener?.onUserDetailsSuccess(response.data)

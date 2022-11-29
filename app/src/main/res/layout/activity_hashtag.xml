@@ -1,103 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewmodel"
             type="com.wiesoftware.spine.ui.home.menus.spine.addposts.hashtags.HashtagViewmodel" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.menus.spine.addposts.hashtags.HashtagActivity">
 
-    <ImageButton
-        android:onClick="@{viewmodel.onBack}"
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/BackButton"
-         />
-
-    <Button
-        android:onClick="@{viewmodel.onNext}"
-        android:id="@+id/button39"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/next"
-        android:textAllCaps="false"
-        android:background="@android:color/transparent"
-        android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toBottomOf="@+id/textView88"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView88" />
-
-    <TextView
-        android:id="@+id/textView88"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_hashtags"
-        style="@style/TitleText"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageButton" />
-
-    <View
-        android:id="@+id/view17"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/gray_tint"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        android:layout_height="match_parent"
+        tools:context=".ui.home.menus.spine.addposts.hashtags.HashtagActivity">
 
-    <EditText
-        android:id="@+id/etHashtag"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/eight"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:gravity="start"
-        android:hint="@string/enter_up_to_5_hastags_e_g_lorem_lorem"
-        android:inputType="textPersonName|textMultiLine"
-        android:padding="@dimen/sixteen"
-        android:text="@={viewmodel.hashtags}"
-        android:textColor="@color/text_black"
-        android:textSize="@dimen/big_text"
-        app:addTextChangedListener="@{viewmodel.hashtagWatcher}"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view17" />
+        <ImageButton
+            android:id="@+id/imageButton"
+            style="@style/BackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{viewmodel.onBack}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/searchAuto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/button39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:onClick="@{viewmodel.onNext}"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="@+id/textView88"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView88" />
 
-    <EditText
-        android:layout_marginLeft="@dimen/_15sdp"
-        android:id="@+id/editTextTextPersonName32"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:hint="Enter Comment"
-        android:textColorHint="@color/black_overlay"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etHashtag" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView88"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/add_hashtags"
+            android:textAllCaps="true"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageButton" />
+
+        <View
+            android:id="@+id/view17"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/gray_tint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+
+        <EditText
+            android:id="@+id/etHashtag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/eight"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:gravity="start"
+            android:hint="@string/enter_up_to_5_hastags_e_g_lorem_lorem"
+            android:inputType="textPersonName|textMultiLine"
+            android:padding="@dimen/sixteen"
+            android:text="@={viewmodel.hashtags}"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/_14sdp"
+            android:visibility="gone"
+            app:addTextChangedListener="@{viewmodel.hashtagWatcher}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view17" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/searchAuto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName32"
+            style="@style/ETNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/eight"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:textColor="@color/text_black"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:gravity="start"
+            android:hint="@string/enter_up_to_5_hastags_e_g_lorem_lorem"
+            android:inputType="textPersonName|textMultiLine"
+            android:padding="@dimen/sixteen"
+            android:text="@={viewmodel.hashtags}"
+            android:textSize="@dimen/_14sdp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etHashtag" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

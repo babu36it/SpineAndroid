@@ -75,7 +75,7 @@ class DeleteAccouontActivity : AppCompatActivity(),KodeinAware, DeleteAccountEve
     private fun deleteAccount() {
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.deleteAccount(userId)
+                val res=homeRepositry.deleteAccount()
                 if (res.status){
                     "You are removed from spine".toast(this@DeleteAccouontActivity)
                      removeFromSystem()

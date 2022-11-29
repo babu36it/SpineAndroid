@@ -1,6 +1,7 @@
 package com.wiesoftware.spine.ui.home.menus.podcasts.addpodcasts
 
 import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
@@ -34,6 +35,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.wiesoftware.spine.BuildConfig
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
+import com.wiesoftware.spine.data.adapter.CategoryAdapter
+import com.wiesoftware.spine.data.adapter.LanguageAdapter
 import com.wiesoftware.spine.data.adapter.PodcastSubcategoryAdapter
 import com.wiesoftware.spine.data.net.reponses.*
 import com.wiesoftware.spine.data.repo.HomeRepositry
@@ -48,7 +51,6 @@ import kotlinx.android.synthetic.main.activity_add_podcast.*
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 import kotlinx.android.synthetic.main.eve_cat_selection.*
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -94,11 +96,13 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
     var languages: String = "0"
     var categorys: String = "0"
     var allowComment: String = "0"
+    var mediafille: String = "";
+    var thumbnail: String = "";
 
     var category: String = ""
     var categoryIds: String = ""
     var subCatIds: String = ""
-
+    lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,10 +111,11 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
         val viewmodel = ViewModelProvider(this, factory).get(AddPodcastViewmodel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.addPodcastEventListener = this
+        progressDialog = ProgressDialog(this)
 
         viewmodel.getLoggedInUser().observe(this, Observer { user ->
             userId = user.users_id!!
-            getSubcatgery()
+
         })
 
         getLanguages()
@@ -123,8 +128,10 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
     private fun getSubcatgery() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getPodcastSubcategory(parent_id, userId)
+                showProgressDialog()
+                val res = homeRepositry.getPodcastSubcategory(parent_id)
                 if (res.status) {
+                    dismissProgressDailog()
                     val dataList = res.data
                     binding.recyclerView9.also {
                         it.layoutManager = GridLayoutManager(this@AddPodcastActivity, 2)
@@ -135,6 +142,9 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
                             this@AddPodcastActivity
                         )
                     }
+                } else {
+                    dismissProgressDailog()
+                    Toast.makeText(this@AddPodcastActivity, res.message, Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -149,13 +159,15 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
         } else {
             lifecycleScope.launch {
                 try {
-                    val rssRes = rssRepository.getPodsFromRss(rssLink)
-                    if (rssRes.status.equals("ok")) {
-                        setFeedData(rssRes.feed)
+                    showProgressDialog()
+                    val rssRes = rssRepository.getRssFeedData(rssLink)
+                    if (rssRes.status) {
+                        dismissProgressDailog()
+                        setFeedData(rssRes.data.feed)
                     }
                 } catch (e: Exception) {
+                    dismissProgressDailog()
                     e.printStackTrace()
-                    Log.e("rss::", "" + e.cause + "," + e.message + "," + e.printStackTrace())
                 }
             }
         }
@@ -170,55 +182,98 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
         binding.editTextTextPersonName21.isEnabled = false
         binding.editTextTextMultiLine.setText(feed.description)
         binding.editTextTextMultiLine.isEnabled = false
+
+        mediafille = feed.link
+        thumbnail = feed.image
     }
 
 
     private fun getEventCategories(value: String) {
         lifecycleScope.launch {
             try {
+                showProgressDialog()
                 val catRes = homeRepositry.getEventCatRes(value)
                 if (catRes.status) {
+                    dismissProgressDailog()
                     catData = catRes.data
                     setEventCategories(catData)
                 }
             } catch (e: ApiException) {
                 e.printStackTrace()
+                dismissProgressDailog()
             } catch (e: NoInternetException) {
                 e.printStackTrace()
+                dismissProgressDailog()
             }
         }
     }
 
     private fun setEventCategories(catData: List<EventCatData>) {
-        val list: MutableList<String> = ArrayList()
+        val list: ArrayList<String> = ArrayList()
         list.add(getString(R.string.select))
         for (data in catData) {
             list.add(data.category_name)
         }
-        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, list)
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        with(spinnerPodCat) {
+
+        val catgeoryAdapter = CategoryAdapter(this, list)
+        spinnerPodCat.adapter = catgeoryAdapter
+        spinnerPodCat.setSelection(0)
+//        spinnerContry.prompt = getString(R.string.select)
+        spinnerPodCat.gravity = Gravity.CENTER
+//        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, list)
+//        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        /*with(spinnerPodCat) {
             adapter = aa
             setSelection(0, false)
             onItemSelectedListener = this@AddPodcastActivity
             prompt = getString(com.wiesoftware.spine.R.string.add_categories)
             gravity = android.view.Gravity.CENTER
+        }*/
+        spinnerPodCat.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (!list.get(position).equals(getString(R.string.select))) {
+                    parent_id = catData.get(position - 1).id
+                    Log.e("Parent_id", "=" + parent_id);
+                    getSubcatgery()
+                }
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
         }
+
     }
 
 
     private fun getLanguages() {
         lifecycleScope.launch {
             try {
+                showProgressDialog()
                 val res = homeRepositry.getPodcastLanguage()
                 if (res.status) {
+                    dismissProgressDailog()
                     lanngData = res.data
                     setLanguages(lanngData)
+                } else {
+                    dismissProgressDailog()
+                    Toast.makeText(this@AddPodcastActivity, res.message, Toast.LENGTH_SHORT).show()
                 }
             } catch (e: ApiException) {
                 e.printStackTrace()
+                dismissProgressDailog()
+
             } catch (e: NoInternetException) {
                 e.printStackTrace()
+                dismissProgressDailog()
+
             }
         }
     }
@@ -239,17 +294,18 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
     }
 
     override fun onPost(titles: String, descriptions: String) {
+        showProgressDialog()
         Log.e("category", category)
 
-        if (photoURI == null) {
-            "Please add audio or video".toast(this); return
-        }
-        if (thumbnailUri == null) {
-            "Please add image".toast(this); return
-        }
+        /*   if (photoURI == null) {
+               "Please add audio or video".toast(this); return
+           }*/
+        /*  if (thumbnailUri == null) {
+              "Please add image".toast(this); return
+          }*/
 
-        val file: File = File(currentPhotoPath!!)
-        val fileThumb: File = File(currentThumbnailPath!!)
+   /*     val file: File = File(currentPhotoPath!!)
+        val fileThumb: File = File(currentThumbnailPath!!)*/
 
         if (title.isEmpty()) {
             "Please Enter Title".toast(this);return
@@ -257,34 +313,33 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
             "Please Enter Description".toast(this);return
         } else if (languages.equals("0")) {
             "Please Select Language".toast(this);return
-        } else if (category.equals("")) {
+        } else if (parent_id.equals("")) {
             "Please Select category".toast(this);return
         }
 
-        var types = "0"
-        val mime = getMimeType(this, photoURI)
-        if (mime!!.contains("aac", true) || mime!!.contains("m4a", true) || mime!!.contains(
-                "opus",
-                true
-            ) || mime!!.contains("mp3", true) || mime.contains("acc", true) || mime.contains(
-                "wav",
-                true
-            ) || mime.contains("ogg", true)
-        ) {
-            types = "0"
-        } else {
-            types = "1"
-        }
-        val requestFileThumb: RequestBody =
+        /* var types = "0"
+         val mime = getMimeType(this, photoURI)
+         if (mime!!.contains("aac", true) || mime!!.contains("m4a", true) || mime!!.contains(
+                 "opus",
+                 true
+             ) || mime!!.contains("mp3", true) || mime.contains("acc", true) || mime.contains(
+                 "wav",
+                 true
+             ) || mime.contains("ogg", true)
+         ) {
+             types = "0"
+         } else {
+             types = "1"
+         }*/
+    /*    val requestFileThumb: RequestBody =
             RequestBody.create("multipart/form-data".toMediaTypeOrNull(), fileThumb)
         val requestFile: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
-        val pod_file: MultipartBody.Part =
-            MultipartBody.Part.createFormData("media_file", file.name, requestFile)
-        val thumb_file: MultipartBody.Part =
-            MultipartBody.Part.createFormData("thumbnail", fileThumb.name, requestFileThumb)
-        val uid: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), userId)
-        val type: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), types)
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)*/
+        /*     val pod_file: MultipartBody.Part =
+                 MultipartBody.Part.createFormData("media_file", file.name, requestFile)
+             val thumb_file: MultipartBody.Part =
+                 MultipartBody.Part.createFormData("thumbnail", fileThumb.name, requestFileThumb)*/
+
         val title: RequestBody =
             RequestBody.create("multipart/form-data".toMediaTypeOrNull(), titles)
         val description: RequestBody =
@@ -293,6 +348,17 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
             RequestBody.create("multipart/form-data".toMediaTypeOrNull(), languages)
         val category: RequestBody =
             RequestBody.create("multipart/form-data".toMediaTypeOrNull(), parent_id)
+        val subCategory: RequestBody =
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), subCatIds.toString())
+        val mediafile: RequestBody =
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), mediafille)
+        val thumbnail: RequestBody =
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), thumbnail)
+        val rssFeed: RequestBody =
+            RequestBody.create(
+                "multipart/form-data".toMediaTypeOrNull(),
+                Prefs.getString(AddRssActivity.RSS_LINK, "")!!
+            )
         val allowcomments: RequestBody =
             RequestBody.create("multipart/form-data".toMediaTypeOrNull(), allowComment)
         binding.button72.visibility = View.INVISIBLE
@@ -301,39 +367,48 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
 
                 Log.e(
                     "podsssssss::",
-                    "$requestFile,$requestFileThumb,$userId,$types,$titles,$descriptions,$languages,$categoryIds,$allowComment"
+                    "$titles,$descriptions,$languages,$categoryIds,$allowComment"
                 )
                 val res = homeRepositry.addPodcasts(
-                    uid,
-                    type,
                     title,
                     description,
                     language,
                     category,
+                    subCategory,
+                    rssFeed,
                     allowcomments,
-                    pod_file,
-                    thumb_file
+                    mediafile,
+                    thumbnail
                 )
                 Log.e("pod::", "" + res)
 
                 if (res.status) {
+                    dismissProgressDailog()
                     "Podcast added successfully.".toast(this@AddPodcastActivity)
-                    onBackPressed()
+                    val intent = Intent(this@AddPodcastActivity, ReviewPodcastActivity::class.java)
+                    val reviewPodData =
+                        ReviewPodData(userId, languages, parent_id, subCatIds, allowComment)
+                    intent.putExtra(REVIEW_POD_DATA, reviewPodData)
+                    startActivity(intent)
                 } else {
+                    dismissProgressDailog()
                     "Oops! Server not responding.".toast(this@AddPodcastActivity)
                 }
 
                 binding.button72.visibility = View.VISIBLE
             } catch (e: ApiException) {
                 e.printStackTrace()
+                dismissProgressDailog()
                 Log.e("pod::", "" + e.message)
                 binding.button72.visibility = View.VISIBLE
             } catch (e: NoInternetException) {
                 e.printStackTrace()
+                dismissProgressDailog()
                 Log.e("pod::", "" + e.message)
                 binding.button72.visibility = View.VISIBLE
             } catch (e: Exception) {
                 e.printStackTrace()
+                dismissProgressDailog()
                 Log.e("pod::", "" + e.message)
                 binding.button72.visibility = View.VISIBLE
             }
@@ -369,11 +444,13 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
     override fun onAddAditionalCategory() {
         if (isAdditionalBtnClick) {
             binding.editTextTextPersonName31.visibility = View.VISIBLE
+            binding.rrAddNewCategory.visibility = View.VISIBLE
             binding.button101.visibility = View.VISIBLE
             isAdditionalBtnClick = false
             binding.imageButton73.setImageResource(R.drawable.ic_minus)
         } else {
             binding.editTextTextPersonName31.visibility = View.GONE
+            binding.rrAddNewCategory.visibility = View.GONE
             binding.button101.visibility = View.GONE
             isAdditionalBtnClick = true
             binding.imageButton73.setImageResource(R.drawable.ic_add_new)
@@ -383,11 +460,16 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
     override fun onAddNewCategory(category: String) {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.addPodcastSubcategory(parent_id, category, userId)
+                showProgressDialog()
+                val res = homeRepositry.addPodcastSubcategory(parent_id, category)
                 if (res.status) {
+                    dismissProgressDailog()
                     binding.editTextTextPersonName31.setText("")
                     getSubcatgery()
-                    "Subcategory added successfully".toast(this@AddPodcastActivity)
+                    Toast.makeText(this@AddPodcastActivity, res.message, Toast.LENGTH_SHORT).show()
+                } else {
+                    dismissProgressDailog()
+                    Toast.makeText(this@AddPodcastActivity, res.message, Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -481,20 +563,43 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
 
 
     private fun setLanguages(langData: List<LangData>) {
-        val list: MutableList<String> = ArrayList()
+        val list: java.util.ArrayList<String> = ArrayList()
         list.add(getString(R.string.select))
         for (data in langData) {
             list.add(data.name)
         }
-        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, list)
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        with(binding.spinnerContry) {
-            adapter = aa
-            setSelection(0, false)
-            onItemSelectedListener = this@AddPodcastActivity
-            prompt = getString(R.string.select)
-            gravity = Gravity.CENTER
+        val languageAdapter = LanguageAdapter(this, list)
+        spinnerContry.adapter = languageAdapter
+        spinnerContry.setSelection(0)
+//        spinnerContry.prompt = getString(R.string.select)
+        spinnerContry.gravity = Gravity.CENTER
+        spinnerContry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (!list.get(position).equals(getString(R.string.select))) {
+                    languages = langData.get(position).id
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
         }
+
+//        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, list)
+//        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        /*  with(binding.spinnerContry) {
+              adapter = aa
+              setSelection(0, false)
+              onItemSelectedListener = this@AddPodcastActivity
+              prompt = getString(R.string.select)
+              gravity = Gravity.CENTER
+          }*/
 
     }
 
@@ -716,13 +821,13 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
 
     override fun onPodSubCatSelectedList(subCategoryData: ArrayList<String>) {
 
-        if (subCategoryData.size>0){
+        if (subCategoryData.size > 0) {
             binding.button72.setBackgroundResource(R.drawable.round_button_bg)
             binding.button72.setTextColor(Color.WHITE)
-            binding.button72.setPadding(15,15,15,15)
-        }else{
+            binding.button72.setPadding(15, 15, 15, 15)
+        } else {
             binding.button72.setBackgroundResource(R.drawable.round_border)
-            binding.button72.setPadding(15,15,15,15)
+            binding.button72.setPadding(15, 15, 15, 15)
             binding.button72.setTextColor(Color.parseColor("#B89A8A"));
 
         }
@@ -740,10 +845,19 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
         parent_id = Event.id
         Log.e("datacategory", Event.category_name)
         binding.tvPodCat.text = Event.category_name
-        binding.textView284.text="Choose up to 3 sub-categories of "+Event.category_name
+        binding.textView284.text = "Choose up to 3 sub-categories of " + Event.category_name
         category = Event.category_name
         Log.e("list", Event.id)
         getSubcatgery()
     }
 
+    private fun showProgressDialog() {
+        progressDialog.setMessage("Please wait...")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+    }
+
+    private fun dismissProgressDailog() {
+        progressDialog.dismiss()
+    }
 }

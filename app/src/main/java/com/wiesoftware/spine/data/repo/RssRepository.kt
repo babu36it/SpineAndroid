@@ -9,10 +9,15 @@ import com.wiesoftware.spine.data.net.reponses.RssResponse
  * Created by Vivek kumar on 4/8/2021.
  * Email: vivekpcst.kumar@gmail.com.
  */
-class RssRepository (private val rssApi: RssApi):SafeApiRequest(){
+class RssRepository(private val rssApi: RssApi) : SafeApiRequest() {
 
-    suspend fun getPodsFromRss(url:String):RssResponse{
-        Log.e("rss::",""+"url")
+    suspend fun getPodsFromRss(url: String): RssResponse {
+        Log.e("rss::", "=" + url)
         return apiRequest { rssApi.getPodsFromRss(url) }
     }
+
+    suspend fun getRssFeedData(url: String): RssResponse {
+        return apiRequest { rssApi.getFeedRssData(url) }
+    }
+
 }

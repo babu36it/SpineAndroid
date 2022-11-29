@@ -73,7 +73,7 @@
     <string name="invite_friends">INVITE FRIENDS</string>
     <string name="logout">LOGOUT</string>
     <string name="comments">COMMENTS</string>
-    <string name="post">Publish</string>
+    <string name="post">Post</string>
     <string name="add_a_comment">Add a comment...</string>
     <string name="followers">Followers</string>
     <string name="reply">Reply</string>
@@ -83,7 +83,7 @@
     <string name="post_a_story">Post a story</string>
     <string name="add_story">ADD STORY</string>
     <string name="add_image_s_or_video_s">Add image(s) or video(s)</string>
-    <string name="add_title">Add Title</string>
+    <string name="add_title">Give your story a meaning</string>
     <string name="want_to_give_your_story_a_title_or_motto">Want to give your story a title or motto?</string>
     <string name="allow_comments">Allow comments</string>
     <string name="add">Add</string>
@@ -117,7 +117,7 @@
     <string name="discover_people_on_spine_you_might_want_to_follow">Discover people on Spine you might want to follow.</string>
     <string name="type_comment">Type comment...</string>
     <string name="select_followers">Select Followers</string>
-    <string name="add_hashtags">ADD HASHTAGS</string>
+    <string name="add_hashtags">Add Hashtags</string>
     <string name="enter_up_to_5_hastags_e_g_lorem_lorem">Enter up to 5 hastags, e.g. #lorem #lorem</string>
     <string name="review_post">REVIEW POST</string>
     <string name="add_a_short_bio">Add a short bio</string>
@@ -479,4 +479,18 @@
     <string name="str_more_info">the more info, the better to find your service</string>
     <string name="str_something_about_you">Say something about you</string>
     <string name="str_new_website">Destination website/Spotify/Itunes, etc</string>
+    <string name="mark_friends">Mark Friends</string>
+    <string name="link_place">Link Place</string>
+    <string name="str_like_to"><u>Would you like to promote your post, click here</u></string>
+
+    <string name="spine_dumy_description">Our future reality depends on what we do now,in this present movement.</string>
+    <string name="oliver">Oliver Reese</string>
+    <string name="unkonwn">Unknown</string>
+    <string name="search_practicioner">Search Practicioners</string>
+    <string name="str_key_performance_method">Key performance  and methods (multiple choice)</string>
+    <string name="str_desease_pattern">Desease patterns ( multiple choice )</string>
+    <string name="categories_selection">Categories ( multiple selection )</string>
+    <string name="find_practicioners">Find Practicioners</string>
+    <string name="your_selection_practicioner">Your selection of practicioner</string>
+    <string name="practicioner">Practicioners</string>
 </resources>

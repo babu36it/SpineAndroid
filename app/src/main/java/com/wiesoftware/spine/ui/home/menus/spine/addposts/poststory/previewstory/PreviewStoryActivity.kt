@@ -203,7 +203,7 @@ class PreviewStoryActivity : AppCompatActivity(),KodeinAware, PreviewStoryEventL
         binding.imageButton18.visibility=View.INVISIBLE
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.postAStory( imgList, uid, thoughts, type, allowComments, story_time  )
+                val res=homeRepositry.postAStory( imgList, thoughts, type, allowComments  )
                 if(res.status){
                     binding.imageButton18.visibility=View.VISIBLE
                     "Your story is added successfuly.".toast(this@PreviewStoryActivity)

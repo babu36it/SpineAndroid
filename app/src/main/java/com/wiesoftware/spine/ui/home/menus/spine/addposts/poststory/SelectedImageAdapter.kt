@@ -45,6 +45,7 @@ class SelectedImageAdapter(val bitmaps: ArrayList<Bitmap>,val imageRemoveListene
 
     interface ImageRemoveListener{
         fun onImageRemoved(position: Int)
+        fun onItemImageRemoved(position: Int,bitmaps: ArrayList<Bitmap>)
     }
 
     data class SelectedImage(

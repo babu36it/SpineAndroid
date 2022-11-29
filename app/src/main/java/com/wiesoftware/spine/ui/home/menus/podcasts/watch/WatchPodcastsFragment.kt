@@ -70,7 +70,7 @@ class WatchPodcastsFragment : Fragment(),KodeinAware, ListenPodcastAdapter.PodCa
     private fun getAllPodcasts() {
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.getAllPodcasts(userId)
+                val res=homeRepositry.getAllPodcasts()
                 if (res.status){
                     STORY_IMAGE=res.profile_img
                     POD_FILE_BASE =res.image

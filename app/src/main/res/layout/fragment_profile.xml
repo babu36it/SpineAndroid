@@ -56,7 +56,7 @@
         android:layout_width="@dimen/_100"
         android:layout_height="@dimen/_100"
         android:elevation="@dimen/eight"
-        android:src="@drawable/demo"
+        android:src="@drawable/userprofile"
         app:civ_border_color="@color/text_white"
         app:civ_border_width="4dp"
         app:civ_circle_background_color="@color/gray_tint"

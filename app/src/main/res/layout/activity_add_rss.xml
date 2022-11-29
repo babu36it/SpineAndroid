@@ -1,154 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.wiesoftware.spine.ui.home.menus.podcasts.addrss.AddRssViewmodel" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.menus.podcasts.addrss.AddRssActivity">
-    <ImageButton
-        android:onClick="@{viewmodel.onBack}"
-        android:id="@+id/imageButton36"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/BackButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
 
-    <TextView
-        android:id="@+id/textView191"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_podcast"
-        android:textAllCaps="true"
-        style="@style/TitleText"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton36"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageButton36" />
-
-    <View
-        android:id="@+id/view70"
-        android:layout_width="0dp"
-        style="@style/ViewActionLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView191"
-        />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/eight"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView290"
-        app:layout_constraintVertical_bias="1.0">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.home.menus.podcasts.addrss.AddRssActivity">
 
-        <TextView
-            android:id="@+id/textView278"
-            style="@style/TitleText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/eight"
+        <RelativeLayout
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:id="@+id/rrMain"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp">
+
+            <ImageButton
+                android:id="@+id/imageButton36"
+                style="@style/BackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:onClick="@{viewmodel.onBack}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView191"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="center"
+                android:text="@string/add_podcast"
+                android:textAllCaps="true"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_13sdp" />
+
+
+        </RelativeLayout>
+
+
+        <View
+            android:id="@+id/view14"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/rrMain"
+            android:layout_marginTop="8dp"
+            android:background="@color/gray_tint" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/rrValidationFailed"
             android:layout_marginTop="@dimen/eight"
-            android:layout_marginEnd="@dimen/eight"
-            android:text="@string/what_s_the_link_to_your_podcast_s_rss_feed"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:id="@+id/textView279"
-            style="@style/NormalText"
-            android:layout_width="0dp"
+            <TextView
+                android:id="@+id/textView278"
+                style="@style/TitleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/eight"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginEnd="@dimen/eight"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/what_s_the_link_to_your_podcast_s_rss_feed"
+                android:textAlignment="center"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_11sdp" />
+
+            <TextView
+                android:id="@+id/textView279"
+                style="@style/NormalText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@string/only_add_a_podcast_you_own_the_right_to_and_make_sure_it_meets_our_guidelines_you_only_have_to_do_this_once_after_your_podcast_is_on_the_spiritual_network_it_will_update_automatically"
+                android:textAlignment="center"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_11sdp" />
+
+            <TextView
+                android:id="@+id/textView280"
+                style="@style/TitleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@string/link_to_rss_feed"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_11sdp" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName29"
+                style="@style/ETNormal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_margin="@dimen/_8sdp"
+                android:ems="10"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="@string/www_domain_com_podcast_rss_xml"
+                android:inputType="textPersonName"
+                android:paddingLeft="@dimen/_10sdp"
+                android:text="@={viewmodel.rssLink}"
+                android:textColorHint="@color/dark_gray_day_night"
+                android:textSize="@dimen/_11sdp" />
+
+            <TextView
+                android:id="@+id/button97"
+                style="@style/ButtonRound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:onClick="@{viewmodel.onValidateRss}"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/validate_rss_feed"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rrValidationFailed"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/only_add_a_podcast_you_own_the_right_to_and_make_sure_it_meets_our_guidelines_you_only_have_to_do_this_once_after_your_podcast_is_on_the_spiritual_network_it_will_update_automatically"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@+id/textView278"
-            app:layout_constraintStart_toStartOf="@+id/textView278"
-            app:layout_constraintTop_toBottomOf="@+id/textView278" />
+            android:layout_below="@id/view14"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:background="@color/darkback"
+            android:visibility="gone">
 
-        <TextView
-            android:id="@+id/textView280"
-            style="@style/TitleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/eight"
-            android:text="@string/link_to_rss_feed"
-            app:layout_constraintStart_toStartOf="@+id/textView279"
-            app:layout_constraintTop_toBottomOf="@+id/textView279" />
-
-        <EditText
-            android:id="@+id/editTextTextPersonName29"
-            style="@style/ETNormal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:text="@={viewmodel.rssLink}"
-            android:hint="@string/www_domain_com_podcast_rss_xml"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="@+id/textView279"
-            app:layout_constraintStart_toStartOf="@+id/textView280"
-            app:layout_constraintTop_toBottomOf="@+id/textView280" />
-
-        <Button
-            android:onClick="@{viewmodel.onValidateRss}"
-            android:id="@+id/button97"
-            style="@style/ButtonRound"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:text="@string/validate_rss_feed"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName29"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName29"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName29" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/textView290"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:background="@color/darkback"
-        android:layout_marginTop="@dimen/eight"
-        style="@style/NormalText"
-        android:padding="@dimen/_32dp"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="@dimen/sp18"
-        android:text="@string/make_sure_your_rss_feed_contains_at_least_one_episode_and_the_following_tags_title_author_email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view70" />
-
-    <ImageButton
-        android:onClick="@{viewmodel.onCloseInfo}"
-        android:id="@+id/imageButton78"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:padding="@dimen/eight"
-        android:src="@drawable/ic_close"
-        android:tint="@color/text_white"
-        android:background="@android:color/transparent"
-        app:layout_constraintEnd_toEndOf="@+id/textView290"
-        app:layout_constraintTop_toTopOf="@+id/textView290"
-         />
+            <ImageButton
+                android:id="@+id/imageButton78"
+                style="@style/closeIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:onClick="@{viewmodel.onCloseInfo}"
+                android:padding="@dimen/eight"
+                android:visibility="visible" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textView290"
+                style="@style/TitleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:padding="@dimen/_32dp"
+                android:text="@string/make_sure_your_rss_feed_contains_at_least_one_episode_and_the_following_tags_title_author_email"
+                android:textAlignment="center"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/_12sdp"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
 </layout>
