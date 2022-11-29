@@ -482,7 +482,7 @@ class ComposeBox : RelativeLayout, View.OnClickListener {
                 mediaRecorder!!.stop()
                 mediaRecorder!!.release()
                 mediaRecorder = null
-                if (isCancel) {
+                 if (isCancel) {
                     File(audioFileNameWithPath).delete()
                 }
             }

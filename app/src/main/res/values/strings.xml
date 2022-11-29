@@ -529,4 +529,10 @@
     <string name="find_practicioners">Find Practicioners</string>
     <string name="your_selection_practicioner">Your selection of practicioner</string>
     <string name="practicioner">Practicioners</string>
+    <string name="voice_over">Voice Over</string>
+    <string name="add_image_or_video">Add image or video</string>
+    <string name="add_voice_over">Add voiceover (max 2 min)</string>
+    <string name="mark_friend">Mark Friends</string>
+    <string name="link_place">Link Place</string>
+    <string name="would_you_like_to_promote"><u>Would you like to promote your post, click here</u></string>
 </resources>

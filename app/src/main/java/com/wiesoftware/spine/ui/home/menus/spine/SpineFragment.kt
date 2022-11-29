@@ -26,6 +26,7 @@ import com.wiesoftware.spine.ui.home.menus.spine.featuredpost.FeaturedPostActivi
 import com.wiesoftware.spine.ui.home.menus.spine.following.SpineFollowingFragment
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.SpineForYouFragment
 import com.wiesoftware.spine.ui.home.menus.spine.homesearch.HomeSearchFragment
+import com.wiesoftware.spine.ui.home.menus.voice_over.VoiceOverActivity
 import kotlinx.android.synthetic.main.add_post_bottomheet.*
 
 
@@ -106,6 +107,7 @@ var searchListener: OnSearchHomeListener? =null
         dialog.button106.setOnClickListener {
             startActivity(Intent(requireContext(), PostThoughtActivity::class.java))
         }
+        dialog.buttonVoiceOver.setOnClickListener { startActivity(Intent(requireContext(), VoiceOverActivity::class.java)) }
         dialog.button107.setOnClickListener { startActivity(Intent(requireContext(), PostMediaActivity::class.java)) }
         dialog.button108.setOnClickListener { startActivity(Intent(requireContext(), AddStoryActivity::class.java)) }
         dialog.button109.setOnClickListener { startActivity(Intent(requireContext(), AddOrDupEventActivity::class.java))  }

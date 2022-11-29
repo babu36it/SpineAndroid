@@ -15,14 +15,14 @@
     tools:context=".ui.home.menus.spine.addposts.postmedia.PostMediaActivity">
 
     <ImageButton
-        android:onClick="@{viewmodel.onBack}"
         android:id="@+id/imageButton44"
+        style="@style/BackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/BackButton"
+        android:onClick="@{viewmodel.onBack}"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-         />
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/textView213"
@@ -83,18 +83,20 @@
         android:text="@string/add_image_s_or_video_s"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/button30"
         android:layout_width="@dimen/_100"
         android:layout_height="@dimen/_100"
-        android:background="@color/gray_tint"
         android:layout_marginTop="@dimen/eight"
+        android:background="@color/gray_tint"
         android:drawableTop="@drawable/ic_photo_camera"
         android:onClick="@{viewmodel.onAdd}"
         android:padding="@dimen/sixteen"
         android:text="@string/add"
         app:layout_constraintStart_toStartOf="@+id/textView59"
-        app:layout_constraintTop_toBottomOf="@+id/rvSelectedImages" />
+        app:layout_constraintTop_toBottomOf="@+id/rvSelectedImages"
+        tools:ignore="TextContrastCheck" />
     <TextView
         android:id="@+id/textView60"
         android:layout_width="wrap_content"
@@ -176,11 +178,12 @@
             android:layout_height="wrap_content"
             android:background="@drawable/shadow_box"
             android:ems="10"
-            android:text="@={viewmodel.hashtags}"
+            android:gravity="start"
             android:hint="e.g. #lorem #lorem"
             android:inputType="textPersonName|textMultiLine"
-            android:gravity="start"
-            android:padding="@dimen/eight" />
+            android:padding="@dimen/eight"
+            android:text="@={viewmodel.hashtags}"
+            tools:ignore="TouchTargetSizeCheck" />
     </androidx.cardview.widget.CardView>
 
 

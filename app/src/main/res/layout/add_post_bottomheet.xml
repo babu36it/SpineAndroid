@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
     <View
-        android:id="@+id/view71"
+        android:id="@+id/viewTop"
         style="@style/ViewActionLine"
         android:layout_width="0dp"
         android:layout_marginStart="@dimen/sixteen"
@@ -49,6 +49,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView256" />
+
+
+    <Button
+        android:id="@+id/buttonVoiceOver"
+        style="@style/TextButtonRegular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:drawableEnd="@drawable/ic_arrow_right"
+        android:elevation="@dimen/dp1"
+        android:text="@string/voice_over"
+        android:textAlignment="textStart"
+        android:textColor="@color/day_night_both_black"
+        app:layout_constraintEnd_toEndOf="@+id/viewTop"
+        app:layout_constraintStart_toStartOf="@+id/viewTop"
+        app:layout_constraintTop_toBottomOf="@+id/viewTop" />
+
+    <View
+        android:id="@+id/view71"
+        style="@style/ViewActionLine"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonVoiceOver" />
 
     <Button
         android:id="@+id/button106"
