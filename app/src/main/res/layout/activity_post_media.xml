@@ -9,273 +9,487 @@
             name="viewmodel"
             type="com.wiesoftware.spine.ui.home.menus.spine.addposts.postmedia.PostMediaViewmodel" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.menus.spine.addposts.postmedia.PostMediaActivity">
-
-    <ImageButton
-        android:id="@+id/imageButton44"
-        style="@style/BackButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="@{viewmodel.onBack}"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    <TextView
-        android:id="@+id/textView213"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_image_video"
-        style="@style/TitleText"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton44"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageButton44" />
-
-    <ProgressBar
-        android:id="@+id/progressBar6"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/button31"
-        app:layout_constraintTop_toTopOf="@+id/button31" />
-    <Button
-        android:id="@+id/button31"
-        style="@style/ButtonRound"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/eight"
-        android:onClick="@{viewmodel.onPost}"
-        android:text="@string/post"
-        app:layout_constraintBottom_toTopOf="@+id/view43"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView213" />
-
-    <View
-        android:id="@+id/view43"
-        android:layout_width="wrap_content"
-        style="@style/ViewActionLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button31" />
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view43"
-        >
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.home.menus.spine.addposts.postmedia.PostMediaActivity">
 
-    >
-
-    <TextView
-        android:id="@+id/textView59"
-        style="@style/TitleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/sixteen"
-        android:text="@string/add_image_s_or_video_s"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button30"
-        android:layout_width="@dimen/_100"
-        android:layout_height="@dimen/_100"
-        android:layout_marginTop="@dimen/eight"
-        android:background="@color/gray_tint"
-        android:drawableTop="@drawable/ic_photo_camera"
-        android:onClick="@{viewmodel.onAdd}"
-        android:padding="@dimen/sixteen"
-        android:text="@string/add"
-        app:layout_constraintStart_toStartOf="@+id/textView59"
-        app:layout_constraintTop_toBottomOf="@+id/rvSelectedImages"
-        tools:ignore="TextContrastCheck" />
-    <TextView
-        android:id="@+id/textView60"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/eight"
-        android:text="@string/add_capture"
-        style="@style/TitleText"
-        app:layout_constraintStart_toStartOf="@+id/button30"
-        app:layout_constraintTop_toBottomOf="@+id/button30" />
-    <TextView
-        android:visibility="invisible"
-        android:id="@+id/textView61"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/sixteen"
-        android:text="(0/150 characters)"
-        app:layout_constraintBottom_toBottomOf="@+id/textView60"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView60" />
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:elevation="@dimen/sixteen"
-        android:padding="@dimen/sixteen"
-        app:cardBackgroundColor="@color/text_white"
-        app:cardCornerRadius="@dimen/sixteen"
-        app:layout_constraintEnd_toEndOf="@+id/textView61"
-        app:layout_constraintStart_toStartOf="@+id/textView60"
-        app:layout_constraintTop_toBottomOf="@+id/textView60">
-
-        <EditText
-            android:id="@+id/editTextTextPersonName6"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_100"
-            android:background="@drawable/shadow_box"
-            android:ems="10"
-            android:text="@={viewmodel.thoughts}"
-            android:hint="@string/want_to_say_more_about_this_image"
-            android:inputType="textPersonName|textMultiLine"
-            android:gravity="start"
-            android:padding="@dimen/eight" />
-    </androidx.cardview.widget.CardView>
-
-
-    <TextView
-        android:id="@+id/textViewHashtag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/eight"
-        android:text="@string/add_hashtags"
-        style="@style/TitleText"
-        app:layout_constraintStart_toStartOf="@+id/button30"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
-    <TextView
-        android:id="@+id/textView99"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/sixteen"
-        android:text="(0/5 characters)"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewHashtag"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewHashtag" />
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView33"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:elevation="@dimen/sixteen"
-        android:padding="@dimen/sixteen"
-        app:cardBackgroundColor="@color/text_white"
-        app:cardCornerRadius="@dimen/sixteen"
-        app:layout_constraintEnd_toEndOf="@+id/textView61"
-        app:layout_constraintStart_toStartOf="@+id/textViewHashtag"
-        app:layout_constraintTop_toBottomOf="@+id/textView99">
-
-        <EditText
-            android:id="@+id/editTextTextPersonName66"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/shadow_box"
-            android:ems="10"
-            android:gravity="start"
-            android:hint="e.g. #lorem #lorem"
-            android:inputType="textPersonName|textMultiLine"
-            android:padding="@dimen/eight"
-            android:text="@={viewmodel.hashtags}"
-            tools:ignore="TouchTargetSizeCheck" />
-    </androidx.cardview.widget.CardView>
+            android:padding="@dimen/_8sdp">
+
+            <ImageButton
+                android:id="@+id/imageButton10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/app_name"
+                android:onClick="@{viewmodel.onBack}"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:id="@+id/textView213"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="center"
+                android:text="@string/add_image_video"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_13sdp" />
 
 
-    <Switch
-        android:visibility="invisible"
-        android:id="@+id/switch3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onCheckedChanged="@{(button, isFeatured) -> viewmodel.onCheckedChange(isFeatured)}"
-        android:layout_marginTop="@dimen/sixteen"
-        app:layout_constraintEnd_toEndOf="@+id/cardView33"
-        app:layout_constraintTop_toBottomOf="@+id/cardView33" />
-
-    <TextView
-        android:visibility="invisible"
-        android:id="@+id/textView62"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/eight"
-        android:text="@string/do_you_want_to_make_it_featured_post"
-        app:layout_constraintBottom_toBottomOf="@+id/switch3"
-        app:layout_constraintEnd_toStartOf="@+id/switch3"
-        app:layout_constraintStart_toStartOf="@+id/cardView33"
-        app:layout_constraintTop_toTopOf="@+id/switch3" />
-    <Switch
-        android:visibility="gone"
-        android:id="@+id/switch4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/eight"
-        app:layout_constraintEnd_toEndOf="@+id/switch3"
-        app:layout_constraintTop_toBottomOf="@+id/switch3" />
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/textView63"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/delete_story_after_24_hours"
-        app:layout_constraintBottom_toBottomOf="@+id/switch4"
-        app:layout_constraintStart_toStartOf="@+id/textView62"
-        app:layout_constraintTop_toTopOf="@+id/switch4" />
-    <View
-        android:id="@+id/view10"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/gray_tint"
-        android:layout_marginTop="@dimen/eight"
-        app:layout_constraintEnd_toEndOf="@+id/switch4"
-        app:layout_constraintStart_toStartOf="@+id/textView63"
-        app:layout_constraintTop_toBottomOf="@+id/switch3" />
+            <TextView
+                android:id="@+id/button31"
+                style="@style/ButtonRound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/eight"
+                android:onClick="@{viewmodel.onPost}"
+                android:paddingStart="@dimen/_20sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_20sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:text="@string/post" />
 
 
-    <Button
-        android:onClick="@{viewmodel.onDelete}"
-        android:id="@+id/button32"
-        style="@style/TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/eight"
-        android:text="@string/delete"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="@+id/view10"
-        app:layout_constraintTop_toBottomOf="@+id/view10" />
+        </RelativeLayout>
 
-    <Button
-        android:onClick="@{viewmodel.onPreview}"
-        android:id="@+id/buttonPreview"
-        style="@style/TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/eight"
-        android:text="@string/preview"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="@+id/view10"
-        app:layout_constraintTop_toBottomOf="@+id/view10" />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvSelectedImages"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView59"
-        app:layout_constraintTop_toBottomOf="@+id/textView59" />
-</androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/searchAuto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ProgressBar
+            android:id="@+id/progressBar6"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/button31"
+            app:layout_constraintTop_toTopOf="@+id/button31" />
+
+        <View
+            android:id="@+id/view43"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@color/normal_grey" />
+
+        <ScrollView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView59"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/add_image_s_or_video_s"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_10sdp">
+
+                    <TextView
+                        android:id="@+id/button30"
+                        android:layout_width="@dimen/_100"
+                        android:layout_height="@dimen/_100"
+                        android:background="@color/gray_tint"
+                        android:drawableTop="@drawable/ic_photo_camera"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:gravity="center"
+                        android:onClick="@{viewmodel.onAdd}"
+                        android:padding="@dimen/_20sdp"
+                        android:text="@string/add"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvSelectedImages"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_toRightOf="@id/button30"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp">
+
+                    <TextView
+                        android:id="@+id/textView60"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/add_capture"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/box3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_gravity="start"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/_5sdp"
+                    android:gravity="start"
+                    android:padding="@dimen/eight">
+
+
+                    <EditText
+                        android:id="@+id/editTextTextPersonName6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_toLeftOf="@id/tvCounter"
+                        android:background="@android:color/transparent"
+                        android:ellipsize="end"
+                        android:ems="10"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:gravity="top|start"
+                        android:hint="@string/want_to_say_more_about_this_image"
+                        android:imeOptions="actionDone"
+                        android:inputType="textMultiLine"
+                        android:isScrollContainer="false"
+                        android:lines="4"
+                        android:maxHeight="@dimen/_70sdp"
+                        android:maxLength="140"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        android:scrollHorizontally="false"
+                        android:singleLine="false"
+                        android:text="@={viewmodel.thoughts}"
+                        android:textColor="@color/day_night_both_black"
+                        android:textColorHint="@color/dark_gray_day_night"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <TextView
+                        android:id="@+id/tvCounter"
+                        style="@style/NormalText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="140"
+                        android:textSize="@dimen/_11sdp" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp">
+
+                    <TextView
+                        android:id="@+id/textViewHashtag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/add_hashtags"
+                        android:textAllCaps="false"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/textView99"
+                        style="@style/NormalText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="(0/5 hashtags)"
+                        android:visibility="gone"
+                        android:textColor="@color/dark_gray_day_night"
+                        android:textSize="@dimen/_11sdp" />
+
+
+                </RelativeLayout>
+
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName66"
+                    style="@style/ETNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:background="@drawable/shadow_box"
+                    android:clickable="true"
+                    android:editable="true"
+                    android:elevation="@dimen/_5sdp"
+                    android:ems="10"
+                    android:gravity="start"
+                    android:hint="@string/str_enter"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:padding="@dimen/eight"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColorHint="@color/dark_gray_day_night"
+                    android:textSize="@dimen/_11sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/mark_friends"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtMarkFriends"
+                    style="@style/ETNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/_5sdp"
+                    android:ems="10"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:gravity="start"
+                    android:hint="@string/str_enter"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:padding="@dimen/eight"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColorHint="@color/dark_gray_day_night"
+                    android:textSize="@dimen/_11sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/link_place"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtLinkPlace"
+                    style="@style/ETNormal"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/_5sdp"
+                    android:ems="10"
+                    android:gravity="start"
+                    android:hint="@string/str_enter"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:padding="@dimen/eight"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColorHint="@color/dark_gray_day_night"
+                    android:textSize="@dimen/_11sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/str_like_to"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/normal_grey" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_20sdp">
+
+
+                    <TextView
+                        android:id="@+id/button32"
+                        style="@style/NormalText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:onClick="@{viewmodel.onDelete}"
+                        android:text="@string/delete"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnPost"
+                        style="@style/ButtonRound"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/eight"
+                        android:onClick="@{viewmodel.onPost}"
+                        android:paddingStart="@dimen/_20sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingEnd="@dimen/_20sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/post" />
+
+
+                </RelativeLayout>
+
+
+                <Switch
+                    android:id="@+id/switch3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sixteen"
+                    android:onCheckedChanged="@{(button, isFeatured) -> viewmodel.onCheckedChange(isFeatured)}"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/cardView33"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView33" />
+
+                <TextView
+                    android:id="@+id/textView62"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/eight"
+                    android:text="@string/do_you_want_to_make_it_featured_post"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/switch3"
+                    app:layout_constraintEnd_toStartOf="@+id/switch3"
+                    app:layout_constraintStart_toStartOf="@+id/cardView33"
+                    app:layout_constraintTop_toTopOf="@+id/switch3" />
+
+                <Switch
+                    android:id="@+id/switch4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/switch3"
+                    app:layout_constraintTop_toBottomOf="@+id/switch3" />
+
+                <TextView
+                    android:id="@+id/textView63"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delete_story_after_24_hours"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/switch4"
+                    app:layout_constraintStart_toStartOf="@+id/textView62"
+                    app:layout_constraintTop_toTopOf="@+id/switch4" />
+
+                <View
+                    android:id="@+id/view10"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:background="@color/gray_tint"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/switch4"
+                    app:layout_constraintStart_toStartOf="@+id/textView63"
+                    app:layout_constraintTop_toBottomOf="@+id/switch3" />
+
+
+                <Button
+                    style="@style/TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:onClick="@{viewmodel.onDelete}"
+                    android:text="@string/delete"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@+id/view10"
+                    app:layout_constraintTop_toBottomOf="@+id/view10" />
+
+                <Button
+                    android:id="@+id/buttonPreview"
+                    style="@style/TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:onClick="@{viewmodel.onPreview}"
+                    android:text="@string/preview"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/view10"
+                    app:layout_constraintTop_toBottomOf="@+id/view10" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/searchAuto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 </layout>
