@@ -100,33 +100,43 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/imageViewPhotoOrVideo"
-                        android:layout_width="@dimen/_100"
-                        android:layout_height="@dimen/_100"
-                        android:layout_marginTop="@dimen/eight"
-                        android:layout_marginEnd="@dimen/sixteen"
-                        android:background="@color/light_gry"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/demo"
-                        android:text="@string/add"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:visibility="gone"
+                        android:id="@+id/constarintImageVideo"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="TextContrastCheck" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/imageViewPhotoOrVideo"
+                            android:layout_width="@dimen/_100"
+                            android:layout_height="@dimen/_100"
+                            android:layout_marginTop="@dimen/eight"
+                            android:layout_marginEnd="@dimen/sixteen"
+                            android:background="@color/light_gry"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/demo"
+                            android:text="@string/add"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="TextContrastCheck" />
 
-                    <ImageView
-                        android:onClick="@{viewmodel.onImageClose}"
-                        android:padding="@dimen/eight"
-                        app:tint="@color/gray_scale"
-                        android:src="@drawable/ic_close_24dp"
-                        app:layout_constraintEnd_toEndOf="@+id/imageViewPhotoOrVideo"
-                        app:layout_constraintTop_toTopOf="@+id/imageViewPhotoOrVideo"
-                        android:id="@+id/removeImageOrVideo"
-                        android:layout_width="@dimen/thirty_two"
-                        android:layout_height="@dimen/thirty_two"/>
+                        <ImageView
+                            android:onClick="@{viewmodel.onImageClose}"
+                            android:padding="@dimen/eight"
+                            app:tint="@color/gray_scale"
+                            android:src="@drawable/ic_close_24dp"
+                            app:layout_constraintEnd_toEndOf="@+id/imageViewPhotoOrVideo"
+                            app:layout_constraintTop_toTopOf="@+id/imageViewPhotoOrVideo"
+                            android:id="@+id/removeImageOrVideo"
+                            android:layout_width="@dimen/thirty_two"
+                            android:layout_height="@dimen/thirty_two"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <Button
                         android:onClick="@{viewmodel.addPhotoOrImage}"
@@ -139,7 +149,7 @@
                         android:drawableTop="@drawable/ic_photo_camera"
                         android:padding="@dimen/sixteen"
                         android:text="@string/add"
-                        app:layout_constraintStart_toEndOf="@+id/imageViewPhotoOrVideo"
+                        app:layout_constraintStart_toEndOf="@+id/constarintImageVideo"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="TextContrastCheck" />
 
@@ -172,7 +182,7 @@
                         android:id="@+id/imageViewPlayPause"
                         android:layout_width="@dimen/thirty_two"
                         android:layout_height="@dimen/thirty_two"
-                        android:onClick="@{viewmodel.onStartRecording}"
+                        android:onClick="@{viewmodel.onPlay}"
                         android:src="@drawable/ic_play_button"
                         app:tint="@color/colorPrimaryDark"
                         tools:ignore="ImageContrastCheck" />
@@ -185,16 +195,16 @@
                         android:src="@drawable/ic_pause_24dp"
                         app:tint="@color/colorPrimaryDark"
                         tools:ignore="ImageContrastCheck" />
-                    <SeekBar
+                    <!--<com.wiesoftware.spine.util.AudioVisualizer
                         android:id="@+id/seekBar"
                         android:padding="@dimen/eight"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="30dp"/>-->
                     <ImageView
                         android:visibility="gone"
-                        android:onClick="@{viewmodel.onPaused}"
+                        android:onClick="@{viewmodel.onDeleteVoice}"
                         android:layout_gravity="end"
                         android:id="@+id/imageViewDelete"
                         android:layout_width="@dimen/thirty_two"
