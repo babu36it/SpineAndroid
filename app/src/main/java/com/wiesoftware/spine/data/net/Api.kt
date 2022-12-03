@@ -431,19 +431,28 @@ interface Api {
         @Field("email") email: String
     ):Response<SingleRes>
 
+
     //@Headers(HEADER_1, HEADER_2)
-    @GET("events/getEventBookings/{page}/{perPage}/{userId}")
+    @GET("events/getEventBookingRequestList/{page}/{perPage}")
     suspend fun getEventRequestUserList(
         @Path("page") page: Int,
         @Path("perPage") perPage: Int,
-        @Path("userId") userId: String
+
     ):Response<EventRequestResponse>
 
+//    //@Headers(HEADER_1, HEADER_2)
+//    @GET("events/getEventBookings/{page}/{perPage}/{userId}")
+//    suspend fun getEventRequestUserList(
+//        @Path("page") page: Int,
+//        @Path("perPage") perPage: Int,
+//        @Path("userId") userId: String
+//    ):Response<EventRequestResponse>
+
     //@Headers(HEADER_1, HEADER_2)
-    @GET("events/changeEventBookingStatus/{event_booking_id}/{status}")
+    @GET("events/changeEventBookingStatus/{BookingId}/{Status}")
     suspend fun changeBookingStatus(
-        @Path("event_booking_id") event_booking_id: String,
-        @Path("status") status: String
+        @Path("BookingId") BookingId: String,
+        @Path("Status") Status: String
     ):Response<SingleRes>
 
 //    //@Headers(HEADER_1, HEADER_2)
@@ -591,12 +600,11 @@ interface Api {
     @FormUrlEncoded
     @POST("events/getEventsListFilter")
     suspend fun getFilteredEvents(
-        @Field("page") page: Int,
-        @Field("per_page") per_page: Int,
-        @Field("user_id") user_id: String,
+        @Field("page") page: String,
+        @Field("per_page") per_page: String,
         @Field("lat") lat: String,
         @Field("lon") lon: String,
-        @Field("distance") distance: Int,
+        @Field("distance") distance: String,
         @Field("start_date") start_date: String,
         @Field("end_date") end_date: String,
         @Field("category") category: String

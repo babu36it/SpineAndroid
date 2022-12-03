@@ -1,6 +1,7 @@
 package com.wiesoftware.spine.ui.home.menus.events
 
 import android.Manifest
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -86,6 +87,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
     companion object {
         public var searchView: SearchView? = null
         public var tabLayout: TabLayout? = null
+        lateinit var progress : ProgressDialog
     }
 
     var currentFragment : Fragment? = null
@@ -119,7 +121,10 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
             setupViewPager(binding.viewPager)
             binding.tabLayout.setupWithViewPager(binding.viewPager)
         })
-
+        Companion.progress = ProgressDialog(requireContext())
+        Companion.progress.setTitle("Loading")
+        Companion.progress.setMessage("Wait while loading...")
+        Companion.progress.setCancelable(false) // disable dismiss by tapping outside of the dialog
 
 
         setintImages()
@@ -207,7 +212,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
         adapter.addFragment(EventFragmentOnLineList.newInstance("ONLINE", user_id)!!, "ONLINE")
         adapter.addFragment(EventFragmentNearByList.newInstance("NEARBY", user_id)!!, "NEARBY")
         adapter.addFragment(EventFragmentPastList.newInstance("PAST", user_id)!!, "PAST")
-        adapter.addFragment(EventFragmentMetaList.newInstance("META", user_id)!!, "METAVERSE")
+        adapter.addFragment(EventFragmentMetaList.newInstance("META", user_id)!!, "META")
 
         // setting adapter to view pager.
         viewpager.adapter = adapter
@@ -252,8 +257,11 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
 
         lifecycleScope.launch {
             try {
+                Companion.progress.show()
                 val res = homeRepositry.getEventType()
+                Companion.progress.dismiss()
                 if (res.status) {
+
                   var  data = res.data
 
                     val circularProgressDrawable = CircularProgressDrawable(requireContext())
@@ -280,8 +288,10 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
 
                 }
             } catch (e: ApiException) {
+                Companion.progress.dismiss()
                 e.printStackTrace()
             } catch (e: NoInternetException) {
+                Companion.progress.dismiss()
                 e.printStackTrace()
             }
         }
@@ -528,24 +538,28 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
         end_date: String?,
         category: String?
     ) {
-//        Log.e("start", start_date.toString())
-//        lifecycleScope.launch {
-//            try {
-//                val res = homeRepositry.getFilteredEventList(
-//                    1,
-//                    100,
-//                    user_id,
-//                    lat!!,
-//                    lon!!,
-//                    10,
-//                    start_date!!,
-//                    end_date!!,
-//                    category!!
-//                )
-//                dataList.clear()
-//                if (res.status) {
+        Log.e("start", start_date.toString())
+        lifecycleScope.launch {
+
+            try {
+                Companion.progress.show()
+                val res = homeRepositry.getFilteredEventList(
+                    "1","100",
+                    user_id,
+                    lat!!,
+                    lon!!,
+                    "",
+                    start_date!!,
+                    end_date!!,
+                    category!!
+                )
+                dataList.clear()
+                Companion.progress.dismiss()
+                if (res.status) {
+
+                    dataList = res.data
 //                    STORY_IMAGE = res.image
-//                    dataList = res.data
+//
 //                    Log.e("filteredRes: ", "" + dataList)
 //                    adapter = EventListAdapter(requireContext(), dataList, this@EventFragmentList, 1)
 //                    binding.rvEventList.also {
@@ -554,19 +568,23 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
 //                        it.setHasFixedSize(true)
 //                        it.adapter = adapter
 //                    }
-//                } else {
-//                    "${res.message}".toast(requireContext())
-//                }
-//                adapter?.notifyDataSetChanged()
-//                Prefs.putAny("isFilter", false)
-//            } catch (e: ApiException) {
-//                e.printStackTrace()
-//                Prefs.putAny("isFilter", false)
-//            } catch (e: NoInternetException) {
-//                e.printStackTrace()
-//                Prefs.putAny("isFilter", false)
-//            }
-//        }
+                } else {
+                    Companion.progress.dismiss()
+                    "${res.message}".toast(requireContext())
+                }
+                adapter?.notifyDataSetChanged()
+                Prefs.putAny("isFilter", false)
+            } catch (e: ApiException) {
+                Companion.progress.dismiss()
+                e.printStackTrace()
+                "${e.message}".toast(requireContext())
+                Prefs.putAny("isFilter", false)
+            } catch (e: NoInternetException) {
+                Companion.progress.dismiss()
+                e.printStackTrace()
+                Prefs.putAny("isFilter", false)
+            }
+        }
     }
 
 //    override fun onMenuSelected(selected: Int) {

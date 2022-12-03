@@ -210,7 +210,7 @@ class HomeRepositry(
     }
 
     suspend fun getEventRequestUserList(page: Int,perPage: Int,userId: String): EventRequestResponse{
-        return apiRequest { api.getEventRequestUserList(page, perPage, userId) }
+        return apiRequest { api.getEventRequestUserList(page, perPage) }
     }
 
     suspend fun changeBookingStatus(event_booking_id: String,status: String): SingleRes{
@@ -281,8 +281,8 @@ class HomeRepositry(
         return apiRequest { api.getOwnEvents() }
     }
 
-    suspend fun getFilteredEventList(page: Int,per_page: Int,user_id: String,lat: String,lon: String,distance: Int,start_date: String,end_date:String,category: String): EventsRes{
-        return  apiRequest { api.getFilteredEvents(page, per_page, user_id, lat, lon, distance, start_date, end_date,category) }
+    suspend fun getFilteredEventList(page: String,per_page: String,user_id: String,lat: String,lon: String,distance: String,start_date: String,end_date:String,category: String): EventsRes{
+        return  apiRequest { api.getFilteredEvents(page, per_page,  lat, lon, distance, start_date, end_date,category) }
     }
 
     suspend fun getNearbyEvents(page:Int,per_page:Int,your_user_id:String,latitude:Double,longitude:Double,distance:Int):EventsRes{

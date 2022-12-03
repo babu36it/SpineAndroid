@@ -25,7 +25,7 @@ data class User(
     var user_latitude: String?,
     var user_longitude: String?,
     var display_name: String?,
-    var profile_pic:String?
+    var user_image:String?
 ):Serializable
 {
     @PrimaryKey(autoGenerate = false)

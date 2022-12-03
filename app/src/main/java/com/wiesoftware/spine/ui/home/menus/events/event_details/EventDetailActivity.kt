@@ -313,14 +313,14 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         }
 
 
-        getUserDetails("https://thespiritualnetwork.com/assets/upload/profile/"+record.hostedProfilePic ?: "",record.displayName ?:"")
+        getUserDetails("https://thespiritualnetwork.com/assets/upload/profile/"+record.hostedProfilePic ?: "",record.displayName ?:record.useName)
 
         ///  getEventDetails()
 
         eve_date = record.startDate
         start_time = (record.startTime).removeRange(5 until (record.startTime).length)
         end_time =
-            (record.endTime).removeRange(5 until (record.endTime).length) + " " + record.timezone
+            (record.endTime).removeRange(5 until (record.endTime).length) + " " + record.timezoneName
         location = record.location
 
         title = record.title
@@ -436,69 +436,69 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         }
     }
 
-    private fun setBookingStatus() {
-        if (bookingStatus != null) {
-            if (bookingStatus.equals("0")) {
-                //request sent
-                binding.button48.visibility = View.GONE
-                if (eventType.equals("1")) {
-                    binding.textView108.text = getString(R.string.local_event)
-                    binding.textView118.text = getString(R.string.local)
-                    if (fee.equals("0")) {
-                        binding.button47.text = getString(R.string.reserve_spot)
-                    } else {
-                        binding.button47.text = getString(R.string.book_event)
-                    }
-                    binding.button47.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
-                } else {
-                    if (fee.equals("0")) {
-                        binding.button47.text = getString(R.string.reserve_spot)
-                    } else {
-                        binding.button47.text = getString(R.string.book_event)
-                    }
-                    val img: Drawable? = ContextCompat.getDrawable(this, R.drawable.ic_arrow_right)
-                    img?.setTint(getColor(this, R.color.text_white))
-                    binding.button47.setCompoundDrawablesWithIntrinsicBounds(null, null, img, null)
-                    binding.button47.compoundDrawablePadding = 16
-                }
-            } else if (bookingStatus.equals("1")) {
-                //Booking confirmed
-                binding.button48.visibility = View.GONE
-
-            } else if (bookingStatus.equals("2")) {
-                //accept by event user
-                binding.button48.visibility = View.VISIBLE
-                binding.button47.text = getString(R.string.you_re_going)
-                binding.button47.setBackgroundColor(getColor(this, R.color.transparent))
-                binding.button47.setTextColor(getColor(this, R.color.text_black))
-            } else if (bookingStatus.equals("3")) {
-                //reject by event user
-                binding.button48.visibility = View.GONE
-                binding.button47.text = getString(R.string.your_req_is_declined)
-                binding.button47.setBackgroundColor(getColor(this, R.color.transparent))
-                binding.button47.setTextColor(getColor(this, R.color.text_black))
-
-            } else if (bookingStatus.equals("4")) {
-                //reject by booking user
-                binding.button48.visibility = View.GONE
-                binding.button47.text = getString(R.string.you_re_not_going)
-                binding.button47.setBackgroundColor(getColor(this, R.color.transparent))
-                binding.button47.setTextColor(getColor(this, R.color.text_black))
-            } else if (bookingStatus.equals("5")) {
-                binding.button48.visibility = View.GONE
-                binding.button47.text = getString(R.string.booking_status_req)
-                binding.button47.setBackgroundColor(getColor(this, R.color.transparent))
-                binding.button47.setTextColor(getColor(this, R.color.text_black))
-            }
-        }
-    }
+//    private fun setBookingStatus() {
+//        if (bookingStatus != null) {
+//            if (bookingStatus.equals("0")) {
+//                //request sent
+//                binding.button48.visibility = View.GONE
+//                if (eventType.equals("1")) {
+//                    binding.textView108.text = getString(R.string.local_event)
+//                    binding.textView118.text = getString(R.string.local)
+//                    if (fee.equals("0")) {
+//                        binding.button47.text = getString(R.string.reserve_spot)
+//                    } else {
+//                        binding.button47.text = getString(R.string.book_event)
+//                    }
+//                    binding.button47.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+//                } else {
+//                    if (fee.equals("0")) {
+//                        binding.button47.text = getString(R.string.reserve_spot)
+//                    } else {
+//                        binding.button47.text = getString(R.string.book_event)
+//                    }
+//                    val img: Drawable? = ContextCompat.getDrawable(this, R.drawable.ic_arrow_right)
+//                    img?.setTint(getColor(this, R.color.text_white))
+//                    binding.button47.setCompoundDrawablesWithIntrinsicBounds(null, null, img, null)
+//                    binding.button47.compoundDrawablePadding = 16
+//                }
+//            } else if (bookingStatus.equals("1")) {
+//                //Booking confirmed
+//                binding.button48.visibility = View.GONE
+//
+//            } else if (bookingStatus.equals("2")) {
+//                //accept by event user
+//                binding.button48.visibility = View.VISIBLE
+//                binding.button47.text = getString(R.string.you_re_going)
+//                binding.button47.setBackgroundColor(getColor(this, R.color.transparent))
+//                binding.button47.setTextColor(getColor(this, R.color.text_black))
+//            } else if (bookingStatus.equals("3")) {
+//                //reject by event user
+//                binding.button48.visibility = View.GONE
+//                binding.button47.text = getString(R.string.your_req_is_declined)
+//                binding.button47.setBackgroundColor(getColor(this, R.color.transparent))
+//                binding.button47.setTextColor(getColor(this, R.color.text_black))
+//
+//            } else if (bookingStatus.equals("4")) {
+//                //reject by booking user
+//                binding.button48.visibility = View.GONE
+//                binding.button47.text = getString(R.string.you_re_not_going)
+//                binding.button47.setBackgroundColor(getColor(this, R.color.transparent))
+//                binding.button47.setTextColor(getColor(this, R.color.text_black))
+//            } else if (bookingStatus.equals("5")) {
+//                binding.button48.visibility = View.GONE
+//                binding.button47.text = getString(R.string.booking_status_req)
+//                binding.button47.setBackgroundColor(getColor(this, R.color.transparent))
+//                binding.button47.setTextColor(getColor(this, R.color.text_black))
+//            }
+//        }
+//    }
 
     fun Bookingstataus() {
         if (bookingStatus != null) {
 
             if (eventType.equals("1")) {
 
-                if (bookingStatus.equals("book_event")) {
+                if (bookingStatus.equals("BOOK EVENT")) {
                     binding.button47.text = getString(R.string.book_event)
                     var url = record.booking_url
 
@@ -519,7 +519,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
                     Log.d("TAG", "Bookingstataus: ${record.booking_url}")
 
 
-                } else if (bookingStatus.equals("reserve_a_spot")) {
+                } else if (bookingStatus.equals(getString(R.string.reserve_spot))) {
                     binding.button47.text = getString(R.string.reserve_spot)
 
                     binding.button47.setOnClickListener {
@@ -527,12 +527,12 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
                     }
 
 
-                } else if (bookingStatus.equals("you_sent_a_request_to_join")) {
+                } else if (bookingStatus.equals("YOU SEND A REQUEST TO JOIN")) {
                     binding.button48.visibility = View.GONE
                     binding.button47.text = getString(R.string.booking_status_req)
                     binding.button47.setBackgroundColor(getColor(this, R.color.transparent))
                     binding.button47.setTextColor(getColor(this, R.color.text_black))
-                } else if (bookingStatus.equals("you_are_going")) {
+                } else if (bookingStatus.equals("YOUR GOING")) {
                     binding.button48.visibility = View.VISIBLE
                     binding.button47.text = getString(R.string.you_re_going)
                     binding.button47.setBackgroundColor(getColor(this, R.color.transparent))
@@ -540,33 +540,34 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
                 }
 
             } else {
-
-                if (bookingStatus.equals("request_to_attend_online")) {
+                        Log.d("Harsh",bookingStatus)
+                if (bookingStatus.equals("REQUEST TO ATTEND ONLINE")) {
+                    binding.button47.visibility = View.VISIBLE
                     binding.button47.setOnClickListener {
                         sendOnlineRequestDialog()
 
                     }
-                } else if (bookingStatus.equals("you_sent_a_request_to_join")) {
+                } else if (bookingStatus.equals("YOU SEND A REQUEST TO JOIN")) {
                     binding.button48.visibility = View.GONE
                     binding.button47.text = getString(R.string.booking_status_req)
                     binding.button47.setBackgroundColor(getColor(this, R.color.transparent))
                     binding.button47.setTextColor(getColor(this, R.color.text_black))
-                } else if (bookingStatus.equals("you_are_going")) {
+                } else if (bookingStatus.equals("YOUR GOING")) {
                     binding.button48.visibility = View.VISIBLE
                     binding.button47.text = getString(R.string.you_re_going)
                     binding.button47.setBackgroundColor(getColor(this, R.color.transparent))
                     binding.button47.setTextColor(getColor(this, R.color.text_black))
-                } else if (bookingStatus.equals("rejected_by_user")) {
+                } else if (bookingStatus.equals("REJECTED BY YOU")) {
                     binding.button48.visibility = View.GONE
                     binding.button47.text = getString(R.string.you_re_not_going)
                     binding.button47.setBackgroundColor(getColor(this, R.color.transparent))
                     binding.button47.setTextColor(getColor(this, R.color.text_black))
-                } else if (bookingStatus.equals("rejected_by_host")) {
+                } else if (bookingStatus.equals("REJECTED BY HOST")) {
                     binding.button48.visibility = View.GONE
                     binding.button47.text = getString(R.string.your_req_is_declined)
                     binding.button47.setBackgroundColor(getColor(this, R.color.transparent))
                     binding.button47.setTextColor(getColor(this, R.color.text_black))
-                } else if (bookingStatus.equals("attend_online")) {
+                } else if (bookingStatus.equals("ATTEND ONLINE")) {
                     binding.button47.text = "ATTEND ONLINE"
                     var url = record.linkOfEvent
 

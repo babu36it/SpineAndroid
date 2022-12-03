@@ -17,21 +17,35 @@
         android:layout_margin="6dp"
         android:background="@drawable/boarder_round_btn_bg">
 
-        <TextView
-            android:id="@+id/textView28"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="@dimen/dp4"
-            android:paddingStart="@dimen/_8sdp"
-            android:paddingEnd="@dimen/_8sdp"
-            android:text="@{model.subcategoryName}"
-            android:textColor="@color/text_black"
-            android:textSize="@dimen/_13sdp"
+
+        <HorizontalScrollView
+            android:id="@+id/horizontal_bar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:scrollbars="none"
+            android:paddingStart="@dimen/_8sdp"
+            android:paddingEnd="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_4sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="@dimen/dp4"
+
+                android:text="@{model.subcategoryName}"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_10sdp"
+                android:maxLines="1"
+                />
+        </HorizontalScrollView>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

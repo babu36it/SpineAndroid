@@ -1,13 +1,17 @@
 package com.wiesoftware.spine.ui.home.menus.events.addordup
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.net.reponses.EventsRecord
 import com.wiesoftware.spine.databinding.DupEventListItemBinding
@@ -58,6 +62,14 @@ class DupEventAdapter(
         }else{
             holder.itemView.textView327.visibility = View.GONE
         }
+
+
+        Glide.with(holder.itemView.context)
+            .load("https://thespiritualnetwork.com/assets/upload/spine-post/"+data[position].file)
+            .thumbnail(.1f)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .error( ColorDrawable(ContextCompat.getColor(holder.itemView.context, R.color.light_gry)))
+            .into(holder.itemView.imageView48);
 
 
         try {

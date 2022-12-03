@@ -1,119 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="@dimen/_5sdp"
+    app:cardElevation="@dimen/_5sdp"
+    app:cardBackgroundColor="@color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="@dimen/_5sdp"
-    android:background="@drawable/shadow_box"
-    android:orientation="vertical">
-
-
-    <TextView
-        android:id="@+id/textView131"
-        style="@style/TitleText"
+    android:layout_height="match_parent">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_back_black"
-        android:text="Select Categories"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@color/day_night_both_black" />
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_5sdp"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:text="Select event categories"
-        android:fontFamily="@font/poppins_bold"
-        android:textSize="@dimen/_14sdp"
-        android:layout_marginStart="@dimen/_7sdp"
-        android:layout_marginTop="@dimen/_7sdp"
-        android:textColor="@color/day_night_both_black"
-        android:layout_height="wrap_content"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:text="multiple selection possible"
-        android:fontFamily="@font/poppins_regular"
-        android:textSize="@dimen/_12sdp"
-        android:layout_marginStart="@dimen/_7sdp"
-        android:textStyle="italic"
-        android:textColor="@color/day_night_both_black"
-        android:layout_height="wrap_content"/>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_7sdp"
-        android:background="@color/white"
-        android:backgroundTint="@color/white"
-        android:elevation="@dimen/_6sdp"
-        app:cardCornerRadius="@dimen/_6sdp">
-
-        <EditText
-            android:id="@+id/edt_search_category"
+        <TextView
+            android:id="@+id/textView131"
+            style="@style/TitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_back_black"
+            android:text="Select Categories"
+            android:textAlignment="center"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:textAllCaps="true"
+            android:textColor="@color/day_night_both_black" />
+
+        <!--    <TextView-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:text="Select event categories"-->
+        <!--        android:fontFamily="@font/poppins_bold"-->
+        <!--        android:textSize="@dimen/_14sdp"-->
+        <!--        android:layout_marginStart="@dimen/_7sdp"-->
+        <!--        android:layout_marginTop="@dimen/_7sdp"-->
+        <!--        android:textStyle="bold"-->
+        <!--        android:textColor="@color/day_night_both_black"-->
+        <!--        android:layout_height="wrap_content"/>-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="multiple selection possible"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:textStyle="normal"
+            android:textColor="@color/day_night_both_black"
+            android:layout_height="wrap_content"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_7sdp"
             android:background="@color/white"
-            android:drawableLeft="@drawable/search"
-            android:drawablePadding="@dimen/_6sdp"
-            android:hint="Search Categories"
-            android:maxLines="1"
-            android:padding="@dimen/_7sdp"
-            android:textColor="@color/text_black"
-            android:textColorHint="@color/dark_gray_day_night">
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/_6sdp"
+            app:cardCornerRadius="@dimen/_6sdp">
 
-        </EditText>
-    </androidx.cardview.widget.CardView>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvcats"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/rel_bottom"
-            android:layout_marginStart="@dimen/_7sdp"
-            android:layout_marginTop="@dimen/_7sdp"
-            android:layout_marginEnd="@dimen/_7sdp"
-            android:layout_marginBottom="@dimen/_7sdp" />
-
-        <RelativeLayout
-            android:id="@+id/rel_bottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
-
-            <Button
-                android:id="@+id/button52"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/sixteen"
-                android:layout_marginBottom="@dimen/eight"
-                android:background="@drawable/round_border"
-                android:backgroundTint="@color/colorPrimary"
-                android:text="@string/cancel"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:visibility="gone" />
-
-            <Button
-
-                android:id="@+id/button53"
+            <EditText
+                android:id="@+id/edt_search_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginHorizontal="@dimen/_15sdp"
-                android:layout_marginBottom="@dimen/eight"
-                android:background="@drawable/round_border"
-                android:backgroundTint="@color/colorPrimary"
-                android:text="Update Results"
-                android:textAllCaps="true"
-                android:textColor="@color/white" />
+                android:background="@color/white"
+                android:layout_marginHorizontal="@dimen/eight"
+                android:drawableLeft="@drawable/ic_search"
+                android:drawablePadding="@dimen/_3sdp"
+                android:hint="Search Categories"
+                android:maxLines="1"
+                android:padding="@dimen/_7sdp"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@color/text_black"
+                android:textColorHint="@color/dark_gray_day_night">
+
+            </EditText>
+        </androidx.cardview.widget.CardView>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvcats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:layout_marginBottom="@dimen/_7sdp" />
+
+            <RelativeLayout
+                android:layout_below="@+id/rvcats"
+                android:id="@+id/rel_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/button52"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/sixteen"
+                    android:layout_marginBottom="@dimen/eight"
+                    android:background="@drawable/round_border"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="@string/cancel"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
+
+                <Button
+
+                    android:id="@+id/button53"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/eight"
+                    android:background="@drawable/round_border"
+                    app:backgroundTint="@color/colorPrimaryDark"
+                    android:text="Update Results"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
         </RelativeLayout>
-    </RelativeLayout>
 
 
-</LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

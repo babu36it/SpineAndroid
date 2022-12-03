@@ -55,7 +55,7 @@ class PodcastSubcategoryAdapter(
                 ContextCompat.getDrawable(holder.context, R.drawable.boarder_round_btn_bg)
         }
 
-        holder.podSubcatListBinding.itemLayout.setOnClickListener {
+        holder.podSubcatListBinding.textView28.setOnClickListener {
 
             if (list.contains(dataList[position].id)) {
                 list.remove(dataList[position].id)

@@ -61,7 +61,7 @@
                     android:layout_marginTop="@dimen/_2sdp"
                     android:fontFamily="@font/poppins_regular"
                     android:layout_height="wrap_content"
-                    android:text="9 May - 12 May 2021, 18:00Laos"
+                    android:text="9 May - 12 May 2021, 18:00"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView325" />
@@ -93,7 +93,7 @@
                 android:layout_weight="0.8"
                 android:scaleType="centerCrop"
                 android:src="@drawable/demo"
-                app:image="@{model.file}" />
+               />
 
 
         </LinearLayout>

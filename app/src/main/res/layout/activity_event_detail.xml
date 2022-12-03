@@ -94,7 +94,7 @@
                     style="@style/TitleText"
                     android:text="9 May"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/normalText"
+                    android:textSize="@dimen/_12sdp"
                     app:layout_constraintBottom_toBottomOf="@+id/tab_layout"
                     app:layout_constraintStart_toStartOf="parent" />
 

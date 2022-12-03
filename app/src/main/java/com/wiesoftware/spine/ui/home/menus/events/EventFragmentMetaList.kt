@@ -405,12 +405,12 @@ class EventFragmentMetaList : Fragment(), KodeinAware, EventFragmentEventListene
         lifecycleScope.launch {
             try {
                 val res = homeRepositry.getFilteredEventList(
-                    1,
-                    100,
+                    "1",
+                    "100",
                     user_id,
                     lat!!,
                     lon!!,
-                    10,
+                    "0",
                     start_date!!,
                     end_date!!,
                     category!!
@@ -498,8 +498,10 @@ class EventFragmentMetaList : Fragment(), KodeinAware, EventFragmentEventListene
     private fun meta() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getAllSavedEvents(1, 100, user_id)
+                EventFragment.progress.show()
+                val res = homeRepositry.getAllEvents(1, 100, "metaverse", "")
                 dataList.clear()
+                EventFragment.progress.dismiss()
                 if (res.status) {
                     BASE_IMAGE = res.image
                     dataList = res.data
@@ -514,14 +516,16 @@ class EventFragmentMetaList : Fragment(), KodeinAware, EventFragmentEventListene
                 }
 
                 if (dataList.size > 0)
-                    EventFragment.tabLayout?.getTabAt(2)?.setText("SAVED ("+dataList.size+")");
+                    EventFragment.tabLayout?.getTabAt(7)?.setText("META ("+dataList.size+")");
                 else
-                    EventFragment.tabLayout?.getTabAt(2)?.setText("SAVED");
+                    EventFragment.tabLayout?.getTabAt(7)?.setText("META");
 
                 adapter?.notifyDataSetChanged()
             } catch (e: ApiException) {
+                EventFragment.progress.dismiss()
                 e.printStackTrace()
             } catch (e: NoInternetException) {
+                EventFragment.progress.dismiss()
                 e.printStackTrace()
             }
         }

@@ -180,27 +180,22 @@ class EventFragmentNearByList : Fragment(), KodeinAware, EventFragmentEventListe
 
 
     fun setFilterDataNearBy(newText: String) {
-        dataListTemp.clear()
-        if (newText!!.isEmpty()) {
-            dataListTemp = dataList
-        } else {
-            for (row in dataList) {
-                for (data in row.records) {
-                    if ((data.title).toLowerCase(Locale.ROOT)
-                            .contains(newText!!.toLowerCase(Locale.ROOT))
-                        || (data.displayName ?: data.useName).toLowerCase(Locale.ROOT)
-                            .contains(newText!!.toLowerCase(Locale.ROOT))
-                        || (data.location).toLowerCase(Locale.ROOT)
-                            .contains(newText!!.toLowerCase(Locale.ROOT))
-                        || (data.description).toLowerCase(Locale.ROOT)
-                            .contains(newText!!.toLowerCase(Locale.ROOT))
-                    ) {
-                        dataListTemp.add(row)
-                    }
+        val dataListTemp: MutableList<EventsData> = mutableListOf()
+
+        for (row in dataList) {
+            for (data in row.records) {
+                if ((data.title).toLowerCase(Locale.ROOT)
+                        .contains(newText!!.toLowerCase(Locale.ROOT))
+                    || (data.location).toLowerCase(Locale.ROOT)
+                        .contains(newText!!.toLowerCase(Locale.ROOT))
+                    || (data.description).toLowerCase(Locale.ROOT)
+                        .contains(newText!!.toLowerCase(Locale.ROOT))
+                ) {
+                    dataListTemp.add(row)
                 }
             }
         }
-        println("Sanjay NearBy...."+newText+"......"+dataListTemp.size)
+
         adapter?.setFilterData(dataListTemp)
     }
 
@@ -400,12 +395,12 @@ class EventFragmentNearByList : Fragment(), KodeinAware, EventFragmentEventListe
         lifecycleScope.launch {
             try {
                 val res = homeRepositry.getFilteredEventList(
-                    1,
-                    100,
+                    "1",
+                    "100",
                     user_id,
                     lat!!,
                     lon!!,
-                    10,
+                    "",
                     start_date!!,
                     end_date!!,
                     category!!
@@ -537,8 +532,10 @@ class EventFragmentNearByList : Fragment(), KodeinAware, EventFragmentEventListe
         Log.e("latlong: ", "$lat, $lon")
         lifecycleScope.launch {
             try {
+                EventFragment.progress.show()
                 val res = homeRepositry.getNearbyEvents(1, 100, user_id, lat, lon, 10)
                 dataList.clear()
+                EventFragment.progress.dismiss()
                 if (res.status) {
                     STORY_IMAGE = res.image
                     dataList = res.data
@@ -566,8 +563,10 @@ class EventFragmentNearByList : Fragment(), KodeinAware, EventFragmentEventListe
 
                 adapter?.setFilterData(dataList)
             } catch (e: ApiException) {
+                EventFragment.progress.dismiss()
                 e.printStackTrace()
             } catch (e: NoInternetException) {
+                EventFragment.progress.dismiss()
                 e.printStackTrace()
             }
         }
