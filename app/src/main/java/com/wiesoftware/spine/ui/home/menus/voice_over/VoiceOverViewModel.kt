@@ -38,8 +38,4 @@ class VoiceOverViewModel(val homeRepositry: HomeRepositry) : ViewModel(){
         voiceOverListener?. onStartRecordings()
     }
 
-
-
-
-
 }
