@@ -144,9 +144,6 @@ class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
             }
         }
         binding.barVisualize.setPlayer(mediaPlayer!!.audioSessionId)
-
-
-
     }
 
 
