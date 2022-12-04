@@ -76,6 +76,7 @@ class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
     private var audioFileNameWithPath: String? = null
     val REQUEST_TAKE_PHOTO = 1
     val GALLERY_REQ = 2
+    val RECORD_REQ = 3
     val PERMISSION_REQUEST_CODE = 110
     var bitmaps: Bitmap? = null
     private var adapter: SelectedImageAdapter? = null
@@ -85,8 +86,6 @@ class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
     var photoURIList: Uri? = null
     var photoUriList: String? = null
     val REPEAT_INTERVAL = 40
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -104,6 +103,25 @@ class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
         homeRepositry.getUser().observe(this, androidx.lifecycle.Observer { user ->
             viewmodel.userId = user.users_id!!
         })
+        if (Utils.hasPermissions(
+                this, *arrayOf(
+                    Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE))
+        ) {
+            enableLineBar()
+        }else{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(
+                    arrayOf(
+                        Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    ), RECORD_REQ
+                )
+            }
+        }
+
+
+    }
+
+    private fun enableLineBar() {
         binding.barVisualize.setColor(ContextCompat.getColor(this, R.color.grey))
         binding.barVisualize.setDensity(70f);
         binding.barVisualize.setPlayer(mediaPlayer!!.audioSessionId)
@@ -120,18 +138,26 @@ class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
     override fun onImageCLose() {
         photoUriList = null
         bitmaps = null
+        currentPhotoPath=null
         binding.constarintImageVideo.visibility = View.GONE
     }
 
     override fun onPlay() {
-        Log.e("audioFileNameWithPath",  viewmodel.audioFileNameWithPath.toString() + " -->onPreviewClick")
+        if(Utils.hasPermissions(this, *arrayOf(
+                Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE))){
+            enableLineBar()
+        }
+        Log.e(
+            "audioFileNameWithPath",
+            viewmodel.audioFileNameWithPath.toString() + " -->onPreviewClick"
+        )
         binding.imageViewPlayPause.visibility = View.GONE
         binding.imageViewPause.visibility = View.VISIBLE
         binding.imageViewStartRecord.visibility = View.GONE
         binding.imageViewDelete.visibility = View.VISIBLE
         mediaPlayer = MediaPlayer().apply {
             try {
-                setDataSource( viewmodel.audioFileNameWithPath)
+                setDataSource(viewmodel.audioFileNameWithPath)
                 setOnCompletionListener(OnCompletionListener { stopPlayingAudio() })
                 prepare()
                 start()
@@ -161,12 +187,12 @@ class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
     private fun startRecording() {
         val uuid = UUID.randomUUID().toString()
         viewmodel.audioFileNameWithPath = externalCacheDir!!.absolutePath + "/" + uuid + ".3gp"
-        Log.i(VoiceOverActivity::class.java.getSimpleName(),  viewmodel.audioFileNameWithPath!!)
+        Log.i(VoiceOverActivity::class.java.getSimpleName(), viewmodel.audioFileNameWithPath!!)
 
         mediaRecorder = MediaRecorder().apply {
             setAudioSource(MediaRecorder.AudioSource.MIC)
             setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
-            setOutputFile( viewmodel.audioFileNameWithPath)
+            setOutputFile(viewmodel.audioFileNameWithPath)
             setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
             try {
                 prepare()
@@ -186,7 +212,7 @@ class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
 
     override fun onPaused() {
 
-        Log.e("audioFileNameWithPath",  viewmodel.audioFileNameWithPath.toString() + " -->onPaused")
+        Log.e("audioFileNameWithPath", viewmodel.audioFileNameWithPath.toString() + " -->onPaused")
         // binding. voiceMessageLayout!!.visibility = View.GONE
         if (mediaRecorder != null) {
             // mediaRecorder?.stop();
@@ -263,7 +289,7 @@ class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
                 mediaRecorder!!.release()
                 mediaRecorder = null
                 if (isCancel) {
-                    File( viewmodel.audioFileNameWithPath).delete()
+                    File(viewmodel.audioFileNameWithPath).delete()
                 }
             }
         } catch (e: Exception) {
@@ -527,10 +553,14 @@ class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
 
 
         }
+
+        if (requestCode == RECORD_REQ && resultCode == RESULT_OK){
+            enableLineBar()
+        }
     }
 
     data class VoicePreview(
-        var audioString : String,
+        var audioString: String,
         var selectedHashtags: String,
         var userId: String,
         var currentPhotoPathList: MutableList<String>,
