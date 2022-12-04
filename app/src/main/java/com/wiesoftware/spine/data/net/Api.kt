@@ -382,50 +382,27 @@ interface Api {
 
     //@Headers(HEADER_1, HEADER_2)
     @GET("events/getEventBookingRequestList/{page}/{perPage}")
-    @GET("events/getEventBookings/{page}/{perPage}/{userId}")
     suspend fun getEventRequestUserList(
         @Path("page") page: Int,
         @Path("perPage") perPage: Int,
 
-    ):Response<EventRequestResponse>
-        @Path("userId") userId: String
-    ): Response<EventRequestResponse>
+        ):Response<EventRequestResponse>
 
-//    //@Headers(HEADER_1, HEADER_2)
-//    @GET("events/getEventBookings/{page}/{perPage}/{userId}")
-//    suspend fun getEventRequestUserList(
-//        @Path("page") page: Int,
-//        @Path("perPage") perPage: Int,
-//        @Path("userId") userId: String
-//    ):Response<EventRequestResponse>
+
 
     //@Headers(HEADER_1, HEADER_2)
     @GET("events/changeEventBookingStatus/{BookingId}/{Status}")
-    @GET("events/changeEventBookingStatus/{event_booking_id}/{status}")
     suspend fun changeBookingStatus(
         @Path("BookingId") BookingId: String,
         @Path("Status") Status: String
     ):Response<SingleRes>
-        @Path("event_booking_id") event_booking_id: String,
-        @Path("status") status: String
-    ): Response<SingleRes>
 
-//    //@Headers(HEADER_1, HEADER_2)
-//    @GET("podcasts/getPodcastsLanguage")
-//    suspend fun getPodcastLanguage():Response<LangRes>
 
-//    < Harsh: Changed Endpoint of time zone api: 16/10/22>
-    //@Headers(HEADER_1, TestToken)
 
     @GET("languages")
     suspend fun getPodcastLanguage(): Response<LangRes>
 
-//    //@Headers(HEADER_1, HEADER_2)
-//    @GET("getAllTimezones")
-//    suspend fun getAllTimezones():Response<TimeZoneResponse>
 
-    //    < Harsh: Changed Endpoint of time zone api: 16/10/22>
-    //@Headers(HEADER_1, TestToken)
     @GET("timezones")
     suspend fun getAllTimezones(): Response<TimeZoneResponse>
 
@@ -538,6 +515,7 @@ interface Api {
 
     ): Response<OwnEventsRes>
 
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("events/getEventsListFilter")
     suspend fun getFilteredEvents(
@@ -549,7 +527,7 @@ interface Api {
         @Field("start_date") start_date: String,
         @Field("end_date") end_date: String,
         @Field("category") category: String
-    ): Response<EventsRes>
+    ):Response<EventsRes>
 
     @GET("events/getDistanceUsersEventsList/{latitude}/{longitude}/{distance}")
     suspend fun getNearbyEvents(
@@ -690,6 +668,42 @@ interface Api {
         @Field("business_phone") business_phone: String,
         @Field("business_address") business_address: String,
         @Field("address") address: String
+    ): Response<SingleRes>
+
+
+
+
+    @FormUrlEncoded
+    @POST("profile/profileEdit")
+    suspend fun editProfile(
+        @Field("account_type") account_type: String,
+        @Field("listing_type") listing_type: String,
+        @Field("name") name: String,
+        @Field("display_name") display_name: String,
+        @Field("bio") bio: String,
+        @Field("category") category: String,
+        @Field("interested") interested: String,
+        @Field("offer_desciption") offer_desciption: String,
+        @Field("key_perfomance") key_perfomance: String,
+        @Field("desease_pattern") desease_pattern: String,
+        @Field("languages") languages: String,
+        @Field("qualification") qualification: String,
+        @Field("company_name") company_name: String,
+        @Field("street_1") street_1: String,
+        @Field("street_2") street_2: String,
+        @Field("street_3") street_3: String,
+        @Field("city") city: String,
+        @Field("postcode") postcode: String,
+        @Field("country") country: String,
+        @Field("address") address: String,
+        @Field("metaverse_address") metaverse_address: String,
+        @Field("website") website: String,
+        @Field("contact_email") contact_email: String,
+        @Field("business_phone") business_phone: String,
+        @Field("business_mobile") business_mobile: String,
+        @Field("business_phone_code") business_phone_code: String,
+        @Field("business_mobile_code") business_mobile_code: String
+
     ): Response<SingleRes>
 
 

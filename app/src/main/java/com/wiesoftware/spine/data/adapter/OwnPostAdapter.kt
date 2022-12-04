@@ -39,8 +39,8 @@ class OwnPostAdapter(val postList: List<PostData>, val listener: OwnPostSelected
     override fun onBindViewHolder(holder: OwnPostHolder, position: Int) {
         if (postList[position].type.equals("2")) {
             if (postList[position].files.endsWith(".mp4")) {
-                holder.ownPostItemBinding.rrPostVideo.visibility = View.VISIBLE
-                holder.ownPostItemBinding.ivvideo.visibility=View.VISIBLE
+                holder.ownPostItemBinding.rrPostVideo.visibility = View.GONE
+                holder.ownPostItemBinding.ivvideo.visibility=View.GONE
                 holder.ownPostItemBinding.ivPostImageVideo.visibility = View.GONE
                 holder.ownPostItemBinding.llHashtags.visibility = View.GONE
                 Glide.with(holder.context)
@@ -48,7 +48,7 @@ class OwnPostAdapter(val postList: List<PostData>, val listener: OwnPostSelected
                     .into(holder.ownPostItemBinding.ivPostImageVideo)
             } else {
                 holder.ownPostItemBinding.rrPostVideo.visibility = View.GONE
-                holder.ownPostItemBinding.ivPostImageVideo.visibility = View.VISIBLE
+                holder.ownPostItemBinding.ivPostImageVideo.visibility = View.GONE
                 holder.ownPostItemBinding.ivvideo.visibility=View.GONE
                 holder.ownPostItemBinding.llHashtags.visibility = View.GONE
                 Glide.with(holder.context).load("https://thespiritualnetwork.com/assets/upload/spine-post/" +postList[position].files)

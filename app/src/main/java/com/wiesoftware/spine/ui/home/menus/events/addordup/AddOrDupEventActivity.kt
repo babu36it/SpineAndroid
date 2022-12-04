@@ -68,7 +68,7 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
         lifecycleScope.launch {
             try {
                 progress.show()
-                val res = homeRepositry.getOwnEvents(userId)
+                val res = homeRepositry.getOwnEvents()
                 progress.dismiss()
                 if (res.status) {
                     BASE_IMAGE = res.image

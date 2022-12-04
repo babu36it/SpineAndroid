@@ -18,22 +18,6 @@
         android:layout_margin="@dimen/_5sdp"
         android:background="@drawable/boarder_round_btn_bg">
 
-        <TextView
-            android:id="@+id/textView28"
-            style="@style/newspinnerText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:gravity="center"
-            android:padding="@dimen/dp4"
-            android:paddingStart="@dimen/_8sdp"
-            android:paddingEnd="@dimen/_8sdp"
-            android:text="@{model.subcategoryName}"
-            android:textSize="@dimen/_10sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <HorizontalScrollView
             android:id="@+id/horizontal_bar"

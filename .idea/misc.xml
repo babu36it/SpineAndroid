@@ -13,7 +13,6 @@
         <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/circle.xml" value="0.1595" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/circle_fill.xml" value="0.1595" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/dark_button.xml" value="0.1595" />
-        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/default_dot.xml" value="0.1405" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/ic_add_new.xml" value="0.1595" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/ic_check.xml" value="0.1595" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/ic_email_message.xml" value="0.1595" />
@@ -28,37 +27,33 @@
         <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/off_white_button_bg.xml" value="0.1255" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/round_button_bg.xml" value="0.1265" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/search.xml" value="0.1595" />
-        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/selected_dot.xml" value="0.1405" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/shadow_box.xml" value="0.104" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/single_line_background.xml" value="0.104" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/spinner_background.xml" value="0.104" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/swithc_bg.xml" value="0.1595" />
-        <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/tab_selector.xml" value="0.1405" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/drawable/top_two_round_back.xml" value="0.1535" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_account_settings.xml" value="0.264" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_add_about_event.xml" value="0.264" />
-        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_add_event.xml" value="0.20802919708029197" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_add_event.xml" value="0.23606331727460428" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_add_event_success.xml" value="0.2" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_add_or_dup_event.xml" value="0.1234375" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_add_post.xml" value="0.13055555555555556" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_currency.xml" value="0.13055555555555556" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_edit_profile.xml" value="0.337037037037037" />
-        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_event_detail.xml" value="0.2334293948126801" />
-        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_filter_event.xml" value="0.23229166666666667" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_event_detail.xml" value="0.264" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_follow.xml" value="0.23229166666666667" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_home.xml" value="0.152" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_login.xml" value="0.13055555555555556" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_mapview_events.xml" value="0.20208333333333334" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_messages.xml" value="0.23229166666666667" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_my_profile.xml" value="0.23229166666666667" />
-        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_preview_event.xml" value="0.17587209302325582" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_preview_event.xml" value="0.264" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/activity_settings.xml" value="0.6" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/adp_inprogress.xml" value="0.2" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/bottom_eventtype_picker.xml" value="0.264" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/change_reservation_layout.xml" value="0.536" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/dup_event_list_item.xml" value="0.264" />
-        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/eve_cat_item.xml" value="0.264" />
-        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/eve_cat_selection.xml" value="0.264" />
+        <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/eve_cat_selection.xml" value="0.1" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/eve_msg_dialog.xml" value="0.23229166666666667" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/event_comment_data_item.xml" value="0.4" />
         <entry key="..\:/H/SpineAndroid/app/src/main/res/layout/event_request_user_item.xml" value="0.264" />
@@ -126,6 +121,7 @@
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/activity_my_profile.xml" value="0.25" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/activity_payment2.xml" value="0.20416666666666666" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/activity_preview_ad.xml" value="0.10597826086956522" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/activity_voice_over.xml" value="0.1" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/ad_duration_item.xml" value="0.17889492753623187" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/ad_type.xml" value="0.17889492753623187" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/adp_podcast_item.xml" value="0.33" />
@@ -138,6 +134,7 @@
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/listen_pod_item.xml" value="0.21" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/own_event_item.xml" value="0.25" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/own_post_item.xml" value="0.20416666666666666" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/pod_subcat_list.xml" value="0.1" />
         <entry key="..\:/newspine/SpineAndroid/uikit-kotlin/src/main/res/drawable/ic_share_24dp.xml" value="0.206" />
         <entry key="..\:/newspine/SpineAndroid/uikit-kotlin/src/main/res/layout/adp_podcast_item.xml" value="0.25" />
         <entry key="..\:/newspine/SpineAndroid/uikit-kotlin/src/main/res/layout/new_own_post_item.xml" value="0.21" />
