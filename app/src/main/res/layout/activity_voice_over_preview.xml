@@ -64,7 +64,8 @@
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/demo" />
+                android:src="@drawable/demo"
+                android:background="@color/colorPrimary"/>
             <com.wiesoftware.spine.util.LineBarVisualizer
                 android:shadowColor="@color/text_black"
                 android:id="@+id/barVisualize"
