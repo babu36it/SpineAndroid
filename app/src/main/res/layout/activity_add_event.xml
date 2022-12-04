@@ -82,12 +82,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/imageView11"
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/vpimange"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_200dp"
-                        android:background="@color/gray_tint"
-                        android:scaleType="centerCrop" />
+                        android:layout_height="@dimen/_300"
+                        android:background="@color/gray_tint" />
+
+
+<!--                    <ImageView-->
+<!--                        android:layout_centerInParent="true"-->
+<!--                        android:id="@+id/imageView11"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="@dimen/_200dp"-->
+<!--                        android:background="@color/gray_tint"-->
+<!--                        android:scaleType="centerCrop" />-->
 
                     <Button
                         android:id="@+id/button43"
@@ -100,6 +108,18 @@
                         android:text="@string/add_photo"
                         android:textAllCaps="false"
                         android:textColor="@color/colorPrimaryDark" />
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tab_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/transparent"
+                        app:tabBackground="@drawable/tab_selector"
+                        app:tabGravity="center"
+                        app:tabIndicatorHeight="0dp" />
+
+
                 </RelativeLayout>
 
                 <LinearLayout
@@ -378,6 +398,7 @@
                             android:layout_marginTop="@dimen/eight"
                             android:background="@null"
                             android:gravity="start|fill_vertical"
+                            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                             android:padding="@dimen/eight" />
 
 
@@ -547,7 +568,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginTop="@dimen/_20sdp"
                             android:text="@string/paid_events"
-                            android:textColor="@color/dark_gray_text" />
+                             />
 
                         <Switch
                             android:id="@+id/switch_paid"
@@ -622,6 +643,7 @@
                             android:onClick="@{viewmodel.onCurency}"
                             android:padding="@dimen/eight"
                             android:text="EUR"
+                            android:textColor="@color/dark_gray_day_night"
                             android:textColorHint="@color/day_night_both_black"
                             android:textSize="@dimen/_12sdp"
                             app:drawableEndCompat="@drawable/ic_arrow_right" />
@@ -743,6 +765,7 @@
                             android:layout_marginTop="@dimen/eight"
                             android:background="@null"
                             android:gravity="start|fill_vertical"
+                            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                             android:padding="@dimen/eight" />
 
                     </RelativeLayout>
@@ -763,7 +786,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/want_to_accept_participants"
-                            android:textColor="@color/dark_gray_text" />
+                            />
 
                         <TextView
                             android:id="@+id/textView_subtext"
@@ -774,7 +797,6 @@
                             android:layout_alignParentStart="true"
                             android:layout_marginStart="@dimen/_8sdp"
                             android:text="@string/want_to_accept_participants_subtext"
-                            android:textColor="@color/grey"
                             android:textSize="@dimen/_9sdp" />
 
                         <Switch
@@ -806,7 +828,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/allow_comments"
-                            android:textColor="@color/dark_gray_text" />
+                           />
 
                         <Switch
                             android:id="@+id/switch6"
@@ -854,6 +876,7 @@
                             android:background="@null"
                             android:gravity="start|center_vertical"
                             android:padding="@dimen/eight"
+                            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                             android:visibility="invisible" />
 
                         <TextView
@@ -1046,7 +1069,6 @@
                         android:padding="@dimen/sixteen"
                         android:layout_marginStart="@dimen/eight"
                         android:text="Delete"
-                        android:onClick="@{viewmodel.onBack}"
                         android:textColor="@color/colorPrimaryDark" />
 
                     <ImageView

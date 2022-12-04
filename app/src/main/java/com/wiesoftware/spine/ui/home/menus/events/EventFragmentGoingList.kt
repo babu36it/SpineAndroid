@@ -230,27 +230,22 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
     }
 
     fun setFilterDataGoing(newText: String) {
-        dataListTemp.clear()
-        if (newText!!.isEmpty()) {
-            dataListTemp = dataList
-        } else {
-            for (row in dataList) {
-                for (data in row.records) {
-                    if ((data.title).toLowerCase(Locale.ROOT)
-                            .contains(newText!!.toLowerCase(Locale.ROOT))
-                        || (data.displayName ?: data.useName).toLowerCase(Locale.ROOT)
-                            .contains(newText!!.toLowerCase(Locale.ROOT))
-                        || (data.location).toLowerCase(Locale.ROOT)
-                            .contains(newText!!.toLowerCase(Locale.ROOT))
-                        || (data.description).toLowerCase(Locale.ROOT)
-                            .contains(newText!!.toLowerCase(Locale.ROOT))
-                    ) {
-                        dataListTemp.add(row)
-                    }
+        val dataListTemp: MutableList<EventsData> = mutableListOf()
+
+        for (row in dataList) {
+            for (data in row.records) {
+                if ((data.title).toLowerCase(Locale.ROOT)
+                        .contains(newText!!.toLowerCase(Locale.ROOT))
+                    || (data.location).toLowerCase(Locale.ROOT)
+                        .contains(newText!!.toLowerCase(Locale.ROOT))
+                    || (data.description).toLowerCase(Locale.ROOT)
+                        .contains(newText!!.toLowerCase(Locale.ROOT))
+                ) {
+                    dataListTemp.add(row)
                 }
             }
         }
-        println("Sanjay Going...." + newText + "......" + dataListTemp.size)
+
         adapter?.setFilterData(dataListTemp)
     }
 
@@ -388,12 +383,12 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
         lifecycleScope.launch {
             try {
                 val res = homeRepositry.getFilteredEventList(
-                    1,
-                    100,
+                    "1",
+                    "100",
                     user_id,
                     lat!!,
                     lon!!,
-                    10,
+                    "",
                     start_date!!,
                     end_date!!,
                     category!!
@@ -485,9 +480,12 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
     private fun getGoingPastEventList(goingPast: Int) {
         lifecycleScope.launch {
             try {
+                EventFragment.progress.show()
                 val res = homeRepositry.getAllEvents(1, 100, "going", "")
                 dataList.clear()
+                EventFragment.progress.dismiss()
                 if (res.status) {
+
                     BASE_IMAGE = res.image
                     dataList = res.data
                     adapter =
@@ -523,8 +521,10 @@ class EventFragmentGoingList : Fragment(), KodeinAware, EventFragmentEventListen
 
                 adapter?.notifyDataSetChanged()
             } catch (e: ApiException) {
+                EventFragment.progress.dismiss()
                 e.printStackTrace()
             } catch (e: NoInternetException) {
+                EventFragment.progress.dismiss()
                 e.printStackTrace()
             }
         }

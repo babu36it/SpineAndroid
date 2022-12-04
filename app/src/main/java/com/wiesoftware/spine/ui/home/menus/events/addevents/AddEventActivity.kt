@@ -2,6 +2,7 @@ package com.wiesoftware.spine.ui.home.menus.events.addevents
 
 
 import android.Manifest
+import android.R.attr
 import android.app.*
 import android.content.ClipData
 import android.content.Context
@@ -32,6 +33,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.gms.location.*
 import com.google.android.libraries.places.api.Places
@@ -41,13 +43,11 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteActivity
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.tabs.TabLayoutMediator
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.PodcastSubcategoryAdapter
-import com.wiesoftware.spine.data.net.reponses.EventCatData
-import com.wiesoftware.spine.data.net.reponses.EventsRecord
-import com.wiesoftware.spine.data.net.reponses.LangData
-import com.wiesoftware.spine.data.net.reponses.PodcastSubCategoryData
+import com.wiesoftware.spine.data.net.reponses.*
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityAddEventBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
@@ -55,6 +55,7 @@ import com.wiesoftware.spine.ui.home.menus.events.EVE_RECORD
 import com.wiesoftware.spine.ui.home.menus.events.TimezoneData
 import com.wiesoftware.spine.ui.home.menus.events.addordup.AddOrDupEventActivity
 import com.wiesoftware.spine.ui.home.menus.events.preview_event.PreviewEventActivity
+import com.wiesoftware.spine.ui.home.menus.events.preview_event.PreviewEventImageAdapter
 import com.wiesoftware.spine.ui.home.menus.profile.setting.currency.CurrencyActivity
 import com.wiesoftware.spine.ui.home.menus.profile.setting.currency.CurrencyActivity.Companion.CURRENCY_ID
 import com.wiesoftware.spine.ui.home.menus.profile.setting.currency.CurrencyActivity.Companion.CURRENCY_SYMBOL
@@ -74,6 +75,7 @@ import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
@@ -125,9 +127,11 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
 
+
+
     var lat: Double = 0.0
     var lon: Double = 0.0
-    var language = "1"
+    var language = ""
     var about: String = ""
     var languagenname: String = ""
     var viewmodel: AddEventViewmodel? = null
@@ -258,7 +262,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         return result.toString()
     }
 
-    var catData: List<EventCatData> = ArrayList<EventCatData>()
+    var catData: ArrayList<EventCatData> = ArrayList<EventCatData>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -352,6 +356,29 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         }*/
 
 
+        textView501.setOnClickListener {
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            builder.setMessage("Are you sure you want to delete this event ??")
+                .setTitle("Delete Event")
+
+            builder.setPositiveButton("Delete") { dialog, id ->
+                // User clicked OK button
+
+            }
+
+            builder.setNegativeButton(
+                "Cancel"
+            ) { dialog, id ->
+                // User clicked cancel button
+                dialog.dismiss()
+            }
+
+            val alert: AlertDialog = builder.create()
+
+
+
+            alert.show()
+        }
 
         textView109.setOnClickListener {
             var intent = Intent(this, CurrencyActivity::class.java)
@@ -403,7 +430,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         binding.aboutevent.setText(eventsRecord.description)
         about = eventsRecord.description
         //   binding.tvSelectCats.text = eventsRecord.eventCategories
-        binding.editTextTextPersonName14.setText(eventsRecord.fee)
+        binding.editTextTextPersonName14.setText(eventsRecord.fee.toString())
         binding.textView109.text = eventsRecord.feeCurrency
         viewmodel?.bookeventurl = eventsRecord.booking_url
         viewmodel?.link = eventsRecord.linkOfEvent
@@ -475,6 +502,29 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
             prompt = getString(R.string.select)
         }
         timeZone = timeData.first().id
+    }
+
+    private fun filter(adpter:SpinerCatAdapter,text: String) {
+        // creating a new array list to filter our data.
+        val filteredlist: ArrayList<EventCatData> = ArrayList()
+
+        // running a for loop to compare elements.
+        for (item in catData) {
+            // checking if the entered string matched with any item of our recycler view.
+            if (item.category_name.toString().toLowerCase().contains(text.toLowerCase())) {
+                // if the item is matched we are
+                // adding it to our filtered list.
+                filteredlist.add(item)
+            }
+        }
+        if (filteredlist.isEmpty()) {
+            // if no item is added in filtered list we are
+            // displaying a toast message as no data found.
+        } else {
+            // at last we are passing that filtered
+            // list to our adapter class.
+            adpter.filterList(filteredlist)
+        }
     }
 
     private fun getEventCategories(value: String) {
@@ -580,28 +630,8 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     }
 
     override fun onBack() {
+        onBackPressed()
 
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setMessage("Are you sure you want to delete this event ??")
-            .setTitle("Delete Event")
-
-        builder.setPositiveButton("Delete") { dialog, id ->
-            // User clicked OK button
-            onBackPressed()
-        }
-
-        builder.setNegativeButton(
-            "Cancel"
-        ) { dialog, id ->
-            // User clicked cancel button
-            dialog.dismiss()
-        }
-
-        val alert: AlertDialog = builder.create()
-
-
-
-      alert.show()
 
 
     }
@@ -647,7 +677,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
                 Utils.showToast(this, "Enter Location")
                 binding.et104.error = "Required.";binding.et104.requestFocus(); return
             }
-            else if (language == "1") {
+            else if (language == "") {
                 Utils.showToast(this, "Select Language")
                 // binding.et104.error = "Required.";binding.et104.requestFocus(); return
             }
@@ -672,7 +702,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
             Utils.showToast(this, "Enter Location")
             binding.et104.error = "Required.";binding.et104.requestFocus(); return
         }
-        else if (language == "1") {
+        else if (language == "") {
             Utils.showToast(this, "Select Language")
             // binding.et104.error = "Required.";binding.et104.requestFocus(); return
         }
@@ -828,7 +858,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     override fun onDelete() {
         currentPhotoPath = ""
         imgPaths.clear()
-        binding.imageView11.setImageResource(0)
+//        binding.imageView11.setImageResource(0)
         binding.editTextTextPersonName13.setText("")
         binding.et106.setText("")
         binding.et107.setText("")
@@ -877,7 +907,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
             Utils.showToast(this, "Enter Location")
             binding.et104.error = "Required.";binding.et104.requestFocus(); return
         }
-        else if (language == "1") {
+        else if (language == "") {
             Utils.showToast(this, "Select Language")
             // binding.et104.error = "Required.";binding.et104.requestFocus(); return
         }
@@ -920,6 +950,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
                 startTime,
                 1,
                 timeZone,
+                "",
                 event_title,
                 type.toString(),
                 startDate,
@@ -1251,6 +1282,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
     private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK)
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.type = "image/*"
         startActivityForResult(intent, GALLERY_REQ)
     }
@@ -1408,47 +1440,119 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
 
         super.onActivityResult(requestCode, resultCode, data)
+        val uriPathHelper = UriPathHelper()
+        val imgList: MutableList<ImageData> = ArrayList<ImageData>()
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+
             try {
-                mImageBitmap =
-                    BitmapFactory.decodeFile(currentPhotoPath) //MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
-                binding.imageView11.setImageBitmap(mImageBitmap)
+
+
+                photoURI = data?.data!!
+                currentPhotoPath = uriPathHelper.getPath(this, data?.data!!)
+                imgPaths.add(currentPhotoPath!!)
+                imgList.add(ImageData(currentPhotoPath))
+
+
+//                mImageBitmap =
+//                    BitmapFactory.decodeFile(currentPhotoPath) //MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
+//                binding.imageView11.setImageBitmap(mImageBitmap)
             } catch (e: IOException) {
                 e.printStackTrace()
             }
         }
         if (requestCode == GALLERY_REQ && resultCode == RESULT_OK) {
-            photoURI = data?.data!!
+//            photoURI = data?.data!!
 
-            val uriPathHelper = UriPathHelper()
-            currentPhotoPath = uriPathHelper.getPath(this, photoURI)
-            Glide.with(binding.imageView11)
-                .load(photoURI)
-                .into(binding.imageView11)
 
-            imgPaths.add(currentPhotoPath!!)
 
-            try {
-                mImageBitmap =
-                    BitmapFactory.decodeFile(currentPhotoPath) //MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
-                //binding.imageView11.setImageBitmap(mImageBitmap)
-            } catch (e: IOException) {
-                e.printStackTrace()
+
+
+
+
+            if (data?.clipData != null) {
+
+                val count: Int = data?.clipData!!.itemCount
+                var currentItem = 0
+                while (currentItem < count) {
+                    val imageUri: Uri = data.clipData!!.getItemAt(currentItem).uri
+
+                    currentPhotoPath = uriPathHelper.getPath(this, imageUri)
+                    imgList.add(ImageData(currentPhotoPath))
+                    imgPaths.add(currentPhotoPath!!)
+                    currentItem = currentItem + 1
+                    photoURI = imageUri;
+                }
+            } else if (data!!.data != null) {
+
+                photoURI = data?.data!!
+                currentPhotoPath = uriPathHelper.getPath(this, data?.data!!)
+                imgPaths.add(currentPhotoPath!!)
+                imgList.add(ImageData(currentPhotoPath))
+                //do something with the image (save it to some directory or whatever you need to do with it here)
             }
+
+
+            val adapter = PreviewEventImageAdapter(imgList)
+            binding.vpimange.adapter = adapter
+            TabLayoutMediator(binding.tabLayout, binding.vpimange) { tab, position ->
+
+            }.attach()
+
+
+            if(imgList.size < 2) {
+                binding.tabLayout.visibility = View.INVISIBLE
+            }
+
+            binding.vpimange.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageScrollStateChanged(state: Int) {
+                    super.onPageScrollStateChanged(state)
+                }
+
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
+                    super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                }
+
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+//                val rBtnId = binding.rgBtn.getChildAt(position).id
+//                binding.rgBtn.check(rBtnId)
+                }
+            })
+
+
+
+
+//            Glide.with(binding.imageView11)
+//                .load(photoURI)
+//                .into(binding.imageView11)
+//
+//            imgPaths.add(currentPhotoPath!!)
+//
+//            try {
+//                mImageBitmap =
+//                    BitmapFactory.decodeFile(currentPhotoPath) //MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
+//                //binding.imageView11.setImageBitmap(mImageBitmap)
+//            } catch (e: IOException) {
+//                e.printStackTrace()
+//            }
 
         }
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         val pos = p2 - 1
-        val ppp = p3
 
-       var ppppp =  p0!!.id
+       var spid =  p0!!.id
 
-        if(ppppp == binding.spinnerLang.id){
+        if(spid == binding.spinnerLang.id){
 
 
             try{
+                if (pos == -1) language = ""
 
                 language = lanngData[pos].id
                 languagenname = lanngData[pos].name
@@ -1457,9 +1561,9 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
             }
         }
-        if (ppppp == binding.spinnertimezone.id){
+        if (spid == binding.spinnertimezone.id){
             try{
-
+                if (pos == -1) language = ""
                 var time=timeData[pos]
                 timeZone=time.id
 //                binding.et104.setText(" ")
@@ -1467,11 +1571,11 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
             }
         }
-        if (pos > 0) {
-
-        //    binding.textView112.text=languagenname
-         //   binding.textTimeZone.text = timeZone
-        }
+//        if (pos > 0) {
+//
+//        //    binding.textView112.text=languagenname
+//         //   binding.textTimeZone.text = timeZone
+//        }
         /*else {
                 "Please select valid language.".toast(this)
             }*/
@@ -1487,11 +1591,13 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         dialog.getWindow()?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.eve_cat_selection)
+        val adapter:SpinerCatAdapter ;
         dialog.rvcats.also { rv ->
             rv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
             rv.setHasFixedSize(true)
             catData.let {
-                rv.adapter = SpinerCatAdapter(it, this, this)
+                adapter =  SpinerCatAdapter(it, this, this)
+                rv.adapter = adapter
             }
         }
         val send = dialog.findViewById(R.id.button53) as Button
@@ -1506,18 +1612,20 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
                 var value = s.toString()
                 Log.e("valueee", value.toString())
 
-                getEventCategories(value)
+//                getEventCategories(value)
 
-                dialog.rvcats.also { rv ->
+                filter(adapter,value)
 
-                    rv.layoutManager =
-                        LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
-                    rv.setHasFixedSize(true)
-                    catData.let {
-                        rv.adapter =
-                            SpinerCatAdapter(it, this@AddEventActivity, this@AddEventActivity)
-                    }
-                }
+//                dialog.rvcats.also { rv ->
+//
+//                    rv.layoutManager =
+//                        LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
+//                    rv.setHasFixedSize(true)
+//                    catData.let {
+//                        rv.adapter =
+//                            SpinerCatAdapter(it, this@AddEventActivity, this@AddEventActivity)
+//                    }
+//                }
 
             }
 

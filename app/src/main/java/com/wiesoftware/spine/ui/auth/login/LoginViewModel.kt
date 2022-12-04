@@ -67,8 +67,7 @@ class LoginViewModel(
     fun getUserDetails() {
         Coroutines.main {
             try {
-                var token = getToken()
-                Log.e("Harsh::",token!!);
+
                 val response= authRepositry.getUserDetails()
                 val msg: String=response.message
 //                if (msg.contains("Your account is not verify",true) ||

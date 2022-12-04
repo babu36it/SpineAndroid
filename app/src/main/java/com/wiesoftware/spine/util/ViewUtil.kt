@@ -35,7 +35,7 @@ private const val MODE = Context.MODE_PRIVATE
 lateinit var Prefs: SharedPreferences
 fun init(context: Context) {
     if (!::Prefs.isInitialized) {Prefs = context.getSharedPreferences(NAME, MODE) }
-    
+
 }
 
 fun SharedPreferences.putAny(name: String, any: Any) {
@@ -43,7 +43,6 @@ fun SharedPreferences.putAny(name: String, any: Any) {
         is String -> edit().putString(name, any).apply()
         is Int -> edit().putInt(name, any).apply()
         is Boolean -> edit().putBoolean(name,any).apply()
-
     }
 }
 fun SharedPreferences.remove(name:String){

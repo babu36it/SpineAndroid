@@ -53,7 +53,7 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
     var user_id: String = ""
     var argString: String = ""
     var dataList: MutableList<EventsData> = mutableListOf()
-    var dataListTemp: MutableList<EventsData> = mutableListOf()
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -140,9 +140,12 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
     private fun setEventList() {
         lifecycleScope.launch {
             try {
+                EventFragment.progress.show()
                 val res = homeRepositry.getAllEvents(1, 100, "all", "")
                 dataList.clear()
+                EventFragment.progress.dismiss()
                 if (res.status) {
+
                     STORY_IMAGE = res.user_image
                     PROFILE_PIC_URL = res.image
                     Log.e("imagetwo", res.image)
@@ -182,8 +185,10 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
                 adapter?.notifyDataSetChanged()
 
             } catch (e: ApiException) {
+                EventFragment.progress.dismiss()
                 e.printStackTrace()
             } catch (e: NoInternetException) {
+                EventFragment.progress.dismiss()
                 e.printStackTrace()
             }
         }
@@ -341,25 +346,22 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
 
 
     public fun setFilterDataAll(newText: String) {
-        dataListTemp.clear()
-        if (newText!!.isEmpty()) {
-            dataListTemp = dataList
-        } else {
-            for (row in dataList) {
-                for (data in row.records) {
-                    if ((data.title).toLowerCase(Locale.ROOT)
-                            .contains(newText!!.toLowerCase(Locale.ROOT))
-                        || (data.location).toLowerCase(Locale.ROOT)
-                            .contains(newText!!.toLowerCase(Locale.ROOT))
-                        || (data.description).toLowerCase(Locale.ROOT)
-                            .contains(newText!!.toLowerCase(Locale.ROOT))
-                    ) {
-                        dataListTemp.add(row)
-                    }
+        val dataListTemp: MutableList<EventsData> = mutableListOf()
+
+        for (row in dataList) {
+            for (data in row.records) {
+                if ((data.title).toLowerCase(Locale.ROOT)
+                        .contains(newText!!.toLowerCase(Locale.ROOT))
+                    || (data.location).toLowerCase(Locale.ROOT)
+                        .contains(newText!!.toLowerCase(Locale.ROOT))
+                    || (data.description).toLowerCase(Locale.ROOT)
+                        .contains(newText!!.toLowerCase(Locale.ROOT))
+                ) {
+                    dataListTemp.add(row)
                 }
             }
         }
-        println("Sanjay All...."+newText+"......"+dataListTemp.size)
+
         adapter?.setFilterData(dataListTemp)
     }
 
@@ -374,12 +376,12 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
         lifecycleScope.launch {
             try {
                 val res = homeRepositry.getFilteredEventList(
-                    1,
-                    100,
+                    "1",
+                    "100",
                     user_id,
                     lat!!,
                     lon!!,
-                    10,
+                    "",
                     start_date!!,
                     end_date!!,
                     category!!

@@ -56,52 +56,52 @@ class EveRequestFragment : Fragment(),KodeinAware, EventRequestEventListener,
 
     private fun getEventRequest() {
 
-        val dataList= arrayListOf<EventRequestData>()
+//        val dataList= arrayListOf<EventRequestData>()
 
-        dataList.add(
-            EventRequestData( "bio: String",
-                "2",
-                "Online Meditation",
-                "event_id: String",
-                "event_user_id: String",
-                "file: String,",
-                "id: String",
-                "9 May 2020 • 20:00",
-                " multiple: String,",
-                "name: String",
-                " profile_pic: String",
-                "Craig Warner requests to join your event.",
-                "town: String",
-                "type: String",
-                "users_id: String")
-        )
-
-        dataList.add(
-            EventRequestData( "bio: String",
-                "3",
-                "Online Meditation",
-                "event_id: String",
-                "event_user_id: String",
-                "file: String,",
-                "id: String",
-                "25 May 2020 • 20:00",
-                " multiple: String,",
-                "name: String",
-                " profile_pic: String",
-                "Craig Warner requests to join your event.",
-                "town: String",
-                "type: String",
-                "users_id: String")
-        )
-        binding.rvEveRequests.also {
-            it.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
-            it.setHasFixedSize(true)
-            it.adapter=EventRequestUsersAdapter(dataList,this@EveRequestFragment)
-        }
+//        dataList.add(
+//            EventRequestData( "bio: String",
+//                "2",
+//                "Online Meditation",
+//                "event_id: String",
+//                "event_user_id: String",
+//                "file: String,",
+//                "id: String",
+//                "9 May 2020 • 20:00",
+//                " multiple: String,",
+//                "name: String",
+//                " profile_pic: String",
+//                "Craig Warner requests to join your event.",
+//                "town: String",
+//                "type: String",
+//                "users_id: String")
+//        )
+//
+//        dataList.add(
+//            EventRequestData( "bio: String",
+//                "3",
+//                "Online Meditation",
+//                "event_id: String",
+//                "event_user_id: String",
+//                "file: String,",
+//                "id: String",
+//                "25 May 2020 • 20:00",
+//                " multiple: String,",
+//                "name: String",
+//                " profile_pic: String",
+//                "Craig Warner requests to join your event.",
+//                "town: String",
+//                "type: String",
+//                "users_id: String")
+//        )
+//        binding.rvEveRequests.also {
+//            it.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
+//            it.setHasFixedSize(true)
+//            it.adapter=EventRequestUsersAdapter(dataList,this@EveRequestFragment)
+//        }
 
 
         /*remove return for all Api */
-        return
+//        return
 
 
 
@@ -109,27 +109,10 @@ class EveRequestFragment : Fragment(),KodeinAware, EventRequestEventListener,
             try {
                 val res=homeRepositry.getEventRequestUserList(1,100,userId)
                 if (res.status){
-//                    STORY_IMAGE=res.profile_image
-//                    val dataList=res.data
-                    val dataList= arrayListOf<EventRequestData>()
+                    STORY_IMAGE=res.profile_image
+                    val dataList=res.data
 
-                    dataList.add(
-                        EventRequestData( "bio: String",
-                            "0",
-                            "email: String",
-                            "event_id: String",
-                            "event_user_id: String",
-                            "file: String,",
-                            "id: String",
-                            "message: String",
-                           " multiple: String,",
-                            "name: String",
-                           " profile_pic: String",
-                            "title: String",
-                            "town: String",
-                            "type: String",
-    "users_id: String")
-                    )
+
                     binding.rvEveRequests.also {
                         it.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
                         it.setHasFixedSize(true)
@@ -145,13 +128,13 @@ class EveRequestFragment : Fragment(),KodeinAware, EventRequestEventListener,
     }
 
     override fun onAcceptRequest(eveRequestData: EventRequestData) {
-        val eveId=eveRequestData.id
-        changeBookingstatus(eveId,"2","Request accepted!")
+        val booking_id=eveRequestData.booking_id
+        changeBookingstatus(booking_id,"1","Request accepted!")
     }
 
     override fun onDeclienedRequest(eveRequestData: EventRequestData) {
-        val eveId=eveRequestData.id
-        changeBookingstatus(eveId,"3","Request declined!")
+        val booking_id=eveRequestData.booking_id
+        changeBookingstatus(booking_id,"3","Request declined!")
     }
 
     private fun changeBookingstatus(s: String, s1: String,msg: String) {

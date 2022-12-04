@@ -297,12 +297,12 @@ class EventFragmentList : Fragment(), KodeinAware, EventFragmentEventListener,
         lifecycleScope.launch {
             try {
                 val res = homeRepositry.getFilteredEventList(
-                    1,
-                    100,
+                    "1",
+                    "100",
                     user_id,
                     lat!!,
                     lon!!,
-                    10,
+                    "",
                     start_date!!,
                     end_date!!,
                     category!!

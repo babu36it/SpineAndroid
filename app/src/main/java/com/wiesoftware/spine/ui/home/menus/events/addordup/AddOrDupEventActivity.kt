@@ -1,11 +1,13 @@
 package com.wiesoftware.spine.ui.home.menus.events.addordup
 
+import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -23,11 +25,11 @@ import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
 import kotlinx.android.synthetic.main.bottom_eventtype_picker.view.*
-import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
+
 
 class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventListener,
     DupEventAdapter.DupEveEventListener,EventTypeAdapter.EventCliclListener {
@@ -37,6 +39,7 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
     lateinit var binding: ActivityAddOrDupEventBinding
     lateinit var userId: String
     lateinit var data : MutableList<EventTypeData>
+    lateinit var progress : ProgressDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_or_dup_event)
@@ -45,6 +48,12 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
         viewModel.addOrDupEventListener = this
         homeRepositry.getUser().observe(this, Observer { user ->
             userId = user.users_id!!
+
+             progress = ProgressDialog(this)
+            progress.setTitle("Loading")
+            progress.setMessage("Wait while loading...")
+            progress.setCancelable(false) // disable dismiss by tapping outside of the dialog
+
             getEventType()
             getOwnEvents()
 
@@ -58,7 +67,9 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
     private fun getOwnEvents() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getOwnEvents()
+                progress.show()
+                val res = homeRepositry.getOwnEvents(userId)
+                progress.dismiss()
                 if (res.status) {
                     BASE_IMAGE = res.image
                     val data = res.data
@@ -74,8 +85,10 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
                     }
                 }
             } catch (e: ApiException) {
+                progress.dismiss()
                 e.printStackTrace()
             } catch (e: NoInternetException) {
+                progress.dismiss()
                 e.printStackTrace()
             }
         }
@@ -84,15 +97,21 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
     private fun getEventType() {
         lifecycleScope.launch {
             try {
+                progress.show()
                 val res = homeRepositry.getEventType()
+                progress.dismiss()
                 if (res.status) {
+
                      data = res.data
+
 
                 }
             } catch (e: ApiException) {
                 e.printStackTrace()
+                progress.dismiss()
             } catch (e: NoInternetException) {
                 e.printStackTrace()
+                progress.dismiss()
             }
         }
     }

@@ -95,6 +95,7 @@ interface Api {
         @Part("longitude") longitude: RequestBody
     ): Response<SingleRes>
 
+    //@Headers(HEADER_1, HEADER_2)
     @Multipart
     @POST("post/addFeaturedAds")
     suspend fun addEventFeaturedAds(
@@ -164,6 +165,7 @@ interface Api {
         @Field("email") email: String
     ): Response<EmailVerificationRes>
 
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("podcasts/sendEmailOTPVerification")
     suspend fun verifyEmailVerificationCode(
@@ -242,6 +244,7 @@ interface Api {
         @Field("comment") comment: String
     ): Response<SingleRes>
 
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("stories/spineStoriesShare")
     suspend fun spineStoriesShare(
@@ -376,15 +379,33 @@ interface Api {
         @Field("email") email: String
     ): Response<SingleRes>
 
+
+    //@Headers(HEADER_1, HEADER_2)
+    @GET("events/getEventBookingRequestList/{page}/{perPage}")
     @GET("events/getEventBookings/{page}/{perPage}/{userId}")
     suspend fun getEventRequestUserList(
         @Path("page") page: Int,
         @Path("perPage") perPage: Int,
+
+    ):Response<EventRequestResponse>
         @Path("userId") userId: String
     ): Response<EventRequestResponse>
 
+//    //@Headers(HEADER_1, HEADER_2)
+//    @GET("events/getEventBookings/{page}/{perPage}/{userId}")
+//    suspend fun getEventRequestUserList(
+//        @Path("page") page: Int,
+//        @Path("perPage") perPage: Int,
+//        @Path("userId") userId: String
+//    ):Response<EventRequestResponse>
+
+    //@Headers(HEADER_1, HEADER_2)
+    @GET("events/changeEventBookingStatus/{BookingId}/{Status}")
     @GET("events/changeEventBookingStatus/{event_booking_id}/{status}")
     suspend fun changeBookingStatus(
+        @Path("BookingId") BookingId: String,
+        @Path("Status") Status: String
+    ):Response<SingleRes>
         @Path("event_booking_id") event_booking_id: String,
         @Path("status") status: String
     ): Response<SingleRes>
@@ -415,6 +436,7 @@ interface Api {
         @Path("eventId") eventId: String
     ): Response<GoingUsersRes>
 
+    //@Headers(HEADER_1, HEADER_2)
     @FormUrlEncoded
     @POST("events/addEventBooking/{EventId}")
     suspend fun bookEvent(
@@ -485,6 +507,7 @@ interface Api {
         @Path("second_user_id") second_user_id: String
     ): Response<ChatMsgRes>
 
+    //@Headers(HEADER_1, HEADER_2)
     @GET("events/getSpineEventsMessageUsers/{page}/{per_page}/{user_id}")
     suspend fun getEventsMsgUsers(
         @Path("page") page: Int,
@@ -518,12 +541,11 @@ interface Api {
     @FormUrlEncoded
     @POST("events/getEventsListFilter")
     suspend fun getFilteredEvents(
-        @Field("page") page: Int,
-        @Field("per_page") per_page: Int,
-        @Field("user_id") user_id: String,
+        @Field("page") page: String,
+        @Field("per_page") per_page: String,
         @Field("lat") lat: String,
         @Field("lon") lon: String,
-        @Field("distance") distance: Int,
+        @Field("distance") distance: String,
         @Field("start_date") start_date: String,
         @Field("end_date") end_date: String,
         @Field("category") category: String
@@ -608,7 +630,7 @@ interface Api {
     @GET("events/getEventsCategory")
     suspend fun getEventCategories(
         @Query("searchText") searchText: String
-    ): Response<EventCatRes>
+    ):Response<EventCatRes>
 
     @GET("events/getEventsCategory")
     suspend fun getSpinEventCategories(
@@ -670,38 +692,6 @@ interface Api {
         @Field("address") address: String
     ): Response<SingleRes>
 
-    @FormUrlEncoded
-    @POST("profile/profileEdit")
-    suspend fun editProfile(
-        @Field("account_type") account_type: String,
-        @Field("listing_type") listing_type: String,
-        @Field("name") name: String,
-        @Field("display_name") display_name: String,
-        @Field("bio") bio: String,
-        @Field("category") category: String,
-        @Field("interested") interested: String,
-        @Field("offer_desciption") offer_desciption: String,
-        @Field("key_perfomance") key_perfomance: String,
-        @Field("desease_pattern") desease_pattern: String,
-        @Field("languages") languages: String,
-        @Field("qualification") qualification: String,
-        @Field("company_name") company_name: String,
-        @Field("street_1") street_1: String,
-        @Field("street_2") street_2: String,
-        @Field("street_3") street_3: String,
-        @Field("city") city: String,
-        @Field("postcode") postcode: String,
-        @Field("country") country: String,
-        @Field("address") address: String,
-        @Field("metaverse_address") metaverse_address: String,
-        @Field("website") website: String,
-        @Field("contact_email") contact_email: String,
-        @Field("business_phone") business_phone: String,
-        @Field("business_mobile") business_mobile: String,
-        @Field("business_phone_code") business_phone_code: String,
-        @Field("business_mobile_code") business_mobile_code: String
-
-    ): Response<SingleRes>
 
 
     @Multipart
@@ -751,7 +741,8 @@ interface Api {
 //    ):Response<FollowingStoriesRes>
 
 
-    //    Harsh: change fro new api:18-10-22
+//    Harsh: change fro new api:18-10-22
+    //@Headers(HEADER_1, HEADER_2)
     @GET("stories/getFollowingUsersStorieList/{page}/{per_page}")
     suspend fun getFollowingUsersStorieList(
         @Path(value = "page") page: Int,

@@ -65,7 +65,7 @@ class PodcastSubcategoryAdapter(
 
         }
 
-        holder.podSubcatListBinding.itemLayout.setOnClickListener {
+        holder.podSubcatListBinding.textView28.setOnClickListener {
 
             if (list.contains(dataList[position].id)) {
                 list.remove(dataList[position].id)

@@ -261,37 +261,37 @@ class MapviewEventsActivity : AppCompatActivity(), OnMapReadyCallback, KodeinAwa
 
         ) {
         lifecycleScope.launch {
-            try {
-                val res = homeRepositry.getFilteredEventList(
-                    1,
-                    100,
-                    userId,
-                    lat!!,
-                    lon!!,
-                    10,
-                    date!!,
-                    datetwo!!,
-                    category!!
-                )
-                allEvents.clear()
-                if (res.status) {
-                    STORY_IMAGE = res.image
-                    val dataList = res.data
-                    setEventsOnMap(dataList)
-                    Log.e("filteredRes: ", "" + dataList)
-
-                } else {
-                    "${res.message}".toast(this@MapviewEventsActivity)
-
-                }
-                Prefs.putAny("isFilter", false)
-            } catch (e: ApiException) {
-                e.printStackTrace()
-                Prefs.putAny("isFilter", false)
-            } catch (e: NoInternetException) {
-                e.printStackTrace()
-                Prefs.putAny("isFilter", false)
-            }
+//            try {
+//                val res = homeRepositry.getFilteredEventList(
+//                    "1",
+//                    "100",
+//                    user_id,
+//                    lat!!,
+//                    lon!!,
+//                    "0",
+//                    start_date!!,
+//                    end_date!!,
+//                    category!!
+//                )
+//                allEvents.clear()
+//                if (res.status) {
+//                    STORY_IMAGE = res.image
+//                    val dataList = res.data
+//                    setEventsOnMap(dataList)
+//                    Log.e("filteredRes: ", "" + dataList)
+//
+//                } else {
+//                    "${res.message}".toast(this@MapviewEventsActivity)
+//
+//                }
+//                Prefs.putAny("isFilter", false)
+//            } catch (e: ApiException) {
+//                e.printStackTrace()
+//                Prefs.putAny("isFilter", false)
+//            } catch (e: NoInternetException) {
+//                e.printStackTrace()
+//                Prefs.putAny("isFilter", false)
+//            }
         }
     }
 

@@ -39,7 +39,7 @@ class EventRequestUsersAdapter(val dataList: List<EventRequestData>,val listner:
             if (bookingStatus.equals("0")){
                 holder.eventRequestUserItemBinding.imageButton37.setImageResource(R.drawable.ic_check)
                 holder.eventRequestUserItemBinding.imageButton38.setImageResource(R.drawable.ic_close)
-            }else if (bookingStatus.equals("2")){
+            }else if (bookingStatus.equals("1")){
 //                holder.eventRequestUserItemBinding.imageButton37.setImageResource(R.drawable.ic_check_circle)
                 holder.eventRequestUserItemBinding.imageButton37.setBackgroundResource(R.drawable.circle_fill)
                 holder.eventRequestUserItemBinding.imageButton37.setColorFilter(Color.argb(255, 255, 255, 255));
@@ -52,13 +52,17 @@ class EventRequestUsersAdapter(val dataList: List<EventRequestData>,val listner:
         }
         holder.eventRequestUserItemBinding.imageButton37.setOnClickListener {
             listner.onAcceptRequest(dataList[position])
-            holder.eventRequestUserItemBinding.imageButton37.setImageResource(R.drawable.ic_check_circle)
+            holder.eventRequestUserItemBinding.imageButton37.setImageResource(R.drawable.ic_check)
+            holder.eventRequestUserItemBinding.imageButton37.setBackgroundResource(R.drawable.circle_fill)
+            holder.eventRequestUserItemBinding.imageButton37.setColorFilter(Color.argb(255, 255, 255, 255));
             holder.eventRequestUserItemBinding.imageButton38.setImageResource(R.drawable.ic_close)
         }
         holder.eventRequestUserItemBinding.imageButton38.setOnClickListener {
             listner.onDeclienedRequest(dataList[position])
             holder.eventRequestUserItemBinding.imageButton37.setImageResource(R.drawable.ic_check)
-            holder.eventRequestUserItemBinding.imageButton38.setImageResource(R.drawable.ic_close_circle)
+            holder.eventRequestUserItemBinding.imageButton38.setImageResource(R.drawable.ic_close)
+            holder.eventRequestUserItemBinding.imageButton38.setBackgroundResource(R.drawable.circle_fill)
+            holder.eventRequestUserItemBinding.imageButton38.setColorFilter(Color.argb(255, 255, 255, 255));
 
         }
 

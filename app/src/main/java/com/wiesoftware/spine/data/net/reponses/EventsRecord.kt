@@ -44,11 +44,13 @@ data class EventsRecord(
     val startTime: String,
     val status: Int,
     val timezone: String,
+    @SerializedName("timezone_name")
+    val timezoneName: String,
     val title: String,
     val type: String,
     @SerializedName("updated_on")
     val updatedOn: String,
-    @SerializedName("use_name")
+    @SerializedName("user_name")
     val useName: String,
     @SerializedName("use_display_name")
     val displayName:String,
@@ -74,7 +76,7 @@ data class EventsRecord(
     val  symbol: String,
     @SerializedName("hosted_profile_pic")
     val hostedProfilePic:String,
-    @SerializedName("languageName")
+    @SerializedName("language_name")
     val languageName: String,
     @SerializedName("booking_url")
     val booking_url: String,

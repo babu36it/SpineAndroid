@@ -15,8 +15,9 @@ import java.util.*
  * Created by Vivek kumar on 1/14/2021.
  * E-mail:- vivekpcst.kumar@gmail.com
  */
-class SpinerCatAdapter(val list: List<EventCatData>,val listener: OnEveItemChecked,
-var listValue: ListValue): RecyclerView.Adapter<SpinerCatAdapter.CatHolder>() {
+class SpinerCatAdapter(
+    var list: List<EventCatData>, val listener: OnEveItemChecked,
+    var listValue: ListValue): RecyclerView.Adapter<SpinerCatAdapter.CatHolder>() {
     class CatHolder(val eveCatItemBinding: EveCatItemBinding):RecyclerView.ViewHolder(eveCatItemBinding.root) {
 
     }
@@ -37,6 +38,16 @@ var listValue: ListValue): RecyclerView.Adapter<SpinerCatAdapter.CatHolder>() {
                 false
             )
         )
+
+    fun filterList(filterlist: List<EventCatData>) {
+        // below line is to add our filtered
+        // list in our course array list.
+        list = filterlist
+        // below line is to notify our adapter
+        // as change in recycler view data.
+        notifyDataSetChanged()
+    }
+
 
     override fun onBindViewHolder(holder: CatHolder, position: Int) {
 

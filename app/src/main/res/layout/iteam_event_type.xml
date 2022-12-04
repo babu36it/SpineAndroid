@@ -11,15 +11,14 @@
     </data>
     <LinearLayout
         android:orientation="vertical"
-       android:padding="@dimen/_8sdp"
-        android:paddingVertical="@dimen/_8sdp"
+       android:paddingHorizontal="@dimen/_8sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="@dimen/_8sdp"
+
             android:backgroundTint="@color/light_gry"
             android:background="@android:color/darker_gray" />
 

@@ -1,6 +1,7 @@
 package com.wiesoftware.spine.data.net.reponses
 
 data class EventRequestData(
+    val booking_id: String,
     val bio: String,
     val booking_status: String,
     val email: String,

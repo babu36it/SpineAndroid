@@ -94,7 +94,7 @@
                     style="@style/TitleText"
                     android:text="9 May"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/normalText"
+                    android:textSize="@dimen/_12sdp"
                     app:layout_constraintBottom_toBottomOf="@+id/tab_layout"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -127,7 +127,7 @@
                             android:text="@string/online_event"
                             android:textAllCaps="true"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/normalText"
+                            android:textSize="@dimen/_10sdp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -142,7 +142,7 @@
                             style="@style/EventTitleText"
                             android:textStyle="bold"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_16sdp"
+                            android:textSize="@dimen/_14sdp"
                             android:padding="0dp"
 
                             app:layout_constraintStart_toStartOf="@+id/textView108"
@@ -260,17 +260,17 @@
                             app:layout_constraintStart_toStartOf="@+id/textView120"
                             app:layout_constraintTop_toBottomOf="@+id/textView120" />
 
-                        <ImageButton
-                            android:id="@+id/imageButton21"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:padding="@dimen/eight"
-                            android:src="@drawable/ic_arrow_right"
-                            android:tint="@color/white"
-                            app:layout_constraintBottom_toBottomOf="@+id/textView117"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/textView116" />
+<!--                        <ImageButton-->
+<!--                            android:id="@+id/imageButton21"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:background="@android:color/transparent"-->
+<!--                            android:padding="@dimen/eight"-->
+<!--                            android:src="@drawable/ic_arrow_right"-->
+<!--                            android:tint="@color/white"-->
+<!--                            app:layout_constraintBottom_toBottomOf="@+id/textView117"-->
+<!--                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                            app:layout_constraintTop_toTopOf="@+id/textView116" />-->
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView

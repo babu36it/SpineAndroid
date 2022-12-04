@@ -1,5 +1,6 @@
 package com.wiesoftware.spine.ui.home.menus.events.preview_event
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -21,6 +22,7 @@ import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityPreviewEventBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.events.EVE_RECORD
+import com.wiesoftware.spine.ui.home.menus.events.EventFragment
 import com.wiesoftware.spine.ui.home.menus.events.addevents.AddEventSuccessActivity
 import com.wiesoftware.spine.ui.home.menus.profile.setting.currency.CurrencyActivity
 import com.wiesoftware.spine.util.ApiException
@@ -54,6 +56,7 @@ class PreviewEventActivity : AppCompatActivity(), KodeinAware, PreviewEventsEven
     var record: EventsRecord? = null
 
     lateinit var photoURI: Uri
+    lateinit var progress : ProgressDialog
 
     var currentImgPath: ArrayList<String> = ArrayList()
 
@@ -70,12 +73,17 @@ class PreviewEventActivity : AppCompatActivity(), KodeinAware, PreviewEventsEven
 
             Glide
                 .with(this)
-                .load(it.display_name)
+                .load("https://thespiritualnetwork.com/assets/upload/profile/"+it.user_image)
                 .centerCrop()
                 .placeholder(R.drawable.ic_account)
                 .into(binding.circleImageView7);
             //Log.e("namenidhi", it.profile_image.toString())
         })
+
+        progress = ProgressDialog(this)
+        progress.setTitle("Loading")
+        progress.setMessage("Wait while loading...")
+        progress.setCancelable(false) // disable dismiss by tapping outside of the dialog
 
         setPreviewData()
     }
@@ -110,14 +118,19 @@ class PreviewEventActivity : AppCompatActivity(), KodeinAware, PreviewEventsEven
             binding.textView108.text = getString(R.string.local_event)
 
         } else if (type =="1") {
+            binding.textView108.text = getString(R.string.local_event)
+
+        } else if(type == "2") {
             binding.textView108.text = getString(R.string.online_event)
             binding.textView118.text = getString(R.string.online)
-        } else if(type == "2") {
+
+        } else if(type == "3"){
             binding.textView108.text = getString(R.string.retreat_event)
-        } else {
+
+
+        }else{
             binding.textView108.text = getString(R.string.metaverse_event)
             binding.textView118.text = getString(R.string.online)
-
         }
 
         if(record!!.linkOfEvent == ""){
@@ -132,7 +145,10 @@ class PreviewEventActivity : AppCompatActivity(), KodeinAware, PreviewEventsEven
             binding.textView522.text =  record!!.symbol + " " + record!!.fee
         }
 
-        val simpleDateFormat = SimpleDateFormat("yyyy-M-dd", Locale.getDefault())
+
+
+
+        val simpleDateFormat = SimpleDateFormat("dd-M-yyy", Locale.getDefault())
         try {
             val date1: Date = simpleDateFormat.parse(eve_date)
             val dd = SimpleDateFormat("EEE, dd MMM yyyy", Locale.getDefault())
@@ -269,6 +285,7 @@ class PreviewEventActivity : AppCompatActivity(), KodeinAware, PreviewEventsEven
 //            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), record!!.status)
         lifecycleScope.launch {
             try {
+                progress.show()
                 val res = homeRepositry.addUserEvent(
                     record!!.status,
                     uid,
@@ -299,6 +316,7 @@ class PreviewEventActivity : AppCompatActivity(), KodeinAware, PreviewEventsEven
                     join_event_link
                 )
                 Log.e("eveRes::", "" + res)
+                progress.dismiss()
                 if (res.status) {
                     Utils.showToast(this@PreviewEventActivity, res.message)
                     //  "Event added successfully.".toast(this@AddEventActivity)
@@ -315,8 +333,12 @@ class PreviewEventActivity : AppCompatActivity(), KodeinAware, PreviewEventsEven
                     //  "Oops! Something went wrong.".toast(this@AddEventActivity)
                 }
             } catch (e: ApiException) {
+                progress.dismiss()
+                Utils.showToast(this@PreviewEventActivity, e.message.toString())
                 e.printStackTrace()
             } catch (e: NoInternetException) {
+                progress.dismiss()
+                Utils.showToast(this@PreviewEventActivity, e.message.toString())
                 e.printStackTrace()
             }
         }

@@ -39,11 +39,11 @@ class CurrencyAdapter(val currencyList: List<CurrencyData>, val listener: Curren
             listener.onCurencySelected(currencyList[position])
         }
 
-        if (position == itemCount - 1) {
-            holder.itemCurrencyBinding.view41.visibility = View.GONE
-        } else {
-            holder.itemCurrencyBinding.view41.visibility = View.VISIBLE
-        }
+//        if (position == itemCount - 1) {
+//            holder.itemCurrencyBinding.view41.visibility = View.GONE
+//        } else {
+//            holder.itemCurrencyBinding.view41.visibility = View.VISIBLE
+//        }
     }
 
     override fun getItemCount() = currencyList.size
