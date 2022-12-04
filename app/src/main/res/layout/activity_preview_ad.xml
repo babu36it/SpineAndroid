@@ -46,18 +46,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageButton79" />
 
-            <Button
+            <TextView
+                style="@style/OnlyText"
+                android:gravity="center"
+                android:textColor="@color/white"
                 android:id="@+id/button112"
                 android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_29sdp"
+                android:layout_height="@dimen/_28sdp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/eight"
-                android:textSize="@dimen/_11sdp"
                 android:background="@drawable/round_button_bg"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:onClick="@{viewmodel.onNext}"
                 android:text="@string/next"
+                android:textSize="@dimen/_11sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView292"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView292" />

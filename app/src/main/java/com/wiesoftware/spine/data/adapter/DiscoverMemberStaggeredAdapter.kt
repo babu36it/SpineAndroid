@@ -73,10 +73,10 @@ class DiscoverMemberStaggeredAdapter(val postList: List<PostData>, val listener:
 
 
         if (postType.equals("1")){
-            holder.ownPostItemBinding.imgContent.visibility=View.VISIBLE
+            holder.ownPostItemBinding.ivPostImageVideo.visibility=View.VISIBLE
             Glide.with(holder.itemView.context)
                 .load( url)
-                .into( holder.ownPostItemBinding.imageView15)
+                .into( holder.ownPostItemBinding.ivPostImageVideo)
 //            holder.ownPostItemBinding.textContent.visibility=View.GONE
         }else{
 //            holder.ownPostItemBinding.imgContent.visibility=View.GONE

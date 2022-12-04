@@ -41,8 +41,9 @@
                 android:textColor="@color/text_black"
                 android:textSize="@dimen/_13sdp" />
 
-            <Button
+            <TextView
                 android:id="@+id/button112"
+                style="@style/NormalText"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_28sdp"
                 android:layout_alignParentEnd="true"
@@ -50,8 +51,10 @@
                 android:layout_marginEnd="@dimen/eight"
                 android:background="@drawable/round_button_bg"
                 android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="center"
                 android:onClick="@{viewmodel.previewAd}"
                 android:text="@string/preview"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_11sdp" />
 
 
@@ -59,18 +62,18 @@
 
 
         <View
-            android:layout_below="@id/rrMain"
             android:id="@+id/view78"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_below="@id/rrMain"
             android:background="@color/normal_grey" />
 
         <ScrollView
-            android:layout_above="@id/btnPreview"
-
-            android:layout_below="@id/view78"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
+            android:layout_height="wrap_content"
+            android:layout_above="@id/btnPreview"
+            android:layout_below="@id/view78">
 
 
             <LinearLayout
@@ -81,7 +84,6 @@
                 <TextView
                     android:id="@+id/textView293"
                     style="@style/NormalText"
-                    android:textColor="@color/text_black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_50sdp"
@@ -90,6 +92,7 @@
                     android:fontFamily="@font/poppins_semi_bold"
                     android:text="@string/want_to_promote_a_service_product_event_or_podcast_of_yours"
                     android:textAlignment="center"
+                    android:textColor="@color/text_black"
                     android:textSize="@dimen/_10sdp" />
 
                 <TextView
@@ -105,8 +108,8 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    style="@style/OnlyText"
                     android:id="@+id/button113"
+                    style="@style/OnlyText"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_35sdp"
                     android:layout_margin="@dimen/_8sdp"
@@ -144,8 +147,8 @@
 
 
                     <TextView
-                        style="@style/IconTextView"
                         android:id="@+id/textView296"
+                        style="@style/IconTextView"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
                         android:layout_margin="@dimen/_8sdp"
@@ -164,8 +167,8 @@
                         android:textSize="@dimen/_11sdp" />
 
                     <TextView
-                        style="@style/IconTextView"
                         android:id="@+id/textView297"
+                        style="@style/IconTextView"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
                         android:layout_margin="@dimen/_8sdp"
@@ -214,8 +217,8 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    style="@style/OnlyText"
                     android:id="@+id/textView300"
+                    style="@style/OnlyText"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_35sdp"
                     android:layout_margin="@dimen/_8sdp"
@@ -246,21 +249,21 @@
                     android:visibility="gone">
 
                     <RelativeLayout
-                        android:background="@color/gray_tint"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_170sdp"
+                        android:layout_height="@dimen/_130sdp"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:layout_marginEnd="@dimen/_10sdp">
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@color/gray_tint">
 
                         <ImageView
                             android:id="@+id/imageView42"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:scaleType="centerCrop"
                             android:adjustViewBounds="true"
+                            android:background="@color/gray_tint"
                             android:contentDescription="@string/app_name"
-                            android:background="@color/gray_tint" />
+                            android:scaleType="centerCrop" />
 
                         <TextView
                             android:id="@+id/button117"
@@ -296,8 +299,8 @@
                         app:layout_constraintTop_toBottomOf="@+id/imageView42" />
 
                     <EditText
-                        style="@style/OnlyText"
                         android:id="@+id/editTextTextPersonName33"
+                        style="@style/OnlyText"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
                         android:layout_margin="@dimen/_8sdp"
@@ -416,20 +419,20 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_170sdp"
+                        android:layout_height="@dimen/_130sdp"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:background="@color/gray_tint"
-                        android:layout_marginEnd="@dimen/_10sdp">
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@color/gray_tint">
 
                         <ImageView
                             android:id="@+id/imageView43"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:scaleType="centerCrop"
                             android:adjustViewBounds="true"
+                            android:background="@color/gray_tint"
                             android:contentDescription="@string/app_name"
-                            android:background="@color/gray_tint" />
+                            android:scaleType="centerCrop" />
 
                         <TextView
                             android:id="@+id/button118"
@@ -545,8 +548,8 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        style="@style/OnlyText"
                         android:id="@+id/textView94"
+                        style="@style/OnlyText"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
                         android:layout_gravity="center"
@@ -570,19 +573,19 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
 
                             android:orientation="vertical">
 
                             <TextView
-                                android:layout_marginTop="@dimen/_8sdp"
-                                android:layout_marginStart="@dimen/_10sdp"
-                                android:layout_marginEnd="@dimen/_10sdp"
                                 android:id="@+id/textView95"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
                                 android:fontFamily="@font/poppins_bold"
                                 android:text="@string/start"
                                 android:textColor="@color/text_black"
@@ -591,62 +594,61 @@
 
 
                             <TextView
-                                android:layout_margin="@dimen/_8sdp"
-                                style="@style/IconTextView"
                                 android:id="@+id/textView97"
+                                style="@style/IconTextView"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_35sdp"
+                                android:layout_margin="@dimen/_8sdp"
                                 android:layout_marginTop="@dimen/_8sdp"
                                 android:background="@drawable/shadow_box"
+                                android:drawablePadding="@dimen/_5sdp"
                                 android:elevation="@dimen/_5sdp"
                                 android:fontFamily="@font/poppins_regular"
+                                android:gravity="center_vertical"
                                 android:hint="@string/start_date"
                                 android:onClick="@{viewmodel.onEventStartDate}"
                                 android:paddingStart="@dimen/_10sdp"
-                                android:gravity="center_vertical"
-                                android:drawablePadding="@dimen/_5sdp"
                                 android:textColorHint="@color/dark_gray_day_night"
                                 android:textSize="@dimen/_11sdp"
                                 app:drawableEndCompat="@drawable/ic_arrow_right"
                                 app:drawableStartCompat="@drawable/ic_events" />
 
                             <TextView
-                                android:layout_margin="@dimen/_8sdp"
-                                style="@style/IconTextView"
                                 android:id="@+id/textView99"
+                                style="@style/IconTextView"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_35sdp"
+                                android:layout_margin="@dimen/_8sdp"
                                 android:background="@drawable/shadow_box"
-                                android:elevation="@dimen/_5sdp"
-                                android:hint="@string/start_time"
-                                android:textColorHint="@color/dark_gray_day_night"
-                                android:onClick="@{viewmodel.onEventStartTime}"
-                                android:gravity="center_vertical"
                                 android:drawablePadding="@dimen/_5sdp"
+                                android:elevation="@dimen/_5sdp"
                                 android:fontFamily="@font/poppins_regular"
+                                android:gravity="center_vertical"
+                                android:hint="@string/start_time"
+                                android:onClick="@{viewmodel.onEventStartTime}"
                                 android:paddingStart="@dimen/_10sdp"
+                                android:textColorHint="@color/dark_gray_day_night"
+                                android:textSize="@dimen/_11sdp"
                                 app:drawableEndCompat="@drawable/ic_arrow_right"
-                                app:drawableStartCompat="@drawable/ic_time"
-                                android:textSize="@dimen/_11sdp"/>
+                                app:drawableStartCompat="@drawable/ic_time" />
 
                         </LinearLayout>
 
 
-
                         <LinearLayout
-                            android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
 
                             android:orientation="vertical">
 
                             <TextView
-                                android:layout_marginStart="@dimen/_10sdp"
-                                android:layout_marginTop="@dimen/_8sdp"
-                                android:layout_marginEnd="@dimen/_10sdp"
                                 android:id="@+id/textView96"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
                                 android:fontFamily="@font/poppins_bold"
                                 android:text="@string/end"
                                 android:textColor="@color/text_black"
@@ -655,42 +657,42 @@
 
 
                             <TextView
-                                android:layout_margin="@dimen/_8sdp"
-                                style="@style/IconTextView"
                                 android:id="@+id/textView98"
+                                style="@style/IconTextView"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_35sdp"
+                                android:layout_margin="@dimen/_8sdp"
                                 android:background="@drawable/shadow_box"
+                                android:drawablePadding="@dimen/_5sdp"
                                 android:elevation="@dimen/_5sdp"
                                 android:fontFamily="@font/poppins_regular"
+                                android:gravity="center_vertical"
                                 android:hint="@string/end_date"
                                 android:onClick="@{viewmodel.onEventEndDate}"
                                 android:paddingStart="@dimen/_10sdp"
-                                android:drawablePadding="@dimen/_5sdp"
-                                android:gravity="center_vertical"
                                 android:textColorHint="@color/dark_gray_day_night"
                                 android:textSize="@dimen/_11sdp"
                                 app:drawableEndCompat="@drawable/ic_arrow_right"
                                 app:drawableStartCompat="@drawable/ic_events" />
 
                             <TextView
-                                android:layout_margin="@dimen/_8sdp"
-                                style="@style/IconTextView"
                                 android:id="@+id/textView100"
+                                style="@style/IconTextView"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_35sdp"
+                                android:layout_margin="@dimen/_8sdp"
                                 android:background="@drawable/shadow_box"
-                                android:elevation="@dimen/_5sdp"
-                                android:hint="@string/end_time"
-                                android:textColorHint="@color/dark_gray_day_night"
-                                android:onClick="@{viewmodel.onEventEndTime}"
                                 android:drawablePadding="@dimen/_8sdp"
-                                android:gravity="center_vertical"
+                                android:elevation="@dimen/_5sdp"
                                 android:fontFamily="@font/poppins_regular"
+                                android:gravity="center_vertical"
+                                android:hint="@string/end_time"
+                                android:onClick="@{viewmodel.onEventEndTime}"
                                 android:paddingStart="@dimen/_5sdp"
+                                android:textColorHint="@color/dark_gray_day_night"
+                                android:textSize="@dimen/_11sdp"
                                 app:drawableEndCompat="@drawable/ic_arrow_right"
-                                app:drawableStartCompat="@drawable/ic_time"
-                                android:textSize="@dimen/_11sdp"/>
+                                app:drawableStartCompat="@drawable/ic_time" />
 
                         </LinearLayout>
 
@@ -699,12 +701,12 @@
 
 
                     <TextView
-                        android:visibility="gone"
                         style="@style/TitleText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="@string/end"
+                        android:visibility="gone"
                         app:layout_constraintStart_toStartOf="@+id/guideline4"
                         app:layout_constraintTop_toTopOf="@+id/textView95" />
 
@@ -718,7 +720,6 @@
 
 
                     <TextView
-                        android:visibility="gone"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/eight"
@@ -728,6 +729,7 @@
                         android:onClick="@{viewmodel.onEventEndDate}"
                         android:padding="@dimen/eight"
                         android:textAlignment="center"
+                        android:visibility="gone"
                         app:drawableEndCompat="@drawable/ic_arrow_right"
                         app:drawableStartCompat="@drawable/ic_events"
                         app:layout_constraintEnd_toEndOf="@+id/textView94"
@@ -736,7 +738,6 @@
 
 
                     <TextView
-                        android:visibility="gone"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -746,6 +747,7 @@
                         android:onClick="@{viewmodel.onEventEndTime}"
                         android:padding="@dimen/eight"
                         android:textAlignment="center"
+                        android:visibility="gone"
                         app:drawableEndCompat="@drawable/ic_arrow_right"
                         app:drawableStartCompat="@drawable/ic_time"
                         app:layout_constraintEnd_toEndOf="@+id/textView98"
@@ -754,69 +756,110 @@
 
                     <TextView
                         android:id="@+id/textView101"
-                        android:fontFamily="@font/poppins_bold"
-                        android:textColor="@color/text_black"
-                        android:textSize="@dimen/_11sdp"
-                        android:textStyle="bold"
-                        android:layout_marginStart="@dimen/_10sdp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:text="@string/timezone" />
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/timezone"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+
+                    <RelativeLayout
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/_8sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:background="@drawable/shadow_box"
+                        android:elevation="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        >
+
+                        <TextView
+                            android:id="@+id/textView115"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/eight"
+                            android:text=""
+                            android:fontFamily="@font/poppins_regular"
+                            style="@style/OnlyText"
+                            android:textSize="@dimen/_11sdp"
+                            android:textColor="@color/day_night_both_black"
+                            app:drawableEndCompat="@drawable/ic_arrow_right" />
+
+
+                        <Spinner
+                            android:id="@+id/spinnertimezone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/eight"
+                            android:background="@null"
+                            android:gravity="start|fill_vertical"
+                            android:padding="@dimen/eight" />
+
+
+                    </RelativeLayout>
+
+
 
                     <EditText
-                        style="@style/OnlyText"
+                        android:visibility="gone"
                         android:id="@+id/textView102"
+                        style="@style/OnlyText"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
                         android:layout_margin="@dimen/_8sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
                         android:background="@drawable/shadow_box"
                         android:drawableEnd="@drawable/ic_arrow_right"
                         android:elevation="@dimen/_5sdp"
-                        android:textSize="@dimen/_11sdp"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_8sdp"
-                        android:textColorHint="@color/dark_gray_day_night"
-                        android:paddingStart="@dimen/_10sdp"
                         android:fontFamily="@font/poppins_regular"
                         android:hint="@string/timezone"
+                        android:paddingStart="@dimen/_10sdp"
                         android:text="@={viewmodel.eventTimeZone}"
-                        />
+                        android:textColorHint="@color/dark_gray_day_night"
+                        android:textSize="@dimen/_11sdp" />
 
                     <TextView
-                        android:layout_marginStart="@dimen/_10sdp"
                         android:id="@+id/textView103"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/location"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/_11sdp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/poppins_bold"
-                        android:text="@string/location" />
+                        android:textStyle="bold" />
 
                     <EditText
-                        style="@style/OnlyText"
                         android:id="@+id/et104"
+                        style="@style/OnlyText"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
-                        android:layout_marginTop="@dimen/_8sdp"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:fontFamily="@font/poppins_regular"
                         android:layout_margin="@dimen/_8sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
                         android:background="@drawable/shadow_box"
                         android:drawableStart="@drawable/ic_location"
                         android:drawableEnd="@drawable/ic_arrow_right"
+                        android:drawablePadding="@dimen/_8sdp"
                         android:elevation="@dimen/_5sdp"
+                        android:fontFamily="@font/poppins_regular"
                         android:hint="@string/location"
+                        android:inputType="textAutoComplete"
+                        android:maxLines="1"
                         android:paddingStart="@dimen/_10sdp"
                         android:singleLine="true"
-                        android:maxLines="1"
-                        android:drawablePadding="@dimen/_8sdp"
-                        android:textSize="@dimen/_11sdp"
-                        android:inputType="textAutoComplete"
                         android:text="@={viewmodel.eventLocation}"
-                        android:textColorHint="@color/dark_gray_day_night"/>
+                        android:textColorHint="@color/dark_gray_day_night"
+                        android:textSize="@dimen/_11sdp" />
 
                     <TextView
                         android:id="@+id/textView304"
@@ -833,8 +876,8 @@
                         app:layout_constraintTop_toBottomOf="@+id/imageView42" />
 
                     <EditText
-                        style="@style/OnlyText"
                         android:id="@+id/editTextTextPersonName34"
+                        style="@style/OnlyText"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
                         android:layout_margin="@dimen/_8sdp"
@@ -923,7 +966,6 @@
                     </RelativeLayout>
 
 
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -934,21 +976,21 @@
                     android:visibility="gone">
 
                     <RelativeLayout
-                        android:background="@color/gray_tint"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_170sdp"
+                        android:layout_height="@dimen/_130sdp"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:layout_marginEnd="@dimen/_10sdp">
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@color/gray_tint">
 
                         <ImageView
                             android:id="@+id/imageView44"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:scaleType="centerCrop"
                             android:adjustViewBounds="true"
+                            android:background="@color/gray_tint"
                             android:contentDescription="@string/app_name"
-                            android:background="@color/gray_tint" />
+                            android:scaleType="centerCrop" />
 
                         <TextView
                             android:id="@+id/button119"
@@ -979,15 +1021,15 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        style="@style/OnlyText"
                         android:id="@+id/editTextTextPersonName36"
+                        style="@style/OnlyText"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
                         android:layout_margin="@dimen/_8sdp"
                         android:background="@drawable/shadow_box"
+                        android:drawableEnd="@drawable/ic_arrow_right"
                         android:elevation="@dimen/_5sdp"
                         android:ems="10"
-                        android:drawableEnd="@drawable/ic_arrow_right"
                         android:fontFamily="@font/poppins_regular"
                         android:hint="@string/where_your_ad_links_to"
                         android:inputType="textPersonName"
@@ -1087,8 +1129,9 @@
             </LinearLayout>
         </ScrollView>
 
-        <Button
+        <TextView
             android:id="@+id/btnPreview"
+            style="@style/NormalText"
             android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_28sdp"
             android:layout_alignParentEnd="true"
@@ -1096,12 +1139,14 @@
             android:layout_centerVertical="true"
             android:layout_gravity="end"
             android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/eight"
-            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="11dp"
             android:background="@drawable/round_button_bg"
             android:fontFamily="@font/poppins_semi_bold"
+            android:gravity="center"
             android:onClick="@{viewmodel.previewAd}"
             android:text="@string/preview"
+            android:textColor="@color/white"
             android:textSize="@dimen/_11sdp" />
 
     </RelativeLayout>

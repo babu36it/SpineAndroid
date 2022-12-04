@@ -113,6 +113,26 @@
         <entry key="..\:/e drive/Freelancing/new spine 12-11-2022/SpineAndroid/app/src/main/res/layout/eve_cat_selection.xml" value="0.16576086956521738" />
         <entry key="..\:/e drive/Freelancing/new spine 12-11-2022/SpineAndroid/app/src/main/res/layout/eve_catmuti_item.xml" value="0.20416666666666666" />
         <entry key="..\:/e drive/Freelancing/new spine 12-11-2022/SpineAndroid/app/src/main/res/layout/fragment_profile.xml" value="0.16576086956521738" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/drawable-night/ic_share.xml" value="0.1" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/drawable/ic_share.xml" value="0.1" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/activity_edit_profile.xml" value="0.16576086956521738" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/activity_event_detail.xml" value="0.16576086956521738" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/activity_featured_post1.xml" value="0.16576086956521738" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/activity_my_profile.xml" value="0.25" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/activity_preview_ad.xml" value="0.10597826086956522" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/ad_type.xml" value="0.17889492753623187" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/adp_podcast_item.xml" value="0.33" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/adp_type_item.xml" value="0.17889492753623187" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/fragment_events.xml" value="0.20416666666666666" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/fragment_podcast.xml" value="0.16576086956521738" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/fragment_posts.xml" value="0.16576086956521738" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/fragment_profile.xml" value="0.16576086956521738" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/listen_pod_item.xml" value="0.21" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/own_event_item.xml" value="0.25" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/own_post_item.xml" value="0.20416666666666666" />
+        <entry key="..\:/newspine/SpineAndroid/uikit-kotlin/src/main/res/drawable/ic_share_24dp.xml" value="0.206" />
+        <entry key="..\:/newspine/SpineAndroid/uikit-kotlin/src/main/res/layout/adp_podcast_item.xml" value="0.25" />
+        <entry key="..\:/newspine/SpineAndroid/uikit-kotlin/src/main/res/layout/new_own_post_item.xml" value="0.21" />
       </map>
     </option>
   </component>

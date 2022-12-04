@@ -58,7 +58,7 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
     private fun getOwnEvents() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getOwnEvents(userId)
+                val res = homeRepositry.getOwnEvents()
                 if (res.status) {
                     BASE_IMAGE = res.image
                     val data = res.data

@@ -3,30 +3,37 @@ package com.wiesoftware.spine.ui.home.menus.spine.featuredpost
 import android.Manifest
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.app.ProgressDialog
 import android.app.TimePickerDialog
 import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.location.Address
 import android.location.Geocoder
+import android.media.ThumbnailUtils
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.util.Size
 import android.view.Gravity
 import android.view.View
 import android.webkit.WebView
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -42,17 +49,24 @@ import com.wiesoftware.spine.BuildConfig
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.AdDurationAdapter
+import com.wiesoftware.spine.data.adapter.AdsTypeAdapter
 import com.wiesoftware.spine.data.net.reponses.AdDurationData
+import com.wiesoftware.spine.data.net.reponses.adsmanagment.AdsTypeData
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityFeaturedPost1Binding
 import com.wiesoftware.spine.ui.home.camera.CustomCameraActivity
+import com.wiesoftware.spine.ui.home.menus.events.TimezoneData
 import com.wiesoftware.spine.ui.home.menus.spine.featuredpost.previewfeatured_ad.PreviewAdActivity
+import com.wiesoftware.spine.util.ApiException
+import com.wiesoftware.spine.util.NoInternetException
 import com.wiesoftware.spine.util.UriPathHelper
 import com.wiesoftware.spine.util.toast
 import kotlinx.android.synthetic.main.activity_featured_post1.*
 import kotlinx.android.synthetic.main.ad_duration_layout.view.*
+import kotlinx.android.synthetic.main.ad_type.view.*
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 import kotlinx.android.synthetic.main.select_ad_type_layout.view.*
+import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -63,7 +77,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEventListener,
-    AdDurationAdapter.OnAdDurationSelectedListener, SpineWebViewClient.SpineWebEventListener {
+    AdDurationAdapter.OnAdDurationSelectedListener, SpineWebViewClient.SpineWebEventListener,
+    AdsTypeAdapter.onAdTypeSelectedListner, AdapterView.OnItemSelectedListener {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base?.let { RuntimeLocaleChanger.wrapContext(it) })
@@ -74,26 +89,28 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
     val homeRepositry: HomeRepositry by instance()
     lateinit var userId: String
     var adDurationDataList: ArrayList<AdDurationData>? = arrayListOf()
+    var adsType: ArrayList<AdsTypeData>? = arrayListOf()
     var currentPhotoPath: String? = null
     lateinit var photoURI: Uri
     var adType = 0
-    var adDuration = "";
-    var startDateSlot = "";
+    var adDuration = ""
+    var startDateSlot = ""
     var startTimeSlot = ""
-    var amount = "0";
-    var currency = "$";
+    var amount = "0"
+    var currency = "$"
     var durationId = ""
-    var type = 0;
-    var eventStartDate = "";
-    var eventEndDate = "";
-    var eventStartTime = "";
-    var eventEndTime = "";
+    var type = ""
+    var eventStartDate = ""
+    var eventEndDate = ""
+    var eventStartTime = ""
+    var eventEndTime = ""
     var timezone = ""
     var locationAddress = ""
     private val AUTOCOMPLETE_REQUEST_CODE = 111
-    private var isEvent = false;
-    private var isImagevideo = false;
-    private var isPoscast = false;
+    private var isEvent = false
+    private var isImagevideo = false
+    private var isPoscast = false
+    var timeZone: String = ""
 
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -102,6 +119,9 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
     var lat: Double = 0.0
     var lon: Double = 0.0
     var language = "1"
+    lateinit var progressDialog: ProgressDialog
+
+
     private fun getLocationUpdates() {
         locationRequest.interval = 50000
         locationRequest.fastestInterval = 50000
@@ -185,8 +205,8 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
             val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
             if (addresses.size > 0) {
                 val address: Address = addresses[0]
-                result.append(address.getLocality()).append(", ")
-                result.append(address.getCountryName()).append(", ")
+                result.append(address.locality).append(", ")
+                result.append(address.countryName).append(", ")
                 result.append(address.subLocality).append(", ")
                 result.append(address.subAdminArea)
             }
@@ -206,7 +226,7 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
         val viewmodel = ViewModelProvider(this).get(FeaturedPostViewmodel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.featuredPostEventListener = this
-
+        progressDialog = ProgressDialog(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         locationRequest = LocationRequest()
         if (hasPermissions(this, permissions)) {
@@ -234,8 +254,10 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
 
         homeRepositry.getUser().observe(this, androidx.lifecycle.Observer { user ->
             userId = user.users_id!!
-            setDurationData()
-//            getAdDurations()
+            //  setDurationData()
+            getAdDurations()
+            mNetworkCallAdsType()
+            getTimeSlot()
         })
         binding.editTextTextPersonName34.setOnClickListener {
             openLinkView()
@@ -269,7 +291,7 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                binding.tvAdCounter.setText((90 - s.length).toString())
+                binding.tvAdCounter.text = (90 - s.length).toString()
                 //This sets a textview to the current length
 //                binding.tvNameCounter.setText(40-s.length);
             }
@@ -287,7 +309,7 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                binding.tvAdPodcastCounter.setText((90 - s.length).toString())
+                binding.tvAdPodcastCounter.text = (90 - s.length).toString()
                 //This sets a textview to the current length
 //                binding.tvNameCounter.setText(40-s.length);
             }
@@ -305,7 +327,7 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                binding.tvNameCounter.setText((40 - s.length).toString())
+                binding.tvNameCounter.text = (40 - s.length).toString()
                 //This sets a textview to the current length
 //                binding.tvNameCounter.setText(40-s.length);
             }
@@ -323,7 +345,7 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                binding.tvAdEventCounter.setText((90 - s.length).toString())
+                binding.tvAdEventCounter.text = (90 - s.length).toString()
                 //This sets a textview to the current length
 //                binding.tvNameCounter.setText(40-s.length);
             }
@@ -336,29 +358,85 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
 
     }
 
-    private fun setDurationData() {
-        adDurationDataList!!.clear()
-        adDurationDataList!!.add(AdDurationData("1", "200", "€", "1", "Week"))
-        adDurationDataList!!.add(AdDurationData("2", "300", "€", "2", "Week"))
-        adDurationDataList!!.add(AdDurationData("3", "350", "€", "3", "Month"))
-        adDurationDataList!!.add(AdDurationData("4", "400", "€", "4", "Week"))
-        adDurationDataList!!.add(AdDurationData("5", "100", "€", "5", "Week"))
-    }
 
-/*
     private fun getAdDurations() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getAdDuration(userId)
+                showProgressDialog()
+                adDurationDataList!!.clear()
+                val res = homeRepositry.getAdDuration()
                 if (res.status) {
+                    dismissProgressDailog()
                     adDurationDataList = res.data
+                } else {
+                    dismissProgressDailog()
+                    Toast.makeText(this@FeaturedPostActivity, res.message, Toast.LENGTH_SHORT)
+                        .show()
                 }
             } catch (e: Exception) {
+                e.printStackTrace()
+                dismissProgressDailog()
+            }
+        }
+    }
+
+    private fun mNetworkCallAdsType() {
+        lifecycleScope.launch {
+            try {
+                showProgressDialog()
+                adsType!!.clear()
+                val res = homeRepositry.getAdsType()
+                if (res.status) {
+                    dismissProgressDailog()
+                    adsType = res.data
+
+                } else {
+                    dismissProgressDailog()
+                    Toast.makeText(this@FeaturedPostActivity, res.message, Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+                dismissProgressDailog()
+            }
+        }
+    }
+
+    var timeData: List<TimezoneData> = ArrayList<TimezoneData>()
+    private fun getTimeSlot() {
+        lifecycleScope.launch {
+            try {
+                val res = homeRepositry.getTimeZoneResponse()
+                if (res.status) {
+                    timeData = res.data
+                    setTimeZone(timeData)
+                }
+            } catch (e: ApiException) {
+                e.printStackTrace()
+            } catch (e: NoInternetException) {
                 e.printStackTrace()
             }
         }
     }
-*/
+
+
+    private fun setTimeZone(timeData: List<TimezoneData>) {
+        val list: MutableList<String> = ArrayList()
+        list.add(getString(R.string.select))
+        for (data in timeData) {
+            list.add(data.timezone + " GMT " + data.gmt_offset)
+        }
+        val aa = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinnerItem, list)
+        with(spinnertimezone) {
+            adapter = aa
+            setSelection(0, false)
+            onItemSelectedListener = this@FeaturedPostActivity
+            prompt = getString(R.string.select)
+        }
+        //  timeZone = timeData.first().id
+    }
+
 
     override fun onBack() {
         onBackPressed()
@@ -435,6 +513,7 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
             month,
             day
         )
+        dpd.datePicker.minDate = c.timeInMillis
         dpd.show()
     }
 
@@ -472,51 +551,37 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
         selectAdTypeBottom()
     }
 
+
+    var adTypeDialog: BottomSheetDialog? = null
     private fun selectAdTypeBottom() {
-        val view: View = layoutInflater.inflate(R.layout.select_ad_type_layout, null)
-        val dialog: BottomSheetDialog = BottomSheetDialog(this)
-        dialog.setContentView(view)
-        dialog.setOnShowListener {
+        val view: View = layoutInflater.inflate(R.layout.ad_type, null)
+        adTypeDialog = BottomSheetDialog(this)
+        adTypeDialog!!.setContentView(view)
+        adTypeDialog!!.setOnShowListener {
             val dialogTmp: BottomSheetDialog = it as BottomSheetDialog
             val bottomSheet: FrameLayout =
                 dialogTmp.findViewById(R.id.design_bottom_sheet) as FrameLayout?
                     ?: return@setOnShowListener
             bottomSheet.background = null
         }
-        dialog.window?.let {
+        adTypeDialog!!.window?.let {
             it.setGravity(Gravity.BOTTOM)
             it.setBackgroundDrawableResource(android.R.color.transparent)
-            dialog.setCancelable(true)
+            adTypeDialog!!.setCancelable(true)
         }
-        view.button114.setOnClickListener {
-            //picture or video
-            binding.textView300.text = getString(R.string.picture_or_video)
-            binding.picVid.visibility = View.VISIBLE
-            binding.event.visibility = View.GONE
-            binding.pod.visibility = View.GONE
-            dialog.dismiss()
-            adType = 1
-        }
-        view.button115.setOnClickListener {
-            //event
-            binding.textView300.text = getString(R.string.event)
-            binding.picVid.visibility = View.GONE
-            binding.event.visibility = View.VISIBLE
-            binding.pod.visibility = View.GONE
-            dialog.dismiss()
-            adType = 2
-        }
-        view.button116.setOnClickListener {
-            //pod
-            binding.textView300.text = getString(R.string.podcast)
-            binding.picVid.visibility = View.GONE
-            binding.event.visibility = View.GONE
-            binding.pod.visibility = View.VISIBLE
-            dialog.dismiss()
-            adType = 3
+        if (adsType != null) {
+            view.rvAdType.also {
+                it.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+                it.setHasFixedSize(true)
+                val adapter = AdsTypeAdapter(adsType!!, this)
+                it.adapter = adapter
+            }
         }
 
-        dialog.show()
+
+
+
+        adTypeDialog!!.show()
     }
 
     override fun previewAd(
@@ -542,21 +607,40 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
 
         when (adType) {
             1 -> {
-                if (picVidWebLink.isEmpty()) {
+                if (currentPhotoPath == null) {
+                    "Please select media.".toast(this)
+                    return
+                } else if (picVidWebLink.isEmpty()) {
                     "Please enter destination website.".toast(this); return
                 }
                 addPicVidAd(picVidWebLink, picVidAdditionalLine)
             }
             2 -> {
-                if (eventTitle.isEmpty()) {
+                if (currentPhotoPath == null) {
+                    "Please select media.".toast(this)
+                    return
+                } else if (eventTitle.isEmpty()) {
                     "Please enter event title.".toast(this); return
+                } else if (type.isEmpty()) {
+                    "Please select event type".toast(this); return
+                } else if (eventStartDate.isEmpty() || eventEndDate.isEmpty()) {
+                    "Please select both start and end date.".toast(this); return
+                } else if (eventStartTime.isEmpty() || eventEndTime.isEmpty()) {
+                    "Please select both start and end time.".toast(this); return
+                } else if (timeZone.isEmpty()) {
+                    "Please select timezone".toast(this);return
+                } else if (binding.et104.text.toString().trim().isEmpty()) {
+                    "Please select location".toast(this);return
                 } else if (eventWebLink.isEmpty()) {
                     "Please enter destination website.".toast(this); return
                 }
                 addEventAd(eventWebLink, eventAdditionalLine, eventTitle)
             }
             3 -> {
-                if (podWebLink.isEmpty()) {
+                if (currentPhotoPath == null) {
+                    "Please select media.".toast(this)
+                    return
+                } else if (podWebLink.isEmpty()) {
                     "Please enter destination website.".toast(this); return
                 }
                 addPodAd(podWebLink, podAdditionalLine)
@@ -566,10 +650,7 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
     }
 
     private fun addPodAd(podWebLink: String, podAdditionalLine: String) {
-        if (currentPhotoPath == null || photoURI == null) {
-            "Please select media.".toast(this)
-            return
-        }
+
         var ftype = 1
         val mediaType = contentResolver.getType(photoURI)
         if (mediaType != null && mediaType.contains("video")) {
@@ -601,15 +682,7 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
     }
 
     private fun addEventAd(eventWebLink: String, eventAdditionalLine: String, eventTitle: String) {
-        if (currentPhotoPath == null || photoURI == null) {
-            "Please select media.".toast(this)
-            return
-        }
-        if (eventStartDate.isEmpty() || eventEndDate.isEmpty()) {
-            "Please select both start and end date.".toast(this); return
-        } else if (eventStartTime.isEmpty() || eventEndTime.isEmpty()) {
-            "Please select both start and end time.".toast(this); return
-        }
+
 
         var ftype = 1
         val mediaType = contentResolver.getType(photoURI)
@@ -633,10 +706,7 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
     }
 
     private fun addPicVidAd(picVidWebLink: String, picVidAdditionalLine: String) {
-        if (currentPhotoPath == null || photoURI == null) {
-            "Please select media.".toast(this)
-            return
-        }
+
         var ftype = 1
         val mediaType = contentResolver.getType(photoURI)
         if (mediaType != null && mediaType.contains("video")) {
@@ -668,8 +738,8 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
     }
 
     override fun onPicVidSelect() {
-        isEvent = false;
-        isPoscast = false;
+        isEvent = false
+        isPoscast = false
         isImagevideo = true
 
         showPicker()
@@ -695,7 +765,21 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
         view.btnCan.setOnClickListener {
             dialog.dismiss()
         }
-        view.btnFollow.visibility = View.GONE
+        if (isImagevideo) {
+            view.btnFollow.visibility = View.GONE
+            view.textView64.text = "Add image(s) or video(s)"
+            view.btnOnline.text = "Choose existing photo or video"
+        } else if (isEvent) {
+            view.btnFollow.visibility = View.VISIBLE
+            view.textView64.text = "Add image(s)"
+            view.btnOnline.text = "Choose existing photo"
+        } else if (isPoscast) {
+            view.btnFollow.visibility = View.VISIBLE
+            view.textView64.text = "Add image(s)"
+            view.btnOnline.text = "Choose existing photo"
+
+        }
+
         view.btnFollow.setOnClickListener {
             if (hasPermissions(this, permissions)) {
                 //openCustomPicker()
@@ -822,8 +906,8 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
     }
 
     override fun onEventImageSelect() {
-        isEvent = true;
-        isPoscast = false;
+        isEvent = true
+        isPoscast = false
         isImagevideo = false
         showPicker()
     }
@@ -853,12 +937,12 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
         }
         view.btnFollow.setOnClickListener {
             binding.textView94.setText(R.string.local_event)
-            type = 0
+            type = "0"
             dialog.dismiss()
         }
         view.btnOnline.setOnClickListener {
             binding.textView94.setText(R.string.online_event)
-            type = 1
+            type = "1"
             dialog.dismiss()
         }
         dialog.show()
@@ -881,8 +965,8 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
     }
 
     override fun onPodImageSelect() {
-        isEvent = false;
-        isPoscast = true;
+        isEvent = false
+        isPoscast = true
         isImagevideo = false
         showPicker()
     }
@@ -907,7 +991,7 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
         }
         val ibClose = view.findViewById<ImageButton>(R.id.imageButton82)
         val etLink = view.findViewById<EditText>(R.id.textView256)
-        val btnAddLink = view.findViewById<Button>(R.id.button120)
+        val btnAddLink = view.findViewById<TextView>(R.id.button120)
         pbLink = view.findViewById<ProgressBar>(R.id.progressBar8)
         wvAdLink = view.findViewById<WebView>(R.id.wvAdLink)
         wvAdLink?.webViewClient = SpineWebViewClient(this)
@@ -917,9 +1001,9 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
         }
         btnAddLink.setOnClickListener {
             val link = etLink.text
-            binding.editTextTextPersonName33.setText(link)
-            binding.editTextTextPersonName34.setText(link)
-            binding.editTextTextPersonName36.setText(link)
+            binding.editTextTextPersonName33.text = link
+            binding.editTextTextPersonName34.text = link
+            binding.editTextTextPersonName36.text = link
             dialog.dismiss()
         }
         etLink.addTextChangedListener(object : TextWatcher {
@@ -946,7 +1030,7 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
 
     override fun onAdDurationSelected(adDurationData: AdDurationData) {
         durationId = adDurationData.id
-        val durationType = if (adDurationData.durationType.equals("1")) {
+        val durationType = if (adDurationData.duration_type.equals("1")) {
             "Week"
         } else {
             "Month"
@@ -958,6 +1042,7 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
         dialog!!.dismiss()
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
             when (resultCode) {
@@ -986,8 +1071,18 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
             try {
-                val mImageBitmap =
-                    BitmapFactory.decodeFile(currentPhotoPath) //MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
+                var mImageBitmap: Bitmap? = null
+                if (currentPhotoPath!!.endsWith(".mp4")) {
+                    mImageBitmap = ThumbnailUtils.createVideoThumbnail(
+                        File(currentPhotoPath),
+                        Size(120, 120),
+                        null
+                    )
+                } else {
+                    mImageBitmap =
+                        BitmapFactory.decodeFile(currentPhotoPath) //MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
+                }
+
                 when (adType) {
                     1 -> binding.imageView42.setImageBitmap(mImageBitmap)
                     2 -> binding.imageView43.setImageBitmap(mImageBitmap)
@@ -1010,8 +1105,17 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
                     currentPhotoPath = uriPathHelper.getPath(this, photoURI)
 
                     try {
-                        val mImageBitmap =
-                            BitmapFactory.decodeFile(currentPhotoPath) //MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
+                        var mImageBitmap: Bitmap? = null
+                        if (currentPhotoPath!!.endsWith(".mp4")) {
+                            mImageBitmap = ThumbnailUtils.createVideoThumbnail(
+                                File(currentPhotoPath),
+                                Size(120, 120),
+                                null
+                            )
+                        } else {
+                            mImageBitmap =
+                                BitmapFactory.decodeFile(currentPhotoPath) //MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
+                        }
                         when (adType) {
                             1 -> binding.imageView42.setImageBitmap(mImageBitmap)
                             2 -> binding.imageView43.setImageBitmap(mImageBitmap)
@@ -1026,24 +1130,41 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
                 val uriPathHelper = UriPathHelper()
                 currentPhotoPath = uriPathHelper.getPath(this, photoURI)
                 try {
-                    /*   val mImageBitmap =
-                           BitmapFactory.decodeFile(currentPhotoPath)*/
-                    val selectedUri: Uri? =
-                        data.data//MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
+                    var mImageBitmap: Bitmap? = null
+                    if (currentPhotoPath!!.endsWith(".mp4")) {
+                        mImageBitmap = ThumbnailUtils.createVideoThumbnail(
+                            File(currentPhotoPath),
+                            Size(120, 120),
+                            null
+                        )
+                    } else {
+                        mImageBitmap =
+                            BitmapFactory.decodeFile(currentPhotoPath) //MediaStore.Images.Media.getBitmap(this.contentResolver,Uri.parse(currentPhotoPath))
+                    }
                     when (adType) {
-                        1 -> Glide.with(this).load(selectedUri.toString()).into(binding.imageView42)
-                        2 -> Glide.with(this).load(selectedUri.toString()).into(binding.imageView43)
-                        3 -> Glide.with(this).load(selectedUri.toString()).into(binding.imageView44)
+                        /*  1 -> Glide.with(this).load(selectedUri.toString()).into(binding.imageView42)
+                          2 -> Glide.with(this).load(selectedUri.toString()).into(binding.imageView43)
+                          3 -> Glide.with(this).load(selectedUri.toString()).into(binding.imageView44)*/
 
-                        /*   1 -> binding.imageView42.setImageBitmap(mImageBitmap)
-                           2 -> binding.imageView43.setImageBitmap(mImageBitmap)
-                           3 -> binding.imageView44.setImageBitmap(mImageBitmap)*/
+                        1 -> binding.imageView42.setImageBitmap(mImageBitmap)
+                        2 -> binding.imageView43.setImageBitmap(mImageBitmap)
+                        3 -> binding.imageView44.setImageBitmap(mImageBitmap)
                     }
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
             }
         }
+    }
+
+    private fun showProgressDialog() {
+        progressDialog.setMessage("Please wait...")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+    }
+
+    private fun dismissProgressDailog() {
+        progressDialog.dismiss()
     }
 
     override fun onPageLoaded() {
@@ -1055,6 +1176,74 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
         const val EVENT_AD_DATA = "eventAdData"
         const val POD_AD_DATA = "podAdData"
         const val AD_TYPE = "adType"
+    }
+
+    override fun onAdTypeSelected(adsTypeData: AdsTypeData) {
+
+        if (adsTypeData.id.equals("1")) {
+            //picture or video
+            isImagevideo = true
+            isEvent = false
+            isPoscast = false
+
+            binding.textView300.text = getString(R.string.picture_or_video)
+            binding.picVid.visibility = View.VISIBLE
+            binding.event.visibility = View.GONE
+            binding.pod.visibility = View.GONE
+            adType = 1
+            currentPhotoPath = null
+            adTypeDialog!!.dismiss()
+
+        } else if (adsTypeData.id.equals("2")) {
+
+            //event
+            isImagevideo = false
+            isEvent = true
+            isPoscast = false
+
+            binding.textView300.text = getString(R.string.event)
+            binding.picVid.visibility = View.GONE
+            binding.event.visibility = View.VISIBLE
+            binding.pod.visibility = View.GONE
+            adType = 2
+            currentPhotoPath = null
+            adTypeDialog!!.dismiss()
+
+        } else if (adsTypeData.id.equals("3")) {
+            //pod
+            isImagevideo = false
+            isEvent = false
+            isPoscast = true
+
+
+            binding.textView300.text = getString(R.string.podcast)
+            binding.picVid.visibility = View.GONE
+            binding.event.visibility = View.GONE
+            binding.pod.visibility = View.VISIBLE
+            adType = 3
+            currentPhotoPath = null
+            adTypeDialog!!.dismiss()
+        }
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        var ppppp = parent!!.id
+
+        if (ppppp == binding.spinnertimezone.id) {
+            try {
+
+                var time = timeData[position]
+                timeZone = time.id
+//                binding.et104.setText(" ")
+            } catch (e: Exception) {
+
+            }
+        }
+
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+
     }
 }
 
@@ -1074,7 +1263,7 @@ data class PicVidAdData(
     val durationId: String,
     val latitude: String,
     val longitude: String
-) : Serializable {}
+) : Serializable
 
 data class PodAdData(
     val uid: String,
@@ -1092,7 +1281,7 @@ data class PodAdData(
     val durationId: String,
     val latitude: String,
     val longitude: String
-) : Serializable {}
+) : Serializable
 
 data class EventAdData(
     val uid: String,
@@ -1118,4 +1307,4 @@ data class EventAdData(
     val eventEndTime: String,
     val timezone: String,
     val location: String
-) : Serializable {}
+) : Serializable

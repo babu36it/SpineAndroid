@@ -3,6 +3,7 @@ package com.wiesoftware.spine.data.net
 import android.util.Log
 import com.google.gson.GsonBuilder
 import com.wiesoftware.spine.data.net.reponses.*
+import com.wiesoftware.spine.data.net.reponses.adsmanagment.AdsTypeModel
 import com.wiesoftware.spine.data.net.reponses.episode.EpisodeModel
 import com.wiesoftware.spine.data.net.reponses.welcompageresponse.WelcomePageReponse
 import com.wiesoftware.spine.ui.home.menus.events.TimeZoneResponse
@@ -305,7 +306,7 @@ interface Api {
     ): Response<SingleRes>
 
 
-    @GET("podcasts/getPodcastsCustom}")
+    @GET("podcasts/getPodcastsCustom")
     suspend fun getAllPodcasts(): Response<PodRes>
 
     @GET("podcasts/getPodcastsEpisodeCustom")
@@ -1072,5 +1073,13 @@ interface Api {
         @Field("hashtags") hashtags: String
     ): Response<SingleRes>
 
+    @GET("post/getAdsDuration")
+    suspend fun getAdDuration(
+    ): Response<AdDurationRes>
+
+    @GET("post/getAdsType")
+    suspend fun getAdsType(
+
+    ): Response<AdsTypeModel>
 
 }

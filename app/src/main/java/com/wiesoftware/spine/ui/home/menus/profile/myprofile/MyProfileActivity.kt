@@ -1,5 +1,6 @@
 package com.wiesoftware.spine.ui.home.menus.profile.myprofile
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -33,15 +34,16 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.wiesoftware.spine.BuildConfig
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
+import com.wiesoftware.spine.data.adapter.ListPodcastAdapter
 import com.wiesoftware.spine.data.adapter.OwnEventAdapter
 import com.wiesoftware.spine.data.adapter.OwnPostAdapter
-import com.wiesoftware.spine.data.adapter.UserPodcastAdapter
 import com.wiesoftware.spine.data.net.reponses.*
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityMyProfileBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.events.EVE_RECORD
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
+import com.wiesoftware.spine.ui.home.menus.podcasts.MyListPodcastAdapter
 import com.wiesoftware.spine.ui.home.menus.profile.editprofile.EditProfileActivity
 import com.wiesoftware.spine.ui.home.menus.profile.follow.FollowActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
@@ -65,7 +67,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class MyProfileActivity : AppCompatActivity(), KodeinAware, MyProfileEventListener,
-    OwnEventAdapter.OnEventDetailsListener, OwnPostAdapter.OwnPostSelectedListener {
+    OwnEventAdapter.OnEventDetailsListener, OwnPostAdapter.OwnPostSelectedListener,
+ListPodcastAdapter.OnPodEveListener{
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base?.let { RuntimeLocaleChanger.wrapContext(it) })
@@ -92,6 +95,7 @@ class MyProfileActivity : AppCompatActivity(), KodeinAware, MyProfileEventListen
     lateinit var binding: ActivityMyProfileBinding
     var followers: String = "0"
     var following: String = "0"
+    lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,6 +104,7 @@ class MyProfileActivity : AppCompatActivity(), KodeinAware, MyProfileEventListen
         val viewmodel = ViewModelProvider(this, factory).get(MyProfileViewmodel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.myProfileEventListener = this
+        progressDialog = ProgressDialog(this)
 
         viewmodel.getLoggedInUser().observe(this, Observer { user ->
             userId = user.users_id!!
@@ -134,14 +139,9 @@ class MyProfileActivity : AppCompatActivity(), KodeinAware, MyProfileEventListen
                 if (res.status) {
                     val img = res.image
                     val profileData = res.data
-                    val imgName = profileData.profile_pic
+                    val imgName = profileData.user_image
                     profileImg = img + imgName
-                   /* if (!imgName.isNullOrEmpty()) {
-                        Glide.with(binding.imageView19)
-                            .load(profileImg)
-                            .placeholder(R.drawable.userprofile)
-                            .into(binding.imageView19)
-                    }*/
+
                     setProfileData(profileData, img)
                 }
             } catch (e: ApiException) {
@@ -166,7 +166,7 @@ class MyProfileActivity : AppCompatActivity(), KodeinAware, MyProfileEventListen
         val bgImg = profileData.bg_image
         val post = profileData.post_records_count
         val event = profileData.event_records_count
-        val pod = profileData.pod_records_count
+        val pod = profileData.event_records_count
         bgImage = img + bgImg
         Glide.with(binding.imageView18)
             .load(bgImage)
@@ -244,8 +244,10 @@ class MyProfileActivity : AppCompatActivity(), KodeinAware, MyProfileEventListen
     private fun getOwnPost() {
         lifecycleScope.launch {
             try {
+                showProgressDialog()
                 val postRes = homeRepositry.getAllPosts(1, 200, userId, 0, 1)
                 if (postRes.status) {
+                    dismissProgressDailog()
 //                    BASE_IMAGE =postRes.image
 //                    postList = postRes.data
                     postList = arrayListOf<PostData>()
@@ -256,11 +258,16 @@ class MyProfileActivity : AppCompatActivity(), KodeinAware, MyProfileEventListen
                         it.adapter = adapter
                         adapter.notifyDataSetChanged()
                     }
+                }else{
+                    dismissProgressDailog()
+                    Toast.makeText(this@MyProfileActivity,postRes.message,Toast.LENGTH_SHORT).show()
                 }
             } catch (e: com.wiesoftware.spine.util.ApiException) {
                 e.printStackTrace()
+                dismissProgressDailog()
             } catch (e: NoInternetException) {
                 e.printStackTrace()
+                dismissProgressDailog()
             }
         }
     }
@@ -281,11 +288,12 @@ class MyProfileActivity : AppCompatActivity(), KodeinAware, MyProfileEventListen
     private fun getOwnEvents() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getOwnEvents(userId)
+                showProgressDialog()
+                val res = homeRepositry.getOwnEvents()
                 if (res.status) {
+                    dismissProgressDailog()
 //                    BASE_IMAGE=res.image
-//                    val evedata= res.data
-                    val evedata = arrayListOf<EventsRecord>()
+                    val evedata = res.data
                     binding.rvProfileData.also {
                         it.layoutManager =
                             LinearLayoutManager(
@@ -298,11 +306,16 @@ class MyProfileActivity : AppCompatActivity(), KodeinAware, MyProfileEventListen
                         it.adapter = eveAdapter
                         eveAdapter.notifyDataSetChanged()
                     }
+                }else{
+                    dismissProgressDailog()
+                    Toast.makeText(this@MyProfileActivity,res.message,Toast.LENGTH_SHORT).show()
                 }
             } catch (e: com.wiesoftware.spine.util.ApiException) {
                 e.printStackTrace()
+                dismissProgressDailog()
             } catch (e: NoInternetException) {
                 e.printStackTrace()
+                dismissProgressDailog()
             }
         }
     }
@@ -318,33 +331,44 @@ class MyProfileActivity : AppCompatActivity(), KodeinAware, MyProfileEventListen
         setTvAndBtnColor(binding.textView159, binding.textViewPods, R.color.text_black)
         getPods()
     }
-
+    var podData: List<PodDatas> = arrayListOf()
+    var podAdapter = ListPodcastAdapter(podData, this)
     private fun getPods() {
+
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getOwnEvents(userId)
+                showProgressDialog()
+                val res = homeRepositry.getAllPodcasts()
                 if (res.status) {
-//                    BASE_IMAGE=res.image
-//                    val evedata= res.data
-                    val poddata = arrayListOf<PodDatas>()
-                    binding.rvProfileData.also {
-                        it.layoutManager =
-                            LinearLayoutManager(
-                                this@MyProfileActivity,
-                                RecyclerView.VERTICAL,
-                                false
-                            )
-                        it.setHasFixedSize(true)
-
-//                        it.adapter= UserPodcastAdapter(poddata,)
-                        eveAdapter.notifyDataSetChanged()
-                    }
+                    dismissProgressDailog()
+                    podData= res.data
+                    setPodCastAdapter(podData)
+                }else{
+                    dismissProgressDailog()
+                    Toast.makeText(this@MyProfileActivity,res.message,Toast.LENGTH_SHORT).show()
                 }
             } catch (e: com.wiesoftware.spine.util.ApiException) {
                 e.printStackTrace()
+                dismissProgressDailog()
             } catch (e: NoInternetException) {
                 e.printStackTrace()
+                dismissProgressDailog()
             }
+        }
+    }
+
+    private fun setPodCastAdapter(podData: List<PodDatas>) {
+        binding.rvProfileData.also {
+            it.layoutManager =
+                LinearLayoutManager(
+                    this@MyProfileActivity,
+                    RecyclerView.VERTICAL,
+                    false
+                )
+            it.setHasFixedSize(true)
+
+            it.adapter = ListPodcastAdapter(podData, this)
+            podAdapter.notifyDataSetChanged()
         }
     }
 
@@ -555,4 +579,16 @@ class MyProfileActivity : AppCompatActivity(), KodeinAware, MyProfileEventListen
                 media_file.contains(".3gp", true) ||
                 media_file.contains(".avi", true)
 
+    override fun onPodDetails(podcastData: PodDatas) {
+
+    }
+    private fun showProgressDialog() {
+        progressDialog.setMessage("Please wait...")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+    }
+
+    private fun dismissProgressDailog() {
+        progressDialog.dismiss()
+    }
 }

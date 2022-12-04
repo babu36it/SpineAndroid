@@ -475,7 +475,7 @@
     <string name="and_privacy_policy">and Privacy Policy</string>
     <string name="feed">Feed</string>
     <string name="discover">Discover</string>
-
+    <string name="str_metaverse">Metaverse</string>
     <string name="metaverse_sessions">Metaverse Sessions</string>
     <string name="metaverse_event" translatable="false">Metaverse Event</string>
     <string name="metaverse_sessions_details">Coachings, Lessons, Readings and Speaches that take place in the Metaverse</string>

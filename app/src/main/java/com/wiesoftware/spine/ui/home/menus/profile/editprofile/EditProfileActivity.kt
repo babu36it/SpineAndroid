@@ -409,21 +409,28 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
                         .placeholder(R.drawable.bgimage)
                         .into(binding.bgProfile)
 
-                    editProfileViewModel.accountType = "0"
-                    binding.tvSwitch.text = getString(R.string.switch_to_professional_account)
-                    /*  if (data.account_mode.equals("1")) {
-                          binding.ivBadge.visibility = View.VISIBLE
-                          accountType = "1"
-                          binding.constraintLayout5.visibility = View.VISIBLE
-                          binding.TvEvCat.text = data.categoryName
-                          binding.website.setText(data.website)
-                          binding.contactEmail.setText(data.contact_email)
-                          binding.bPhoneNumber.setText(data.business_phone)
-                          binding.bAdd.setText(data.address.toString())
-                          binding.tvSwitch.text = getString(R.string.back_to_normal_account)
-                      } else {
-                          binding.ivBadge.visibility = View.INVISIBLE
-                      }*/
+                    if (data.account_mode.equals("0")) {
+                        llProfile.visibility = View.VISIBLE
+                        constraintLayout5.visibility = View.GONE
+                        llCompanyListing.visibility = View.GONE
+                        binding.llTabbar.visibility = View.GONE
+                        editProfileViewModel.accountType = "0"
+
+                        binding.tvSwitch.text = getString(R.string.switch_to_professional_account)
+
+                        binding.switchButton.isChecked = false
+                    } else {
+                        llProfile.visibility = View.GONE
+                        constraintLayout5.visibility = View.VISIBLE
+                        //llCompanyListing.visibility = View.VISIBLE
+                        binding.llTabbar.visibility = View.VISIBLE
+                        editProfileViewModel.accountType = "1"
+
+                        binding.tvSwitch.text = getString(R.string.back_to_normal_account)
+
+                        binding.switchButton.isChecked = true
+                    }
+
                 } else {
                     Toast.makeText(this@EditProfileActivity, res.message, Toast.LENGTH_SHORT).show()
                 }

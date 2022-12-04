@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -30,24 +31,29 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 
-var profileImgBase=""
-class PostsFragment : Fragment(),KodeinAware, PostEventListner,
+var profileImgBase = ""
+
+class PostsFragment : Fragment(), KodeinAware, PostEventListner,
     OwnPostAdapter.OwnPostSelectedListener {
 
     override val kodein by kodein()
     private val factory: PostViewmodelFactory by instance()
     private val homeRepositry: HomeRepositry by instance()
     lateinit var binding: FragmentPostsBinding
-    var userId: String=""
+    var userId: String = ""
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
-        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_posts,container,false)
-        val viewmodel= ViewModelProvider(this,factory).get(PostViewmodel::class.java)
-        binding.model=viewmodel
-        viewmodel.postEventListner=this
-        viewmodel.getLoggedInUser().observe(viewLifecycleOwner, Observer { user->
-            userId=user.users_id!!
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_posts, container, false)
+        val viewmodel = ViewModelProvider(this, factory).get(PostViewmodel::class.java)
+        binding.model = viewmodel
+        viewmodel.postEventListner = this
+        viewmodel.getLoggedInUser().observe(viewLifecycleOwner, Observer { user ->
+            userId = user.users_id!!
             getOwnPost()
         })
 
@@ -57,49 +63,35 @@ class PostsFragment : Fragment(),KodeinAware, PostEventListner,
     private fun getOwnPost() {
         lifecycleScope.launch {
             try {
-                val postRes=homeRepositry.getAllPosts(1,200,userId,0,1)
-                if (!postRes.status){
-//                    BASE_IMAGE =postRes.image
-//                    profileImgBase=postRes.profilImage
-//                    val postList:List<PostData> = postRes.data
-//                    if (postList.size > 0){
-//                        binding.tvNoPost.visibility=View.GONE
-//                    }
-
-                    val postList = arrayListOf<PostData>()
-//
-//                    postList.add(DemoPostData("","0","asdsadasdddsasd"))
-//
-//                    postList.add(DemoPostData("","0","asdsadasdddsasd"))
-//
-//                    postList.add(DemoPostData("","1","sdvsdvdsdsvdscdscdsc"))
-
-
-
-
-//                    val spannedGridLayoutManager = SpannedGridLayoutManager(
-//
-//                        orientation = SpannedGridLayoutManager.Orientation.VERTICAL,
-//
-//                        spans = 4)
-//                    binding.rvPost.layoutManager = spannedGridLayoutManager
-
-                   binding.rvPost.also{
-                        it.layoutManager=StaggeredGridLayoutManager(2,RecyclerView.VERTICAL)
-                        it.setHasFixedSize(false)
-                        it.adapter=OwnPostAdapter(postList,this@PostsFragment)
+                val postRes = homeRepositry.getAllPosts(1, 200, userId, 0, 1)
+                if (postRes.status) {
+                    profileImgBase = postRes.profilImage
+                    val postList: List<PostData> = postRes.data
+                    if (postList.size > 0) {
+                        binding.tvNoPost.visibility = View.GONE
+                    } else {
+                        binding.tvNoPost.visibility = View.VISIBLE
                     }
+                    binding.rvPost.also {
+                        it.layoutManager = LinearLayoutManager(activity)
+                        it.setHasFixedSize(false)
+                        it.adapter = OwnPostAdapter(postList, this@PostsFragment)
+                        it.adapter!!.notifyDataSetChanged()
+                    }
+                } else {
+                    binding.tvNoPost.visibility = View.VISIBLE
+                    Toast.makeText(requireContext(), postRes.message, Toast.LENGTH_SHORT).show()
                 }
-            }catch (e: ApiException){
+            } catch (e: ApiException) {
                 e.printStackTrace()
-            }catch (e: NoInternetException){
+            } catch (e: NoInternetException) {
                 e.printStackTrace()
             }
         }
     }
 
     override fun createPost() {
-        startActivity(Intent(requireContext(),AddPostActivity::class.java))
+        startActivity(Intent(requireContext(), AddPostActivity::class.java))
     }
 
     override fun onPostSelected(postData: PostData) {
@@ -111,19 +103,19 @@ class PostsFragment : Fragment(),KodeinAware, PostEventListner,
             intent.putExtra(ViewMediaInLargeActivity.MEDIA_TYPE,type)
             startActivity(intent)
         }*/
-        val intent=Intent(requireContext(),PostDetailsActivity::class.java)
-        intent.putExtra(POST_DATA,postData)
+        val intent = Intent(requireContext(), PostDetailsActivity::class.java)
+        intent.putExtra(POST_DATA, postData)
         intent.putExtra(BASE_POST_IMG, BASE_IMAGE)
-        intent.putExtra(PROFILE_IMG_BASE,profileImgBase)
+        intent.putExtra(PROFILE_IMG_BASE, profileImgBase)
         startActivity(intent)
 
     }
 
 
-    companion object{
-        val POST_DATA="postData"
-        val BASE_POST_IMG="basePostImg"
-        val PROFILE_IMG_BASE="profileImgBase"
+    companion object {
+        val POST_DATA = "postData"
+        val BASE_POST_IMG = "basePostImg"
+        val PROFILE_IMG_BASE = "profileImgBase"
     }
 
 }

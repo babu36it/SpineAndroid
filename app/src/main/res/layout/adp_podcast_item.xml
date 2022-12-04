@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.wiesoftware.spine.data.net.reponses.episode.EpisodeData" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_180sdp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivPodcastImage"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_180sdp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivMouse"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_alignParentEnd="true"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/headphone"
+                    android:tint="@color/white" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivShare"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_toLeftOf="@id/ivMouse"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_share"
+                    android:tint="@color/white" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_toLeftOf="@id/ivPlay">
+
+                <RelativeLayout
+                    android:id="@+id/rrDuration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvLanguage"
+                        style="@style/OnlyText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_mic"
+                        android:drawablePadding="@dimen/eight"
+                        android:drawableTint="@color/day_night_both_black"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:gravity="center_vertical"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <View
+                        android:gravity="center_vertical"
+                        android:id="@+id/view"
+                        android:layout_width="@dimen/_1sdp"
+                        android:layout_height="@dimen/_14sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_toRightOf="@id/tvLanguage"
+                        android:background="@color/white" />
+
+
+                    <TextView
+                        android:gravity="center_vertical"
+                        android:id="@+id/tvTime"
+                        style="@style/OnlyText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_toRightOf="@id/view"
+                        android:drawablePadding="@dimen/eight"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp" />
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    style="@style/OnlyText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rrDuration"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:drawablePadding="@dimen/eight"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11sdp" />
+
+
+            </RelativeLayout>
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivPlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/eight"
+                android:src="@drawable/ic_play_button" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</layout>

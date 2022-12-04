@@ -22,5 +22,6 @@ data class AdDurationData(
     val amount: String,
     val currency: String,
     val duration: String,
+    val duration_type: String,
     val durationType: String
 )

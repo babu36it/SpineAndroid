@@ -6,11 +6,12 @@ data class PodDatas(
     val allow_comment: String,
     val bio: String,
     val bookmarks: String,
-    val category: List<PodCategory>,
+ //   val category: List<PodCategory>,
     val created_on: String,
     val description: String,
     val duration: String,
     val id: String,
+    val user_image:String,
     @SerializedName("iso_639-1")
     val iso_639_1: String,
     val language: String,
@@ -29,5 +30,17 @@ data class PodDatas(
     val user_id: String,
     val user_like: String,
     val username: String,
-    val views: String
+    val views: String,
+    val rss_data: RssData
+)
+
+data class RssData(
+    val url: String,
+    val title: String,
+    val language: String,
+    val link: String,
+    val author: String,
+    val description: String,
+    val image: String,
+    val episodes: String
 )

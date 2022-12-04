@@ -38,7 +38,7 @@
         android:layout_marginStart="@dimen/_18sdp"
         android:layout_marginEnd="@dimen/_18sdp"
         android:layout_marginTop="@dimen/twelve"
-        android:text="@string/no_podcast_found"
+        android:text="@string/no_events_found"
         android:textAlignment="center"
         android:textColor="@color/grey"
         android:textSize="@dimen/_12sdp"

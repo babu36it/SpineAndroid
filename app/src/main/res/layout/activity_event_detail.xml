@@ -24,6 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/vpSlider"
                     android:layout_width="match_parent"
@@ -33,7 +34,6 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"></androidx.viewpager2.widget.ViewPager2>
-
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_layout"

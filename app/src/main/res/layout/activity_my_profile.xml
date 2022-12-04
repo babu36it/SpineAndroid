@@ -190,9 +190,10 @@
                 android:layout_height="wrap_content">
 
                 <RelativeLayout
+                    android:layout_weight="1"
                     android:onClick="@{viewmodel.onPost}"
                     android:layout_marginStart="20dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -210,7 +211,6 @@
                         android:id="@+id/textView_post"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
                         android:layout_below="@+id/textView157"
                         android:layout_centerHorizontal="true"
                         android:fontFamily="@font/poppins_bold"
@@ -222,9 +222,10 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:layout_weight="1"
                     android:layout_marginStart="20dp"
                     android:onClick="@{viewmodel.onEvent}"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -235,8 +236,7 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/poppins_bold"
                         android:text="0"
-                        android:textColor="@color/text_black"
-                        android:textFontWeight="800" />
+                        android:textColor="@color/text_black" />
 
                     <TextView
                         android:id="@+id/textView_events"
@@ -246,16 +246,16 @@
                         android:layout_centerHorizontal="true"
                         android:fontFamily="@font/poppins_bold"
                         android:text="@string/events"
-                        android:textColor="@color/text_black"
-                        android:textFontWeight="800" />
+                        android:textColor="@color/text_black" />
 
 
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:layout_weight="1"
                     android:layout_marginStart="20dp"
                     android:onClick="@{viewmodel.onPod}"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
                         android:layout_centerHorizontal="true"
@@ -265,9 +265,7 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/poppins_bold"
                         android:text="0"
-                        android:textColor="@color/text_black"
-                        android:textFontWeight="800"
-                        />
+                        android:textColor="@color/text_black"/>
 
                     <TextView
                         android:layout_centerHorizontal="true"
@@ -275,9 +273,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="@string/pods"
+                        android:text="@string/podcasts"
                         android:textColor="@color/text_black"
-                        android:textFontWeight="800"
                         android:layout_below="@+id/textView159"
                         />
 

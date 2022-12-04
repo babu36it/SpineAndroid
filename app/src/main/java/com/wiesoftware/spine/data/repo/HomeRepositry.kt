@@ -5,6 +5,7 @@ import com.wiesoftware.spine.data.db.entities.User
 import com.wiesoftware.spine.data.net.Api
 import com.wiesoftware.spine.data.net.SafeApiRequest
 import com.wiesoftware.spine.data.net.reponses.*
+import com.wiesoftware.spine.data.net.reponses.adsmanagment.AdsTypeModel
 import com.wiesoftware.spine.data.net.reponses.episode.EpisodeModel
 import com.wiesoftware.spine.data.net.reponses.welcompageresponse.WelcomePageReponse
 import com.wiesoftware.spine.ui.home.menus.events.TimeZoneResponse
@@ -407,6 +408,16 @@ class HomeRepositry(
         }
     }
 
+    suspend fun getAdDuration(): AdDurationRes {
+        return apiRequest { api.getAdDuration() }
+    }
+
+    suspend fun getAdsType(): AdsTypeModel {
+        return apiRequest {
+            api.getAdsType()
+        }
+    }
+
 
     suspend fun getEventRequestUserList(
         page: Int,
@@ -513,7 +524,7 @@ class HomeRepositry(
         }
     }
 
-    suspend fun getOwnEvents(userID: String): OwnEventsRes {
+    suspend fun getOwnEvents(): OwnEventsRes {
         return apiRequest { api.getOwnEvents() }
     }
 

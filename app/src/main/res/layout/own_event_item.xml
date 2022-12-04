@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="model"
             type="com.wiesoftware.spine.data.net.reponses.EventsRecord" />
@@ -12,8 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        >
+        android:layout_margin="4dp">
 
         <ImageView
             android:id="@+id/imgEvent"
@@ -50,8 +50,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/poppins_bold"
-                android:text="9"
+                android:text=""
                 android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp"
 
                 />
 
@@ -64,53 +65,58 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="-20dp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="May"
+                android:text=""
                 android:textAllCaps="true"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp" />
 
         </RelativeLayout>
 
-<!--        android:text="@{model.language + ` | ` + model.startTime}"-->
+        <!--        android:text="@{model.language + ` | ` + model.startTime}"-->
         <TextView
             android:id="@+id/textView136"
+            style="@style/SimpleText_Sami_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"
-            android:drawableStart="@drawable/ic_new_mic"
+            android:drawableStart="@drawable/ic_location"
             android:drawablePadding="@dimen/_4sdp"
-           style="@style/SimpleText_Sami_bold"
-            android:text="sadadasdasdad"
+            android:text=""
+            android:fontFamily="@font/poppins_semi_bold"
+            android:textSize="@dimen/_11sdp"
             app:layout_constraintBottom_toBottomOf="@+id/imgEvent"
             app:layout_constraintStart_toStartOf="@+id/imgEvent" />
 
-<!--        android:text="@{model.title}"-->
+        <!--        android:text="@{model.title}"-->
         <TextView
             android:id="@+id/textView137"
             style="@style/EventTitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="@dimen/_200dp"
-            android:layout_marginEnd="@dimen/thirty_two"
             android:layout_marginStart="@dimen/twelve"
+            android:layout_marginEnd="@dimen/thirty_two"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:maxWidth="@dimen/_200dp"
             android:padding="@dimen/eight"
             android:textAlignment="textStart"
-            android:textStyle="bold"
+            android:textSize="@dimen/_12sdp"
             app:layout_constraintBottom_toTopOf="@+id/textView136"
             app:layout_constraintStart_toStartOf="@+id/imgEvent" />
 
         <TextView
             android:id="@+id/textView138"
+            style="@style/TitleText"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_height="@dimen/_25sdp"
             android:background="@color/colorPrimaryDark"
             android:paddingHorizontal="@dimen/_8sdp"
             android:paddingVertical="@dimen/_6sdp"
-            android:text="Online"
+            android:text=""
+            android:fontFamily="@font/poppins_semi_bold"
             android:textAllCaps="true"
-            style="@style/TitleText"
-            android:textSize="@dimen/sixteen"
             android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp"
             app:layout_constraintBottom_toTopOf="@+id/textView137"
             app:layout_constraintStart_toStartOf="@+id/textView136" />
 
