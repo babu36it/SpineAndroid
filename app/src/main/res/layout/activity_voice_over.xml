@@ -124,17 +124,17 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             tools:ignore="TextContrastCheck" />
-
-                        <ImageView
+                        <ImageButton
                             android:onClick="@{viewmodel.onImageClose}"
-                            android:padding="@dimen/eight"
-                            app:tint="@color/gray_scale"
-                            android:src="@drawable/ic_close_24dp"
+                            android:id="@+id/removeImageOrVideo"
+                            android:layout_width="@dimen/_24dp"
+                            android:layout_height="@dimen/_24dp"
+                            android:background="#6F000000"
+                            android:src="@drawable/ic_close"
                             app:layout_constraintEnd_toEndOf="@+id/imageViewPhotoOrVideo"
                             app:layout_constraintTop_toTopOf="@+id/imageViewPhotoOrVideo"
-                            android:id="@+id/removeImageOrVideo"
-                            android:layout_width="@dimen/thirty_two"
-                            android:layout_height="@dimen/thirty_two"/>
+
+                            />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -177,10 +177,9 @@
                         android:src="@drawable/ic_mic"
                         app:tint="@color/colorPrimaryDark"
                         tools:ignore="ImageContrastCheck" />
-                   <!-- <com.wiesoftware.spine.util.LineBarVisualizer
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_28sdp"/>-->
+
                     <ImageView
+                        android:padding="@dimen/_2sdp"
                         android:visibility="gone"
                         android:id="@+id/imageViewPlayPause"
                         android:layout_width="@dimen/thirty_two"
@@ -189,6 +188,7 @@
                         android:src="@drawable/ic_play_button"
                         app:tint="@color/colorPrimaryDark"
                         tools:ignore="ImageContrastCheck" />
+
                     <ImageView
                         android:visibility="gone"
                         android:id="@+id/imageViewPause"
@@ -205,6 +205,13 @@
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>-->
+                    <com.wiesoftware.spine.util.LineBarVisualizer
+                        android:shadowColor="@color/text_black"
+                        android:id="@+id/barVisualize"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_weight="1"
+                        />
                     <ImageView
                         android:visibility="gone"
                         android:onClick="@{viewmodel.onDeleteVoice}"

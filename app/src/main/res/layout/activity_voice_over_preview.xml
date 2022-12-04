@@ -31,7 +31,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
-                android:onClick="@{viewmodel.onBack}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -66,8 +65,19 @@
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/demo" />
-
+            <com.wiesoftware.spine.util.LineBarVisualizer
+                android:shadowColor="@color/text_black"
+                android:id="@+id/barVisualize"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                />
             <ImageView
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_25sdp"
                 android:layout_marginBottom="28dp"
