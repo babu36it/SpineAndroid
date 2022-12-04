@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/top_two_round_back"
-     >
+    >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
@@ -56,10 +56,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView256" />
 
-    <Button
+    <TextView
+        style="@style/NormalText"
+        android:textColor="@color/white"
+        android:gravity="center"
         android:id="@+id/button120"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_28sdp"
         android:layout_marginEnd="@dimen/sixteen"
         android:text="@string/add_link"
         android:background="@drawable/round_button_bg"
@@ -81,7 +84,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView256"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView256"
-         />
+        />
 
     <WebView
         android:id="@+id/wvAdLink"

@@ -418,6 +418,12 @@ class HomeRepositry(
         }
     }
 
+    suspend fun getPaymentSettings(): PaymentResponses {
+        return apiRequest {
+            api.getPaymentSettings()
+        }
+    }
+
 
     suspend fun getEventRequestUserList(
         page: Int,

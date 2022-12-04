@@ -1082,4 +1082,8 @@ interface Api {
 
     ): Response<AdsTypeModel>
 
+    @GET("post/getPaymentSetting")
+    suspend fun getPaymentSettings():Response<PaymentResponses>
+
+
 }

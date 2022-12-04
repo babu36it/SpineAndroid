@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -85,6 +85,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/imageButton67" />
 
                 <TextView
+                    android:id="@+id/tvAdType"
                     style="@style/NormalText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -212,7 +213,8 @@
                         android:padding="@dimen/_5sdp"
                         android:text="@string/credit_card"
                         android:textColor="@color/text_black"
-                        android:textSize="@dimen/_12sdp" />
+                        android:textSize="@dimen/_12sdp"
+                        android:visibility="gone" />
 
                     <RadioButton
                         android:id="@+id/radioButton10"
@@ -222,7 +224,8 @@
                         android:padding="@dimen/_5sdp"
                         android:text="@string/bank_account"
                         android:textColor="@color/text_black"
-                        android:textSize="@dimen/_12sdp" />
+                        android:textSize="@dimen/_12sdp"
+                        android:visibility="gone" />
                 </RadioGroup>
 
 
@@ -235,27 +238,27 @@
                     android:layout_marginTop="@dimen/eight"
                     android:layout_marginEnd="@dimen/_15sdp"
                     android:fontFamily="@font/poppins_semi_bold"
-                    android:textColor="@color/text_black"
                     android:text="@string/by_clicking_pay_now_publish_you_agree_to_the_ad_guidelines_and_ad_terms_and_conditions_of_the_spiritual_network"
+                    android:textColor="@color/text_black"
                     android:textSize="@dimen/_11sdp"
                     app:layout_constraintEnd_toEndOf="@+id/radioGroup2"
                     app:layout_constraintStart_toStartOf="@+id/radioGroup2"
                     app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
 
                 <TextView
-                    android:textColor="@color/white"
                     android:id="@+id/button121"
-                    android:background="@drawable/round_button_bg"
-                    android:onClick="@{viewmodel.onNext}"
                     android:layout_width="match_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
                     android:layout_height="@dimen/_35sdp"
+                    android:layout_gravity="center"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/eight"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/sixteen"
-                    android:text="@string/pay_now_publish" />
+                    android:background="@drawable/round_button_bg"
+                    android:gravity="center"
+                    android:onClick="@{viewmodel.onNext}"
+                    android:text="@string/pay_now_publish"
+                    android:textColor="@color/white" />
 
 
             </LinearLayout>

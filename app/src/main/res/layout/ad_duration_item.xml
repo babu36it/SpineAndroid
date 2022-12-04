@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:padding="@dimen/eight"
-            android:text="@{model.duration +` `+(model.durationType.equals(`1`) ? `Week` : `Month`)+` - `+ model.amount +` `+model.currency}"
+            android:text="@{model.duration +` `+(model.duration_type.equals(`1`) ? `Week` : `Month`)+` - `+ model.amount +` `+model.currency}"
             android:textColor="@color/day_night_both_black" />
 
         <View
