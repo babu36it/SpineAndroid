@@ -464,6 +464,7 @@ class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
         }
         if (requestCode == GALLERY_REQ && resultCode == RESULT_OK) {
 
+
             if (data?.clipData != null) {
                 val clipData: ClipData = data.clipData!!
                 val count = (clipData.itemCount - 1)
