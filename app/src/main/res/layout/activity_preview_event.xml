@@ -274,17 +274,17 @@
                         app:layout_constraintStart_toStartOf="@+id/textView120"
                         app:layout_constraintTop_toBottomOf="@+id/textView120" />
 
-                    <ImageButton
-                        android:id="@+id/imageButton21"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:padding="@dimen/eight"
-                        android:src="@drawable/ic_arrow_right"
-                        android:tint="@color/white"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView117"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView116" />
+<!--                    <ImageButton-->
+<!--                        android:id="@+id/imageButton21"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:background="@android:color/transparent"-->
+<!--                        android:padding="@dimen/eight"-->
+<!--                        android:src="@drawable/ic_arrow_right"-->
+<!--                        android:tint="@color/white"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@+id/textView117"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/textView116" />-->
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout

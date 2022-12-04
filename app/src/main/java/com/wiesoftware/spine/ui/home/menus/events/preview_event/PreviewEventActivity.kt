@@ -334,9 +334,11 @@ class PreviewEventActivity : AppCompatActivity(), KodeinAware, PreviewEventsEven
                 }
             } catch (e: ApiException) {
                 progress.dismiss()
+                Utils.showToast(this@PreviewEventActivity, e.message.toString())
                 e.printStackTrace()
             } catch (e: NoInternetException) {
                 progress.dismiss()
+                Utils.showToast(this@PreviewEventActivity, e.message.toString())
                 e.printStackTrace()
             }
         }

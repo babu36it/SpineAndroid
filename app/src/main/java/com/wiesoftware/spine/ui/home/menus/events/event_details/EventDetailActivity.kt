@@ -324,7 +324,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         location = record.location
 
         title = record.title
-        link = record.location
+        link = record.join_event_link
         event_link = record.linkOfEvent
         desc = record.description
         val total_cmnt = record.totalComment
