@@ -25,7 +25,8 @@ import com.wiesoftware.spine.data.net.RssApi
 import com.wiesoftware.spine.data.repo.AuthRepositry
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.data.repo.RssRepository
-import com.wiesoftware.spine.ui.auth.*
+import com.wiesoftware.spine.ui.auth.AuthViewModelFactory
+import com.wiesoftware.spine.ui.auth.WelcomeViewModelFactory
 import com.wiesoftware.spine.ui.auth.fb.FbEmailViewModelFactory
 import com.wiesoftware.spine.ui.auth.login.LoginViewModelFactory
 import com.wiesoftware.spine.ui.auth.number.NumberViewModelFactory
@@ -93,6 +94,7 @@ import com.wiesoftware.spine.ui.home.menus.spine.selectfollowers.SelectFollowers
 import com.wiesoftware.spine.ui.home.menus.spine.story.StoryViewmodelFactory
 import com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.ViewStoryViewmodelFactory
 import com.wiesoftware.spine.ui.home.menus.spine.welcome.ViewWelcomeViewmodelFactory
+import com.wiesoftware.spine.ui.home.menus.voice_over.VoiceViewmodelFactory
 import com.wiesoftware.spine.util.AppConfig
 import com.wiesoftware.spine.util.Prefs
 import com.wiesoftware.spine.util.toast
@@ -105,7 +107,6 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
-import java.util.*
 
 
 /**
@@ -194,6 +195,7 @@ class SpineApplication : Application(),KodeinAware {
         bind() from provider { DeleteAccountViewmodelFactory(instance()) }
         bind() from provider { StoryCommentViewmodelFactory(instance()) }
         bind() from provider { PracticionerModelFactory(instance()) }
+        bind() from provider { VoiceViewmodelFactory(instance()) }
     }
 
     override fun onCreate() {

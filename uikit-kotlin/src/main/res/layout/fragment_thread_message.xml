@@ -321,30 +321,36 @@
                     android:layout_width="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_height="wrap_content">
+
                     <ImageView
                         android:id="@+id/add_reaction"
-                        android:src="@drawable/add_reaction"
-                        android:clickable="true"
-                        android:layout_marginRight="16dp"
-                        android:foreground="?selectableItemBackground"
                         android:layout_width="24dp"
-                        android:layout_height="24dp"/>
+                        android:layout_height="24dp"
+                        android:layout_marginRight="16dp"
+                        android:clickable="true"
+                        android:foreground="?selectableItemBackground"
+                        android:src="@drawable/add_reaction"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
                     <ImageView
                         android:id="@+id/ic_forward_option"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:clickable="true"
                         android:foreground="?selectableItemBackground"
-                        android:tint="@color/primaryTextColor"
                         android:src="@drawable/ic_baseline_forward_24"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+                        app:tint="@color/primaryTextColor" />
+
                     <ImageView
-                        android:layout_marginLeft="16dp"
                         android:id="@+id/ic_more_option"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
                         android:clickable="true"
                         android:foreground="?selectableItemBackground"
                         android:src="@drawable/ic_baseline_more_vert_24"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                 </LinearLayout>
 
             </RelativeLayout>

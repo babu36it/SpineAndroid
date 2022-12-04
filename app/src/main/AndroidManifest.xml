@@ -33,25 +33,41 @@
     <application
         android:name=".SpineApplication"
         android:allowBackup="false"
-        tools:replace="android:allowBackup"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
-
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup">
         <activity
+            android:screenOrientation="fullSensor"
+            android:name=".ui.home.menus.voice_over.VoiceOverPreviewActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:screenOrientation="fullSensor"
+            android:name=".ui.home.menus.voice_over.VoiceOverActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:screenOrientation="fullSensor"
             android:name=".ui.home.menus.spine.practicioners.PracticionerSelectionListActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
+            android:screenOrientation="fullSensor"
             android:name=".ui.home.menus.spine.practicioners.PracticionersActivity"
             android:exported="false">
             <meta-data
@@ -247,7 +263,8 @@
                 android:resource="@xml/file_paths"
                 tools:replace="android:resource" />
 
-      <!--      <path-permission android:pathPrefix="/my_downloads" />
+            <!--
+                <path-permission android:pathPrefix="/my_downloads" />
             <path-permission android:pathPrefix="/all_downloads" />
             <path-permission android:pathPrefix="/download" />
 
@@ -256,7 +273,8 @@
 
             <path-permission android:pathPrefix="/public_downloads" />
 
-            <grant-uri-permission android:pathPrefix="/public_downloads/" />-->
+            <grant-uri-permission android:pathPrefix="/public_downloads/" />
+            -->
         </provider>
     </application>
 

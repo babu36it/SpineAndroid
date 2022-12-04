@@ -13,14 +13,15 @@ import com.smarteist.autoimageslider.SliderView
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.PostImageItem
 import com.wiesoftware.spine.data.adapter.SliderPostImageAdapter
-import com.wiesoftware.spine.ui.home.menus.spine.foryou.POST_BASE_IMG_FILE
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.impulse_content_item.view.*
 import kotlinx.android.synthetic.main.impulse_content_item.view.textView32
 import kotlinx.android.synthetic.main.post_event_item.view.*
 import kotlinx.android.synthetic.main.post_event_item.view.imageViewPostBig
+
 import kotlinx.android.synthetic.main.post_images_item.view.*
-import java.util.ArrayList
+import kotlinx.android.synthetic.main.promoted_by_new.view.*
+import kotlinx.android.synthetic.main.promoted_by_new.view.userImage
 
 
 class FeedAdapter(
@@ -70,7 +71,9 @@ class FeedAdapter(
             POST_TYPE_PROMOTED -> {
                 val viewHolder = holder as PromotedPostViewHolder
                 // viewHolder.textName.text=context.getString(R.string.oliver)
-                feedEventListener.onPromotedClicked(dataModel)
+                viewHolder.userImage.setOnClickListener{
+                    feedEventListener.onViewSomeonesProfile(dataModel)
+                }
             }
             POST_TYPE_SPINE -> {
                 val viewHolder = holder as SpineViewHolder
@@ -162,7 +165,7 @@ class FeedAdapter(
 
     inner class PromotedPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        /* var textName: TextView =itemView.textView29*/
+         var userImage: CircleImageView =itemView.userImage
 
     }
 
@@ -200,6 +203,7 @@ class FeedAdapter(
         fun onAdLinkClicked(url: String)*/
         fun onPromotedClicked(postData: HomeFeedModel)
         fun viewAllSpineImpulse_(postData: HomeFeedModel)
+        fun onViewSomeonesProfile(postData: HomeFeedModel)
 
     }
 

@@ -16,6 +16,7 @@ import com.google.gson.Gson
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityPracticionersBinding
+
 import kotlinx.android.synthetic.main.eve_cat_selection.*
 import kotlinx.android.synthetic.main.practicioner_location_selection.*
 import org.kodein.di.KodeinAware

@@ -832,4 +832,10 @@ class SpineFollowingFragment : Fragment(), KodeinAware, SpineFollowingEventListe
         startActivity(Intent(requireContext(), ImpulseActivity::class.java))
     }
 
+    override fun onViewSomeonesProfile(postData: HomeFeedModel) {
+        val intent= Intent(requireContext(), SomeOneProfileActivity::class.java)
+        intent.putExtra(SomeOneProfileActivity.SOME_ONES_USER_ID,postData.text)
+        startActivity(intent)
+    }
+
 }

@@ -228,7 +228,8 @@ class StoryDisplayFragment : Fragment(),
             storyDisplayVideo.hide()
             storyDisplayVideoProgress.hide()
             storyDisplayImage.show()
-            Glide.with(this).load(STORY_IMAGE+stories[counter].media_file).into(storyDisplayImage)
+          //  Glide.with(this).load(STORY_IMAGE+stories[counter].media_file).into(storyDisplayImage)
+            Glide.with(this).load(stories[counter].media_file).into(storyDisplayImage)
         }
 
        /* val cal: Calendar = Calendar.getInstance(Locale.ENGLISH).apply {

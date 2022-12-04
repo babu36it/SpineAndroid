@@ -29,9 +29,9 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 
-class RecommendedFollowersActivity : AppCompatActivity(),KodeinAware,
+class RecommendedFollowersActivity : AppCompatActivity(), KodeinAware,
     RecommendedFollowersEventListener, RecommendedFollowersAdapter.RecommendedFollowersListener,
-     DiscoverMemberStaggeredAdapter.OwnPostSelectedListener {
+    DiscoverMemberStaggeredAdapter.OwnPostSelectedListener {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base?.let { RuntimeLocaleChanger.wrapContext(it) })
@@ -41,16 +41,17 @@ class RecommendedFollowersActivity : AppCompatActivity(),KodeinAware,
     val factory: RecommendedFollowersViewmodelFactory by instance()
     val homeRepositry: HomeRepositry by instance()
     lateinit var binding: ActivityRecommendedFollowersBinding
-    lateinit var userId:String
+    lateinit var userId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=DataBindingUtil.setContentView(this,R.layout.activity_recommended_followers)
-        val viewmodel=ViewModelProvider(this,factory).get(RecommendedFolowersViewmodel::class.java)
-        binding.viewmodel=viewmodel
-        viewmodel.recommendedFollowersEventListener=this
-        viewmodel.getLoggedInUser().observe(this, Observer { user->
-            userId=user.users_id!!
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_recommended_followers)
+        val viewmodel =
+            ViewModelProvider(this, factory).get(RecommendedFolowersViewmodel::class.java)
+        binding.viewmodel = viewmodel
+        viewmodel.recommendedFollowersEventListener = this
+        viewmodel.getLoggedInUser().observe(this, Observer { user ->
+            userId = user.users_id!!
             getMembers()
         })
         getImageStaggered()
@@ -60,16 +61,17 @@ class RecommendedFollowersActivity : AppCompatActivity(),KodeinAware,
     private fun getImageStaggered() {
         lifecycleScope.launch {
             try {
-                var postList:MutableList<PostData> = ArrayList<PostData>()
+                var postList: MutableList<PostData> = ArrayList<PostData>()
 
                 binding.rvmembersImages.also {
-                    it.layoutManager=StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
+                    it.layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
                     it.setHasFixedSize(true)
-                    it.adapter=DiscoverMemberStaggeredAdapter(postList,this@RecommendedFollowersActivity)
+                    it.adapter =
+                        DiscoverMemberStaggeredAdapter(postList, this@RecommendedFollowersActivity)
                 }
-            }catch (e: ApiException){
+            } catch (e: ApiException) {
                 e.printStackTrace()
-            }catch (e: NoInternetException){
+            } catch (e: NoInternetException) {
                 e.printStackTrace()
             }
         }
@@ -79,19 +81,26 @@ class RecommendedFollowersActivity : AppCompatActivity(),KodeinAware,
 
         lifecycleScope.launch {
             try {
-                val allUsersRes=homeRepositry.getAllUsers(1,100,userId)
-                if (allUsersRes.status){
-                 BASE_IMAGE=allUsersRes.image
-                 val allUsersData=allUsersRes.data
+                val allUsersRes = homeRepositry.getAllUsers(1, 100, userId)
+                if (allUsersRes.status) {
+                    BASE_IMAGE = allUsersRes.image
+                    val allUsersData = allUsersRes.data
                     binding.rvmembers.also {
-                        it.layoutManager=LinearLayoutManager(this@RecommendedFollowersActivity,RecyclerView.VERTICAL,false)
+                        it.layoutManager = LinearLayoutManager(
+                            this@RecommendedFollowersActivity,
+                            RecyclerView.VERTICAL,
+                            false
+                        )
                         it.setHasFixedSize(true)
-                        it.adapter=RecommendedFollowersAdapter(allUsersData,this@RecommendedFollowersActivity)
+                        it.adapter = RecommendedFollowersAdapter(
+                            allUsersData,
+                            this@RecommendedFollowersActivity
+                        )
                     }
                 }
-            }catch (e: ApiException){
+            } catch (e: ApiException) {
                 e.printStackTrace()
-            }catch (e: NoInternetException){
+            } catch (e: NoInternetException) {
                 e.printStackTrace()
             }
         }
@@ -105,35 +114,35 @@ class RecommendedFollowersActivity : AppCompatActivity(),KodeinAware,
     override fun onFollowClick(allUsersData: AllUsersData, position: Int) {
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.addUserFollow(userId,allUsersData.usersId)
-                if (res.status){
+                val res = homeRepositry.addUserFollow(userId, allUsersData.usersId)
+                if (res.status) {
                     getString(R.string.following).toast(this@RecommendedFollowersActivity)
                 }
-            }catch (e: ApiException){
+            } catch (e: ApiException) {
                 e.printStackTrace()
-            }catch (e: NoInternetException){
+            } catch (e: NoInternetException) {
                 e.printStackTrace()
             }
         }
     }
 
     override fun onViewProfile(allUsersData: AllUsersData) {
-        val intent= Intent(this, SomeOneProfileActivity::class.java)
-        intent.putExtra(SomeOneProfileActivity.SOME_ONES_USER_ID,allUsersData.usersId)
+        val intent = Intent(this, SomeOneProfileActivity::class.java)
+        intent.putExtra(SomeOneProfileActivity.SOME_ONES_USER_ID, allUsersData.usersId)
         startActivity(intent)
     }
 
     override fun onUnfollowUser(allUsersData: AllUsersData, position: Int) {
         lifecycleScope.launch {
             try {
-                val unfollowUserId=allUsersData.usersId
-                val res=homeRepositry.unFollowUser(userId,unfollowUserId)
-                if (res.status){
+                val unfollowUserId = allUsersData.usersId
+                val res = homeRepositry.unFollowUser(userId, unfollowUserId)
+                if (res.status) {
                     "User unfollowed".toast(this@RecommendedFollowersActivity)
                 }
-            }catch (e: ApiException){
+            } catch (e: ApiException) {
                 e.printStackTrace()
-            }catch (e: NoInternetException){
+            } catch (e: NoInternetException) {
                 e.printStackTrace()
             }
         }
