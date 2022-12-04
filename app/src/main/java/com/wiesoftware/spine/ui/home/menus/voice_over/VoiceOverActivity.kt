@@ -467,6 +467,7 @@ class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
                     currentPhotoPath = uriPathHelper.getPath(this, photoURI)
                     currentPhotoPathList.add(currentPhotoPath!!)
 
+
                     photoUriList = photoURI.toString()
 
                     //"path:  $currentPhotoPath ".toast(this)
