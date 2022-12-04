@@ -58,7 +58,7 @@ class PaymentActivity : AppCompatActivity(), KodeinAware, PaymentFeaturedEventLi
     }
 
     private fun setAdTypeData() {
-        binding.tvAdType.setText()
+       /* binding.tvAdType.setText()*/
     }
 
     private fun mNetworkCallPaymentSettingsAPI() {
