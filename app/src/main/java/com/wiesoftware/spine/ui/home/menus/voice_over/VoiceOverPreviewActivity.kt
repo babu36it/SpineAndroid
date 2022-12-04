@@ -38,7 +38,7 @@ class VoiceOverPreviewActivity : AppCompatActivity() , KodeinAware{
         ).get(VoiceOverViewModel::class.java)
         binding.viewmodel = viewmodel
 
-        val dataFromVoiceOverPreview = intent.getSerializableExtra("VOICE_OVER_PREVIEW") as VoiceOverActivity.VoicePreview
+         val dataFromVoiceOverPreview = intent.getSerializableExtra("VOICE_OVER_PREVIEW") as VoiceOverActivity.VoicePreview
 
 
         setData(dataFromVoiceOverPreview)
@@ -48,8 +48,8 @@ class VoiceOverPreviewActivity : AppCompatActivity() , KodeinAware{
 
     @RequiresApi(Build.VERSION_CODES.Q)
     private fun setData(dataFromVoiceOverPreview: VoiceOverActivity.VoicePreview) {
-        binding.textDescription.text = dataFromVoiceOverPreview.description
-        val currentPhotoPath = dataFromVoiceOverPreview.currentPathPhoto
+         binding.textDescription.text = dataFromVoiceOverPreview.description
+         val currentPhotoPath = dataFromVoiceOverPreview.currentPathPhoto
         try {
 
             if (currentPhotoPath!!.endsWith(".mp4")) {
