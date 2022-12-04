@@ -26,19 +26,20 @@ import com.wiesoftware.spine.ui.home.menus.spine.addposts.postmedia.PostMediaAct
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory.AddStoryActivity
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.postthought.PostThoughtActivity
 import com.wiesoftware.spine.ui.home.menus.spine.featuredpost.FeaturedPostActivity
+import com.wiesoftware.spine.ui.home.menus.voice_over.VoiceOverActivity
 import kotlinx.android.synthetic.main.add_post_bottomheet.*
 
 class PodcastsFragment : Fragment(), PodcastFragmentEventListener {
 
-    lateinit var binding : FragmentPodcastsBinding
+    lateinit var binding: FragmentPodcastsBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_podcasts,container,false)
-        val viewModel=ViewModelProvider(this).get(PodcastsFragmentViewModel::class.java)
-        binding.viewmodel=viewModel
-        viewModel.podcastFragmentEventListener=this
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_podcasts, container, false)
+        val viewModel = ViewModelProvider(this).get(PodcastsFragmentViewModel::class.java)
+        binding.viewmodel = viewModel
+        viewModel.podcastFragmentEventListener = this
         setUpViewPager()
         addTabs()
 
@@ -50,19 +51,21 @@ class PodcastsFragment : Fragment(), PodcastFragmentEventListener {
         adapter.addFragment(ListenPodcastsFragment())
         adapter.addFragment(WatchPodcastsFragment())
         binding.viewPager.offscreenPageLimit = 2
-        binding.viewPager.adapter=adapter
+        binding.viewPager.adapter = adapter
     }
-    private fun addTabs(){
-        TabLayoutMediator(binding.tabLayout,binding.viewPager){tab, position ->  }
+
+    private fun addTabs() {
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position -> }
             .attach()
-        binding.tabLayout.getTabAt(0)?.text=getString(R.string.episodes)
-        binding.tabLayout.getTabAt(1)?.text=getString(R.string.podcasts)
+        binding.tabLayout.getTabAt(0)?.text = getString(R.string.episodes)
+        binding.tabLayout.getTabAt(1)?.text = getString(R.string.podcasts)
     }
 
     override fun onAddPodcast() {
         //startActivity(Intent(requireContext(),AddPostActivity::class.java))
         showAddBottomsheet()
     }
+
     private fun showAddBottomsheet() {
         val view: View = layoutInflater.inflate(R.layout.add_post_bottomheet, null)
         val dialog: BottomSheetDialog = BottomSheetDialog(requireContext())
@@ -79,14 +82,58 @@ class PodcastsFragment : Fragment(), PodcastFragmentEventListener {
             it.setBackgroundDrawableResource(android.R.color.transparent)
             dialog.setCancelable(true)
         }
-        dialog.button106.setOnClickListener { startActivity(Intent(requireContext(), PostThoughtActivity::class.java)) }
-        dialog.button107.setOnClickListener { startActivity(Intent(requireContext(), PostMediaActivity::class.java)) }
-        dialog.button108.setOnClickListener { startActivity(Intent(requireContext(), AddStoryActivity::class.java)) }
-        dialog.button109.setOnClickListener { startActivity(Intent(requireContext(), AddOrDupEventActivity::class.java))  }
-        dialog.button110.setOnClickListener { startActivity(Intent(requireContext(), AddRssActivity::class.java)) }
-        dialog.button111.setOnClickListener { startActivity(Intent(requireContext(),
-            FeaturedPostActivity::class.java)) }
-        dialog.show()
-    }
+        dialog.buttonVoiceOver.setOnClickListener {
+            startActivity(Intent(requireContext(), VoiceOverActivity::class.java))
+            dialog.button106.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        PostThoughtActivity::class.java
+                    )
+                )
+            }
+            dialog.button107.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        PostMediaActivity::class.java
+                    )
+                )
+            }
+            dialog.button108.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        AddStoryActivity::class.java
+                    )
+                )
+            }
+            dialog.button109.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        AddOrDupEventActivity::class.java
+                    )
+                )
+            }
+            dialog.button110.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        AddRssActivity::class.java
+                    )
+                )
+            }
+            dialog.button111.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        FeaturedPostActivity::class.java
+                    )
+                )
+            }
+            dialog.show()
+        }
 
+    }
 }

@@ -11,6 +11,7 @@ class VoiceOverViewModel(val homeRepositry: HomeRepositry) : ViewModel(){
 
     var voiceOverListener: VoiceOverListner?=null
     var    userId:String=""
+    var audioFileNameWithPath:String? = null
 
     fun onBack(view : View){
         voiceOverListener?.onBack()

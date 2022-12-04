@@ -42,6 +42,7 @@ import com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory.AddStoryActi
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.postthought.PostThoughtActivity
 import com.wiesoftware.spine.ui.home.menus.spine.featuredpost.FeaturedPostActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
+import com.wiesoftware.spine.ui.home.menus.voice_over.VoiceOverActivity
 import com.wiesoftware.spine.util.*
 import kotlinx.android.synthetic.main.add_post_bottomheet.*
 import kotlinx.coroutines.launch
@@ -202,73 +203,77 @@ class ProfileFragment : Fragment(), KodeinAware, ProfileFragmentEventListener {
                     ?: return@setOnShowListener
             bottomSheet.background = null
         }
-        dialog.window?.let {
-            it.setGravity(Gravity.BOTTOM)
-            it.setBackgroundDrawableResource(android.R.color.transparent)
-            dialog.setCancelable(true)
+        dialog.buttonVoiceOver.setOnClickListener {
+            startActivity(Intent(requireContext(), VoiceOverActivity::class.java))
+            dialog.window?.let {
+                it.setGravity(Gravity.BOTTOM)
+                it.setBackgroundDrawableResource(android.R.color.transparent)
+                dialog.setCancelable(true)
+            }
         }
-        dialog.button106.setOnClickListener {
-            startActivity(
-                Intent(
-                    requireContext(),
-                    PostThoughtActivity::class.java
+            dialog.button106.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        PostThoughtActivity::class.java
+                    )
                 )
-            )
-        }
-        dialog.button107.setOnClickListener {
-            startActivity(
-                Intent(
-                    requireContext(),
-                    PostMediaActivity::class.java
+            }
+            dialog.button107.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        PostMediaActivity::class.java
+                    )
                 )
-            )
-        }
-        dialog.button108.setOnClickListener {
-            startActivity(
-                Intent(
-                    requireContext(),
-                    AddStoryActivity::class.java
+            }
+            dialog.button108.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        AddStoryActivity::class.java
+                    )
                 )
-            )
-        }
-        dialog.button109.setOnClickListener {
-            startActivity(
-                Intent(
-                    requireContext(),
-                    AddOrDupEventActivity::class.java
+            }
+            dialog.button109.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        AddOrDupEventActivity::class.java
+                    )
                 )
-            )
-        }
-        dialog.button110.setOnClickListener {
-            startActivity(
-                Intent(
-                    requireContext(),
-                    AddRssActivity::class.java
+            }
+            dialog.button110.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        AddRssActivity::class.java
+                    )
                 )
-            )
-        }
-        dialog.button111.setOnClickListener {
-            startActivity(
-                Intent(
-                    requireContext(),
-                    FeaturedPostActivity::class.java
+            }
+            dialog.button111.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        FeaturedPostActivity::class.java
+                    )
                 )
-            )
+            }
+            dialog.show()
         }
-        dialog.show()
-    }
 
-    override fun onResume() {
-        super.onResume()
-        getUsersDetails()
-    }
-    private fun showProgressDialog() {
-        progressDialog.setMessage("Please wait...")
-        progressDialog.setCancelable(false)
-        progressDialog.show()
-    }
+        override fun onResume() {
+            super.onResume()
+            getUsersDetails()
+        }
 
-    private fun dismissProgressDailog() {
-        progressDialog.dismiss()
+        private fun showProgressDialog() {
+            progressDialog.setMessage("Please wait...")
+            progressDialog.setCancelable(false)
+            progressDialog.show()
+        }
+
+        private fun dismissProgressDailog() {
+            progressDialog.dismiss()
+        }
     }
-}

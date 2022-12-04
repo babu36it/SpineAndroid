@@ -42,6 +42,7 @@ import com.wiesoftware.spine.ui.home.menus.spine.addposts.postmedia.PostMediaAct
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory.AddStoryActivity
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.postthought.PostThoughtActivity
 import com.wiesoftware.spine.ui.home.menus.spine.featuredpost.FeaturedPostActivity
+import com.wiesoftware.spine.ui.home.menus.voice_over.VoiceOverActivity
 import com.wiesoftware.spine.util.*
 import kotlinx.android.synthetic.main.add_post_bottomheet.*
 import kotlinx.coroutines.launch
@@ -55,7 +56,7 @@ import org.kodein.di.generic.instance
 //val IS_FROM_EVENT_DETAILS = "isFromEventDetails"
 //var PROFILE_PIC_URL = ""
 
-class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
+class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
 
     val PERMISSION_REQUEST_CODE = 94
 
@@ -88,7 +89,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
         public var tabLayout: TabLayout? = null
     }
 
-    var currentFragment : Fragment? = null
+    var currentFragment: Fragment? = null
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -158,23 +159,23 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
 //                    }
 //                }
 //
-                println("Sanjay All...."+newText+"......"+currentFragment.toString())
+                println("Sanjay All...." + newText + "......" + currentFragment.toString())
 //                adapter?.setFilterData(dataListTemp)
 
 
                 if (currentFragment != null && currentFragment is EventFragmentAllList) {
                     (currentFragment as EventFragmentAllList).setFilterDataAll(newText!!)
-                } else if(currentFragment != null && currentFragment is EventFragmentGoingList) {
+                } else if (currentFragment != null && currentFragment is EventFragmentGoingList) {
                     (currentFragment as EventFragmentGoingList).setFilterDataGoing(newText!!)
-                } else if(currentFragment != null && currentFragment is EventFragmentSavedList) {
+                } else if (currentFragment != null && currentFragment is EventFragmentSavedList) {
                     (currentFragment as EventFragmentSavedList).setFilterDataSaved(newText!!)
-                } else if(currentFragment != null && currentFragment is EventFragmentFollowingList) {
+                } else if (currentFragment != null && currentFragment is EventFragmentFollowingList) {
                     (currentFragment as EventFragmentFollowingList).setFilterDataFollowing(newText!!)
-                } else if(currentFragment != null && currentFragment is EventFragmentOnLineList) {
+                } else if (currentFragment != null && currentFragment is EventFragmentOnLineList) {
                     (currentFragment as EventFragmentOnLineList).setFilterDataOnLine(newText!!)
-                } else if(currentFragment != null && currentFragment is EventFragmentNearByList) {
+                } else if (currentFragment != null && currentFragment is EventFragmentNearByList) {
                     (currentFragment as EventFragmentNearByList).setFilterDataNearBy(newText!!)
-                } else if(currentFragment != null && currentFragment is EventFragmentPastList) {
+                } else if (currentFragment != null && currentFragment is EventFragmentPastList) {
                     (currentFragment as EventFragmentPastList).setFilterDataPast(newText!!)
                 }
 
@@ -203,7 +204,10 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
         adapter.addFragment(EventFragmentAllList.newInstance("ALL", user_id)!!, "ALL")
         adapter.addFragment(EventFragmentGoingList.newInstance("GOING", user_id)!!, "GOING")
         adapter.addFragment(EventFragmentSavedList.newInstance("SAVED", user_id)!!, "SAVED")
-        adapter.addFragment(EventFragmentFollowingList.newInstance("FOLLOWING", user_id)!!, "FOLLOWING")
+        adapter.addFragment(
+            EventFragmentFollowingList.newInstance("FOLLOWING", user_id)!!,
+            "FOLLOWING"
+        )
         adapter.addFragment(EventFragmentOnLineList.newInstance("ONLINE", user_id)!!, "ONLINE")
         adapter.addFragment(EventFragmentNearByList.newInstance("NEARBY", user_id)!!, "NEARBY")
         adapter.addFragment(EventFragmentPastList.newInstance("PAST", user_id)!!, "PAST")
@@ -238,7 +242,6 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
     fun setintImages() {
 
 
-
         binding.viewPager.visibility = View.GONE
         binding.initLayout.initLiner.visibility = View.VISIBLE
 
@@ -254,28 +257,49 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
             try {
                 val res = homeRepositry.getEventType()
                 if (res.status) {
-                  var  data = res.data
+                    var data = res.data
 
                     val circularProgressDrawable = CircularProgressDrawable(requireContext())
                     circularProgressDrawable.strokeWidth = 5f
                     circularProgressDrawable.centerRadius = 30f
                     circularProgressDrawable.start()
                     Glide.with(requireContext())
-                        .load("https://thespiritualnetwork.com/assets/upload/spine-types/"+data[0].typeimage)
+                        .load("https://thespiritualnetwork.com/assets/upload/spine-types/" + data[0].typeimage)
                         .placeholder(circularProgressDrawable)
-                        .error( ColorDrawable(ContextCompat.getColor(requireContext(), R.color.light_gry)))
+                        .error(
+                            ColorDrawable(
+                                ContextCompat.getColor(
+                                    requireContext(),
+                                    R.color.light_gry
+                                )
+                            )
+                        )
                         .into(binding.initLayout.previewLocal);
 
                     Glide.with(requireContext())
-                        .load("https://thespiritualnetwork.com/assets/upload/spine-types/"+data[1].typeimage)
+                        .load("https://thespiritualnetwork.com/assets/upload/spine-types/" + data[1].typeimage)
                         .placeholder(circularProgressDrawable)
-                        .error( ColorDrawable(ContextCompat.getColor(requireContext(), R.color.light_gry)))
+                        .error(
+                            ColorDrawable(
+                                ContextCompat.getColor(
+                                    requireContext(),
+                                    R.color.light_gry
+                                )
+                            )
+                        )
                         .into(binding.initLayout.previewRetraint);
 
                     Glide.with(requireContext())
-                        .load("https://thespiritualnetwork.com/assets/upload/spine-types/"+data[2].typeimage)
+                        .load("https://thespiritualnetwork.com/assets/upload/spine-types/" + data[2].typeimage)
                         .placeholder(circularProgressDrawable)
-                        .error( ColorDrawable(ContextCompat.getColor(requireContext(), R.color.light_gry)))
+                        .error(
+                            ColorDrawable(
+                                ContextCompat.getColor(
+                                    requireContext(),
+                                    R.color.light_gry
+                                )
+                            )
+                        )
                         .into(binding.initLayout.previewMeta);
 
                 }
@@ -290,12 +314,13 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
 
 //    listOf("ALL", "GOING", "SAVED", "FOLLOWING", "ONLINE", "NEARBY", "PAST")
 
-    class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    class ViewPagerAdapter(fm: FragmentManager) :
+        FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         // objects of arraylist. One is of Fragment type and
         // another one is of String type.*/
-        public  var fragmentList1: ArrayList<Fragment> = ArrayList()
-        private  var fragmentTitleList1: ArrayList<String> = ArrayList()
+        public var fragmentList1: ArrayList<Fragment> = ArrayList()
+        private var fragmentTitleList1: ArrayList<String> = ArrayList()
 
 
         // returns which item is selected from arraylist of fragments.
@@ -394,60 +419,63 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
             it.setBackgroundDrawableResource(android.R.color.transparent)
             dialog.setCancelable(true)
         }
-        dialog.button106.setOnClickListener {
-            startActivity(
-                Intent(
-                    requireContext(),
-                    PostThoughtActivity::class.java
+        dialog.buttonVoiceOver.setOnClickListener {
+            startActivity(Intent(requireContext(), VoiceOverActivity::class.java))
+            dialog.button106.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        PostThoughtActivity::class.java
+                    )
                 )
-            )
+            }
         }
-        dialog.button107.setOnClickListener {
-            startActivity(
-                Intent(
-                    requireContext(),
-                    PostMediaActivity::class.java
+            dialog.button107.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        PostMediaActivity::class.java
+                    )
                 )
-            )
-        }
-        dialog.button108.setOnClickListener {
-            startActivity(
-                Intent(
-                    requireContext(),
-                    AddStoryActivity::class.java
+            }
+            dialog.button108.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        AddStoryActivity::class.java
+                    )
                 )
-            )
-        }
-        dialog.button109.setOnClickListener {
-            startActivity(Intent(requireContext(), AddOrDupEventActivity::class.java))
-            dialog.dismiss()
-        }
-        dialog.button110.setOnClickListener {
-            startActivity(
-                Intent(
-                    requireContext(),
-                    AddRssActivity::class.java
+            }
+            dialog.button109.setOnClickListener {
+                startActivity(Intent(requireContext(), AddOrDupEventActivity::class.java))
+                dialog.dismiss()
+            }
+            dialog.button110.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        AddRssActivity::class.java
+                    )
                 )
-            )
-        }
-        dialog.button111.setOnClickListener {
-            startActivity(
-                Intent(
-                    requireContext(),
-                    FeaturedPostActivity::class.java
+            }
+            dialog.button111.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        FeaturedPostActivity::class.java
+                    )
                 )
-            )
+            }
+            dialog.show()
         }
-        dialog.show()
-    }
 
-    override fun onFilterEvent() {
-        startActivity(Intent(requireContext(), FilterEventActivity::class.java))
-    }
+        override fun onFilterEvent() {
+            startActivity(Intent(requireContext(), FilterEventActivity::class.java))
+        }
 
-    override fun onMapview() {
-        startActivity(Intent(requireContext(), MapviewEventsActivity::class.java))
-    }
+        override fun onMapview() {
+            startActivity(Intent(requireContext(), MapviewEventsActivity::class.java))
+        }
 
 //    override fun onEventSave(record: EventsRecord, value: Int) {
 //        Log.e("valuee", value.toString())
@@ -501,32 +529,32 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
 //        }
 //    }
 
-    override fun onResume() {
-        super.onResume()
-        /* user_id?.let {
+        override fun onResume() {
+            super.onResume()
+            /* user_id?.let {
              setEventList()
              setEventMenu(0)
          }*/
-        if (!user_id.isEmpty()) {
-            val isFilter = Prefs.getBoolean("isFilter", false)
-            if (isFilter) {
-                val lat = Prefs.getString("lat", lat.toString())
-                val date = Prefs.getString("date", "")
-                val datetwo = Prefs.getString("datetwo", "")
-                val category = Prefs.getString("category", "")
-                val lon = Prefs.getString("lon", lon.toString())
-                getFilteredList(lat, lon, date, datetwo, category)
+            if (!user_id.isEmpty()) {
+                val isFilter = Prefs.getBoolean("isFilter", false)
+                if (isFilter) {
+                    val lat = Prefs.getString("lat", lat.toString())
+                    val date = Prefs.getString("date", "")
+                    val datetwo = Prefs.getString("datetwo", "")
+                    val category = Prefs.getString("category", "")
+                    val lon = Prefs.getString("lon", lon.toString())
+                    getFilteredList(lat, lon, date, datetwo, category)
+                }
             }
         }
-    }
 
-    private fun getFilteredList(
-        lat: String?,
-        lon: String?,
-        start_date: String?,
-        end_date: String?,
-        category: String?
-    ) {
+        private fun getFilteredList(
+            lat: String?,
+            lon: String?,
+            start_date: String?,
+            end_date: String?,
+            category: String?
+        ) {
 //        Log.e("start", start_date.toString())
 //        lifecycleScope.launch {
 //            try {
@@ -566,7 +594,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
 //                Prefs.putAny("isFilter", false)
 //            }
 //        }
-    }
+        }
 
 //    override fun onMenuSelected(selected: Int) {
 //        setEventMenu(selected)
@@ -585,11 +613,11 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
 //        }
 //    }
 
-    private fun past() {
-        getGoingPastEventList(1)
-    }
+        private fun past() {
+            getGoingPastEventList(1)
+        }
 
-    private fun saved() {
+        private fun saved() {
 //        lifecycleScope.launch {
 //            try {
 //                val res = homeRepositry.getAllSavedEvents(1, 100, user_id)
@@ -612,13 +640,13 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
 //                e.printStackTrace()
 //            }
 //        }
-    }
+        }
 
-    private fun going() {
-        getGoingPastEventList(0)
-    }
+        private fun going() {
+            getGoingPastEventList(0)
+        }
 
-    private fun getGoingPastEventList(goingPast: Int) {
+        private fun getGoingPastEventList(goingPast: Int) {
 //        lifecycleScope.launch {
 //            try {
 //                val res = homeRepositry.getGoingPastEventsList(1, 100, user_id, goingPast)
@@ -641,9 +669,9 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
 //                e.printStackTrace()
 //            }
 //        }
-    }
+        }
 
-    private fun setNearbyEvents() {
+        private fun setNearbyEvents() {
 //        Log.e("latlong: ", "$lat, $lon")
 //        lifecycleScope.launch {
 //            try {
@@ -668,9 +696,9 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
 //                e.printStackTrace()
 //            }
 //        }
-    }
+        }
 
-    private fun setFollowingEvents() {
+        private fun setFollowingEvents() {
 //        lifecycleScope.launch {
 //            try {
 //                val res = homeRepositry.getFollowingUsersEventsList(1, 100, user_id)
@@ -693,9 +721,9 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
 //                e.printStackTrace()
 //            }
 //        }
-    }
+        }
 
-    private fun setOnLineEvents() {
+        private fun setOnLineEvents() {
 //        lifecycleScope.launch {
 //            try {
 //                val res = homeRepositry.getOnLineEventsList(1, 100, user_id)
@@ -718,20 +746,100 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
 //                e.printStackTrace()
 //            }
 //        }
-    }
+        }
 
 
-    private fun getLocationUpdates() {
-        locationRequest.interval = 50000
-        locationRequest.fastestInterval = 50000
-        locationRequest.smallestDisplacement = 170f // 170 m = 0.1 mile
-        locationRequest.priority =
-            LocationRequest.PRIORITY_HIGH_ACCURACY //set according to your app function
-        locationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult?) {
-                locationResult ?: return
-                if (locationResult.locations.isNotEmpty()) {
-                    val location = locationResult.lastLocation
+        private fun getLocationUpdates() {
+            locationRequest.interval = 50000
+            locationRequest.fastestInterval = 50000
+            locationRequest.smallestDisplacement = 170f // 170 m = 0.1 mile
+            locationRequest.priority =
+                LocationRequest.PRIORITY_HIGH_ACCURACY //set according to your app function
+            locationCallback = object : LocationCallback() {
+                override fun onLocationResult(locationResult: LocationResult?) {
+                    locationResult ?: return
+                    if (locationResult.locations.isNotEmpty()) {
+                        val location = locationResult.lastLocation
+                        if (location != null) {
+                            lat = location.latitude
+                            lon = location.longitude
+                            Log.e("loc::", "$lat , $lon")
+                        }
+                    }
+
+
+                }
+            }
+        }
+
+        private fun startLocationUpdates() {
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                return
+            }
+
+            fusedLocationClient.requestLocationUpdates(
+                locationRequest,
+                locationCallback,
+                null /* Looper */
+            )
+        }
+
+        private fun stopLocationUpdates() {
+            locationCallback.let {
+                fusedLocationClient.removeLocationUpdates(locationCallback)
+            }
+        }
+
+        override fun onDestroy() {
+            super.onDestroy()
+            if (locationCallback != null) {
+                stopLocationUpdates()
+            }
+        }
+
+
+        fun hasPermissions(context: Context, permissions: Array<String>): Boolean {
+            for (p in permissions) {
+                if (ActivityCompat.checkSelfPermission(
+                        context,
+                        p
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    return false
+                }
+            }
+            return true
+        }
+
+        fun makeRequest() {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                permissions,
+                PERMISSION_REQUEST_CODE
+            )
+        }
+
+
+        private fun getCurrentLocation() {
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                return
+            }
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location ->
                     if (location != null) {
                         lat = location.latitude
                         lon = location.longitude
@@ -739,82 +847,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
                     }
                 }
 
-
-            }
-        }
-    }
-
-    private fun startLocationUpdates() {
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            return
         }
 
-        fusedLocationClient.requestLocationUpdates(
-            locationRequest,
-            locationCallback,
-            null /* Looper */
-        )
     }
 
-    private fun stopLocationUpdates() {
-        locationCallback.let {
-            fusedLocationClient.removeLocationUpdates(locationCallback)
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (locationCallback != null) {
-            stopLocationUpdates()
-        }
-    }
-
-
-    fun hasPermissions(context: Context, permissions: Array<String>): Boolean {
-        for (p in permissions) {
-            if (ActivityCompat.checkSelfPermission(
-                    context,
-                    p
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                return false
-            }
-        }
-        return true
-    }
-
-    fun makeRequest() {
-        ActivityCompat.requestPermissions(requireActivity(), permissions, PERMISSION_REQUEST_CODE)
-    }
-
-
-    private fun getCurrentLocation() {
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            return
-        }
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location ->
-                if (location != null) {
-                    lat = location.latitude
-                    lon = location.longitude
-                    Log.e("loc::", "$lat , $lon")
-                }
-            }
-
-    }
-
-}

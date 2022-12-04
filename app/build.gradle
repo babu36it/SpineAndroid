@@ -50,7 +50,7 @@ android {
         dataBinding = true
         viewBinding = true
     }
-
+    ndkVersion '21.3.6528147'
     lintOptions {
         checkReleaseBuilds false
         // Or, if you prefer, you can continue to check for errors in release builds,
