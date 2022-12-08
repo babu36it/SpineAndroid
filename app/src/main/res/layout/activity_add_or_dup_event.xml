@@ -16,6 +16,7 @@
         tools:context=".ui.home.menus.events.addordup.AddOrDupEventActivity">
 
         <ImageButton
+            android:contentDescription="@string/app_name"
             android:id="@+id/imageButton86"
             style="@style/BackButton"
             android:layout_width="wrap_content"
@@ -79,9 +80,9 @@
                         style="@style/TitleText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_add_new"
+                        app:drawableStartCompat="@drawable/ic_add_new"
                         android:drawablePadding="@dimen/eight"
-                        android:drawableTint="@color/colorPrimaryDark"
+                        app:drawableTint="@color/colorPrimaryDark"
                         android:gravity="center|start"
                         android:text="@string/add_a_new_event"
                         android:textColor="@color/text_black" />

@@ -56,6 +56,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageButton15" />
 
         <ImageButton
+            android:contentDescription="@string/app_name"
             android:onClick="@{viewmodel.onBack}"
             android:id="@+id/imageButton15"
             android:layout_width="wrap_content"
@@ -105,14 +106,14 @@
                     android:visibility="gone"
                     >
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="@string/do_you_want_to_make_it_featured_post"
                         style="@style/TitleText"
                         android:textColor="@color/text_white"
                         android:layout_weight="2"
                         />
-                    <Switch
+                    <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/featuredSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

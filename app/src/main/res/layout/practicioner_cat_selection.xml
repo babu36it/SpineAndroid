@@ -14,7 +14,7 @@
         style="@style/TitleText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_back_black"
+        android:drawableStart="@drawable/ic_back_black"
         android:text="Select Item"
         android:textAlignment="center"
         android:textAllCaps="true"
@@ -40,11 +40,12 @@
         app:cardCornerRadius="@dimen/_6sdp">
 
         <EditText
+            android:inputType="text"
             android:id="@+id/edt_search_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:drawableLeft="@drawable/search"
+            android:drawableStart="@drawable/search"
             android:drawablePadding="@dimen/_6sdp"
             android:hint="Search"
             android:maxLines="1"

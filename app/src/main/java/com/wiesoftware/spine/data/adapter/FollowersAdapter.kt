@@ -18,9 +18,7 @@ import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
  * Email: vivekpcst.kumar@gmail.com.
  */
 class FollowersAdapter(var dataList: List<FollowersData>,val listener: FollowersFollowListener): RecyclerView.Adapter<FollowersAdapter.FollowersHolder>() {
-    class FollowersHolder(val followersItemBinding: FollowersItemBinding,val context: Context): RecyclerView.ViewHolder(followersItemBinding.root) {
-
-    }
+    class FollowersHolder(val followersItemBinding: FollowersItemBinding,val context: Context): RecyclerView.ViewHolder(followersItemBinding.root)
     interface FollowersFollowListener{
         fun onFollow(followersData: FollowersData,followStatus: String)
         fun onViewOthersProfile(followersData: FollowersData)
@@ -41,7 +39,8 @@ class FollowersAdapter(var dataList: List<FollowersData>,val listener: Followers
         val isFollow=dataList[position].is_follow
         if (isFollow.equals("0")){
             holder.followersItemBinding.button60.background=ContextCompat.getDrawable(holder.context,R.drawable.round_button_bg)
-            holder.followersItemBinding.button60.setBackgroundTintList(holder.context.getResources().getColorStateList(R.color.colorPrimaryDark));
+            holder.followersItemBinding.button60.backgroundTintList =
+                ContextCompat.getColorStateList(holder.context,R.color.colorPrimaryDark)
             holder.followersItemBinding.button60.text=holder.context.resources.getString(R.string.follows)
             holder.followersItemBinding.button60.setTextColor(ContextCompat.getColor(holder.context,R.color.text_white))
         }else{

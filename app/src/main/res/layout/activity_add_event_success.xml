@@ -10,6 +10,7 @@
         tools:context=".ui.home.menus.podcasts.addrss.AddRssActivity">
 
         <ImageButton
+            android:contentDescription="@string/app_name"
             android:id="@+id/imageButton36"
             style="@style/BackButton"
             android:layout_width="wrap_content"
@@ -24,7 +25,7 @@
             android:textSize="@dimen/_14sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="THANK YOU"
+            android:text="@string/thank_you"
             android:textAllCaps="true"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton36"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,6 +51,7 @@
 
 
             <ImageView
+                android:contentDescription="@string/app_name"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
@@ -66,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_10sdp"
-                android:text="Your event is live on the Spiritual\nNetwork App."
+                android:text="@string/your_event_is_live_on_the_spiritual_nnetwork_app"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_15sdp"
-                android:text="GO TO EVENT" />
+                android:text="@string/go_to_event" />
 
 
             <Button
@@ -91,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
-                android:text="ADD ANOTHER EVENT" />
+                android:text="@string/add_another_event" />
 
 
         </LinearLayout>

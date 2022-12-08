@@ -425,7 +425,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
                         //llCompanyListing.visibility = View.VISIBLE
                         binding.llTabbar.visibility = View.VISIBLE
                         editProfileViewModel.accountType = "1"
-
+                        editProfileViewModel.listingType = "1"
                         binding.tvSwitch.text = getString(R.string.back_to_normal_account)
 
                         binding.switchButton.isChecked = true
@@ -639,7 +639,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
                         this@EditProfileActivity,
                         res.message,
                         Toast.LENGTH_SHORT
-                    ).duration
+                    ).show()
                 }
             } catch (e: ApiException) {
                 e.printStackTrace()

@@ -85,7 +85,6 @@
             android:textColor="@color/blue" />
 
         <View
-            android:layout_below="@id/textView190"
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@color/grey" />

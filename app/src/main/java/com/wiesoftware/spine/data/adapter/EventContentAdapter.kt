@@ -83,7 +83,11 @@ class EventContentAdapter(val requireContext: Context,
             .into(holder.rvEventContentItemBinding.circleImageView3);
 
         if(recordsList[position].title.toString().isNotEmpty()){
-            holder.rvEventContentItemBinding.textView37.text= recordsList[position].title.capitalize()
+            holder.rvEventContentItemBinding.textView37.text= recordsList[position].title.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.getDefault()
+                ) else it.toString()
+            }
         }
 
 
@@ -152,7 +156,7 @@ class EventContentAdapter(val requireContext: Context,
             Log.e("Diff::","$stDate, $edDate")
         }
 
-        var formatter =  SimpleDateFormat("HH:mm:ss");
+        var formatter =  SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         val dTime = formatter.parse(recordsList[position].startTime)
         val dTimeone = formatter.parse(recordsList[position].endTime)
         Log.e("hou",dTime.hours.toString())

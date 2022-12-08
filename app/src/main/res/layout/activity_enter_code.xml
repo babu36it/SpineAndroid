@@ -24,6 +24,7 @@
             android:layout_height="@dimen/_45sdp">
 
             <ImageButton
+                android:contentDescription="@string/app_name"
                 android:id="@+id/imageButton36"
                 style="@style/BackButton"
                 android:layout_width="wrap_content"
@@ -51,7 +52,6 @@
             android:id="@+id/view14"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_below="@id/rrMain"
             android:layout_marginTop="8dp"
             android:background="@color/gray_tint" />
 
@@ -113,6 +113,7 @@
 
 
                 <EditText
+                    android:hint="1"
                     android:id="@+id/editTextNumber"
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="wrap_content"
@@ -128,6 +129,7 @@
                     android:textSize="@dimen/_20sdp" />
 
                 <EditText
+                    android:hint="1"
                     android:id="@+id/editTextNumber1"
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="wrap_content"
@@ -146,6 +148,7 @@
 
 
                 <EditText
+                    android:hint="1"
                     android:id="@+id/editTextNumber3"
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="wrap_content"
@@ -163,6 +166,7 @@
                     android:textSize="@dimen/_20sdp" />
 
                 <EditText
+                    android:hint="1"
                     android:id="@+id/editTextNumber4"
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="wrap_content"

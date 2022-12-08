@@ -8,6 +8,7 @@
     android:layout_height="match_parent">
 
     <ImageButton
+        android:contentDescription="@string/app_name"
         android:id="@+id/imageButton32"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -116,7 +117,7 @@
                 android:layout_weight="1"
                 android:id="@+id/button70"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
+                android:layout_height="0dp"
                 android:layout_marginTop="@dimen/thirty_two"
                 android:layout_marginEnd="@dimen/eight"
                 android:layout_marginBottom="@dimen/thirty_two"

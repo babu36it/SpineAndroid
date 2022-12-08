@@ -15,6 +15,7 @@
     tools:context=".ui.home.menus.profile.setting.account_settings.messaging.MessagingActivity">
 
     <ImageButton
+        android:contentDescription="@string/app_name"
         android:id="@+id/imageButton34"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,7 +88,6 @@
             android:background="@drawable/messaging_selector"
             android:button="@android:color/transparent"
             android:fontFamily="@font/poppins_semi_bold"
-            android:paddingEnd="@dimen/_32dp"
             android:textSize="@dimen/_11sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:text="@string/hosts_of_an_event_you_re_going_to"
@@ -105,7 +105,6 @@
             android:background="@drawable/messaging_selector"
             android:button="@android:color/transparent"
             android:fontFamily="@font/poppins_semi_bold"
-            android:paddingEnd="@dimen/_32dp"
             android:textSize="@dimen/_11sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:text="@string/members_of_an_event_you_are_going_to"
@@ -126,7 +125,6 @@
             android:textSize="@dimen/_11sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/poppins_semi_bold"
-            android:paddingEnd="@dimen/_32dp"
             android:text="@string/anyone_on_spine"
             android:textColor="@color/text_black" />
         <View

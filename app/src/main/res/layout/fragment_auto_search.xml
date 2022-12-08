@@ -48,7 +48,7 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName28" />
 
         <ImageButton
-
+            android:contentDescription="@string/app_name"
             android:onClick="@{viewmodel.onCloseautosearch}"
             android:id="@+id/imageButton75"
             android:layout_width="wrap_content"
@@ -74,6 +74,7 @@
     android:textSize="@dimen/sp18"
     android:text=""
     android:paddingStart="@dimen/sixteen"
+    android:paddingEnd="@dimen/sixteen"
     />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

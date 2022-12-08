@@ -20,7 +20,7 @@ import java.util.*
  */
 class UriPathHelper {
         fun getPath(context: Context, uri: Uri): String? {
-            val isKitKatorAbove = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
+            val isKitKatorAbove = true
 
             // DocumentProvider
             if (isKitKatorAbove && DocumentsContract.isDocumentUri(context, uri)) {

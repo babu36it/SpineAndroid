@@ -3,6 +3,7 @@ package com.wiesoftware.spine.ui.home.menus.events.addevents
 
 import android.Manifest
 import android.R.attr
+import android.annotation.SuppressLint
 import android.app.*
 import android.content.ClipData
 import android.content.Context
@@ -22,10 +23,12 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
 import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -67,6 +70,8 @@ import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.BuildConfig
 import org.kodein.di.android.kodein
@@ -109,17 +114,17 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     lateinit var binding: ActivityAddEventBinding
     var peviewlangague: String = ""
 
-    lateinit var user_id: String;
-    var type: Int = 0;
-    var allow_comments: Int = 1;
+    lateinit var user_id: String
+    var type: Int = 0
+    var allow_comments: Int = 1
     var allow_participants: String = "1"
-    var startDate: String = "";
-    var endDate: String = "";
-    var startTime: String = "";
+    var startDate: String = ""
+    var endDate: String = ""
+    var startTime: String = ""
     var endTime: String = ""
     var category: String = ""
-    var categoryIds: String = "";
-    var curency: String = "$";
+    var categoryIds: String = ""
+    var curency: String = "$"
     var currencyId: String = "0"
     var mImageBitmap: Bitmap? = null
     var subCatIds: String = ""
@@ -249,8 +254,8 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
             val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
             if (addresses.size > 0) {
                 val address: Address = addresses[0]
-                result.append(address.getLocality()).append(", ")
-                result.append(address.getCountryName()).append(", ")
+                result.append(address.locality).append(", ")
+                result.append(address.countryName).append(", ")
                 result.append(address.subLocality).append(", ")
                 result.append(address.subAdminArea)
             }
@@ -273,7 +278,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         viewmodel?.addEventsListener = this
         //  about= intent.getStringExtra("about").toString()
         viewmodel?.let { viewmodel ->
-            viewmodel.getLoggedInUser()?.observe(this, androidx.lifecycle.Observer { user ->
+            viewmodel.getLoggedInUser().observe(this, androidx.lifecycle.Observer { user ->
                 user_id = user.users_id!!
                 getSubcatgery()
             })
@@ -427,7 +432,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         binding.textView102.setText(eventsRecord.timezone)
         binding.et104.setText(eventsRecord.location)
         binding.et106.setText(eventsRecord.linkOfEvent)
-        binding.aboutevent.setText(eventsRecord.description)
+        binding.aboutevent.text = eventsRecord.description
         about = eventsRecord.description
         //   binding.tvSelectCats.text = eventsRecord.eventCategories
         binding.editTextTextPersonName14.setText(eventsRecord.fee.toString())
@@ -511,7 +516,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         // running a for loop to compare elements.
         for (item in catData) {
             // checking if the entered string matched with any item of our recycler view.
-            if (item.category_name.toString().toLowerCase().contains(text.toLowerCase())) {
+            if (item.category_name.toString().lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))) {
                 // if the item is matched we are
                 // adding it to our filtered list.
                 filteredlist.add(item)
@@ -647,8 +652,8 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         book_event_url: String
     ) {
 
-        val sdf = SimpleDateFormat("hh:mm")
-        val sdfDate = SimpleDateFormat("dd-MM-yyyy")
+        val sdf = SimpleDateFormat("hh:mm",Locale.getDefault())
+        val sdfDate = SimpleDateFormat("dd-MM-yyyy",Locale.getDefault())
         //"$startDate, $startTime, $endDate, $endTime".toast(this)
         if (currentPhotoPath.isNullOrEmpty()) {
             "Please add Picture".toast(this)
@@ -731,10 +736,8 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         book_event_url: String
     ) {
         val file: File = File(currentPhotoPath!!)
-        val requestFile: RequestBody = RequestBody.create(
-            contentResolver.getType(photoURI)?.let { it.toMediaTypeOrNull() },
-            file
-        )
+        val requestFile: RequestBody = file
+            .asRequestBody(contentResolver.getType(photoURI)?.let { it.toMediaTypeOrNull() })
         val img_file: MultipartBody.Part = MultipartBody.Part.createFormData(
             "files[0]",
             file.name,
@@ -748,54 +751,54 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
 
         val uid: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), user_id)
+            user_id.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val title: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), title)
+            title.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val description: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), about)
+            about.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val timeZone: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), timeZone)
+            timeZone.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val location: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), location)
-        val link: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), link)
-        val fee: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), fee)
+            location.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        val link: RequestBody = link.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        val fee: RequestBody = fee.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val attendees: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), attendees)
+            attendees.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val allow_cmnt: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "" + allow_comments)
+            ("" + allow_comments).toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val types: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "" + type)
+            ("" + type).toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val sDate: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "" + startDate)
+            ("" + startDate).toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val eDate: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "" + endDate)
+            ("" + endDate).toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val sTime: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "" + startTime)
+            ("" + startTime).toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val eTime: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "" + endTime)
+            ("" + endTime).toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val multiple: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "0")
+            "0".toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val eveCat: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), categoryIds)
+            categoryIds.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val language: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), language)
+            language.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val feeCurency: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), currencyId)
+            currencyId.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val paticipants: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), allow_participants)
+            allow_participants.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val latitude: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), lat.toString())
+            lat.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val longitude: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), lon.toString())
+            lon.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull())
 
         val bookingurl: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), book_event_url.toString())
+            book_event_url.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull())
 
         val event_subcategories: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), subCatIds.toString())
+            subCatIds.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull())
 
         val status: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "0")
+            "0".toRequestBody("multipart/form-data".toMediaTypeOrNull())
         binding.button42.visibility = View.INVISIBLE
 //        if (flag == 0) {
 //            flag = 1
@@ -880,8 +883,8 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
           val  event_title = binding.editTextTextPersonName13.text.toString()
         val  event_location = binding.et104.text.toString()
 
-        val sdf = SimpleDateFormat("hh:mm")
-        val sdfDate = SimpleDateFormat("dd-MM-yyyy")
+        val sdf = SimpleDateFormat("hh:mm",Locale.getDefault())
+        val sdfDate = SimpleDateFormat("dd-MM-yyyy",Locale.getDefault())
         //"$startDate, $startTime, $endDate, $endTime".toast(this)
         if (currentPhotoPath.isNullOrEmpty()) {
             "Please add Picture".toast(this)
@@ -917,7 +920,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
             var endDateTime = endDate +" "+ endTime
             var startDateTime = startDate +" "+ startTime
-            val fuldate = SimpleDateFormat("dd-MM-yyyy hh:mm")
+            val fuldate = SimpleDateFormat("dd-MM-yyyy hh:mm",Locale.getDefault())
             if(!isTimeAfter(fuldate.parse(startDateTime), fuldate.parse(endDateTime))){
                 "End Date Should be Greater Than Start Date".toast(this)
                 return
@@ -1040,10 +1043,10 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     override fun onAllowComments(isChecked: Boolean) {
         if (isChecked) {
             allow_comments = 1
-            binding.switch6.setBackgroundTintList(this.getResources().getColorStateList(R.color.colorPrimaryDark));
+            binding.switch6.backgroundTintList = ContextCompat.getColorStateList(this,R.color.colorPrimaryDark)
         } else {
             allow_comments = 0
-            binding.switch6.setBackgroundTintList(this.getResources().getColorStateList(R.color.light_gry));
+            binding.switch6.backgroundTintList = ContextCompat.getColorStateList(this,R.color.light_gry)
         }
     }
 
@@ -1052,15 +1055,14 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
             binding.rldPaid.visibility = View.VISIBLE
             binding.textPodcast.visibility=View.VISIBLE
             binding.etBookEvent.visibility=View.VISIBLE
-            binding.switchPaid.setBackgroundTintList(this.getResources().getColorStateList(R.color.colorPrimaryDark));
-
+            binding.switchPaid.backgroundTintList = ContextCompat.getColorStateList(this,R.color.colorPrimaryDark)
 
 
         } else {
             binding.rldPaid.visibility = View.GONE
             binding.textPodcast.visibility=View.GONE
            binding.etBookEvent.visibility=View.GONE
-            binding.switchPaid.setBackgroundTintList(this.getResources().getColorStateList(R.color.light_gry));
+            binding.switchPaid.backgroundTintList = ContextCompat.getColorStateList(this,R.color.light_gry)
         }
     }
 
@@ -1074,11 +1076,11 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     override fun onAllowParticipants(isChecked: Boolean) {
         if (isChecked) {
             allow_participants = "1"
-            binding.switch5.setBackgroundTintList(this.getResources().getColorStateList(R.color.colorPrimaryDark));
+            binding.switch5.backgroundTintList = ContextCompat.getColorStateList(this,R.color.colorPrimaryDark)
         } else {
             allow_participants = "0"
 
-            binding.switch5.setBackgroundTintList(this.getResources().getColorStateList(R.color.light_gry));
+            binding.switch5.backgroundTintList = ContextCompat.getColorStateList(this,R.color.light_gry)
         }
     }
 
@@ -1232,14 +1234,15 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         )
         val cal = Calendar.getInstance()
         //  cal.add(Calendar.DAY_OF_MONTH,1)
-        dpd.getDatePicker().setMinDate(cal.timeInMillis);
+        dpd.datePicker.minDate = cal.timeInMillis
 
 
         dpd.show()
     }
 
     private fun showPhotoPicker() {
-        val view: View = layoutInflater.inflate(R.layout.bottomsheet_picker, null)
+        val nullParent: ViewGroup? = null
+        val view: View = layoutInflater.inflate(R.layout.bottomsheet_picker,nullParent)
         val dialog: BottomSheetDialog = BottomSheetDialog(this)
         dialog.setContentView(view)
 
@@ -1282,13 +1285,14 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
     private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK)
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         intent.type = "image/*"
         startActivityForResult(intent, GALLERY_REQ)
     }
 
     private fun showPicker() {
-        val view: View = layoutInflater.inflate(R.layout.bottom_event_picker, null)
+        val nullParent: ViewGroup? = null
+        val view: View = layoutInflater.inflate(R.layout.bottom_event_picker, nullParent)
         val dialog: BottomSheetDialog = BottomSheetDialog(this)
         dialog.setContentView(view)
 
@@ -1358,7 +1362,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
                     )
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
                     if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
-                        takePictureIntent.setClipData(ClipData.newRawUri("", photoURI));
+                        takePictureIntent.clipData = ClipData.newRawUri("", photoURI)
 
                         takePictureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION)
 
@@ -1431,7 +1435,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
                 about = data?.getStringExtra("about").toString()
                 Log.e("aboutt", about)
                 if (about != null) {
-                    aboutevent.setText(about)
+                    aboutevent.text = about
                 } else {
                     aboutevent.text = ""
                 }
@@ -1448,7 +1452,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
 
                 photoURI = data?.data!!
-                currentPhotoPath = uriPathHelper.getPath(this, data?.data!!)
+                currentPhotoPath = uriPathHelper.getPath(this, data.data!!)
                 imgPaths.add(currentPhotoPath!!)
                 imgList.add(ImageData(currentPhotoPath))
 
@@ -1471,7 +1475,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
             if (data?.clipData != null) {
 
-                val count: Int = data?.clipData!!.itemCount
+                val count: Int = data.clipData!!.itemCount
                 var currentItem = 0
                 while (currentItem < count) {
                     val imageUri: Uri = data.clipData!!.getItemAt(currentItem).uri
@@ -1480,12 +1484,12 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
                     imgList.add(ImageData(currentPhotoPath))
                     imgPaths.add(currentPhotoPath!!)
                     currentItem = currentItem + 1
-                    photoURI = imageUri;
+                    photoURI = imageUri
                 }
             } else if (data!!.data != null) {
 
-                photoURI = data?.data!!
-                currentPhotoPath = uriPathHelper.getPath(this, data?.data!!)
+                photoURI = data.data!!
+                currentPhotoPath = uriPathHelper.getPath(this, data.data!!)
                 imgPaths.add(currentPhotoPath!!)
                 imgList.add(ImageData(currentPhotoPath))
                 //do something with the image (save it to some directory or whatever you need to do with it here)
@@ -1504,23 +1508,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
             }
 
             binding.vpimange.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageScrollStateChanged(state: Int) {
-                    super.onPageScrollStateChanged(state)
-                }
 
-                override fun onPageScrolled(
-                    position: Int,
-                    positionOffset: Float,
-                    positionOffsetPixels: Int
-                ) {
-                    super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-                }
-
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
-//                val rBtnId = binding.rgBtn.getChildAt(position).id
-//                binding.rgBtn.check(rBtnId)
-                }
             })
 
 
@@ -1588,10 +1576,10 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     fun openDialog() {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.getWindow()?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.eve_cat_selection)
-        val adapter:SpinerCatAdapter ;
+        val adapter:SpinerCatAdapter
         dialog.rvcats.also { rv ->
             rv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
             rv.setHasFixedSize(true)
@@ -1686,7 +1674,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
         subCatIds= subCategoryData.toString()
 
-        subCatIds = subCatIds.substring(1, subCatIds.length - 1);
+        subCatIds = subCatIds.substring(1, subCatIds.length - 1)
         subCatIds = subCatIds.replace("\\s".toRegex(), "")
         Log.e("value",subCatIds.toString())
     }

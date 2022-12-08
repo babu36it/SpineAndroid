@@ -24,6 +24,7 @@
             android:layout_height="@dimen/_45sdp">
 
             <ImageButton
+                android:contentDescription="@string/app_name"
                 android:id="@+id/imageButton36"
                 style="@style/BackButton"
                 android:layout_width="wrap_content"
@@ -115,7 +116,8 @@
                 android:fontFamily="@font/poppins_regular"
                 android:hint="@string/www_domain_com_podcast_rss_xml"
                 android:inputType="textPersonName"
-                android:paddingLeft="@dimen/_10sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
                 android:text="@={viewmodel.rssLink}"
                 android:textColorHint="@color/dark_gray_day_night"
                 android:textSize="@dimen/_11sdp" />
@@ -147,6 +149,7 @@
             android:visibility="gone">
 
             <ImageButton
+                android:contentDescription="@string/app_name"
                 android:id="@+id/imageButton78"
                 style="@style/closeIcon"
                 android:layout_width="wrap_content"

@@ -30,6 +30,8 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import java.util.*
+import kotlin.collections.ArrayList
 
 class FollowersFragment : Fragment(),KodeinAware, FollowersAdapter.FollowersFollowListener {
 
@@ -284,7 +286,7 @@ class FollowersFragment : Fragment(),KodeinAware, FollowersAdapter.FollowersFoll
         // running a for loop to compare elements.
         for (item in dataList) {
             // checking if the entered string matched with any item of our recycler view.
-            if (item.displayName.toLowerCase().contains(text.toLowerCase())) {
+            if (item.displayName.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))) {
                 // if the item is matched we are
                 // adding it to our filtered list.
                 filteredlist.add(item)

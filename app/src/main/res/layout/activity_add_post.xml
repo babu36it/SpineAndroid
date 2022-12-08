@@ -15,6 +15,7 @@
     tools:context=".ui.home.menus.spine.addposts.AddPostActivity">
 
     <ImageButton
+        android:contentDescription="@string/app_name"
         android:onClick="@{viewmodel.onBack}"
         android:id="@+id/ibComment"
         android:layout_width="wrap_content"
@@ -56,8 +57,8 @@
             android:layout_height="wrap_content"
             android:text="@string/post_a_question_or_thought"
             android:textColor="@color/text_black"
-            android:drawableStart="@drawable/ic_add"
-            android:drawableTint="@color/colorPrimaryDark"
+            app:drawableStartCompat="@drawable/ic_add"
+            app:drawableTint="@color/colorPrimaryDark"
             android:gravity="center|start"
             android:drawablePadding="@dimen/eight"
             />
@@ -81,8 +82,8 @@
         android:layout_height="wrap_content"
         android:text="@string/post_a_picture_or_video"
         android:textColor="@color/text_black"
-        android:drawableStart="@drawable/ic_add"
-        android:drawableTint="@color/colorPrimaryDark"
+        app:drawableStartCompat="@drawable/ic_add"
+        app:drawableTint="@color/colorPrimaryDark"
         android:gravity="center|start"
         android:drawablePadding="@dimen/eight"
         />
@@ -103,9 +104,9 @@
             android:id="@+id/textView59"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_add"
+            app:drawableStartCompat="@drawable/ic_add"
             android:drawablePadding="@dimen/eight"
-            android:drawableTint="@color/colorPrimaryDark"
+            app:drawableTint="@color/colorPrimaryDark"
             android:gravity="center|start"
             android:text="@string/post_a_podcast"
             android:textColor="@color/text_black" />
@@ -126,11 +127,11 @@
             android:id="@+id/textView58"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_add"
+            app:drawableStartCompat="@drawable/ic_add"
             android:drawablePadding="@dimen/eight"
-            android:drawableTint="@color/colorPrimaryDark"
+            app:drawableTint="@color/colorPrimaryDark"
             android:gravity="center|start"
-            android:text="Post an event"
+            android:text="@string/post_an_event"
             android:textColor="@color/text_black" />
     </androidx.cardview.widget.CardView>
 
@@ -149,9 +150,9 @@
             android:id="@+id/textView57"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_add"
+            app:drawableStartCompat="@drawable/ic_add"
             android:drawablePadding="@dimen/eight"
-            android:drawableTint="@color/colorPrimaryDark"
+            app:drawableTint="@color/colorPrimaryDark"
             android:gravity="center|start"
             android:text="@string/post_a_story"
             android:textColor="@color/text_black" />

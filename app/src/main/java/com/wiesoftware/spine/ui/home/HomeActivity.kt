@@ -24,10 +24,12 @@ import kotlinx.android.synthetic.main.activity_home.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
+import androidx.navigation.fragment.NavHostFragment
+
 
 class HomeActivity : AppCompatActivity(), KodeinAware {
 
-    private val BROADCAST_DEFAULT_ALBUM_CHANGED:Int = 0
+    private val BROADCAST_DEFAULT_ALBUM_CHANGED: Int = 0
     override val kodein by kodein()
     val homeRepositry: HomeRepositry by instance()
 
@@ -35,19 +37,21 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment?
 
-        navController=Navigation.findNavController(this,R.id.fragment)
+        navController = navHostFragment!!.navController
         bottomNavigationView.setupWithNavController(navController)
 
 
         val nextscreen = intent.getStringExtra("next_screen")
 
-        if (nextscreen != null && nextscreen.isNotEmpty() && nextscreen == "event"){
+        if (nextscreen != null && nextscreen.isNotEmpty() && nextscreen == "event") {
             bottomNavigationView.selectedItemId = R.id.eventFragment
         }
 
 
-        homeRepositry.getUser().observe(this, Observer { user->
+        homeRepositry.getUser().observe(this, Observer { user ->
             if (user != null) {
                 getCometChatUser(user)
             }
@@ -65,14 +69,15 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
     }
 
 
-    private fun getCometChatUser(user: com.wiesoftware.spine.data.db.entities.User){
-        val uid=user.users_id!!
+    private fun getCometChatUser(user: com.wiesoftware.spine.data.db.entities.User) {
+        val uid = user.users_id!!
         val name = user.display_name ?: user.name!!
-        CometChat.getUser(uid,object : CometChat.CallbackListener<User>(){
+        CometChat.getUser(uid, object : CometChat.CallbackListener<User>() {
             override fun onSuccess(p0: User?) {
             }
+
             override fun onError(p0: CometChatException?) {
-                createChatUserWithComet(uid,name)
+                createChatUserWithComet(uid, name)
             }
         })
     }
@@ -82,15 +87,19 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
         user.uid = user_id
         user.name = userName
 
-        CometChat.createUser(user, AppConfig.AppDetails.AUTH_KEY, object : CometChat.CallbackListener<User>() {
-            override fun onSuccess(user: User) {
-                Log.e("userIDCommet:",user.uid)
-            }
-            override fun onError(e: CometChatException) {
-                e.printStackTrace()
-                Log.e("uError",""+e.printStackTrace())
-            }
-        })
+        CometChat.createUser(
+            user,
+            AppConfig.AppDetails.AUTH_KEY,
+            object : CometChat.CallbackListener<User>() {
+                override fun onSuccess(user: User) {
+                    Log.e("userIDCommet:", user.uid)
+                }
+
+                override fun onError(e: CometChatException) {
+                    e.printStackTrace()
+                    Log.e("uError", "" + e.printStackTrace())
+                }
+            })
 
     }
 }

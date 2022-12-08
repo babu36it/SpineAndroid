@@ -17,9 +17,7 @@ import com.wiesoftware.spine.databinding.FollowersItemBinding
  */
 class FollowingAdapter(var dataList: List<FollowersData>, val listener:FollowingUnfollowListener): RecyclerView.Adapter<FollowingAdapter.FollowingHolder>() {
 
-    class FollowingHolder(val followersItemBinding: FollowersItemBinding, val context: Context): RecyclerView.ViewHolder(followersItemBinding.root) {
-
-    }
+    class FollowingHolder(val followersItemBinding: FollowersItemBinding, val context: Context): RecyclerView.ViewHolder(followersItemBinding.root)
     interface FollowingUnfollowListener{
         fun onFollow(followersData: FollowersData)
         fun onViewOthersProfile(followersData: FollowersData)
@@ -40,7 +38,8 @@ class FollowingAdapter(var dataList: List<FollowersData>, val listener:Following
         holder.followersItemBinding.button60.setOnClickListener {
             listener.onFollow(dataList[position])
             holder.followersItemBinding.button60.background=ContextCompat.getDrawable(holder.context,R.drawable.round_button_bg)
-            holder.followersItemBinding.button60.setBackgroundTintList(holder.context.getResources().getColorStateList(R.color.colorPrimaryDark));
+            holder.followersItemBinding.button60.backgroundTintList =
+                ContextCompat.getColorStateList(holder.context,R.color.colorPrimaryDark)
             holder.followersItemBinding.button60.text=holder.context.resources.getString(R.string.follows)
             holder.followersItemBinding.button60.setTextColor(ContextCompat.getColor(holder.context,R.color.text_white))
 

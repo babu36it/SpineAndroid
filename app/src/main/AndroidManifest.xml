@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.wiesoftware.spine">
+    package="com.wiesoftware.spine"
+    android:compileSdkVersion="30"
+    android:versionCode="1"
+    android:versionName="1.0">
 
     <uses-sdk tools:overrideLibrary="android.support.customtabs" />
 
@@ -21,7 +24,8 @@
 
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:name="android.hardware.camera" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
     <queries>
         <intent>
@@ -43,81 +47,146 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
+
         <activity
-            android:screenOrientation="fullSensor"
             android:name=".ui.home.menus.voice_over.VoiceOverPreviewActivity"
-            android:exported="false">
+            android:exported="true"
+            android:screenOrientation="fullSensor">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:screenOrientation="fullSensor"
             android:name=".ui.home.menus.voice_over.VoiceOverActivity"
-            android:exported="false">
+            android:exported="true"
+            android:screenOrientation="fullSensor">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:screenOrientation="fullSensor"
             android:name=".ui.home.menus.spine.practicioners.PracticionerSelectionListActivity"
-            android:exported="false">
+            android:exported="true"
+            android:screenOrientation="fullSensor">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:screenOrientation="fullSensor"
             android:name=".ui.home.menus.spine.practicioners.PracticionersActivity"
-            android:exported="false">
+            android:exported="true"
+            android:screenOrientation="fullSensor">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".ui.home.menus.spine.featuredpost.PaymentActivity"
-            android:exported="false" />
-        <activity android:name=".ui.home.menus.events.addevents.AddAboutEventActivity" />
-        <activity android:name=".TestActivity" />
-        <activity android:name=".ui.auth.welcome.SplashActivity">
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.events.addevents.AddAboutEventActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".TestActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity
+            android:name=".ui.auth.welcome.SplashActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.auth.welcome.WelcomScreenActivity" />
-        <activity android:name=".ui.auth.forgotpassword.ForgotPasswordActivity" />
-        <activity android:name=".ui.home.menus.events.addordup.AddOrDupEventActivity" />
-        <activity android:name=".ui.home.menus.spine.featuredpost.thankyou_featured.ThanksFeaturedActivity" />
-        <activity android:name=".ui.home.menus.spine.featuredpost.previewfeatured_ad.PreviewAdActivity" />
-        <activity android:name=".ui.home.menus.podcasts.pod_thanks.ThanksPodActivity" />
-        <activity android:name=".ui.home.menus.profile.setting.my_ads.MyAdsActivity" />
-        <activity android:name=".ui.home.menus.spine.featuredpost.FeaturedPostActivity" />
-        <activity android:name=".ui.home.menus.podcasts.reviewpodcast.ReviewPodcastActivity" />
-        <activity android:name=".ui.home.menus.podcasts.addrss.entercode.EnterCodeActivity" />
-        <activity android:name=".ui.home.menus.podcasts.addrss.AddRssActivity" />
-        <activity android:name=".ui.home.menus.spine.addposts.previewpost.PreviewPostActivity" />
-        <activity android:name=".ui.home.menus.spine.addposts.postpreview.PostPreviewActivity" />
-        <activity android:name=".ui.home.menus.events.calendarevents.CalendarEventActivity" />
-        <activity android:name=".ui.home.menus.spine.comment.storycomment.reply.StoryCommenReplytActivity" />
-        <activity android:name=".ui.home.menus.spine.addposts.poststory.previewstory.PreviewStoryActivity" />
-        <activity android:name=".ui.home.menus.spine.comment.storycomment.StoryCommentActivity" />
-        <activity android:name=".ui.home.menus.profile.setting.account_settings.deleteAccount.DeleteAccouontActivity" />
-        <activity android:name=".ui.home.menus.spine.postdetails.PostDetailsActivity" />
-        <activity android:name=".ui.home.menus.events.eventcomment.eventreply.EventReplyActivity" />
-        <activity android:name=".ui.home.menus.events.eventcomment.EventCommentActivity" />
-        <activity android:name=".ui.home.menus.spine.comment.reply.RepliesActivity" />
-        <activity android:name=".ui.home.menus.spine.viewmedia.ViewMediaInLargeActivity" />
-        <activity android:name=".ui.home.menus.profile.someonesprofile.followers.FollowersActivity" />
-        <activity android:name=".ui.home.menus.profile.someonesprofile.SomeOneProfileActivity" />
-        <activity android:name=".ui.home.menus.profile.setting.help.privacy.PrivacySettingActivity" />
+        <activity android:name=".ui.auth.welcome.WelcomScreenActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.auth.forgotpassword.ForgotPasswordActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.events.addordup.AddOrDupEventActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.featuredpost.thankyou_featured.ThanksFeaturedActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.featuredpost.previewfeatured_ad.PreviewAdActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.podcasts.pod_thanks.ThanksPodActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.profile.setting.my_ads.MyAdsActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.featuredpost.FeaturedPostActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.podcasts.reviewpodcast.ReviewPodcastActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.podcasts.addrss.entercode.EnterCodeActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.podcasts.addrss.AddRssActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.addposts.previewpost.PreviewPostActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.addposts.postpreview.PostPreviewActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.events.calendarevents.CalendarEventActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.comment.storycomment.reply.StoryCommenReplytActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.addposts.poststory.previewstory.PreviewStoryActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.comment.storycomment.StoryCommentActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.profile.setting.account_settings.deleteAccount.DeleteAccouontActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.postdetails.PostDetailsActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.events.eventcomment.eventreply.EventReplyActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.events.eventcomment.EventCommentActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.comment.reply.RepliesActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.viewmedia.ViewMediaInLargeActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.profile.someonesprofile.followers.FollowersActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.profile.someonesprofile.SomeOneProfileActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.profile.setting.help.privacy.PrivacySettingActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
 
         <service
             android:name=".util.service.PlayerService"
             android:enabled="true"
-            android:exported="false" />
+            android:exported="true" />
 
         <activity android:name=".ui.home.menus.podcasts.podcastdetails.PodcastDetailActivity" />
         <activity android:name=".ui.home.menus.podcasts.userpodcast.UserPodcastActivity" />
@@ -152,31 +221,76 @@
 
         <activity
             android:name=".ui.home.menus.events.maps.MapviewEventsActivity"
-            android:label="@string/title_activity_mapview_events" />
-        <activity android:name=".ui.home.menus.profile.setting.notifications.NotificationsActivity" />
-        <activity android:name=".ui.home.menus.profile.setting.account_settings.AccountSettingsActivity" />
-        <activity android:name=".ui.home.menus.profile.follow.FollowActivity" />
-        <activity android:name=".ui.home.menus.profile.myprofile.MyProfileActivity" />
-        <activity android:name=".ui.home.menus.profile.chat.ChatActivity" />
-        <activity android:name=".ui.home.menus.profile.masseges.MessagesActivity" />
-        <activity android:name=".ui.home.menus.events.preview_event.PreviewEventActivity" />
-        <activity android:name=".ui.home.menus.events.select_users.SelectUsersActivity" />
-        <activity android:name=".ui.home.menus.events.event_details.EventDetailActivity" />
-        <activity android:name=".ui.home.menus.spine.addposts.reviewpost.ReviewPostActivity" />
-        <activity android:name=".ui.home.menus.spine.addposts.hashtags.HashtagActivity" />
-        <activity android:name=".ui.home.menus.spine.comment.postcomment.PostCommentActivity" />
-        <activity android:name=".ui.home.menus.spine.selectfollowers.SelectFollowersActivity" />
-        <activity android:name=".ui.home.menus.spine.story.viewstories.ViewStoryActivity" />
-        <activity android:name=".ui.home.menus.spine.rec_followers.RecommendedFollowersActivity" />
-        <activity android:name=".ui.home.menus.spine.categories.TrendingCatActivity" />
-        <activity android:name=".ui.home.menus.events.filter.FilterEventActivity" />
-        <activity android:name=".ui.home.menus.profile.editprofile.EditProfileActivity" />
-        <activity android:name=".ui.home.menus.events.addevents.AddEventActivity" />
-        <activity android:name=".ui.home.menus.spine.addposts.postmedia.PostMediaActivity" />
-        <activity android:name=".ui.home.menus.spine.addposts.postthought.PostThoughtActivity" />
+            android:label="@string/title_activity_mapview_events"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.profile.setting.notifications.NotificationsActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.profile.setting.account_settings.AccountSettingsActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.profile.follow.FollowActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.profile.myprofile.MyProfileActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.profile.chat.ChatActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.profile.masseges.MessagesActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.events.preview_event.PreviewEventActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.events.select_users.SelectUsersActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.events.event_details.EventDetailActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.addposts.reviewpost.ReviewPostActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.addposts.hashtags.HashtagActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.comment.postcomment.PostCommentActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.selectfollowers.SelectFollowersActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.story.viewstories.ViewStoryActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.rec_followers.RecommendedFollowersActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.categories.TrendingCatActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.events.filter.FilterEventActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.profile.editprofile.EditProfileActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.events.addevents.AddEventActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.addposts.postmedia.PostMediaActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.addposts.postthought.PostThoughtActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name=".ui.home.camera.CustomCameraActivity"
             android:clearTaskOnLaunch="true"
+            android:exported="true"
             android:icon="@mipmap/ic_launcher"
             android:rotationAnimation="seamless"
             android:screenOrientation="fullUser"
@@ -208,38 +322,65 @@
         <activity
             android:name=".ui.home.menus.spine.welcome.ViewWelcomeActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:supportsPictureInPicture="true"
-            android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".ui.home.menus.spine.addposts.poststory.AddStoryActivity" />
-        <activity android:name=".ui.home.menus.spine.addposts.AddPostActivity" />
-        <activity android:name=".ui.home.menus.spine.comment.impulsecomment.ImpulseCommentActivity" />
-        <activity android:name=".ui.home.menus.profile.setting.SettingsActivity" />
-        <activity android:name=".ui.home.menus.spine.story.StoryActivity" />
-        <activity android:name=".ui.home.menus.spine.impulse.ImpulseActivity" />
-        <activity android:name=".ui.auth.fb.FbEmailActivity" />
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.addposts.poststory.AddStoryActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.addposts.AddPostActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.comment.impulsecomment.ImpulseCommentActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.profile.setting.SettingsActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.story.StoryActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.home.menus.spine.impulse.ImpulseActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.auth.fb.FbEmailActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name=".ui.home.HomeActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".ui.auth.number.NumberActivity" />
-        <activity android:name=".ui.auth.otp.OtpActivity" />
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.auth.number.NumberActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.auth.otp.OtpActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name=".ui.auth.register.RegisterActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".ui.auth.login.LoginActivity" />
+            android:windowSoftInputMode="stateHidden"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
+        <activity android:name=".ui.auth.login.LoginActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name=".ui.auth.WelcomeActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name" />
+            android:exported="true"
+            android:screenOrientation="fullSensor"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
         <activity
+            android:exported="true"
+            android:screenOrientation="fullSensor"
             android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">

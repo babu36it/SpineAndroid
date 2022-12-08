@@ -98,7 +98,7 @@
                 android:layout_marginStart="@dimen/sixteen"
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Add Image(s)"
+                android:text="@string/add_image_s"
                 android:textColor="@color/text_black"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
@@ -115,7 +115,7 @@
                     android:layout_width="@dimen/_100"
                     android:layout_height="@dimen/_100"
                     android:background="@color/gray_tint"
-                    android:drawableTop="@drawable/ic_photo_camera"
+                    app:drawableTopCompat="@drawable/ic_photo_camera"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:gravity="center"
                     android:onClick="@{viewmodel.onAdd}"
@@ -131,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_marginEnd="@dimen/_5sdp"
-                    android:layout_toRightOf="@id/button30" />
+                    android:layout_toEndOf="@id/button30" />
 
             </RelativeLayout>
 
@@ -175,7 +175,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_3sdp"
-                android:layout_toLeftOf="@id/textView61"
+                android:layout_toEndOf="@id/textView61"
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:fontFamily="@font/poppins_regular"
@@ -199,7 +199,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_semi_bold"
-                android:text="90"
+                android:text="@string/_90"
                 android:textSize="@dimen/_11sdp" />
 
         </RelativeLayout>
@@ -221,7 +221,7 @@
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
 
-            <Switch
+            <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/switch3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -232,7 +232,7 @@
         </RelativeLayout>
 
 
-        <Switch
+        <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switch4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

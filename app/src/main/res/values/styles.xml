@@ -304,7 +304,7 @@
         <item name="android:drawableTint">@color/grey</item>
         <item name="fontFamily">@font/poppins_regular</item>
         <item name="android:textColor">@color/text_black</item>
-        <item name="android:iconTint">@color/text_black</item>
+        <item name="android:tint">@color/text_black</item>
     </style>
 
     <style name="closeIcon" parent="Widget.AppCompat.ImageButton">

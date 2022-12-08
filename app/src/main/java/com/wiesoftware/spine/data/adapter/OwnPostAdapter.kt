@@ -37,6 +37,7 @@ class OwnPostAdapter(val postList: List<PostData>, val listener: OwnPostSelected
         )
 
     override fun onBindViewHolder(holder: OwnPostHolder, position: Int) {
+/*
         if (postList[position].type.equals("2")) {
             if (postList[position].files.endsWith(".mp4")) {
                 holder.ownPostItemBinding.rrPostVideo.visibility = View.GONE
@@ -60,6 +61,7 @@ class OwnPostAdapter(val postList: List<PostData>, val listener: OwnPostSelected
             holder.ownPostItemBinding.llHashtags.visibility = View.GONE
             holder.ownPostItemBinding.tvHashTags.text = postList[position].hashtag_ids
         }
+*/
 
 
     }

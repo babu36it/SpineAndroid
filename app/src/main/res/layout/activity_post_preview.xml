@@ -15,6 +15,7 @@
     tools:context=".ui.home.menus.spine.addposts.postpreview.PostPreviewActivity">
 
     <ImageButton
+        android:contentDescription="@string/app_name"
         android:onClick="@{viewmodel.onBack}"
         android:id="@+id/imageButton76"
         android:layout_width="wrap_content"
@@ -75,6 +76,7 @@
         >
 
         <ImageView
+            android:contentDescription="@string/app_name"
             android:id="@+id/imageView35"
             android:layout_width="match_parent"
             android:visibility="invisible"
@@ -128,6 +130,7 @@
             android:layout_height="wrap_content"
             android:text=""
             style="@style/NormalText"
+            android:paddingEnd="@dimen/eight"
             android:paddingStart="@dimen/eight"
             app:layout_constraintEnd_toEndOf="@+id/textView273"
             app:layout_constraintStart_toStartOf="@+id/textView273"

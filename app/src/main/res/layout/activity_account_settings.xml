@@ -17,6 +17,7 @@
         tools:context=".ui.home.menus.profile.setting.account_settings.AccountSettingsActivity">
 
         <ImageButton
+            android:contentDescription="@string/app_name"
             android:id="@+id/imageButton29"
             style="@style/BackButton"
             android:layout_width="wrap_content"
@@ -243,7 +244,7 @@
             android:background="@color/normal_grey"
             app:layout_constraintTop_toBottomOf="@+id/button23" />
 
-        <Switch
+        <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switch1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"

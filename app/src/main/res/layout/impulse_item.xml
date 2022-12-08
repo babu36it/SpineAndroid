@@ -42,6 +42,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:inputType="text"
         android:id="@+id/textView22"
         android:layout_width="0dp"
         android:layout_height="@dimen/_100"
@@ -50,8 +51,8 @@
         android:layout_marginEnd="@dimen/sixteen"
         android:background="@null"
         android:cursorVisible="false"
-        android:editable="false"
         android:padding="@dimen/eight"
+        android:hint="text"
         android:text="@{viewModel.description}"
         android:textColor="@color/text_white"
         android:textSize="@dimen/big_text"
@@ -77,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/eight"
         android:layout_marginBottom="@dimen/eight"
-        android:drawableStart="@drawable/ic_heart"
+        app:drawableStartCompat="@drawable/ic_heart"
         android:drawablePadding="@dimen/eight"
         android:gravity="center"
         android:padding="@dimen/eight"
@@ -93,7 +94,7 @@
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_comment"
+        app:drawableStartCompat="@drawable/ic_comment"
         android:drawablePadding="@dimen/eight"
         android:gravity="center"
         android:padding="@dimen/eight"

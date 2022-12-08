@@ -129,13 +129,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/eight"
                 android:background="@drawable/shadow_box"
-                android:drawableEnd="@drawable/ic_arrow_right"
+                app:drawableEndCompat="@drawable/ic_arrow_right"
                 android:elevation="@dimen/eight"
                 android:onClick="@{viewmodel.selectEventType}"
                 android:padding="@dimen/eight"
                 android:text="@string/event_type" />
 
             <LinearLayout
+                android:baselineAligned="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -242,6 +243,7 @@
 
 
             <EditText
+                android:inputType="none"
                 android:id="@+id/textView102"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -476,7 +478,7 @@
                     android:text="@string/want_to_accept_participants"
                     />
 
-                <Switch
+                <com.google.android.material.switchmaterial.SwitchMaterial
                     android:layout_alignParentRight="true"
                     android:id="@+id/switch5"
                     android:layout_width="wrap_content"
@@ -498,7 +500,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/allow_comments"
                     />
-                <Switch
+                <com.google.android.material.switchmaterial.SwitchMaterial
                     android:layout_alignParentRight="true"
                     android:id="@+id/switch6"
                     android:layout_width="wrap_content"

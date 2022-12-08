@@ -15,6 +15,7 @@
     tools:context=".ui.home.menus.spine.impulse.ImpulseActivity">
 
     <ImageButton
+        android:contentDescription="@string/app_name"
         android:onClick="@{viewmodel.onBack}"
         android:id="@+id/ibComment"
         android:layout_width="wrap_content"
@@ -47,7 +48,7 @@
         android:fontFamily="@font/poppins_regular"
         android:drawableStart="@drawable/ic_add"
         android:drawablePadding="@dimen/eight"
-        android:drawableTint="@color/colorPrimaryDark"
+        app:drawableTint="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="@+id/textView13"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView13" />

@@ -1,6 +1,7 @@
 package com.wiesoftware.spine.ui.home.menus.spine.featuredpost
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
@@ -1021,6 +1022,7 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
         dialog.show()
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun loadWebView(p0: CharSequence?) {
         wvAdLink!!.settings.loadsImagesAutomatically = true
         wvAdLink!!.settings.javaScriptEnabled = true

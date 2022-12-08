@@ -15,6 +15,7 @@
     android:background="@drawable/aap_bg"
     tools:context=".ui.auth.fb.FbEmailActivity">
     <ImageButton
+        android:contentDescription="@string/app_name"
         android:onClick="@{viewmodel::onBackButtonClick}"
         android:id="@+id/ibComment"
         android:layout_width="wrap_content"
@@ -51,7 +52,7 @@
         android:background="@drawable/et_bg"
         android:ems="10"
         android:hint="@string/enter_your_email"
-        android:inputType="textEmailAddress"
+        android:inputType="phone"
         android:padding="@dimen/eight"
         android:text="@={viewmodel.email}"
         android:textColorHint="@android:color/white"

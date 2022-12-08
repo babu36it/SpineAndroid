@@ -16,6 +16,7 @@
     tools:context=".ui.home.menus.profile.setting.account_settings.deleteAccount.DeleteAccouontActivity">
 
         <ImageButton
+            android:contentDescription="@string/app_name"
             android:onClick="@{viewmodel.onBack}"
             android:id="@+id/imageButton41"
             android:layout_width="wrap_content"

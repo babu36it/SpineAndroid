@@ -21,6 +21,7 @@
             android:layout_height="wrap_content">
 
             <ImageButton
+                android:contentDescription="@string/app_name"
                 android:id="@+id/imageButton16"
                 style="@style/BackButton"
                 android:layout_width="wrap_content"
@@ -44,16 +45,16 @@
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/eight" />
 
             <Button
                 android:id="@+id/button44"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/eight"
-                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/eight"
                 android:background="@drawable/boarder_round_btn_bg"
                 android:backgroundTint="@color/colorPrimaryDark"
@@ -163,6 +164,7 @@
                             android:maxLines="1"
                             android:paddingVertical="@dimen/eight"
                             android:paddingStart="@dimen/_12sdp"
+                            android:paddingEnd="@dimen/_12sdp"
                             android:singleLine="true"
                             android:text="@={viewmodel.title}"
                             android:textColor="@color/day_night_both_black"
@@ -177,7 +179,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginStart="@dimen/_6sdp"
                             android:layout_marginEnd="@dimen/eight"
-                            android:text="40"
+                            android:text="@string/_40"
                             android:textSize="@dimen/_10sdp"
                             android:visibility="visible" />
 
@@ -202,7 +204,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/eight"
                         android:background="@drawable/shadow_box"
-                        android:drawableEnd="@drawable/ic_arrow_right"
+                        app:drawableEndCompat="@drawable/ic_arrow_right"
                         android:elevation="@dimen/eight"
                         android:onClick="@{viewmodel.selectEventType}"
                         android:padding="@dimen/eight"
@@ -210,6 +212,7 @@
                         android:visibility="gone" />
 
                     <LinearLayout
+                        android:baselineAligned="false"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_16sdp"
@@ -267,7 +270,7 @@
                                 android:hint="@string/start_time"
                                 android:onClick="@{viewmodel.onStartTime}"
                                 android:padding="@dimen/eight"
-                                android:text="10:00"
+                                android:text="@string/_10_00"
                                 android:textSize="@dimen/_10sdp"
                                 android:textColor="@color/day_night_both_black"
                                 android:textColorHint="@color/dark_gray_day_night"
@@ -354,6 +357,7 @@
 
 
                     <EditText
+                        android:inputType="text"
                         android:id="@+id/textView102"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -361,7 +365,7 @@
                         android:layout_marginTop="@dimen/eight"
                         android:layout_marginEnd="@dimen/_8sdp"
                         android:background="@drawable/shadow_box"
-                        android:drawableEnd="@drawable/ic_arrow_right"
+                        app:drawableEndCompat="@drawable/ic_arrow_right"
                         android:elevation="@dimen/eight"
                         android:padding="@dimen/eight"
                         android:textColor="@color/day_night_both_black"
@@ -427,7 +431,7 @@
                         android:layout_marginEnd="@dimen/_8sdp"
                         app:drawableTint="@color/text_black"
                         android:drawableStart="@drawable/ic_new_location"
-                        android:drawableEnd="@drawable/ic_arrow_right"
+                        app:drawableEndCompat="@drawable/ic_arrow_right"
                         android:drawablePadding="@dimen/_3sdp"
                         android:hint="@string/address"
                         android:background="@drawable/shadow_box"
@@ -522,12 +526,13 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:gravity="center_vertical"
-                        android:drawableEnd="@drawable/ic_arrow_right"
+                        app:drawableEndCompat="@drawable/ic_arrow_right"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginEnd="@dimen/_8sdp"
                         android:background="@drawable/shadow_box"
                         android:elevation="@dimen/_5sdp"
                         android:paddingStart="@dimen/_12sdp"
+                        android:paddingEnd="@dimen/_12sdp"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:hint="@string/enter_description"
@@ -570,20 +575,17 @@
                             android:text="@string/paid_events"
                              />
 
-                        <Switch
+                        <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/switch_paid"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
                             android:layout_marginTop="@dimen/sixteen"
                             android:background="@drawable/swithc_bg"
                             android:checked="false"
                             android:onCheckedChanged="@{(button, on) -> viewmodel.onPaidAmountCheckedChange(on)}"
                             android:thumbTint="@color/white"
-                            android:trackTint="@color/transparent"
-
-
-                            />
+                            android:trackTint="@color/transparent" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -611,9 +613,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginStart="@dimen/_5sdp"
                             android:layout_marginEnd="@dimen/eight"
-                            android:layout_toLeftOf="@+id/textView109"
+                            android:layout_toStartOf="@+id/textView109"
                             android:background="@drawable/shadow_box"
                             android:elevation="@dimen/_5sdp"
                             android:ems="10"
@@ -631,7 +633,7 @@
                             android:id="@+id/textView109"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/_35sdp"
-                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:layout_gravity="center_vertical"
                             android:layout_marginTop="@dimen/eight"
@@ -642,7 +644,7 @@
                             android:gravity="center_vertical"
                             android:onClick="@{viewmodel.onCurency}"
                             android:padding="@dimen/eight"
-                            android:text="EUR"
+                            android:text="@string/eur"
                             android:textColor="@color/dark_gray_day_night"
                             android:textColorHint="@color/day_night_both_black"
                             android:textSize="@dimen/_12sdp"
@@ -799,14 +801,14 @@
                             android:text="@string/want_to_accept_participants_subtext"
                             android:textSize="@dimen/_9sdp" />
 
-                        <Switch
+                        <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/switch5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
                             android:layout_marginTop="@dimen/sixteen"
-                            android:backgroundTint="@color/colorPrimaryDark"
                             android:background="@drawable/swithc_bg"
+                            android:backgroundTint="@color/colorPrimaryDark"
                             android:checked="true"
                             android:onCheckedChanged="@{(button, on) -> viewmodel.onAllowParticipantsCheckedChange(on)}"
                             android:thumbTint="@color/white"
@@ -830,11 +832,11 @@
                             android:text="@string/allow_comments"
                            />
 
-                        <Switch
+                        <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/switch6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
                             android:background="@drawable/swithc_bg"
                             android:backgroundTint="@color/colorPrimaryDark"
                             android:checked="true"
@@ -885,10 +887,11 @@
                             android:layout_height="match_parent"
                             android:layout_centerVertical="true"
                             android:background="@null"
-                            android:drawableEnd="@drawable/ic_arrow_right"
+                            app:drawableEndCompat="@drawable/ic_arrow_right"
                             android:gravity="center_vertical"
                             android:paddingVertical="@dimen/eight"
                             android:paddingStart="@dimen/_12sdp"
+                            android:paddingEnd="@dimen/_12sdp"
                             android:text="@string/select"
                             android:textColor="@color/day_night_both_black"
                             android:textSize="@dimen/_10sdp" />
@@ -930,6 +933,7 @@
                         android:visibility="visible">
 
                         <ImageButton
+                            android:contentDescription="@string/app_name"
                             android:id="@+id/imageButton73"
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="@dimen/_30sdp"
@@ -944,7 +948,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginStart="@dimen/eight"
-                            android:layout_toRightOf="@+id/imageButton73"
+                            android:layout_toEndOf="@+id/imageButton73"
                             android:text="@string/add_an_additional_category"
                             android:textColor="@color/colorPrimaryDark" />
                     </RelativeLayout>
@@ -993,8 +997,6 @@
                             style="@style/ButtonRound"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/_30sdp"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
                             android:layout_marginEnd="@dimen/eight"
                             android:background="@drawable/round_button_bg"
                             android:textSize="@dimen/_9sdp"
@@ -1026,7 +1028,6 @@
                             android:id="@+id/button45"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
                             android:background="@android:color/transparent"
                             android:onClick="@{viewmodel.onDelete}"
                             android:text="@string/delete"
@@ -1039,7 +1040,6 @@
                         android:id="@+id/button42"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
                         android:layout_marginStart="@dimen/_12sdp"
                         android:layout_marginEnd="@dimen/_12sdp"
                         android:layout_marginBottom="@dimen/_10sdp"
@@ -1065,13 +1065,13 @@
                         style="@style/NormalText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
                         android:padding="@dimen/sixteen"
                         android:layout_marginStart="@dimen/eight"
-                        android:text="Delete"
+                        android:text="@string/delete"
                         android:textColor="@color/colorPrimaryDark" />
 
                     <ImageView
+                        android:contentDescription="@string/app_name"
                         android:id="@+id/imageView12"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"

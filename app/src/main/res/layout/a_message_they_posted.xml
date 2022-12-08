@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@drawable/btn_bg"
     android:layout_height="wrap_content"
@@ -11,6 +10,7 @@
 
 
         <ImageButton
+            android:contentDescription="@string/app_name"
             android:layout_margin="@dimen/_10sdp"
             android:id="@+id/imageButton66"
             android:layout_width="@dimen/_150dp"
@@ -61,6 +61,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:paddingStart="@dimen/eight"
+            android:paddingEnd="@dimen/_8sdp"
             android:text="@string/content_is_spam"
             android:textColor="@color/text_black" />
 
@@ -77,6 +78,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:paddingStart="@dimen/eight"
+            android:paddingEnd="@dimen/_8sdp"
             android:text="@string/sexually_explicit_content"
             android:textColor="@color/text_black" />
 
@@ -93,6 +95,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:paddingStart="@dimen/eight"
+            android:paddingEnd="@dimen/_8sdp"
             android:text="@string/promotes_hate_speech_or_harassment"
             android:textColor="@color/text_black" />
 
@@ -110,6 +113,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:paddingStart="@dimen/eight"
+            android:paddingEnd="@dimen/_8sdp"
             android:text="@string/promotes_violent_or_criminal_behaviour"
             android:textColor="@color/text_black" />
 
@@ -126,6 +130,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:paddingStart="@dimen/eight"
+            android:paddingEnd="@dimen/_8sdp"
             android:text="@string/promotes_harmful_misinformation"
             android:textColor="@color/text_black" />
 
@@ -141,6 +146,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:paddingStart="@dimen/eight"
+            android:paddingEnd="@dimen/_8sdp"
             android:text="@string/something_else"
             android:textColor="@color/text_black" />
 

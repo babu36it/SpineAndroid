@@ -25,7 +25,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +45,7 @@
                         style="@style/BackButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/app_name"
                         android:tint="@color/text_white"
                         android:visibility="gone"
                         app:layout_constraintStart_toStartOf="parent"
@@ -62,49 +63,49 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <View
-                        android:visibility="gone"
                         android:layout_width="@dimen/_350"
                         android:layout_height="@dimen/_250"
                         android:background="@color/overlay_color_primary"
+                        android:visibility="gone"
                         app:layout_constraintStart_toEndOf="@+id/guideline5"
                         app:layout_constraintTop_toTopOf="parent" />
 
 
-<!--
-                    <TextView
-                        android:id="@+id/textView78"
-                        style="@style/TitleText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/text_white"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toEndOf="@+id/imageButton47"
-                        app:layout_constraintTop_toBottomOf="@+id/imageButton47" />
--->
+                    <!--
+                                        <TextView
+                                            android:id="@+id/textView78"
+                                            style="@style/TitleText"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="@color/text_white"
+                                            android:visibility="gone"
+                                            app:layout_constraintStart_toEndOf="@+id/imageButton47"
+                                            app:layout_constraintTop_toBottomOf="@+id/imageButton47" />
+                    -->
 
-<!--
-                    <TextView
-                        android:id="@+id/textView219"
-                        style="@style/NormalText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/eight"
-                        android:layout_marginTop="@dimen/eight"
-                        android:text=""
-                        android:textColor="@color/gray_tint"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toStartOf="@+id/textView78"
-                        app:layout_constraintTop_toBottomOf="@+id/textView78" />
--->
+                    <!--
+                                        <TextView
+                                            android:id="@+id/textView219"
+                                            style="@style/NormalText"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="@dimen/eight"
+                                            android:layout_marginTop="@dimen/eight"
+                                            android:text=""
+                                            android:textColor="@color/gray_tint"
+                                            android:visibility="gone"
+                                            app:layout_constraintStart_toStartOf="@+id/textView78"
+                                            app:layout_constraintTop_toBottomOf="@+id/textView78" />
+                    -->
 
 
                     <androidx.constraintlayout.widget.Guideline
-                        android:visibility="gone"
                         android:id="@+id/guideline5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:visibility="gone"
                         app:layout_constraintGuide_percent=".5" />
 
 
@@ -112,6 +113,7 @@
                         android:id="@+id/podImg"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:contentDescription="@string/app_name"
                         android:scaleType="centerCrop"
                         android:src="@drawable/demo"
                         app:layout_constraintBottom_toBottomOf="parent" />
@@ -121,11 +123,11 @@
 
 
                 <androidx.constraintlayout.widget.Guideline
-                    android:visibility="gone"
                     android:id="@+id/guideline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     app:layout_constraintGuide_percent=".3" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -138,14 +140,15 @@
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
 
                     <TextView
-                        android:paddingStart="@dimen/_8sdp"
                         android:id="@+id/tvAutherName"
                         style="@style/NormalText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_60sdp"
                         android:fontFamily="@font/poppins_semi_bold"
-                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:paddingStart="@dimen/_8sdp"
+                        android:paddingEnd="@dimen/_8sdp"
                         android:text=""
                         android:textColor="@color/text_white"
                         android:textSize="@dimen/_11sdp"
@@ -153,15 +156,16 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:paddingStart="@dimen/_8sdp"
                         android:id="@+id/tvPodTitle"
                         style="@style/NormalText"
-                        android:maxLines="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_semi_bold"
-                        android:text=""
+                        android:maxLines="1"
+                        android:paddingStart="@dimen/_8sdp"
+                        android:paddingEnd="@dimen/_8sdp"
                         android:singleLine="true"
+                        android:text=""
                         android:textColor="@color/text_white"
                         android:textSize="@dimen/_13sdp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -169,15 +173,16 @@
                         app:layout_constraintTop_toBottomOf="@+id/tvAutherName" />
 
                     <TextView
-                        android:paddingStart="@dimen/_8sdp"
                         android:id="@+id/tvEpisodes"
                         style="@style/NormalText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_10sdp"
                         android:fontFamily="@font/poppins_semi_bold"
-                        android:text=""
+                        android:paddingStart="@dimen/_8sdp"
+                        android:paddingEnd="@dimen/_8sdp"
                         android:paddingBottom="@dimen/_8sdp"
+                        android:text=""
                         android:textColor="@color/text_white"
                         android:textSize="@dimen/_11sdp"
                         app:layout_constraintStart_toStartOf="@+id/tvAutherName"
@@ -226,6 +231,7 @@
         <ImageButton
             android:id="@+id/imageButton48"
             style="@style/BackButton"
+            android:contentDescription="@string/app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{viewmodel.onBack}"
@@ -233,12 +239,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:textColor="@color/text_black"
             android:id="@+id/textView291"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/review_podcast"
             android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/review_podcast"
+            android:textColor="@color/text_black"
             android:textSize="@dimen/_13sdp"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton48"
             app:layout_constraintEnd_toEndOf="parent"
@@ -251,9 +257,9 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_28sdp"
             android:layout_marginEnd="@dimen/eight"
+            android:onClick="@{viewmodel.onSubmitPodcast}"
             android:paddingStart="@dimen/_20sdp"
             android:paddingEnd="@dimen/_20sdp"
-            android:onClick="@{viewmodel.onSubmitPodcast}"
             android:text="@string/submit"
             app:layout_constraintBottom_toBottomOf="@+id/textView291"
             app:layout_constraintEnd_toEndOf="parent"

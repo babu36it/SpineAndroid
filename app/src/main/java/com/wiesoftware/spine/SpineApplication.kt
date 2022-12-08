@@ -203,6 +203,7 @@ class SpineApplication : Application(),KodeinAware {
 
 
         FacebookSdk.sdkInitialize(getApplicationContext())
+        FacebookSdk.setApplicationId(resources.getString(R.string.facebook_app_id));
         AppEventsLogger.activateApp(this)
         Prefs = PreferenceManager.getDefaultSharedPreferences(this)
 

@@ -59,11 +59,12 @@
         app:cardCornerRadius="@dimen/_6sdp">
 
         <EditText
+            android:inputType="text"
             android:id="@+id/edt_search_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:drawableLeft="@drawable/search"
+            android:drawableStart="@drawable/search"
             android:drawablePadding="@dimen/_6sdp"
             android:fontFamily="@font/poppins_semi_bold"
             android:hint="Search Categories"

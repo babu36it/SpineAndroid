@@ -16,6 +16,7 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.animation.doOnCancel
@@ -112,7 +113,7 @@ class VideoFragment : Fragment() {
         override fun onDisplayAdded(displayId: Int) = Unit
         override fun onDisplayRemoved(displayId: Int) = Unit
 
-        @SuppressLint("UnsafeExperimentalUsageError", "RestrictedApi")
+
         override fun onDisplayChanged(displayId: Int) = view?.let { view ->
             if (displayId == this@VideoFragment.displayId) {
                 preview?.targetRotation = view.display.rotation
@@ -367,29 +368,14 @@ class VideoFragment : Fragment() {
         camera?.cameraControl?.enableTorch(flag)
     }
 
-    fun onPermissionGranted() {
-        // Each time apps is coming to foreground the need permission check is being processed
-        binding.viewFinder.let { vf ->
-            vf.post {
-                // Setting current display ID
-                displayId = vf.display.displayId
-                startCamera()
-                lifecycleScope.launch(Dispatchers.IO) {
-                    // Do on IO Dispatcher
-                    setLastPictureThumbnail()
-                }
-                camera?.cameraControl?.enableTorch(isTorchOn)
-            }
-        }
-    }
 
-
-    protected fun getMedia(): List<Media> = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+    private fun getMedia(): List<Media> = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
         getMediaQPlus()
     } else {
         getMediaQMinus()
     }.reversed()
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     private fun getMediaQPlus(): List<Media> {
         val items = mutableListOf<Media>()
         val contentResolver = requireContext().applicationContext.contentResolver
@@ -398,7 +384,7 @@ class VideoFragment : Fragment() {
             MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
             arrayOf(
                 MediaStore.Video.Media._ID,
-                MediaStore.Video.Media.RELATIVE_PATH,
+                MediaStore.MediaColumns.RELATIVE_PATH,
                 MediaStore.Video.Media.DATE_TAKEN,
             ),
             null,
