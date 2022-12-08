@@ -133,11 +133,25 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
             binding.rlFilterData.visibility = View.GONE
         }
 
+        binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = false
+
+
+
+            setEventList();
+        }
+
         return binding.root
     }
 
 
     private fun setEventList() {
+
+
+
+
+
+
         lifecycleScope.launch {
             try {
                 EventFragment.progress.show()
@@ -183,6 +197,7 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
                         EventFragment.tabLayout?.getTabAt(0)?.setText("ALL");
                 }
                 adapter?.notifyDataSetChanged()
+
 
             } catch (e: ApiException) {
                 EventFragment.progress.dismiss()

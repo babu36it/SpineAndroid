@@ -162,6 +162,14 @@ class EventFragmentPastList : Fragment(), KodeinAware, EventFragmentEventListene
             }
         }
 
+        binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = false
+
+
+
+            past();
+        }
+
         binding.texteditFltr.setOnClickListener {
             startActivity(
                 Intent(

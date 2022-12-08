@@ -910,6 +910,9 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         else if (language == "") {
             Utils.showToast(this, "Select Language")
             // binding.et104.error = "Required.";binding.et104.requestFocus(); return
+        } else if (attendees == "" || attendees == "0") {
+            Utils.showToast(this, "Enter Max Attendees")
+            // binding.et104.error = "Required.";binding.et104.requestFocus(); return
         }
         else {
 

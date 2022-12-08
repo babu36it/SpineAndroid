@@ -277,7 +277,7 @@ class HomeRepositry(
         return apiRequest { api.sendEventMessage(event_id, event_user_id, second_user_id, message, type) }
     }
 
-    suspend fun getOwnEvents(userID: String): OwnEventsRes{
+    suspend fun getOwnEvents(): OwnEventsRes{
         return apiRequest { api.getOwnEvents() }
     }
 

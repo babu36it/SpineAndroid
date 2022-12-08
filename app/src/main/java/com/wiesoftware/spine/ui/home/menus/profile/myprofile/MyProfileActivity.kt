@@ -269,7 +269,7 @@ class MyProfileActivity : AppCompatActivity(),KodeinAware, MyProfileEventListene
     private fun getOwnEvents() {
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.getOwnEvents(userId)
+                val res=homeRepositry.getOwnEvents()
                 if (res.status){
 //                    BASE_IMAGE=res.image
 //                    val evedata= res.data
@@ -306,7 +306,7 @@ class MyProfileActivity : AppCompatActivity(),KodeinAware, MyProfileEventListene
     private fun getPods() {
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.getOwnEvents(userId)
+                val res=homeRepositry.getOwnEvents()
                 if (res.status){
 //                    BASE_IMAGE=res.image
 //                    val evedata= res.data

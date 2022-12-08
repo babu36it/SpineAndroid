@@ -163,6 +163,14 @@ class EventFragmentNearByList : Fragment(), KodeinAware, EventFragmentEventListe
             }
         }
 
+        binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = false
+
+
+
+            setNearbyEvents();
+        }
+
         binding.texteditFltr.setOnClickListener {
             startActivity(Intent(
                 requireActivity(),

@@ -59,7 +59,7 @@ class EventsFragment : Fragment(),KodeinAware, EventsEventListener,
     private fun getOwnEvents() {
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.getOwnEvents(userId)
+                val res=homeRepositry.getOwnEvents()
                 if (!res.status){
 //                    Log.e("image",res.image)
 //                    BASE_IMAGE=res.image

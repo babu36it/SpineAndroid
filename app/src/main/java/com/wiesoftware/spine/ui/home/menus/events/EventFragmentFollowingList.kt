@@ -161,6 +161,14 @@ class EventFragmentFollowingList : Fragment(), KodeinAware, EventFragmentEventLi
             }
         }
 
+        binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = false
+
+
+
+            setFollowingEvents();
+        }
+
         binding.texteditFltr.setOnClickListener {
             startActivity(Intent(
                 requireActivity(),

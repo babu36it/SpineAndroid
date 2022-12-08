@@ -163,6 +163,14 @@ class EventFragmentOnLineList : Fragment(), KodeinAware, EventFragmentEventListe
             }
         }
 
+        binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = false
+
+
+
+            setOnLineEvents();
+        }
+
         binding.texteditFltr.setOnClickListener {
             startActivity(Intent(
                 requireActivity(),
