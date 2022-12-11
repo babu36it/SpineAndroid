@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.net.reponses.FollowersData
+import com.wiesoftware.spine.data.repo.EventRepositry
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivitySelectUsersBinding
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EVENT_ID
@@ -34,7 +35,7 @@ class  SelectUsersActivity : AppCompatActivity(),KodeinAware, SelectUsersEventLi
 
     override val kodein by kodein()
     val  factory: SelectUsersViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val eventRepositry: EventRepositry by instance()
     lateinit var binding: ActivitySelectUsersBinding
     lateinit var usr_id: String
     val usr_list: MutableList<FollowersData> = ArrayList<FollowersData>()
@@ -57,7 +58,7 @@ class  SelectUsersActivity : AppCompatActivity(),KodeinAware, SelectUsersEventLi
     private fun setFollowers() {
         lifecycleScope.launch {
             try {
-                val followersRes = homeRepositry.getFollowers(1, 100, usr_id)
+                val followersRes = eventRepositry.getFollowers(1, 100, usr_id)
                 if (followersRes.status) {
                     val followersData = followersRes.data
                     binding.rvSelectedFollowers.also {
@@ -98,7 +99,7 @@ class  SelectUsersActivity : AppCompatActivity(),KodeinAware, SelectUsersEventLi
             }
             lifecycleScope.launch {
                 try {
-                    val res=homeRepositry.spineEventShare(datalist)
+                    val res=eventRepositry.spineEventShare(datalist)
                     if (res.status){
                         res.message.toast(this@SelectUsersActivity)
                         onBackPressed()

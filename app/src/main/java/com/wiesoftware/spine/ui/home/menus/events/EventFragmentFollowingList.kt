@@ -19,6 +19,7 @@ import com.wiesoftware.spine.data.adapter.EventListAdapter
 import com.wiesoftware.spine.data.adapter.EventMenuAdapter
 import com.wiesoftware.spine.data.net.reponses.EventsData
 import com.wiesoftware.spine.data.net.reponses.EventsRecord
+import com.wiesoftware.spine.data.repo.EventRepositry
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.FragmentEventsListBinding
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
@@ -47,7 +48,7 @@ class EventFragmentFollowingList : Fragment(), KodeinAware, EventFragmentEventLi
 
     override val kodein by kodein()
     val factory: EventFragmentViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val eventRepositry: EventRepositry by instance()
     lateinit var binding: FragmentEventsListBinding
     var user_id: String = ""
     var argString: String = ""
@@ -209,7 +210,7 @@ class EventFragmentFollowingList : Fragment(), KodeinAware, EventFragmentEventLi
     private fun setEventList() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getAllEvents(1, 100, user_id, "all")
+                val res = eventRepositry.getAllEvents(1, 100, user_id, "all")
                 dataList.clear()
                 if (res.status) {
                     STORY_IMAGE = res.user_image
@@ -260,7 +261,7 @@ class EventFragmentFollowingList : Fragment(), KodeinAware, EventFragmentEventLi
         if (value == 0) {
             lifecycleScope.launch {
                 try {
-                    val res = homeRepositry.removeEventSave(user_id, record.id)
+                    val res = eventRepositry.removeEventSave(user_id, record.id)
                     if (res.status) {
 
                         "Removed".toast(requireContext())
@@ -275,7 +276,7 @@ class EventFragmentFollowingList : Fragment(), KodeinAware, EventFragmentEventLi
         } else {
             lifecycleScope.launch {
                 try {
-                    val res = homeRepositry.saveEvents(user_id, record.id)
+                    val res = eventRepositry.saveEvents(user_id, record.id)
                     if (res.status) {
                         val msg = res.message
                         msg.toast(requireContext())
@@ -401,7 +402,7 @@ class EventFragmentFollowingList : Fragment(), KodeinAware, EventFragmentEventLi
         Log.e("start", start_date.toString())
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getFilteredEventList(
+                val res = eventRepositry.getFilteredEventList(
                     "1",
                     "100",
                     user_id,
@@ -463,7 +464,7 @@ class EventFragmentFollowingList : Fragment(), KodeinAware, EventFragmentEventLi
     private fun saved() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getAllSavedEvents(1, 100, user_id)
+                val res = eventRepositry.getAllSavedEvents(1, 100, user_id)
                 dataList.clear()
                 if (res.status) {
                     BASE_IMAGE = res.image
@@ -499,7 +500,7 @@ class EventFragmentFollowingList : Fragment(), KodeinAware, EventFragmentEventLi
     private fun getGoingPastEventList(goingPast: Int) {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getGoingPastEventsList(1, 100, user_id, goingPast)
+                val res = eventRepositry.getGoingPastEventsList(1, 100, user_id, goingPast)
                 dataList.clear()
                 if (res.status) {
                     BASE_IMAGE = res.image
@@ -540,7 +541,7 @@ class EventFragmentFollowingList : Fragment(), KodeinAware, EventFragmentEventLi
         Log.e("latlong: ", "$lat, $lon")
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getNearbyEvents(1, 100, user_id, lat, lon, 10)
+                val res = eventRepositry.getNearbyEvents(1, 100, user_id, lat, lon, 10)
                 dataList.clear()
                 if (res.status) {
                     STORY_IMAGE = res.image
@@ -574,7 +575,7 @@ class EventFragmentFollowingList : Fragment(), KodeinAware, EventFragmentEventLi
         lifecycleScope.launch {
             try {
                 EventFragment.progress.show()
-                val res = homeRepositry.getAllEvents(1, 100, "following", "")
+                val res = eventRepositry.getAllEvents(1, 100, "following", "")
                 dataList.clear()
                 EventFragment.progress.dismiss()
                 if (res.status) {
@@ -624,7 +625,7 @@ class EventFragmentFollowingList : Fragment(), KodeinAware, EventFragmentEventLi
     private fun setOnLineEvents() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getOnLineEventsList(1, 100, user_id)
+                val res = eventRepositry.getOnLineEventsList(1, 100, user_id)
                 dataList.clear()
                 if (res.status) {
                     STORY_IMAGE = res.image

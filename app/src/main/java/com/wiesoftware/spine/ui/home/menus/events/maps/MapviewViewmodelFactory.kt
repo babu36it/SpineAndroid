@@ -2,6 +2,7 @@ package com.wiesoftware.spine.ui.home.menus.events.maps
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.wiesoftware.spine.data.repo.EventRepositry
 import com.wiesoftware.spine.data.repo.HomeRepositry
 
 /**
@@ -9,9 +10,9 @@ import com.wiesoftware.spine.data.repo.HomeRepositry
  * Email: vivekpcst.kumar@gmail.com.
  */
 @Suppress("UNCHECKED_CAST")
-class MapviewViewmodelFactory(val homeRepositry: HomeRepositry):ViewModelProvider.NewInstanceFactory() {
+class MapviewViewmodelFactory(val eventRepositry: EventRepositry):ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MapviewViewmodel(homeRepositry) as T
+        return MapviewViewmodel(eventRepositry) as T
     }
 }

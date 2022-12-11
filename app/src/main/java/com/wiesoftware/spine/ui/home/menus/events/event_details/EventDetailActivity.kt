@@ -41,6 +41,7 @@ import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.EventCommentAdapter
 import com.wiesoftware.spine.data.adapter.GoingUserAdapter
 import com.wiesoftware.spine.data.net.reponses.*
+import com.wiesoftware.spine.data.repo.EventRepositry
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityEventDetailBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
@@ -95,7 +96,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
     override val kodein by kodein()
     lateinit var binding: ActivityEventDetailBinding
     val factory: EventDetailViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val eventRepositry: EventRepositry by instance()
     var img: String? = null;
     var img_base: String = "";
     var name: String = "";
@@ -160,7 +161,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
     private fun getGoingUsers() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getGoingUsers(1, 100, event_id)
+                val res = eventRepositry.getGoingUsers(1, 100, event_id)
                 if (res.status) {
                     STORY_IMAGE = res.profileImage
                     val userData = res.data.userList
@@ -272,7 +273,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
     private fun getSpineEventComments() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getSpineEventsComment(event_id)
+                val res = eventRepositry.getSpineEventsComment(event_id)
                 if (res.status) {
                     val data = res.data
                     binding.recyclerView2.let {
@@ -285,7 +286,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
                         it.adapter = EventCommentAdapter(
                             data,
                             this@EventDetailActivity,
-                            homeRepositry,
+                            eventRepositry,
                             res.user_image
                         )
                     }
@@ -607,7 +608,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
 //        lifecycleScope.launch {
 //            try {
 //                Log.e("idd", userId)
-//                val userProfile = homeRepositry.getUserDetails(userId)
+//                val userProfile = eventRepositry.getUserDetails(userId)
 //                if (userProfile.status) {
 //                    img_base = userProfile.image
 //                    val userData = userProfile.data
@@ -697,7 +698,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
                 } else {
                     type = "2"
                 }
-                val res = homeRepositry.sendEventMessage(event_id, eve_user_id, user_id, msg, type)
+                val res = eventRepositry.sendEventMessage(event_id, eve_user_id, user_id, msg, type)
                 if (res.status) {
                     "Message sent successfully".toast(this@EventDetailActivity)
                     //createChatUserWithComet(eve_user_id,name,(img_base+img))
@@ -827,7 +828,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         binding.imageButton19.setImageResource(R.drawable.ic_saved)
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.saveEvents(user_id, event_id)
+                val res = eventRepositry.saveEvents(user_id, event_id)
                 if (res.status) {
                     val msg = res.message
                     msg.toast(this@EventDetailActivity)
@@ -843,7 +844,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
     private fun removeEventsave() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.removeEventSave(user_id, event_id)
+                val res = eventRepositry.removeEventSave(user_id, event_id)
                 if (res.status) {
 
                     "Removed".toast(this@EventDetailActivity)
@@ -928,7 +929,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
 
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.spineEventsComment(event_id, user_id, "0", binding.etCmnt.text.toString())
+                val res = eventRepositry.spineEventsComment(event_id, user_id, "0", binding.etCmnt.text.toString())
                 if (res.status) {
                     //"Comment added successfully".toast(this@EventDetailActivity)
                     binding.etCmnt.setText("")
@@ -1030,7 +1031,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
     private fun deleteEvent() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.removeSpineEvent(event_id)
+                val res = eventRepositry.removeSpineEvent(event_id)
                 if (res.status) {
                     onBackPressed()
                 } else {
@@ -1049,7 +1050,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         lifecycleScope.launch {
             try {
                 val c_id = eventCommentData.id
-                val res = homeRepositry.spineEventsComment(event_id, user_id, c_id, comment)
+                val res = eventRepositry.spineEventsComment(event_id, user_id, c_id, comment)
                 if (res.status) {
                     //"Comment added successfully".toast(this@EventDetailActivity)
                     binding.etCmnt.setText("")
@@ -1112,7 +1113,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
 
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.bookEvents(user_id, eventType, event_id, msg, fee)
+                val res = eventRepositry.bookEvents(user_id, eventType, event_id, msg, fee)
                 if (res.status) {
                     res.message.toast(this@EventDetailActivity)
                     changeBookingstatus(bookingId, s)
@@ -1131,7 +1132,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         lifecycleScope.launch {
             try {
 
-                val res = homeRepositry.changeBookingStatus("" + s, "" + s1)
+                val res = eventRepositry.changeBookingStatus("" + s, "" + s1)
                 if (res.status) {
                     res.message.toast(this@EventDetailActivity)
                     getEventDetails()
@@ -1148,7 +1149,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         lifecycleScope.launch {
             try {
 
-                val res = homeRepositry.getEventDetails(event_id, user_id)
+                val res = eventRepositry.getEventDetails(event_id, user_id)
                 if (res.status) {
                     record = res.data
                     println("SanjayC record......" + Gson().toJson(record))
@@ -1299,7 +1300,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
     private fun setFollowers() {
         lifecycleScope.launch {
             try {
-                val followersRes = homeRepositry.getFollowers(1, 100, user_id)
+                val followersRes = eventRepositry.getFollowers(1, 100, user_id)
                 if (followersRes.status) {
                     followersDataList = followersRes.data
                 }
@@ -1408,7 +1409,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         }
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.spineEventShare(data)
+                val res = eventRepositry.spineEventShare(data)
                 if (res.status) {
                     res.message.toast(this@EventDetailActivity)
                 } else {
@@ -1731,7 +1732,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         //"$reportTitle, $reportReason, $reportMessage".toast(requireContext())
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.spineReportUserPostStory(
+                val res = eventRepositry.spineReportUserPostStory(
                     user_id,
                     event_id,
                     "4",

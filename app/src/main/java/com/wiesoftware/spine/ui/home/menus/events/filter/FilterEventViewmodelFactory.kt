@@ -2,6 +2,7 @@ package com.wiesoftware.spine.ui.home.menus.events.filter
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.wiesoftware.spine.data.repo.EventRepositry
 import com.wiesoftware.spine.data.repo.HomeRepositry
 
 /**
@@ -9,9 +10,9 @@ import com.wiesoftware.spine.data.repo.HomeRepositry
  * E-mail:- vivekpcst.kumar@gmail.com
  */
 @Suppress("UNCHECKED_CAST")
-class FilterEventViewmodelFactory(val homeRepositry: HomeRepositry): ViewModelProvider.NewInstanceFactory() {
+class FilterEventViewmodelFactory(val eventRepositry: EventRepositry): ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return FilterEventViewmodel(homeRepositry) as T
+        return FilterEventViewmodel(eventRepositry) as T
     }
 }

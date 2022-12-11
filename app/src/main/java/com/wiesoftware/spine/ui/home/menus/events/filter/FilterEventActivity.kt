@@ -42,6 +42,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.net.reponses.EventCatData
+import com.wiesoftware.spine.data.repo.EventRepositry
 import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityFilterEventBinding
 import com.wiesoftware.spine.ui.home.menus.events.addevents.MutilpeSpineCatAdapter
@@ -86,7 +87,7 @@ class FilterEventActivity : AppCompatActivity(),KodeinAware, FilterEventListener
     lateinit var binding: ActivityFilterEventBinding
     lateinit var viewmodel: FilterEventViewmodel
     val factory: FilterEventViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val eventRepositry: EventRepositry by instance()
     private val AUTOCOMPLETE_REQUEST_CODE = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -192,7 +193,7 @@ class FilterEventActivity : AppCompatActivity(),KodeinAware, FilterEventListener
     private fun getEventCategories(value:String) {
         lifecycleScope.launch {
             try {
-                val catRes=homeRepositry.getEventCatRes(value)
+                val catRes=eventRepositry.getEventCatRes(value)
                 if (catRes.status){
                     catData=catRes.data
                 }
