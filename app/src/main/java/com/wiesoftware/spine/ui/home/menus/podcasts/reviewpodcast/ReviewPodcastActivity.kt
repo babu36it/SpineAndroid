@@ -18,7 +18,7 @@ import com.wiesoftware.spine.data.adapter.RssItemAdapter
 import com.wiesoftware.spine.data.net.reponses.ReviewPodData
 import com.wiesoftware.spine.data.net.reponses.RssItem
 import com.wiesoftware.spine.data.net.reponses.RssResponse
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.data.repo.RssRepository
 import com.wiesoftware.spine.databinding.ActivityReviewPodcastBinding
 import com.wiesoftware.spine.ui.home.menus.podcasts.addpodcasts.AddPodcastActivity
@@ -40,7 +40,7 @@ class ReviewPodcastActivity : AppCompatActivity(), KodeinAware, ReviewPodcastEve
     override val kodein by kodein()
     lateinit var binding: ActivityReviewPodcastBinding
     val rssRepository: RssRepository by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     var items: List<RssItem> = arrayListOf()
     lateinit var userId: String
     var rssLink = ""

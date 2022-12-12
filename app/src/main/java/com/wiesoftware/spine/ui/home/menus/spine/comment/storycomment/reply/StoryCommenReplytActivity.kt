@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.net.reponses.StoriesCommentData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityStoryCommenReplytBinding
 import com.wiesoftware.spine.ui.home.menus.spine.comment.postcomment.PostCommentActivity
 import com.wiesoftware.spine.ui.home.menus.spine.comment.storycomment.StoryCommentAdapter
@@ -37,7 +37,7 @@ class StoryCommenReplytActivity : AppCompatActivity(), KodeinAware, StoryComment
 
     override val kodein by kodein()
     lateinit var binding: ActivityStoryCommenReplytBinding
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var userId: String
     lateinit var data: StoriesCommentData
     var storyId="";var commentId=""

@@ -11,11 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivitySaveEventToCalBinding
 import com.wiesoftware.spine.util.*
 import kotlinx.coroutines.launch
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -28,7 +27,7 @@ class SaveEventToCalActivity : AppCompatActivity(),KodeinAware, SaveEventEventLi
 
     override val kodein by kodein()
     val factory: SaveEventViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivitySaveEventToCalBinding
     lateinit var userId: String
     var status=0;

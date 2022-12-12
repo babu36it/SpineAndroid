@@ -2,13 +2,13 @@ package com.wiesoftware.spine.ui.home.menus.events.preview_event
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 1/15/2021.
  * E-mail:- vivekpcst.kumar@gmail.com
  */
-class PreviewEventViewmodel(val homeRepositry: HomeRepositry): ViewModel() {
+class PreviewEventViewmodel(val homeRepositry: HomeRepository): ViewModel() {
 
     var previewEventsEventListener: PreviewEventsEventListener?= null
 

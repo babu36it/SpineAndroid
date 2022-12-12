@@ -3,9 +3,7 @@ package com.wiesoftware.spine.ui.auth.number
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
@@ -14,10 +12,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.db.entities.User
-import com.wiesoftware.spine.data.repo.AuthRepositry
+import com.wiesoftware.spine.data.repo.AuthRepository
 import com.wiesoftware.spine.databinding.ActivityNumberBinding
 import com.wiesoftware.spine.ui.auth.otp.OtpActivity
-import com.wiesoftware.spine.ui.auth.otp.phoneNumber
 import com.wiesoftware.spine.ui.auth.otp.user_id
 import com.wiesoftware.spine.ui.auth.register.RegisterActivity
 import com.wiesoftware.spine.util.*
@@ -31,7 +28,7 @@ class NumberActivity : AppCompatActivity(), NumberEventListener, KodeinAware {
 
     override val kodein by kodein()
     private val factory: NumberViewModelFactory by instance()
-    private val authRepositry: AuthRepositry by instance()
+    private val authRepositry: AuthRepository by instance()
 
     private var strPhoneNumber: String = ""
 

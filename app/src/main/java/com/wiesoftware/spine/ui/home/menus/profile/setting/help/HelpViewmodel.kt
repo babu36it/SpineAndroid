@@ -2,13 +2,13 @@ package com.wiesoftware.spine.ui.home.menus.profile.setting.help
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 2/11/2021.
  * E-mail:- vivekpcst.kumar@gmail.com
  */
-class HelpViewmodel(val homeRepositry: HomeRepositry): ViewModel() {
+class HelpViewmodel(val homeRepositry: HomeRepository): ViewModel() {
     var helpEventListener: HelpEventListener?=null
 
     fun onBack(view: View){

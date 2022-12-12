@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.util.Log
 import android.util.SparseIntArray
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
@@ -30,7 +29,7 @@ import com.wiesoftware.spine.SpineApplication
 import com.wiesoftware.spine.data.net.reponses.FollowingStoriesData
 import com.wiesoftware.spine.data.net.reponses.FollwingData
 import com.wiesoftware.spine.data.net.reponses.StoryMothData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityViewStoryBinding
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.STORY_IMAGE
 import com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.customstoryview.StoryPagerAdapter
@@ -38,7 +37,6 @@ import com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.storyscreen.P
 import com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.storyscreen.PageViewOperator
 import com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.storyscreen.StoryDisplayFragment
 import com.wiesoftware.spine.util.*
-import kotlinx.android.synthetic.main.activity_otp.view.*
 import kotlinx.android.synthetic.main.activity_view_story.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -64,7 +62,7 @@ class ViewStoryActivity : AppCompatActivity(),
 
     override val kodein by kodein()
     val factory: ViewStoryViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityViewStoryBinding
     lateinit var user_id: String
     lateinit var storyList:ArrayList<FollowingStoriesData>

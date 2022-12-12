@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.FollowingAdapter
 import com.wiesoftware.spine.data.net.reponses.FollowersData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentFollowingBinding
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.STORY_IMAGE
@@ -27,7 +27,6 @@ import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
 import com.wiesoftware.spine.util.toast
 import kotlinx.coroutines.launch
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
@@ -40,7 +39,7 @@ class FollowingFragment : Fragment(), KodeinAware,
     override val kodein by kodein()
     val factory: FollowingFragmentViewmodelFactory by instance()
     lateinit var binding: FragmentFollowingBinding
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     var userId: String = ""
     lateinit var adapter: FollowingAdapter
     private var dataList: ArrayList<FollowersData> = arrayListOf()

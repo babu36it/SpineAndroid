@@ -2,13 +2,13 @@ package com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.lan
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 2/5/2021.
  * Email: vivekpcst.kumar@gmail.com.
  */
-class SelectLanguageViewmodel(val homeRepositry: HomeRepositry): ViewModel() {
+class SelectLanguageViewmodel(val homeRepositry: HomeRepository): ViewModel() {
 
     var selectLanguageEventListener: SelectLanguageEventListener?=null
 

@@ -3,7 +3,6 @@ package com.wiesoftware.spine.ui.home.menus.profile.tabs.events
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.OwnEventAdapter
 import com.wiesoftware.spine.data.net.reponses.EventsRecord
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentEventsBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.events.EVE_RECORD
@@ -40,7 +39,7 @@ class EventsFragment : Fragment(), KodeinAware, EventsEventListener,
     OwnEventAdapter.OnEventDetailsListener {
     override val kodein by kodein()
     val factory: EventsViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: FragmentEventsBinding
     lateinit var userId: String
     var PROFILE_PIC_URL = ""

@@ -18,15 +18,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.ListPodcastAdapter
 import com.wiesoftware.spine.data.net.reponses.PodDatas
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentPodcastBinding
 import com.wiesoftware.spine.ui.home.menus.podcasts.addrss.AddRssActivity
 import com.wiesoftware.spine.ui.home.menus.podcasts.podcastdetails.PodcastDetailActivity
 import com.wiesoftware.spine.ui.home.menus.podcasts.watch.WatchPodcastsFragment
-import com.wiesoftware.spine.ui.home.menus.spine.foryou.STORY_IMAGE
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
-import com.wiesoftware.spine.util.POD_FILE_BASE
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
@@ -36,7 +34,7 @@ class PodcastFragment : Fragment(), KodeinAware, PodcastsEventListner,
     ListPodcastAdapter.OnPodEveListener {
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: FragmentPodcastBinding
     lateinit var progressDialog: ProgressDialog
 

@@ -2,13 +2,13 @@ package com.wiesoftware.spine.ui.home.menus.events.event_details
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 1/11/2021.
  * E-mail:- vivekpcst.kumar@gmail.com
  */
-class EventDetailViewmodel(val homeRepositry: HomeRepositry): ViewModel() {
+class EventDetailViewmodel(val homeRepositry: HomeRepository): ViewModel() {
 
     var eventDetailEventListener: EventDetailEventListener?=null
     var eve_comment: String=""

@@ -13,7 +13,7 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.EventReplyAdapter
 import com.wiesoftware.spine.data.net.reponses.EventCommentData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityEventReplyBinding
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
 import com.wiesoftware.spine.ui.home.menus.events.eventcomment.EventCommentActivity
@@ -21,7 +21,6 @@ import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
 import com.wiesoftware.spine.util.toast
 import kotlinx.coroutines.launch
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -34,7 +33,7 @@ class EventReplyActivity : AppCompatActivity(),KodeinAware, EventReplyEventListe
 
     override val kodein by kodein()
     val factory: EventReplyViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding:  ActivityEventReplyBinding
     lateinit var userId: String
     var eventId=""

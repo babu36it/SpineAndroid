@@ -16,16 +16,14 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.EveChatAdapter
 import com.wiesoftware.spine.data.net.reponses.EveMsgUserData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityChatBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.profile.masseges.msg.EVE_MSG_DATA
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
 import com.wiesoftware.spine.util.hideKeyboard
-import com.wiesoftware.spine.util.toast
 import kotlinx.coroutines.launch
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -37,7 +35,7 @@ class ChatActivity : AppCompatActivity(),KodeinAware, ChatActivityEventListener 
     }
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     val factory: ChatActivityViewmodelFactory by instance()
     lateinit var userId: String
     lateinit var eveUserId: String

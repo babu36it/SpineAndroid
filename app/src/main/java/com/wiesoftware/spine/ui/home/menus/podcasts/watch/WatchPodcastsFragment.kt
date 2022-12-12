@@ -16,9 +16,8 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.ListenPodcastAdapter
 import com.wiesoftware.spine.data.adapter.WatchPodcastAdapter
 import com.wiesoftware.spine.data.net.reponses.PodDatas
-import com.wiesoftware.spine.data.net.reponses.PodcastData
 import com.wiesoftware.spine.data.net.reponses.RssItem
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentWatchPodcastsBinding
 import com.wiesoftware.spine.ui.home.menus.podcasts.podcastdetails.PodcastDetailActivity
 import com.wiesoftware.spine.ui.home.menus.podcasts.userpodcast.UserPodcastActivity
@@ -29,7 +28,6 @@ import com.wiesoftware.spine.util.NoInternetException
 import com.wiesoftware.spine.util.POD_FILE_BASE
 import com.wiesoftware.spine.util.toast
 import kotlinx.coroutines.launch
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
@@ -37,7 +35,7 @@ import org.kodein.di.generic.instance
 class WatchPodcastsFragment : Fragment(),KodeinAware, ListenPodcastAdapter.PodCastEventsListener {
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     val factory: WtachPodcastViewmodelFactory by instance()
     lateinit var binding:  FragmentWatchPodcastsBinding
     lateinit var userId: String

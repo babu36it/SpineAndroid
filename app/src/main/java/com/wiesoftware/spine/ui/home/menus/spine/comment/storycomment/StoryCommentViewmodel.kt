@@ -2,13 +2,13 @@ package com.wiesoftware.spine.ui.home.menus.spine.comment.storycomment
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 3/5/2021.
  * Email: vivekpcst.kumar@gmail.com.
  */
-class StoryCommentViewmodel(val homeRepositry: HomeRepositry): ViewModel() {
+class StoryCommentViewmodel(val homeRepositry: HomeRepository): ViewModel() {
     var comment=""
 
     var storyCommentEventListener: StoryCommentEventListener?=null

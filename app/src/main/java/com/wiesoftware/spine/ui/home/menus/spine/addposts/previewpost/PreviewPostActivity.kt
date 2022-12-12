@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityPreviewPostBinding
 import com.wiesoftware.spine.ui.home.HomeActivity
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.reviewpost.PostThoughtModel
@@ -20,10 +20,8 @@ import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
 import com.wiesoftware.spine.util.toast
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -35,7 +33,7 @@ class PreviewPostActivity : AppCompatActivity(),KodeinAware, PreviewPostEventLis
     }
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityPreviewPostBinding
 
     lateinit var userId:String

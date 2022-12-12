@@ -2,15 +2,12 @@ package com.wiesoftware.spine.ui.home.menus.events.addevents
 
 
 import android.Manifest
-import android.R.attr
-import android.annotation.SuppressLint
 import android.app.*
 import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
@@ -37,7 +34,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
 import com.google.android.gms.location.*
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -51,7 +47,7 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.PodcastSubcategoryAdapter
 import com.wiesoftware.spine.data.net.reponses.*
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityAddEventBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.events.EVE_RECORD
@@ -109,7 +105,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     lateinit var photoURI: Uri
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     val factory: AddEventsViewmodelFactory by instance()
     lateinit var binding: ActivityAddEventBinding
     var peviewlangague: String = ""

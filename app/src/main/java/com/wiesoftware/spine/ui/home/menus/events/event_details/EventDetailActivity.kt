@@ -5,7 +5,6 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -41,7 +40,7 @@ import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.EventCommentAdapter
 import com.wiesoftware.spine.data.adapter.GoingUserAdapter
 import com.wiesoftware.spine.data.net.reponses.*
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityEventDetailBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.events.EVE_RECORD
@@ -57,18 +56,15 @@ import com.wiesoftware.spine.ui.home.menus.spine.selectfollowers.SelectFollowers
 import com.wiesoftware.spine.util.*
 import constant.StringContract
 import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.activity_event_detail.*
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 import kotlinx.android.synthetic.main.eve_msg_dialog.*
 import kotlinx.android.synthetic.main.join_layout.*
-import kotlinx.android.synthetic.main.poor_quality_or_spam.view.*
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button91
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button92
 import kotlinx.android.synthetic.main.report_reason.*
 import kotlinx.android.synthetic.main.report_reason.view.*
 import kotlinx.android.synthetic.main.share_bottomsheet.*
 import kotlinx.android.synthetic.main.share_bottomsheet.view.*
-import kotlinx.android.synthetic.main.why_r_u_reporting.view.*
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.cardView2
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.imageButton66
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.radioGroup
@@ -95,7 +91,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
     override val kodein by kodein()
     lateinit var binding: ActivityEventDetailBinding
     val factory: EventDetailViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     var img: String? = null;
     var img_base: String = "";
     var name: String = "";

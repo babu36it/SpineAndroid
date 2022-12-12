@@ -15,7 +15,7 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.UserPodcastAdapter
 import com.wiesoftware.spine.data.net.reponses.PodDatas
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityUserPodcastBinding
 import com.wiesoftware.spine.ui.home.menus.podcasts.podcastdetails.PodcastDetailActivity
 import com.wiesoftware.spine.ui.home.menus.podcasts.watch.WatchPodcastsFragment
@@ -39,7 +39,7 @@ class UserPodcastActivity : AppCompatActivity(),KodeinAware, UserPodcastEventLis
 
     override val kodein by kodein()
     val factory: UserPodcastViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityUserPodcastBinding
     lateinit var userId: String
     var podUserId=""

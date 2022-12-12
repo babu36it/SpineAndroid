@@ -14,10 +14,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.DiscoverMemberStaggeredAdapter
-import com.wiesoftware.spine.data.adapter.OwnPostAdapter
 import com.wiesoftware.spine.data.net.reponses.AllUsersData
 import com.wiesoftware.spine.data.net.reponses.PostData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityRecommendedFollowersBinding
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
@@ -39,7 +38,7 @@ class RecommendedFollowersActivity : AppCompatActivity(), KodeinAware,
 
     override val kodein by kodein()
     val factory: RecommendedFollowersViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityRecommendedFollowersBinding
     lateinit var userId: String
 

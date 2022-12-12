@@ -17,7 +17,7 @@ import com.wiesoftware.spine.data.adapter.EventListAdapter
 import com.wiesoftware.spine.data.adapter.EventMenuAdapter
 import com.wiesoftware.spine.data.net.reponses.EventsData
 import com.wiesoftware.spine.data.net.reponses.EventsRecord
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentEventsListBinding
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
 import com.wiesoftware.spine.ui.home.menus.events.filter.FilterEventActivity
@@ -44,7 +44,7 @@ class EventFragmentMetaList : Fragment(), KodeinAware, EventFragmentEventListene
 
     override val kodein by kodein()
     val factory: EventFragmentViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: FragmentEventsListBinding
     var user_id: String = ""
     var argString: String = ""

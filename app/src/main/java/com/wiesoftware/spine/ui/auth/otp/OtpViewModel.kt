@@ -2,10 +2,10 @@ package com.wiesoftware.spine.ui.auth.otp
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.AuthRepositry
+import com.wiesoftware.spine.data.repo.AuthRepository
 
 class OtpViewModel(
-    private val authRepositry: AuthRepositry
+    private val authRepositry: AuthRepository
 ) : ViewModel() {
     var otpEventListener: OtpEventListener?=null
 

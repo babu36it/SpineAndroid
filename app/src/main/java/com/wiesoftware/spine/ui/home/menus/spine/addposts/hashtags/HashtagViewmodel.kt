@@ -1,19 +1,18 @@
 package com.wiesoftware.spine.ui.home.menus.spine.addposts.hashtags
 
-import android.R.attr.name
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 
 /**
  * Created by Vivek kumar on 12/28/2020.
  * E-mail:- vivekpcst.kumar@gmail.com
  */
-class HashtagViewmodel(val homeRepositry: HomeRepositry) : ViewModel() {
+class HashtagViewmodel(val homeRepositry: HomeRepository) : ViewModel() {
 
     var hashtags: String = ""
     var hashtagEventListener: HashtagEventListener? = null

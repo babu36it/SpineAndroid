@@ -1,17 +1,14 @@
 package com.wiesoftware.spine.ui.auth.login
 
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.AuthRepositry
+import com.wiesoftware.spine.data.repo.AuthRepository
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.Coroutines
 import com.wiesoftware.spine.util.NoInternetException
-import com.wiesoftware.spine.util.getToken
-import org.json.JSONObject
 
 class LoginViewModel(
-    private val authRepositry: AuthRepositry
+    private val authRepositry: AuthRepository
 ):ViewModel() {
     var email:String?=null
     var password:String?=null

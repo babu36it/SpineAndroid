@@ -14,7 +14,7 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.EventCommentAdapter
 import com.wiesoftware.spine.data.net.reponses.EventCommentData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityEventCommentBinding
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
 import com.wiesoftware.spine.ui.home.menus.events.eventcomment.eventreply.EventReplyActivity
@@ -37,7 +37,7 @@ class EventCommentActivity : AppCompatActivity(),KodeinAware, EventCommentEventL
 
 
     val factory: EventCommentViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding:  ActivityEventCommentBinding
     lateinit var userId: String
     lateinit var eventId: String

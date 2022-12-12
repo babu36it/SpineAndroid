@@ -10,12 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivitySelectLanguageBinding
 import com.wiesoftware.spine.util.Prefs
 import com.wiesoftware.spine.util.putAny
 import com.wiesoftware.spine.util.toast
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -26,7 +25,7 @@ class SelectLanguageActivity : AppCompatActivity(),KodeinAware, SelectLanguageEv
     override val kodein by kodein()
 
     val factory: SelectLanguageViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var userId: String
     lateinit var binding: ActivitySelectLanguageBinding
     var langDataList: MutableList<LanguageData> = ArrayList()

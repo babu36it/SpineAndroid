@@ -31,15 +31,14 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.db.entities.User
 import com.wiesoftware.spine.data.net.Api
 import com.wiesoftware.spine.data.net.reponses.EventCatData
-import com.wiesoftware.spine.data.repo.AuthRepositry
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.AuthRepository
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityRegisterBinding
 import com.wiesoftware.spine.ui.auth.AuthViewModelFactory
 import com.wiesoftware.spine.ui.auth.otp.OtpActivity
 import com.wiesoftware.spine.ui.home.HomeActivity
 import com.wiesoftware.spine.ui.home.menus.events.addevents.SpinerCatAdapter
 import com.wiesoftware.spine.util.*
-import kotlinx.android.synthetic.main.activity_fb_email.*
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.eve_cat_selection.*
 import kotlinx.coroutines.launch
@@ -61,8 +60,8 @@ class RegisterActivity : AppCompatActivity(), RegisterEventListener,KodeinAware,
 
     override val kodein by kodein()
     private val factory: AuthViewModelFactory by instance()
-    val authRepositry: AuthRepositry by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val authRepositry: AuthRepository by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -12,14 +12,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.HashtagAutocompleteAdapter
 import com.wiesoftware.spine.data.net.reponses.HashtagData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityHashtagBinding
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.hashtags.autosearchfrag.AutoSearchFragment
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.postthought.COLOR_ID
@@ -40,7 +39,7 @@ class HashtagActivity : AppCompatActivity(),KodeinAware, HashtagEventListener,
     }
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     val factory: HashtagViewmodelFactory by instance()
     lateinit var binding: ActivityHashtagBinding
 

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -18,7 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.net.reponses.EventTypeData
 import com.wiesoftware.spine.data.net.reponses.EventsRecord
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityAddOrDupEventBinding
 import com.wiesoftware.spine.ui.home.menus.events.addevents.AddEventActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
@@ -35,7 +34,7 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
     DupEventAdapter.DupEveEventListener,EventTypeAdapter.EventCliclListener {
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityAddOrDupEventBinding
     lateinit var userId: String
     lateinit var data : MutableList<EventTypeData>

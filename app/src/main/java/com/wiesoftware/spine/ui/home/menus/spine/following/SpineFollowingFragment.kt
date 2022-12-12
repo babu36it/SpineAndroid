@@ -29,7 +29,7 @@ import com.wiesoftware.spine.data.adapter.FollowingStoriesAdapter
 import com.wiesoftware.spine.data.net.reponses.FollowersData
 import com.wiesoftware.spine.data.net.reponses.FollwingData
 import com.wiesoftware.spine.data.net.reponses.PostData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentSpineFollowingBinding
 
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
@@ -45,7 +45,6 @@ import com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.ViewStoryActi
 import com.wiesoftware.spine.ui.home.menus.spine.viewmedia.ViewMediaInLargeActivity
 import com.wiesoftware.spine.util.*
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
-import kotlinx.android.synthetic.main.poor_quality_or_spam.view.*
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button91
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button92
 import kotlinx.android.synthetic.main.report_reason.*
@@ -53,7 +52,6 @@ import kotlinx.android.synthetic.main.report_reason.view.*
 import kotlinx.android.synthetic.main.share_bottomsheet.*
 import kotlinx.android.synthetic.main.share_bottomsheet.textView256
 import kotlinx.android.synthetic.main.share_bottomsheet.view.*
-import kotlinx.android.synthetic.main.why_r_u_reporting.view.*
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.cardView2
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.imageButton66
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.radioGroup
@@ -68,7 +66,7 @@ class SpineFollowingFragment : Fragment(), KodeinAware, SpineFollowingEventListe
     SelectFollowersAdapter.FollowersEventListener, FeedAdapter.FeedEventListener {
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     val factory: SpineFollowingViewmodelFactory by instance()
     lateinit var binding: FragmentSpineFollowingBinding
     lateinit var user_id: String

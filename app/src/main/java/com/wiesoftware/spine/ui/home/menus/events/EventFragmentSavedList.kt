@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -14,20 +13,18 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.location.*
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.EventListAdapter
 import com.wiesoftware.spine.data.adapter.EventMenuAdapter
 import com.wiesoftware.spine.data.net.reponses.EventsData
 import com.wiesoftware.spine.data.net.reponses.EventsRecord
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentEventsListBinding
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
 import com.wiesoftware.spine.ui.home.menus.events.filter.FilterEventActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.STORY_IMAGE
 import com.wiesoftware.spine.util.*
-import kotlinx.android.synthetic.main.add_post_bottomheet.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
@@ -48,7 +45,7 @@ class EventFragmentSavedList : Fragment(), KodeinAware, EventFragmentEventListen
 
     override val kodein by kodein()
     val factory: EventFragmentViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: FragmentEventsListBinding
     var user_id: String = ""
     var argString: String = ""

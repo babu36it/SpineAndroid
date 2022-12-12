@@ -15,7 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.viewpager.widget.ViewPager
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.net.reponses.welcompageresponse.WelcomePageReponse
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityWelcomScreenBinding
 import com.wiesoftware.spine.ui.auth.WelcomeActivity
 import com.wiesoftware.spine.ui.auth.WelcomeEventListener
@@ -24,7 +24,6 @@ import com.wiesoftware.spine.ui.auth.WelcomeViewModelFactory
 import com.wiesoftware.spine.ui.auth.register.RegisterActivity
 import com.wiesoftware.spine.ui.home.HomeActivity
 import kotlinx.android.synthetic.main.activity_welcom_screen.*
-import kotlinx.android.synthetic.main.welcome_slide1.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -35,7 +34,7 @@ class WelcomScreenActivity : AppCompatActivity(), KodeinAware, WelcomeEventListe
     override val kodein by kodein()
     private lateinit var pageAdapter: PageAdapter
     private lateinit var pages: ArrayList<WelcomePageReponse.Data>
-    private val homeRepo: HomeRepositry by instance()
+    private val homeRepo: HomeRepository by instance()
     private val factory: WelcomeViewModelFactory by instance()
 
     private var currentPos = 0

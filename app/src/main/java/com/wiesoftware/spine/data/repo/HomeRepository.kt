@@ -18,7 +18,7 @@ import okhttp3.ResponseBody
  * Created by Vivek kumar on 8/13/2020.
  * E-mail:- vivekpcst.kumar@gmail.com
  */
-class HomeRepositry(
+class HomeRepository(
     private val api: Api,
     private val db: AppDatabase
 ) : SafeApiRequest() {

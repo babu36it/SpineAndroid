@@ -15,9 +15,8 @@ import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.net.Api
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityPrivacySettingBinding
-import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.saveEventCalendar.SaveEventToCalActivity
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
 import com.wiesoftware.spine.util.Prefs
@@ -36,7 +35,7 @@ class PrivacySettingActivity : AppCompatActivity(), KodeinAware, PrivacySettingE
 
     override val kodein by kodein()
     val factory: PrivacySettingViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityPrivacySettingBinding
     lateinit var userId: String
     lateinit var progressDialog: ProgressDialog

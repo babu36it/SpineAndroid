@@ -15,10 +15,9 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.ImpulseAdapter
 import com.wiesoftware.spine.data.net.reponses.SpineImpulseData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityImpulseBinding
 import com.wiesoftware.spine.ui.home.menus.spine.comment.impulsecomment.ImpulseCommentActivity
-import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.Coroutines
 import com.wiesoftware.spine.util.NoInternetException
@@ -38,7 +37,7 @@ class ImpulseActivity : AppCompatActivity(), ImpulseEventListener,KodeinAware,
 
     override val kodein by kodein()
     private val factory: ImpulseViewModelFactory by instance()
-    private val homeRepositry: HomeRepositry by instance()
+    private val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityImpulseBinding
     var page_no=1
     var page_per_count=20

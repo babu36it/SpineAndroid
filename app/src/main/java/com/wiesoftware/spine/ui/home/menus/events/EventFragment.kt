@@ -33,7 +33,7 @@ import com.google.android.material.tabs.TabLayout
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.EventListAdapter
 import com.wiesoftware.spine.data.net.reponses.EventsData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentEventBinding
 import com.wiesoftware.spine.ui.home.menus.events.addordup.AddOrDupEventActivity
 import com.wiesoftware.spine.ui.home.menus.events.filter.FilterEventActivity
@@ -79,7 +79,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
 
     override val kodein by kodein()
     val factory: EventFragmentViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: FragmentEventBinding
     var user_id: String = ""
     var dataList: MutableList<EventsData> = mutableListOf()

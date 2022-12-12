@@ -14,12 +14,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityEnterCodeBinding
 import com.wiesoftware.spine.ui.home.menus.podcasts.addpodcasts.AddPodcastActivity
 import com.wiesoftware.spine.util.toast
 import kotlinx.coroutines.launch
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -32,7 +31,7 @@ class EnterCodeActivity : AppCompatActivity(), KodeinAware, EnterCodeEventListen
 
     override val kodein by kodein()
     lateinit var binding: ActivityEnterCodeBinding
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
 
     var email = ""
     var enteredotp: String = ""

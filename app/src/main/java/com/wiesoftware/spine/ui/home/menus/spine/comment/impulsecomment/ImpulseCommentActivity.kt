@@ -17,7 +17,7 @@ import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.CommentDataAdapter
 import com.wiesoftware.spine.data.db.entities.User
 import com.wiesoftware.spine.data.net.reponses.CommentData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityImpulseCommentBinding
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
@@ -30,7 +30,6 @@ import org.json.JSONObject
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
-import java.lang.Exception
 
 class ImpulseCommentActivity : AppCompatActivity(),KodeinAware, ImpulseCommentEventListener,
     CommentDataAdapter.CommentEventListener {
@@ -43,7 +42,7 @@ class ImpulseCommentActivity : AppCompatActivity(),KodeinAware, ImpulseCommentEv
     lateinit var binding: ActivityImpulseCommentBinding
     lateinit var viewmodel: ImpulseCommentViewmodel
     val factory: ImpulseCommentViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var c_user: User
     lateinit var impulse_id:String
     var comment_user: String=""

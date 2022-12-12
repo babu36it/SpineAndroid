@@ -39,20 +39,18 @@ import com.wiesoftware.spine.data.adapter.CategoryAdapter
 import com.wiesoftware.spine.data.adapter.LanguageAdapter
 import com.wiesoftware.spine.data.adapter.PodcastSubcategoryAdapter
 import com.wiesoftware.spine.data.net.reponses.*
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.data.repo.RssRepository
 import com.wiesoftware.spine.databinding.ActivityAddPodcastBinding
 import com.wiesoftware.spine.ui.home.menus.events.addevents.SpinerCatAdapter
 import com.wiesoftware.spine.ui.home.menus.podcasts.addrss.AddRssActivity
 import com.wiesoftware.spine.ui.home.menus.podcasts.reviewpodcast.ReviewPodcastActivity
 import com.wiesoftware.spine.util.*
-import kotlinx.android.synthetic.main.activity_add_event.*
 import kotlinx.android.synthetic.main.activity_add_podcast.*
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 import kotlinx.android.synthetic.main.eve_cat_selection.*
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -87,7 +85,7 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
 
     override val kodein by kodein()
     val factory: AddPodcastViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     val rssRepository: RssRepository by instance()
     lateinit var binding: ActivityAddPodcastBinding
     lateinit var userId: String

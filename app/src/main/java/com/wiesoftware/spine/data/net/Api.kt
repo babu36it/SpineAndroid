@@ -26,8 +26,6 @@ interface Api {
         const val BASE_LINK = "http://thespiritualnetwork.com/api/v1/"
         const val NewBASE_LINK = "http://162.214.165.52/~pirituc5/"
 
-        //        const val BASE_LINK="http://162.214.165.52/~pirituc5/apisecure/"
-//        const val BASE_URL=BASE_LINK+"apisecure/"
         const val BASE_URL = BASE_LINK
         const val BASE_URL_VIDEO = BASE_LINK + "assets/upload/welcome/"
 

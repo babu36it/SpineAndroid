@@ -8,8 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,18 +17,12 @@ import com.cometchat.pro.exceptions.CometChatException
 import com.cometchat.pro.models.User
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.EveMessageAdapter
-import com.wiesoftware.spine.data.adapter.EventRequestUsersAdapter
 import com.wiesoftware.spine.data.net.reponses.EveMsgUserData
-import com.wiesoftware.spine.data.net.reponses.EventRequestData
-import com.wiesoftware.spine.data.repo.HomeRepositry
-import com.wiesoftware.spine.databinding.FragmentEveRequestBinding
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentFeedBackBinding
-import com.wiesoftware.spine.databinding.FragmentMsgBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.profile.chat.ChatActivity
 import com.wiesoftware.spine.ui.home.menus.profile.masseges.msg.EVE_MSG_DATA
-import com.wiesoftware.spine.ui.home.menus.profile.masseges.msg.MsgFragmentViewmodel
-import com.wiesoftware.spine.ui.home.menus.profile.masseges.msg.MsgFragmentViewmodelFactory
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.STORY_IMAGE
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.AppConfig
@@ -49,7 +41,7 @@ class FeedBackFragment : Fragment(),KodeinAware, EveMessageAdapter.OnUserChatLis
 
     override val kodein by kodein()
     val factory: FeedBackViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding:FragmentFeedBackBinding
     lateinit var user_id: String
     lateinit var userName: String

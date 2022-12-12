@@ -2,14 +2,14 @@ package com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.cha
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 1/27/2021.
  * Email: vivekpcst.kumar@gmail.com.
  */
 @Suppress("UNCHECKED_CAST")
-class ChangeEmailViewmodelFactory(val homeRepositry: HomeRepositry): ViewModelProvider.NewInstanceFactory() {
+class ChangeEmailViewmodelFactory(val homeRepositry: HomeRepository): ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return ChangeEmailViewmodel(homeRepositry) as T

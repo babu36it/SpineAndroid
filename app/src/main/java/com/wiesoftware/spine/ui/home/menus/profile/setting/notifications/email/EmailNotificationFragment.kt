@@ -11,9 +11,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentEmailNotificationBinding
-import com.wiesoftware.spine.ui.home.menus.profile.setting.help.privacy.PrivacySettingActivity
 import com.wiesoftware.spine.util.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
@@ -26,7 +25,7 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
 
     override val kodein by kodein()
     val factory: EmailNotificationViewModelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: FragmentEmailNotificationBinding
     lateinit var userId: String
     lateinit var progressDialog: ProgressDialog

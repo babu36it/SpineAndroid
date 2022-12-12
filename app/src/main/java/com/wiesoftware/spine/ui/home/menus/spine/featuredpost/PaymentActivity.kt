@@ -11,14 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityPayment2Binding
-import com.wiesoftware.spine.databinding.ActivityThanksFeaturedBinding
-import com.wiesoftware.spine.ui.home.HomeActivity
-import com.wiesoftware.spine.ui.home.menus.spine.featuredpost.thankyou_featured.ThankYouFeaturedViewmodel
 import com.wiesoftware.spine.ui.home.menus.spine.featuredpost.thankyou_featured.ThanksFeaturedActivity
 import kotlinx.coroutines.launch
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -26,7 +22,7 @@ import org.kodein.di.generic.instance
 class PaymentActivity : AppCompatActivity(), KodeinAware, PaymentFeaturedEventListner {
 
     lateinit var progressDialog: ProgressDialog
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base?.let { RuntimeLocaleChanger.wrapContext(it) })

@@ -14,10 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.net.reponses.StoriesCommentData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityStoryCommentBinding
 import com.wiesoftware.spine.ui.home.menus.spine.comment.postcomment.PostCommentActivity
-import com.wiesoftware.spine.ui.home.menus.spine.comment.reply.RepliesActivity
 import com.wiesoftware.spine.ui.home.menus.spine.comment.storycomment.reply.StoryCommenReplytActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
 import com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.storyscreen.StoryDisplayFragment
@@ -37,7 +36,7 @@ class StoryCommentActivity : AppCompatActivity(),KodeinAware, StoryCommentEventL
     }
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     val factory: StoryCommentViewmodelFactory by instance()
     lateinit var binding: ActivityStoryCommentBinding
     lateinit var userId: String

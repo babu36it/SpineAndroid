@@ -13,9 +13,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wiesoftware.spine.R
-import com.wiesoftware.spine.data.adapter.ActivityForYouAdapter
 import com.wiesoftware.spine.data.net.reponses.ActivitiesData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentFollowingActivityBinding
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
@@ -33,7 +32,7 @@ class FollowingActivityFragment : Fragment(),KodeinAware,
 
     override val kodein by kodein()
     val factory:  FollowingActivityViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: FragmentFollowingActivityBinding
     lateinit var userId: String
 

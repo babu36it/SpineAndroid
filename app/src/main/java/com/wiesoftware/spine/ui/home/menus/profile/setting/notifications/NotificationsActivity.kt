@@ -13,18 +13,14 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.NotificationAdapter
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityNotificationsBinding
 import com.wiesoftware.spine.ui.home.menus.profile.masseges.MessagesTabadapter
-import com.wiesoftware.spine.ui.home.menus.profile.masseges.eve_request.EveRequestFragment
-import com.wiesoftware.spine.ui.home.menus.profile.masseges.msg.MsgFragment
 import com.wiesoftware.spine.ui.home.menus.profile.setting.notifications.email.EmailNotificationFragment
 import com.wiesoftware.spine.ui.home.menus.profile.setting.notifications.mobile.MobileNotificationFragment
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
-import kotlinx.android.synthetic.main.activity_otp.*
 import kotlinx.coroutines.launch
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -36,7 +32,7 @@ class NotificationsActivity : AppCompatActivity(),KodeinAware, NotificationsEven
     }
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     val factory: NotificationsViewmodelFactory by instance()
     lateinit var binding: ActivityNotificationsBinding
     var userId: String=""

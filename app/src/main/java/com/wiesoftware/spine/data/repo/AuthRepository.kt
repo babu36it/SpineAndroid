@@ -5,20 +5,18 @@ import com.wiesoftware.spine.data.db.AppDatabase
 import com.wiesoftware.spine.data.db.entities.User
 import com.wiesoftware.spine.data.net.Api
 import com.wiesoftware.spine.data.net.SafeApiRequest
-import com.wiesoftware.spine.data.net.reponses.ProfileRes
 import com.wiesoftware.spine.data.net.reponses.SignupResponse
-import com.wiesoftware.spine.data.net.reponses.SingleRes
 import com.wiesoftware.spine.util.Prefs
 import okhttp3.ResponseBody
 
-class AuthRepositry(
+class AuthRepository(
     private val api: Api,
     private val db: AppDatabase
 
 ) : SafeApiRequest() {
 
     suspend fun socialLogin(name: String, email: String, fbId: String): SignupResponse {
-        Log.e("email::", email + "," + fbId + "," + name)
+        Log.e("email::", "$email,$fbId,$name")
         return apiRequest {
             api.socialLoigin(
                 email,

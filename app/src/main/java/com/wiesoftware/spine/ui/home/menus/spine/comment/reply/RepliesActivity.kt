@@ -14,7 +14,7 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.net.reponses.CommentReplyData
 import com.wiesoftware.spine.data.net.reponses.SpineCommentData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityRepliesBinding
 import com.wiesoftware.spine.ui.home.menus.spine.comment.postcomment.PostCommentActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
@@ -34,7 +34,7 @@ class RepliesActivity : AppCompatActivity(),KodeinAware, RepliesEventListener,
     }
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityRepliesBinding
     var userId=""
     var postId=""

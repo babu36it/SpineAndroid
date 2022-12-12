@@ -5,8 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.ViewGroup
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
@@ -20,7 +18,7 @@ import com.wiesoftware.spine.BuildConfig
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.db.entities.User
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivitySettingsBinding
 import com.wiesoftware.spine.ui.auth.WelcomeActivity
 import com.wiesoftware.spine.ui.home.menus.profile.editprofile.EditProfileActivity
@@ -29,8 +27,6 @@ import com.wiesoftware.spine.ui.home.menus.profile.setting.help.HelpActivity
 import com.wiesoftware.spine.ui.home.menus.profile.setting.my_ads.MyAdsActivity
 import com.wiesoftware.spine.ui.home.menus.profile.setting.notifications.NotificationsActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.IS_WELCOME_SEEN
-import com.wiesoftware.spine.util.ApiException
-import com.wiesoftware.spine.util.NoInternetException
 import com.wiesoftware.spine.util.Prefs
 import com.wiesoftware.spine.util.putAny
 import kotlinx.coroutines.launch
@@ -47,7 +43,7 @@ class SettingsActivity : AppCompatActivity(), KodeinAware, SettingsEventListener
 
     override val kodein by kodein()
     val factory: SettingViewmodelFactory by instance()
-    val homeRepository: HomeRepositry by instance()
+    val homeRepository: HomeRepository by instance()
     lateinit var viewmodel: SettingsViewmodel
     lateinit var binding: ActivitySettingsBinding
     lateinit var c_user: User

@@ -11,10 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
-import com.wiesoftware.spine.data.adapter.FollowersAdapter
-import com.wiesoftware.spine.data.adapter.FollowingAdapter
 import com.wiesoftware.spine.data.net.reponses.FollowersData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityFollowersBinding
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SOMEONE_U_ID
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SOMEONE_U_NAME
@@ -22,7 +20,6 @@ import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfil
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.STORY_IMAGE
 import com.wiesoftware.spine.util.*
 import kotlinx.coroutines.launch
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -36,7 +33,7 @@ class FollowersActivity : AppCompatActivity(),KodeinAware, FollowersActivityEven
 
     override val kodein by kodein()
     val factory: FollowersActivityViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityFollowersBinding
     lateinit var cUserId: String
     var otherUserId: String? = null

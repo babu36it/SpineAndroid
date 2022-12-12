@@ -2,13 +2,13 @@ package com.wiesoftware.spine.ui.home.menus.spine.selectfollowers
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 12/21/2020.
  * E-mail:- vivekpcst.kumar@gmail.com
  */
-class SelectFollowersViewmodel(val homeRepositry: HomeRepositry): ViewModel() {
+class SelectFollowersViewmodel(val homeRepositry: HomeRepository): ViewModel() {
 
     var selectFollowersEventListener: SelectFollowersEventListener?= null
 

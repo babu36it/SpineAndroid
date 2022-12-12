@@ -9,14 +9,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.db.entities.User
-import com.wiesoftware.spine.data.repo.AuthRepositry
+import com.wiesoftware.spine.data.repo.AuthRepository
 import com.wiesoftware.spine.databinding.ActivityFbEmailBinding
 import com.wiesoftware.spine.ui.auth.otp.OtpActivity
 import com.wiesoftware.spine.ui.auth.register.RegisterActivity
 import com.wiesoftware.spine.ui.home.HomeActivity
 import com.wiesoftware.spine.util.*
 import kotlinx.android.synthetic.main.activity_fb_email.*
-import kotlinx.coroutines.flow.combineTransform
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -27,7 +26,7 @@ var fbId: String?= null
 
 class FbEmailActivity : AppCompatActivity(),KodeinAware, FbEmailEventListener {
     override val kodein by kodein()
-    val authRepositry: AuthRepositry by instance()
+    val authRepositry: AuthRepository by instance()
     val factory: FbEmailViewModelFactory by instance()
 
 

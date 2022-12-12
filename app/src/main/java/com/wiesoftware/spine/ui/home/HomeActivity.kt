@@ -1,23 +1,19 @@
 package com.wiesoftware.spine.ui.home
 
-import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.cometchat.pro.core.CometChat
 import com.cometchat.pro.exceptions.CometChatException
 import com.cometchat.pro.models.User
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.util.AppConfig
 import com.wiesoftware.spine.util.hideKeyboard
 import kotlinx.android.synthetic.main.activity_home.*
@@ -31,7 +27,7 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
 
     private val BROADCAST_DEFAULT_ALBUM_CHANGED: Int = 0
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
 
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {

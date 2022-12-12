@@ -13,14 +13,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.maps.model.LatLng
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.EventSavedAdapter
 import com.wiesoftware.spine.data.adapter.PostSavedAdapter
 import com.wiesoftware.spine.data.adapter.SaveStoryAdapter
 import com.wiesoftware.spine.data.adapter.SavedPodcastAdapter
 import com.wiesoftware.spine.data.net.reponses.*
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentBookmarkBinding
 import com.wiesoftware.spine.ui.home.menus.activities.following.FollowingActivityFragment.Companion.isVideo
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
@@ -36,7 +35,6 @@ import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
 import com.wiesoftware.spine.util.POD_FILE_BASE
 import kotlinx.coroutines.launch
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
@@ -46,7 +44,7 @@ class BookmarkFragment : Fragment(),KodeinAware, BookmarkEventListener,
     PostSavedAdapter.OnPostClickLisstener, EventSavedAdapter.EventItemClickListener,
     SaveStoryAdapter.SavedStoryClickListener {
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     val factory: BookmarkViewmodelFactory by instance()
     lateinit var binding: FragmentBookmarkBinding
     var userId: String=""

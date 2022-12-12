@@ -26,23 +26,14 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.esafirm.imagepicker.features.ImagePicker
 import com.esafirm.imagepicker.features.ReturnMode
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.wiesoftware.spine.BuildConfig
 import com.wiesoftware.spine.R
-import com.wiesoftware.spine.data.repo.HomeRepositry
-import com.wiesoftware.spine.ui.home.camera.CURR_PHOTO_PATH_FROM_CAM_X
-import com.wiesoftware.spine.ui.home.camera.CURR_PHOTO_URI_FROM_CAM_X
-import com.wiesoftware.spine.ui.home.camera.IS_FROM_GALLERY
-import com.wiesoftware.spine.ui.home.menus.spine.addposts.postmedia.PostPreview
-import com.wiesoftware.spine.ui.home.menus.spine.addposts.postpreview.PostPreviewActivity
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory.SelectedImageAdapter
-import com.wiesoftware.spine.util.Prefs
 import com.wiesoftware.spine.util.UriPathHelper
-import com.wiesoftware.spine.util.putAny
 import constant.StringContract
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 import org.kodein.di.KodeinAware
@@ -61,7 +52,7 @@ class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
     override val kodein by kodein()
     lateinit var viewmodel: VoiceOverViewModel
     lateinit var binding: com.wiesoftware.spine.databinding.ActivityVoiceOverBinding
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     private val voiceOverViewModel: VoiceViewmodelFactory by instance()
 
     // creating a variable for media recorder object class.

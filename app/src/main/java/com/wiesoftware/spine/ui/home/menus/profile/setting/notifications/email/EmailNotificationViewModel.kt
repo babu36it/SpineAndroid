@@ -1,13 +1,13 @@
 package com.wiesoftware.spine.ui.home.menus.profile.setting.notifications.email
 
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 2/23/2021.
  * Email: vivekpcst.kumar@gmail.com.
  */
-class EmailNotificationViewModel(val homeRepositry: HomeRepositry): ViewModel() {
+class EmailNotificationViewModel(val homeRepositry: HomeRepository): ViewModel() {
 
     var emailNotiFicationEventListener: EmailNotificationEventListener? = null
     fun onEmailUpdateChanged(isChecked: Boolean){
