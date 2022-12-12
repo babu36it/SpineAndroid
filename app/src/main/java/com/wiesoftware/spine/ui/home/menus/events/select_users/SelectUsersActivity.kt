@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.net.reponses.FollowersData
-import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.EventRepositry
+import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivitySelectUsersBinding
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EVENT_ID
 import com.wiesoftware.spine.ui.home.menus.spine.selectfollowers.SelectFollowersAdapter
@@ -20,6 +21,7 @@ import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
 import com.wiesoftware.spine.util.toast
 import kotlinx.coroutines.launch
+import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -33,7 +35,7 @@ class  SelectUsersActivity : AppCompatActivity(),KodeinAware, SelectUsersEventLi
 
     override val kodein by kodein()
     val  factory: SelectUsersViewmodelFactory by instance()
-    val homeRepositry: HomeRepository by instance()
+    val eventRepositry: EventRepositry by instance()
     lateinit var binding: ActivitySelectUsersBinding
     lateinit var usr_id: String
     val usr_list: MutableList<FollowersData> = ArrayList<FollowersData>()
@@ -56,7 +58,7 @@ class  SelectUsersActivity : AppCompatActivity(),KodeinAware, SelectUsersEventLi
     private fun setFollowers() {
         lifecycleScope.launch {
             try {
-                val followersRes = homeRepositry.getFollowers(1, 100, usr_id)
+                val followersRes = eventRepositry.getFollowers(1, 100, usr_id)
                 if (followersRes.status) {
                     val followersData = followersRes.data
                     binding.rvSelectedFollowers.also {
@@ -97,7 +99,7 @@ class  SelectUsersActivity : AppCompatActivity(),KodeinAware, SelectUsersEventLi
             }
             lifecycleScope.launch {
                 try {
-                    val res=homeRepositry.spineEventShare(datalist)
+                    val res=eventRepositry.spineEventShare(datalist)
                     if (res.status){
                         res.message.toast(this@SelectUsersActivity)
                         onBackPressed()

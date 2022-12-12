@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
@@ -39,7 +40,8 @@ import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.EventContentAdapter
 import com.wiesoftware.spine.data.net.reponses.EventsData
 import com.wiesoftware.spine.data.net.reponses.EventsRecord
-import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.EventRepositry
+import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityMapviewEventsBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.events.EVE_RECORD
@@ -52,6 +54,7 @@ import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
+import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -65,7 +68,7 @@ class MapviewEventsActivity : AppCompatActivity(), OnMapReadyCallback, KodeinAwa
     private val AUTOCOMPLETE_REQUEST_CODE = 1
     override val kodein by kodein()
     val factory: MapviewViewmodelFactory by instance()
-    val homeRepositry: HomeRepository by instance()
+    val eventRepositry: EventRepositry by instance()
     lateinit var binding: ActivityMapviewEventsBinding
     var userId: String = ""
 
@@ -260,7 +263,7 @@ class MapviewEventsActivity : AppCompatActivity(), OnMapReadyCallback, KodeinAwa
         ) {
         lifecycleScope.launch {
 //            try {
-//                val res = homeRepositry.getFilteredEventList(
+//                val res = eventRepositry.getFilteredEventList(
 //                    "1",
 //                    "100",
 //                    user_id,
@@ -389,13 +392,13 @@ class MapviewEventsActivity : AppCompatActivity(), OnMapReadyCallback, KodeinAwa
     private fun getAllEvents() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getAllEvents(
+                val res = eventRepositry.getAllEvents(
                     1,
                     100,
                     "all",
                     "1"
                 )
-                //homeRepositry.getNearbyEvents(1,100,userId,lati,longi,10)
+                //eventRepositry.getNearbyEvents(1,100,userId,lati,longi,10)
                 if (res.status) {
                     STORY_IMAGE = res.image
                     val dataList = res.data
@@ -610,7 +613,7 @@ class MapviewEventsActivity : AppCompatActivity(), OnMapReadyCallback, KodeinAwa
     override fun onEventSaved(record: EventsRecord, value: Int) {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.saveEvents(userId, record.id)
+                val res = eventRepositry.saveEvents(userId, record.id)
                 if (res.status) {
                     val msg = res.message
                     msg.toast(this@MapviewEventsActivity)

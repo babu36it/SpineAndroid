@@ -33,7 +33,8 @@ import com.google.android.material.tabs.TabLayout
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.EventListAdapter
 import com.wiesoftware.spine.data.net.reponses.EventsData
-import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.EventRepositry
+import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.FragmentEventBinding
 import com.wiesoftware.spine.ui.home.menus.events.addordup.AddOrDupEventActivity
 import com.wiesoftware.spine.ui.home.menus.events.filter.FilterEventActivity
@@ -56,7 +57,7 @@ import org.kodein.di.generic.instance
 //val IS_FROM_EVENT_DETAILS = "isFromEventDetails"
 //var PROFILE_PIC_URL = ""
 
-class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
+class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
 
     val PERMISSION_REQUEST_CODE = 94
 
@@ -79,18 +80,18 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
 
     override val kodein by kodein()
     val factory: EventFragmentViewmodelFactory by instance()
-    val homeRepositry: HomeRepository by instance()
+    val eventRepositry: EventRepositry by instance()
     lateinit var binding: FragmentEventBinding
     var user_id: String = ""
     var dataList: MutableList<EventsData> = mutableListOf()
 
     companion object {
-        var searchView: SearchView? = null
+        public var searchView: SearchView? = null
         public var tabLayout: TabLayout? = null
-        lateinit var progress: ProgressDialog
+        lateinit var progress : ProgressDialog
     }
 
-    var currentFragment: Fragment? = null
+    var currentFragment : Fragment? = null
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -163,23 +164,23 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
 //                    }
 //                }
 //
-                println("Sanjay All...." + newText + "......" + currentFragment.toString())
+                println("Sanjay All...."+newText+"......"+currentFragment.toString())
 //                adapter?.setFilterData(dataListTemp)
 
 
                 if (currentFragment != null && currentFragment is EventFragmentAllList) {
                     (currentFragment as EventFragmentAllList).setFilterDataAll(newText!!)
-                } else if (currentFragment != null && currentFragment is EventFragmentGoingList) {
+                } else if(currentFragment != null && currentFragment is EventFragmentGoingList) {
                     (currentFragment as EventFragmentGoingList).setFilterDataGoing(newText!!)
-                } else if (currentFragment != null && currentFragment is EventFragmentSavedList) {
+                } else if(currentFragment != null && currentFragment is EventFragmentSavedList) {
                     (currentFragment as EventFragmentSavedList).setFilterDataSaved(newText!!)
-                } else if (currentFragment != null && currentFragment is EventFragmentFollowingList) {
+                } else if(currentFragment != null && currentFragment is EventFragmentFollowingList) {
                     (currentFragment as EventFragmentFollowingList).setFilterDataFollowing(newText!!)
-                } else if (currentFragment != null && currentFragment is EventFragmentOnLineList) {
+                } else if(currentFragment != null && currentFragment is EventFragmentOnLineList) {
                     (currentFragment as EventFragmentOnLineList).setFilterDataOnLine(newText!!)
-                } else if (currentFragment != null && currentFragment is EventFragmentNearByList) {
+                } else if(currentFragment != null && currentFragment is EventFragmentNearByList) {
                     (currentFragment as EventFragmentNearByList).setFilterDataNearBy(newText!!)
-                } else if (currentFragment != null && currentFragment is EventFragmentPastList) {
+                } else if(currentFragment != null && currentFragment is EventFragmentPastList) {
                     (currentFragment as EventFragmentPastList).setFilterDataPast(newText!!)
                 }
 
@@ -208,10 +209,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
         adapter.addFragment(EventFragmentAllList.newInstance("ALL", user_id)!!, "ALL")
         adapter.addFragment(EventFragmentGoingList.newInstance("GOING", user_id)!!, "GOING")
         adapter.addFragment(EventFragmentSavedList.newInstance("SAVED", user_id)!!, "SAVED")
-        adapter.addFragment(
-            EventFragmentFollowingList.newInstance("FOLLOWING", user_id)!!,
-            "FOLLOWING"
-        )
+        adapter.addFragment(EventFragmentFollowingList.newInstance("FOLLOWING", user_id)!!, "FOLLOWING")
         adapter.addFragment(EventFragmentOnLineList.newInstance("ONLINE", user_id)!!, "ONLINE")
         adapter.addFragment(EventFragmentNearByList.newInstance("NEARBY", user_id)!!, "NEARBY")
         adapter.addFragment(EventFragmentPastList.newInstance("PAST", user_id)!!, "PAST")
@@ -246,6 +244,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
     fun setintImages() {
 
 
+
         binding.viewPager.visibility = View.GONE
         binding.initLayout.initLiner.visibility = View.VISIBLE
 
@@ -260,53 +259,32 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
         lifecycleScope.launch {
             try {
                 Companion.progress.show()
-                val res = homeRepositry.getEventType()
+                val res = eventRepositry.getEventType()
                 Companion.progress.dismiss()
                 if (res.status) {
 
-                    var data = res.data
+                  var  data = res.data
 
                     val circularProgressDrawable = CircularProgressDrawable(requireContext())
                     circularProgressDrawable.strokeWidth = 5f
                     circularProgressDrawable.centerRadius = 30f
                     circularProgressDrawable.start()
                     Glide.with(requireContext())
-                        .load("https://thespiritualnetwork.com/assets/upload/spine-types/" + data[0].typeimage)
+                        .load("https://thespiritualnetwork.com/assets/upload/spine-types/"+data[0].typeimage)
                         .placeholder(circularProgressDrawable)
-                        .error(
-                            ColorDrawable(
-                                ContextCompat.getColor(
-                                    requireContext(),
-                                    R.color.light_gry
-                                )
-                            )
-                        )
+                        .error( ColorDrawable(ContextCompat.getColor(requireContext(), R.color.light_gry)))
                         .into(binding.initLayout.previewLocal);
 
                     Glide.with(requireContext())
-                        .load("https://thespiritualnetwork.com/assets/upload/spine-types/" + data[1].typeimage)
+                        .load("https://thespiritualnetwork.com/assets/upload/spine-types/"+data[1].typeimage)
                         .placeholder(circularProgressDrawable)
-                        .error(
-                            ColorDrawable(
-                                ContextCompat.getColor(
-                                    requireContext(),
-                                    R.color.light_gry
-                                )
-                            )
-                        )
+                        .error( ColorDrawable(ContextCompat.getColor(requireContext(), R.color.light_gry)))
                         .into(binding.initLayout.previewRetraint);
 
                     Glide.with(requireContext())
-                        .load("https://thespiritualnetwork.com/assets/upload/spine-types/" + data[2].typeimage)
+                        .load("https://thespiritualnetwork.com/assets/upload/spine-types/"+data[2].typeimage)
                         .placeholder(circularProgressDrawable)
-                        .error(
-                            ColorDrawable(
-                                ContextCompat.getColor(
-                                    requireContext(),
-                                    R.color.light_gry
-                                )
-                            )
-                        )
+                        .error( ColorDrawable(ContextCompat.getColor(requireContext(), R.color.light_gry)))
                         .into(binding.initLayout.previewMeta);
 
                 }
@@ -323,13 +301,12 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
 
 //    listOf("ALL", "GOING", "SAVED", "FOLLOWING", "ONLINE", "NEARBY", "PAST")
 
-    class ViewPagerAdapter(fm: FragmentManager) :
-        FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         // objects of arraylist. One is of Fragment type and
         // another one is of String type.*/
-        public var fragmentList1: ArrayList<Fragment> = ArrayList()
-        private var fragmentTitleList1: ArrayList<String> = ArrayList()
+        public  var fragmentList1: ArrayList<Fragment> = ArrayList()
+        private  var fragmentTitleList1: ArrayList<String> = ArrayList()
 
 
         // returns which item is selected from arraylist of fragments.
@@ -364,7 +341,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
 //    private fun setEventList() {
 //        lifecycleScope.launch {
 //            try {
-//                val res = homeRepositry.getAllEvents(1, 100, user_id, "all")
+//                val res = eventRepositry.getAllEvents(1, 100, user_id, "all")
 //                dataList.clear()
 //                if (res.status) {
 //                    STORY_IMAGE = res.user_image
@@ -489,7 +466,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
 //        if (value == 0) {
 //            lifecycleScope.launch {
 //                try {
-//                    val res = homeRepositry.removeEventSave(user_id, record.id)
+//                    val res = eventRepositry.removeEventSave(user_id, record.id)
 //                    if (res.status) {
 //
 //                        "Removed".toast(requireContext())
@@ -505,7 +482,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
 //        } else {
 //            lifecycleScope.launch {
 //                try {
-//                    val res = homeRepositry.saveEvents(user_id, record.id)
+//                    val res = eventRepositry.saveEvents(user_id, record.id)
 //                    if (res.status) {
 //                        val msg = res.message
 //                        msg.toast(requireContext())
@@ -567,8 +544,8 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
 
             try {
                 Companion.progress.show()
-                val res = homeRepositry.getFilteredEventList(
-                    "1", "100",
+                val res = eventRepositry.getFilteredEventList(
+                    "1","100",
                     user_id,
                     lat!!,
                     lon!!,
@@ -635,7 +612,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
     private fun saved() {
 //        lifecycleScope.launch {
 //            try {
-//                val res = homeRepositry.getAllSavedEvents(1, 100, user_id)
+//                val res = eventRepositry.getAllSavedEvents(1, 100, user_id)
 //                dataList.clear()
 //                if (res.status) {
 //                    BASE_IMAGE = res.image
@@ -664,7 +641,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
     private fun getGoingPastEventList(goingPast: Int) {
 //        lifecycleScope.launch {
 //            try {
-//                val res = homeRepositry.getGoingPastEventsList(1, 100, user_id, goingPast)
+//                val res = eventRepositry.getGoingPastEventsList(1, 100, user_id, goingPast)
 //                dataList.clear()
 //                if (res.status) {
 //                    BASE_IMAGE = res.image
@@ -690,7 +667,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
 //        Log.e("latlong: ", "$lat, $lon")
 //        lifecycleScope.launch {
 //            try {
-//                val res = homeRepositry.getNearbyEvents(1, 100, user_id, lat, lon, 10)
+//                val res = eventRepositry.getNearbyEvents(1, 100, user_id, lat, lon, 10)
 //                dataList.clear()
 //                if (res.status) {
 //                    STORY_IMAGE = res.image
@@ -716,7 +693,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
     private fun setFollowingEvents() {
 //        lifecycleScope.launch {
 //            try {
-//                val res = homeRepositry.getFollowingUsersEventsList(1, 100, user_id)
+//                val res = eventRepositry.getFollowingUsersEventsList(1, 100, user_id)
 //                dataList.clear()
 //                if (res.status) {
 //                    STORY_IMAGE = res.image
@@ -741,7 +718,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener {
     private fun setOnLineEvents() {
 //        lifecycleScope.launch {
 //            try {
-//                val res = homeRepositry.getOnLineEventsList(1, 100, user_id)
+//                val res = eventRepositry.getOnLineEventsList(1, 100, user_id)
 //                dataList.clear()
 //                if (res.status) {
 //                    STORY_IMAGE = res.image

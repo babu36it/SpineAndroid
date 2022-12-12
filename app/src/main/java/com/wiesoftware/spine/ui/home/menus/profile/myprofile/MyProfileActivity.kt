@@ -158,15 +158,15 @@ ListPodcastAdapter.OnPodEveListener{
             intent.putExtra(ViewMediaInLargeActivity.MEDIA_TYPE, "0")
             startActivity(intent)
         }
-        followers = profileData.followers_records_count
-        following = profileData.following_records_count
-        val displayName = profileData.display_name ?: profileData.name
-        val category = profileData.categoryName
-        val bgImg = profileData.bg_image
-        val post = profileData.post_records_count
-        val event = profileData.event_records_count
-        val pod = profileData.event_records_count
-        bgImage = img + bgImg
+         followers=profileData.followers_records_count
+         following=profileData.following_records_count
+        val displayName=profileData.display_name ?: profileData.name
+        val category=profileData.categoryName
+        val bgImg=profileData.bg_image
+        val post=profileData.post_records_count
+        val event=profileData.event_records_count
+        val pod=profileData.pod_records_count
+        bgImage=img+bgImg
         Glide.with(binding.imageView18)
             .load(bgImage)
             .into(binding.imageView18)

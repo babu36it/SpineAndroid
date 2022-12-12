@@ -13,7 +13,7 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.EventReplyAdapter
 import com.wiesoftware.spine.data.net.reponses.EventCommentData
-import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.EventRepositry
 import com.wiesoftware.spine.databinding.ActivityEventReplyBinding
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
 import com.wiesoftware.spine.ui.home.menus.events.eventcomment.EventCommentActivity
@@ -21,6 +21,7 @@ import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
 import com.wiesoftware.spine.util.toast
 import kotlinx.coroutines.launch
+import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -33,7 +34,7 @@ class EventReplyActivity : AppCompatActivity(),KodeinAware, EventReplyEventListe
 
     override val kodein by kodein()
     val factory: EventReplyViewmodelFactory by instance()
-    val homeRepositry: HomeRepository by instance()
+    val eventRepositry: EventRepositry by instance()
     lateinit var binding:  ActivityEventReplyBinding
     lateinit var userId: String
     var eventId=""
@@ -74,7 +75,7 @@ class EventReplyActivity : AppCompatActivity(),KodeinAware, EventReplyEventListe
 
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.spineEventsComment(eventId,userId,commentId,reply)
+                val res=eventRepositry.spineEventsComment(eventId,userId,commentId,reply)
                 if (res.status){
                     binding.editTextTextPersonName24.setText("")
                     getReplies()
@@ -94,7 +95,7 @@ class EventReplyActivity : AppCompatActivity(),KodeinAware, EventReplyEventListe
     fun getReplies(){
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.getSpineEventReplys(commentId)
+                val res=eventRepositry.getSpineEventReplys(commentId)
                 if (res.status){
                     val list=res.data
                     binding.rvEveComments.also {

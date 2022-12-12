@@ -2,18 +2,18 @@ package com.wiesoftware.spine.ui.home.menus.events.event_details
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.EventRepositry
 
 /**
  * Created by Vivek kumar on 1/11/2021.
  * E-mail:- vivekpcst.kumar@gmail.com
  */
-class EventDetailViewmodel(val homeRepositry: HomeRepository): ViewModel() {
+class EventDetailViewmodel(val eventRepositry: EventRepositry): ViewModel() {
 
     var eventDetailEventListener: EventDetailEventListener?=null
     var eve_comment: String=""
 
-    fun getLoggedInUser()=homeRepositry.getUser()
+    fun getLoggedInUser()=eventRepositry.getUser()
 
     fun onBack(view: View){
         eventDetailEventListener?.onBack()

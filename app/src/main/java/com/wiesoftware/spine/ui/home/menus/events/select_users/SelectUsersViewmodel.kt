@@ -2,17 +2,18 @@ package com.wiesoftware.spine.ui.home.menus.events.select_users
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.EventRepositry
+import com.wiesoftware.spine.data.repo.HomeRepositry
 
 /**
  * Created by Vivek kumar on 1/12/2021.
  * E-mail:- vivekpcst.kumar@gmail.com
  */
-class SelectUsersViewmodel(val homeRepository:HomeRepository): ViewModel() {
+class SelectUsersViewmodel(val eventRepositry: EventRepositry): ViewModel() {
 
     var selectUsersEventListener: SelectUsersEventListener?=null
 
-    fun getloggedInUser()=homeRepository.getUser()
+    fun getloggedInUser()=eventRepositry.getUser()
 
     fun onBack(view: View){
         selectUsersEventListener?.onBack()

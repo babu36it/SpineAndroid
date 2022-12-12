@@ -14,7 +14,8 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.EventCommentAdapter
 import com.wiesoftware.spine.data.net.reponses.EventCommentData
-import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.EventRepositry
+import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityEventCommentBinding
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
 import com.wiesoftware.spine.ui.home.menus.events.eventcomment.eventreply.EventReplyActivity
@@ -37,7 +38,7 @@ class EventCommentActivity : AppCompatActivity(),KodeinAware, EventCommentEventL
 
 
     val factory: EventCommentViewmodelFactory by instance()
-    val homeRepositry: HomeRepository by instance()
+    val eventRepositry: EventRepositry by instance()
     lateinit var binding:  ActivityEventCommentBinding
     lateinit var userId: String
     lateinit var eventId: String
@@ -61,7 +62,7 @@ class EventCommentActivity : AppCompatActivity(),KodeinAware, EventCommentEventL
     private fun getEventComments() {
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.getSpineEventsComment(eventId)
+                val res=eventRepositry.getSpineEventsComment(eventId)
                 if (res.status){
                     val data=res.data
                     binding.rvEveComments.let {
@@ -73,7 +74,7 @@ class EventCommentActivity : AppCompatActivity(),KodeinAware, EventCommentEventL
                         it.adapter= EventCommentAdapter(
                             reverse,
                             this@EventCommentActivity,
-                            homeRepositry,
+                            eventRepositry,
                             res.user_image
                         )
                     }
@@ -97,7 +98,7 @@ class EventCommentActivity : AppCompatActivity(),KodeinAware, EventCommentEventL
 
         lifecycleScope.launch {
             try {
-                val res=homeRepositry.spineEventsComment(eventId,userId,"0",comment)
+                val res=eventRepositry.spineEventsComment(eventId,userId,"0",comment)
 
                 binding.imageButton63.isClickable = true
                 if (res.status){

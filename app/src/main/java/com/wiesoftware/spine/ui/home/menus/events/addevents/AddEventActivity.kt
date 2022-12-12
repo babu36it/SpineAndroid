@@ -2,12 +2,14 @@ package com.wiesoftware.spine.ui.home.menus.events.addevents
 
 
 import android.Manifest
+import android.R.attr
 import android.app.*
 import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
@@ -20,12 +22,10 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
 import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -34,6 +34,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.google.android.gms.location.*
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -47,7 +48,7 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.PodcastSubcategoryAdapter
 import com.wiesoftware.spine.data.net.reponses.*
-import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.EventRepositry
 import com.wiesoftware.spine.databinding.ActivityAddEventBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.events.EVE_RECORD
@@ -66,8 +67,6 @@ import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.BuildConfig
 import org.kodein.di.android.kodein
@@ -105,22 +104,22 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     lateinit var photoURI: Uri
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepository by instance()
+    val eventRepositry: EventRepositry by instance()
     val factory: AddEventsViewmodelFactory by instance()
     lateinit var binding: ActivityAddEventBinding
     var peviewlangague: String = ""
 
-    lateinit var user_id: String
-    var type: Int = 0
-    var allow_comments: Int = 1
+    lateinit var user_id: String;
+    var type: Int = 0;
+    var allow_comments: Int = 1;
     var allow_participants: String = "1"
-    var startDate: String = ""
-    var endDate: String = ""
-    var startTime: String = ""
+    var startDate: String = "";
+    var endDate: String = "";
+    var startTime: String = "";
     var endTime: String = ""
     var category: String = ""
-    var categoryIds: String = ""
-    var curency: String = "$"
+    var categoryIds: String = "";
+    var curency: String = "$";
     var currencyId: String = "0"
     var mImageBitmap: Bitmap? = null
     var subCatIds: String = ""
@@ -190,7 +189,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     override fun onAddNewCategory(category: String) {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.addPodcastSubcategory(parent_id, category)
+                val res = eventRepositry.addPodcastSubcategory(parent_id, category, user_id)
                 if (res.status) {
                     binding.editTextTextPersonName31.setText("")
                     getSubcatgery()
@@ -250,8 +249,8 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
             val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
             if (addresses.size > 0) {
                 val address: Address = addresses[0]
-                result.append(address.locality).append(", ")
-                result.append(address.countryName).append(", ")
+                result.append(address.getLocality()).append(", ")
+                result.append(address.getCountryName()).append(", ")
                 result.append(address.subLocality).append(", ")
                 result.append(address.subAdminArea)
             }
@@ -274,7 +273,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         viewmodel?.addEventsListener = this
         //  about= intent.getStringExtra("about").toString()
         viewmodel?.let { viewmodel ->
-            viewmodel.getLoggedInUser().observe(this, androidx.lifecycle.Observer { user ->
+            viewmodel.getLoggedInUser()?.observe(this, androidx.lifecycle.Observer { user ->
                 user_id = user.users_id!!
                 getSubcatgery()
             })
@@ -428,7 +427,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         binding.textView102.setText(eventsRecord.timezone)
         binding.et104.setText(eventsRecord.location)
         binding.et106.setText(eventsRecord.linkOfEvent)
-        binding.aboutevent.text = eventsRecord.description
+        binding.aboutevent.setText(eventsRecord.description)
         about = eventsRecord.description
         //   binding.tvSelectCats.text = eventsRecord.eventCategories
         binding.editTextTextPersonName14.setText(eventsRecord.fee.toString())
@@ -446,7 +445,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     private fun getLanguages() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getPodcastLanguage()
+                val res = eventRepositry.getPodcastLanguage()
                 if (res.status) {
                     lanngData = res.data
                     setLanguages(lanngData)
@@ -461,7 +460,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     private fun getTimeSlot() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getTimeZoneResponse()
+                val res = eventRepositry.getTimeZoneResponse()
                 if (res.status) {
                     timeData = res.data
                     setTimeZone(timeData)
@@ -512,7 +511,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         // running a for loop to compare elements.
         for (item in catData) {
             // checking if the entered string matched with any item of our recycler view.
-            if (item.category_name.toString().lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))) {
+            if (item.category_name.toString().toLowerCase().contains(text.toLowerCase())) {
                 // if the item is matched we are
                 // adding it to our filtered list.
                 filteredlist.add(item)
@@ -531,7 +530,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     private fun getEventCategories(value: String) {
         lifecycleScope.launch {
             try {
-                val catRes = homeRepositry.getEventCatRes(value)
+                val catRes = eventRepositry.getEventCatRes(value)
                 if (catRes.status) {
                     catData = catRes.data
                     setEventCategories(catData)
@@ -591,7 +590,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     private fun getSubcatgery() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getPodcastSubcategory(parent_id)
+                val res = eventRepositry.getPodcastSubcategory(parent_id, user_id)
                 if (res.status) {
                      subCatedataList = res.data
                     binding.recyclerView9.also {
@@ -648,8 +647,8 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         book_event_url: String
     ) {
 
-        val sdf = SimpleDateFormat("hh:mm",Locale.getDefault())
-        val sdfDate = SimpleDateFormat("dd-MM-yyyy",Locale.getDefault())
+        val sdf = SimpleDateFormat("hh:mm")
+        val sdfDate = SimpleDateFormat("dd-MM-yyyy")
         //"$startDate, $startTime, $endDate, $endTime".toast(this)
         if (currentPhotoPath.isNullOrEmpty()) {
             "Please add Picture".toast(this)
@@ -732,8 +731,10 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         book_event_url: String
     ) {
         val file: File = File(currentPhotoPath!!)
-        val requestFile: RequestBody = file
-            .asRequestBody(contentResolver.getType(photoURI)?.let { it.toMediaTypeOrNull() })
+        val requestFile: RequestBody = RequestBody.create(
+            contentResolver.getType(photoURI)?.let { it.toMediaTypeOrNull() },
+            file
+        )
         val img_file: MultipartBody.Part = MultipartBody.Part.createFormData(
             "files[0]",
             file.name,
@@ -747,60 +748,60 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
 
         val uid: RequestBody =
-            user_id.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), user_id)
         val title: RequestBody =
-            title.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), title)
         val description: RequestBody =
-            about.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), about)
         val timeZone: RequestBody =
-            timeZone.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), timeZone)
         val location: RequestBody =
-            location.toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        val link: RequestBody = link.toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        val fee: RequestBody = fee.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), location)
+        val link: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), link)
+        val fee: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), fee)
         val attendees: RequestBody =
-            attendees.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), attendees)
         val allow_cmnt: RequestBody =
-            ("" + allow_comments).toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "" + allow_comments)
         val types: RequestBody =
-            ("" + type).toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "" + type)
         val sDate: RequestBody =
-            ("" + startDate).toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "" + startDate)
         val eDate: RequestBody =
-            ("" + endDate).toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "" + endDate)
         val sTime: RequestBody =
-            ("" + startTime).toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "" + startTime)
         val eTime: RequestBody =
-            ("" + endTime).toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "" + endTime)
         val multiple: RequestBody =
-            "0".toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "0")
         val eveCat: RequestBody =
-            categoryIds.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), categoryIds)
         val language: RequestBody =
-            language.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), language)
         val feeCurency: RequestBody =
-            currencyId.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), currencyId)
         val paticipants: RequestBody =
-            allow_participants.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), allow_participants)
         val latitude: RequestBody =
-            lat.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), lat.toString())
         val longitude: RequestBody =
-            lon.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), lon.toString())
 
         val bookingurl: RequestBody =
-            book_event_url.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), book_event_url.toString())
 
         val event_subcategories: RequestBody =
-            subCatIds.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), subCatIds.toString())
 
         val status: RequestBody =
-            "0".toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "0")
         binding.button42.visibility = View.INVISIBLE
 //        if (flag == 0) {
 //            flag = 1
 //            lifecycleScope.launch {
 //                try {
-//                    val res = homeRepositry.addUserEvent(
+//                    val res = eventRepositry.addUserEvent(
 //                        status,
 //                        uid,
 //                        types,
@@ -879,8 +880,8 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
           val  event_title = binding.editTextTextPersonName13.text.toString()
         val  event_location = binding.et104.text.toString()
 
-        val sdf = SimpleDateFormat("hh:mm",Locale.getDefault())
-        val sdfDate = SimpleDateFormat("dd-MM-yyyy",Locale.getDefault())
+        val sdf = SimpleDateFormat("hh:mm")
+        val sdfDate = SimpleDateFormat("dd-MM-yyyy")
         //"$startDate, $startTime, $endDate, $endTime".toast(this)
         if (currentPhotoPath.isNullOrEmpty()) {
             "Please add Picture".toast(this)
@@ -909,6 +910,9 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         else if (language == "") {
             Utils.showToast(this, "Select Language")
             // binding.et104.error = "Required.";binding.et104.requestFocus(); return
+        } else if (attendees == "" || attendees == "0") {
+            Utils.showToast(this, "Enter Max Attendees")
+            // binding.et104.error = "Required.";binding.et104.requestFocus(); return
         }
         else {
 
@@ -916,7 +920,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
             var endDateTime = endDate +" "+ endTime
             var startDateTime = startDate +" "+ startTime
-            val fuldate = SimpleDateFormat("dd-MM-yyyy hh:mm",Locale.getDefault())
+            val fuldate = SimpleDateFormat("dd-MM-yyyy hh:mm")
             if(!isTimeAfter(fuldate.parse(startDateTime), fuldate.parse(endDateTime))){
                 "End Date Should be Greater Than Start Date".toast(this)
                 return
@@ -1039,10 +1043,10 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     override fun onAllowComments(isChecked: Boolean) {
         if (isChecked) {
             allow_comments = 1
-            binding.switch6.backgroundTintList = ContextCompat.getColorStateList(this,R.color.colorPrimaryDark)
+            binding.switch6.setBackgroundTintList(this.getResources().getColorStateList(R.color.colorPrimaryDark));
         } else {
             allow_comments = 0
-            binding.switch6.backgroundTintList = ContextCompat.getColorStateList(this,R.color.light_gry)
+            binding.switch6.setBackgroundTintList(this.getResources().getColorStateList(R.color.light_gry));
         }
     }
 
@@ -1051,14 +1055,15 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
             binding.rldPaid.visibility = View.VISIBLE
             binding.textPodcast.visibility=View.VISIBLE
             binding.etBookEvent.visibility=View.VISIBLE
-            binding.switchPaid.backgroundTintList = ContextCompat.getColorStateList(this,R.color.colorPrimaryDark)
+            binding.switchPaid.setBackgroundTintList(this.getResources().getColorStateList(R.color.colorPrimaryDark));
+
 
 
         } else {
             binding.rldPaid.visibility = View.GONE
             binding.textPodcast.visibility=View.GONE
            binding.etBookEvent.visibility=View.GONE
-            binding.switchPaid.backgroundTintList = ContextCompat.getColorStateList(this,R.color.light_gry)
+            binding.switchPaid.setBackgroundTintList(this.getResources().getColorStateList(R.color.light_gry));
         }
     }
 
@@ -1072,11 +1077,11 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     override fun onAllowParticipants(isChecked: Boolean) {
         if (isChecked) {
             allow_participants = "1"
-            binding.switch5.backgroundTintList = ContextCompat.getColorStateList(this,R.color.colorPrimaryDark)
+            binding.switch5.setBackgroundTintList(this.getResources().getColorStateList(R.color.colorPrimaryDark));
         } else {
             allow_participants = "0"
 
-            binding.switch5.backgroundTintList = ContextCompat.getColorStateList(this,R.color.light_gry)
+            binding.switch5.setBackgroundTintList(this.getResources().getColorStateList(R.color.light_gry));
         }
     }
 
@@ -1230,15 +1235,14 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         )
         val cal = Calendar.getInstance()
         //  cal.add(Calendar.DAY_OF_MONTH,1)
-        dpd.datePicker.minDate = cal.timeInMillis
+        dpd.getDatePicker().setMinDate(cal.timeInMillis);
 
 
         dpd.show()
     }
 
     private fun showPhotoPicker() {
-        val nullParent: ViewGroup? = null
-        val view: View = layoutInflater.inflate(R.layout.bottomsheet_picker,nullParent)
+        val view: View = layoutInflater.inflate(R.layout.bottomsheet_picker, null)
         val dialog: BottomSheetDialog = BottomSheetDialog(this)
         dialog.setContentView(view)
 
@@ -1281,14 +1285,13 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
     private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK)
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.type = "image/*"
         startActivityForResult(intent, GALLERY_REQ)
     }
 
     private fun showPicker() {
-        val nullParent: ViewGroup? = null
-        val view: View = layoutInflater.inflate(R.layout.bottom_event_picker, nullParent)
+        val view: View = layoutInflater.inflate(R.layout.bottom_event_picker, null)
         val dialog: BottomSheetDialog = BottomSheetDialog(this)
         dialog.setContentView(view)
 
@@ -1358,7 +1361,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
                     )
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
                     if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
-                        takePictureIntent.clipData = ClipData.newRawUri("", photoURI)
+                        takePictureIntent.setClipData(ClipData.newRawUri("", photoURI));
 
                         takePictureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION)
 
@@ -1431,7 +1434,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
                 about = data?.getStringExtra("about").toString()
                 Log.e("aboutt", about)
                 if (about != null) {
-                    aboutevent.text = about
+                    aboutevent.setText(about)
                 } else {
                     aboutevent.text = ""
                 }
@@ -1448,7 +1451,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
 
                 photoURI = data?.data!!
-                currentPhotoPath = uriPathHelper.getPath(this, data.data!!)
+                currentPhotoPath = uriPathHelper.getPath(this, data?.data!!)
                 imgPaths.add(currentPhotoPath!!)
                 imgList.add(ImageData(currentPhotoPath))
 
@@ -1471,7 +1474,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
             if (data?.clipData != null) {
 
-                val count: Int = data.clipData!!.itemCount
+                val count: Int = data?.clipData!!.itemCount
                 var currentItem = 0
                 while (currentItem < count) {
                     val imageUri: Uri = data.clipData!!.getItemAt(currentItem).uri
@@ -1480,12 +1483,12 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
                     imgList.add(ImageData(currentPhotoPath))
                     imgPaths.add(currentPhotoPath!!)
                     currentItem = currentItem + 1
-                    photoURI = imageUri
+                    photoURI = imageUri;
                 }
             } else if (data!!.data != null) {
 
-                photoURI = data.data!!
-                currentPhotoPath = uriPathHelper.getPath(this, data.data!!)
+                photoURI = data?.data!!
+                currentPhotoPath = uriPathHelper.getPath(this, data?.data!!)
                 imgPaths.add(currentPhotoPath!!)
                 imgList.add(ImageData(currentPhotoPath))
                 //do something with the image (save it to some directory or whatever you need to do with it here)
@@ -1504,7 +1507,23 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
             }
 
             binding.vpimange.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageScrollStateChanged(state: Int) {
+                    super.onPageScrollStateChanged(state)
+                }
 
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
+                    super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                }
+
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+//                val rBtnId = binding.rgBtn.getChildAt(position).id
+//                binding.rgBtn.check(rBtnId)
+                }
             })
 
 
@@ -1572,10 +1591,10 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     fun openDialog() {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.getWindow()?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.eve_cat_selection)
-        val adapter:SpinerCatAdapter
+        val adapter:SpinerCatAdapter ;
         dialog.rvcats.also { rv ->
             rv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
             rv.setHasFixedSize(true)
@@ -1670,7 +1689,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
         subCatIds= subCategoryData.toString()
 
-        subCatIds = subCatIds.substring(1, subCatIds.length - 1)
+        subCatIds = subCatIds.substring(1, subCatIds.length - 1);
         subCatIds = subCatIds.replace("\\s".toRegex(), "")
         Log.e("value",subCatIds.toString())
     }

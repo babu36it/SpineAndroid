@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -13,18 +14,20 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.location.*
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.EventListAdapter
 import com.wiesoftware.spine.data.adapter.EventMenuAdapter
 import com.wiesoftware.spine.data.net.reponses.EventsData
 import com.wiesoftware.spine.data.net.reponses.EventsRecord
-import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.EventRepositry
 import com.wiesoftware.spine.databinding.FragmentEventsListBinding
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
 import com.wiesoftware.spine.ui.home.menus.events.filter.FilterEventActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.STORY_IMAGE
 import com.wiesoftware.spine.util.*
+import kotlinx.android.synthetic.main.add_post_bottomheet.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
@@ -46,7 +49,7 @@ class EventFragmentNearByList : Fragment(), KodeinAware, EventFragmentEventListe
 
     override val kodein by kodein()
     val factory: EventFragmentViewmodelFactory by instance()
-    val homeRepositry: HomeRepository by instance()
+    val eventRepositry: EventRepositry by instance()
     lateinit var binding: FragmentEventsListBinding
     var user_id: String = ""
     var argString: String = ""
@@ -160,6 +163,14 @@ class EventFragmentNearByList : Fragment(), KodeinAware, EventFragmentEventListe
             }
         }
 
+        binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = false
+
+
+
+            setNearbyEvents();
+        }
+
         binding.texteditFltr.setOnClickListener {
             startActivity(Intent(
                 requireActivity(),
@@ -199,7 +210,7 @@ class EventFragmentNearByList : Fragment(), KodeinAware, EventFragmentEventListe
     private fun setEventList() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getAllEvents(1, 100, user_id, "all")
+                val res = eventRepositry.getAllEvents(1, 100, user_id, "all")
                 dataList.clear()
                 if (res.status) {
                     STORY_IMAGE = res.user_image
@@ -250,7 +261,7 @@ class EventFragmentNearByList : Fragment(), KodeinAware, EventFragmentEventListe
         if (value == 0) {
             lifecycleScope.launch {
                 try {
-                    val res = homeRepositry.removeEventSave(user_id, record.id)
+                    val res = eventRepositry.removeEventSave(user_id, record.id)
                     if (res.status) {
 
                         "Removed".toast(requireContext())
@@ -265,7 +276,7 @@ class EventFragmentNearByList : Fragment(), KodeinAware, EventFragmentEventListe
         } else {
             lifecycleScope.launch {
                 try {
-                    val res = homeRepositry.saveEvents(user_id, record.id)
+                    val res = eventRepositry.saveEvents(user_id, record.id)
                     if (res.status) {
                         val msg = res.message
                         msg.toast(requireContext())
@@ -391,7 +402,7 @@ class EventFragmentNearByList : Fragment(), KodeinAware, EventFragmentEventListe
         Log.e("start", start_date.toString())
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getFilteredEventList(
+                val res = eventRepositry.getFilteredEventList(
                     "1",
                     "100",
                     user_id,
@@ -452,7 +463,7 @@ class EventFragmentNearByList : Fragment(), KodeinAware, EventFragmentEventListe
     private fun saved() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getAllSavedEvents(1, 100, user_id)
+                val res = eventRepositry.getAllSavedEvents(1, 100, user_id)
                 dataList.clear()
                 if (res.status) {
                     BASE_IMAGE = res.image
@@ -488,7 +499,7 @@ class EventFragmentNearByList : Fragment(), KodeinAware, EventFragmentEventListe
     private fun getGoingPastEventList(goingPast: Int) {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getGoingPastEventsList(1, 100, user_id, goingPast)
+                val res = eventRepositry.getGoingPastEventsList(1, 100, user_id, goingPast)
                 dataList.clear()
                 if (res.status) {
                     BASE_IMAGE = res.image
@@ -530,7 +541,7 @@ class EventFragmentNearByList : Fragment(), KodeinAware, EventFragmentEventListe
         lifecycleScope.launch {
             try {
                 EventFragment.progress.show()
-                val res = homeRepositry.getNearbyEvents(1, 100, user_id, lat, lon, 10)
+                val res = eventRepositry.getNearbyEvents(1, 100, user_id, lat, lon, 10)
                 dataList.clear()
                 EventFragment.progress.dismiss()
                 if (res.status) {
@@ -572,7 +583,7 @@ class EventFragmentNearByList : Fragment(), KodeinAware, EventFragmentEventListe
     private fun setFollowingEvents() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getFollowingUsersEventsList(1, 100, user_id)
+                val res = eventRepositry.getFollowingUsersEventsList(1, 100, user_id)
                 dataList.clear()
                 if (res.status) {
                     STORY_IMAGE = res.image
@@ -604,7 +615,7 @@ class EventFragmentNearByList : Fragment(), KodeinAware, EventFragmentEventListe
     private fun setOnLineEvents() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getOnLineEventsList(1, 100, user_id)
+                val res = eventRepositry.getOnLineEventsList(1, 100, user_id)
                 dataList.clear()
                 if (res.status) {
                     STORY_IMAGE = res.image

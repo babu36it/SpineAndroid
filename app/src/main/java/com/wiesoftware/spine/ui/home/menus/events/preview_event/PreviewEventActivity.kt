@@ -18,10 +18,12 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.net.reponses.EventsRecord
 import com.wiesoftware.spine.data.net.reponses.ImageData
-import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.EventRepositry
+import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityPreviewEventBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.events.EVE_RECORD
+import com.wiesoftware.spine.ui.home.menus.events.EventFragment
 import com.wiesoftware.spine.ui.home.menus.events.addevents.AddEventSuccessActivity
 import com.wiesoftware.spine.ui.home.menus.profile.setting.currency.CurrencyActivity
 import com.wiesoftware.spine.util.ApiException
@@ -49,7 +51,7 @@ class PreviewEventActivity : AppCompatActivity(), KodeinAware, PreviewEventsEven
 
     override val kodein by kodein()
     val factory: PreviewEventViewmodelFactory by instance()
-    val homeRepositry: HomeRepository by instance()
+    val eventRepositry: EventRepositry by instance()
     lateinit var binding: ActivityPreviewEventBinding
 
     var record: EventsRecord? = null
@@ -285,7 +287,7 @@ class PreviewEventActivity : AppCompatActivity(), KodeinAware, PreviewEventsEven
         lifecycleScope.launch {
             try {
                 progress.show()
-                val res = homeRepositry.addUserEvent(
+                val res = eventRepositry.addUserEvent(
                     record!!.status,
                     uid,
                     types,

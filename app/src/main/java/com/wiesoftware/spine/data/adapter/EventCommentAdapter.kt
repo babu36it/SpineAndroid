@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.net.reponses.EventCommentData
-import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.EventRepositry
+import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.EventCommentDataItemBinding
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.Coroutines
@@ -28,13 +29,13 @@ import kotlin.collections.ArrayList
 class EventCommentAdapter(
     val list: List<EventCommentData>,
     val listener: OnEventCommentEveListener,
-    val repo: HomeRepository,
-    val  userImage: String,
+    val repo: EventRepositry,
+     val  userImage: String,
 ):RecyclerView.Adapter<EventCommentAdapter.CommentHolder>() {
     class CommentHolder(
         val eventCommentDataItemBinding: EventCommentDataItemBinding,
         val context: Context,
-        val repo: HomeRepository
+        val repo: EventRepositry
     ):RecyclerView.ViewHolder(eventCommentDataItemBinding.root) {
         fun getReplys(comment_id: String): List<EventCommentData>{
             var list: List<EventCommentData> = ArrayList<EventCommentData>()

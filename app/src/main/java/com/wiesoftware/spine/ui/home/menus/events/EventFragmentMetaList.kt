@@ -17,7 +17,8 @@ import com.wiesoftware.spine.data.adapter.EventListAdapter
 import com.wiesoftware.spine.data.adapter.EventMenuAdapter
 import com.wiesoftware.spine.data.net.reponses.EventsData
 import com.wiesoftware.spine.data.net.reponses.EventsRecord
-import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.EventRepositry
+import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.FragmentEventsListBinding
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
 import com.wiesoftware.spine.ui.home.menus.events.filter.FilterEventActivity
@@ -44,7 +45,7 @@ class EventFragmentMetaList : Fragment(), KodeinAware, EventFragmentEventListene
 
     override val kodein by kodein()
     val factory: EventFragmentViewmodelFactory by instance()
-    val homeRepositry: HomeRepository by instance()
+    val eventRepositry: EventRepositry by instance()
     lateinit var binding: FragmentEventsListBinding
     var user_id: String = ""
     var argString: String = ""
@@ -164,6 +165,14 @@ class EventFragmentMetaList : Fragment(), KodeinAware, EventFragmentEventListene
             }
         }
 
+        binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = false
+
+
+
+            meta();
+        }
+
         binding.texteditFltr.setOnClickListener {
             startActivity(
                 Intent(
@@ -211,7 +220,7 @@ class EventFragmentMetaList : Fragment(), KodeinAware, EventFragmentEventListene
     private fun setEventList() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getAllEvents(1, 100, user_id, "all")
+                val res = eventRepositry.getAllEvents(1, 100, user_id, "all")
                 dataList.clear()
                 if (res.status) {
                     STORY_IMAGE = res.user_image
@@ -262,7 +271,7 @@ class EventFragmentMetaList : Fragment(), KodeinAware, EventFragmentEventListene
         if (value == 0) {
             lifecycleScope.launch {
                 try {
-                    val res = homeRepositry.removeEventSave(user_id, record.id)
+                    val res = eventRepositry.removeEventSave(user_id, record.id)
                     if (res.status) {
 
                         "Removed".toast(requireContext())
@@ -277,7 +286,7 @@ class EventFragmentMetaList : Fragment(), KodeinAware, EventFragmentEventListene
         } else {
             lifecycleScope.launch {
                 try {
-                    val res = homeRepositry.saveEvents(user_id, record.id)
+                    val res = eventRepositry.saveEvents(user_id, record.id)
                     if (res.status) {
                         val msg = res.message
                         msg.toast(requireContext())
@@ -404,7 +413,7 @@ class EventFragmentMetaList : Fragment(), KodeinAware, EventFragmentEventListene
         Log.e("start", start_date.toString())
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getFilteredEventList(
+                val res = eventRepositry.getFilteredEventList(
                     "1",
                     "100",
                     user_id,
@@ -466,7 +475,7 @@ class EventFragmentMetaList : Fragment(), KodeinAware, EventFragmentEventListene
     private fun saved() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getAllSavedEvents(1, 100, user_id)
+                val res = eventRepositry.getAllSavedEvents(1, 100, user_id)
                 dataList.clear()
                 if (res.status) {
                     BASE_IMAGE = res.image
@@ -499,7 +508,7 @@ class EventFragmentMetaList : Fragment(), KodeinAware, EventFragmentEventListene
         lifecycleScope.launch {
             try {
                 EventFragment.progress.show()
-                val res = homeRepositry.getAllEvents(1, 100, "metaverse", "")
+                val res = eventRepositry.getAllEvents(1, 100, "metaverse", "")
                 dataList.clear()
                 EventFragment.progress.dismiss()
                 if (res.status) {
@@ -538,7 +547,7 @@ class EventFragmentMetaList : Fragment(), KodeinAware, EventFragmentEventListene
     private fun getGoingPastEventList(goingPast: Int) {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getGoingPastEventsList(1, 100, user_id, goingPast)
+                val res = eventRepositry.getGoingPastEventsList(1, 100, user_id, goingPast)
                 dataList.clear()
                 if (res.status) {
                     BASE_IMAGE = res.image
@@ -579,7 +588,7 @@ class EventFragmentMetaList : Fragment(), KodeinAware, EventFragmentEventListene
         Log.e("latlong: ", "$lat, $lon")
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getNearbyEvents(1, 100, user_id, lat, lon, 10)
+                val res = eventRepositry.getNearbyEvents(1, 100, user_id, lat, lon, 10)
                 dataList.clear()
                 if (res.status) {
                     STORY_IMAGE = res.image
@@ -612,7 +621,7 @@ class EventFragmentMetaList : Fragment(), KodeinAware, EventFragmentEventListene
     private fun setFollowingEvents() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getFollowingUsersEventsList(1, 100, user_id)
+                val res = eventRepositry.getFollowingUsersEventsList(1, 100, user_id)
                 dataList.clear()
                 if (res.status) {
                     STORY_IMAGE = res.image
@@ -644,7 +653,7 @@ class EventFragmentMetaList : Fragment(), KodeinAware, EventFragmentEventListene
     private fun setOnLineEvents() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getAllEvents(1, 100, "online", "")
+                val res = eventRepositry.getAllEvents(1, 100, "online", "")
                 dataList.clear()
                 if (res.status) {
                     STORY_IMAGE = res.image
