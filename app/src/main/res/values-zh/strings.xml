@@ -516,4 +516,6 @@
     <string name="metaverse_address">Metaverse Address</string>
     <string name="company_name">Company Name</string>
     <string name="_0_5_hashtags">(0/5 hashtags)</string>
+    <string name="str_no_followers_record">No Followers Record</string>
+    <string name="str_no_following_record">No Following Record</string>
 </resources>

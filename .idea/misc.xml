@@ -116,6 +116,7 @@
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/drawable-night/ic_share.xml" value="0.1" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/drawable/bg_pin_dark.xml" value="0.206" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/drawable/bg_pin_grey.xml" value="0.206" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/drawable/boarder_round_btn_bg.xml" value="0.206" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/drawable/ic_share.xml" value="0.1" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/drawable/ic_shutter_focused.xml" value="0.206" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/drawable/ic_shutter_pressed.xml" value="0.206" />
@@ -190,12 +191,15 @@
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/eve_cat_selection.xml" value="0.16576086956521738" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/event_request_user_item.xml" value="0.20416666666666666" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/evnet_init_layout.xml" value="0.20416666666666666" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/followers_item.xml" value="0.33" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/for_you_content_item.xml" value="0.16576086956521738" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/fragment_auto_search.xml" value="0.16576086956521738" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/fragment_camera.xml" value="0.16576086956521738" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/fragment_email_notification.xml" value="0.16576086956521738" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/fragment_event.xml" value="0.20427305888483585" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/fragment_events.xml" value="0.20416666666666666" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/fragment_followers.xml" value="0.20416666666666666" />
+        <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/fragment_following.xml" value="0.20416666666666666" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/fragment_mobile_notification.xml" value="0.16576086956521738" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/fragment_podcast.xml" value="0.16576086956521738" />
         <entry key="..\:/newspine/SpineAndroid/app/src/main/res/layout/fragment_posts.xml" value="0.16576086956521738" />

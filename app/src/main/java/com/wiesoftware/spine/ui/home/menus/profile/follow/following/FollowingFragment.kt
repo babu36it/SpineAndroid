@@ -1,5 +1,6 @@
 package com.wiesoftware.spine.ui.home.menus.profile.follow.following
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -40,9 +41,10 @@ class FollowingFragment : Fragment(), KodeinAware,
     val factory: FollowingFragmentViewmodelFactory by instance()
     lateinit var binding: FragmentFollowingBinding
     val homeRepositry: HomeRepositry by instance()
-    var userId: String=""
-    lateinit var adapter:FollowingAdapter
-    lateinit var dataList:ArrayList<FollowersData>
+    var userId: String = ""
+    lateinit var adapter: FollowingAdapter
+    private var dataList: ArrayList<FollowersData> = arrayListOf()
+    lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,13 +55,13 @@ class FollowingFragment : Fragment(), KodeinAware,
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_following,container,false)
-        val viewmodel=ViewModelProvider(this,factory).get(FollowingFragmentViewmodel::class.java)
-        binding.viewmodel=viewmodel
-
-        viewmodel.getLoggedInUser().observe(viewLifecycleOwner, Observer { user->
-            userId=user.users_id!!
-            getFollowings()
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_following, container, false)
+        val viewmodel = ViewModelProvider(this, factory).get(FollowingFragmentViewmodel::class.java)
+        binding.viewmodel = viewmodel
+        progressDialog = ProgressDialog(context)
+        viewmodel.getLoggedInUser().observe(viewLifecycleOwner, Observer { user ->
+            userId = user.users_id!!
+            mNetworkCallFollowingAPI()
         })
 
 
@@ -68,12 +70,16 @@ class FollowingFragment : Fragment(), KodeinAware,
 
             override fun afterTextChanged(s: Editable) {}
 
-            override fun beforeTextChanged(s: CharSequence, start: Int,
-                                           count: Int, after: Int) {
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) {
             }
 
-            override fun onTextChanged(s: CharSequence, start: Int,
-                                       before: Int, count: Int) {
+            override fun onTextChanged(
+                s: CharSequence, start: Int,
+                before: Int, count: Int
+            ) {
 
                 filter(s.toString())
             }
@@ -89,7 +95,9 @@ class FollowingFragment : Fragment(), KodeinAware,
         // running a for loop to compare elements.
         for (item in dataList) {
             // checking if the entered string matched with any item of our recycler view.
-            if (item.displayName.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))) {
+            if (item.displayName.lowercase(Locale.getDefault())
+                    .contains(text.lowercase(Locale.getDefault()))
+            ) {
                 // if the item is matched we are
                 // adding it to our filtered list.
                 filteredlist.add(item)
@@ -106,193 +114,76 @@ class FollowingFragment : Fragment(), KodeinAware,
         }
     }
 
-    private fun getFollowings() {
+    private fun mNetworkCallFollowingAPI() {
         lifecycleScope.launch {
+            showProgressDialog()
+            dataList.clear()
             try {
-                val res=homeRepositry.getFollowingList(1,100,userId)
-                if (!res.status){
-//                    STORY_IMAGE=res.image
-//                    val dataList=res.data
-
-                     dataList= arrayListOf<FollowersData>()
-
-                    dataList.add(FollowersData(
-                        "created_on",
-                        "image",
-                        "hashtag_ids" ,
-                        "1" ,
-                        "multiplity" ,
-                        "post_backround_color_id" ,
-                        "post_user_name" ,
-                        "status" ,
-                        "title" ,
-                        "type" ,
-                        "updated_on" ,
-                        "user_id" ,
-                        "96arsh123" ,
-                        "Craig Warner",
-                        "" ,
-                        "profile_pic" ,
-                        "96arsh123" ,
-                        "0" ,
-
-                        ))
-
-
-                    dataList.add(FollowersData(
-                        "created_on",
-                        "image",
-                        "hashtag_ids" ,
-                        "4" ,
-                        "multiplity" ,
-                        "post_backround_color_id" ,
-                        "post_user_name" ,
-                        "status" ,
-                        "title" ,
-                        "type" ,
-                        "updated_on" ,
-                        "user_id" ,
-                        "2345as" ,
-                        "Nilesh Smith",
-                        "" ,
-                        "asdasd" ,
-                        getRandomString(10) ,
-                        "1" ,
-
-                        ))
-                    dataList.add(FollowersData(
-                        "created_on",
-                        "image",
-                        "hashtag_ids" ,
-                        "4" ,
-                        "multiplity" ,
-                        "post_backround_color_id" ,
-                        "post_user_name" ,
-                        "status" ,
-                        "title" ,
-                        "type" ,
-                        "updated_on" ,
-                        "user_id" ,
-                        "2345as" ,
-                        "Mahi Patel",
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVtCMt6WAKwJLit-pkDeK-qPowGhMMcLlsGSl-YFChzQ&s" ,
-                        "asdasd" ,
-                        getRandomString(10) ,
-                        "1" ,
-
-                        ))
-                    dataList.add(FollowersData(
-                        "created_on",
-                        "image",
-                        "hashtag_ids" ,
-                        "4" ,
-                        "multiplity" ,
-                        "post_backround_color_id" ,
-                        "post_user_name" ,
-                        "status" ,
-                        "title" ,
-                        "type" ,
-                        "updated_on" ,
-                        "user_id" ,
-                        "2345as" ,
-                        "Roni Smith",
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK_vjpKVAjkub5O0sFL7ij3mIzG-shVt-6KKLNdxq4&sU" ,
-                        "asdasd" ,
-                        getRandomString(10) ,
-                        "1" ,
-
-                        ))
-
-                    dataList.add(FollowersData(
-                        "created_on",
-                        "image",
-                        "hashtag_ids" ,
-                        "4" ,
-                        "multiplity" ,
-                        "post_backround_color_id" ,
-                        "post_user_name" ,
-                        "status" ,
-                        "title" ,
-                        "type" ,
-                        "updated_on" ,
-                        "user_id" ,
-                        "2345as" ,
-                        "Dhruv Clark",
-                        "https://res.cloudinary.com/demo/image/facebook/65646572251.jpg" ,
-                        "asdasd" ,
-                        getRandomString(10) ,
-                        "1" ,
-
-                        ))
-
-                    dataList.add(FollowersData(
-                        "created_on",
-                        "image",
-                        "hashtag_ids" ,
-                        "4" ,
-                        "multiplity" ,
-                        "post_backround_color_id" ,
-                        "post_user_name" ,
-                        "status" ,
-                        "title" ,
-                        "type" ,
-                        "updated_on" ,
-                        "user_id" ,
-                        "2345as" ,
-                        "Anjali Sonejee",
-                        "" ,
-                        "asdasd" ,
-                        getRandomString(10) ,
-                        "1" ,
-
-                        ))
-
-
-                    adapter = FollowingAdapter(dataList,this@FollowingFragment)
+                val res = homeRepositry.getFollowingList(1, 100, userId)
+                if (res.status) {
+                    dismissProgressDailog()
+                    binding.tvNoData.visibility = View.GONE
+                    binding.rvFollowing.visibility = View.VISIBLE
+                    STORY_IMAGE = res.image
+                    dataList = res.data
+                    adapter = FollowingAdapter(dataList, this@FollowingFragment)
                     binding.rvFollowing.also {
-                        it.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
+                        it.layoutManager =
+                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
                         it.setHasFixedSize(true)
-                        it.adapter=adapter
+                        it.adapter = adapter
                     }
+                } else {
+                    dismissProgressDailog()
+                    binding.tvNoData.visibility = View.VISIBLE
+                    binding.rvFollowing.visibility = View.GONE
                 }
-
-            }catch (e: ApiException){
+            } catch (e: Exception) {
                 e.printStackTrace()
-            }catch (e: NoInternetException){
-                e.printStackTrace()
+                dismissProgressDailog()
             }
         }
     }
 
+
     override fun onFollow(followersData: FollowersData) {
         lifecycleScope.launch {
             try {
-                val unfollowUserId=followersData.tbl_users_user_id
-                val res=homeRepositry.unFollowUser(userId,unfollowUserId)
-                if (res.status){
+                val unfollowUserId = followersData.tbl_users_user_id
+                val res = homeRepositry.unFollowUser(userId, unfollowUserId)
+                if (res.status) {
                     "User unfollowed".toast(requireContext())
-                    getFollowings()
+                    mNetworkCallFollowingAPI()
                 }
-            }catch (e: ApiException){
+            } catch (e: ApiException) {
                 e.printStackTrace()
-            }catch (e: NoInternetException){
+            } catch (e: NoInternetException) {
                 e.printStackTrace()
             }
         }
     }
 
     override fun onViewOthersProfile(followersData: FollowersData) {
-        val intent= Intent(requireContext(), SomeOneProfileActivity::class.java)
-        intent.putExtra(SomeOneProfileActivity.SOME_ONES_USER_ID,followersData.tbl_users_user_id)
+        val intent = Intent(requireContext(), SomeOneProfileActivity::class.java)
+        intent.putExtra(SomeOneProfileActivity.SOME_ONES_USER_ID, followersData.tbl_users_user_id)
         startActivity(intent)
     }
 
-    fun getRandomString(length: Int) : String {
+    fun getRandomString(length: Int): String {
         val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
         return (1..length)
             .map { allowedChars.random() }
             .joinToString("")
     }
 
+    private fun showProgressDialog() {
+        progressDialog.setMessage("Please wait...")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+    }
+
+    private fun dismissProgressDailog() {
+        progressDialog.dismiss()
+    }
 
 }

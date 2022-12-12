@@ -175,9 +175,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_3sdp"
-                android:layout_toEndOf="@id/textView61"
                 android:background="@android:color/transparent"
                 android:ems="10"
+                android:layout_toStartOf="@id/textView61"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="@string/want_to_give_your_story_a_title_or_motto"
                 android:inputType="textPersonName"
@@ -212,6 +212,7 @@
             android:layout_marginEnd="@dimen/_10sdp">
 
             <TextView
+                android:layout_centerVertical="true"
                 android:id="@+id/textView62"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

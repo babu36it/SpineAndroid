@@ -469,6 +469,11 @@ interface Api {
         @Path("unfollow_user_id") unfollow_user_id: String
     ): Response<SingleRes>
 
+    @GET("follow/addUserFollowUnfollow/{FollowUserId}")
+    suspend fun addFollowunFollow(
+        @Path("FollowUserId") unfollow_user_id: String
+    ): Response<SingleRes>
+
     @GET("follow/getFollowingList/{page}/{per_page}/{user_id}")
     suspend fun getFollowingList(
         @Path("page") page: Int,

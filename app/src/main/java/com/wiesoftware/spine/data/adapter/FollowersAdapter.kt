@@ -50,7 +50,7 @@ class FollowersAdapter(var dataList: List<FollowersData>,val listener: Followers
         }
         holder.followersItemBinding.button60.setOnClickListener {
             listener.onFollow(dataList[position],isFollow)
-            if (isFollow.equals("0")){
+            if (isFollow == "0"){
                 holder.followersItemBinding.button60.background=ContextCompat.getDrawable(holder.context,R.drawable.boarder_round_btn_bg)
                 holder.followersItemBinding.button60.text=holder.context.resources.getString(R.string.unfollow)
                 holder.followersItemBinding.button60.setTextColor(ContextCompat.getColor(holder.context,R.color.colorPrimaryDark))

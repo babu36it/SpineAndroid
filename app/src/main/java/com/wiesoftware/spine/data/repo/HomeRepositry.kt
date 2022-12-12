@@ -425,11 +425,15 @@ class HomeRepositry(
     }
 
 
-    suspend fun getEventRequestUserList(page: Int,perPage: Int,userId: String): EventRequestResponse{
+    suspend fun getEventRequestUserList(
+        page: Int,
+        perPage: Int,
+        userId: String
+    ): EventRequestResponse {
         return apiRequest { api.getEventRequestUserList(page, perPage) }
     }
 
-    suspend fun changeBookingStatus(event_booking_id: String,status: String): SingleRes{
+    suspend fun changeBookingStatus(event_booking_id: String, status: String): SingleRes {
         return apiRequest { api.changeBookingStatus(event_booking_id, status) }
     }
 
@@ -491,6 +495,10 @@ class HomeRepositry(
         return apiRequest { api.unFollowUser(user_id, unfollow_user_id) }
     }
 
+    suspend fun addFollowunFollow(followUnfollowUserId: String): SingleRes {
+        return apiRequest { api.addFollowunFollow(followUnfollowUserId) }
+    }
+
     suspend fun getFollowingList(page: Int, per_page: Int, user_id: String): FollowersRes {
         return apiRequest { api.getFollowingList(page, per_page, user_id) }
     }
@@ -530,8 +538,29 @@ class HomeRepositry(
         return apiRequest { api.getOwnEvents() }
     }
 
-    suspend fun getFilteredEventList(page: String,per_page: String,user_id: String,lat: String,lon: String,distance: String,start_date: String,end_date:String,category: String): EventsRes{
-        return  apiRequest { api.getFilteredEvents(page, per_page,  lat, lon, distance, start_date, end_date,category) }
+    suspend fun getFilteredEventList(
+        page: String,
+        per_page: String,
+        user_id: String,
+        lat: String,
+        lon: String,
+        distance: String,
+        start_date: String,
+        end_date: String,
+        category: String
+    ): EventsRes {
+        return apiRequest {
+            api.getFilteredEvents(
+                page,
+                per_page,
+                lat,
+                lon,
+                distance,
+                start_date,
+                end_date,
+                category
+            )
+        }
     }
 
     suspend fun getNearbyEvents(
