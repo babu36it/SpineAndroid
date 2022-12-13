@@ -24,6 +24,9 @@ import com.wiesoftware.spine.data.net.NetworkConnectionInterceptor
 import com.wiesoftware.spine.data.net.RssApi
 import com.wiesoftware.spine.data.repo.AuthRepository
 import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.AuthRepositry
+import com.wiesoftware.spine.data.repo.EventRepositry
+import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.data.repo.RssRepository
 import com.wiesoftware.spine.ui.auth.AuthViewModelFactory
 import com.wiesoftware.spine.ui.auth.WelcomeViewModelFactory
@@ -118,13 +121,12 @@ class SpineApplication : Application(),KodeinAware {
     override val kodein = Kodein.lazy {
         import(androidXModule(this@SpineApplication))
 
-
-
         bind() from singleton { NetworkConnectionInterceptor(instance()) }
         bind() from singleton { Api(instance()) }
         bind() from singleton { AppDatabase(instance()) }
-        bind() from singleton { AuthRepository(instance(), instance()) }
-        bind() from singleton { HomeRepository(instance(), instance()) }
+        bind() from singleton { AuthRepositry(instance(), instance()) }
+        bind() from singleton { HomeRepositry(instance(), instance()) }
+        bind() from singleton { EventRepositry(instance(), instance()) }
         bind() from singleton { RssApi(instance()) }
         bind() from singleton { RssRepository(instance()) }
         bind() from provider { AuthViewModelFactory(instance()) }
