@@ -18,7 +18,6 @@ import com.wiesoftware.spine.data.adapter.EventMenuAdapter
 import com.wiesoftware.spine.data.net.reponses.EventsData
 import com.wiesoftware.spine.data.net.reponses.EventsRecord
 import com.wiesoftware.spine.data.repo.EventRepositry
-import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.FragmentEventsListBinding
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
 import com.wiesoftware.spine.ui.home.menus.events.filter.FilterEventActivity

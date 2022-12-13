@@ -34,7 +34,6 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.EventListAdapter
 import com.wiesoftware.spine.data.net.reponses.EventsData
 import com.wiesoftware.spine.data.repo.EventRepositry
-import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.FragmentEventBinding
 import com.wiesoftware.spine.ui.home.menus.events.addordup.AddOrDupEventActivity
 import com.wiesoftware.spine.ui.home.menus.events.filter.FilterEventActivity
@@ -132,40 +131,40 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
 
 
 
-        binding.searchSpine?.setOnQueryTextFocusChangeListener { v, hasFocus ->
+        binding.searchSpine.setOnQueryTextFocusChangeListener { v, hasFocus ->
             /*if (hasFocus){
-                    startActivity(Intent(requireContext(),FilterEventActivity::class.java))
-                }
-                binding.searchSpine.clearFocus()*/
+                        startActivity(Intent(requireContext(),FilterEventActivity::class.java))
+                    }
+                    binding.searchSpine.clearFocus()*/
         }
-        binding.searchSpine?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchSpine.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String?): Boolean {
-//                adapter?.filter?.filter(newText)
+    //                adapter?.filter?.filter(newText)
 
-//                dataListTemp.clear()
-//                if (newText!!.isEmpty()) {
-//                    dataListTemp = dataList
-//                } else {
-//                    for (row in dataList) {
-//                        for (data in row.records) {
-//                            if ((data.title).toLowerCase(Locale.ROOT)
-//                                    .contains(newText!!.toLowerCase(Locale.ROOT))
-//                                || (data.displayName ?: data.useName).toLowerCase(Locale.ROOT)
-//                                    .contains(newText!!.toLowerCase(Locale.ROOT))
-//                                || (data.location).toLowerCase(Locale.ROOT)
-//                                    .contains(newText!!.toLowerCase(Locale.ROOT))
-//                                || (data.description).toLowerCase(Locale.ROOT)
-//                                    .contains(newText!!.toLowerCase(Locale.ROOT))
-//                            ) {
-//                                dataListTemp.add(row)
-//                            }
-//                        }
-//                    }
-//                }
-//
+    //                dataListTemp.clear()
+    //                if (newText!!.isEmpty()) {
+    //                    dataListTemp = dataList
+    //                } else {
+    //                    for (row in dataList) {
+    //                        for (data in row.records) {
+    //                            if ((data.title).toLowerCase(Locale.ROOT)
+    //                                    .contains(newText!!.toLowerCase(Locale.ROOT))
+    //                                || (data.displayName ?: data.useName).toLowerCase(Locale.ROOT)
+    //                                    .contains(newText!!.toLowerCase(Locale.ROOT))
+    //                                || (data.location).toLowerCase(Locale.ROOT)
+    //                                    .contains(newText!!.toLowerCase(Locale.ROOT))
+    //                                || (data.description).toLowerCase(Locale.ROOT)
+    //                                    .contains(newText!!.toLowerCase(Locale.ROOT))
+    //                            ) {
+    //                                dataListTemp.add(row)
+    //                            }
+    //                        }
+    //                    }
+    //                }
+    //
                 println("Sanjay All...."+newText+"......"+currentFragment.toString())
-//                adapter?.setFilterData(dataListTemp)
+    //                adapter?.setFilterData(dataListTemp)
 
 
                 if (currentFragment != null && currentFragment is EventFragmentAllList) {
@@ -263,7 +262,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
                 Companion.progress.dismiss()
                 if (res.status) {
 
-                  var  data = res.data
+                    var  data = res.data
 
                     val circularProgressDrawable = CircularProgressDrawable(requireContext())
                     circularProgressDrawable.strokeWidth = 5f

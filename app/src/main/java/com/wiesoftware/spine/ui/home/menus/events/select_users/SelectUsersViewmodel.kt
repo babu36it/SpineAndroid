@@ -3,7 +3,6 @@ package com.wiesoftware.spine.ui.home.menus.events.select_users
 import android.view.View
 import androidx.lifecycle.ViewModel
 import com.wiesoftware.spine.data.repo.EventRepositry
-import com.wiesoftware.spine.data.repo.HomeRepositry
 
 /**
  * Created by Vivek kumar on 1/12/2021.

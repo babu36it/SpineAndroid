@@ -5,7 +5,6 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -42,7 +41,6 @@ import com.wiesoftware.spine.data.adapter.EventCommentAdapter
 import com.wiesoftware.spine.data.adapter.GoingUserAdapter
 import com.wiesoftware.spine.data.net.reponses.*
 import com.wiesoftware.spine.data.repo.EventRepositry
-import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.ActivityEventDetailBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.events.EVE_RECORD

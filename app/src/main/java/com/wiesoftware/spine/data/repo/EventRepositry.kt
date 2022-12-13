@@ -67,11 +67,11 @@ class EventRepositry(
 
 
 
-    suspend fun addPodcastSubcategory(parent_id: String,subcategory_name:String,user_id:String):SingleRes{
-        return apiRequest { api.addPodcastSubcategory(parent_id, subcategory_name,user_id) }
+    suspend fun addPodcastSubcategory(parent_id: String,subcategory_name:String):SingleRes{
+        return apiRequest { api.addPodcastSubcategory(parent_id, subcategory_name) }
     }
-    suspend fun getPodcastSubcategory(parentId:String,user_id: String):PodcastSubCategoryRes{
-        return apiRequest { api.getPodcastSubcategory(parentId,user_id) }
+    suspend fun getPodcastSubcategory(parentId:String):PodcastSubCategoryRes{
+        return apiRequest { api.getPodcastSubcategory(parentId) }
     }
 
 
@@ -92,10 +92,6 @@ class EventRepositry(
 
     suspend fun spineStoriesComment(spine_story_id: String,user_id:String,comment_id:String,comment:String):SingleRes{
         return apiRequest { api.spineStoriesComment(spine_story_id, user_id, comment_id, comment) }
-    }
-
-    suspend fun addPodcasts(user_id: RequestBody,type: RequestBody,title: RequestBody,description: RequestBody,language: RequestBody,category: RequestBody,allow_comment: RequestBody,media_file: MultipartBody.Part,thumbnail: MultipartBody.Part): SingleRes{
-        return apiRequest { api.addPodcasts(user_id, type, title, description, language, category, allow_comment,media_file, thumbnail) }
     }
 
 
@@ -123,8 +119,8 @@ class EventRepositry(
     }
 
 
-    suspend fun deleteAccount(user_id:String): SingleRes{
-        return apiRequest { api.deleteAccount(user_id) }
+    suspend fun deleteAccount(): SingleRes{
+        return apiRequest { api.deleteAccount() }
     }
 
     suspend fun saveStory(user_id:String,story_id:String): SingleRes{
@@ -198,8 +194,8 @@ class EventRepositry(
         return apiRequest { api.getSpinEventCategories() }
     }
 
-    suspend fun getUserDetails(your_user_id:String):ProfileRes{
-        return apiRequest { api.getUserDetails(Prefs.getString("AuthToken", "")!! ) }
+    suspend fun getUserDetails():ProfileRes{
+        return apiRequest { api.getUserDetails() }
     }
 
     suspend fun addUserFollow(user_id: String,follow_user_id: String):SingleRes{
