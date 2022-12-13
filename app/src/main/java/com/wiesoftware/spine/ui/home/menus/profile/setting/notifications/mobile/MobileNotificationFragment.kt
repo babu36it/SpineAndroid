@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.SettingsRepository
 import com.wiesoftware.spine.databinding.FragmentMobileNotificationBinding
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
@@ -26,7 +27,7 @@ import org.kodein.di.generic.instance
 class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEventListener {
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepository by instance()
+    val settingsRepository: SettingsRepository by instance()
     val factory: MobileNotificationViewModelFactory by instance()
     lateinit var binding: FragmentMobileNotificationBinding
     lateinit var userId: String
@@ -233,7 +234,7 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getAllMobileNotifications(
+                val res = settingsRepository.getMobileNotifications(
                     status, "", "", "", "", "", "",
                     "", ""
                 )
@@ -270,7 +271,7 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getAllMobileNotifications(
+                val res = settingsRepository.getMobileNotifications(
                     "", status, "", "", "", "", "",
                     "", ""
                 )
@@ -304,7 +305,7 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getAllMobileNotifications(
+                val res = settingsRepository.getMobileNotifications(
                     "", "", status, "", "", "", "",
                     "", ""
                 )
@@ -338,7 +339,7 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getAllMobileNotifications(
+                val res = settingsRepository.getMobileNotifications(
                     "", "", "", status, "", "", "",
                     "", ""
                 )
@@ -372,7 +373,7 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getAllMobileNotifications(
+                val res = settingsRepository.getMobileNotifications(
                     "", "", "", "", status, "", "",
                     "", ""
                 )
@@ -409,7 +410,7 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getAllMobileNotifications(
+                val res = settingsRepository.getMobileNotifications(
                     "", "", "", "", "", status, "",
                     "", ""
                 )
@@ -444,7 +445,7 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getAllMobileNotifications(
+                val res = settingsRepository.getMobileNotifications(
                     "", "", "", "", "", "", status,
                     "", ""
                 )
@@ -479,7 +480,7 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getAllMobileNotifications(
+                val res = settingsRepository.getMobileNotifications(
                     "", "", "", "", "", "", "",
                     status, ""
                 )
@@ -514,7 +515,7 @@ class MobileNotificationFragment : Fragment(), KodeinAware, MobileNotificationEv
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getAllMobileNotifications(
+                val res = settingsRepository.getMobileNotifications(
                     "", "", "", "", "", "", "",
                     "", status
                 )

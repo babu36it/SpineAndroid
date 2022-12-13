@@ -261,13 +261,6 @@ class HomeRepository(
         return apiRequest { api.followUnfollowImpluse(user_id, status) }
     }
 
-    suspend fun deactivateAccount(): SingleRes {
-        return apiRequest { api.deactivateAccount() }
-    }
-
-    suspend fun deleteSpineAccount(): SingleRes {
-        return apiRequest { api.deactivateAccount() }
-    }
 
     suspend fun increasePodcastViews(podcast_id: String): SingleRes {
         return apiRequest { api.increasePodcastViews(podcast_id) }
@@ -323,84 +316,13 @@ class HomeRepository(
         }
     }
 
-    suspend fun getCurrency(): CurrencyRes {
-        return apiRequest { api.getCurrency() }
-    }
 
     suspend fun getEventDetails(event_id: String, userId: String): EventDetailsRes {
         return apiRequest { api.getEventDetails(event_id) }
     }
 
-    suspend fun saveStatusToCalendarStatus(calender_status: String): SingleRes {
-        return apiRequest { api.saveStatusToCalendarStatus(calender_status) }
-    }
 
-    suspend fun whoCanMessage(message_auth: String): SingleRes {
-        return apiRequest { api.whoCanMessage(message_auth) }
-    }
 
-    suspend fun requestToChangeEmail(email: String): SingleRes {
-        return apiRequest { api.requestToChangeEmail(email) }
-    }
-
-    suspend fun requestToPrivarcySetting(
-        p_findability: String,
-        p_customization: String,
-        p_necessary: String,
-        p_personalized: String
-    ): SingleRes {
-        return apiRequest {
-            api.getAllPrivarcySettings(
-                p_findability, p_customization, p_necessary,
-                p_personalized
-            )
-        }
-    }
-
-    suspend fun getAllEmailNotification(
-        e_notify_status: String,
-        e_event_attach_status: String,
-        e_message_status: String,
-        e_comment_reply_status: String,
-        e_event_podcast_status: String,
-        e_update_from_spine_status: String,
-        e_spine_surveys_status: String
-    ): SingleRes {
-        return apiRequest {
-            api.getAllEmailNotification(
-                e_notify_status, e_event_attach_status,
-                e_message_status, e_comment_reply_status,
-                e_event_podcast_status, e_update_from_spine_status,
-                e_spine_surveys_status
-            )
-        }
-    }
-
-    suspend fun getAllMobileNotifications(
-        m_notify_status: String,
-        m_like_notify_status: String,
-        m_comment_notify_status: String,
-        m_update_and_reminders_status: String,
-        m_save_event_reminders_status: String,
-        m_message_status: String,
-        m_follow_status: String,
-        m_spine_impulse_status: String,
-        m_any_post_status: String
-    ): SingleRes {
-        return apiRequest {
-            api.getAllMobileNotifications(
-                m_notify_status,
-                m_like_notify_status,
-                m_comment_notify_status,
-                m_update_and_reminders_status,
-                m_save_event_reminders_status,
-                m_message_status,
-                m_follow_status,
-                m_spine_impulse_status,
-                m_any_post_status
-            )
-        }
-    }
 
     suspend fun getQuetionsThought(title: String, postType: String, hashTags: String): SingleRes {
         return apiRequest {
@@ -435,10 +357,6 @@ class HomeRepository(
 
     suspend fun changeBookingStatus(event_booking_id: String, status: String): SingleRes {
         return apiRequest { api.changeBookingStatus(event_booking_id, status) }
-    }
-
-    suspend fun getPodcastLanguage(): LangRes {
-        return apiRequest { api.getPodcastLanguage() }
     }
 
     suspend fun getTimeZoneResponse(): TimeZoneResponse {

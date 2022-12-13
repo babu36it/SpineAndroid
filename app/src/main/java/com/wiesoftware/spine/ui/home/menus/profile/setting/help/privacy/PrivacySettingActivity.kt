@@ -16,6 +16,7 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.net.Api
 import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.SettingsRepository
 import com.wiesoftware.spine.databinding.ActivityPrivacySettingBinding
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
@@ -35,7 +36,7 @@ class PrivacySettingActivity : AppCompatActivity(), KodeinAware, PrivacySettingE
 
     override val kodein by kodein()
     val factory: PrivacySettingViewmodelFactory by instance()
-    val homeRepositry: HomeRepository by instance()
+    val settingsRepository: SettingsRepository by instance()
     lateinit var binding: ActivityPrivacySettingBinding
     lateinit var userId: String
     lateinit var progressDialog: ProgressDialog
@@ -117,7 +118,7 @@ class PrivacySettingActivity : AppCompatActivity(), KodeinAware, PrivacySettingE
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.requestToPrivarcySetting(status, "", "", "")
+                val res = settingsRepository.getPrivarcySettings(status, "", "", "")
                 if (res.status) {
                     dismissProgressDailog()
                     Toast.makeText(this@PrivacySettingActivity, res.message, Toast.LENGTH_SHORT)
@@ -149,7 +150,7 @@ class PrivacySettingActivity : AppCompatActivity(), KodeinAware, PrivacySettingE
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.requestToPrivarcySetting("", "", "", status)
+                val res = settingsRepository.getPrivarcySettings("", "", "", status)
                 if (res.status) {
                     dismissProgressDailog()
                     Toast.makeText(this@PrivacySettingActivity, res.message, Toast.LENGTH_SHORT)
@@ -180,7 +181,7 @@ class PrivacySettingActivity : AppCompatActivity(), KodeinAware, PrivacySettingE
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.requestToPrivarcySetting("", status, "", "")
+                val res = settingsRepository.getPrivarcySettings("", status, "", "")
                 if (res.status) {
                     dismissProgressDailog()
                     Toast.makeText(this@PrivacySettingActivity, res.message, Toast.LENGTH_SHORT)

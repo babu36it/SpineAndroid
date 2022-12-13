@@ -102,9 +102,7 @@ class EventRepositry(
     suspend fun changeBookingStatus(event_booking_id: String,status: String): SingleRes{
         return apiRequest { api.changeBookingStatus(event_booking_id, status) }
     }
-    suspend fun getPodcastLanguage():LangRes{
-        return apiRequest { api.getPodcastLanguage() }
-    }
+
 
     suspend fun getTimeZoneResponse():TimeZoneResponse{
         return apiRequest { api.getAllTimezones() }

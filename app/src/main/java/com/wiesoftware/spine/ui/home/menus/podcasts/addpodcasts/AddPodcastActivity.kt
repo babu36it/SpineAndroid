@@ -41,6 +41,7 @@ import com.wiesoftware.spine.data.adapter.PodcastSubcategoryAdapter
 import com.wiesoftware.spine.data.net.reponses.*
 import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.data.repo.RssRepository
+import com.wiesoftware.spine.data.repo.SettingsRepository
 import com.wiesoftware.spine.databinding.ActivityAddPodcastBinding
 import com.wiesoftware.spine.ui.home.menus.events.addevents.SpinerCatAdapter
 import com.wiesoftware.spine.ui.home.menus.podcasts.addrss.AddRssActivity
@@ -87,6 +88,7 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
     val factory: AddPodcastViewmodelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     val rssRepository: RssRepository by instance()
+    val settingsRepository: SettingsRepository by instance()
     lateinit var binding: ActivityAddPodcastBinding
     lateinit var userId: String
     var catData: List<EventCatData> = ArrayList<EventCatData>()
@@ -255,7 +257,7 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getPodcastLanguage()
+                val res = settingsRepository.getLanguages()
                 if (res.status) {
                     dismissProgressDailog()
                     lanngData = res.data

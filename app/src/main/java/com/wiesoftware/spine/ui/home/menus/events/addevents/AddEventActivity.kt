@@ -49,6 +49,7 @@ import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.PodcastSubcategoryAdapter
 import com.wiesoftware.spine.data.net.reponses.*
 import com.wiesoftware.spine.data.repo.EventRepositry
+import com.wiesoftware.spine.data.repo.SettingsRepository
 import com.wiesoftware.spine.databinding.ActivityAddEventBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.events.EVE_RECORD
@@ -105,6 +106,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 
     override val kodein by kodein()
     val eventRepositry: EventRepositry by instance()
+    val settingsRepositry: SettingsRepository by instance()
     val factory: AddEventsViewmodelFactory by instance()
     lateinit var binding: ActivityAddEventBinding
     var peviewlangague: String = ""
@@ -445,7 +447,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     private fun getLanguages() {
         lifecycleScope.launch {
             try {
-                val res = eventRepositry.getPodcastLanguage()
+                val res = settingsRepositry.getLanguages()
                 if (res.status) {
                     lanngData = res.data
                     setLanguages(lanngData)

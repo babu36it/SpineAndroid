@@ -19,6 +19,7 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.db.entities.User
 import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.SettingsRepository
 import com.wiesoftware.spine.databinding.ActivityChangeEmailBinding
 import com.wiesoftware.spine.ui.auth.WelcomeActivity
 import com.wiesoftware.spine.util.ApiException
@@ -39,6 +40,7 @@ class ChangeEmailActivity : AppCompatActivity(), KodeinAware, ChangeEmailEventLi
     lateinit var binding: ActivityChangeEmailBinding
     lateinit var userId: String
     val homeRepositry: HomeRepository by instance()
+    val settingsRepository: SettingsRepository by instance()
     val factory: ChangeEmailViewmodelFactory by instance()
     var isLogin = true
     lateinit var user: User
@@ -96,7 +98,7 @@ class ChangeEmailActivity : AppCompatActivity(), KodeinAware, ChangeEmailEventLi
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.requestToChangeEmail(email)
+                val res = settingsRepository.requestToChangeEmail(email)
                 if (res.status){
                     dismissProgressDailog()
                     emailChangedDialog(res.message)

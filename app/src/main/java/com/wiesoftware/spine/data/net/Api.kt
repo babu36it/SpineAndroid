@@ -334,51 +334,18 @@ interface Api {
     ): Response<SingleRes>
 
 
-    @GET("deactiveAccount")
-    suspend fun deactivateAccount(): Response<SingleRes>
 
 
-    @GET("deleteSpineAccount/{user_id}")
-    suspend fun deleteSpineAccount(
-        @Path("user_id") user_id: String
-    ): Response<SingleRes>
 
 
-//    //@Headers(HEADER_1, HEADER_2)
-//    @GET("eventCurrency")
-//    suspend fun getCurrency():Response<CurrencyRes>
 
-//    Harsh: chnage for new api
-    //@Headers(HEADER_1, HEADER_2)
-
-    @GET("currency")
-    suspend fun getCurrency(): Response<CurrencyRes>
 
     @GET("events/getEventDetail/{EventId}")
     suspend fun getEventDetails(
         @Path("EventId") event_id: String
     ): Response<EventDetailsRes>
 
-    @FormUrlEncoded
-    @POST("saveEventToCalender")
-    suspend fun saveStatusToCalendarStatus(
-        @Field("calender_status") calender_status: String
-    ): Response<SingleRes>
 
-    @FormUrlEncoded
-    @POST("eventMessagingAutho")
-    suspend fun whoCanMessage(
-        @Field("message_auth") message_auth: String
-    ): Response<SingleRes>
-
-    @FormUrlEncoded
-    @POST("requestToChangeEmail")
-    suspend fun requestToChangeEmail(
-        @Field("email") email: String
-    ): Response<SingleRes>
-
-
-    //@Headers(HEADER_1, HEADER_2)
     @GET("events/getEventBookingRequestList/{page}/{perPage}")
     suspend fun getEventRequestUserList(
         @Path("page") page: Int,
@@ -388,7 +355,6 @@ interface Api {
 
 
 
-    //@Headers(HEADER_1, HEADER_2)
     @GET("events/changeEventBookingStatus/{BookingId}/{Status}")
     suspend fun changeBookingStatus(
         @Path("BookingId") BookingId: String,
@@ -396,9 +362,6 @@ interface Api {
     ):Response<SingleRes>
 
 
-
-    @GET("languages")
-    suspend fun getPodcastLanguage(): Response<LangRes>
 
 
     @GET("timezones")
@@ -1038,40 +1001,6 @@ interface Api {
         @Field("blocked_user_id") title: String
     ): Response<SingleRes>
 
-    @FormUrlEncoded
-    @POST("PrivacyAllSetting")
-    suspend fun getAllPrivarcySettings(
-        @Field("p_findability") p_findability: String,
-        @Field("p_customization") p_customization: String,
-        @Field("p_necessary") p_necessary: String,
-        @Field("p_personalized") p_personalized: String
-    ): Response<SingleRes>
-
-    @FormUrlEncoded
-    @POST("emailAllNotification")
-    suspend fun getAllEmailNotification(
-        @Field("e_notify_status") e_notify_status: String,
-        @Field("e_event_attach_status") e_event_attach_status: String,
-        @Field("e_message_status") e_message_status: String,
-        @Field("e_comment_reply_status") e_comment_reply_status: String,
-        @Field("e_event_podcast_status") e_event_podcast_status: String,
-        @Field("e_update_from_spine_status") e_update_from_spine_status: String,
-        @Field("e_spine_surveys_status") e_spine_surveys_status: String
-    ): Response<SingleRes>
-
-    @FormUrlEncoded
-    @POST("mobileAllNotification")
-    suspend fun getAllMobileNotifications(
-        @Field("m_notify_status") m_notify_status: String,
-        @Field("m_like_notify_status") m_like_notify_status: String,
-        @Field("m_comment_notify_status") m_comment_notify_status: String,
-        @Field("m_update_and_reminders_status") m_update_and_reminders_status: String,
-        @Field("m_save_event_reminders_status") m_save_event_reminders_status: String,
-        @Field("m_message_status") m_message_status: String,
-        @Field("m_follow_status") m_follow_status: String,
-        @Field("m_spine_impulse_status") m_spine_impulse_status: String,
-        @Field("m_any_post_status") m_any_post_status: String
-    ): Response<SingleRes>
 
     @FormUrlEncoded
     @POST("post/addPost")

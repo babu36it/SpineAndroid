@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.SettingsRepository
 import com.wiesoftware.spine.databinding.ActivitySaveEventToCalBinding
 import com.wiesoftware.spine.util.*
 import kotlinx.coroutines.launch
@@ -19,7 +20,7 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 
-class SaveEventToCalActivity : AppCompatActivity(),KodeinAware, SaveEventEventListener {
+class SaveEventToCalActivity : AppCompatActivity(), KodeinAware, SaveEventEventListener {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base?.let { RuntimeLocaleChanger.wrapContext(it) })
@@ -27,26 +28,26 @@ class SaveEventToCalActivity : AppCompatActivity(),KodeinAware, SaveEventEventLi
 
     override val kodein by kodein()
     val factory: SaveEventViewmodelFactory by instance()
-    val homeRepositry: HomeRepository by instance()
+    val settingsRepository: SettingsRepository by instance()
     lateinit var binding: ActivitySaveEventToCalBinding
     lateinit var userId: String
-    var status=0;
+    var status = 0;
     lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_save_event_to_cal)
-        binding=DataBindingUtil.setContentView(this,R.layout.activity_save_event_to_cal)
-        val viewmodel=ViewModelProvider(this,factory).get(SaveEventViewmodel::class.java)
-        binding.viewmodel=viewmodel
-        viewmodel.saveEventEventListener=this
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_save_event_to_cal)
+        val viewmodel = ViewModelProvider(this, factory).get(SaveEventViewmodel::class.java)
+        binding.viewmodel = viewmodel
+        viewmodel.saveEventEventListener = this
         progressDialog = ProgressDialog(this)
-        viewmodel.getLoggedInUser().observe(this, Observer { user->
-            userId=user.users_id!!
+        viewmodel.getLoggedInUser().observe(this, Observer { user ->
+            userId = user.users_id!!
         })
-        val CAL_STATUS= Prefs.getString(SaveEventToCalActivity.CAL_STATUS,"Off")
-        if (CAL_STATUS.equals("On")){
-            binding.switch2.isChecked=true
+        val CAL_STATUS = Prefs.getString(SaveEventToCalActivity.CAL_STATUS, "Off")
+        if (CAL_STATUS.equals("On")) {
+            binding.switch2.isChecked = true
         }
 
 
@@ -57,10 +58,10 @@ class SaveEventToCalActivity : AppCompatActivity(),KodeinAware, SaveEventEventLi
     }
 
     override fun onCheckedChanged(isChecked: Boolean) {
-        if (isChecked){
-            status=1;
-        }else{
-            status=0;
+        if (isChecked) {
+            status = 1;
+        } else {
+            status = 0;
         }
         saveEventsToCalendarStatus(status)
     }
@@ -69,29 +70,35 @@ class SaveEventToCalActivity : AppCompatActivity(),KodeinAware, SaveEventEventLi
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res=homeRepositry.saveStatusToCalendarStatus(status.toString())
-                if (res.status){
+                val res = settingsRepository.saveStatusToCalendarStatus(status.toString())
+                if (res.status) {
                     dismissProgressDailog()
-                    Toast.makeText(this@SaveEventToCalActivity,res.message,Toast.LENGTH_SHORT).show()
-                    val calStatus=if (status==0){"Off"}else{"On"}
-                    Prefs.putAny(CAL_STATUS,calStatus)
-                }else{
+                    Toast.makeText(this@SaveEventToCalActivity, res.message, Toast.LENGTH_SHORT)
+                        .show()
+                    val calStatus = if (status == 0) {
+                        "Off"
+                    } else {
+                        "On"
+                    }
+                    Prefs.putAny(CAL_STATUS, calStatus)
+                } else {
                     dismissProgressDailog()
-                    Toast.makeText(this@SaveEventToCalActivity,res.message,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@SaveEventToCalActivity, res.message, Toast.LENGTH_SHORT)
+                        .show()
 
                 }
-            }catch (e: ApiException){
+            } catch (e: ApiException) {
                 dismissProgressDailog()
                 e.printStackTrace()
-            }catch (e: NoInternetException){
+            } catch (e: NoInternetException) {
                 dismissProgressDailog()
                 e.printStackTrace()
             }
         }
     }
 
-    companion object{
-        val CAL_STATUS="calStatus"
+    companion object {
+        val CAL_STATUS = "calStatus"
     }
 
     private fun showProgressDialog() {

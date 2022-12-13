@@ -16,6 +16,7 @@ import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.CurrencyAdapter
 import com.wiesoftware.spine.data.net.reponses.CurrencyData
 import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.SettingsRepository
 import com.wiesoftware.spine.databinding.ActivityCurrencyBinding
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
@@ -35,7 +36,7 @@ class CurrencyActivity : AppCompatActivity(),KodeinAware, CurrencyEventListener,
 
     override val kodein by kodein()
     val factory : CurrencyViewmodelFactory by instance()
-    val homeRepositry: HomeRepository by instance()
+    val settingsRepository: SettingsRepository by instance()
     lateinit var binding: ActivityCurrencyBinding
     lateinit var userId: String
     lateinit var progressDialog: ProgressDialog
@@ -59,7 +60,7 @@ class CurrencyActivity : AppCompatActivity(),KodeinAware, CurrencyEventListener,
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val  res=homeRepositry.getCurrency()
+                val  res=settingsRepository.getCurrency()
                 if (res.status){
                     dismissProgressDailog()
                     val currencyList=res.data

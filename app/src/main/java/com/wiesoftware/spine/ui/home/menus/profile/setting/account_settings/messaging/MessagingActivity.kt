@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.SettingsRepository
 import com.wiesoftware.spine.databinding.ActivityMessagingBinding
 import com.wiesoftware.spine.util.*
 import kotlinx.coroutines.launch
@@ -28,7 +29,7 @@ class MessagingActivity : AppCompatActivity(),KodeinAware, MessagingEventListene
 
     override val kodein by kodein()
     val factory: MessagingViewmodelFactory by  instance()
-    val homeRepositry: HomeRepository by instance()
+    val settingsRepository: SettingsRepository by instance()
     lateinit var binding: ActivityMessagingBinding
     lateinit var userId: String
     lateinit var progressDialog: ProgressDialog
@@ -78,7 +79,7 @@ class MessagingActivity : AppCompatActivity(),KodeinAware, MessagingEventListene
         lifecycleScope.launch {
             try{
                 showProgressDialog()
-                val res=homeRepositry.whoCanMessage(msg_auth)
+                val res=settingsRepository.whoCanMessage(msg_auth)
                 if (res.status){
                     dismissProgressDailog()
                     Toast.makeText(this@MessagingActivity,res.message,Toast.LENGTH_SHORT).show()

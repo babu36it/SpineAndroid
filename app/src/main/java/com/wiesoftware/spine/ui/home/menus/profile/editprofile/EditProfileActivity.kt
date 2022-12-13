@@ -39,6 +39,7 @@ import com.wiesoftware.spine.data.adapter.MultiLanguageAdapter
 import com.wiesoftware.spine.data.net.reponses.EventCatData
 import com.wiesoftware.spine.data.net.reponses.LangData
 import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.SettingsRepository
 import com.wiesoftware.spine.databinding.ActivityEditProfileBinding
 import com.wiesoftware.spine.ui.home.menus.events.addevents.MutilpeSpineCatAdapter
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
@@ -92,6 +93,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
     override val kodein by kodein()
     val factory: EditProfileViewmodelFactory by instance()
     val homeRepositry: HomeRepository by instance()
+    val settingsRepository: SettingsRepository by instance()
     lateinit var binding: ActivityEditProfileBinding
     lateinit var editProfileViewModel: EditProfileViewmodel
     lateinit var user_id: String
@@ -1075,7 +1077,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getPodcastLanguage()
+                val res = settingsRepository.getLanguages()
                 if (res.status) {
                     dismissProgressDailog()
                     lanngData = res.data
