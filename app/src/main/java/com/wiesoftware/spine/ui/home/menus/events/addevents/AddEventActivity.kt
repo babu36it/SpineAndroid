@@ -249,10 +249,10 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
             val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
             if (addresses.size > 0) {
                 val address: Address = addresses[0]
-                result.append(address.getLocality()).append(", ")
-                result.append(address.getCountryName()).append(", ")
                 result.append(address.subLocality).append(", ")
-                result.append(address.subAdminArea)
+                result.append(address.getLocality()).append(", ")
+                result.append(address.getCountryName()).append(". ")
+//                result.append(address.subAdminArea)
             }
         } catch (e: IOException) {
             e.printStackTrace()
