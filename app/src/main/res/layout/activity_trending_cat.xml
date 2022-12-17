@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.spine.categories.TrendingCatViewmodel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.menus.spine.categories.TrendingCatActivity">
+    <ImageButton
+        android:onClick="@{viewmodel.onBack}"
+        android:id="@+id/ibComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BackButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        android:text="@string/categories"
+        android:textAlignment="center"
+        style="@style/TitleText"
+        app:layout_constraintBottom_toBottomOf="@+id/ibComment"
+        app:layout_constraintEnd_toStartOf="@+id/sbStory"
+        app:layout_constraintStart_toEndOf="@id/ibComment"
+        app:layout_constraintTop_toTopOf="@+id/ibComment" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/sbStory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/eight"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/textView13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+
+    <androidx.cardview.widget.CardView
+        android:onClick="@{viewmodel.allCategory}"
+        android:id="@+id/cv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/eight"
+        android:layout_marginTop="32dp"
+        android:paddingStart="@dimen/sixteen"
+        android:paddingEnd="@dimen/sixteen"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardCornerRadius="@dimen/_20"
+        app:cardElevation="@dimen/eight"
+        app:layout_constraintStart_toStartOf="@+id/ibComment"
+        app:layout_constraintTop_toBottomOf="@+id/textView13">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/sixteen"
+            android:paddingEnd="@dimen/sixteen">
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/dp4"
+                android:paddingStart="@dimen/sixteen"
+                android:paddingEnd="@dimen/sixteen"
+                android:text="@string/all"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/big_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:onClick="@{viewmodel.trendingCategory}"
+        android:id="@+id/cv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/eight"
+        android:layout_marginTop="32dp"
+        android:paddingStart="@dimen/sixteen"
+        android:paddingEnd="@dimen/sixteen"
+        app:cardBackgroundColor="@color/text_white"
+        app:cardCornerRadius="@dimen/_20"
+        app:cardElevation="@dimen/eight"
+        app:layout_constraintStart_toEndOf="@+id/cv"
+        app:layout_constraintTop_toBottomOf="@+id/textView13">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/sixteen"
+            android:paddingEnd="@dimen/sixteen">
+
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/dp4"
+                android:textColor="@color/text_black"
+                android:paddingStart="@dimen/sixteen"
+                android:paddingEnd="@dimen/sixteen"
+                android:text="@string/trending"
+                android:textSize="@dimen/big_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCategories"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

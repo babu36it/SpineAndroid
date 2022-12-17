@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation"
+    app:startDestination="@id/spineFragment">
+
+    <fragment
+        android:id="@+id/spineFragment"
+        android:name="com.wiesoftware.spine.ui.home.menus.spine.SpineFragment"
+        android:label="fragment_spine"
+        tools:layout="@layout/fragment_spine" />
+    <fragment
+        android:id="@+id/eventFragment"
+        android:name="com.wiesoftware.spine.ui.home.menus.events.EventFragment"
+        android:label="fragment_event"
+        tools:layout="@layout/fragment_event" />
+    <fragment
+        android:id="@+id/podcastsFragment"
+        android:name="com.wiesoftware.spine.ui.home.menus.podcasts.PodcastsFragment"
+        android:label="fragment_podcasts"
+        tools:layout="@layout/fragment_podcasts" />
+    <fragment
+        android:id="@+id/activitiesFragment"
+        android:name="com.wiesoftware.spine.ui.home.menus.activities.ActivitiesFragment"
+        android:label="fragment_activities"
+        tools:layout="@layout/fragment_activities" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.wiesoftware.spine.ui.home.menus.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

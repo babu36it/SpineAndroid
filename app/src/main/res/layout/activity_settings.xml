@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.profile.setting.SettingsViewmodel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.menus.profile.setting.SettingsActivity">
+
+        <ImageButton
+            android:id="@+id/ibComment"
+            style="@style/BackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{viewmodel.onBack}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/eight"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/settings"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/ibComment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ibComment"
+            app:layout_constraintTop_toTopOf="@+id/ibComment" />
+
+        <View
+            android:id="@+id/viewSetting"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/eight"
+            android:background="@color/normal_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/sixteen"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewSetting">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/scrollView">
+
+                <TextView
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:id="@+id/buttonMyAd"
+                    style="@style/ButtonSetting"
+                    android:padding="@dimen/_3sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{viewmodel.onMyAds}"
+                    android:text="@string/my_ads"
+                    android:textColor="@color/text_black"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <View
+                    style="@style/ViewActionLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@color/normal_grey"
+                    app:layout_constraintTop_toBottomOf="@+id/button17" />
+
+
+                <TextView
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:id="@+id/button17"
+                    style="@style/ButtonSetting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:onClick="@{viewmodel.onProfileEdit}"
+                    android:padding="@dimen/_3sdp"
+                    android:text="@string/edit_profile"
+                    android:textColor="@color/text_black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonMyAd" />
+
+                <View
+                    style="@style/ViewActionLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@color/normal_grey"
+                    app:layout_constraintTop_toBottomOf="@+id/button17" />
+
+                <TextView
+
+                    android:id="@+id/button18"
+                    style="@style/ButtonSetting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:onClick="@{viewmodel.onAccountSetting}"
+                    android:padding="@dimen/_3sdp"
+                    android:text="Account"
+                    android:textColor="@color/text_black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/button17" />
+
+                <View
+                    style="@style/ViewActionLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="@dimen/_22sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@color/normal_grey"
+                    app:layout_constraintTop_toBottomOf="@+id/button18" />
+
+                <TextView
+                    android:id="@+id/button19"
+                    style="@style/ButtonSetting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:onClick="@{viewmodel.onNotifications}"
+                    android:padding="@dimen/_3sdp"
+                    android:text="@string/notifications"
+                    android:textColor="@color/text_black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/button18" />
+
+                <View
+                    style="@style/ViewActionLine"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@color/normal_grey"
+                    app:layout_constraintTop_toBottomOf="@+id/button19" />
+
+                <TextView
+                    android:id="@+id/button20"
+                    style="@style/ButtonSetting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:onClick="@{viewmodel.onHelp}"
+                    android:padding="@dimen/_3sdp"
+                    android:text="@string/help_info"
+                    android:textColor="@color/text_black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/button19" />
+
+                <View
+                    style="@style/ViewActionLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@color/normal_grey"
+                    app:layout_constraintTop_toBottomOf="@+id/button20" />
+
+                <Button
+                    android:id="@+id/button16"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:backgroundTint="@color/normal_grey"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:onClick="@{viewmodel.onInvite}"
+                    android:text="@string/invite_friends"
+                    android:textColor="#B79888"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="@+id/button20"
+                    app:layout_constraintStart_toStartOf="@+id/button20"
+                    app:layout_constraintTop_toBottomOf="@+id/button20" />
+
+                <Button
+                    android:id="@+id/button26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginBottom="@dimen/eight"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:onClick="@{viewmodel.onLogout}"
+                    android:text="@string/logout"
+                    android:textColor="#B79888"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/button16"
+                    app:layout_constraintStart_toStartOf="@+id/button16"
+                    app:layout_constraintTop_toBottomOf="@+id/button16" />
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

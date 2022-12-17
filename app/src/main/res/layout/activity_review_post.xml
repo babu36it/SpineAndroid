@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.spine.addposts.reviewpost.ReviewPostViewmodel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/reviewLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        tools:context=".ui.home.menus.spine.addposts.reviewpost.ReviewPostActivity">
+
+        <ProgressBar
+            android:id="@+id/progressBar4"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/eight"
+            android:background="@drawable/round_button_bg"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageButton15" />
+
+        <TextView
+
+            android:id="@+id/button41"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/eight"
+            android:background="@drawable/round_button_bg"
+            android:elevation="@dimen/eight"
+            android:onClick="@{viewmodel.onPost}"
+            android:paddingStart="@dimen/_20sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:text="@string/post"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageButton15" />
+
+        <TextView
+            android:id="@+id/textView89"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:padding="@dimen/eight"
+            android:text="@string/review_post"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageButton15" />
+
+        <ImageButton
+            android:contentDescription="@string/app_name"
+            android:id="@+id/imageButton15"
+            style="@style/BackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{viewmodel.onBack}"
+            android:tint="@color/text_white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView89">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/eight"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvThought"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{viewmodel.onThoughtEdit}"
+                    android:padding="@dimen/eight"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/big_text" />
+
+                <TextView
+                    android:id="@+id/tvHashtag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sixteen"
+                    android:onClick="@{viewmodel.onHashtagEdit}"
+                    android:padding="@dimen/eight"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/big_text" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:weightSum="3">
+
+                    <TextView
+                        style="@style/TitleText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/do_you_want_to_make_it_featured_post"
+                        android:textColor="@color/text_white" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/featuredSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end|center_vertical"
+                        android:onCheckedChanged="@{(button, on) -> viewmodel.onCheckedChange(on)}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <Button
+                        style="@style/TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:onClick="@{viewmodel.onDelete}"
+                        android:text="@string/delete"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        style="@style/TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:onClick="@{viewmodel.onPreview}"
+                        android:text="@string/preview"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

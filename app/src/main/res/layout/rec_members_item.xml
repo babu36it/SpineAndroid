@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <data>
+        <variable
+            name="model"
+            type="com.wiesoftware.spine.data.net.reponses.AllUsersData" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_4sdp"
+    android:layout_marginEnd="@dimen/_4sdp"
+    >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        app:image="@{model.profilePic}"
+        android:id="@+id/imageView9"
+        android:layout_width="@dimen/profile_size"
+        android:layout_height="@dimen/profile_size"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:src="@drawable/profile_circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView84"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@{model.displayName ?? model.userName}"
+        android:textColor="@color/text_black"
+        app:layout_constraintEnd_toStartOf="@+id/follow_btn"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="@dimen/normalText_12"
+        app:layout_constraintStart_toEndOf="@+id/imageView9"
+        app:layout_constraintTop_toTopOf="@+id/follow_btn" />
+
+    <Button
+        android:id="@+id/follow_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/round_button_bg"
+        android:text="@string/follows"
+        android:textSize="@dimen/normalText_12"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView9" />
+
+    <TextView
+        android:id="@+id/textView85"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@{model.town}"
+        android:textSize="@dimen/normalText_10"
+        app:layout_constraintEnd_toEndOf="@+id/textView84"
+        app:layout_constraintStart_toStartOf="@+id/textView84"
+        app:layout_constraintTop_toBottomOf="@+id/textView84" />
+
+    <View
+        android:id="@+id/view16"
+        android:layout_width="0dp"
+        android:layout_height=".5dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/gray_tint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="model"
+            type="com.wiesoftware.spine.data.net.reponses.ChatMsgData" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/receiverChat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView17"
+            android:layout_width="@dimen/_40"
+            android:layout_height="@dimen/_40"
+            android:layout_marginStart="@dimen/eight"
+            android:src="@drawable/ic_profile"
+            app:civ_circle_background_color="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:layout_marginEnd="@dimen/eight"
+            android:background="@drawable/reciever_back"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView17"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView17"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView144"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:paddingStart="@dimen/sixteen"
+                android:paddingTop="@dimen/eight"
+                android:paddingEnd="@dimen/sixteen"
+                android:paddingBottom="@dimen/eight"
+                android:text="@{model.message}"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/big_text" />
+
+            <TextView
+                android:id="@+id/dT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:paddingStart="@dimen/sixteen"
+                android:paddingTop="@dimen/eight"
+                android:paddingEnd="@dimen/sixteen"
+                android:paddingBottom="@dimen/eight"
+                android:text="Fred . 12 May 2020"
+                android:textSize="@dimen/big_text" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/senderChat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:layout_marginEnd="@dimen/eight"
+            android:background="@drawable/sender_back"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView145"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:paddingStart="@dimen/sixteen"
+                android:paddingTop="@dimen/eight"
+                android:paddingEnd="@dimen/sixteen"
+                android:paddingBottom="@dimen/eight"
+                android:text="@{model.message}"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/big_text" />
+
+            <TextView
+                android:id="@+id/dateT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:paddingStart="@dimen/sixteen"
+                android:paddingTop="@dimen/eight"
+                android:paddingEnd="@dimen/sixteen"
+                android:paddingBottom="@dimen/eight"
+                android:text="Sent . 12 May 2020"
+                android:textColor="@color/gray_tint"
+                android:textSize="@dimen/big_text" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

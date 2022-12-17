@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.spine.rec_followers.RecommendedFolowersViewmodel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.menus.spine.rec_followers.RecommendedFollowersActivity">
+
+    <ImageButton
+        android:onClick="@{viewmodel.onBack}"
+        android:id="@+id/ibComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BackButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        android:text="@string/members"
+        android:textAlignment="center"
+        style="@style/TitleText"
+        app:layout_constraintBottom_toBottomOf="@+id/ibComment"
+        app:layout_constraintEnd_toStartOf="@+id/sbStory"
+        app:layout_constraintStart_toEndOf="@id/ibComment"
+        app:layout_constraintTop_toTopOf="@+id/ibComment" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/sbStory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/eight"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/textView13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView83"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/thirty_two"
+        android:layout_marginTop="@dimen/eight"
+        android:layout_marginEnd="@dimen/thirty_two"
+        android:padding="@dimen/sixteen"
+        android:text="@string/discover_people_on_spine_you_might_want_to_follow"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sbStory" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
+        android:id="@+id/rvmembers"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView83" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvmembersImages"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView83" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

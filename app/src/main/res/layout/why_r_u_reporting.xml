@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/top_two_round_back"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48"
+        android:layout_marginTop="@dimen/eight"
+        app:cardCornerRadius="@dimen/eight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/imageButton66"
+            android:layout_width="@dimen/_150dp"
+            android:layout_height="@dimen/eight"
+            android:background="@android:color/transparent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:src="@drawable/round_gray_back"/>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView256"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        android:layout_marginStart="@dimen/sixteen"
+        android:text="@string/why_are_you_reporting_this"
+        android:textAlignment="center"
+        style="@style/TitleText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sixteen"
+        android:layout_marginBottom="@dimen/sixteen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView256"
+        app:layout_constraintStart_toStartOf="@+id/textView256"
+        app:layout_constraintTop_toBottomOf="@+id/textView256">
+
+        <View
+            android:id="@+id/view29"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/eight"
+            android:background="@color/gray_tint" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@android:color/transparent"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:fontFamily="@font/poppins_regular"
+            android:paddingEnd="@dimen/_32dp"
+            android:text="@string/it_s_poor_quality_or_spam"
+            android:textColor="@color/text_black" />
+
+        <View
+            android:id="@+id/view30"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/eight"
+            android:background="@color/gray_tint" />
+
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@android:color/transparent"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:fontFamily="@font/poppins_regular"
+            android:paddingEnd="@dimen/_32dp"
+            android:text="@string/it_s_inappropriate"
+            android:textColor="@color/text_black" />
+
+        <View
+            android:id="@+id/view31"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/eight"
+            android:background="@color/gray_tint" />
+
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@android:color/transparent"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:fontFamily="@font/poppins_regular"
+            android:paddingEnd="@dimen/_32dp"
+            android:text="@string/it_s_violent_or_hateful"
+            android:textColor="@color/text_black" />
+
+        <View
+            android:id="@+id/view32"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/eight"
+            android:background="@color/gray_tint" />
+    </RadioGroup>
+</androidx.constraintlayout.widget.ConstraintLayout>

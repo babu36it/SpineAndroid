@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.events.EventFragmentViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.menus.events.EventFragmentAllList">
+
+        <LinearLayout
+            android:id="@+id/toplayout"
+            android:weightSum="4"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
+
+            <ImageButton
+                android:layout_weight="1"
+                android:id="@+id/imageButton2"
+                android:layout_width="@dimen/thirty_two"
+                android:layout_height="@dimen/thirty_two"
+                android:layout_marginStart="@dimen/sixteen"
+                android:background="@android:color/transparent"
+                android:onClick="@{viewmodel.addEvent}"
+                android:src="@drawable/ic_add_new"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cardView" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_weight="2"
+                android:id="@+id/cardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/twelve"
+                android:layout_marginEnd="@dimen/twelve"
+                android:layout_marginBottom="@dimen/eight"
+                android:layout_marginTop="@dimen/eight"
+                app:cardCornerRadius="@dimen/eight"
+                app:cardElevation="@dimen/eight"
+                >
+
+                <androidx.appcompat.widget.SearchView
+                    app:theme="@style/AppSearchView"
+                    android:id="@+id/searchSpine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:defaultQueryHint="@string/search_events"
+                    app:iconifiedByDefault="false"
+                    app:queryBackground="@android:color/transparent"
+                    app:queryHint="@string/search_event" />
+            </androidx.cardview.widget.CardView>
+
+            <ImageButton
+                android:layout_weight="1"
+                android:id="@+id/imageButton6"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="@dimen/sixteen"
+                android:background="@android:color/transparent"
+                android:onClick="@{viewmodel.filterEvent}"
+                android:tint="@color/text_black"
+                android:src="@drawable/ic_tune"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cardView" />
+        </LinearLayout>
+
+
+
+        <!-- <ScrollView
+             android:id="@+id/scroll"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:scrollbars="none"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@id/cardView"
+             >-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/eight"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toplayout">
+
+
+            <com.google.android.material.tabs.TabLayout
+                android:theme="@style/Event_tab_layout"
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tabIndicatorColor="@color/dot_dark_screen1"
+                app:tabIndicatorHeight="@dimen/_3sdp"
+                app:tabMode="scrollable" />
+
+
+            <include
+                android:id="@+id/init_layout"
+                layout="@layout/evnet_init_layout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/eight"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+                app:layout_constraintVertical_bias="1.0"/>
+
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/eight"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+                app:layout_constraintVertical_bias="1.0" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- </ScrollView>-->
+
+        <Button
+            android:id="@+id/button67"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginBottom="@dimen/eight"
+            app:backgroundTint="@color/colorPrimaryDark"
+            android:background="@drawable/round_button_bg"
+            android:onClick="@{viewmodel.onMapview}"
+            android:paddingHorizontal="@dimen/_7sdp"
+            android:text="Map view"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_percent=".4" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_4sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <TextView
+        android:text="Item 1"
+        style="@style/SimpleText"
+        android:id="@+id/textLocation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <View
+        app:layout_constraintTop_toBottomOf="@+id/textLocation"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/light_gry"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

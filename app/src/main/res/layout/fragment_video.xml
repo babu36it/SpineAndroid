@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    >
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/viewFinder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnFlash"
+        android:layout_width="@dimen/_40"
+        android:layout_height="@dimen/_40"
+        android:layout_margin="@dimen/eight"
+        android:background="@android:color/transparent"
+        android:elevation="1dp"
+        android:padding="@dimen/eight"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_flash_off"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.4"
+        android:background="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnRecordVideo" />
+
+    <ImageButton
+        android:id="@+id/btnRecordVideo"
+        android:layout_width="@dimen/_60"
+        android:layout_height="@dimen/_60"
+        android:padding="@dimen/eight"
+        android:background="@drawable/ic_video_shutter_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnGallery"
+        android:layout_width="@dimen/_40"
+        android:layout_height="@dimen/_40"
+        android:background="@drawable/round_gray_back"
+        android:elevation="1dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_photo"
+        app:layout_constraintBottom_toBottomOf="@id/btnRecordVideo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnRecordVideo"
+        app:layout_constraintTop_toTopOf="@id/btnRecordVideo" />
+
+    <ImageButton
+        android:id="@+id/btnSwitchCamera"
+        android:layout_width="@dimen/_40"
+        android:layout_height="@dimen/_40"
+        android:background="@drawable/round_gray_back"
+        android:elevation="1dp"
+        android:padding="@dimen/eight"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_switch_camera"
+        app:layout_constraintBottom_toBottomOf="@id/btnRecordVideo"
+        app:layout_constraintEnd_toStartOf="@id/btnRecordVideo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnRecordVideo" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

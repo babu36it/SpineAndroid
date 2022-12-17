@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.profile.follow.followers.FollowersFragmentViewmodel" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/cnstLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.menus.profile.follow.followers.FollowersFragment">
+
+        <EditText
+            android:id="@+id/editTextTextPersonName19"
+            style="@style/SimpleText_Sami_bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sixteen"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginEnd="@dimen/sixteen"
+            android:background="@android:color/transparent"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="@dimen/eight"
+            android:ems="10"
+            android:hint="@string/search"
+            android:inputType="textPersonName"
+            android:padding="@dimen/eight"
+            android:textColor="@color/quantum_black_text"
+            android:textColorHint="@color/grey"
+            android:textSize="@dimen/twelve" />
+
+        <View
+            android:id="@+id/view24"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_below="@id/editTextTextPersonName19"
+            android:background="@color/gray_tint" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFollowers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/view24"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginBottom="@dimen/eight" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNoData"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:gravity="center"
+            android:text="@string/str_no_followers_record"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/_14sdp"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
+</layout>

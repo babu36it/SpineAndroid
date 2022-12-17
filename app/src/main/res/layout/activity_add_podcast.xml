@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.podcasts.addpodcasts.AddPodcastViewmodel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.home.menus.podcasts.addpodcasts.AddPodcastActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical">
+
+            <ImageButton
+                android:contentDescription="@string/app_name"
+                android:id="@+id/imageButton36"
+                style="@style/BackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{viewmodel.onBack}" />
+
+            <TextView
+                android:id="@+id/textView191"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@string/podcast_info"
+                android:textAllCaps="true"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_13sdp" />
+
+
+            <TextView
+                android:id="@+id/button72"
+                style="@style/ButtonRound"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_28sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/eight"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="center"
+                android:onClick="@{viewmodel.onPost}"
+                android:paddingStart="@dimen/_20sdp"
+                android:paddingEnd="@dimen/_20sdp"
+                android:text="@string/review" />
+
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view14"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/gray_tint" />
+
+        <ProgressBar
+            android:id="@+id/progressBar3"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/button72"
+            app:layout_constraintEnd_toEndOf="@+id/button72"
+            app:layout_constraintStart_toStartOf="@+id/button72"
+            app:layout_constraintTop_toTopOf="@+id/button72" />
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_5sdp"
+            android:padding="@dimen/_5sdp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView192"
+                        style="@style/NormalText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/podcast_image"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:contentDescription="@string/app_name"
+                        android:id="@+id/imageView39"
+                        android:layout_width="@dimen/_150dp"
+                        android:layout_height="@dimen/_150dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/ic_photo" />
+
+
+                </RelativeLayout>
+
+
+                <Button
+                    android:id="@+id/button73"
+                    android:layout_width="@dimen/_120dp"
+                    android:layout_height="@dimen/_120dp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:background="@color/gray_tint"
+                    android:onClick="@{viewmodel.addPodcast}"
+                    android:text="@string/add_a_podcast"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@+id/textView192"
+                    app:layout_constraintTop_toBottomOf="@+id/textView192" />
+
+                <TextView
+                    android:id="@+id/textView193"
+                    style="@style/NormalText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/eight"
+                    android:layout_marginEnd="@dimen/sixteen"
+                    android:text="@string/only_add_a_podcast_you_own_the_right_to_and_make_sure_it_meets_our_guidelines"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/button73"
+                    app:layout_constraintTop_toBottomOf="@+id/textView192" />
+
+                <TextView
+                    android:id="@+id/textView194"
+                    style="@style/NormalText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/podcast_title"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName21"
+                    style="@style/ETNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:ems="10"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="@string/podcast_title"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:padding="@dimen/_8sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:singleLine="true"
+                    android:text="@={viewmodel.title}"
+                    android:textColorHint="@color/dark_gray_day_night"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView39"
+                    app:layout_constraintStart_toStartOf="@+id/textView194"
+                    app:layout_constraintTop_toBottomOf="@+id/textView194" />
+
+
+                <TextView
+                    android:id="@+id/textView195"
+                    style="@style/NormalText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/about_the_podcast"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold" />
+
+
+                <EditText
+                    android:id="@+id/editTextTextMultiLine"
+                    style="@style/ETNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:ems="10"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="start|top"
+                    android:hint="@string/enter_a_description"
+                    android:inputType="textMultiLine"
+                    android:padding="@dimen/_8sdp"
+                    android:singleLine="false"
+                    android:text="@={viewmodel.description}"
+                    android:textColorHint="@color/dark_gray_day_night"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName21"
+                    app:layout_constraintStart_toStartOf="@+id/textView195"
+                    app:layout_constraintTop_toBottomOf="@+id/textView195" />
+
+                <TextView
+                    android:id="@+id/textView196"
+                    style="@style/NormalText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/primary_language_spoken_in_your_podcast"
+                    android:textColor="@color/text_black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/editTextTextMultiLine"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+
+
+                <Button
+                    android:id="@+id/button74"
+                    style="@style/SpinnerTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shadow_box"
+                    app:drawableRightCompat="@drawable/ic_arrow_right"
+                    android:text="@string/select"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView196" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/_8sdp">
+
+                    <Spinner
+                        android:id="@+id/spinnerContry"
+                        style="@style/languagespinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+                <!--        <Spinner-->
+                <!--            android:id="@+id/spinnerContry"-->
+                <!--            android:layout_width="0dp"-->
+                <!--            android:layout_height="0dp"-->
+                <!--            android:layout_marginStart="@dimen/sixteen"-->
+                <!--            android:layout_marginEnd="@dimen/sixteen"-->
+                <!--            android:elevation="@dimen/eight"-->
+                <!--            android:padding="@dimen/sixteen"-->
+                <!--            style="@style/SpinnerTheme"-->
+                <!--            app:layout_constraintBottom_toBottomOf="@+id/button74"-->
+                <!--            app:layout_constraintEnd_toEndOf="parent"-->
+                <!--            app:layout_constraintStart_toStartOf="parent"-->
+                <!--            app:layout_constraintTop_toBottomOf="@+id/textView196"-->
+                <!--            />-->
+
+                <Button
+                    android:id="@+id/button75"
+                    style="@style/ButtonSetting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shadow_box"
+                    android:text="@string/select"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView197" />
+
+                <TextView
+                    android:id="@+id/textView197"
+                    style="@style/NormalText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/podcast_category"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/_8sdp">
+
+                    <Spinner
+                        android:id="@+id/spinnerPodCat"
+                        style="@style/languagespinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <TextView
+                    android:id="@+id/textView284"
+                    style="@style/NormalText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/choose_up_to_3_sub_categories"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_5sdp" />
+
+
+                <LinearLayout
+                    android:id="@+id/constraintLayout9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:orientation="vertical"
+                    android:padding="@dimen/eight">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:contentDescription="@string/app_name"
+                            android:id="@+id/imageButton73"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:background="@drawable/boarder_round_btn_bg"
+                            android:onClick="@{viewmodel.onAddAditionalCategory}"
+                            android:src="@drawable/ic_add_new" />
+
+                        <TextView
+                            android:id="@+id/textView285"
+                            style="@style/NormalText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:text="@string/add_an_additional_category"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/_11sdp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rrAddNewCategory"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp">
+
+                        <EditText
+                            android:id="@+id/editTextTextPersonName31"
+                            style="@style/ETNormal"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:layout_toStartOf="@id/button101"
+                            android:elevation="@dimen/_5sdp"
+                            android:ems="10"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:hint="@string/enter_a_new_category"
+                            android:inputType="textPersonName"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="@={viewmodel.addNewCat}"
+                            android:textColorHint="@color/dark_gray_day_night"
+                            android:textSize="@dimen/_11sdp"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/button101"
+                            style="@style/ButtonRound"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:onClick="@{viewmodel.onNewCategoryAdd}"
+                            android:paddingStart="@dimen/_20sdp"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingEnd="@dimen/_20sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:text="@string/add"
+                            android:visibility="visible" />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp">
+
+
+                        <TextView
+                            android:id="@+id/textView199"
+                            style="@style/NormalText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:text="@string/allow_comments"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/text_black"
+                            android:textSize="@dimen/_11sdp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switch7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="8dp"
+                            android:onCheckedChanged="@{(switch, checked) -> viewmodel.isChecked(checked)}"
+                            android:padding="@dimen/eight" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tvReview"
+                        style="@style/ButtonRound"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_28sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/eight"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:gravity="center"
+                        android:onClick="@{viewmodel.onPost}"
+                        android:paddingStart="@dimen/_20sdp"
+                        android:paddingEnd="@dimen/_20sdp"
+                        android:text="@string/review" />
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tvPodCat"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/sixteen"
+                    android:layout_marginEnd="@dimen/sixteen"
+                    android:background="@drawable/shadow_box"
+                    app:drawableRightCompat="@drawable/ic_arrow_right"
+                    android:elevation="@dimen/eight"
+                    android:onClick="@{viewmodel.onSelectCategories}"
+                    android:padding="@dimen/sixteen"
+                    android:text="@string/select"
+                    android:textColor="@color/text_black"
+                    app:layout_constraintBottom_toBottomOf="@+id/button75"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView197"
+                    app:layout_constraintVertical_bias="0.0" />
+
+
+                <TextView
+                    android:id="@+id/textView198"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_an_image"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/button76"
+                    app:layout_constraintStart_toStartOf="@+id/textView197"
+                    app:layout_constraintTop_toTopOf="@+id/button76" />
+
+                <ImageView
+                    android:contentDescription="@string/app_name"
+                    android:id="@+id/ivCover"
+                    android:layout_width="@dimen/_120dp"
+                    android:layout_height="@dimen/_120dp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:onClick="@{viewmodel.addImage}"
+                    android:src="@drawable/ic_profile"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/button75"
+                    app:layout_constraintTop_toBottomOf="@+id/button75" />
+
+                <Button
+                    android:id="@+id/button76"
+                    android:layout_width="@dimen/_120dp"
+                    android:layout_height="@dimen/_120dp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:background="@color/gray_tint"
+                    android:onClick="@{viewmodel.addImage}"
+                    android:text="@string/add_an_image"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/button75"
+                    app:layout_constraintTop_toBottomOf="@+id/button75" />
+
+
+                <View
+                    android:id="@+id/view37"
+                    style="@style/ViewActionLine"
+                    android:layout_width="0dp"
+                    app:layout_constraintEnd_toEndOf="@+id/switch7"
+                    app:layout_constraintStart_toStartOf="@+id/textView199"
+                    app:layout_constraintTop_toBottomOf="@+id/textView199" />
+
+                <Button
+                    android:id="@+id/button77"
+                    style="@style/TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginBottom="@dimen/eight"
+                    android:text="@string/preview"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/view37"
+                    app:layout_constraintTop_toBottomOf="@+id/view37" />
+
+                <Button
+                    android:id="@+id/button78"
+                    style="@style/TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delete"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/view37"
+                    app:layout_constraintTop_toTopOf="@+id/button77" />
+
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+    </LinearLayout>
+</layout>

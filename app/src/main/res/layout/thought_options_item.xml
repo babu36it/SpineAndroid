@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="modal"
+            type="com.wiesoftware.spine.data.net.reponses.WelcomeData" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/llMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:padding="@dimen/_5sdp">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/ic_back"
+                android:backgroundTint="@color/text_black"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tvCounter"
+                style="@style/NormalText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="(0/460 characters)"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_11sdp" />
+
+
+            <TextView
+                android:id="@+id/nextbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginEnd="@dimen/eight"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@string/next"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimaryDark" />
+
+
+        </RelativeLayout>
+
+
+        <EditText
+            android:id="@+id/etThought"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="top|start"
+            android:hint="@string/post_a_question_or_share_what_s_on_your_mind"
+            android:inputType="textMultiLine"
+            android:lines="12"
+            android:maxLength="460"
+            android:paddingStart="@dimen/_20sdp"
+            android:paddingTop="@dimen/_48"
+            android:paddingEnd="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_48"
+            android:scrollHorizontally="false"
+            android:textColor="@color/text_white"
+            android:textColorHint="@color/text_white"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+</layout>

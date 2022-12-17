@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.events.eventcomment.EventCommentViewmodel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.menus.events.eventcomment.EventCommentActivity">
+
+    <TextView
+        android:onClick="@{viewmodel.onBack}"
+        android:id="@+id/imageButton62"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/BackButton"
+        />
+
+    <TextView
+        android:textAllCaps="true"
+        android:id="@+id/textView175"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="COMMENT"
+        style="@style/TitleText"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton62"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageButton62" />
+
+    <View
+        android:id="@+id/view62"
+        android:layout_width="match_parent"
+        style="@style/ViewActionLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton62" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName24"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/eight"
+        android:layout_marginBottom="@dimen/eight"
+        android:ems="10"
+        android:text="@={viewmodel.commentMsg}"
+        android:fontFamily="@font/poppins_regular"
+        android:hint="@string/add_public_comments"
+        android:inputType="textPersonName"
+        android:textSize="@dimen/normalText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton63"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:textSize="@dimen/normalText"
+        android:onClick="@{viewmodel.onSendComment}"
+        android:id="@+id/imageButton63"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/eight"
+        android:text="Post"
+        android:textColor="@color/colorPrimary"
+        android:background="@android:color/transparent"
+        android:padding="@dimen/eight"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName24"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEveComments"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/eight"
+        android:layout_marginBottom="@dimen/eight"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view62" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

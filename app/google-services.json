@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "659666712703",
+    "project_id": "spine-2e9d3",
+    "storage_bucket": "spine-2e9d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659666712703:android:f0fcdea1befaa54c89274a",
+        "android_client_info": {
+          "package_name": "com.wiesoftware.spine"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659666712703-op5mvdr53dth0bgvqt3m6v9v1f7ne1ib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wiesoftware.spine",
+            "certificate_hash": "2b50a7fb41d2e32062fa6932798dbe298b96cbc3"
+          }
+        },
+        {
+          "client_id": "659666712703-2b17qpj99e4ms35h4kfqr3n9s1ms0gu5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBzuMdyaODzxwRoePhfpTLrtsTEdzEYaY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659666712703-2b17qpj99e4ms35h4kfqr3n9s1ms0gu5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

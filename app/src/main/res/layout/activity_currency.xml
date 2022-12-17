@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.profile.setting.currency.CurreencyViewmodel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.menus.profile.setting.currency.CurrencyActivity">
+
+    <ImageButton
+        android:contentDescription="@string/app_name"
+        android:onClick="@{viewmodel.onBack}"
+        android:id="@+id/imageButton42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BackButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+         />
+
+    <TextView
+        android:textAllCaps="true"
+        android:id="@+id/textView208"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_13sdp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:textColor="@color/text_black"
+        android:text="@string/currency"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton42"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageButton42" />
+
+    <View
+        android:id="@+id/view41"
+        android:layout_width="wrap_content"
+        style="@style/ViewActionLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView208" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCurrency"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/eight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view41" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

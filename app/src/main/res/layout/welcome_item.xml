@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+<data>
+    <variable
+        name="viewmodel"
+        type="com.wiesoftware.spine.data.net.reponses.WelcomeData" />
+</data>
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:layout_width="@dimen/_250"
+    android:layout_height="wrap_content"
+    android:background="@drawable/demo"
+    android:layout_marginStart="2dp"
+    android:layout_marginEnd="2dp"
+    >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        app:image="@{viewmodel.image}"
+        android:id="@+id/imageView3"
+        android:layout_width="@dimen/_80"
+        android:layout_height="@dimen/_80"
+        android:src="@drawable/ic_profile"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/text_white"
+        android:layout_marginStart="@dimen/eight"
+        android:layout_marginTop="@dimen/eight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+         />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/eight"
+        android:layout_marginEnd="@dimen/eight"
+        android:text="@{viewmodel.name}"
+        android:padding="@dimen/eight"
+        android:textSize="@dimen/normalText"
+        android:textColor="@color/text_white"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/eight"
+        android:layout_marginTop="@dimen/eight"
+        android:layout_marginEnd="@dimen/eight"
+        android:layout_marginBottom="@dimen/eight"
+        android:text="@{viewmodel.title}"
+        android:textSize="@dimen/big_text"
+        android:padding="@dimen/eight"
+        android:textColor="@color/text_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+<!--
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+-->
+
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/exoplayerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

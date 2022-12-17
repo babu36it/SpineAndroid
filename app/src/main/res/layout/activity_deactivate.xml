@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.deactiveaccount.DeactivateViewmodel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.menus.profile.setting.account_settings.deactiveaccount.DeactivateActivity">
+
+        <ImageButton
+            android:contentDescription="@string/app_name"
+            android:id="@+id/imageButton41"
+            style="@style/BackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{viewmodel.onBack}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView207"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/deactivate_my_account"
+            android:textAllCaps="true"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton41"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageButton41" />
+
+        <TextView
+            android:id="@+id/button80"
+            style="@style/ButtonRound"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/deactivate_my_account"
+            android:textAllCaps="true"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView211"
+            app:layout_constraintWidth_percent=".8" />
+
+        <View
+            android:id="@+id/view40"
+            style="@style/ViewActionLine"
+            android:layout_width="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView207" />
+
+        <TextView
+            android:id="@+id/textView209"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sixteen"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/sixteen"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/are_you_sure_you_want_to_deactivate_your_account"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view40" />
+
+        <TextView
+            android:id="@+id/textView210"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/your_activity_posts_and_other_contributions_will_remain_on_spine_but_your_profile_and_saved_posts_will_be_removed"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@+id/textView209"
+            app:layout_constraintStart_toStartOf="@+id/textView209"
+            app:layout_constraintTop_toBottomOf="@+id/textView209" />
+
+        <TextView
+            android:id="@+id/textView211"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/if_you_decide_to_rejoine_later_you_can_sign_in_with_the_same_credentials_to_reactivate_your_account"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@+id/textView210"
+            app:layout_constraintStart_toStartOf="@+id/textView210"
+            app:layout_constraintTop_toBottomOf="@+id/textView210" />
+
+        <TextView
+            android:id="@+id/txt_delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sixteen"
+            android:layout_marginTop="@dimen/sixteen"
+            android:layout_marginEnd="@dimen/sixteen"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/want_to_delete_your_account_for_good"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button80" />
+
+        <TextView
+            android:id="@+id/txtdelete_decr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/deleting_your_account_means_you_won_t_be_able_to_get_your_posts_and_saved_content_back_all_of_your_spine_data_will_be_deleted"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_delete"/>
+
+        <TextView
+            android:id="@+id/btn_delete"
+            style="@style/ButtonRound"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/delete_my_account"
+            android:textAllCaps="true"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtdelete_decr"
+            app:layout_constraintWidth_percent=".8" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

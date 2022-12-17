@@ -1,0 +1,24 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=BE:A3:AB:67:B6:C9:64:D8:C2:9D:3D:68:A0:BE:3D:01:F7:FD:F3:A7%3Bcom.wiesoftware.spine.ui.home.menus.events.maps
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    com.wiesoftware.spine.ui.home.menus.events.maps
+
+    SHA-1 certificate fingerprint:
+    BE:A3:AB:67:B6:C9:64:D8:C2:9D:3D:68:A0:BE:3D:01:F7:FD:F3:A7
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key   AIzaSyBnnkiuvBnTmq7nNJD7RWXbE4XaF3uANC4
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"     AIzaSyBH8329JrLtwaMvDAXao9HRNb1XvZgDyys
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBH8329JrLtwaMvDAXao9HRNb1XvZgDyys</string>
+</resources>

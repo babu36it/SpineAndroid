@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="model"
+            type="com.wiesoftware.spine.data.net.reponses.HashtagData" />
+    </data>
+
+<androidx.cardview.widget.CardView
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="@dimen/_20"
+    app:cardBackgroundColor="@color/colorPrimaryDark"
+    >
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{model.hash_title}"
+        android:textSize="@dimen/big_text"
+        android:padding="@dimen/dp4"
+        android:paddingStart="@dimen/sixteen"
+        android:paddingEnd="@dimen/sixteen"
+        android:textColor="@color/text_white"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
+</layout>

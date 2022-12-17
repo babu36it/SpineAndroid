@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.auth.register.RegisterViewModel" />
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        >
+    <RelativeLayout
+        android:orientation="vertical"
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/root_reg"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.auth.register.RegisterActivity">
+
+        <ImageButton
+            android:onClick="@{viewmodel::onBackButtonClicked}"
+            android:id="@+id/ibComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/BackButton"
+            android:tint="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <ImageView
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:id="@+id/imageView2"
+            android:layout_width="@dimen/_72"
+            android:layout_height="@dimen/_72"
+            android:layout_marginTop="@dimen/eight"
+            android:src="@drawable/ic_spine_home"
+            app:tint="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ibComment"
+            />
+
+        <TextView
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:id="@+id/textView5"
+            style="@style/NormalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing=".2"
+            android:text="@string/s_p_i_n_e"
+            android:textSize="@dimen/text_22"
+            android:textColor="@android:color/black"
+            android:fontFamily="@font/poppins_bold"
+            android:padding="@dimen/eight"
+            app:layout_constraintEnd_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <TextView
+            android:layout_gravity="center"
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/NormalText"
+            android:layout_marginTop="@dimen/eight"
+            android:text="@string/register"
+            android:textSize="@dimen/_20sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/textView5"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <EditText
+            android:text="@={viewmodel.userName}"
+            android:id="@+id/editTextTextPersonName3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/username"
+            style="@style/EditTextSpine"
+            android:textColorHint="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <EditText
+            android:text="@={viewmodel.email}"
+            android:id="@+id/editTextTextEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email"
+            android:background="@drawable/et_bg"
+            style="@style/EditTextSpine"
+            android:textColorHint="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+
+        <EditText
+            android:text="@={viewmodel.password}"
+            android:id="@+id/editTextTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="@string/password"
+            style="@style/EditTextSpine"
+            android:textColorHint="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+
+        <EditText
+            android:text="@={viewmodel.town}"
+            android:id="@+id/editTextTextPersonName4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/town"
+            style="@style/EditTextSpine"
+            android:textColorHint="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+
+        <TextView
+            android:id="@+id/tvCat"
+            style="@style/EditTextSpine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{viewmodel::onCatSelection}"
+            android:text="@string/select"
+            android:textColor="@android:color/white"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+
+        <android.widget.Button
+            android:layout_marginHorizontal="@dimen/_25sdp"
+            android:onClick="@{viewmodel::onRegisterButtonClicked}"
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/sixteen"
+            android:background="@drawable/btn_bg"
+            android:text="@string/continue_"
+            android:textSize="@dimen/_13sdp"
+            android:textColor="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName4"
+            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName4"
+            app:layout_constraintTop_toBottomOf="@+id/tvCat" />
+
+        <TextView
+            android:layout_marginHorizontal="@dimen/_25sdp"
+            android:onClick="@{viewmodel.onServiceClick}"
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            android:text="@string/i_have_read_and_agree_to_the_terms_of_service"
+            android:textAlignment="center"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/button6"
+            app:layout_constraintStart_toStartOf="@+id/button6"
+            app:layout_constraintTop_toBottomOf="@+id/button6" />
+        <TextView
+            android:layout_marginHorizontal="@dimen/_25sdp"
+            android:onClick="@{viewmodel.onPrivacyPolicyClick}"
+            android:id="@+id/textViewprivacy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            android:text="@string/and_privacy_policy"
+            android:textAlignment="center"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/button6"
+            app:layout_constraintStart_toStartOf="@+id/button6"
+            app:layout_constraintTop_toBottomOf="@+id/button6" />
+
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/or"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/textView8"
+            app:layout_constraintStart_toStartOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <android.widget.Button
+            android:layout_marginHorizontal="@dimen/_25sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:onClick="@{viewmodel.onFacebookSignup}"
+            android:id="@+id/button7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/sixteen"
+            android:background="@drawable/fb_bg"
+            style="@style/NormalText"
+            android:text="@string/continue_with_facebook"
+            android:textAllCaps="false"
+            android:textSize="@dimen/sp18"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/textView8"
+            app:layout_constraintStart_toStartOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+
+
+    </LinearLayout>
+        <ProgressBar
+            android:layout_centerInParent="true"
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </RelativeLayout>
+
+    </ScrollView>
+</layout>

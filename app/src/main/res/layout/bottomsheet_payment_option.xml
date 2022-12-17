@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/text_white">
+
+    <ImageButton
+        android:id="@+id/imageButton84"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/eight"
+        android:layout_marginTop="@dimen/eight"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/app_name"
+        android:padding="@dimen/eight"
+        android:src="@drawable/ic_close"
+        android:tint="@color/text_black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView316"
+        style="@style/TitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/payment"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton84"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageButton84" />
+
+    <View
+        android:id="@+id/view83"
+        style="@style/ViewActionLine"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView316" />
+
+    <TextView
+        android:id="@+id/textView317"
+        style="@style/NormalText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginTop="@dimen/sixteen"
+        android:text="@string/select_payment_method"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view83" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView317"
+        app:layout_constraintTop_toBottomOf="@+id/textView317">
+
+        <RadioButton
+            android:id="@+id/radioButton12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/paypal" />
+
+        <RadioButton
+            android:id="@+id/radioButton11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/credit_card" />
+
+        <RadioButton
+            android:id="@+id/radioButton10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bank_account" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView318"
+        style="@style/NormalText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:text="@string/by_clicking_pay_now_publish_you_agree_to_the_ad_guidelines_and_ad_terms_and_conditions_of_the_spiritual_network"
+        app:layout_constraintEnd_toEndOf="@+id/radioGroup2"
+        app:layout_constraintStart_toStartOf="@+id/radioGroup2"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+    <Button
+        android:id="@+id/button121"
+        style="@style/ButtonRound"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:layout_marginBottom="@dimen/sixteen"
+        android:text="@string/pay_now_publish"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView318"
+        app:layout_constraintStart_toStartOf="@+id/textView318"
+        app:layout_constraintTop_toBottomOf="@+id/textView318" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

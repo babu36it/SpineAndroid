@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/top_two_round_back">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        app:cardCornerRadius="@dimen/eight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/imageButton66"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_3sdp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:background="@android:color/transparent"
+            android:src="@drawable/round_gray_back" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView256"
+        style="@style/TitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        android:text="@string/add"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:textAlignment="center"
+        android:textColor="@color/day_night_both_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+
+    <View
+        android:id="@+id/viewTop"
+        style="@style/ViewActionLine"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView256" />
+
+
+    <Button
+        android:id="@+id/buttonVoiceOver"
+        style="@style/TextButtonRegular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:drawableEnd="@drawable/ic_arrow_right"
+        android:elevation="@dimen/dp1"
+        android:text="@string/voice_over"
+        android:textAlignment="textStart"
+        android:textColor="@color/day_night_both_black"
+        app:layout_constraintEnd_toEndOf="@+id/viewTop"
+        app:layout_constraintStart_toStartOf="@+id/viewTop"
+        app:layout_constraintTop_toBottomOf="@+id/viewTop" />
+
+    <View
+        android:id="@+id/view71"
+        style="@style/ViewActionLine"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonVoiceOver" />
+
+    <Button
+        android:id="@+id/button106"
+        style="@style/TextButtonRegular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:drawableEnd="@drawable/ic_arrow_right"
+        android:elevation="@dimen/dp1"
+        android:text="@string/question_or_thought"
+        android:textAlignment="textStart"
+        android:textColor="@color/day_night_both_black"
+        app:layout_constraintEnd_toEndOf="@+id/view71"
+        app:layout_constraintStart_toStartOf="@+id/view71"
+        app:layout_constraintTop_toBottomOf="@+id/view71" />
+
+    <View
+        android:id="@+id/view72"
+        style="@style/ViewActionLine"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button106" />
+
+    <Button
+        android:id="@+id/button107"
+        style="@style/TextButtonRegular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:drawableEnd="@drawable/ic_arrow_right"
+        android:elevation="@dimen/dp1"
+        android:text="@string/picture_or_video"
+        android:textAlignment="textStart"
+        android:textColor="@color/day_night_both_black"
+        app:layout_constraintEnd_toEndOf="@+id/button106"
+        app:layout_constraintStart_toStartOf="@+id/button106"
+        app:layout_constraintTop_toBottomOf="@+id/view72" />
+
+    <View
+        android:id="@+id/view73"
+        style="@style/ViewActionLine"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button107" />
+
+    <Button
+        android:id="@+id/button108"
+        style="@style/TextButtonRegular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:drawableEnd="@drawable/ic_arrow_right"
+        android:elevation="@dimen/dp1"
+        android:text="@string/story"
+        android:textAlignment="textStart"
+        android:textColor="@color/day_night_both_black"
+        app:layout_constraintEnd_toEndOf="@+id/button107"
+        app:layout_constraintStart_toStartOf="@+id/button107"
+        app:layout_constraintTop_toBottomOf="@+id/view73" />
+
+    <View
+        android:id="@+id/view74"
+        style="@style/ViewActionLine"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button108" />
+
+    <Button
+        android:id="@+id/button109"
+        style="@style/TextButtonRegular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:drawableEnd="@drawable/ic_arrow_right"
+        android:elevation="@dimen/dp1"
+        android:text="@string/event"
+        android:textAlignment="textStart"
+        android:textColor="@color/day_night_both_black"
+        app:layout_constraintEnd_toEndOf="@+id/button108"
+        app:layout_constraintStart_toStartOf="@+id/button108"
+        app:layout_constraintTop_toBottomOf="@+id/view74" />
+
+    <View
+        android:id="@+id/view75"
+        style="@style/ViewActionLine"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button109" />
+
+    <Button
+        android:id="@+id/button110"
+        style="@style/TextButtonRegular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:drawableEnd="@drawable/ic_arrow_right"
+        android:elevation="@dimen/dp1"
+        android:text="@string/podcast"
+        android:textAlignment="textStart"
+        android:textColor="@color/day_night_both_black"
+        app:layout_constraintEnd_toEndOf="@+id/button109"
+        app:layout_constraintStart_toStartOf="@+id/button109"
+        app:layout_constraintTop_toBottomOf="@+id/view75" />
+
+    <View
+        android:id="@+id/view76"
+        style="@style/ViewActionLine"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button110" />
+
+    <Button
+        android:id="@+id/button111"
+        style="@style/TextButtonRegular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:drawableEnd="@drawable/ic_arrow_right"
+        android:elevation="@dimen/dp1"
+        android:text="@string/ad"
+        android:textAlignment="textStart"
+        android:textColor="@color/day_night_both_black"
+        app:layout_constraintEnd_toEndOf="@+id/button110"
+        app:layout_constraintStart_toStartOf="@+id/button110"
+        app:layout_constraintTop_toBottomOf="@+id/view76" />
+
+    <View
+        android:id="@+id/view77"
+        style="@style/ViewActionLine"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        android:layout_marginBottom="@dimen/eight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button111" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

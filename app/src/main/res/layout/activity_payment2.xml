@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.spine.featuredpost.PaymentFeaturedViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.home.menus.spine.featuredpost.PaymentActivity">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp">
+
+            <ImageButton
+                android:id="@+id/imageButton81"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/eight"
+                android:layout_marginTop="@dimen/eight"
+                android:background="@android:color/transparent"
+                android:onClick="@{viewmodel.onClose}"
+                android:padding="@dimen/eight"
+                android:src="@drawable/ic_close"
+                android:tint="@color/text_black" />
+
+            <TextView
+                android:id="@+id/textView309"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@string/payment"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_13sdp" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view82"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/eight"
+            android:background="@color/normal_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton81" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView310"
+                    style="@style/NormalText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:padding="@dimen/eight"
+                    android:text="Ad Post"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton67" />
+
+                <TextView
+                    android:id="@+id/tvAdType"
+                    style="@style/NormalText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:padding="@dimen/eight"
+                    android:text="Ad type: Event"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton67" />
+
+                <TextView
+                    style="@style/NormalText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:padding="@dimen/eight"
+                    android:text="Duration: 1 Week"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton67" />
+
+                <TextView
+                    style="@style/NormalText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:padding="@dimen/eight"
+                    android:text="Start Date: 12 May 2020"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton67" />
+
+                <TextView
+                    style="@style/NormalText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:padding="@dimen/eight"
+                    android:text="Time: 16:00"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton67" />
+
+                <TextView
+                    style="@style/NormalText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_30sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:padding="@dimen/eight"
+                    android:text="100 €"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_18sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton67" />
+
+                <View
+                    android:id="@+id/view83"
+                    style="@style/ViewActionLine"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView316" />
+
+                <TextView
+                    android:id="@+id/textView317"
+                    style="@style/NormalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/sixteen"
+                    android:layout_marginTop="@dimen/sixteen"
+                    android:text="@string/select_payment_method"
+                    android:textColor="@color/text_black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view83" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView317"
+                    app:layout_constraintTop_toBottomOf="@+id/textView317">
+
+                    <RadioButton
+                        android:id="@+id/radioButton12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@string/paypal"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@string/credit_card"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/_12sdp"
+                        android:visibility="gone" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@string/bank_account"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/_12sdp"
+                        android:visibility="gone" />
+                </RadioGroup>
+
+
+                <TextView
+                    android:id="@+id/textView318"
+                    style="@style/NormalText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text="@string/by_clicking_pay_now_publish_you_agree_to_the_ad_guidelines_and_ad_terms_and_conditions_of_the_spiritual_network"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintEnd_toEndOf="@+id/radioGroup2"
+                    app:layout_constraintStart_toStartOf="@+id/radioGroup2"
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+                <TextView
+                    android:id="@+id/button121"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/sixteen"
+                    android:background="@drawable/round_button_bg"
+                    android:gravity="center"
+                    android:onClick="@{viewmodel.onNext}"
+                    android:text="@string/pay_now_publish"
+                    android:textColor="@color/white" />
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+</layout>

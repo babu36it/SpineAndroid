@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools">
+
+<data>
+
+    <variable
+        name="viewmodel"
+        type="com.wiesoftware.spine.ui.home.menus.spine.practicioners.SearchPracticionerViewmodel" />
+</data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.menus.spine.practicioners.PracticionersActivity">
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_practicioner"
+        android:textAllCaps="true"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/_13sdp"
+        style="@style/TitleText"
+        app:layout_constraintBottom_toBottomOf="@+id/imageCloseButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageCloseButton" />
+
+    <ImageButton
+        android:id="@+id/imageCloseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:layout_marginEnd="@dimen/eight"
+        android:background="@android:color/transparent"
+        android:padding="@dimen/eight"
+        android:onClick="@{viewmodel.onCloseFilter}"
+        android:tint="@color/text_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_close"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <View
+        android:id="@+id/view15"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/eight"
+        android:background="@color/gray_tint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageCloseButton" />
+
+    <TextView
+        android:id="@+id/textView79"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/thirty_two"
+        android:layout_marginTop="@dimen/eight"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/what_can_we_help_you_find"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/normalText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view15" />
+    <RadioGroup
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/_minus5sdp"
+        android:id="@+id/redioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/textView79"
+        app:layout_constraintStart_toStartOf="@+id/textView79"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <RadioButton
+        android:button="@drawable/checkbox_selector"
+        android:id="@+id/checkBoxWorld"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="browse worldwide"
+        android:fontFamily="@font/poppins_regular"
+        android:padding="0dp"
+        android:checked="false"
+        android:paddingStart="@dimen/eight"
+        android:textAlignment="center"
+        />
+    <RadioButton
+        android:textAlignment="center"
+        android:paddingStart="@dimen/eight"
+        android:checked="false"
+        android:button="@drawable/checkbox_selector"
+        android:padding="0dp"
+        android:id="@+id/checkBoxCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="browse by country"
+        android:fontFamily="@font/poppins_regular"
+         />
+</RadioGroup>
+    <TextView
+        android:id="@+id/textView80"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/big_text"
+        android:fontFamily="@font/poppins_regular"
+        android:text="or browse by city"
+        android:textColor="@color/text_black"
+        app:layout_constraintStart_toStartOf="@+id/editTextByCity"
+        app:layout_constraintTop_toBottomOf="@+id/redioGroup" />
+
+    <EditText
+        android:drawableEnd="@drawable/ic_arrow_right"
+        android:id="@+id/editTextByCity"
+        style="@style/EditTextSpine"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shadow_box"
+        android:drawableStart="@drawable/ic_location"
+        android:drawablePadding="@dimen/eight"
+        app:drawableTint="@color/day_night_both_black"
+        android:elevation="@dimen/sixteen"
+        android:ems="10"
+        android:hint="@string/location"
+        android:textSize="@dimen/_9sdp"
+        android:text="@={viewmodel.location}"
+        android:inputType="none"
+        android:focusableInTouchMode="false"
+        android:focusable="false"
+        android:onClick="@{viewmodel.onLocationClick}"
+        android:textColor="@color/day_night_both_black"
+        android:textColorHint="@color/dark_gray_day_night"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView80" />
+    <TextView
+        android:id="@+id/textView81"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/str_key_performance_method"
+        android:textColor="@color/text_black"
+        android:ellipsize="end"
+        android:ems="15"
+        app:layout_constraintStart_toStartOf="@+id/editTextByCity"
+        app:layout_constraintTop_toBottomOf="@+id/editTextByCity" />
+
+    <EditText
+        android:drawableEnd="@drawable/ic_arrow_right"
+        android:id="@+id/editTextKEyPerformance"
+        style="@style/EditTextSpine"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_48"
+        android:background="@drawable/shadow_box"
+        android:elevation="@dimen/sixteen"
+        android:ems="10"
+        android:hint="@string/select"
+        android:textSize="@dimen/_9sdp"
+        android:inputType="none"
+        android:focusableInTouchMode="false"
+        android:focusable="false"
+        android:onClick="@{viewmodel.onkeyPerformance}"
+        android:textColor="@color/day_night_both_black"
+        android:textColorHint="@color/dark_gray_day_night"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView81" />
+     
+    <TextView
+        android:id="@+id/textView82"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/str_desease_pattern"
+        android:textColor="@color/text_black"
+        app:layout_constraintStart_toStartOf="@+id/textView81"
+        app:layout_constraintTop_toBottomOf="@+id/editTextKEyPerformance" />
+
+    <EditText
+        android:drawableEnd="@drawable/ic_arrow_right"
+        android:id="@+id/editTextDeasesPattern"
+        style="@style/EditTextSpine"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_48"
+        android:background="@drawable/shadow_box"
+        android:elevation="@dimen/sixteen"
+        android:ems="10"
+        android:hint="@string/select"
+        android:inputType="none"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textColor="@color/day_night_both_black"
+        android:textColorHint="@color/dark_gray_day_night"
+        android:textSize="@dimen/_9sdp"
+        android:onClick="@{viewmodel.onDeseaseClicked}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView82"
+        tools:ignore="TouchTargetSizeCheck" />
+    
+    <TextView
+        android:id="@+id/textViewCat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/categories_selection"
+        android:textColor="@color/text_black"
+        app:layout_constraintStart_toStartOf="@+id/textView81"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDeasesPattern" />
+
+    <EditText
+        android:drawableEnd="@drawable/ic_arrow_right"
+        android:id="@+id/editTextCategory"
+        style="@style/EditTextSpine"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_48"
+        android:background="@drawable/shadow_box"
+        android:elevation="@dimen/sixteen"
+        android:ems="10"
+        android:hint="@string/select"
+        android:inputType="none"
+        android:focusableInTouchMode="false"
+        android:focusable="false"
+        android:onClick="@{viewmodel.onCategoryClick}"
+        android:textColor="@color/day_night_both_black"
+        android:textColorHint="@color/dark_gray_day_night"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCat"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/button38"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_32dp"
+        android:background="@drawable/round_border"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/find_practicioners"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:onClick="@{viewmodel.findPracticioner}"
+        app:layout_constraintEnd_toEndOf="@+id/editTextCategory"
+        app:layout_constraintStart_toStartOf="@+id/editTextCategory"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCategory" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

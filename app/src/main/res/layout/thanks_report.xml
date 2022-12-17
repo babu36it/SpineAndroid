@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/btn_bg">
+
+
+    <ImageButton
+        android:id="@+id/imageButton66"
+        android:layout_width="@dimen/_150dp"
+        android:layout_height="@dimen/eight"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/round_gray_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView256"
+        style="@style/TitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginTop="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        android:gravity="center"
+        android:text="@string/thanks_for_letting_us_know"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton66" />
+
+    <ImageButton
+        android:id="@+id/imageButton67"
+        android:layout_width="@dimen/_48"
+        android:layout_height="@dimen/_48"
+        android:layout_marginTop="@dimen/eight"
+        android:background="@drawable/round_button_bg"
+        android:tint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView256" />
+
+    <ImageButton
+        android:id="@+id/imageButton68"
+        android:layout_width="@dimen/_32dp"
+        android:layout_height="@dimen/_32dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/round_white"
+        android:src="@drawable/ic_check"
+        android:tint="@color/text_black"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton67"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton67"
+        app:layout_constraintStart_toStartOf="@+id/imageButton67"
+        app:layout_constraintTop_toTopOf="@+id/imageButton67" />
+
+    <TextView
+        android:id="@+id/textView260"
+        style="@style/NormalText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        android:layout_marginBottom="@dimen/sixteen"
+        android:text="@string/your_feedback_is_important_in_helping_us_to_keep_the_spiritual_network_community_safe_and_its_content_in_line_with_the_community_guidelines"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView256"
+        app:layout_constraintStart_toStartOf="@+id/textView256"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton67" />
+</androidx.constraintlayout.widget.ConstraintLayout>

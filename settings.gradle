@@ -1,0 +1,3 @@
+include ':uikit-kotlin'
+include ':app'
+rootProject.name = "Spine"

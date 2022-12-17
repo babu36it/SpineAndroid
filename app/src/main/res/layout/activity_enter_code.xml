@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.podcasts.addrss.entercode.EnterCodeViewmodel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.home.menus.podcasts.addrss.entercode.EnterCodeActivity">
+
+        <RelativeLayout
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp">
+
+            <ImageButton
+                android:contentDescription="@string/app_name"
+                android:id="@+id/imageButton36"
+                style="@style/BackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:onClick="@{viewmodel.onBack}" />
+
+            <TextView
+                android:id="@+id/textView191"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@string/enter_code"
+                android:textAllCaps="true"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_13sdp" />
+
+
+        </RelativeLayout>
+
+
+        <View
+            android:id="@+id/view14"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/gray_tint" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView281"
+                style="@style/NormalText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/sixteen"
+                android:layout_marginTop="@dimen/eight"
+                android:textColor="@color/text_black"
+                android:layout_marginEnd="@dimen/sixteen"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@string/a_verification_code_has_been_sent_to_the_email_address_of_the_entered_rss_feed"
+                android:textAlignment="center"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:id="@+id/tvEmail"
+                style="@style/NormalText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text=""
+                android:textColor="@color/text_black"
+                android:textAlignment="center"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:textColor="@color/text_black"
+                android:id="@+id/textView283"
+                style="@style/NormalText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@string/enter_this_code_to_verify_you_are_the_owner_of_the_podcast_please_check_junk_folder_in_case_code_is_not_received"
+                android:textAlignment="center"
+                android:textSize="@dimen/_12sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+
+                <EditText
+                    android:hint="1"
+                    android:id="@+id/editTextNumber"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:maxLines="1"
+                    android:padding="@dimen/eight"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_20sdp" />
+
+                <EditText
+                    android:hint="1"
+                    android:id="@+id/editTextNumber1"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:maxLines="1"
+
+                    android:padding="@dimen/eight"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_20sdp" />
+
+
+                <EditText
+                    android:hint="1"
+                    android:id="@+id/editTextNumber3"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:maxLines="1"
+
+                    android:padding="@dimen/eight"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_20sdp" />
+
+                <EditText
+                    android:hint="1"
+                    android:id="@+id/editTextNumber4"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:maxLines="1"
+                    android:padding="@dimen/eight"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_20sdp" />
+
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/editTextTextPersonName30"
+                style="@style/TitleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sixteen"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:letterSpacing="3"
+                android:text="@={viewmodel.code}"
+                android:textAlignment="center"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/textView283"
+                app:layout_constraintStart_toStartOf="@+id/textView283"
+                app:layout_constraintTop_toBottomOf="@+id/textView283" />
+
+
+            <TextView
+                android:id="@+id/button98"
+                style="@style/ButtonRound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/next"
+                android:textAllCaps="true" />
+
+            <Button
+                android:id="@+id/button100"
+                style="@style/TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:onClick="@{viewmodel.onResendCode}"
+                android:text="@string/resend_code"
+                app:layout_constraintEnd_toEndOf="@+id/editTextNumber4"
+                app:layout_constraintStart_toStartOf="@+id/editTextNumber"
+                app:layout_constraintTop_toBottomOf="@+id/button98" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

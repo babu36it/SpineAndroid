@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="model"
+            type="com.wiesoftware.spine.data.net.reponses.EveMsgUserData" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        app:img="@{model.event_user_image}"
+        android:id="@+id/imageView16"
+        android:layout_width="@dimen/_52sdp"
+        android:layout_height="@dimen/_52sdp"
+        android:src="@drawable/ic_profile"
+        app:civ_circle_background_color="@color/colorPrimaryDark"
+        android:layout_marginStart="@dimen/eight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+         />
+
+    <TextView
+        android:id="@+id/textView140"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/thirty_two"
+        android:layout_marginEnd="@dimen/eight"
+        style="@style/SimpleText_Sami_bold"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/sixteen"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textView142"
+        app:layout_constraintStart_toEndOf="@+id/imageView16"
+        app:layout_constraintBottom_toTopOf="@+id/textView141"
+        />
+
+    <TextView
+        android:id="@+id/textView141"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/OnlyText"
+        android:textSize="@dimen/_10sdp"
+        android:padding="-10sp"
+        android:textColor="@color/grey"
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView16"
+        app:layout_constraintEnd_toEndOf="@+id/textView140"
+        app:layout_constraintStart_toStartOf="@+id/textView140"
+        app:layout_constraintTop_toBottomOf="@+id/textView142" />
+
+    <TextView
+        android:id="@+id/textView142"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/eight"
+        android:text="3:21 pm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView16" />
+
+    <View
+        android:id="@+id/view19"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/eight"
+        android:background="@color/gray_tint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView16" />
+
+    <ImageView
+        android:id="@+id/imageView37"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
+        android:src="@drawable/message_badge"
+        app:layout_constraintEnd_toEndOf="@+id/textView142"
+        app:layout_constraintTop_toBottomOf="@+id/textView142" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

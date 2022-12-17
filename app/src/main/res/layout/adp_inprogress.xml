@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.wiesoftware.spine.ui.home.menus.profile.setting.my_ads.InProgressModel" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_220sdp"
+            android:background="@drawable/bgimage"
+            android:orientation="vertical">
+
+            <ImageView
+                android:contentDescription="@string/app_name"
+                android:id="@+id/imageView47"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:scaleType="fitXY"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/textView313"
+                style="@style/NormalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="#E6E6E6"
+                android:textColor="#484848"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:paddingStart="@dimen/_25sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_25sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:text="@{model.title}"
+                android:textSize="@dimen/_13sdp" />
+
+            <TextView
+                android:id="@+id/textView314"
+                style="@style/NormalText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView313"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/eight"
+                android:layout_marginEnd="@dimen/eight"
+                android:layout_marginBottom="@dimen/eight"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@{model.name}"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp" />
+
+
+            <ImageButton
+                android:id="@+id/imageButton83"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="@dimen/eight"
+                android:layout_marginBottom="@dimen/eight"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/eight"
+                android:src="@drawable/ic_diagonal_arrow"
+                android:tint="@color/text_white"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView47"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/textView315"
+            style="@style/NormalText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:layout_marginEnd="@dimen/eight"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:padding="@dimen/eight"
+            android:text="@{model.desc}"
+            android:textStyle="bold"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView47" />
+
+        <View
+            android:id="@+id/view82"
+            style="@style/ViewActionLine"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView315" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:padding="@dimen/eight"
+                android:text="Finish &amp; Publish Ad"
+                android:textColor="#E42E11"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:background="@drawable/ads_rectangle"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="center"
+                android:text="Edit"
+                android:textAllCaps="true"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/_13sdp" />
+
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+
+</layout>

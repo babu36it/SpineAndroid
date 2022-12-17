@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="big_text">18sp</dimen>
+    <dimen name="normalText_12">12sp</dimen>
+    <dimen name="normalText_10">10sp</dimen>
+    <dimen name="normalText">14sp</dimen>
+    <dimen name="thirty_two">32dp</dimen>
+    <dimen name="eight">8dp</dimen>
+    <dimen name="text_22">22sp</dimen>
+    <dimen name="sixteen">16dp</dimen>
+    <dimen name="_72">72dp</dimen>
+    <dimen name="_12">12dp</dimen>
+    <dimen name="_54">54dp</dimen>
+    <dimen name="_90">90dp</dimen>
+    <dimen name="_40">40dp</dimen>
+    <dimen name="_80">80dp</dimen>
+    <dimen name="_48">48dp</dimen>
+    <dimen name="_100">100dp</dimen>
+    <dimen name="_300">300dp</dimen>
+    <dimen name="_250">250dp</dimen>
+    <dimen name="_20">20dp</dimen>
+    <dimen name="_60">60dp</dimen>
+    <dimen name="_12sp">12sp</dimen>
+    <dimen name="_24dp">24dp</dimen>
+    <dimen name="_32sp">32sp</dimen>
+    <dimen name="_150dp">150dp</dimen>
+    <dimen name="_200dp">200dp</dimen>
+    <dimen name="_32dp">32dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="_350">350dp</dimen>
+    <dimen name="_120dp">120dp</dimen>
+
+
+
+    <dimen name="margin_xsmall">16dp</dimen>
+    <dimen name="margin_small">32dp</dimen>
+    <dimen name="margin_medium">48dp</dimen>
+    <dimen name="margin_large">64dp</dimen>
+    <dimen name="margin_xlarge">92dp</dimen>
+
+    <dimen name="spacing_small">4dp</dimen>
+    <dimen name="spacing_medium">8dp</dimen>
+    <dimen name="spacing_large">16dp</dimen>
+
+    <dimen name="stroke_small">4dp</dimen>
+    <dimen name="stroke_medium">8dp</dimen>
+    <dimen name="stroke_large">12dp</dimen>
+
+    <dimen name="round_button_small">32dp</dimen>
+    <dimen name="round_button_medium">64dp</dimen>
+    <dimen name="round_button_large">92dp</dimen>
+
+    <dimen name="rect_button_margin">12dp</dimen>
+    <dimen name="rect_button_width">80dp</dimen>
+    <dimen name="rect_button_height">24dp</dimen>
+    <dimen name="shutter_button_margin">60dp</dimen>
+    <dimen name="sp18">18sp</dimen>
+    <dimen name="dp4">4dp</dimen>
+    <dimen name="dp1">1dp</dimen>
+    <dimen name="_66">66dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="dots_height">30dp</dimen>
+    <dimen name="dots_margin_bottom">20dp</dimen>
+    <dimen name="img_width_height">120dp</dimen>
+    <dimen name="slide_title">30dp</dimen>
+    <dimen name="slide_desc">16dp</dimen>
+    <dimen name="desc_padding">40dp</dimen>
+    <dimen name="profile_size">@dimen/_45sdp</dimen>
+    <dimen name="bedge_small">@dimen/_12sdp</dimen>
+</resources>

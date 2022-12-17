@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.auth.otp.OtpViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        tools:context=".ui.auth.otp.OtpActivity">
+
+        <ImageButton
+            android:contentDescription="@string/app_name"
+            android:id="@+id/ibComment"
+            style="@style/BackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{viewmodel::onBackButtonClick}"
+            android:tint="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:id="@+id/llPinView"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:hint="1"
+                android:id="@+id/editTextNumber"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/thirty_two"
+                android:backgroundTint="@android:color/white"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:padding="@dimen/eight"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/big_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <EditText
+                android:hint="1"
+                android:id="@+id/editTextNumber1"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/thirty_two"
+                android:backgroundTint="@android:color/white"
+                android:ems="10"
+                android:padding="@dimen/eight"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:inputType="number"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/big_text"
+                app:layout_constraintEnd_toStartOf="@+id/editTextNumber3"
+                app:layout_constraintStart_toEndOf="@+id/editTextNumber"
+                />
+
+            <EditText
+                android:hint="1"
+                android:id="@+id/editTextNumber3"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/thirty_two"
+                android:backgroundTint="@android:color/white"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="1"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:maxLines="1"
+                android:padding="@dimen/eight"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/big_text"
+                app:layout_constraintEnd_toStartOf="@+id/editTextNumber4"
+                app:layout_constraintStart_toEndOf="@+id/editTextNumber1"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <EditText
+                android:hint="1"
+                android:id="@+id/editTextNumber4"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/thirty_two"
+                android:backgroundTint="@android:color/white"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="1"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:maxLines="1"
+                android:padding="@dimen/eight"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/big_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/editTextNumber3"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <EditText
+                android:hint="1"
+                android:id="@+id/editTextNumber5"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/thirty_two"
+                android:backgroundTint="@android:color/white"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="1"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:maxLines="1"
+                android:padding="@dimen/eight"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/big_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/editTextNumber4"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <EditText
+                android:hint="1"
+                android:id="@+id/editTextNumber6"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/thirty_two"
+                android:backgroundTint="@android:color/white"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="1"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:maxLines="1"
+                android:padding="@dimen/eight"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/big_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/editTextNumber5"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        </LinearLayout>
+
+
+
+      <com.chaos.view.PinView
+          android:visibility="gone"
+          android:id="@+id/otp_user"
+          android:gravity="center"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView11">
+
+      </com.chaos.view.PinView>
+
+        <TextView
+            android:id="@+id/tvOtpUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/eight"
+            android:text="user@gmail.com"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/big_text"
+            app:layout_constraintBottom_toBottomOf="@+id/ibComment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ibComment"
+            app:layout_constraintTop_toTopOf="@+id/ibComment" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sixteen"
+            android:layout_marginTop="@dimen/_54"
+            android:layout_marginEnd="@dimen/sixteen"
+            android:padding="@dimen/eight"
+            android:text="@string/verification_code_has_been_sent_to_your_email_please_check_junk_folder_in_case_code_is_not_received"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/normalText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvOtpUser" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/thirty_two"
+            android:padding="@dimen/eight"
+            android:text="@string/haven_t_received_a_code"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/normalText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llPinView" />
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{viewmodel::getCodeAgain}"
+            android:text="@string/u_get_code_again_u"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <Button
+            android:id="@+id/button9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{viewmodel::getCodeViaSMSButtonClick}"
+            android:text="@string/u_get_code_via_sms_u"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/button8" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginBottom="@dimen/eight"
+            android:background="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/button8"
+            app:layout_constraintEnd_toStartOf="@+id/button9"
+            app:layout_constraintStart_toEndOf="@+id/button8"
+            app:layout_constraintTop_toTopOf="@+id/button8" />
+
+        <ProgressBar
+            android:id="@+id/pbOtp"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

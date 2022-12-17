@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/demo"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:background="@drawable/welcome_bg"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_marginTop="@dimen/_10sdp"
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/NormalText"
+            android:textStyle="bold"
+            android:text="DEINE DIGITALE HEIMAT"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@android:color/white"
+            android:letterSpacing=".2"
+            android:padding="@dimen/eight"
+            />
+        <TextView
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/OnlyText"
+            android:text="@string/second_layout"
+            android:textSize="@dimen/_12sdp"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+           />
+        <TextView
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/OnlyText"
+            android:text="@string/second_layout_three"
+            android:textSize="@dimen/_12sdp"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            />
+        <TextView
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/OnlyText"
+            android:text="@string/second_layout_two"
+            android:textSize="@dimen/_12sdp"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            />
+        <TextView
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/OnlyText"
+            android:text="The Spiritual Network."
+            android:textSize="@dimen/_12sdp"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            />
+
+        <TextView
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/OnlyText"
+            android:text="Hier sind unsere Regeln für ein respektvolles Miteinander."
+            android:textSize="@dimen/_12sdp"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

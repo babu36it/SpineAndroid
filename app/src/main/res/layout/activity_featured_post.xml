@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.spine.featuredpost.FeaturedPostViewmodel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.menus.spine.featuredpost.FeaturedPostActivity">
+
+
+        <ImageButton
+            android:id="@+id/imageButton79"
+            style="@style/BackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{viewmodel.onBack}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView292"
+            style="@style/TitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_ad"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton79"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageButton79" />
+
+        <Button
+            android:onClick="@{viewmodel.previewAd}"
+            android:id="@+id/button112"
+            style="@style/ButtonRound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/eight"
+            android:text="@string/preview"
+            app:layout_constraintBottom_toBottomOf="@+id/textView292"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView292" />
+
+        <View
+            android:id="@+id/view78"
+            style="@style/ViewActionLine"
+            android:layout_width="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button112" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view78"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+        <TextView
+            android:id="@+id/textView293"
+            style="@style/NormalText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sixteen"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginEnd="@dimen/sixteen"
+            android:text="@string/want_to_promote_a_service_product_event_or_podcast_of_yours"
+            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+             />
+
+        <TextView
+            android:id="@+id/textView294"
+            style="@style/TitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            android:text="@string/ad_duration"
+            app:layout_constraintStart_toStartOf="@+id/textView293"
+            app:layout_constraintTop_toBottomOf="@+id/textView293" />
+
+        <TextView
+            android:onClick="@{viewmodel.selectAdDuration}"
+            android:id="@+id/button113"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/OnlyText"
+            android:background="@drawable/shadow_box"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            app:drawableTint="@color/text_black"
+            android:elevation="@dimen/eight"
+            android:padding="@dimen/eight"
+            android:text="@string/select"
+            android:textAlignment="textStart"
+            android:textColor="@color/text_black"
+            app:layout_constraintEnd_toEndOf="@+id/textView293"
+            app:layout_constraintStart_toStartOf="@+id/textView294"
+            app:layout_constraintTop_toBottomOf="@+id/textView294" />
+
+        <TextView
+            android:id="@+id/textView295"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            android:text="@string/time_slot"
+            style="@style/TitleText"
+            app:layout_constraintStart_toStartOf="@+id/button113"
+            app:layout_constraintTop_toBottomOf="@+id/button113" />
+
+        <TextView
+            android:id="@+id/textView296"
+            style="@style/OnlyText"
+            android:layout_width="168dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginEnd="@dimen/eight"
+            android:elevation="@dimen/eight"
+            android:background="@drawable/shadow_box"
+            android:drawableStart="@drawable/ic_date"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:drawablePadding="@dimen/eight"
+            android:onClick="@{viewmodel.startDate}"
+            android:padding="@dimen/eight"
+            android:text="@string/start_date"
+            app:layout_constraintEnd_toStartOf="@+id/textView297"
+            app:layout_constraintStart_toStartOf="@+id/button113"
+            app:layout_constraintTop_toBottomOf="@+id/textView295" />
+
+        <TextView
+            android:onClick="@{viewmodel.selectTime}"
+            android:id="@+id/textView297"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:text="@string/time"
+            android:background="@drawable/shadow_box"
+            android:padding="@dimen/eight"
+            android:elevation="@dimen/eight"
+            style="@style/OnlyText"
+            android:drawableStart="@drawable/ic_time"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:drawablePadding="@dimen/eight"
+            app:layout_constraintEnd_toEndOf="@+id/button113"
+            app:layout_constraintStart_toEndOf="@+id/textView296"
+            app:layout_constraintTop_toTopOf="@+id/textView296" />
+
+        <TextView
+            android:id="@+id/textView298"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            style="@style/NormalText"
+            android:textAlignment="center"
+            android:text="@string/your_ad_will_be_displayed_continuously_every_day_at_the_chosen_time_slot"
+            app:layout_constraintEnd_toEndOf="@+id/textView297"
+            app:layout_constraintStart_toStartOf="@+id/textView296"
+            app:layout_constraintTop_toBottomOf="@+id/textView296" />
+
+        <TextView
+            android:id="@+id/textView299"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            style="@style/TitleText"
+            android:text="@string/ad_type"
+            app:layout_constraintStart_toStartOf="@+id/textView298"
+            app:layout_constraintTop_toBottomOf="@+id/textView298" />
+
+        <TextView
+            android:onClick="@{viewmodel.selectAdType}"
+            android:id="@+id/textView300"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/OnlyText"
+            android:elevation="@dimen/eight"
+            android:text="@string/select"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:background="@drawable/shadow_box"
+            android:padding="@dimen/eight"
+            app:layout_constraintEnd_toEndOf="@+id/textView298"
+            app:layout_constraintStart_toStartOf="@+id/textView299"
+            app:layout_constraintTop_toBottomOf="@+id/textView299" />
+        <View
+            android:id="@+id/view80"
+            android:layout_width="0dp"
+            style="@style/ViewActionLine"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView300" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/picVid"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view80">
+
+                <ImageView
+                    android:id="@+id/imageView42"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_150dp"
+                    android:layout_marginStart="@dimen/sixteen"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/sixteen"
+                    android:background="@color/gray_tint"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:onClick="@{viewmodel.onPicVidSelect}"
+                    android:id="@+id/button117"
+                    style="@style/TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_an_image_or_video"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView42"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView42"
+                    app:layout_constraintStart_toStartOf="@+id/imageView42"
+                    app:layout_constraintTop_toTopOf="@+id/imageView42" />
+
+                <TextView
+                    android:id="@+id/textView302"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:text="@string/destination_website"
+                    app:layout_constraintStart_toStartOf="@+id/imageView42"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView42" />
+
+                <EditText
+                    android:text="@={viewmodel.picVidWebLink}"
+                    android:id="@+id/editTextTextPersonName33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:background="@drawable/shadow_box"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:drawablePadding="@dimen/eight"
+                    android:elevation="@dimen/eight"
+                    android:ems="10"
+                    android:hint="@string/where_your_ad_links_to"
+                    android:inputType="textPersonName"
+                    android:padding="@dimen/eight"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView42"
+                    app:layout_constraintStart_toStartOf="@+id/textView302"
+                    app:layout_constraintTop_toBottomOf="@+id/textView302" />
+
+                <TextView
+                    android:id="@+id/textView303"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:text="@string/promote_your_ad_optional"
+                    app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName33"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName33" />
+
+                <EditText
+                    android:text="@={viewmodel.picVidAdditionalLine}"
+                    android:id="@+id/editTextTextMultiLine2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginBottom="@dimen/eight"
+                    android:background="@drawable/shadow_box"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:drawablePadding="@dimen/eight"
+                    android:elevation="@dimen/eight"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:hint="@string/add_1_2_lines_of_additional_text_to_promote_your_ad"
+                    android:inputType="textMultiLine"
+                    android:padding="@dimen/eight"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName33"
+                    app:layout_constraintStart_toStartOf="@+id/textView303"
+                    app:layout_constraintTop_toBottomOf="@+id/textView303" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/event"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view80">
+
+
+                <ImageView
+                    android:id="@+id/imageView43"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_150dp"
+                    android:layout_marginStart="@dimen/sixteen"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/sixteen"
+                    android:background="@color/gray_tint"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:onClick="@{viewmodel.onEventImageSelect}"
+                    android:id="@+id/button118"
+                    style="@style/TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_an_image"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView43"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView43"
+                    app:layout_constraintStart_toStartOf="@+id/imageView43"
+                    app:layout_constraintTop_toTopOf="@+id/imageView43" />
+
+
+                <TextView
+                    android:id="@+id/textView91"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/sixteen"
+                    android:layout_marginTop="@dimen/sixteen"
+                    android:text="@string/event_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView43" />
+
+                <EditText
+                    android:text="@={viewmodel.eventTitle}"
+                    android:id="@+id/editTextTextPersonName13"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/sixteen"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/eight"
+                    android:ems="10"
+                    android:hint="@string/event_title"
+                    android:inputType="textPersonName"
+                    android:padding="@dimen/eight"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView91"
+                    app:layout_constraintTop_toBottomOf="@+id/textView91" />
+
+                <TextView
+                    android:id="@+id/textView92"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/eight"
+                    android:text="40"
+                    app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName13"
+                    app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName13"
+                    app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName13" />
+
+                <TextView
+                    android:id="@+id/textView93"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:text="@string/event_type"
+                    app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName13"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName13" />
+
+                <TextView
+                    android:onClick="@{viewmodel.onEventType}"
+                    android:id="@+id/textView94"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:background="@drawable/shadow_box"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:elevation="@dimen/eight"
+                    android:padding="@dimen/eight"
+                    android:text="@string/event_type"
+                    app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName13"
+                    app:layout_constraintStart_toStartOf="@+id/textView93"
+                    app:layout_constraintTop_toBottomOf="@+id/textView93" />
+
+                <TextView
+                    android:id="@+id/textView95"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:text="@string/start"
+                    app:layout_constraintStart_toStartOf="@+id/textView94"
+                    app:layout_constraintTop_toBottomOf="@+id/textView94" />
+
+                <TextView
+                    android:id="@+id/textView96"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/end"
+                    app:layout_constraintStart_toStartOf="@+id/guideline4"
+                    app:layout_constraintTop_toTopOf="@+id/textView95" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent=".5" />
+
+                <TextView
+                    android:onClick="@{viewmodel.onEventStartDate}"
+                    android:id="@+id/textView97"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/eight"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/eight"
+                    android:hint="@string/start_date"
+                    android:padding="@dimen/eight"
+                    android:text="29.12.2020"
+                    android:textAlignment="center"
+                    app:drawableEndCompat="@drawable/ic_arrow_right"
+                    app:drawableStartCompat="@drawable/ic_events"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                    app:layout_constraintStart_toStartOf="@+id/textView95"
+                    app:layout_constraintTop_toBottomOf="@+id/textView95" />
+
+                <TextView
+                    android:onClick="@{viewmodel.onEventEndDate}"
+                    android:id="@+id/textView98"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/eight"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/eight"
+                    android:hint="@string/end_date"
+                    android:padding="@dimen/eight"
+                    android:textAlignment="center"
+                    app:drawableEndCompat="@drawable/ic_arrow_right"
+                    app:drawableStartCompat="@drawable/ic_events"
+                    app:layout_constraintEnd_toEndOf="@+id/textView94"
+                    app:layout_constraintStart_toStartOf="@+id/guideline4"
+                    app:layout_constraintTop_toTopOf="@+id/textView97" />
+
+                <TextView
+                    android:onClick="@{viewmodel.onEventStartTime}"
+                    android:id="@+id/textView99"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/eight"
+                    android:hint="@string/start_time"
+                    android:padding="@dimen/eight"
+                    android:text="10:00"
+                    android:textAlignment="center"
+                    app:drawableEndCompat="@drawable/ic_arrow_right"
+                    app:drawableStartCompat="@drawable/ic_time"
+                    app:layout_constraintEnd_toEndOf="@+id/textView97"
+                    app:layout_constraintStart_toStartOf="@+id/textView97"
+                    app:layout_constraintTop_toBottomOf="@+id/textView97" />
+
+                <TextView
+                    android:onClick="@{viewmodel.onEventEndTime}"
+                    android:id="@+id/textView100"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/eight"
+                    android:hint="@string/end_time"
+                    android:padding="@dimen/eight"
+                    android:textAlignment="center"
+                    app:drawableEndCompat="@drawable/ic_arrow_right"
+                    app:drawableStartCompat="@drawable/ic_time"
+                    app:layout_constraintEnd_toEndOf="@+id/textView98"
+                    app:layout_constraintStart_toStartOf="@+id/textView98"
+                    app:layout_constraintTop_toBottomOf="@+id/textView98" />
+
+                <TextView
+                    android:id="@+id/textView101"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:text="@string/timezone"
+                    app:layout_constraintStart_toStartOf="@+id/textView99"
+                    app:layout_constraintTop_toBottomOf="@+id/textView99" />
+
+                <EditText
+                    android:text="@={viewmodel.eventTimeZone}"
+                    android:id="@+id/textView102"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:background="@drawable/shadow_box"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:elevation="@dimen/eight"
+                    android:padding="@dimen/eight"
+                    android:hint="@string/timezone"
+                    app:layout_constraintEnd_toEndOf="@+id/textView100"
+                    app:layout_constraintStart_toStartOf="@+id/textView101"
+                    app:layout_constraintTop_toBottomOf="@+id/textView101" />
+
+                <TextView
+                    android:id="@+id/textView103"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:text="@string/location"
+                    app:layout_constraintStart_toStartOf="@+id/textView102"
+                    app:layout_constraintTop_toBottomOf="@+id/textView102" />
+
+                <EditText
+                    android:text="@={viewmodel.eventLocation}"
+                    android:id="@+id/et104"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:background="@drawable/shadow_box"
+                    android:drawableStart="@drawable/ic_location"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:elevation="@dimen/eight"
+                    android:hint="@string/location"
+                    android:inputType="textAutoComplete"
+                    android:padding="@dimen/eight"
+                    app:layout_constraintEnd_toEndOf="@+id/textView102"
+                    app:layout_constraintStart_toStartOf="@+id/textView103"
+                    app:layout_constraintTop_toBottomOf="@+id/textView103" />
+
+                <TextView
+                    android:id="@+id/textView304"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:text="@string/destination_website"
+                    app:layout_constraintStart_toStartOf="@+id/et104"
+                    app:layout_constraintTop_toBottomOf="@+id/et104" />
+
+                <EditText
+                    android:text="@={viewmodel.eventWebLink}"
+                    android:id="@+id/editTextTextPersonName34"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shadow_box"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:drawablePadding="@dimen/eight"
+                    android:elevation="@dimen/eight"
+                    android:ems="10"
+                    android:hint="@string/where_your_ad_links_to"
+                    android:inputType="textPersonName"
+                    android:padding="@dimen/eight"
+                    app:layout_constraintEnd_toEndOf="@+id/et104"
+                    app:layout_constraintStart_toStartOf="@+id/textView304"
+                    app:layout_constraintTop_toBottomOf="@+id/textView304" />
+
+                <TextView
+                    android:id="@+id/textView305"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:text="@string/promote_your_ad_optional"
+                    app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName34"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName34" />
+
+                <EditText
+                    android:text="@={viewmodel.eventAdditionalLine}"
+                    android:id="@+id/editTextTextPersonName35"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/eight"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/eight"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:hint="@string/add_1_2_lines_of_additional_text_to_promote_your_ad"
+                    android:inputType="textMultiLine"
+                    android:padding="@dimen/eight"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName34"
+                    app:layout_constraintStart_toStartOf="@+id/textView305"
+                    app:layout_constraintTop_toBottomOf="@+id/textView305" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/pod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view80">
+
+                <ImageView
+                    android:id="@+id/imageView44"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_150dp"
+                    android:layout_marginStart="@dimen/sixteen"
+                    android:layout_marginTop="@dimen/eight"
+                    android:layout_marginEnd="@dimen/sixteen"
+                    android:background="@color/gray_tint"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:onClick="@{viewmodel.onPodImageSelect}"
+                    android:id="@+id/button119"
+                    style="@style/TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_an_image"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView44"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView44"
+                    app:layout_constraintStart_toStartOf="@+id/imageView44"
+                    app:layout_constraintTop_toTopOf="@+id/imageView44" />
+
+                <TextView
+                    android:id="@+id/textView306"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:text="@string/destination_website"
+                    app:layout_constraintStart_toStartOf="@+id/imageView44"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView44" />
+
+                <EditText
+                    android:text="@={viewmodel.podWebLink}"
+                    android:id="@+id/editTextTextPersonName36"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/eight"
+                    android:ems="10"
+                    android:hint="@string/where_your_ad_links_to"
+                    android:inputType="textPersonName"
+                    android:padding="@dimen/eight"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView44"
+                    app:layout_constraintStart_toStartOf="@+id/textView306"
+                    app:layout_constraintTop_toBottomOf="@+id/textView306" />
+
+                <TextView
+                    android:id="@+id/textView307"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:text="@string/promote_your_ad_optional"
+                    app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName36"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName36" />
+
+                <EditText
+                    android:text="@={viewmodel.podAdditionalLine}"
+                    android:id="@+id/editTextTextMultiLine3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/eight"
+                    android:background="@drawable/shadow_box"
+                    android:elevation="@dimen/eight"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:hint="@string/add_1_2_lines_of_additional_text_to_promote_your_ad"
+                    android:inputType="textMultiLine"
+                    android:padding="@dimen/eight"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName36"
+                    app:layout_constraintStart_toStartOf="@+id/textView307"
+                    app:layout_constraintTop_toBottomOf="@+id/textView307" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

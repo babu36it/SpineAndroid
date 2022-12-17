@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.spine.impulse.ImpulseViewmodel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.menus.spine.impulse.ImpulseActivity">
+
+    <ImageButton
+        android:contentDescription="@string/app_name"
+        android:onClick="@{viewmodel.onBack}"
+        android:id="@+id/ibComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BackButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/spine_impulse"
+        style="@style/TitleText"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/ibComment"
+        app:layout_constraintEnd_toStartOf="@+id/sbStory"
+        app:layout_constraintStart_toEndOf="@id/ibComment"
+        app:layout_constraintTop_toTopOf="@+id/ibComment" />
+
+    <Button
+        android:onClick="@{viewmodel.follow}"
+        android:id="@+id/sbStory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="@string/follow"
+        android:textAllCaps="false"
+        android:fontFamily="@font/poppins_regular"
+        android:drawableStart="@drawable/ic_add"
+        android:drawablePadding="@dimen/eight"
+        app:drawableTint="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="@+id/textView13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView42"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/thirty_two"
+        android:layout_marginTop="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/thirty_two"
+        android:padding="@dimen/eight"
+        android:text="@string/inspirational_thoughts_and_wisdom_to_encourage"
+        android:textAlignment="center"
+        android:textSize="@dimen/normalText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvImpulse"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

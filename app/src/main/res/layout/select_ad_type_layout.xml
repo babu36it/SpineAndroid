@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_10sdp"
+    android:background="@drawable/top_two_round_back"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:background="@color/grey"
+        android:orientation="vertical"
+        android:id="@+id/cardView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/eight">
+
+        <ImageButton
+            android:id="@+id/imageButton66"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_5sdp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/NormalText"
+        android:id="@+id/textView256"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/sixteen"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/select_ad_type"
+        android:textAlignment="center"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/view71"
+        style="@style/ViewActionLine"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView256" />
+
+    <TextView
+        style="@style/NormalText"
+        android:id="@+id/button114"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/picture_or_video"
+        android:textAlignment="textStart"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="@+id/view71"
+        app:layout_constraintStart_toStartOf="@+id/view71"
+        app:layout_constraintTop_toBottomOf="@+id/view71" />
+
+    <View
+        android:id="@+id/view72"
+        style="@style/ViewActionLine"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/sixteen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button114" />
+
+    <TextView
+        style="@style/NormalText"
+        android:id="@+id/button115"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/event"
+        android:textAlignment="textStart"
+        android:textSize="@dimen/_12sdp" />
+
+    <View
+        android:layout_marginTop="@dimen/_8sdp"
+        android:id="@+id/view73"
+        style="@style/ViewActionLine"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen" />
+
+    <TextView
+        style="@style/NormalText"
+        android:id="@+id/button116"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:text="@string/podcast"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:textSize="@dimen/_12sdp"
+        android:fontFamily="@font/poppins_regular"
+        android:textAlignment="textStart"
+        app:layout_constraintEnd_toEndOf="@+id/button115"
+        app:layout_constraintStart_toStartOf="@+id/button115"
+        app:layout_constraintTop_toBottomOf="@+id/view73" />
+
+    <View
+        android:id="@+id/view74"
+        style="@style/ViewActionLine"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        android:layout_marginBottom="@dimen/eight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button116" />
+
+</LinearLayout>

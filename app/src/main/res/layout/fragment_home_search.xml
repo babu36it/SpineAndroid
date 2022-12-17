@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.spine.homesearch.HomeSearchViewmodel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/frameLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    tools:context=".ui.home.menus.spine.homesearch.HomeSearchFragment" >
+
+    <HorizontalScrollView
+        android:id="@+id/scroll"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--android:background="@drawable/rounded_boardered_background"-->
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:id="@+id/constraintLayout10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/eight"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:padding="@dimen/eight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_weight="1"
+                android:onClick="@{viewmodel.onPeople}"
+                android:id="@+id/button102"
+                style="@style/TextButtonBelowSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/_4sdp"
+                android:paddingBottom="@dimen/_4sdp"
+                android:paddingStart="@dimen/_20sdp"
+                android:paddingEnd="@dimen/_20sdp"
+                android:text="@string/members"
+                android:textColor="@color/text_black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button103"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:paddingTop="@dimen/_4sdp"
+                android:paddingBottom="@dimen/_4sdp"
+                android:paddingStart="@dimen/_20sdp"
+                android:paddingEnd="@dimen/_20sdp"
+                android:layout_weight="1"
+                android:onClick="@{viewmodel.onTags}"
+                android:id="@+id/button103"
+                style="@style/TextButtonBelowSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/black_round_background"
+                android:text="@string/tags"
+                android:textColor="@color/text_white"
+                app:layout_constraintBottom_toBottomOf="@+id/button102"
+                app:layout_constraintEnd_toStartOf="@+id/button104"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/button102"
+                app:layout_constraintTop_toTopOf="@+id/button102" />
+
+            <TextView
+                android:layout_weight="1"
+                android:onClick="@{viewmodel.onCategory}"
+                android:id="@+id/button104"
+                style="@style/TextButtonBelowSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/_4sdp"
+                android:paddingBottom="@dimen/_4sdp"
+                android:paddingStart="@dimen/_20sdp"
+                android:paddingEnd="@dimen/_20sdp"
+                android:text="@string/categories"
+                android:textColor="@color/text_black"
+                app:layout_constraintBottom_toBottomOf="@+id/button103"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/button103"
+                app:layout_constraintTop_toTopOf="@+id/button103" />
+            <TextView
+                android:layout_weight="1"
+                android:onClick="@{viewmodel.onPracticioners}"
+                android:id="@+id/buttonPracticioners"
+                style="@style/TextButtonBelowSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/_4sdp"
+                android:paddingBottom="@dimen/_4sdp"
+                android:paddingStart="@dimen/_20sdp"
+                android:paddingEnd="@dimen/_20sdp"
+                android:text="@string/practicioner"
+                android:textColor="@color/text_black"
+                app:layout_constraintBottom_toBottomOf="@+id/button104"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/button104"
+                app:layout_constraintTop_toTopOf="@+id/button104" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <View
+        android:id="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/scroll"
+        app:layout_constraintStart_toStartOf="@+id/rvHomeSearch"
+        style="@style/ViewActionLine"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_width="match_parent"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvHomeSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sixteen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scroll" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

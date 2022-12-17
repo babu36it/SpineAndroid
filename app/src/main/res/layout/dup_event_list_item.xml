@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.wiesoftware.spine.data.net.reponses.EventsRecord" />
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/dp1"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardElevation="@dimen/_6sdp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/_8sdp"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView324"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/eight"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp" />
+
+                <TextView
+                    android:id="@+id/textView325"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/poppins_regular"
+                    android:maxLines="2"
+                    android:text="@{model.title}"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp" />
+
+
+                <TextView
+                    android:id="@+id/textView326"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_height="wrap_content"
+                    android:text="9 May - 12 May 2021, 18:00"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView325" />
+
+                <TextView
+                    android:id="@+id/textView327"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:text="Finish and Publish Event"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="@color/red"
+                    android:visibility="gone"
+                    android:textSize="@dimen/_9sdp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_regular"
+                    app:layout_constraintTop_toBottomOf="@+id/textView326" />
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView48"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_60"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_weight="0.8"
+                android:scaleType="centerCrop"
+                android:src="@drawable/demo"
+               />
+
+
+        </LinearLayout>
+
+
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content">-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/textView324"-->
+        <!--                style="@style/TitleText"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginStart="@dimen/eight"-->
+        <!--                android:layout_marginTop="@dimen/_5sdp"-->
+        <!--                android:layout_marginEnd="@dimen/eight"-->
+        <!--                android:text="@{model.title}"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent"-->
+
+        <!--                />-->
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/imageView48"-->
+        <!--                android:layout_width="@dimen/_150dp"-->
+        <!--                android:layout_height="@dimen/_80"-->
+        <!--                android:layout_marginStart="@dimen/_8sdp"-->
+        <!--                android:layout_marginTop="@dimen/_5sdp"-->
+        <!--                android:scaleType="centerCrop"-->
+        <!--                android:src="@drawable/demo"-->
+        <!--                app:image="@{model.file}"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/textView324" />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/textView325"-->
+        <!--                style="@style/NormalText"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginHorizontal="@dimen/_4sdp"-->
+        <!--                android:padding="@dimen/_4sdp"-->
+        <!--                android:text="@{model.description}"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/imageView48" />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/textView326"-->
+        <!--                style="@style/NormalText"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginHorizontal="@dimen/_4sdp"-->
+        <!--                android:padding="@dimen/_4sdp"-->
+        <!--                android:text="9 May - 12 May 2021, 18:00Laos"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/textView325" />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/textView327"-->
+        <!--                style="@style/NormalText"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginHorizontal="@dimen/_4sdp"-->
+        <!--                android:padding="@dimen/_4sdp"-->
+        <!--                android:text="9 May - 12 May 2021, 18:00Laos"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/textView326" />-->
+        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+    </androidx.cardview.widget.CardView>
+</layout>

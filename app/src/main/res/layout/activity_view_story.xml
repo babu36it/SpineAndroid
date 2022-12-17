@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.ViewStoryViewmodel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.menus.spine.story.viewstories.ViewStoryActivity"
+        >
+
+
+
+        <com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.customstoryview.FixedViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:contentDescription="@string/app_name"
+                style="@style/BackButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="top"
+                android:onClick="@{viewmodel.onBack}"
+                app:tint="@color/text_white" />
+            <!--accroding to new desi-->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="top"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_spine_home"
+                app:civ_border_color="@color/colorPrimaryDark"
+                app:civ_border_width="2dp"
+                app:civ_circle_background_color="@color/gray_tint" />
+
+            <LinearLayout
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/userNaME"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginStart="5dp"
+                    android:text="Vsking vivek"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/storyTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginStart="5dp"
+                    android:text="Today 1:28pm"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <ImageButton
+                android:visibility="visible"
+                android:onClick="@{viewmodel.onStorySave}"
+                android:id="@+id/saveStory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/eight"
+                android:layout_marginEnd="@dimen/eight"
+                android:src="@drawable/ic_bookmark"
+                android:tint="@color/text_white"
+                android:gravity="end"
+                />
+            <ImageButton
+                android:contentDescription="@string/app_name"
+                android:visibility="visible"
+                android:onClick="@{viewmodel.onStoryMore}"
+                android:id="@+id/StoryMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/eight"
+                android:layout_marginEnd="@dimen/eight"
+                android:src="@drawable/ic_more"
+                android:tint="@color/text_white"
+                android:gravity="end"
+                />
+        </LinearLayout>
+    </FrameLayout>
+    <!--
+</androidx.constraintlayout.widget.ConstraintLayout>
+-->
+    </layout>

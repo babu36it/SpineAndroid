@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+        <data>
+                <variable
+                    name="viewmodel"
+                    type="com.wiesoftware.spine.ui.home.menus.spine.comment.storycomment.reply.StoryCommentReplyViewmodel" />
+        </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.menus.spine.comment.storycomment.reply.StoryCommenReplytActivity">
+        <ImageButton
+            android:onClick="@{viewmodel.onBack}"
+            android:id="@+id/imageButton60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/BackButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/textView252"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reply"
+            style="@style/TitleText"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton60"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/imageButton60"
+            app:layout_constraintTop_toTopOf="@+id/imageButton60" />
+
+        <View
+            android:id="@+id/view61"
+            android:layout_width="wrap_content"
+            style="@style/ViewActionLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton60" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageView5"
+            android:layout_width="@dimen/_40"
+            android:layout_height="@dimen/_40"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginStart="@dimen/eight"
+            android:src="@drawable/ic_profile"
+            app:civ_border_color="@color/colorPrimaryDark"
+            app:civ_border_width="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view61" />
+        <TextView
+            android:id="@+id/textView52"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:layout_marginEnd="@dimen/eight"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/text_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/circleImageView5"
+            app:layout_constraintTop_toTopOf="@+id/circleImageView5" />
+        <TextView
+            android:id="@+id/textView53"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            app:layout_constraintEnd_toEndOf="@+id/textView52"
+            app:layout_constraintStart_toStartOf="@+id/textView52"
+            app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCommentReply"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginBottom="@dimen/eight"
+            android:layout_marginEnd="@dimen/eight"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName23"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView53"
+            app:layout_constraintTop_toBottomOf="@+id/textView53" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName23"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:layout_marginEnd="@dimen/eight"
+            android:layout_marginBottom="@dimen/eight"
+            android:ems="10"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/send_message"
+            android:inputType="textPersonName|textMultiLine"
+            android:text="@={viewmodel.reply}"
+            android:padding="@dimen/eight"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton61"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:onClick="@{viewmodel.onSend}"
+            android:id="@+id/imageButton61"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/eight"
+            android:background="@android:color/transparent"
+            android:padding="@dimen/eight"
+            android:src="@drawable/ic_send"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName23"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName23" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.events.maps.MapviewViewmodel" />
+    </data>
+
+<RelativeLayout
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.menus.events.maps.MapviewEventsActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/toplayout"
+        android:weightSum="4"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:contentDescription="@string/app_name"
+            android:layout_weight="1"
+            android:id="@+id/imageButton30"
+            android:layout_width="@dimen/thirty_two"
+            android:layout_height="@dimen/thirty_two"
+            android:layout_marginStart="@dimen/sixteen"
+            android:background="@android:color/transparent"
+            android:onClick="@{viewmodel.onBack}"
+            android:src="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cardView" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_weight="2"
+            android:id="@+id/cardView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/twelve"
+            android:layout_marginEnd="@dimen/twelve"
+            android:layout_marginBottom="@dimen/eight"
+            android:layout_marginTop="@dimen/eight"
+            app:cardCornerRadius="@dimen/eight"
+            app:cardElevation="@dimen/eight"
+            >
+
+            <androidx.appcompat.widget.SearchView
+                app:theme="@style/AppSearchView"
+                android:id="@+id/searchSpine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:defaultQueryHint="@string/search_events"
+                app:iconifiedByDefault="false"
+                app:queryBackground="@android:color/transparent"
+                app:queryHint="@string/search_event" />
+        </androidx.cardview.widget.CardView>
+
+        <ImageButton
+            android:contentDescription="@string/app_name"
+            android:layout_weight="1"
+            android:id="@+id/imageButton31"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="@dimen/sixteen"
+            android:background="@android:color/transparent"
+            android:onClick="@{viewmodel.onFilter}"
+            android:tint="@color/text_black"
+            android:src="@drawable/ic_tune"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cardView" />
+    </LinearLayout>
+
+<!--    <ImageButton-->
+<!--        android:onClick="@{viewmodel.onBack}"-->
+<!--        android:id="@+id/imageButton30"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:padding="@dimen/eight"-->
+<!--        android:layout_marginStart="@dimen/eight"-->
+<!--        android:src="@drawable/ic_close"-->
+<!--        android:tint="@color/text_black"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/cardView"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/cardView" />-->
+
+<!--    <ImageButton-->
+<!--        android:onClick="@{viewmodel.onFilter}"-->
+<!--        android:id="@+id/imageButton31"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="@dimen/eight"-->
+<!--        android:src="@drawable/ic_tune"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:padding="@dimen/eight"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/cardView"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/cardView"-->
+<!--         />-->
+
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_alignParentBottom="true"
+        android:id="@+id/rvMapeve"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/sixteen"
+        android:paddingEnd="@dimen/sixteen"
+        android:layout_marginBottom="@dimen/sixteen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+         />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/eight"
+        android:layout_marginTop="@dimen/eight"
+        android:layout_marginEnd="@dimen/eight"
+        app:cardElevation="@dimen/eight"
+        app:cardCornerRadius="@dimen/eight"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toplayout"
+        >
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/autocomplete_fragment"
+            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </androidx.cardview.widget.CardView>
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/cardView"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:visibility="invisible"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="@dimen/eight"-->
+<!--        android:layout_marginTop="@dimen/sixteen"-->
+<!--        android:layout_marginEnd="@dimen/eight"-->
+<!--        app:cardElevation="@dimen/eight"-->
+<!--        app:cardCornerRadius="@dimen/eight"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/imageButton31"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/imageButton30"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <androidx.appcompat.widget.SearchView-->
+<!--            android:id="@+id/searchSpine"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            app:defaultQueryHint="@string/search_event"-->
+<!--            app:iconifiedByDefault="false"-->
+<!--            app:queryBackground="@android:color/transparent"-->
+<!--            app:queryHint="@string/search_event" />-->
+<!--    </androidx.cardview.widget.CardView>-->
+</RelativeLayout>
+</layout>

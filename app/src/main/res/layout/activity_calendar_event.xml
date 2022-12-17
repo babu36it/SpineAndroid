@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.events.calendarevents.CaklendarEventViewmodel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.menus.events.calendarevents.CalendarEventActivity">
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/eight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view67" />
+
+    <ImageButton
+        android:contentDescription="@string/app_name"
+        android:onClick="@{viewmodel.onBack}"
+        android:id="@+id/imageButton74"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/BackButton"
+         />
+
+    <TextView
+        android:id="@+id/textView269"
+        style="@style/TitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/events"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton74"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageButton74"
+        app:layout_constraintTop_toTopOf="@+id/imageButton74" />
+
+    <View
+        android:id="@+id/view67"
+        android:layout_width="0dp"
+        style="@style/ViewActionLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton74" />
+
+    <Button
+        android:onClick="@{viewmodel.onSaveEvent}"
+        android:id="@+id/button94"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/eight"
+        android:text="@string/save"
+        style="@style/TextButton"
+        app:layout_constraintBottom_toBottomOf="@+id/textView269"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView269"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

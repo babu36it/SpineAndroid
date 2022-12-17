@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+<data>
+    <variable
+        name="viewmodel"
+        type="com.wiesoftware.spine.ui.home.menus.spine.addposts.postpreview.PostPreviewViewmodel" />
+</data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.menus.spine.addposts.postpreview.PostPreviewActivity">
+
+    <ImageButton
+        android:contentDescription="@string/app_name"
+        android:onClick="@{viewmodel.onBack}"
+        android:id="@+id/imageButton76"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BackButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+         />
+
+    <TextView
+        android:id="@+id/textView272"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/preview"
+        style="@style/TitleText"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton76"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageButton76" />
+    <ProgressBar
+        android:id="@+id/progressBar7"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/eight"
+        app:layout_constraintBottom_toBottomOf="@+id/textView272"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView272"/>
+
+    <Button
+        android:onClick="@{viewmodel.onPost}"
+        android:id="@+id/button95"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/RoundButton"
+        android:layout_marginEnd="@dimen/eight"
+        android:text="@string/post"
+        app:layout_constraintBottom_toBottomOf="@+id/textView272"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView272" />
+
+    <View
+        android:id="@+id/view69"
+        android:layout_width="0dp"
+        style="@style/ViewActionLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button95" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/eight"
+        app:layout_constraintTop_toBottomOf="@+id/view69"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <ImageView
+            android:contentDescription="@string/app_name"
+            android:id="@+id/imageView35"
+            android:layout_width="match_parent"
+            android:visibility="invisible"
+            android:layout_height="@dimen/_350"
+            android:scaleType="centerCrop"
+            android:src="@drawable/demo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.smarteist.autoimageslider.SliderView
+            android:id="@+id/imageSlider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_350"
+            app:sliderAnimationDuration="300"
+            app:sliderAutoCycleDirection="back_and_forth"
+            app:sliderAutoCycleEnabled="true"
+            app:sliderIndicatorAnimationDuration="300"
+            app:sliderIndicatorGravity="center_horizontal|bottom"
+            app:sliderIndicatorMargin="15dp"
+            app:sliderIndicatorOrientation="horizontal"
+            app:sliderIndicatorPadding="3dp"
+            app:sliderIndicatorRadius="2dp"
+            app:sliderIndicatorSelectedColor="#5A5A5A"
+            app:sliderIndicatorUnselectedColor="#FFF"
+            app:sliderScrollTimeInSec="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+
+
+        <TextView
+            android:id="@+id/textView273"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text=""
+            style="@style/TitleText"
+            app:layout_constraintEnd_toEndOf="@+id/imageView35"
+            app:layout_constraintStart_toStartOf="@+id/imageView35"
+            app:layout_constraintTop_toBottomOf="@+id/imageView35" />
+
+        <TextView
+            android:id="@+id/textView274"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            style="@style/NormalText"
+            android:paddingEnd="@dimen/eight"
+            android:paddingStart="@dimen/eight"
+            app:layout_constraintEnd_toEndOf="@+id/textView273"
+            app:layout_constraintStart_toStartOf="@+id/textView273"
+            app:layout_constraintTop_toBottomOf="@+id/textView273" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

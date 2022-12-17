@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.wiesoftware.spine.data.net.reponses.FollowersData" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rrMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView20"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginStart="@dimen/eight"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginBottom="@dimen/eight"
+                android:src="@drawable/ic_profile"
+                app:civ_border_color="@color/text_white"
+                app:civ_border_width="1dp"
+                app:civ_circle_background_color="@color/gray_tint"
+                app:img="@{model.profile_pic}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_toStartOf="@id/button60"
+                android:layout_toEndOf="@id/imageView20"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView161"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@{model.displayName ?? model.tbl_users_user_name}"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_11sdp" />
+
+                <TextView
+                    android:id="@+id/textView162"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@{model.bio}"
+                    android:textSize="@dimen/_10sdp" />
+
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/button60"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_28sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:background="@drawable/boarder_round_btn_bg"
+                android:text="@string/unfollow"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/_10sdp" />
+
+
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/rrMain"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@color/gray_tint" />
+    </RelativeLayout>
+</layout>

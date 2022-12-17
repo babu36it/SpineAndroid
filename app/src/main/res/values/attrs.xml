@@ -1,0 +1,36 @@
+<resources>
+
+    <!-- Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels. -->
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference" />
+        <attr name="metaButtonBarButtonStyle" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="StoriesProgressView">
+        <attr name="progressCount" format="integer|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="RecordMic">
+
+        <attr name="mic_icon" format="reference" />
+
+    </declare-styleable>
+
+    <declare-styleable name="AudioRecordViews">
+
+        <attr name="chunkWidth" format="dimension" />
+        <attr name="chunkMaxHeight" format="dimension" />
+        <attr name="chunkMinHeight" format="dimension" />
+        <attr name="chunkSpace" format="dimension" />
+        <attr name="chunkColor" format="color" />
+        <attr name="chunkRoundedCorners" format="boolean" />
+        <attr name="chunkAlignsTo" format="enum">
+            <enum name="center" value="1" />
+            <enum name="bottom" value="2" />
+        </attr>
+        <attr name="chunkSoftTransition" format="boolean" />
+    </declare-styleable>
+</resources>

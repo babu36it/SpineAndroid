@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="model"
+            type="com.wiesoftware.spine.data.net.reponses.HashtagData" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!-- android:text="@{model.hash_title}"-->
+    <TextView
+        android:id="@+id/textView268"
+        android:textColor="@color/text_black"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="lamborgini"
+        style="@style/TitleTextNoPadding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView270"
+        app:layout_constraintTop_toTopOf="@+id/textView270" />
+
+    <TextView
+        android:id="@+id/textView270"
+        style="@style/TitleText"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginStart="@dimen/eight"
+        android:text="#"
+        android:gravity="center"
+        android:textColor="@color/light_gry"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+   <!--android:text="@{model.totalCount +`posts`}"-->
+    <TextView
+        android:id="@+id/textView271"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="3023,201 posts"
+        style="@style/TextNoPadding"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/normalText_12"
+        app:layout_constraintEnd_toEndOf="@+id/textView268"
+        app:layout_constraintStart_toStartOf="@+id/textView268"
+        app:layout_constraintTop_toBottomOf="@+id/textView268" />
+
+    <View
+        android:layout_marginStart="0dp"
+        android:id="@+id/view68"
+        style="@style/ViewActionLine"
+        android:layout_width="0dp"
+        android:layout_marginBottom="@dimen/eight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView271"
+        app:layout_constraintStart_toStartOf="@+id/textView271"
+        app:layout_constraintTop_toBottomOf="@+id/textView271" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

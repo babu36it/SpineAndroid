@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/top_two_round_back"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eight"
+        app:cardCornerRadius="@dimen/eight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/imageButton66"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_5sdp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:background="@android:color/transparent"
+            android:src="@drawable/round_gray_back" />
+    </androidx.cardview.widget.CardView>
+
+    <EditText
+        android:id="@+id/textView256"
+        style="@style/ETNormal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/eight"
+        android:inputType="textWebEditText"
+        android:hint="@string/add_url"
+        android:textSize="@dimen/_11sdp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/eight"
+        android:textColorHint="@color/dark_gray_day_night"
+        android:layout_marginEnd="@dimen/eight"
+        android:background="@drawable/shadow_box"
+        app:layout_constraintEnd_toStartOf="@+id/button120"
+        app:layout_constraintStart_toEndOf="@+id/imageButton82"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+
+    <View
+        android:id="@+id/view71"
+        style="@style/ViewActionLine"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginTop="@dimen/eight"
+        android:layout_marginEnd="@dimen/sixteen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView256" />
+
+    <TextView
+        style="@style/NormalText"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:id="@+id/button120"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_28sdp"
+        android:layout_marginEnd="@dimen/sixteen"
+        android:text="@string/add_link"
+        android:background="@drawable/round_button_bg"
+        android:fontFamily="@font/poppins_semi_bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView256"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView256" />
+
+    <ImageButton
+        style="@style/IconTextView"
+        android:id="@+id/imageButton82"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:layout_marginStart="@dimen/sixteen"
+        android:src="@drawable/ic_close"
+        android:tint="@color/grey"
+        android:padding="@dimen/eight"
+        app:layout_constraintBottom_toBottomOf="@+id/textView256"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView256"
+        />
+
+    <WebView
+        android:id="@+id/wvAdLink"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="@dimen/eight"
+        android:layout_marginBottom="@dimen/eight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view71" >
+
+    </WebView>
+
+    <ProgressBar
+        android:id="@+id/progressBar8"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminateOnly="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view71" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

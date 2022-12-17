@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.AccountSettingViewmodel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.menus.profile.setting.account_settings.AccountSettingsActivity">
+
+        <ImageButton
+            android:contentDescription="@string/app_name"
+            android:id="@+id/imageButton29"
+            style="@style/BackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{viewmodel.onBack}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView164"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/account_settings"
+            android:textAllCaps="true"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton29"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageButton29" />
+
+        <View
+            android:id="@+id/view25"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/eight"
+            android:background="@color/gray_tint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton29" />
+
+        <TextView
+            android:id="@+id/btnChngPwd"
+            style="@style/ButtonSetting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:onClick="@{viewmodel.onChangeEmail}"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/change_email"
+            android:textColor="@color/text_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view25" />
+
+        <View
+            style="@style/ViewActionLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/normal_grey"
+            app:layout_constraintTop_toBottomOf="@+id/btnChngPwd" />
+
+        <Button
+            android:id="@+id/btnMngZoom"
+            style="@style/ButtonSetting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/manage_zoom"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnChngPwd" />
+
+
+        <TextView
+            android:id="@+id/btnMessaging"
+            style="@style/ButtonSetting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:onClick="@{viewmodel.onMessaging}"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/messaging"
+            android:textColor="@color/text_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnMngZoom" />
+
+        <View
+            style="@style/ViewActionLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/normal_grey"
+            app:layout_constraintTop_toBottomOf="@+id/btnMessaging" />
+
+        <TextView
+            android:id="@+id/button20"
+            style="@style/ButtonSetting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:onClick="@{viewmodel.onSaveCalendarEvent}"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/save_events_to_calendar"
+            android:textColor="@color/text_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnMessaging" />
+
+        <View
+            style="@style/ViewActionLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/normal_grey"
+            app:layout_constraintTop_toBottomOf="@+id/button20" />
+
+        <TextView
+            android:id="@+id/textView46"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="48dp"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center"
+            android:text="@string/on"
+            android:textColor="@color/grey_100"
+            app:layout_constraintBottom_toBottomOf="@+id/button20"
+            app:layout_constraintEnd_toEndOf="@+id/button20"
+            app:layout_constraintTop_toTopOf="@+id/button20" />
+
+        <TextView
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:padding="@dimen/_5sdp"
+            android:id="@+id/button21"
+            style="@style/ButtonSetting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:onClick="@{viewmodel.onLanguageSelect}"
+            android:text="@string/language"
+            android:textColor="@color/text_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button20" />
+
+        <View
+            android:layout_marginTop="@dimen/_8sdp"
+            style="@style/ViewActionLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/normal_grey"
+            app:layout_constraintTop_toBottomOf="@+id/button21" />
+
+        <TextView
+            android:id="@+id/textView47"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="48dp"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center"
+            android:text="@string/english"
+            android:textColor="@color/grey_100"
+            app:layout_constraintBottom_toBottomOf="@+id/button21"
+            app:layout_constraintEnd_toEndOf="@+id/button21"
+            app:layout_constraintTop_toTopOf="@+id/button21" />
+
+        <TextView
+            android:padding="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:id="@+id/button22"
+            style="@style/ButtonSetting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:onClick="@{viewmodel.onCurrency}"
+            android:text="@string/currency"
+            android:textColor="@color/text_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button21" />
+
+        <View
+            style="@style/ViewActionLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/normal_grey"
+            app:layout_constraintTop_toBottomOf="@+id/button22" />
+
+        <TextView
+            android:id="@+id/textView48"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="48dp"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center"
+            android:text="@string/usd"
+            android:textColor="@color/grey_100"
+            app:layout_constraintBottom_toBottomOf="@+id/button22"
+            app:layout_constraintEnd_toEndOf="@+id/button22"
+            app:layout_constraintTop_toTopOf="@+id/button22" />
+
+        <TextView
+            android:id="@+id/button23"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:padding="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/dark_mode"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/text_black"
+            app:layout_constraintEnd_toStartOf="@+id/switch1"
+            app:layout_constraintStart_toStartOf="@+id/button22"
+            app:layout_constraintTop_toBottomOf="@+id/button22" />
+
+        <View
+            android:layout_marginTop="@dimen/_8sdp"
+            style="@style/ViewActionLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/normal_grey"
+            app:layout_constraintTop_toBottomOf="@+id/button23" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:onCheckedChanged="@{(switch, checked) -> viewmodel.onCheckedChanged(checked)}"
+            app:layout_constraintBottom_toBottomOf="@+id/button23"
+            app:layout_constraintEnd_toEndOf="@+id/button22"
+            app:layout_constraintTop_toTopOf="@+id/button23" />
+
+        <TextView
+            android:id="@+id/btnDeactivateAcc"
+            style="@style/ButtonSetting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:padding="@dimen/_5sdp"
+            android:fontFamily="@font/poppin_semi_bold"
+            android:onClick="@{viewmodel.onDeactivateAccount}"
+            android:text="@string/deactivate_my_account"
+            android:textColor="@color/text_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button23" />
+
+        <View
+            style="@style/ViewActionLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/normal_grey"
+            app:layout_constraintTop_toBottomOf="@+id/btnDeactivateAcc" />
+
+        <Button
+            android:id="@+id/btnDeletAcc"
+            style="@style/ButtonSetting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            android:fontFamily="@font/poppins_regular"
+            android:onClick="@{viewmodel.deleteAccount}"
+            android:text="@string/delete_account"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnDeactivateAcc" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
+
+    <!--
+
+
+
+
+                <Button
+                    android:id="@+id/button23"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:background="@android:color/transparent"
+                    android:text="@string/dark_mode"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_black"
+                    app:layout_constraintEnd_toEndOf="@+id/button22"
+                    app:layout_constraintStart_toStartOf="@+id/button22"
+                    app:layout_constraintTop_toBottomOf="@+id/button22" />
+                <Switch
+                    android:id="@+id/switch2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/button23"
+                    app:layout_constraintEnd_toEndOf="@+id/switch1"
+                    app:layout_constraintTop_toTopOf="@+id/button23" />
+                <Button
+                    android:id="@+id/button24"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:background="@android:color/transparent"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:text="@string/welcome_community_guidelines"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_black"
+                    app:layout_constraintEnd_toEndOf="@+id/switch2"
+                    app:layout_constraintStart_toStartOf="@id/button23"
+                    app:layout_constraintTop_toBottomOf="@id/button23" />
+                <Button
+                    android:onClick="@{viewmodel.onShowPrivacyPolicy}"
+                    android:id="@+id/button25"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
+                    android:background="@android:color/transparent"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:text="@string/privacy_policy"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_black"
+                    app:layout_constraintEnd_toEndOf="@id/button24"
+                    app:layout_constraintStart_toStartOf="@id/button24"
+                    app:layout_constraintTop_toBottomOf="@id/button24" />
+    -->

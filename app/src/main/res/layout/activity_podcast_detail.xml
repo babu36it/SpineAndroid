@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.wiesoftware.spine.ui.home.menus.podcasts.podcastdetails.PodcastDetailsViewmodel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/demo"
+    tools:context=".ui.home.menus.podcasts.podcastdetails.PodcastDetailActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/overlay_color_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:onClick="@{viewmodel.onBack}"
+            android:id="@+id/imageButton50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/BackButton"
+            android:tint="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+             />
+
+        <ImageButton
+            android:onClick="@{viewmodel.onMore}"
+            android:id="@+id/imageButton51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_more"
+            android:background="@color/transparent"
+            android:padding="@dimen/eight"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginEnd="@dimen/eight"
+            android:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+             />
+
+        <TextView
+            android:id="@+id/textView222"
+            style="@style/TitleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/sixteen"
+            android:text=""
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton51"
+            app:layout_constraintStart_toEndOf="@+id/imageButton50"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton50" />
+
+        <TextView
+            android:id="@+id/textView223"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginStart="@dimen/eight"
+            android:text=""
+            style="@style/NormalText"
+            android:textColor="@color/gray_tint"
+            app:layout_constraintEnd_toEndOf="@+id/textView222"
+            app:layout_constraintStart_toStartOf="@+id/textView222"
+            app:layout_constraintTop_toBottomOf="@+id/textView222" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView29"
+            android:layout_width="@dimen/_60"
+            android:layout_height="@dimen/_60"
+            android:layout_marginTop="@dimen/sixteen"
+            android:src="@drawable/ic_profile"
+            app:civ_circle_background_color="@color/colorPrimary"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="2dp"
+            app:layout_constraintStart_toStartOf="@+id/textView223"
+            app:layout_constraintTop_toBottomOf="@+id/textView223"
+             />
+
+        <TextView
+            android:id="@+id/textView224"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:text=""
+            style="@style/OnlyText"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView29"
+            app:layout_constraintStart_toEndOf="@+id/imageView29"
+            app:layout_constraintTop_toTopOf="@+id/imageView29" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <SeekBar
+                android:id="@+id/seekBar2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/sixteen"
+                android:layout_marginTop="@dimen/eight"
+                android:layout_marginEnd="@dimen/sixteen"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView225"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                style="@style/TitleText"
+                app:layout_constraintStart_toStartOf="@+id/seekBar2"
+                app:layout_constraintTop_toBottomOf="@+id/seekBar2" />
+
+            <TextView
+                android:id="@+id/textView226"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                style="@style/TitleText"
+                app:layout_constraintEnd_toEndOf="@+id/seekBar2"
+                app:layout_constraintTop_toBottomOf="@+id/seekBar2" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView30"
+                android:layout_width="@dimen/_72"
+                android:layout_height="@dimen/_72"
+                android:background="@drawable/oval_shape_color_primary"
+                android:padding="@dimen/sixteen"
+                android:src="@drawable/ic_play_btn"
+                android:layout_marginBottom="@dimen/eight"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView226" />
+
+            <ImageButton
+                android:id="@+id/imageButton52"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/sixteen"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_btn_rewind"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView30"
+                app:layout_constraintEnd_toStartOf="@+id/imageView30"
+                app:layout_constraintTop_toTopOf="@+id/imageView30" />
+
+            <ImageButton
+                android:id="@+id/imageButton53"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/sixteen"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_btn_forward"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView30"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton54"
+                app:layout_constraintStart_toEndOf="@+id/imageView30"
+                app:layout_constraintTop_toTopOf="@+id/imageView30" />
+
+            <ImageButton
+                android:onClick="@{viewmodel.onShare}"
+                android:id="@+id/imageButton54"
+                android:layout_width="@dimen/_48"
+                android:layout_height="@dimen/_48"
+                android:background="@color/transparent"
+                android:padding="@dimen/eight"
+                android:src="@drawable/ic_share"
+                android:tint="@color/gray_tint"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView30"
+                app:layout_constraintEnd_toEndOf="@+id/textView226"
+                app:layout_constraintTop_toTopOf="@+id/imageView30" />
+
+            <ImageButton
+                android:onClick="@{viewmodel.onLike}"
+                android:id="@+id/imageButton5345"
+                android:layout_width="@dimen/_48"
+                android:layout_height="@dimen/_48"
+                android:background="@color/transparent"
+                android:padding="@dimen/eight"
+                android:src="@drawable/ic_heart"
+                android:tint="@color/gray_tint"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView30"
+                app:layout_constraintStart_toStartOf="@+id/textView225"
+                app:layout_constraintTop_toTopOf="@+id/imageView30" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/black"
+            android:layout_marginTop="@dimen/eight"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView29">
+
+            <com.google.android.exoplayer2.ui.PlayerView
+                android:id="@+id/player"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:auto_show="true"
+                app:shutter_background_color="@android:color/black"
+                app:controller_layout_id="@layout/custom_exo_player"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:show_buffering="always"
+                app:use_controller="true">
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="invisible" />
+            </com.google.android.exoplayer2.ui.PlayerView>
+
+            <ImageButton
+                android:id="@+id/imageButton544"
+                android:layout_width="@dimen/_48"
+                android:layout_height="@dimen/_48"
+                android:layout_marginEnd="@dimen/eight"
+                android:layout_marginBottom="4dp"
+                android:background="@color/transparent"
+                android:onClick="@{viewmodel.onShare}"
+                android:padding="@dimen/eight"
+                android:src="@drawable/ic_share"
+                android:tint="@color/gray_tint"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <ImageButton
+                android:id="@+id/imageButton55"
+                android:layout_width="@dimen/_48"
+                android:layout_height="@dimen/_48"
+                android:layout_marginStart="@dimen/eight"
+                android:layout_marginBottom="4dp"
+                android:background="@color/transparent"
+                android:onClick="@{viewmodel.onLike}"
+                android:padding="@dimen/eight"
+                android:src="@drawable/ic_heart"
+                android:tint="@color/gray_tint"
+                app:layout_constraintBottom_toBottomOf="@+id/player"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
