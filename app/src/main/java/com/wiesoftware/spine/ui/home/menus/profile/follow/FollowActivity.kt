@@ -25,7 +25,7 @@ class FollowActivity : AppCompatActivity(),KodeinAware, FollowEventListener {
     }
 
     override val kodein by kodein()
-    val factory: FollowViewmodelFactory by instance()
+    val factory: FollowViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     var userId: String=""
 
@@ -35,7 +35,7 @@ class FollowActivity : AppCompatActivity(),KodeinAware, FollowEventListener {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_follow)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_follow)
-        val viewmodel=ViewModelProvider(this,factory).get(FollowViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(FollowViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.followEventListener=this
         setUpViewPager()

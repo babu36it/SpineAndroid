@@ -40,13 +40,13 @@ class HashtagActivity : AppCompatActivity(),KodeinAware, HashtagEventListener,
 
     override val kodein by kodein()
     val homeRepositry: HomeRepository by instance()
-    val factory: HashtagViewmodelFactory by instance()
+    val factory: HashtagViewModelFactory by instance()
     lateinit var binding: ActivityHashtagBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this, R.layout.activity_hashtag)
-        val viewmodel=ViewModelProvider(this, factory).get(HashtagViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this, factory).get(HashtagViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.hashtagEventListener=this
        // getHashtags()

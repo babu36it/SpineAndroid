@@ -1,16 +1,11 @@
 package com.wiesoftware.spine.ui.home.menus.profile.masseges
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
-import android.provider.CalendarContract
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.getColor
-import androidx.core.content.res.ResourcesCompat.getColor
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.badge.BadgeDrawable
-import com.google.android.material.color.MaterialColors.getColor
 import com.google.android.material.tabs.TabLayoutMediator
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
@@ -34,7 +29,7 @@ class MessagesActivity : AppCompatActivity(),KodeinAware, MessagesEventListener 
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_messages)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_messages)
-        val viewmodel=ViewModelProvider(this).get(MessagesViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this).get(MessagesViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.messagesEventListener=this
 

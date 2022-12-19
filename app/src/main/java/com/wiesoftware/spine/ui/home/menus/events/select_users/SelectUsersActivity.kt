@@ -32,7 +32,7 @@ class  SelectUsersActivity : AppCompatActivity(),KodeinAware, SelectUsersEventLi
     }
 
     override val kodein by kodein()
-    val  factory: SelectUsersViewmodelFactory by instance()
+    val  factory: SelectUsersViewModelFactory by instance()
     val eventRepositry: EventRepository by instance()
     lateinit var binding: ActivitySelectUsersBinding
     lateinit var usr_id: String
@@ -43,7 +43,7 @@ class  SelectUsersActivity : AppCompatActivity(),KodeinAware, SelectUsersEventLi
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_select_users)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_select_users)
-        val viewmodel=ViewModelProvider(this,factory).get(SelectUsersViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(SelectUsersViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.selectUsersEventListener=this
 

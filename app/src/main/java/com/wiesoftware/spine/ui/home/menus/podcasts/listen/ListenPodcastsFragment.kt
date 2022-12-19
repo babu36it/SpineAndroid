@@ -41,7 +41,7 @@ class ListenPodcastsFragment : Fragment(), KodeinAware, ListenPodcastAdapter.Pod
 
     val podcastRepository: PodcastRepository by instance()
     val homeRepositry: HomeRepository by instance()
-    val factory: ListenPodcastViewmodelFactory by instance()
+    val factory: ListenPodcastViewModelFactory by instance()
     var episodeDataList: ArrayList<EpisodeData> = arrayListOf()
     lateinit var binding: FragmentListenPodcastsBinding
     lateinit var userId: String
@@ -53,7 +53,7 @@ class ListenPodcastsFragment : Fragment(), KodeinAware, ListenPodcastAdapter.Pod
     ): View? {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_listen_podcasts, container, false)
-        val viewmodel = ViewModelProvider(this, factory).get(ListenPodcastViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this, factory).get(ListenPodcastViewModel::class.java)
         binding.viewmodel = viewmodel
         progressDialog = ProgressDialog(context)
         viewmodel.getLoggedInUser().observe(viewLifecycleOwner, Observer { user ->

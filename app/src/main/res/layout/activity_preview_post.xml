@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.spine.addposts.previewpost.PreviewPostViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.spine.addposts.previewpost.PreviewPostViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout

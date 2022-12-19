@@ -86,7 +86,7 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
     var parent_id = "0"
 
     override val kodein by kodein()
-    val factory: AddPodcastViewmodelFactory by instance()
+    val factory: AddPodcastViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     val eventRepository: EventRepository by instance()
     private val podcastRepository: PodcastRepository by instance()
@@ -110,7 +110,7 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_add_podcast)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_podcast)
-        val viewmodel = ViewModelProvider(this, factory).get(AddPodcastViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this, factory).get(AddPodcastViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.addPodcastEventListener = this
         progressDialog = ProgressDialog(this)
@@ -809,15 +809,15 @@ class AddPodcastActivity : AppCompatActivity(), KodeinAware, AddPodcastEventList
     }
 
     override fun onPodSubCatSelected(subCategoryData: PodcastSubCategoryData, isSelected: Boolean) {
-        if (isSelected) {
-            subCatIds = if (subCatIds.isEmpty()) {
+        subCatIds = if (isSelected) {
+            if (subCatIds.isEmpty()) {
                 subCategoryData.id + ","
             } else {
                 subCatIds + subCategoryData.id + ","
             }
         } else {
             val replcedata = subCategoryData.id + ","
-            subCatIds = subCatIds.replace(replcedata, "")
+            subCatIds.replace(replcedata, "")
         }
     }
 

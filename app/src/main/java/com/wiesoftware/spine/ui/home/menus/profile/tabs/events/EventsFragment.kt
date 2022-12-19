@@ -39,7 +39,7 @@ var PROFILE_PIC_URL = ""
 class EventsFragment : Fragment(), KodeinAware, EventsEventListener,
     OwnEventAdapter.OnEventDetailsListener {
     override val kodein by kodein()
-    val factory: EventsViewmodelFactory by instance()
+    val factory: EventsViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     val eventRepository: EventRepository by instance()
     lateinit var binding: FragmentEventsBinding
@@ -54,7 +54,7 @@ class EventsFragment : Fragment(), KodeinAware, EventsEventListener,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_events, container, false)
-        val viewmodel = ViewModelProvider(this, factory).get(EventsViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this, factory).get(EventsViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.eventsEventListener = this
         progressDialog = ProgressDialog(context)

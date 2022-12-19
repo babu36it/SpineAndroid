@@ -42,16 +42,16 @@ class SettingsActivity : AppCompatActivity(), KodeinAware, SettingsEventListener
     }
 
     override val kodein by kodein()
-    val factory: SettingViewmodelFactory by instance()
+    val factory: SettingViewModelFactory by instance()
     val homeRepository: HomeRepository by instance()
-    lateinit var viewmodel: SettingsViewmodel
+    lateinit var viewmodel: SettingsViewModel
     lateinit var binding: ActivitySettingsBinding
     lateinit var c_user: User
     var isLogin=true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this, R.layout.activity_settings)
-        viewmodel=ViewModelProvider(this, factory).get(SettingsViewmodel::class.java)
+        viewmodel=ViewModelProvider(this, factory).get(SettingsViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.settingsEventListener=this
         viewmodel.getUser().observe(this, Observer { user ->

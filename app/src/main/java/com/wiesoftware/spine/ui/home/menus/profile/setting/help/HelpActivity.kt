@@ -28,14 +28,14 @@ class HelpActivity : AppCompatActivity(),KodeinAware, HelpEventListener {
     }
 
     override val kodein by kodein()
-    val factory: HelpViewmodelFactory by instance()
+    val factory: HelpViewModelFactory by instance()
     lateinit var binding: ActivityHelpBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_help)
         binding=DataBindingUtil.setContentView(this, R.layout.activity_help)
-        val viewmodel=ViewModelProvider(this, factory).get(HelpViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this, factory).get(HelpViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.helpEventListener=this
         binding.textView230.text= GetAppVersion(this)

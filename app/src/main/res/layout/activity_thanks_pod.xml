@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.wiesoftware.spine.ui.home.menus.podcasts.pod_thanks.ThanksPodViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.podcasts.pod_thanks.ThanksPodViewModel" />
     </data>
 
     <LinearLayout

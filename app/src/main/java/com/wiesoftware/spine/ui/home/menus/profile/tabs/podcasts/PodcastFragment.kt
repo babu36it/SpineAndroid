@@ -46,7 +46,7 @@ class PodcastFragment : Fragment(), KodeinAware, PodcastsEventListner,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_podcast, container, false)
-        val viewmodel = ViewModelProvider(this).get(PodcastsViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this).get(PodcastsViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.podcastsEventListner = this
         progressDialog = ProgressDialog(context)

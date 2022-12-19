@@ -101,6 +101,4 @@ interface ProfileApi {
     suspend fun updateUserBgProfilePic(
         @Part image: MultipartBody.Part,
     ): Response<SingleRes>
-
-
 }

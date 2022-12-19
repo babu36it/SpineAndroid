@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.spine.rec_followers.RecommendedFolowersViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.spine.rec_followers.RecommendedFolowersViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout

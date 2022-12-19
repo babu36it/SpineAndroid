@@ -78,7 +78,7 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
 
 
     override val kodein by kodein()
-    val factory: EventFragmentViewmodelFactory by instance()
+    val factory: EventFragmentViewModelFactory by instance()
     val eventRepositry: EventRepository by instance()
     lateinit var binding: FragmentEventBinding
     var user_id: String = ""

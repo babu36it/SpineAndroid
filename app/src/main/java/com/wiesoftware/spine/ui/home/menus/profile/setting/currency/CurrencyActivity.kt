@@ -15,7 +15,6 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.CurrencyAdapter
 import com.wiesoftware.spine.data.net.reponses.CurrencyData
-import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.data.repo.SettingsRepository
 import com.wiesoftware.spine.databinding.ActivityCurrencyBinding
 import com.wiesoftware.spine.util.ApiException
@@ -35,7 +34,7 @@ class CurrencyActivity : AppCompatActivity(),KodeinAware, CurrencyEventListener,
     }
 
     override val kodein by kodein()
-    val factory : CurrencyViewmodelFactory by instance()
+    val factory : CurrencyViewModelFactory by instance()
     val settingsRepository: SettingsRepository by instance()
     lateinit var binding: ActivityCurrencyBinding
     lateinit var userId: String
@@ -45,7 +44,7 @@ class CurrencyActivity : AppCompatActivity(),KodeinAware, CurrencyEventListener,
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_currency)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_currency)
-        val viewmodel=ViewModelProvider(this,factory).get(CurreencyViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(CurreencyViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.currencyEventListener=this
         progressDialog = ProgressDialog(this)

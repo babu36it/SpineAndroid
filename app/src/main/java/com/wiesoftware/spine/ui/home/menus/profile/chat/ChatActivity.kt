@@ -38,7 +38,7 @@ class ChatActivity : AppCompatActivity(),KodeinAware, ChatActivityEventListener 
     override val kodein by kodein()
     val homeRepositry: HomeRepository by instance()
     val eventRepository: EventRepository by instance()
-    val factory: ChatActivityViewmodelFactory by instance()
+    val factory: ChatActivityViewModelFactory by instance()
     lateinit var userId: String
     lateinit var eveUserId: String
     lateinit var binding: ActivityChatBinding
@@ -52,7 +52,7 @@ class ChatActivity : AppCompatActivity(),KodeinAware, ChatActivityEventListener 
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_chat)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_chat)
-        val  viewmodel=ViewModelProvider(this,factory).get(ChatActivityViewmodel::class.java)
+        val  viewmodel=ViewModelProvider(this,factory).get(ChatActivityViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.chatActivityEventListener=this
         getEveMsgData()

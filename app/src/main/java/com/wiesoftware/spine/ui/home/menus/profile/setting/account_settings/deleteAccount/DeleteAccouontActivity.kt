@@ -14,7 +14,6 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.db.entities.User
 import com.wiesoftware.spine.data.repo.HomeRepository
-import com.wiesoftware.spine.data.repo.ProfileRepository
 import com.wiesoftware.spine.data.repo.SettingsRepository
 import com.wiesoftware.spine.databinding.ActivityDeleteAccouontBinding
 import com.wiesoftware.spine.ui.auth.WelcomeActivity
@@ -33,7 +32,7 @@ class DeleteAccouontActivity : AppCompatActivity(),KodeinAware, DeleteAccountEve
     }
 
     override val kodein by kodein()
-    val factory: DeleteAccountViewmodelFactory by instance()
+    val factory: DeleteAccountViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     val settingRepository: SettingsRepository by instance()
     lateinit var binding: ActivityDeleteAccouontBinding
@@ -45,7 +44,7 @@ class DeleteAccouontActivity : AppCompatActivity(),KodeinAware, DeleteAccountEve
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_delete_accouont)
-        val viewmodel=ViewModelProvider(this,factory).get(DeleteAccountViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(DeleteAccountViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.deleteAccountEventListener=this
         viewmodel.getLoggedInUser().observe(this, Observer { user->

@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

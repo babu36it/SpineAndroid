@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.spine.addposts.hashtags.HashtagViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.spine.addposts.hashtags.HashtagViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

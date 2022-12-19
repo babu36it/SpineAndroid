@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.profile.masseges.eve_request.EventRequestViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.profile.masseges.eve_request.EventRequestViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/cLayout3"

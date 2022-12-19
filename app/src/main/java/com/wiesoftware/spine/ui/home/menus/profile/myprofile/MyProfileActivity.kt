@@ -88,7 +88,7 @@ class MyProfileActivity : AppCompatActivity(), KodeinAware, MyProfileEventListen
     )
 
     override val kodein by kodein()
-    val factory: MyProfileViewmodelFactory by instance()
+    val factory: MyProfileViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     val eventRepository: EventRepository by instance()
     val authRepository: AuthRepository by instance()
@@ -104,7 +104,7 @@ class MyProfileActivity : AppCompatActivity(), KodeinAware, MyProfileEventListen
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_my_profile)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_my_profile)
-        val viewmodel = ViewModelProvider(this, factory).get(MyProfileViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this, factory).get(MyProfileViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.myProfileEventListener = this
         progressDialog = ProgressDialog(this)

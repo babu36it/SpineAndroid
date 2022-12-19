@@ -38,7 +38,7 @@ class WatchPodcastsFragment : Fragment(),KodeinAware, ListenPodcastAdapter.PodCa
     override val kodein by kodein()
     val homeRepositry: HomeRepository by instance()
     val podcastRepository: PodcastRepository by instance()
-    val factory: WtachPodcastViewmodelFactory by instance()
+    val factory: WtachPodcastViewModelFactory by instance()
     lateinit var binding:  FragmentWatchPodcastsBinding
     lateinit var userId: String
 
@@ -48,7 +48,7 @@ class WatchPodcastsFragment : Fragment(),KodeinAware, ListenPodcastAdapter.PodCa
         savedInstanceState: Bundle?
     ): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_watch_podcasts,container,false)
-        val viewmodel= ViewModelProvider(this,factory).get(WatchPodcastViewmodel::class.java)
+        val viewmodel= ViewModelProvider(this,factory).get(WatchPodcastViewModel::class.java)
         binding.viewmodel=viewmodel
 
         viewmodel.getLoggedInUser().observe(viewLifecycleOwner, Observer { user->

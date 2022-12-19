@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.spine.homesearch.HomeSearchViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.spine.homesearch.HomeSearchViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frameLayout3"

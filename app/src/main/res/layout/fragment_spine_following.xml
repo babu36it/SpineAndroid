@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.wiesoftware.spine.ui.home.menus.spine.following.SpineFollowingViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.spine.following.SpineFollowingViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView

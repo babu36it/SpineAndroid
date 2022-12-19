@@ -36,7 +36,7 @@ import kotlin.collections.ArrayList
 class FollowersFragment : Fragment(), KodeinAware, FollowersAdapter.FollowersFollowListener {
 
     override val kodein by kodein()
-    val factory: FollowersFragmentViewmodelFactory by instance()
+    val factory: FollowersFragmentViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     val eventRepository: EventRepository by instance()
     lateinit var binding: FragmentFollowersBinding
@@ -55,7 +55,7 @@ class FollowersFragment : Fragment(), KodeinAware, FollowersAdapter.FollowersFol
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_followers, container, false)
-        val viewmodel = ViewModelProvider(this, factory).get(FollowersFragmentViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this, factory).get(FollowersFragmentViewModel::class.java)
         binding.viewmodel = viewmodel
         progressDialog = ProgressDialog(context)
         viewmodel.getLoggedInUser().observe(viewLifecycleOwner, Observer { user ->

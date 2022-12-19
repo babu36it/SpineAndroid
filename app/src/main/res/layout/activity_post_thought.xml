@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.spine.addposts.postthought.PostThoughtViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.spine.addposts.postthought.PostThoughtViewModel" />
     </data>
 
     <LinearLayout

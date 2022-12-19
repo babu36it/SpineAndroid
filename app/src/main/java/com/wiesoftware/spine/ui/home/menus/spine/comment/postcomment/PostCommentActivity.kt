@@ -39,7 +39,7 @@ class PostCommentActivity : AppCompatActivity(),KodeinAware, PostCommentEventLis
 
     override val kodein by kodein()
     lateinit var binding: ActivityPostCommentBinding
-    val factory: PostCommentViewmodelFactory by instance()
+    val factory: PostCommentViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     lateinit var user_id:  String
     lateinit var post_id: String
@@ -48,7 +48,7 @@ class PostCommentActivity : AppCompatActivity(),KodeinAware, PostCommentEventLis
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_post_comment)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_post_comment)
-        val viewmodel=ViewModelProvider(this,factory).get(PostCommentViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(PostCommentViewModel::class.java)
         binding.viewModel=viewmodel
         viewmodel.postCommentEventListener=this
         viewmodel.getLoggedInUser().observe(this, Observer { user->

@@ -85,16 +85,16 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
     var currentPhotoPath: String? = null
     lateinit var photoURI: Uri
     lateinit var binding: ActivityAddStoryBinding
-    lateinit var viewmodel: AddStoryViewmodel
+    lateinit var viewmodel: AddStoryViewModel
     lateinit var userid: String
     val homeRepositry: HomeRepository by instance()
-    val factory: AddStoryViewmodelFactory by instance()
+    val factory: AddStoryViewModelFactory by instance()
     lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_story)
-        viewmodel = ViewModelProvider(this, factory).get(AddStoryViewmodel::class.java)
+        viewmodel = ViewModelProvider(this, factory).get(AddStoryViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.addStoryEventListener = this
         bitmaps = ArrayList()

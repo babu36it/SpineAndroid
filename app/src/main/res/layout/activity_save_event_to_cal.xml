@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.saveEventCalendar.SaveEventViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.saveEventCalendar.SaveEventViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout

@@ -51,7 +51,7 @@ class PostPreviewActivity : AppCompatActivity(),KodeinAware, PostPreviewEventLis
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_post_preview)
-        val viewmodel=ViewModelProvider(this).get(PostPreviewViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this).get(PostPreviewViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.postPreviewEventListener=this
 

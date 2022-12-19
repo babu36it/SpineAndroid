@@ -23,7 +23,6 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.databinding.ActivityViewMediaInLargeBinding
-import com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.ViewStoryActivity
 
 
 class ViewMediaInLargeActivity : AppCompatActivity(), ViewMediaEventListener, Player.EventListener {
@@ -52,7 +51,7 @@ class ViewMediaInLargeActivity : AppCompatActivity(), ViewMediaEventListener, Pl
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_view_media_in_large)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_view_media_in_large)
-        val viewmodel=ViewModelProvider(this).get(ViewMediaViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this).get(ViewMediaViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.viewMediaEventListener=this
         mImageView = binding.imageView31
@@ -108,7 +107,7 @@ class ViewMediaInLargeActivity : AppCompatActivity(), ViewMediaEventListener, Pl
             Glide.with(mImageView!!).load(mediaUrl).placeholder(R.drawable.demo).into(mImageView!!)
     }
 
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
+    override fun onTouchEvent(event: MotionEvent): Boolean {
         mScaleGestureDetector!!.onTouchEvent(event)
         return true
     }

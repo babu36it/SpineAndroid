@@ -49,7 +49,7 @@ class BookmarkFragment : Fragment(),KodeinAware, BookmarkEventListener,
     val homeRepositry: HomeRepository by instance()
     val podcastRepository: PodcastRepository by instance()
     val eventRepository: EventRepository by instance()
-    val factory: BookmarkViewmodelFactory by instance()
+    val factory: BookmarkViewModelFactory by instance()
     lateinit var binding: FragmentBookmarkBinding
     var userId: String=""
     var allEvents: MutableList<EventsRecord> = ArrayList<EventsRecord>()
@@ -58,7 +58,7 @@ class BookmarkFragment : Fragment(),KodeinAware, BookmarkEventListener,
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_bookmark,container,false)
-        val viewmodel=ViewModelProvider(this,factory).get(BookmarkViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(BookmarkViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.bookmarkEventListener=this
         viewmodel.getLoggedInUser().observe(viewLifecycleOwner, Observer { user->

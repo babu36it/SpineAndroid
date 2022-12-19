@@ -61,7 +61,7 @@ class ViewStoryActivity : AppCompatActivity(),
 
 
     override val kodein by kodein()
-    val factory: ViewStoryViewmodelFactory by instance()
+    val factory: ViewStoryViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityViewStoryBinding
     lateinit var user_id: String
@@ -74,7 +74,7 @@ class ViewStoryActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_view_story)
-        val viewmodel=ViewModelProvider(this,factory).get(ViewStoryViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(ViewStoryViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.viewStoryEventListener=this
 
@@ -348,9 +348,11 @@ class ViewStoryActivity : AppCompatActivity(),
                 duration = 400L
                 interpolator = FastOutSlowInInterpolator()
                 addListener(object : Animator.AnimatorListener {
-                    override fun onAnimationRepeat(p0: Animator?) {}
+                    override fun onAnimationRepeat(p0: Animator) {
 
-                    override fun onAnimationEnd(animation: Animator?) {
+                    }
+
+                    override fun onAnimationEnd(animation: Animator) {
                         removeAllUpdateListeners()
                         if (viewPager.isFakeDragging) {
                             viewPager.endFakeDrag()
@@ -358,7 +360,7 @@ class ViewStoryActivity : AppCompatActivity(),
                         prevDragPosition = 0
                     }
 
-                    override fun onAnimationCancel(animation: Animator?) {
+                    override fun onAnimationCancel(animation: Animator) {
                         removeAllUpdateListeners()
                         if (viewPager.isFakeDragging) {
                             viewPager.endFakeDrag()
@@ -366,7 +368,7 @@ class ViewStoryActivity : AppCompatActivity(),
                         prevDragPosition = 0
                     }
 
-                    override fun onAnimationStart(p0: Animator?) {}
+                    override fun onAnimationStart(p0: Animator) {}
                 })
                 addUpdateListener {
                     if (!viewPager.isFakeDragging) return@addUpdateListener

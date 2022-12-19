@@ -3,7 +3,7 @@
 <data>
     <variable
         name="viewmodel"
-        type="com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory.previewstory.PreviewStoryViewmodel" />
+        type="com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory.previewstory.PreviewStoryViewModel" />
 </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"

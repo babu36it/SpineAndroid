@@ -35,7 +35,7 @@ class YouActivityFragment : Fragment(),KodeinAware,
 
     override val kodein by kodein()
     lateinit var binding: FragmentYouActivityBinding
-    private val factory: YouActivityViewmodelFactory by instance()
+    private val factory: YouActivityViewModelFactory by instance()
     private val homeRepositry: HomeRepository by instance()
 
     lateinit var user_id: String
@@ -45,7 +45,7 @@ class YouActivityFragment : Fragment(),KodeinAware,
         savedInstanceState: Bundle?
     ): View? {
         binding= DataBindingUtil.inflate(inflater,R.layout.fragment_you_activity,container,false)
-        val viewmodel=ViewModelProvider(this,factory).get(YouActivityViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(YouActivityViewModel::class.java)
         binding.viewmodal=viewmodel
 
         viewmodel.getLoggedInUser().observe(viewLifecycleOwner, Observer { user->

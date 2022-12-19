@@ -32,7 +32,7 @@ class EveRequestFragment : Fragment(),KodeinAware, EventRequestEventListener,
     override val kodein by kodein()
     val homeRepositry: HomeRepository by instance()
     val eventRepository: EventRepository by instance()
-    val factory: EventRequestViewmodelFactory by instance()
+    val factory: EventRequestViewModelFactory by instance()
     lateinit var binding: FragmentEveRequestBinding
     lateinit var userId: String
 
@@ -44,7 +44,7 @@ class EveRequestFragment : Fragment(),KodeinAware, EventRequestEventListener,
         savedInstanceState: Bundle?
     ): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_eve_request,container,false)
-        val viewmodel=ViewModelProvider(this,factory).get(EventRequestViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(EventRequestViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.eventRequestEventListener=this
         viewmodel.getLoggedInUser().observe(viewLifecycleOwner, Observer { user->

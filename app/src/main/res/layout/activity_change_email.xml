@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.change_email.ChangeEmailViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.change_email.ChangeEmailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

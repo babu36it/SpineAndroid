@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.widget.RadioButton
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
@@ -28,7 +27,7 @@ class PostThoughtActivity : AppCompatActivity(), KodeinAware, PostThoughtEventLi
     }
 
     override val kodein by kodein()
-    val factory: PostThoughtViewmodelFactory by instance()
+    val factory: PostThoughtViewModelFactory by instance()
     lateinit var binding: ActivityPostThoughtBinding
 
     var bg_color = ArrayList<String>()
@@ -42,7 +41,7 @@ class PostThoughtActivity : AppCompatActivity(), KodeinAware, PostThoughtEventLi
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_post_thought)
-        val viewmodel = ViewModelProvider(this, factory).get(PostThoughtViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this, factory).get(PostThoughtViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.postThoughtEventListener = this
 

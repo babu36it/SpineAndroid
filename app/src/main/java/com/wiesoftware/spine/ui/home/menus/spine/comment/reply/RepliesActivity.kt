@@ -44,7 +44,7 @@ class RepliesActivity : AppCompatActivity(),KodeinAware, RepliesEventListener,
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_replies)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_replies)
-        val viewmodel=ViewModelProvider(this).get(RepliesViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this).get(RepliesViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.repliesEventListener=this
         homeRepositry.getUser().observe(this, Observer { user->

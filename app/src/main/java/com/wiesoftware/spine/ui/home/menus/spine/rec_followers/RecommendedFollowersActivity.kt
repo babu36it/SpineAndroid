@@ -37,7 +37,7 @@ class RecommendedFollowersActivity : AppCompatActivity(), KodeinAware,
     }
 
     override val kodein by kodein()
-    val factory: RecommendedFollowersViewmodelFactory by instance()
+    val factory: RecommendedFollowersViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityRecommendedFollowersBinding
     lateinit var userId: String
@@ -46,7 +46,7 @@ class RecommendedFollowersActivity : AppCompatActivity(), KodeinAware,
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_recommended_followers)
         val viewmodel =
-            ViewModelProvider(this, factory).get(RecommendedFolowersViewmodel::class.java)
+            ViewModelProvider(this, factory).get(RecommendedFolowersViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.recommendedFollowersEventListener = this
         viewmodel.getLoggedInUser().observe(this, Observer { user ->

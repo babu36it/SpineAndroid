@@ -42,7 +42,7 @@ val EVE_MSG_DATA="eveMsgData"
 class MsgFragment : Fragment(),KodeinAware, EveMessageAdapter.OnUserChatListener {
 
     override val kodein by kodein()
-    val factory: MsgFragmentViewmodelFactory by instance()
+    val factory: MsgFragmentViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     lateinit var binding: FragmentMsgBinding
     lateinit var user_id: String
@@ -56,7 +56,7 @@ class MsgFragment : Fragment(),KodeinAware, EveMessageAdapter.OnUserChatListener
         savedInstanceState: Bundle?
     ): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_msg,container,false)
-        val viewmodel=ViewModelProvider(this,factory).get(MsgFragmentViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(MsgFragmentViewModel::class.java)
         binding.viewmodel=viewmodel
 
         user_id = "7"

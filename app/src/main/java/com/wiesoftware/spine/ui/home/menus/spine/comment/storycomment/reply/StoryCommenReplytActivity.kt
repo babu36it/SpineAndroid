@@ -48,7 +48,7 @@ class StoryCommenReplytActivity : AppCompatActivity(), KodeinAware, StoryComment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_story_commen_replyt)
-        val viewmodel = ViewModelProvider(this).get(StoryCommentReplyViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this).get(StoryCommentReplyViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.storyCommentReplyEventListener = this
         homeRepositry.getUser().observe(this, Observer { user ->

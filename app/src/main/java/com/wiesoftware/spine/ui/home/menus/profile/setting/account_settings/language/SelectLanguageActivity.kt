@@ -24,7 +24,7 @@ class SelectLanguageActivity : AppCompatActivity(),KodeinAware, SelectLanguageEv
 
     override val kodein by kodein()
 
-    val factory: SelectLanguageViewmodelFactory by instance()
+    val factory: SelectLanguageViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     lateinit var userId: String
     lateinit var binding: ActivitySelectLanguageBinding
@@ -35,7 +35,7 @@ class SelectLanguageActivity : AppCompatActivity(),KodeinAware, SelectLanguageEv
         //setContentView(R.layout.activity_select_language)
         //RuntimeLocaleChanger.overrideLocale(this)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_select_language)
-        val viewmodel=ViewModelProvider(this,factory).get(SelectLanguageViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(SelectLanguageViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.selectLanguageEventListener=this
         viewmodel.getLoggedInUser().observe(this, Observer { user->

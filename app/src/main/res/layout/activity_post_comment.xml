@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.wiesoftware.spine.ui.home.menus.spine.comment.postcomment.PostCommentViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.spine.comment.postcomment.PostCommentViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout

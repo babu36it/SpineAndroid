@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.spine.comment.reply.RepliesViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.spine.comment.reply.RepliesViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout

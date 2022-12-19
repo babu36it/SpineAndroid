@@ -53,7 +53,7 @@ class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
     lateinit var viewmodel: VoiceOverViewModel
     lateinit var binding: com.wiesoftware.spine.databinding.ActivityVoiceOverBinding
     val homeRepositry: HomeRepository by instance()
-    private val voiceOverViewModel: VoiceViewmodelFactory by instance()
+    private val voiceOverViewModel: VoiceViewModelFactory by instance()
 
     // creating a variable for media recorder object class.
     private var mediaRecorder: MediaRecorder? = null

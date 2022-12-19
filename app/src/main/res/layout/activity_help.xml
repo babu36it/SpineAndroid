@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.profile.setting.help.HelpViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.profile.setting.help.HelpViewModel" />
     </data>
 
     <LinearLayout

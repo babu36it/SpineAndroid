@@ -90,14 +90,14 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
 
 
     override val kodein by kodein()
-    val factory: EditProfileViewmodelFactory by instance()
+    val factory: EditProfileViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     val eventRepository: EventRepository by instance()
     val authRepository: AuthRepository by instance()
     val settingsRepository: SettingsRepository by instance()
     val profileRepository: ProfileRepository by instance()
     lateinit var binding: ActivityEditProfileBinding
-    lateinit var editProfileViewModel: EditProfileViewmodel
+    lateinit var editProfileViewModel: EditProfileViewModel
     lateinit var user_id: String
 
     var category: String = ""
@@ -117,7 +117,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile)
         editProfileViewModel =
-            ViewModelProvider(this, factory).get(EditProfileViewmodel::class.java)
+            ViewModelProvider(this, factory).get(EditProfileViewModel::class.java)
         binding.viewmodel = editProfileViewModel
         editProfileViewModel.editProfileEventListener = this
         progressDialog = ProgressDialog(this)

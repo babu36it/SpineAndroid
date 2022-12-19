@@ -33,7 +33,7 @@ class NotificationsActivity : AppCompatActivity(),KodeinAware, NotificationsEven
 
     override val kodein by kodein()
     val homeRepositry: HomeRepository by instance()
-    val factory: NotificationsViewmodelFactory by instance()
+    val factory: NotificationsViewModelFactory by instance()
     lateinit var binding: ActivityNotificationsBinding
     var userId: String=""
 
@@ -41,7 +41,7 @@ class NotificationsActivity : AppCompatActivity(),KodeinAware, NotificationsEven
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_notifications)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_notifications)
-        val viewmodel=ViewModelProvider(this,factory).get(NotificationsViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(NotificationsViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.notificationsEventListener=this
         viewmodel.getLoggedInUser().observe(this, Observer { user->

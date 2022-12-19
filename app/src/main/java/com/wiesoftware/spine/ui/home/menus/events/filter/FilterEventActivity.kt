@@ -78,15 +78,15 @@ class FilterEventActivity : AppCompatActivity(),KodeinAware, FilterEventListener
 
     override val kodein by kodein()
     lateinit var binding: ActivityFilterEventBinding
-    lateinit var viewmodel: FilterEventViewmodel
-    val factory: FilterEventViewmodelFactory by instance()
+    lateinit var viewmodel: FilterEventViewModel
+    val factory: FilterEventViewModelFactory by instance()
     val eventRepositry: EventRepository by instance()
     private val AUTOCOMPLETE_REQUEST_CODE = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_filter_event)
-        viewmodel=ViewModelProvider(this,factory).get(FilterEventViewmodel::class.java)
+        viewmodel=ViewModelProvider(this,factory).get(FilterEventViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.filterEventListener=this
 
@@ -202,7 +202,7 @@ class FilterEventActivity : AppCompatActivity(),KodeinAware, FilterEventListener
     fun openDialog() {
         val dialog = Dialog(this,android.R.style.Theme_Black_NoTitleBar_Fullscreen)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.getWindow()?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.eve_cat_selection)
         dialog.rvcats.also { rv->
@@ -334,7 +334,7 @@ class FilterEventActivity : AppCompatActivity(),KodeinAware, FilterEventListener
         val now = Calendar.getInstance()
         builder.setSelection(androidx.core.util.Pair(now.timeInMillis, now.timeInMillis))
         val picker = builder.build()
-        picker.show(this?.supportFragmentManager!!, picker.toString())
+        picker.show(this.supportFragmentManager, picker.toString())
 
         picker.addOnNegativeButtonClickListener {
 
@@ -468,11 +468,11 @@ class FilterEventActivity : AppCompatActivity(),KodeinAware, FilterEventListener
         val result = StringBuilder()
         try {
             val geocoder = Geocoder(this, Locale.getDefault())
-            val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
-            if (addresses.size > 0) {
+            val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)!!
+            if (addresses.isNotEmpty()) {
                 val address: Address = addresses[0]
-                result.append(address.getLocality()).append(", ")
-                result.append(address.getCountryName()).append(", ")
+                result.append(address.locality).append(", ")
+                result.append(address.countryName).append(", ")
                 result.append(address.subLocality).append(", ")
                 result.append(address.subAdminArea)
             }

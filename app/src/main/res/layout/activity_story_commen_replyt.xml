@@ -3,7 +3,7 @@
         <data>
                 <variable
                     name="viewmodel"
-                    type="com.wiesoftware.spine.ui.home.menus.spine.comment.storycomment.reply.StoryCommentReplyViewmodel" />
+                    type="com.wiesoftware.spine.ui.home.menus.spine.comment.storycomment.reply.StoryCommentReplyViewModel" />
         </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout

@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.language.SelectLanguageViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.language.SelectLanguageViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"

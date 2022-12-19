@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.events.addevents.AddEventViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.events.addevents.AddEventViewModel" />
     </data>
 
     <LinearLayout

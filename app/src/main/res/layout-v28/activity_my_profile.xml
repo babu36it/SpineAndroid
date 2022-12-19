@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.profile.myprofile.MyProfileViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.profile.myprofile.MyProfileViewModel" />
     </data>
 
     <ScrollView

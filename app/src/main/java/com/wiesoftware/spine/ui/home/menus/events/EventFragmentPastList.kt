@@ -44,7 +44,7 @@ class EventFragmentPastList : Fragment(), KodeinAware, EventFragmentEventListene
     var lon: Double = 0.0
 
     override val kodein by kodein()
-    val factory: EventFragmentViewmodelFactory by instance()
+    val factory: EventFragmentViewModelFactory by instance()
     val eventRepositry: EventRepository by instance()
     lateinit var binding: FragmentEventsListBinding
     var user_id: String = ""

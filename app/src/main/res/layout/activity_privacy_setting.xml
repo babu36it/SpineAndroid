@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.profile.setting.help.privacy.PrivacySettingViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.profile.setting.help.privacy.PrivacySettingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

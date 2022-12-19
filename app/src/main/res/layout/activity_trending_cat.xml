@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.spine.categories.TrendingCatViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.spine.categories.TrendingCatViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout

@@ -36,7 +36,7 @@ class ReviewPostActivity : AppCompatActivity(), KodeinAware, ReviewPostEventList
 
     override val kodein by kodein()
     val homeRepositry: HomeRepository by instance()
-    val factory: ReviewPostViewmodelFactory by instance()
+    val factory: ReviewPostViewModelFactory by instance()
     lateinit var binding: ActivityReviewPostBinding
     lateinit var user_id: String
     lateinit var thought: String
@@ -49,7 +49,7 @@ class ReviewPostActivity : AppCompatActivity(), KodeinAware, ReviewPostEventList
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_review_post)
-        val viewmodel = ViewModelProvider(this, factory).get(ReviewPostViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this, factory).get(ReviewPostViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.reviewPostEventListener = this
         progressDialog = ProgressDialog(this)

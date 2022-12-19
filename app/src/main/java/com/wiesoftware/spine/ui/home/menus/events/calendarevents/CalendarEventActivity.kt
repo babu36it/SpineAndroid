@@ -4,10 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.CalendarContract
-import android.view.View
-import android.widget.CalendarView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.wiesoftware.spine.R
@@ -16,7 +13,6 @@ import com.wiesoftware.spine.data.net.reponses.EventsRecord
 import com.wiesoftware.spine.databinding.ActivityCalendarEventBinding
 import com.wiesoftware.spine.ui.home.menus.events.EVE_RECORD
 import kotlinx.android.synthetic.main.activity_calendar_event.*
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import java.lang.Exception
@@ -35,7 +31,7 @@ class CalendarEventActivity : AppCompatActivity(),KodeinAware, CalendarEventsEve
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_calendar_event)
-        val viewmodel=ViewModelProvider(this).get(CaklendarEventViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this).get(CaklendarEventViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.calendarEventsEventListener=this
 

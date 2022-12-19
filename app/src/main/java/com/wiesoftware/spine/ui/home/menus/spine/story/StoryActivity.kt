@@ -35,7 +35,7 @@ class StoryActivity : AppCompatActivity(),KodeinAware, StoryEventListener,
     }
 
     override val kodein by kodein()
-    private val factory: StoryViewmodelFactory by instance()
+    private val factory: StoryViewModelFactory by instance()
     private val homeRepositry : HomeRepository by instance()
 
     lateinit var binding: ActivityStoryBinding

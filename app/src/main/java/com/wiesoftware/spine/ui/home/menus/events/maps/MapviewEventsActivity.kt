@@ -64,7 +64,7 @@ class MapviewEventsActivity : AppCompatActivity(), OnMapReadyCallback, KodeinAwa
 
     private val AUTOCOMPLETE_REQUEST_CODE = 1
     override val kodein by kodein()
-    val factory: MapviewViewmodelFactory by instance()
+    val factory: MapviewViewModelFactory by instance()
     val eventRepositry: EventRepository by instance()
     lateinit var binding: ActivityMapviewEventsBinding
     var userId: String = ""
@@ -91,7 +91,7 @@ class MapviewEventsActivity : AppCompatActivity(), OnMapReadyCallback, KodeinAwa
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_mapview_events)
-        val viewmodel = ViewModelProvider(this, factory).get(MapviewViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this, factory).get(MapviewViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.mapviewEventListener = this
 

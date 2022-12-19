@@ -48,7 +48,7 @@ class PreviewEventActivity : AppCompatActivity(), KodeinAware, PreviewEventsEven
     }
 
     override val kodein by kodein()
-    val factory: PreviewEventViewmodelFactory by instance()
+    val factory: PreviewEventViewModelFactory by instance()
     val eventRepositry: EventRepository by instance()
     lateinit var binding: ActivityPreviewEventBinding
 
@@ -63,7 +63,7 @@ class PreviewEventActivity : AppCompatActivity(), KodeinAware, PreviewEventsEven
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_preview_event)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_preview_event)
-        val viewmodel = ViewModelProvider(this, factory).get(PreviewEventViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this, factory).get(PreviewEventViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.previewEventsEventListener = this
         viewmodel.getUser().observe(this, {

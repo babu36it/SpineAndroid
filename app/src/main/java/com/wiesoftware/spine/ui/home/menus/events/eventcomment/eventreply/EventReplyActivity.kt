@@ -32,7 +32,7 @@ class EventReplyActivity : AppCompatActivity(),KodeinAware, EventReplyEventListe
     }
 
     override val kodein by kodein()
-    val factory: EventReplyViewmodelFactory by instance()
+    val factory: EventReplyViewModelFactory by instance()
     val eventRepositry: EventRepository by instance()
     lateinit var binding:  ActivityEventReplyBinding
     lateinit var userId: String
@@ -43,7 +43,7 @@ class EventReplyActivity : AppCompatActivity(),KodeinAware, EventReplyEventListe
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_event_reply)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_event_reply)
-        val viewmodel=ViewModelProvider(this,factory).get(EventReplyViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(EventReplyViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.eventReplyEventListener=this
         viewmodel.getLoggedInUser().observe(this, Observer { user->

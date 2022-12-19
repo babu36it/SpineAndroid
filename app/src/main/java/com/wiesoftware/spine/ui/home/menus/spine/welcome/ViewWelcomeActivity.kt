@@ -30,15 +30,15 @@ class ViewWelcomeActivity : AppCompatActivity(),KodeinAware, ViewWelcomeEventLis
     }
 
     override val kodein by kodein()
-    val factory: ViewWelcomeViewmodelFactory by instance()
+    val factory: ViewWelcomeViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     val authRepository: AuthRepository by instance()
     lateinit var binding: ActivityViewWelcomeBinding
-    lateinit var viewmodel: ViewWelcomeViewmodel
+    lateinit var viewmodel: ViewWelcomeViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this, R.layout.activity_view_welcome)
-        viewmodel=ViewModelProvider(this, factory).get(ViewWelcomeViewmodel::class.java)
+        viewmodel=ViewModelProvider(this, factory).get(ViewWelcomeViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.viewWelcomeEventListener=this
         getWelcomeList()

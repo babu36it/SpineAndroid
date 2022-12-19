@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.profile.tabs.bookmark.BookmarkViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.profile.tabs.bookmark.BookmarkViewModel" />
     </data>
 
     <ScrollView

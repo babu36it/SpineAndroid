@@ -50,7 +50,7 @@ class ImpulseActivity : AppCompatActivity(), ImpulseEventListener,KodeinAware,
         super.onCreate(savedInstanceState)
 
         binding=DataBindingUtil.setContentView(this,R.layout.activity_impulse)
-        val viewmodel= ViewModelProvider(this,factory).get(ImpulseViewmodel::class.java)
+        val viewmodel= ViewModelProvider(this,factory).get(ImpulseViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.impulseEventListener=this
         homeRepositry.getUser().observe(this, Observer {user->

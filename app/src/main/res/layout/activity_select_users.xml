@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.events.select_users.SelectUsersViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.events.select_users.SelectUsersViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"

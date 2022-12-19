@@ -40,8 +40,8 @@ class ImpulseCommentActivity : AppCompatActivity(),KodeinAware, ImpulseCommentEv
 
     override val kodein by kodein()
     lateinit var binding: ActivityImpulseCommentBinding
-    lateinit var viewmodel: ImpulseCommentViewmodel
-    val factory: ImpulseCommentViewmodelFactory by instance()
+    lateinit var viewmodel: ImpulseCommentViewModel
+    val factory: ImpulseCommentViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     lateinit var c_user: User
     lateinit var impulse_id:String
@@ -51,7 +51,7 @@ class ImpulseCommentActivity : AppCompatActivity(),KodeinAware, ImpulseCommentEv
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_impulse_comment)
-        viewmodel=ViewModelProvider(this,factory).get(ImpulseCommentViewmodel::class.java)
+        viewmodel=ViewModelProvider(this,factory).get(ImpulseCommentViewModel::class.java)
         binding.viewModel=viewmodel
         viewmodel.impulseCommentEventListener=this
 

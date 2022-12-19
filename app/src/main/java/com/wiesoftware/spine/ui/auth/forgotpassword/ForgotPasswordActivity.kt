@@ -24,7 +24,7 @@ class ForgotPasswordActivity : AppCompatActivity(), KodeinAware, ForgotPasswordE
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_forgot_password)
-        val viewmodel = ViewModelProvider(this).get(ForgotPasswordViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this).get(ForgotPasswordViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.forgotPasswordEventListener = this
     }

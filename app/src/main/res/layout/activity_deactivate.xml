@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.deactiveaccount.DeactivateViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.deactiveaccount.DeactivateViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

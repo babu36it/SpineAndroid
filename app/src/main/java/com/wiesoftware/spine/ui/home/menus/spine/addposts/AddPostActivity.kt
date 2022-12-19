@@ -9,14 +9,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.databinding.ActivityAddPostBinding
-import com.wiesoftware.spine.ui.home.menus.events.addevents.AddEventActivity
 import com.wiesoftware.spine.ui.home.menus.events.addordup.AddOrDupEventActivity
-import com.wiesoftware.spine.ui.home.menus.podcasts.addpodcasts.AddPodcastActivity
 import com.wiesoftware.spine.ui.home.menus.podcasts.addrss.AddRssActivity
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.postmedia.PostMediaActivity
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory.AddStoryActivity
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.postthought.PostThoughtActivity
-import com.wiesoftware.spine.util.toast
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 
@@ -27,11 +24,11 @@ import org.kodein.di.android.kodein
 
      override val kodein by kodein()
      lateinit var binding: ActivityAddPostBinding
-     lateinit var viewmodel: AddPostViewmodel
+     lateinit var viewmodel: AddPostViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_add_post)
-        viewmodel=ViewModelProvider(this).get(AddPostViewmodel::class.java)
+        viewmodel=ViewModelProvider(this).get(AddPostViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.addPostEventListener=this
 

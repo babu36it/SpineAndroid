@@ -33,7 +33,7 @@ class FollowersActivity : AppCompatActivity(),KodeinAware, FollowersActivityEven
     }
 
     override val kodein by kodein()
-    val factory: FollowersActivityViewmodelFactory by instance()
+    val factory: FollowersActivityViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     val eventRepository: EventRepository by instance()
     lateinit var binding: ActivityFollowersBinding

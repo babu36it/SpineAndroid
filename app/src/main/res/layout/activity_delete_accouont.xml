@@ -7,7 +7,7 @@
 <data>
     <variable
         name="viewmodel"
-        type="com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.deleteAccount.DeleteAccountViewmodel" />
+        type="com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.deleteAccount.DeleteAccountViewModel" />
 </data>
 <androidx.constraintlayout.widget.ConstraintLayout
 

@@ -37,7 +37,7 @@ class FollowingFragment : Fragment(), KodeinAware,
     FollowingAdapter.FollowingUnfollowListener {
 
     override val kodein by kodein()
-    val factory: FollowingFragmentViewmodelFactory by instance()
+    val factory: FollowingFragmentViewModelFactory by instance()
     lateinit var binding: FragmentFollowingBinding
     val homeRepositry: HomeRepository by instance()
     var userId: String = ""
@@ -55,7 +55,7 @@ class FollowingFragment : Fragment(), KodeinAware,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_following, container, false)
-        val viewmodel = ViewModelProvider(this, factory).get(FollowingFragmentViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this, factory).get(FollowingFragmentViewModel::class.java)
         binding.viewmodel = viewmodel
         progressDialog = ProgressDialog(context)
         viewmodel.getLoggedInUser().observe(viewLifecycleOwner, Observer { user ->

@@ -32,7 +32,7 @@ class DeactivateActivity : AppCompatActivity(), KodeinAware, DeactivateEventList
     }
 
     override val kodein by kodein()
-    val factory: DeactivateViewmodelFactory by instance()
+    val factory: DeactivateViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     val settingsRepository: SettingsRepository by instance()
     lateinit var binding: ActivityDeactivateBinding
@@ -46,7 +46,7 @@ class DeactivateActivity : AppCompatActivity(), KodeinAware, DeactivateEventList
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_select_currency)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_deactivate)
-        val viewmodel = ViewModelProvider(this, factory).get(DeactivateViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this, factory).get(DeactivateViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.deactivateEventListener = this
         progressDialog = ProgressDialog(this)

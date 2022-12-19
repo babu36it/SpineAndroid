@@ -36,7 +36,7 @@ class EventCommentActivity : AppCompatActivity(),KodeinAware, EventCommentEventL
     override val kodein by kodein()
 
 
-    val factory: EventCommentViewmodelFactory by instance()
+    val factory: EventCommentViewModelFactory by instance()
     val eventRepositry: EventRepository by instance()
     lateinit var binding:  ActivityEventCommentBinding
     lateinit var userId: String
@@ -47,7 +47,7 @@ class EventCommentActivity : AppCompatActivity(),KodeinAware, EventCommentEventL
         //setContentView(R.layout.activity_event_comment)
         
         binding=DataBindingUtil.setContentView(this,R.layout.activity_event_comment)
-        val viewmodel=ViewModelProvider(this,factory).get(EventCommentViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(EventCommentViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.eventCommentEventListener=this
         viewmodel.getLoggedInUser().observe(this, Observer { user->

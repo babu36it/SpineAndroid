@@ -74,7 +74,7 @@ class PodcastDetailActivity : AppCompatActivity(),KodeinAware, PodcastDetailsEve
     }
 
     override val kodein by kodein()
-    val factory: PodcastDetailsViewmodelFactory by instance()
+    val factory: PodcastDetailsViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     val podcastRepository: PodcastRepository by instance()
     val eventRepository: EventRepository by instance()
@@ -96,7 +96,7 @@ class PodcastDetailActivity : AppCompatActivity(),KodeinAware, PodcastDetailsEve
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_podcast_detail)
         binding=DataBindingUtil.setContentView(this, R.layout.activity_podcast_detail)
-        val viewmodel=ViewModelProvider(this, factory).get(PodcastDetailsViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this, factory).get(PodcastDetailsViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.podcastDetailsEventListener=this
         viewmodel.getLoggedInUser().observe(this, Observer { user ->

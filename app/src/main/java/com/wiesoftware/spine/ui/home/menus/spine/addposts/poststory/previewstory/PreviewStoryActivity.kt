@@ -75,7 +75,7 @@ class PreviewStoryActivity : AppCompatActivity(),KodeinAware, PreviewStoryEventL
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_preview_story)
-        val viewmodel=ViewModelProvider(this).get(PreviewStoryViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this).get(PreviewStoryViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.previewStoryEventListener=this
         addYearMonthDataList()

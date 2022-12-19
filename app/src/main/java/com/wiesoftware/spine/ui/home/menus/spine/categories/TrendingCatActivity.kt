@@ -28,14 +28,14 @@ class TrendingCatActivity : AppCompatActivity(),KodeinAware, TrendingCatEventLis
     }
 
     override val kodein by kodein()
-    val factory: TrendingCatViewmodelFactory by instance()
+    val factory: TrendingCatViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityTrendingCatBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_trending_cat)
-        val viewmodel=ViewModelProvider(this,factory).get(TrendingCatViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(TrendingCatViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.trendingCatEventListener=this
         setCategories()

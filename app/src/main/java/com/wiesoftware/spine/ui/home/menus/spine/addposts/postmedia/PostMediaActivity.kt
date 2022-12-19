@@ -96,7 +96,7 @@ class PostMediaActivity : AppCompatActivity(), KodeinAware, PostMediaEventListen
     lateinit var hashAdapter: HashtagAutocompleteAdapter
 
     override val kodein by kodein()
-    val factory: PostMediaViewmodelFactory by instance()
+    val factory: PostMediaViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityPostMediaBinding
     lateinit var userId: String

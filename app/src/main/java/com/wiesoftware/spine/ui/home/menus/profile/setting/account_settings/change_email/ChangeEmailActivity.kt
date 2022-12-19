@@ -41,7 +41,7 @@ class ChangeEmailActivity : AppCompatActivity(), KodeinAware, ChangeEmailEventLi
     lateinit var userId: String
     val homeRepositry: HomeRepository by instance()
     val settingsRepository: SettingsRepository by instance()
-    val factory: ChangeEmailViewmodelFactory by instance()
+    val factory: ChangeEmailViewModelFactory by instance()
     var isLogin = true
     lateinit var user: User
     lateinit var progressDialog: ProgressDialog
@@ -51,7 +51,7 @@ class ChangeEmailActivity : AppCompatActivity(), KodeinAware, ChangeEmailEventLi
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_change_email)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_change_email)
-        val viewmodel = ViewModelProvider(this, factory).get(ChangeEmailViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this, factory).get(ChangeEmailViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.changeEmailEventListener = this
         progressDialog = ProgressDialog(this)

@@ -41,7 +41,7 @@ class EnterCodeActivity : AppCompatActivity(), KodeinAware, EnterCodeEventListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_enter_code)
-        val viewmodel = ViewModelProvider(this).get(EnterCodeViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this).get(EnterCodeViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.enterCodeEventListener = this
         progressDialog= ProgressDialog(this)

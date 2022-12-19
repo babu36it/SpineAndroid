@@ -1,0 +1,19 @@
+package com.wiesoftware.spine.ui.home.menus.profile.setting.notifications
+
+import android.view.View
+import androidx.lifecycle.ViewModel
+import com.wiesoftware.spine.data.repo.HomeRepository
+
+/**
+ * Created by Vivek kumar on 1/21/2021.
+ * Email: vivekpcst.kumar@gmail.com.
+ */
+class NotificationsViewModel(val homeRepositry: HomeRepository): ViewModel() {
+    var notificationsEventListener: NotificationsEventListener?= null
+
+    fun getLoggedInUser()=homeRepositry.getUser()
+
+    fun onBack(view: View){
+        notificationsEventListener?.onBack()
+    }
+}

@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.podcasts.podcastdetails.PodcastDetailsViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.podcasts.podcastdetails.PodcastDetailsViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"

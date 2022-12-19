@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.AccountSettingViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.AccountSettingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

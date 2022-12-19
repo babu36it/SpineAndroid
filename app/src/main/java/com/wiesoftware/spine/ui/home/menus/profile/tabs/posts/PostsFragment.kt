@@ -33,7 +33,7 @@ class PostsFragment : Fragment(), KodeinAware, PostEventListner,
     OwnPostAdapter.OwnPostSelectedListener {
 
     override val kodein by kodein()
-    private val factory: PostViewmodelFactory by instance()
+    private val factory: PostViewModelFactory by instance()
     private val homeRepositry: HomeRepository by instance()
     lateinit var binding: FragmentPostsBinding
     var userId: String = ""
@@ -45,7 +45,7 @@ class PostsFragment : Fragment(), KodeinAware, PostEventListner,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_posts, container, false)
-        val viewmodel = ViewModelProvider(this, factory).get(PostViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this, factory).get(PostViewModel::class.java)
         binding.model = viewmodel
         viewmodel.postEventListner = this
         viewmodel.getLoggedInUser().observe(viewLifecycleOwner, Observer { user ->

@@ -15,7 +15,6 @@ import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.net.Api
-import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.data.repo.SettingsRepository
 import com.wiesoftware.spine.databinding.ActivityPrivacySettingBinding
 import com.wiesoftware.spine.util.ApiException
@@ -35,7 +34,7 @@ class PrivacySettingActivity : AppCompatActivity(), KodeinAware, PrivacySettingE
     }
 
     override val kodein by kodein()
-    val factory: PrivacySettingViewmodelFactory by instance()
+    val factory: PrivacySettingViewModelFactory by instance()
     val settingsRepository: SettingsRepository by instance()
     lateinit var binding: ActivityPrivacySettingBinding
     lateinit var userId: String
@@ -48,7 +47,7 @@ class PrivacySettingActivity : AppCompatActivity(), KodeinAware, PrivacySettingE
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_privacy_setting)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_privacy_setting)
-        val viewmodel = ViewModelProvider(this, factory).get(PrivacySettingViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this, factory).get(PrivacySettingViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.privacySettingEventListener = this
         progressDialog = ProgressDialog(this)

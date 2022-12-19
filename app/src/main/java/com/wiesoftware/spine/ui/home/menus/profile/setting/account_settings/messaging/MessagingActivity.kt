@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
-import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.data.repo.SettingsRepository
 import com.wiesoftware.spine.databinding.ActivityMessagingBinding
 import com.wiesoftware.spine.util.*
@@ -28,7 +27,7 @@ class MessagingActivity : AppCompatActivity(),KodeinAware, MessagingEventListene
     }
 
     override val kodein by kodein()
-    val factory: MessagingViewmodelFactory by  instance()
+    val factory: MessagingViewModelFactory by  instance()
     val settingsRepository: SettingsRepository by instance()
     lateinit var binding: ActivityMessagingBinding
     lateinit var userId: String
@@ -38,7 +37,7 @@ class MessagingActivity : AppCompatActivity(),KodeinAware, MessagingEventListene
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_messaging)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_messaging)
-        val viewmodel=ViewModelProvider(this,factory).get(MessagingViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(MessagingViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.messagingEventListener=this
         progressDialog = ProgressDialog(this)

@@ -29,7 +29,7 @@ class VoiceOverPreviewActivity : AppCompatActivity() , KodeinAware{
     override val kodein by kodein()
     lateinit var viewmodel: VoiceOverViewModel
     val homeRepositry: HomeRepository by instance()
-    private val voiceOverViewModel: VoiceViewmodelFactory by instance()
+    private val voiceOverViewModel: VoiceViewModelFactory by instance()
     lateinit var binding: ActivityVoiceOverPreviewBinding
     // creating a variable for mediaplayer class
     var mediaPlayer: MediaPlayer? = null

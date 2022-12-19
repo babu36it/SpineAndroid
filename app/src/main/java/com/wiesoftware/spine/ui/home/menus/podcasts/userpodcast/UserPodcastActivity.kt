@@ -15,7 +15,6 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.UserPodcastAdapter
 import com.wiesoftware.spine.data.net.reponses.PodDatas
-import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.data.repo.PodcastRepository
 import com.wiesoftware.spine.databinding.ActivityUserPodcastBinding
 import com.wiesoftware.spine.ui.home.menus.podcasts.podcastdetails.PodcastDetailActivity
@@ -39,7 +38,7 @@ class UserPodcastActivity : AppCompatActivity(),KodeinAware, UserPodcastEventLis
     }
 
     override val kodein by kodein()
-    val factory: UserPodcastViewmodelFactory by instance()
+    val factory: UserPodcastViewModelFactory by instance()
     val podcastRepository: PodcastRepository by instance()
     lateinit var binding: ActivityUserPodcastBinding
     lateinit var userId: String
@@ -48,7 +47,7 @@ class UserPodcastActivity : AppCompatActivity(),KodeinAware, UserPodcastEventLis
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_user_podcast)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_user_podcast)
-        val viewmodel=ViewModelProvider(this,factory).get(UserPodcastViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(UserPodcastViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.userPodcastEventListener=this
 

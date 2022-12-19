@@ -10,7 +10,6 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.databinding.ActivityThanksPodBinding
 import com.wiesoftware.spine.ui.home.HomeActivity
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 
@@ -26,7 +25,7 @@ class ThanksPodActivity : AppCompatActivity(),KodeinAware, ThanksPodEventListene
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_thanks_pod)
-        val viewmodel=ViewModelProvider(this).get(ThanksPodViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this).get(ThanksPodViewModel::class.java)
         binding.viewModel = viewmodel
         viewmodel.thanksPodEventListener = this
 

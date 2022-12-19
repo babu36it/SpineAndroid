@@ -48,7 +48,7 @@ class AutoSearchFragment : Fragment(),KodeinAware,
         savedInstanceState: Bundle?
     ): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_auto_search, container, false)
-        val viewmodel=ViewModelProvider(this).get(AutoSearchViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this).get(AutoSearchViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.autoSearchEventListener=this
         homeRepositry.getUser().observe(viewLifecycleOwner, Observer { user->

@@ -75,7 +75,7 @@ class PreviewAdActivity : AppCompatActivity(), KodeinAware, PreviewAdEventListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_preview_ad)
-        val viewmodel = ViewModelProvider(this).get(PreviewAdViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this).get(PreviewAdViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.previewAdEventListener = this
         adType = intent.getIntExtra(AD_TYPE, 0)

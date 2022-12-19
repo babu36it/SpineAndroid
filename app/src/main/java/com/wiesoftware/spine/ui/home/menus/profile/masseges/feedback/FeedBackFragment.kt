@@ -40,7 +40,7 @@ import screen.messagelist.CometChatMessageListActivity
 class FeedBackFragment : Fragment(),KodeinAware, EveMessageAdapter.OnUserChatListener {
 
     override val kodein by kodein()
-    val factory: FeedBackViewmodelFactory by instance()
+    val factory: FeedBackViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     lateinit var binding:FragmentFeedBackBinding
     lateinit var user_id: String

@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.wiesoftware.spine.ui.home.menus.spine.comment.impulsecomment.ImpulseCommentViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.spine.comment.impulsecomment.ImpulseCommentViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"

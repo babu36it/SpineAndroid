@@ -759,7 +759,7 @@ public class Utils {
         }
 
         fun getAddress(context: Context?, latitude: Double, longitude: Double): String? {
-            val geocoder = Geocoder(context, Locale.getDefault())
+            val geocoder = Geocoder(context!!, Locale.getDefault())
             try {
                 val addresses = geocoder.getFromLocation(latitude, longitude, 1)
                 if (addresses != null && addresses.size > 0) {

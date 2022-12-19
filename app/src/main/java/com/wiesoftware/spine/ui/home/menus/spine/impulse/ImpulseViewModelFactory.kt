@@ -14,6 +14,6 @@ class ImpulseViewModelFactory(
 ): ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return ImpulseViewmodel(homeRepositry) as T
+        return ImpulseViewModel(homeRepositry) as T
     }
 }

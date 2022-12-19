@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.spine.welcome.ViewWelcomeViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.spine.welcome.ViewWelcomeViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout

@@ -72,7 +72,7 @@ class SomeOneProfileActivity : AppCompatActivity(),KodeinAware, SomeoneProfileEv
     }
 
     override val kodein by kodein()
-    val factory: SomeoneProfileViewmodelFactory by instance()
+    val factory: SomeoneProfileViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     val eventRepository: EventRepository by instance()
     lateinit var binding: ActivitySomeOneProfileBinding
@@ -93,7 +93,7 @@ class SomeOneProfileActivity : AppCompatActivity(),KodeinAware, SomeoneProfileEv
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_some_one_profile)
         binding=DataBindingUtil.setContentView(this, R.layout.activity_some_one_profile)
-        val viewmodel=ViewModelProvider(this, factory).get(SomeoneProfileViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this, factory).get(SomeoneProfileViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.someoneProfileEventListener=this
         eventuserid= intent.getStringExtra("eventuserid").toString()

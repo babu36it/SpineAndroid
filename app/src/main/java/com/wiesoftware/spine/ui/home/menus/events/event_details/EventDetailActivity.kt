@@ -90,7 +90,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
 
     override val kodein by kodein()
     lateinit var binding: ActivityEventDetailBinding
-    val factory: EventDetailViewmodelFactory by instance()
+    val factory: EventDetailViewModelFactory by instance()
     val eventRepositry: EventRepository by instance()
     var img: String? = null;
     var img_base: String = "";
@@ -120,7 +120,7 @@ class EventDetailActivity : AppCompatActivity(), KodeinAware, EventDetailEventLi
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_event_detail)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_event_detail)
-        val viewmodel = ViewModelProvider(this, factory).get(EventDetailViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this, factory).get(EventDetailViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.eventDetailEventListener = this
 

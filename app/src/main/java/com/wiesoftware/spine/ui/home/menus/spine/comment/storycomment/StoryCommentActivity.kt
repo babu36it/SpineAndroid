@@ -39,7 +39,7 @@ class StoryCommentActivity : AppCompatActivity(),KodeinAware, StoryCommentEventL
     override val kodein by kodein()
     val homeRepositry: HomeRepository by instance()
     val eventRepository: EventRepository by instance()
-    val factory: StoryCommentViewmodelFactory by instance()
+    val factory: StoryCommentViewModelFactory by instance()
     lateinit var binding: ActivityStoryCommentBinding
     lateinit var userId: String
     var storyId=""
@@ -47,7 +47,7 @@ class StoryCommentActivity : AppCompatActivity(),KodeinAware, StoryCommentEventL
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_story_comment)
-        val viewmodel=ViewModelProvider(this,factory).get(StoryCommentViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(StoryCommentViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.storyCommentEventListener=this
 

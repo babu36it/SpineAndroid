@@ -69,7 +69,7 @@ class SpineFollowingFragment : Fragment(), KodeinAware, SpineFollowingEventListe
     override val kodein by kodein()
     val homeRepositry: HomeRepository by instance()
     val eventRepository: EventRepository by instance()
-    val factory: SpineFollowingViewmodelFactory by instance()
+    val factory: SpineFollowingViewModelFactory by instance()
     lateinit var binding: FragmentSpineFollowingBinding
     lateinit var user_id: String
 
@@ -83,7 +83,7 @@ class SpineFollowingFragment : Fragment(), KodeinAware, SpineFollowingEventListe
         savedInstanceState: Bundle?
     ): View? {
         binding = inflate(inflater, R.layout.fragment_spine_following, container, false)
-        val viewmodel = ViewModelProvider(this, factory).get(SpineFollowingViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this, factory).get(SpineFollowingViewModel::class.java)
         binding.model = viewmodel
         viewmodel.spineFollowingEventListener = this
         viewmodel.getLoggedInUser().observe(viewLifecycleOwner, Observer { user ->

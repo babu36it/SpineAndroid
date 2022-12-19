@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.podcasts.addrss.AddRssViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.podcasts.addrss.AddRssViewModel" />
     </data>
 
     <RelativeLayout

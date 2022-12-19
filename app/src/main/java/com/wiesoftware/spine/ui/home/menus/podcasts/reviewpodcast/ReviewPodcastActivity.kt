@@ -59,7 +59,7 @@ class ReviewPodcastActivity : AppCompatActivity(), KodeinAware, ReviewPodcastEve
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_review_podcast)
-        val viewmodel = ViewModelProvider(this).get(ReviewPodcastViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this).get(ReviewPodcastViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.reviewPodcastEventListener = this
         progressDialog = ProgressDialog(this)

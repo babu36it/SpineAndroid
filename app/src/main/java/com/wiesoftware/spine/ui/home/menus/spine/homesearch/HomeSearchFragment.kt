@@ -63,7 +63,7 @@ class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
         savedInstanceState: Bundle?
     ): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_home_search, container, false)
-        val viewmodel=ViewModelProvider(this).get(HomeSearchViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this).get(HomeSearchViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.homeSearchEventListener=this
 

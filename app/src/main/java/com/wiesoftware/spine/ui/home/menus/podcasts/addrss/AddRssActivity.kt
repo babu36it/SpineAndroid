@@ -38,7 +38,7 @@ class AddRssActivity : AppCompatActivity(), KodeinAware, AddRssEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_rss)
-        val viewmodel = ViewModelProvider(this).get(AddRssViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this).get(AddRssViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.addRssEventListener = this
         progressDialog=ProgressDialog(this)

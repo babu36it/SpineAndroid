@@ -203,8 +203,8 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
         val result = StringBuilder()
         try {
             val geocoder = Geocoder(this, Locale.getDefault())
-            val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
-            if (addresses.size > 0) {
+            val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)!!
+            if (addresses.isNotEmpty()) {
                 val address: Address = addresses[0]
                 result.append(address.locality).append(", ")
                 result.append(address.countryName).append(", ")
@@ -224,7 +224,7 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_featured_post1)
-        val viewmodel = ViewModelProvider(this).get(FeaturedPostViewmodel::class.java)
+        val viewmodel = ViewModelProvider(this).get(FeaturedPostViewModel::class.java)
         binding.viewmodel = viewmodel
         viewmodel.featuredPostEventListener = this
         progressDialog = ProgressDialog(this)

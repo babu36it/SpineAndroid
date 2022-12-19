@@ -40,7 +40,7 @@ class AccountSettingsActivity : AppCompatActivity(),KodeinAware, AccountSettingE
     }
 
     override val kodein by kodein()
-    val factory: AccountSettingViewmodelFactory by instance()
+    val factory: AccountSettingViewModelFactory by instance()
     val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityAccountSettingsBinding
     var userId: String=""
@@ -50,7 +50,7 @@ class AccountSettingsActivity : AppCompatActivity(),KodeinAware, AccountSettingE
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_account_settings)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_account_settings)
-        val viewmodel=ViewModelProvider(this,factory).get(AccountSettingViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(AccountSettingViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.accountSettingEventListener=this
         viewmodel.getLoggedInUser().observe(this, Observer { user->

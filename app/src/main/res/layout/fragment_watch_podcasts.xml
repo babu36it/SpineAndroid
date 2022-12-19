@@ -7,7 +7,7 @@
     <data>
     <variable
         name="viewmodel"
-        type="com.wiesoftware.spine.ui.home.menus.podcasts.watch.WatchPodcastViewmodel" />
+        type="com.wiesoftware.spine.ui.home.menus.podcasts.watch.WatchPodcastViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/watchPod"

@@ -38,7 +38,7 @@ class SelectFollowersActivity : AppCompatActivity(),KodeinAware, SelectFollowers
     override val kodein by kodein()
     val homeRepositry: HomeRepository by instance()
     val eventRepository: EventRepository by instance()
-    val factory: SelectFollowersViewmodelFactory by instance()
+    val factory: SelectFollowersViewModelFactory by instance()
     lateinit var userId: String
     var selectedData: MutableList<FollowersData> = ArrayList<FollowersData>()
     val data: MutableMap<String,String> = HashMap<String,String>()
@@ -47,7 +47,7 @@ class SelectFollowersActivity : AppCompatActivity(),KodeinAware, SelectFollowers
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_select_followers)
-        val viewmodel=ViewModelProvider(this,factory).get(SelectFollowersViewmodel::class.java)
+        val viewmodel=ViewModelProvider(this,factory).get(SelectFollowersViewModel::class.java)
         binding.viewmodel=viewmodel
         viewmodel.selectFollowersEventListener=this
         viewmodel.getLoggedInUser().observe(this, Observer { user->

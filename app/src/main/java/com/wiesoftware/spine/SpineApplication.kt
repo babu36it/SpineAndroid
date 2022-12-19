@@ -28,69 +28,69 @@ import com.wiesoftware.spine.ui.auth.login.LoginViewModelFactory
 import com.wiesoftware.spine.ui.auth.number.NumberViewModelFactory
 import com.wiesoftware.spine.ui.auth.otp.OtpViewModelFactory
 import com.wiesoftware.spine.ui.home.menus.activities.following.FollowingActivityViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.activities.you.YouActivityViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.events.EventFragmentViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.events.addevents.AddEventsViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.events.eventcomment.EventCommentViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.events.eventcomment.eventreply.EventReplyViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.events.filter.FilterEventViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.events.maps.MapviewViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.events.preview_event.PreviewEventViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.events.select_users.SelectUsersViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.podcasts.addpodcasts.AddPodcastViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.podcasts.listen.ListenPodcastViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.podcasts.podcastdetails.PodcastDetailsViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.podcasts.userpodcast.UserPodcastViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.podcasts.watch.WtachPodcastViewmodelFactory
+import com.wiesoftware.spine.ui.home.menus.activities.you.YouActivityViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.events.EventFragmentViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.events.addevents.AddEventsViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.events.eventcomment.EventCommentViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.events.eventcomment.eventreply.EventReplyViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.events.filter.FilterEventViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.events.maps.MapviewViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.events.preview_event.PreviewEventViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.events.select_users.SelectUsersViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.podcasts.addpodcasts.AddPodcastViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.podcasts.listen.ListenPodcastViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.podcasts.podcastdetails.PodcastDetailsViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.podcasts.userpodcast.UserPodcastViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.podcasts.watch.WtachPodcastViewModelFactory
 import com.wiesoftware.spine.ui.home.menus.profile.ProfileFragmentViewModelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.chat.ChatActivityViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.editprofile.EditProfileViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.follow.FollowViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.follow.followers.FollowersFragmentViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.follow.following.FollowingFragmentViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.masseges.eve_request.EventRequestViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.masseges.msg.MsgFragmentViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.myprofile.MyProfileViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.setting.SettingViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.AccountSettingViewmodelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.chat.ChatActivityViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.editprofile.EditProfileViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.follow.FollowViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.follow.followers.FollowersFragmentViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.follow.following.FollowingFragmentViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.masseges.eve_request.EventRequestViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.masseges.msg.MsgFragmentViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.myprofile.MyProfileViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.setting.SettingViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.AccountSettingViewModelFactory
 import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.AccountSettingsActivity
-import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.change_email.ChangeEmailViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.deactiveaccount.DeactivateViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.deleteAccount.DeleteAccountViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.language.SelectLanguageViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.messaging.MessagingViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.saveEventCalendar.SaveEventViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.setting.currency.CurrencyViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.setting.help.HelpViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.setting.help.privacy.PrivacySettingViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.setting.notifications.NotificationsViewmodelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.change_email.ChangeEmailViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.deactiveaccount.DeactivateViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.deleteAccount.DeleteAccountViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.language.SelectLanguageViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.messaging.MessagingViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.saveEventCalendar.SaveEventViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.setting.currency.CurrencyViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.setting.help.HelpViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.setting.help.privacy.PrivacySettingViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.setting.notifications.NotificationsViewModelFactory
 import com.wiesoftware.spine.ui.home.menus.profile.setting.notifications.email.EmailNotificationViewModelFactory
 import com.wiesoftware.spine.ui.home.menus.profile.setting.notifications.mobile.MobileNotificationViewModelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeoneProfileViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.followers.FollowersActivityViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.tabs.bookmark.BookmarkViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.tabs.events.EventsViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.profile.tabs.posts.PostViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.spine.addposts.hashtags.HashtagViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.spine.addposts.postmedia.PostMediaViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory.AddStoryViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.spine.addposts.postthought.PostThoughtViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.spine.addposts.reviewpost.ReviewPostViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.spine.categories.TrendingCatViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.spine.comment.impulsecomment.ImpulseCommentViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.spine.comment.postcomment.PostCommentViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.spine.comment.storycomment.StoryCommentViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.spine.following.SpineFollowingViewmodelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeoneProfileViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.followers.FollowersActivityViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.tabs.bookmark.BookmarkViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.tabs.events.EventsViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.profile.tabs.posts.PostViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.spine.addposts.hashtags.HashtagViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.spine.addposts.postmedia.PostMediaViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory.AddStoryViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.spine.addposts.postthought.PostThoughtViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.spine.addposts.reviewpost.ReviewPostViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.spine.categories.TrendingCatViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.spine.comment.impulsecomment.ImpulseCommentViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.spine.comment.postcomment.PostCommentViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.spine.comment.storycomment.StoryCommentViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.spine.following.SpineFollowingViewModelFactory
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.SpineForYouViewModelFactory
 import com.wiesoftware.spine.ui.home.menus.spine.impulse.ImpulseViewModelFactory
 import com.wiesoftware.spine.ui.home.menus.spine.practicioners.PracticionerModelFactory
-import com.wiesoftware.spine.ui.home.menus.spine.rec_followers.RecommendedFollowersViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.spine.selectfollowers.SelectFollowersViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.spine.story.StoryViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.ViewStoryViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.spine.welcome.ViewWelcomeViewmodelFactory
-import com.wiesoftware.spine.ui.home.menus.voice_over.VoiceViewmodelFactory
+import com.wiesoftware.spine.ui.home.menus.spine.rec_followers.RecommendedFollowersViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.spine.selectfollowers.SelectFollowersViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.spine.story.StoryViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.ViewStoryViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.spine.welcome.ViewWelcomeViewModelFactory
+import com.wiesoftware.spine.ui.home.menus.voice_over.VoiceViewModelFactory
 import com.wiesoftware.spine.util.AppConfig
 import com.wiesoftware.spine.util.Prefs
 import com.wiesoftware.spine.util.toast
@@ -137,67 +137,67 @@ class SpineApplication : Application(), KodeinAware {
         bind() from provider { FbEmailViewModelFactory(instance()) }
         bind() from provider { SpineForYouViewModelFactory(instance()) }
         bind() from provider { ImpulseViewModelFactory(instance()) }
-        bind() from provider { StoryViewmodelFactory(instance()) }
-        bind() from provider { SettingViewmodelFactory(instance()) }
+        bind() from provider { StoryViewModelFactory(instance()) }
+        bind() from provider { SettingViewModelFactory(instance()) }
         bind() from provider { ProfileFragmentViewModelFactory(instance()) }
-        bind() from provider { ImpulseCommentViewmodelFactory(instance()) }
-        bind() from provider { ViewWelcomeViewmodelFactory(instance()) }
-        bind() from provider { AddStoryViewmodelFactory(instance()) }
-        bind() from provider { EventFragmentViewmodelFactory(instance()) }
-        bind() from provider { YouActivityViewmodelFactory(instance()) }
-        bind() from provider { PostViewmodelFactory(instance()) }
-        bind() from provider { FilterEventViewmodelFactory(instance()) }
-        bind() from provider { TrendingCatViewmodelFactory(instance()) }
-        bind() from provider { EditProfileViewmodelFactory(instance()) }
-        bind() from provider { RecommendedFollowersViewmodelFactory(instance()) }
-        bind() from provider { ViewStoryViewmodelFactory(instance()) }
-        bind() from provider { SelectFollowersViewmodelFactory(instance()) }
-        bind() from provider { PostCommentViewmodelFactory(instance()) }
-        bind() from provider { SpineFollowingViewmodelFactory(instance()) }
-        bind() from provider { PostThoughtViewmodelFactory(instance()) }
-        bind() from provider { HashtagViewmodelFactory(instance()) }
-        bind() from provider { ReviewPostViewmodelFactory(instance()) }
-        bind() from provider { AddEventsViewmodelFactory(instance()) }
+        bind() from provider { ImpulseCommentViewModelFactory(instance()) }
+        bind() from provider { ViewWelcomeViewModelFactory(instance()) }
+        bind() from provider { AddStoryViewModelFactory(instance()) }
+        bind() from provider { EventFragmentViewModelFactory(instance()) }
+        bind() from provider { YouActivityViewModelFactory(instance()) }
+        bind() from provider { PostViewModelFactory(instance()) }
+        bind() from provider { FilterEventViewModelFactory(instance()) }
+        bind() from provider { TrendingCatViewModelFactory(instance()) }
+        bind() from provider { EditProfileViewModelFactory(instance()) }
+        bind() from provider { RecommendedFollowersViewModelFactory(instance()) }
+        bind() from provider { ViewStoryViewModelFactory(instance()) }
+        bind() from provider { SelectFollowersViewModelFactory(instance()) }
+        bind() from provider { PostCommentViewModelFactory(instance()) }
+        bind() from provider { SpineFollowingViewModelFactory(instance()) }
+        bind() from provider { PostThoughtViewModelFactory(instance()) }
+        bind() from provider { HashtagViewModelFactory(instance()) }
+        bind() from provider { ReviewPostViewModelFactory(instance()) }
+        bind() from provider { AddEventsViewModelFactory(instance()) }
         bind() from provider { FollowingActivityViewmodelFactory(instance()) }
-        bind() from provider { EventsViewmodelFactory(instance()) }
-        bind() from provider { EventDetailViewmodelFactory(instance()) }
-        bind() from provider { SelectUsersViewmodelFactory(instance()) }
-        bind() from provider { PreviewEventViewmodelFactory(instance()) }
-        bind() from provider { MsgFragmentViewmodelFactory(instance()) }
-        bind() from provider { ChatActivityViewmodelFactory(instance()) }
-        bind() from provider { MyProfileViewmodelFactory(instance()) }
-        bind() from provider { FollowViewmodelFactory(instance()) }
-        bind() from provider { FollowersFragmentViewmodelFactory(instance()) }
-        bind() from provider { FollowingFragmentViewmodelFactory(instance()) }
-        bind() from provider { BookmarkViewmodelFactory(instance()) }
-        bind() from provider { NotificationsViewmodelFactory(instance()) }
-        bind() from provider { AccountSettingViewmodelFactory(instance()) }
-        bind() from provider { MapviewViewmodelFactory(instance()) }
-        bind() from provider { ChangeEmailViewmodelFactory(instance()) }
-        bind() from provider { MessagingViewmodelFactory(instance()) }
-        bind() from provider { SaveEventViewmodelFactory(instance()) }
-        bind() from provider { AddPodcastViewmodelFactory(instance()) }
-        bind() from provider { EventRequestViewmodelFactory(instance()) }
-        bind() from provider { SelectLanguageViewmodelFactory(instance()) }
-        bind() from provider { DeactivateViewmodelFactory(instance()) }
-        bind() from provider { CurrencyViewmodelFactory(instance()) }
-        bind() from provider { HelpViewmodelFactory(instance()) }
-        bind() from provider { PostMediaViewmodelFactory(instance()) }
-        bind() from provider { ListenPodcastViewmodelFactory(instance()) }
-        bind() from provider { WtachPodcastViewmodelFactory(instance()) }
-        bind() from provider { UserPodcastViewmodelFactory(instance()) }
-        bind() from provider { PodcastDetailsViewmodelFactory(instance()) }
-        bind() from provider { PrivacySettingViewmodelFactory(instance()) }
+        bind() from provider { EventsViewModelFactory(instance()) }
+        bind() from provider { EventDetailViewModelFactory(instance()) }
+        bind() from provider { SelectUsersViewModelFactory(instance()) }
+        bind() from provider { PreviewEventViewModelFactory(instance()) }
+        bind() from provider { MsgFragmentViewModelFactory(instance()) }
+        bind() from provider { ChatActivityViewModelFactory(instance()) }
+        bind() from provider { MyProfileViewModelFactory(instance()) }
+        bind() from provider { FollowViewModelFactory(instance()) }
+        bind() from provider { FollowersFragmentViewModelFactory(instance()) }
+        bind() from provider { FollowingFragmentViewModelFactory(instance()) }
+        bind() from provider { BookmarkViewModelFactory(instance()) }
+        bind() from provider { NotificationsViewModelFactory(instance()) }
+        bind() from provider { AccountSettingViewModelFactory(instance()) }
+        bind() from provider { MapviewViewModelFactory(instance()) }
+        bind() from provider { ChangeEmailViewModelFactory(instance()) }
+        bind() from provider { MessagingViewModelFactory(instance()) }
+        bind() from provider { SaveEventViewModelFactory(instance()) }
+        bind() from provider { AddPodcastViewModelFactory(instance()) }
+        bind() from provider { EventRequestViewModelFactory(instance()) }
+        bind() from provider { SelectLanguageViewModelFactory(instance()) }
+        bind() from provider { DeactivateViewModelFactory(instance()) }
+        bind() from provider { CurrencyViewModelFactory(instance()) }
+        bind() from provider { HelpViewModelFactory(instance()) }
+        bind() from provider { PostMediaViewModelFactory(instance()) }
+        bind() from provider { ListenPodcastViewModelFactory(instance()) }
+        bind() from provider { WtachPodcastViewModelFactory(instance()) }
+        bind() from provider { UserPodcastViewModelFactory(instance()) }
+        bind() from provider { PodcastDetailsViewModelFactory(instance()) }
+        bind() from provider { PrivacySettingViewModelFactory(instance()) }
         bind() from provider { MobileNotificationViewModelFactory(instance()) }
         bind() from provider { EmailNotificationViewModelFactory(instance()) }
-        bind() from provider { SomeoneProfileViewmodelFactory(instance()) }
-        bind() from provider { FollowersActivityViewmodelFactory(instance()) }
-        bind() from provider { EventCommentViewmodelFactory(instance()) }
-        bind() from provider { EventReplyViewmodelFactory(instance()) }
-        bind() from provider { DeleteAccountViewmodelFactory(instance()) }
-        bind() from provider { StoryCommentViewmodelFactory(instance()) }
+        bind() from provider { SomeoneProfileViewModelFactory(instance()) }
+        bind() from provider { FollowersActivityViewModelFactory(instance()) }
+        bind() from provider { EventCommentViewModelFactory(instance()) }
+        bind() from provider { EventReplyViewModelFactory(instance()) }
+        bind() from provider { DeleteAccountViewModelFactory(instance()) }
+        bind() from provider { StoryCommentViewModelFactory(instance()) }
         bind() from provider { PracticionerModelFactory(instance()) }
-        bind() from provider { VoiceViewmodelFactory(instance()) }
+        bind() from provider { VoiceViewModelFactory(instance()) }
     }
 
     override fun onCreate() {

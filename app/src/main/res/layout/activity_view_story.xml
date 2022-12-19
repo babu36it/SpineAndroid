@@ -8,7 +8,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.ViewStoryViewmodel" />
+            type="com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.ViewStoryViewModel" />
     </data>
 
     <FrameLayout
