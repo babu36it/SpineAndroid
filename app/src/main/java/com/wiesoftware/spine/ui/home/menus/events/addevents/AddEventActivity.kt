@@ -495,6 +495,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         for (data in timeData) {
             list.add(data.timezone + " GMT "+ data.gmt_offset)
         }
+
         val aa = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinnerItem, list)
         with(spinnertimezone) {
             adapter = aa
