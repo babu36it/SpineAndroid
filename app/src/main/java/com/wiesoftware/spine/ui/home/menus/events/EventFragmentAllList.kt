@@ -1,11 +1,14 @@
 package com.wiesoftware.spine.ui.home.menus.events
 
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.widget.NestedScrollView.OnScrollChangeListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -13,26 +16,27 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.location.*
+import com.bumptech.glide.Glide
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.EventListAdapter
 import com.wiesoftware.spine.data.adapter.EventMenuAdapter
 import com.wiesoftware.spine.data.net.reponses.EventsData
 import com.wiesoftware.spine.data.net.reponses.EventsRecord
+import com.wiesoftware.spine.data.net.reponses.EventsRes
 import com.wiesoftware.spine.data.repo.EventRepositry
-import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.databinding.FragmentEventsListBinding
+import com.wiesoftware.spine.databinding.RvEventContentItemBinding
+import com.wiesoftware.spine.databinding.RvEventListItemBinding
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
 import com.wiesoftware.spine.ui.home.menus.events.filter.FilterEventActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.STORY_IMAGE
 import com.wiesoftware.spine.util.*
-import kotlinx.android.synthetic.main.add_post_bottomheet.*
-import kotlinx.android.synthetic.main.rv_event_list_item.view.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -42,7 +46,13 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
 
     val PERMISSION_REQUEST_CODE = 94
 
-    var adapter: EventListAdapter? = null
+    val EVE_RECORD = "eve_record"
+    val B_IMG_URL = "base_url"
+    val IS_FROM_EVENT_DETAILS = "isFromEventDetails"
+    var PROFILE_PIC_URL = ""
+
+//    var adapter: EventListAdapter? = null
+    var mAdapter: BaseAdapter<EventsData>? = null
 
     var lat: Double = 0.0
     var lon: Double = 0.0
@@ -54,6 +64,18 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
     var user_id: String = ""
     var argString: String = ""
     var dataList: MutableList<EventsData> = mutableListOf()
+
+    var page = 1
+    var perpage = 100
+    var type = "all"
+    var typeID = ""
+    var hasmore = true;
+
+    var  mlayoutManager: LinearLayoutManager? =  null;
+
+    var currnetTab = 0
+
+
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -88,36 +110,63 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
             user_id = it.getString("userID").toString()
         }
 
+        mlayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
 
 
         when (argString) {
             "ALL" -> {
+                currnetTab = 0
 //                adapter = EventListAdapter(requireContext(), dataList, this@EventFragmentList, 0)
-                setEventList()
+                setEventList(page, perpage, type, typeID)
+
             }
 
             "GOING" -> {
-                going()
+                currnetTab = 1
+//                going()
+                type = "going"
+                setEventList(page, perpage, type, typeID)
             }
 
             "SAVED" -> {
-                saved()
+//                saved()
+                currnetTab = 2
+                type = "saved"
+                setEventList(page, perpage, type, typeID)
             }
 
             "FOLLOWING" -> {
-                setFollowingEvents()
+//                setFollowingEvents()
+                currnetTab = 3
+                type = "following"
+                setEventList(page, perpage, type, typeID)
             }
 
             "ONLINE" -> {
-                setOnLineEvents()
+//                setOnLineEvents()
+                currnetTab = 4
+                type = "online"
+                setEventList(page, perpage, type, typeID)
             }
 
             "NEARBY" -> {
-                setNearbyEvents()
+                currnetTab = 5
+              setNearbyEvents()
+
             }
 
             "PAST" -> {
-                past()
+                currnetTab = 6
+//                past()
+                type = "past"
+                setEventList(page, perpage, type, typeID)
+            }
+
+            "META" -> {
+                currnetTab = 7
+                type = "metaverse"
+                setEventList(page, perpage, type, typeID)
             }
         }
 
@@ -130,56 +179,71 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
         }
 
         binding.txtCross.setOnClickListener {
-            setEventList()
+            setEventList(page, perpage, type, typeID)
             binding.rlFilterData.visibility = View.GONE
         }
 
         binding.swipeRefresh.setOnRefreshListener {
             binding.swipeRefresh.isRefreshing = false
 
-
-
-            setEventList();
+            setEventList(page, perpage, type, typeID)
         }
+
+//        binding.idNestedSV.setOnScrollChangeListener(OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+//            // on scroll change we are checking when users scroll as bottom.
+//            if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
+//                // in this method we are incrementing page number,
+//                // making progress bar visible and calling get data method.
+//                page++
+//                setEventList(page,perpage,type,typeID)
+//            }
+//        })
+        binding.rvEventList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                try {
+                    val firstPos: Int = mlayoutManager!!.findFirstCompletelyVisibleItemPosition()
+                    if (firstPos > 0) {
+                        binding.swipeRefresh.setEnabled(false)
+                    } else {
+                        binding.swipeRefresh.setEnabled(true)
+                        if (binding.rvEventList.getScrollState() === 1) if (binding.swipeRefresh.isRefreshing()) binding.rvEventList.stopScroll()
+                    }
+                } catch (e: Exception) {
+                    Log.e("Harsh", "Scroll Error : " + e.localizedMessage)
+                }
+            }
+        })
+
+
 
         return binding.root
     }
 
 
-    private fun setEventList() {
+    private fun setEventList(page: Int, perpage: Int, type: String, typeID: String) {
 
-
-
-
-
+        if (!hasmore) {
+            // checking if the page number is greater than limit.
+            // displaying toast message in this case when page>limit.
+            EventFragment.progress.dismiss()
+            return;
+        }
 
         lifecycleScope.launch {
             try {
                 EventFragment.progress.show()
-                val res = eventRepositry.getAllEvents(1, 100, "all", "")
+                val res = eventRepositry.getAllEvents(page, perpage, type, typeID)
                 dataList.clear()
                 EventFragment.progress.dismiss()
                 if (res.status) {
-
+                    dataList = res.data
                     STORY_IMAGE = res.user_image
                     PROFILE_PIC_URL = res.image
-                    Log.e("imagetwo", res.image)
 
-//                    dataList = mutableListOf()
+                    hasmore = true
 
-                        var list = mutableListOf<EventsRecord>()
+                    setData(0,res)
 
-
-                  dataList = res.data
-                    adapter =
-                        EventListAdapter(requireContext(), dataList, this@EventFragmentAllList, 0)
-                    binding.rvEventList.also {
-                        it.layoutManager =
-                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-                        it.setHasFixedSize(true)
-                        it.isNestedScrollingEnabled = false
-                        it.adapter = adapter
-                    }
 
 //                    if (dataList.size > 0)
 //                        EventFragment.tabLayout?.getTabAt(0)?.setText("ALL ("+dataList.size+")");
@@ -193,11 +257,13 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
                         }
                     }
                     if(count > 0)
-                        EventFragment.tabLayout?.getTabAt(0)?.setText("ALL ("+count+")");
+                        EventFragment.tabLayout?.getTabAt(currnetTab)?.setText("$argString ("+count+")");
                     else
-                        EventFragment.tabLayout?.getTabAt(0)?.setText("ALL");
+                        EventFragment.tabLayout?.getTabAt(currnetTab)?.setText(argString);
+                }else{
+                    hasmore = false;
                 }
-                adapter?.notifyDataSetChanged()
+//                adapter?.notifyDataSetChanged()
 
 
             } catch (e: ApiException) {
@@ -208,6 +274,201 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
                 e.printStackTrace()
             }
         }
+
+    }
+
+    private fun setData(value: Int, res: EventsRes) {
+
+         mAdapter = BaseAdapter<EventsData>(requireContext())
+
+        mAdapter!!.listOfItems = res.data.toList()
+
+        mAdapter!!.expressionViewHolderBinding = {eachItem,viewBinding,context->
+
+            var view = viewBinding as RvEventListItemBinding
+
+            val eve_date = eachItem.startDate
+
+            val simpleDateFormat = SimpleDateFormat("yyyy-M-dd", Locale.getDefault())
+
+            try {
+                val date1: Date = simpleDateFormat.parse(eve_date)
+                val dd = SimpleDateFormat("EEE, dd MMM yyyy", Locale.getDefault())
+                val ss: String = dd.format(date1).toUpperCase()
+                Log.e("fmtDate: ", ss)
+                if (value == 1) {
+
+                    view.textView33.text = ss
+                    view.texteditFltr.visibility = View.VISIBLE
+                    view.txtCross.visibility = View.VISIBLE
+                    view.texteditFltr.setOnClickListener {
+                        startActivity(
+                            Intent(
+                                context,
+                                FilterEventActivity::class.java
+                            )
+                        )
+                    }
+                    view.txtCross.setOnClickListener {
+                        crossEvent(1)
+                    }
+                } else {
+                    view.textView33.text = ss
+                    view.texteditFltr.visibility = View.GONE
+                    view.txtCross.visibility = View.GONE
+                }
+
+            } catch (e: ParseException) {
+                e.printStackTrace()
+                Log.e("fmtDate: ", e.message.toString())
+            }
+
+
+
+            // Content data
+            view.model= eachItem
+
+            var ContentAdapter = BaseAdapter<EventsRecord>(requireContext())
+
+            ContentAdapter.listOfItems = eachItem.records
+
+            ContentAdapter.expressionViewHolderBinding = {recordsList,viewBinding,context->
+                //eachItem will provide the each item in the list, in this case its a string type
+                //cast the viewBinding with yout layout binding class
+                var holder = viewBinding as RvEventContentItemBinding
+
+                holder.model=recordsList
+                val eveType=recordsList.type
+
+                //        Harsh: its tempeory line code because olg logic count event type from 0
+                if (eveType.equals("0")) {
+                    holder.textView36.text= getString(R.string.local_event)
+                }
+
+                if (eveType.equals("1")) {
+                    holder.textView36.text=getString(R.string.local_event)
+                } else if (eveType.equals("2")) {
+                    holder.textView36.text=getString(R.string.online_event)
+                } else if(eveType.equals("3")) {
+                    holder.textView36.text=getString(R.string.retreat_event)
+                } else if(eveType.equals("4")) {
+                    holder.textView36.text=getString(R.string.metaverse_event)
+                }
+                if(recordsList.hostedProfilePic != null && recordsList.hostedProfilePic.isNotEmpty()){
+
+                }
+
+                Glide.with(context)
+                    .load("https://thespiritualnetwork.com/assets/upload/profile/"+recordsList.hostedProfilePic)
+                    .circleCrop()
+                    .placeholder( ColorDrawable(ContextCompat.getColor(context, R.color.light_gry)))
+                    .error( ColorDrawable(ContextCompat.getColor(context, R.color.light_gry)))
+                    .dontAnimate()
+                    .into(holder.circleImageView3);
+
+                if(recordsList.title.toString().isNotEmpty()){
+                    holder.textView37.text= recordsList.title.capitalize()
+                }
+
+
+                holder.circleImageView3.setOnClickListener {
+                    onEventDetails(recordsList)
+                }
+                holder.textView36.setOnClickListener {
+                    onEventDetails(recordsList)
+                }
+                holder.root.setOnClickListener {
+                    onEventDetails(recordsList)
+                }
+                if (recordsList.userSaveStatus?.equals("1")) {
+                    holder.imageButton7.setImageResource(R.drawable.ic_saved)
+                }else{
+                    holder.imageButton7.setImageResource(R.drawable.ic_bookmark)
+                }
+                var check:Boolean=false
+
+                if (recordsList.userSaveStatus.equals("1")){
+                    holder.imageButton7.setOnClickListener {
+                        onEventSave(recordsList,0)
+                    }
+                }else{
+                    holder.imageButton7.setOnClickListener {
+                        onEventSave(recordsList,1)
+                        holder.imageButton7.setImageResource(R.drawable.ic_saved)
+                    }
+                }
+
+                holder.imageButton8.setOnClickListener {
+                    onEventShare(recordsList)
+                }
+
+
+                val stDate=recordsList.startDate
+                val edDate=recordsList.endDate
+                val cc: Date = Calendar.getInstance().getTime()
+                val simpleDateFormat = SimpleDateFormat("yyyy-M-dd", Locale.getDefault())
+                try {
+                    val s=recordsList.createdOn
+
+
+                    val date1: Date = simpleDateFormat.parse(stDate)
+                    val date: String = simpleDateFormat.format(cc)
+                    val date2: Date = simpleDateFormat.parse(edDate)
+                    if (date1 != null && date2 != null) {
+                        val d: String = printDifference(date1, date2)!!
+
+                        if (d.contains("-")){
+                            holder.textView39.text=d.replace("-","")
+                        }else{
+                            holder.textView39.text=d
+                            if (d.contains("0")){
+                                holder.textView39.visibility = View.GONE
+                                holder.tvTimeTxt.visibility = View.VISIBLE
+                            } else {
+                                holder.textView39.visibility = View.VISIBLE
+                                holder.tvTimeTxt.visibility = View.GONE
+                            }
+                        }
+                        Log.e("Diff::","$d")
+                    }
+                } catch (e: ParseException) {
+                    e.printStackTrace()
+                    Log.e("Diff::","$stDate, $edDate")
+                }
+
+                var formatter =  SimpleDateFormat("HH:mm:ss");
+                val dTime = formatter.parse(recordsList.startTime)
+                val dTimeone = formatter.parse(recordsList.endTime)
+                Log.e("hou",dTime.hours.toString())
+
+                holder.tvTimeTxt.text= dTime.hours.toString() +":"+ dTime.hours +"-"+dTimeone.hours+":"+dTimeone.minutes
+
+
+
+            }
+
+            ContentAdapter.expressionOnCreateViewHolder = {viewGroup->
+
+                RvEventContentItemBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+            }
+
+            view.rvEventContent.also {
+                it.layoutManager =  LinearLayoutManager(context, RecyclerView.VERTICAL, false);
+                it.setHasFixedSize(true)
+                it.adapter = ContentAdapter
+            }
+        }
+
+        mAdapter!!.expressionOnCreateViewHolder = {viewGroup->
+            RvEventListItemBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+        }
+
+        binding.rvEventList.apply {
+            layoutManager = mlayoutManager
+            adapter = mAdapter
+        }
+
+
 
     }
 
@@ -225,6 +486,7 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
     }
 
 
+
     override fun onEventSave(record: EventsRecord, value: Int) {
         if (value == 0) {
             lifecycleScope.launch {
@@ -233,7 +495,7 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
                     if (res.status) {
 
                         "Removed".toast(requireContext())
-                        setEventList()
+                        setEventList(page, perpage, type, typeID)
                     }
                 } catch (e: ApiException) {
                     e.printStackTrace()
@@ -248,7 +510,7 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
                     if (res.status) {
                         val msg = res.message
                         msg.toast(requireContext())
-                        setEventList()
+                        setEventList(page, perpage, type, typeID)
                     }
                 } catch (e: ApiException) {
                     e.printStackTrace()
@@ -281,7 +543,7 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
 
     override fun crossEvent(value: Int) {
         if (value == 1) {
-            setEventList()
+            setEventList(page, perpage, type, typeID)
         }
     }
 
@@ -378,7 +640,7 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
             }
         }
 
-        adapter?.setFilterData(dataListTemp)
+        mAdapter?.setFilterData(dataListTemp.toList())
     }
 
     private fun getFilteredList(
@@ -389,6 +651,7 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
         category: String?
     ) {
         Log.e("start", start_date.toString())
+        EventFragment.progress.dismiss()
         lifecycleScope.launch {
             try {
                 val res = eventRepositry.getFilteredEventList(
@@ -397,7 +660,7 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
                     user_id,
                     lat!!,
                     lon!!,
-                    "",
+                    "10",
                     start_date!!,
                     end_date!!,
                     category!!
@@ -408,14 +671,17 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
                     STORY_IMAGE = res.image
                     dataList = res.data
                     Log.e("filteredRes: ", "" + dataList)
-                    adapter =
-                        EventListAdapter(requireContext(), dataList, this@EventFragmentAllList, 0)
-                    binding.rvEventList.also {
-                        it.layoutManager =
-                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-                        it.setHasFixedSize(true)
-                        it.adapter = adapter
-                    }
+
+                    setData(0,res)
+
+//                    adapter =
+//                        EventListAdapter(requireContext(), dataList, this@EventFragmentAllList, 0)
+//                    binding.rvEventList.also {
+//                        it.layoutManager =
+//                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+//                        it.setHasFixedSize(true)
+//                        it.adapter = adapter
+//                    }
 
                     var count = 0
                     if (dataList.size > 0) {
@@ -431,7 +697,7 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
                 } else {
                     "${res.message}".toast(requireContext())
                 }
-                adapter?.notifyDataSetChanged()
+//                adapter?.notifyDataSetChanged()
                 Prefs.putAny("isFilter", false)
             } catch (e: ApiException) {
                 e.printStackTrace()
@@ -451,35 +717,35 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
     }
 
     private fun saved() {
-        lifecycleScope.launch {
-            try {
-                val res = eventRepositry.getAllSavedEvents(1, 100, user_id)
-                dataList.clear()
-                if (res.status) {
-                    BASE_IMAGE = res.image
-                    dataList = res.data
-                    adapter =
-                        EventListAdapter(requireContext(), dataList, this@EventFragmentAllList, 0)
-                    binding.rvEventList.also {
-                        it.layoutManager =
-                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-                        it.setHasFixedSize(true)
-                        it.adapter = adapter
-                    }
-                }
-
-                if (dataList.size > 0)
-                    EventFragment.tabLayout?.getTabAt(2)?.setText("SAVED ("+dataList.size+")");
-                else
-                    EventFragment.tabLayout?.getTabAt(2)?.setText("SAVED");
-
-                adapter?.notifyDataSetChanged()
-            } catch (e: ApiException) {
-                e.printStackTrace()
-            } catch (e: NoInternetException) {
-                e.printStackTrace()
-            }
-        }
+//        lifecycleScope.launch {
+//            try {
+//                val res = eventRepositry.getAllSavedEvents(1, 100, user_id)
+//                dataList.clear()
+//                if (res.status) {
+//                    BASE_IMAGE = res.image
+//                    dataList = res.data
+//                    adapter =
+//                        EventListAdapter(requireContext(), dataList, this@EventFragmentAllList, 0)
+//                    binding.rvEventList.also {
+//                        it.layoutManager =
+//                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+//                        it.setHasFixedSize(true)
+//                        it.adapter = adapter
+//                    }
+//                }
+//
+//                if (dataList.size > 0)
+//                    EventFragment.tabLayout?.getTabAt(2)?.setText("SAVED ("+dataList.size+")");
+//                else
+//                    EventFragment.tabLayout?.getTabAt(2)?.setText("SAVED");
+//
+//                adapter?.notifyDataSetChanged()
+//            } catch (e: ApiException) {
+//                e.printStackTrace()
+//            } catch (e: NoInternetException) {
+//                e.printStackTrace()
+//            }
+//        }
     }
 
     private fun going() {
@@ -487,141 +753,153 @@ class EventFragmentAllList : Fragment(), KodeinAware, EventFragmentEventListener
     }
 
     private fun getGoingPastEventList(goingPast: Int) {
-        lifecycleScope.launch {
-            try {
-                val res = eventRepositry.getGoingPastEventsList(1, 100, user_id, goingPast)
-                dataList.clear()
-                if (res.status) {
-                    BASE_IMAGE = res.image
-                    dataList = res.data
-                    adapter =
-                        EventListAdapter(requireContext(), dataList, this@EventFragmentAllList, 0)
-                    binding.rvEventList.also {
-                        it.layoutManager =
-                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-                        it.setHasFixedSize(true)
-                        it.adapter = adapter
-                    }
-                }
-
-                if(goingPast == 0) {
-                    if (dataList.size > 0)
-                        EventFragment.tabLayout?.getTabAt(1)?.setText("GOING ("+dataList.size+")");
-                    else
-                        EventFragment.tabLayout?.getTabAt(1)?.setText("GOING");
-                } else {
-                    if (dataList.size > 0)
-                        EventFragment.tabLayout?.getTabAt(6)?.setText("PAST ("+dataList.size+")");
-                    else
-                        EventFragment.tabLayout?.getTabAt(6)?.setText("PAST");
-                }
-
-
-                adapter?.notifyDataSetChanged()
-            } catch (e: ApiException) {
-                e.printStackTrace()
-            } catch (e: NoInternetException) {
-                e.printStackTrace()
-            }
-        }
+//        lifecycleScope.launch {
+//            try {
+//                val res = eventRepositry.getGoingPastEventsList(1, 100, user_id, goingPast)
+//                dataList.clear()
+//                if (res.status) {
+//                    BASE_IMAGE = res.image
+//                    dataList = res.data
+//                    adapter =
+//                        EventListAdapter(requireContext(), dataList, this@EventFragmentAllList, 0)
+//                    binding.rvEventList.also {
+//                        it.layoutManager =
+//                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+//                        it.setHasFixedSize(true)
+//                        it.adapter = adapter
+//                    }
+//                }
+//
+//                if(goingPast == 0) {
+//                    if (dataList.size > 0)
+//                        EventFragment.tabLayout?.getTabAt(1)?.setText("GOING ("+dataList.size+")");
+//                    else
+//                        EventFragment.tabLayout?.getTabAt(1)?.setText("GOING");
+//                } else {
+//                    if (dataList.size > 0)
+//                        EventFragment.tabLayout?.getTabAt(6)?.setText("PAST ("+dataList.size+")");
+//                    else
+//                        EventFragment.tabLayout?.getTabAt(6)?.setText("PAST");
+//                }
+//
+//
+//                adapter?.notifyDataSetChanged()
+//            } catch (e: ApiException) {
+//                e.printStackTrace()
+//            } catch (e: NoInternetException) {
+//                e.printStackTrace()
+//            }
+//        }
     }
 
     private fun setNearbyEvents() {
         Log.e("latlong: ", "$lat, $lon")
         lifecycleScope.launch {
             try {
+                EventFragment.progress.show()
                 val res = eventRepositry.getNearbyEvents(1, 100, user_id, lat, lon, 10)
                 dataList.clear()
+                EventFragment.progress.dismiss()
                 if (res.status) {
                     STORY_IMAGE = res.image
                     dataList = res.data
                     Log.e("latlongRes: ", "" + dataList)
-                    adapter =
-                        EventListAdapter(requireContext(), dataList, this@EventFragmentAllList, 0)
-                    binding.rvEventList.also {
-                        it.layoutManager =
-                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-                        it.setHasFixedSize(true)
-                        it.adapter = adapter
-                    }
+
+                    setData(0,res)
+//                    adapter =
+//                        EventListAdapter(requireContext(), dataList, this@EventFragmentNearByList, 0)
+//                    binding.rvEventList.also {
+//                        it.layoutManager =
+//                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+//                        it.setHasFixedSize(true)
+//                        it.adapter = adapter
+//                    }
                 }
 
-                if (dataList.size > 0)
-                    EventFragment.tabLayout?.getTabAt(5)?.setText("NEARBY ("+dataList.size+")");
+                var count = 0
+                if (dataList.size > 0) {
+                    for (list in dataList) {
+                        if(list.records != null) count = count + list.records.size
+                    }
+                }
+                if(count > 0)
+                    EventFragment.tabLayout?.getTabAt(5)?.setText("NEARBY ("+count+")");
                 else
                     EventFragment.tabLayout?.getTabAt(5)?.setText("NEARBY");
 
-                adapter?.notifyDataSetChanged()
+//                adapter?.setFilterData(dataList)
             } catch (e: ApiException) {
+                EventFragment.progress.dismiss()
                 e.printStackTrace()
             } catch (e: NoInternetException) {
+                EventFragment.progress.dismiss()
                 e.printStackTrace()
             }
         }
     }
 
     private fun setFollowingEvents() {
-        lifecycleScope.launch {
-            try {
-                val res = eventRepositry.getFollowingUsersEventsList(1, 100, user_id)
-                dataList.clear()
-                if (res.status) {
-                    STORY_IMAGE = res.image
-                    dataList = res.data
-                    adapter =
-                        EventListAdapter(requireContext(), dataList, this@EventFragmentAllList, 0)
-                    binding.rvEventList.also {
-                        it.layoutManager =
-                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-                        it.setHasFixedSize(true)
-                        it.adapter = adapter
-                    }
-                }
-
-                if (dataList.size > 0)
-                    EventFragment.tabLayout?.getTabAt(3)?.setText("FOLLOWING ("+dataList.size+")");
-                else
-                    EventFragment.tabLayout?.getTabAt(3)?.setText("FOLLOWING");
-
-                adapter?.notifyDataSetChanged()
-            } catch (e: ApiException) {
-                e.printStackTrace()
-            } catch (e: NoInternetException) {
-                e.printStackTrace()
-            }
-        }
+//        lifecycleScope.launch {
+//            try {
+//                val res = eventRepositry.getFollowingUsersEventsList(1, 100, user_id)
+//                dataList.clear()
+//                if (res.status) {
+//                    STORY_IMAGE = res.image
+//                    dataList = res.data
+//                    adapter =
+//                        EventListAdapter(requireContext(), dataList, this@EventFragmentAllList, 0)
+//                    binding.rvEventList.also {
+//                        it.layoutManager =
+//                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+//                        it.setHasFixedSize(true)
+//                        it.adapter = adapter
+//                    }
+//                }
+//
+//                if (dataList.size > 0)
+//                    EventFragment.tabLayout?.getTabAt(3)?.setText("FOLLOWING ("+dataList.size+")");
+//                else
+//                    EventFragment.tabLayout?.getTabAt(3)?.setText("FOLLOWING");
+//
+//                adapter?.notifyDataSetChanged()
+//            } catch (e: ApiException) {
+//                e.printStackTrace()
+//            } catch (e: NoInternetException) {
+//                e.printStackTrace()
+//            }
+//        }
     }
 
     private fun setOnLineEvents() {
-        lifecycleScope.launch {
-            try {
-                val res = eventRepositry.getOnLineEventsList(1, 100, user_id)
-                dataList.clear()
-                if (res.status) {
-                    STORY_IMAGE = res.image
-                    dataList = res.data
-                    adapter =
-                        EventListAdapter(requireContext(), dataList, this@EventFragmentAllList, 0)
-                    binding.rvEventList.also {
-                        it.layoutManager =
-                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-                        it.setHasFixedSize(true)
-                        it.adapter = adapter
-                    }
-                }
-
-                if (dataList.size > 0)
-                    EventFragment.tabLayout?.getTabAt(4)?.setText("ONLINE ("+dataList.size+")");
-                else
-                    EventFragment.tabLayout?.getTabAt(4)?.setText("ONLINE");
-
-                adapter?.notifyDataSetChanged()
-            } catch (e: ApiException) {
-                e.printStackTrace()
-            } catch (e: NoInternetException) {
-                e.printStackTrace()
-            }
-        }
+//        lifecycleScope.launch {
+//            try {
+//                val res = eventRepositry.getOnLineEventsList(1, 100, user_id)
+//                dataList.clear()
+//                if (res.status) {
+//                    STORY_IMAGE = res.image
+//                    dataList = res.data
+//                    adapter =
+//                        EventListAdapter(requireContext(), dataList, this@EventFragmentAllList, 0)
+//                    binding.rvEventList.also {
+//                        it.layoutManager =
+//                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+//                        it.setHasFixedSize(true)
+//                        it.adapter = adapter
+//                    }
+//                }
+//
+//                if (dataList.size > 0)
+//                    EventFragment.tabLayout?.getTabAt(4)?.setText("ONLINE ("+dataList.size+")");
+//                else
+//                    EventFragment.tabLayout?.getTabAt(4)?.setText("ONLINE");
+//
+//                adapter?.notifyDataSetChanged()
+//            } catch (e: ApiException) {
+//                e.printStackTrace()
+//            } catch (e: NoInternetException) {
+//                e.printStackTrace()
+//            }
+//        }
     }
 
 

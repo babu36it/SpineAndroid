@@ -138,51 +138,12 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
                 }
                 binding.searchSpine.clearFocus()*/
         }
-        binding.searchSpine?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchSpine.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String?): Boolean {
-//                adapter?.filter?.filter(newText)
-
-//                dataListTemp.clear()
-//                if (newText!!.isEmpty()) {
-//                    dataListTemp = dataList
-//                } else {
-//                    for (row in dataList) {
-//                        for (data in row.records) {
-//                            if ((data.title).toLowerCase(Locale.ROOT)
-//                                    .contains(newText!!.toLowerCase(Locale.ROOT))
-//                                || (data.displayName ?: data.useName).toLowerCase(Locale.ROOT)
-//                                    .contains(newText!!.toLowerCase(Locale.ROOT))
-//                                || (data.location).toLowerCase(Locale.ROOT)
-//                                    .contains(newText!!.toLowerCase(Locale.ROOT))
-//                                || (data.description).toLowerCase(Locale.ROOT)
-//                                    .contains(newText!!.toLowerCase(Locale.ROOT))
-//                            ) {
-//                                dataListTemp.add(row)
-//                            }
-//                        }
-//                    }
-//                }
-//
-                println("Sanjay All...."+newText+"......"+currentFragment.toString())
-//                adapter?.setFilterData(dataListTemp)
 
 
-                if (currentFragment != null && currentFragment is EventFragmentAllList) {
-                    (currentFragment as EventFragmentAllList).setFilterDataAll(newText!!)
-                } else if(currentFragment != null && currentFragment is EventFragmentGoingList) {
-                    (currentFragment as EventFragmentGoingList).setFilterDataGoing(newText!!)
-                } else if(currentFragment != null && currentFragment is EventFragmentSavedList) {
-                    (currentFragment as EventFragmentSavedList).setFilterDataSaved(newText!!)
-                } else if(currentFragment != null && currentFragment is EventFragmentFollowingList) {
-                    (currentFragment as EventFragmentFollowingList).setFilterDataFollowing(newText!!)
-                } else if(currentFragment != null && currentFragment is EventFragmentOnLineList) {
-                    (currentFragment as EventFragmentOnLineList).setFilterDataOnLine(newText!!)
-                } else if(currentFragment != null && currentFragment is EventFragmentNearByList) {
-                    (currentFragment as EventFragmentNearByList).setFilterDataNearBy(newText!!)
-                } else if(currentFragment != null && currentFragment is EventFragmentPastList) {
-                    (currentFragment as EventFragmentPastList).setFilterDataPast(newText!!)
-                }
+                (currentFragment as EventFragmentAllList).setFilterDataAll(newText!!)
 
                 return true
             }
@@ -207,13 +168,13 @@ class EventFragment : Fragment(), KodeinAware, EventFragmentEventListener{
         // LoginFragment is the name of Fragment and the Login
         // is a title of tab
         adapter.addFragment(EventFragmentAllList.newInstance("ALL", user_id)!!, "ALL")
-        adapter.addFragment(EventFragmentGoingList.newInstance("GOING", user_id)!!, "GOING")
-        adapter.addFragment(EventFragmentSavedList.newInstance("SAVED", user_id)!!, "SAVED")
-        adapter.addFragment(EventFragmentFollowingList.newInstance("FOLLOWING", user_id)!!, "FOLLOWING")
-        adapter.addFragment(EventFragmentOnLineList.newInstance("ONLINE", user_id)!!, "ONLINE")
-        adapter.addFragment(EventFragmentNearByList.newInstance("NEARBY", user_id)!!, "NEARBY")
-        adapter.addFragment(EventFragmentPastList.newInstance("PAST", user_id)!!, "PAST")
-        adapter.addFragment(EventFragmentMetaList.newInstance("META", user_id)!!, "META")
+        adapter.addFragment(EventFragmentAllList.newInstance("GOING", user_id)!!, "GOING")
+        adapter.addFragment(EventFragmentAllList.newInstance("SAVED", user_id)!!, "SAVED")
+        adapter.addFragment(EventFragmentAllList.newInstance("FOLLOWING", user_id)!!, "FOLLOWING")
+        adapter.addFragment(EventFragmentAllList.newInstance("ONLINE", user_id)!!, "ONLINE")
+        adapter.addFragment(EventFragmentAllList.newInstance("NEARBY", user_id)!!, "NEARBY")
+        adapter.addFragment(EventFragmentAllList.newInstance("PAST", user_id)!!, "PAST")
+        adapter.addFragment(EventFragmentAllList.newInstance("META", user_id)!!, "META")
 
         // setting adapter to view pager.
         viewpager.adapter = adapter

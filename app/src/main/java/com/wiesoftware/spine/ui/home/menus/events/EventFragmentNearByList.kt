@@ -42,6 +42,11 @@ class EventFragmentNearByList : Fragment(), KodeinAware, EventFragmentEventListe
 
     val PERMISSION_REQUEST_CODE = 94
 
+    val EVE_RECORD = "eve_record"
+    val B_IMG_URL = "base_url"
+    val IS_FROM_EVENT_DETAILS = "isFromEventDetails"
+    var PROFILE_PIC_URL = ""
+
     var adapter: EventListAdapter? = null
 
     var lat: Double = 0.0

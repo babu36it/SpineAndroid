@@ -103,7 +103,7 @@ class EventListAdapter(
             e.printStackTrace()
             Log.e("fmtDate: ", e.message.toString())
         }
-        holder.rvEventListItemBinding.model=dataList[position]
+        holder.rvEventListItemBinding.model=filterDataList[position]
         val recordsList = filterDataList[position].records
         var adapter = EventContentAdapter(requireContext, recordsList, this)
         if (recordsList.size > 0) {

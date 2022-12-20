@@ -275,11 +275,12 @@ class FilterEventActivity : AppCompatActivity(),KodeinAware, FilterEventListener
 
 
     override fun onclose() {
+        Prefs.putAny("isFilter",false)
         onBackPressed()
     }
 
     override fun onFindEvent(location: String, date: String,datetwo:String ,category: String) {
-        Log.e("dataaa",date)
+
         Prefs.putAny("location",location)
         Prefs.putAny("date",date)
         Prefs.putAny("datetwo",datetwo)

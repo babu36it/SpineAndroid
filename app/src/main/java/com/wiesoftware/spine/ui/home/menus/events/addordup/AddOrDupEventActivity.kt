@@ -2,37 +2,50 @@ package com.wiesoftware.spine.ui.home.menus.events.addordup
 
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ProgressBar
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.net.reponses.EventTypeData
+import com.wiesoftware.spine.data.net.reponses.EventsData
 import com.wiesoftware.spine.data.net.reponses.EventsRecord
 import com.wiesoftware.spine.data.repo.EventRepositry
-import com.wiesoftware.spine.databinding.ActivityAddOrDupEventBinding
+import com.wiesoftware.spine.databinding.*
 import com.wiesoftware.spine.ui.home.menus.events.addevents.AddEventActivity
+import com.wiesoftware.spine.ui.home.menus.events.filter.FilterEventActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
-import com.wiesoftware.spine.util.ApiException
-import com.wiesoftware.spine.util.NoInternetException
+import com.wiesoftware.spine.util.*
 import kotlinx.android.synthetic.main.bottom_eventtype_picker.view.*
+import kotlinx.android.synthetic.main.dup_event_list_item.view.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
-class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventListener,
-    DupEventAdapter.DupEveEventListener,EventTypeAdapter.EventCliclListener {
+class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventListener
+     {
 
     override val kodein by kodein()
     val eventRepositry: EventRepositry by instance()
@@ -40,6 +53,7 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
     lateinit var userId: String
     lateinit var data : MutableList<EventTypeData>
     lateinit var progress : ProgressDialog
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_or_dup_event)
@@ -64,6 +78,7 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
         onBackPressed()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getOwnEvents() {
         lifecycleScope.launch {
             try {
@@ -73,6 +88,80 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
                 if (res.status) {
                     BASE_IMAGE = res.image
                     val data = res.data
+
+                   var  mAdapter = BaseAdapter<EventsRecord>(this@AddOrDupEventActivity)
+
+                    mAdapter!!.listOfItems = res.data.toList()
+
+                    mAdapter!!.expressionViewHolderBinding = {data,viewBinding,context->
+
+                        var holder = viewBinding as DupEventListItemBinding
+
+                        if (data.type == "1") {
+                            holder.textView324.text = "Local Event"
+//                holder.itemView.textView327.visibility = View.GONE
+                        } else if (data.type == "2") {
+                            holder.textView324.text = "Online Event"
+//                holder.itemView.textView327.visibility = View.GONE
+                        } else if(data.type == "3") {
+                            holder.textView324.text = "Retreat Event"
+//                holder.itemView.textView327.visibility = View.VISIBLE
+                        } else if(data.type == "4") {
+                            holder.textView324.text = "Metaverse Sessions"
+//                holder.itemView.textView327.visibility = View.GONE
+                        }
+
+                        if (data.status == 0){
+                            holder.textView327.visibility = View.VISIBLE
+                        }else{
+                            holder.textView327.visibility = View.GONE
+                        }
+
+
+                        Glide.with(this@AddOrDupEventActivity)
+                            .load("https://thespiritualnetwork.com/assets/upload/spine-post/"+data.file)
+                            .thumbnail(.1f)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .error( ColorDrawable(ContextCompat.getColor(this@AddOrDupEventActivity, R.color.light_gry)))
+                            .into(holder.imageView48);
+
+
+                        try {
+                            holder.model = data
+                            holder.root.setOnClickListener {
+                                onDupEventClick(data)
+                            }
+                            var startdate=data.startDate + " "+ data.startTime
+                            var enddate=data.endDate + " "+ data.endTime
+
+                            var startvalue= Utils.dateTimeformat(removeSecond(startdate)!!)
+                            var endValue= Utils.dateTimeformat(removeSecond(enddate)!!)
+
+
+                            holder.textView326.text= startvalue.dayOfMonth.toString()+" "+startvalue.month+" - "+
+                                    endValue.dayOfMonth.toString()+" "+endValue.month + " " +startvalue.year.toString() + ", " + Utils.dateTimeformat(startvalue)
+
+
+
+
+                        }catch (e:Exception){
+
+                            Log.d("DupEvents", "onBindViewHolder: $e")
+                        }
+
+
+                    }
+
+                    mAdapter!!.expressionOnCreateViewHolder = {viewGroup->
+                        DupEventListItemBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+                    }
+
+//                    binding.rvDupEvent.apply {
+//                        layoutManager = layoutManager
+//                        adapter = mAdapter
+//                    }
+
+
                     binding.rvDupEvent.also {
                         it.layoutManager =
                             LinearLayoutManager(
@@ -81,7 +170,7 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
                                 false
                             )
                         it.setHasFixedSize(true)
-                        it.adapter = DupEventAdapter(data, this@AddOrDupEventActivity)
+                        it.adapter = mAdapter
                     }
                 }
             } catch (e: ApiException) {
@@ -121,9 +210,16 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
 
     }
 
+    fun removeSecond(str: String?): String? {
+        var str = str
+        if (str != null && str.length > 0) {
+            str = str.substring(0, str.length - 3)
+        }
+        return str
+    }
 
 
-    override fun onDupEventClick(eveRecord: EventsRecord) {
+     fun onDupEventClick(eveRecord: EventsRecord) {
         val intent = Intent(this, AddEventActivity::class.java)
         intent.putExtra(duplicateEvent, eveRecord)
         intent.putExtra(duplicateImage, BASE_IMAGE)
@@ -155,6 +251,29 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
             dialog.setCancelable(true)
         }
 
+        var  mAdapter = BaseAdapter<EventTypeData>(this@AddOrDupEventActivity)
+
+        mAdapter!!.listOfItems = data.toList()
+
+        mAdapter!!.expressionViewHolderBinding = {data,viewBinding,context->
+
+            var holder = viewBinding as IteamEventTypeBinding
+
+            holder.txtLocal.text = data.typename
+            holder.txtDesc.text = data.description
+
+            holder.root.setOnClickListener {
+                onEventClick(data.id)
+            }
+
+
+        }
+
+        mAdapter!!.expressionOnCreateViewHolder = {viewGroup->
+            IteamEventTypeBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+        }
+
+
         view.rv_eventtype.also {
             it.layoutManager =
                 LinearLayoutManager(
@@ -163,7 +282,7 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
                     false
                 )
             it.setHasFixedSize(true)
-            it.adapter = EventTypeAdapter(data,this@AddOrDupEventActivity)
+            it.adapter = mAdapter
         }
 
 //        view.rl_local.setOnClickListener {
@@ -198,7 +317,7 @@ class AddOrDupEventActivity : AppCompatActivity(), KodeinAware, AddOrDupEventLis
 
     }
 
-    override fun onEventClick(valueEvent: String) {
+     fun onEventClick(valueEvent: String) {
         startActivity(Intent(this, AddEventActivity::class.java).putExtra("event_type", valueEvent))
     }
 }
