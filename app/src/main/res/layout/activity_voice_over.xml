@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.wiesoftware.spine.ui.home.menus.voice_over.VoiceOverViewModel" />
@@ -25,12 +26,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:onClick="@{viewmodel.onBack}"
                 android:id="@+id/backImageButton"
                 style="@style/BackButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
+                android:onClick="@{viewmodel.onBack}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -90,12 +91,12 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:textSize="@dimen/normalText"
                     android:id="@+id/textViewtext"
                     style="@style/TitleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/add_image_or_video"
+                    android:textSize="@dimen/normalText"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -105,12 +106,13 @@
                     android:layout_height="wrap_content">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:visibility="gone"
                         android:id="@+id/constarintImageVideo"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
                         <ImageView
                             android:id="@+id/imageViewPhotoOrVideo"
                             android:layout_width="@dimen/_100"
@@ -124,12 +126,13 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             tools:ignore="TextContrastCheck" />
+
                         <ImageButton
-                            android:onClick="@{viewmodel.onImageClose}"
                             android:id="@+id/removeImageOrVideo"
                             android:layout_width="@dimen/_24dp"
                             android:layout_height="@dimen/_24dp"
                             android:background="#6F000000"
+                            android:onClick="@{viewmodel.onImageClose}"
                             android:src="@drawable/ic_close"
                             app:layout_constraintEnd_toEndOf="@+id/imageViewPhotoOrVideo"
                             app:layout_constraintTop_toTopOf="@+id/imageViewPhotoOrVideo"
@@ -139,7 +142,6 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <Button
-                        android:onClick="@{viewmodel.addPhotoOrImage}"
                         android:id="@+id/buttonAddPhotoOrVideo"
                         android:layout_width="@dimen/_100"
                         android:layout_height="@dimen/_100"
@@ -147,6 +149,7 @@
                         android:layout_marginTop="@dimen/eight"
                         android:background="@color/gray_tint"
                         android:drawableTop="@drawable/ic_photo_camera"
+                        android:onClick="@{viewmodel.addPhotoOrImage}"
                         android:padding="@dimen/sixteen"
                         android:text="@string/add"
                         app:layout_constraintStart_toEndOf="@+id/constarintImageVideo"
@@ -156,19 +159,20 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:textSize="@dimen/normalText"
                     android:id="@+id/textViewVoice"
                     style="@style/TitleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/eight"
-                    android:text="@string/add_voice_over" />
+                    android:text="@string/add_voice_over"
+                    android:textSize="@dimen/normalText" />
 
                 <LinearLayout
                     android:id="@+id/linearPlayPauseDel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <ImageView
                         android:id="@+id/imageViewStartRecord"
                         android:layout_width="@dimen/thirty_two"
@@ -179,23 +183,23 @@
                         tools:ignore="ImageContrastCheck" />
 
                     <ImageView
-                        android:padding="@dimen/_2sdp"
-                        android:visibility="gone"
                         android:id="@+id/imageViewPlayPause"
                         android:layout_width="@dimen/thirty_two"
                         android:layout_height="@dimen/thirty_two"
                         android:onClick="@{viewmodel.onPlay}"
+                        android:padding="@dimen/_2sdp"
                         android:src="@drawable/ic_play_button"
+                        android:visibility="gone"
                         app:tint="@color/colorPrimaryDark"
                         tools:ignore="ImageContrastCheck" />
 
                     <ImageView
-                        android:visibility="gone"
                         android:id="@+id/imageViewPause"
                         android:layout_width="@dimen/thirty_two"
                         android:layout_height="@dimen/thirty_two"
                         android:onClick="@{viewmodel.onPaused}"
                         android:src="@drawable/ic_pause_24dp"
+                        android:visibility="gone"
                         app:tint="@color/colorPrimaryDark"
                         tools:ignore="ImageContrastCheck" />
                     <!--<com.wiesoftware.spine.util.AudioVisualizer
@@ -205,21 +209,46 @@
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>-->
-                    <com.wiesoftware.spine.util.LineBarVisualizer
-                        android:shadowColor="@color/text_black"
-                        android:id="@+id/barVisualize"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_30sdp"
+                    <!-- <com.wiesoftware.spine.util.LineBarVisualizer
+                         android:shadowColor="@color/text_black"
+                         android:id="@+id/barVisualize"
+                         android:layout_width="match_parent"
+                         android:layout_height="@dimen/_30sdp"
+                         android:layout_weight="1"
+                         />-->
+                    <com.masoudss.lib.WaveformSeekBar
+                        android:id="@+id/waveseek"
                         android:layout_weight="1"
-                        />
+                        android:layout_gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_20"
+                        app:marker_color="@color/red"
+                        app:marker_text_color="@color/colorAccent"
+                        app:marker_text_padding="2dp"
+                        app:marker_text_size="12dp"
+                        app:marker_width="5dp"
+                        app:wave_background_color="@color/primaryTextColor"
+                        app:wave_corner_radius="5dp"
+                        app:wave_gap="2dp"
+                        app:wave_gravity="center"
+                        app:wave_max_progress="100"
+                        app:wave_min_height="5dp"
+                        app:wave_padding_Bottom="2dp"
+                        app:wave_padding_left="2dp"
+                        app:wave_padding_right="2dp"
+                        app:wave_padding_top="2dp"
+                        android:visibility="visible"
+                        app:wave_progress_color="@color/blue"
+                        app:wave_width="5dp" />
+
                     <ImageView
-                        android:visibility="gone"
-                        android:onClick="@{viewmodel.onDeleteVoice}"
-                        android:layout_gravity="end"
                         android:id="@+id/imageViewDelete"
                         android:layout_width="@dimen/thirty_two"
                         android:layout_height="@dimen/thirty_two"
+                        android:layout_gravity="end"
+                        android:onClick="@{viewmodel.onDeleteVoice}"
                         android:src="@drawable/ic_delete"
+                        android:visibility="gone"
                         app:tint="@color/colorPrimaryDark" />
 
                 </LinearLayout>
@@ -231,13 +260,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:textSize="@dimen/normalText"
                         android:id="@+id/textView60"
                         style="@style/TitleText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/add_capture"
+                        android:textSize="@dimen/normalText"
                         app:layout_constraintStart_toStartOf="@+id/button30"
                         app:layout_constraintTop_toBottomOf="@+id/button30" />
 
@@ -271,13 +300,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:textSize="@dimen/normalText"
                         android:id="@+id/textViewHashtag"
                         style="@style/TitleText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/add_hashtags" />
+                        android:text="@string/add_hashtags"
+                        android:textSize="@dimen/normalText" />
 
                     <TextView
                         android:id="@+id/textView99"
@@ -288,7 +317,6 @@
                 </LinearLayout>
 
                 <EditText
-                    android:textSize="@dimen/normalText"
                     android:id="@+id/editTextHashTag"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -298,20 +326,20 @@
                     android:hint="e.g. #lorem #lorem"
                     android:inputType="textPersonName|textMultiLine"
                     android:padding="@dimen/eight"
+                    android:textSize="@dimen/normalText"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
-                    android:textSize="@dimen/normalText"
-                    android:layout_marginTop="@dimen/eight"
                     android:id="@+id/textViewMarkFriendLabel"
                     style="@style/TitleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
                     android:layout_weight="1"
-                    android:text="@string/mark_friend" />
+                    android:text="@string/mark_friend"
+                    android:textSize="@dimen/normalText" />
 
                 <EditText
-                    android:textSize="@dimen/normalText"
                     android:id="@+id/editTextMarkFriend"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -321,20 +349,20 @@
                     android:hint="Enter"
                     android:inputType="textPersonName|textMultiLine"
                     android:padding="@dimen/eight"
+                    android:textSize="@dimen/normalText"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
-                    android:textSize="@dimen/normalText"
-                    android:layout_marginTop="@dimen/eight"
                     android:id="@+id/textViewLinkPlaceLabel"
                     style="@style/TitleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight"
                     android:layout_weight="1"
-                    android:text="@string/link_place" />
+                    android:text="@string/link_place"
+                    android:textSize="@dimen/normalText" />
 
                 <EditText
-                    android:textSize="@dimen/normalText"
                     android:id="@+id/editTextLinkPlace"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -344,59 +372,59 @@
                     android:hint="Enter"
                     android:inputType="textPersonName|textMultiLine"
                     android:padding="@dimen/eight"
+                    android:textSize="@dimen/normalText"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
-                    android:autoLink="all"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/normalText"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textColor="@color/text_black"
-                    android:layout_gravity="center_horizontal"
-                    android:visibility="visible"
                     android:id="@+id/textViewPromote"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/sixteen"
+                    android:autoLink="all"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="@string/would_you_like_to_promote"
-                    android:layout_marginTop="@dimen/sixteen" />
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/normalText"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
 
                 <View
                     android:id="@+id/view10"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/gray_tint"
                     android:layout_marginTop="@dimen/sixteen"
+                    android:background="@color/gray_tint"
                     app:layout_constraintEnd_toEndOf="@+id/switch4"
                     app:layout_constraintStart_toStartOf="@+id/textView63"
                     app:layout_constraintTop_toBottomOf="@+id/switch3" />
 
-                   <androidx.constraintlayout.widget.ConstraintLayout
-                       android:layout_marginTop="@dimen/eight"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content">
-                       <Button
-                           android:id="@+id/button32"
-                           style="@style/TextButton"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="@string/delete"
-                           android:visibility="visible"
-                           app:layout_constraintTop_toTopOf="parent"
-                           app:layout_constraintStart_toStartOf="parent"
-                            />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight">
 
-                       <Button
-                           android:onClick="@{viewmodel.onPreviewClick}"
-                           app:layout_constraintTop_toTopOf="parent"
-                           android:id="@+id/buttonPreview"
-                           style="@style/TextButton"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="@string/preview"
-                           android:visibility="visible"
-                           app:layout_constraintEnd_toEndOf="parent"
-                           />
-                   </androidx.constraintlayout.widget.ConstraintLayout>
+                    <Button
+                        android:id="@+id/button32"
+                        style="@style/TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delete"
+                        android:visibility="visible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/buttonPreview"
+                        style="@style/TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{viewmodel.onPreviewClick}"
+                        android:text="@string/preview"
+                        android:visibility="visible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
 

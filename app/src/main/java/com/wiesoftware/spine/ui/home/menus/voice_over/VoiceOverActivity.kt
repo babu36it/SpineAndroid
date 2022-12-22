@@ -22,27 +22,18 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.esafirm.imagepicker.features.ImagePicker
 import com.esafirm.imagepicker.features.ReturnMode
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.wiesoftware.spine.BuildConfig
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.repo.HomeRepositry
-import com.wiesoftware.spine.ui.home.camera.CURR_PHOTO_PATH_FROM_CAM_X
-import com.wiesoftware.spine.ui.home.camera.CURR_PHOTO_URI_FROM_CAM_X
-import com.wiesoftware.spine.ui.home.camera.IS_FROM_GALLERY
-import com.wiesoftware.spine.ui.home.menus.spine.addposts.postmedia.PostPreview
-import com.wiesoftware.spine.ui.home.menus.spine.addposts.postpreview.PostPreviewActivity
+import com.wiesoftware.spine.databinding.ActivityVoiceOverBinding
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory.SelectedImageAdapter
-import com.wiesoftware.spine.util.Prefs
 import com.wiesoftware.spine.util.UriPathHelper
-import com.wiesoftware.spine.util.putAny
 import constant.StringContract
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 import org.kodein.di.KodeinAware
@@ -54,13 +45,12 @@ import java.io.IOException
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
     override val kodein by kodein()
     lateinit var viewmodel: VoiceOverViewModel
-    lateinit var binding: com.wiesoftware.spine.databinding.ActivityVoiceOverBinding
+    lateinit var binding: ActivityVoiceOverBinding
     val homeRepositry: HomeRepositry by instance()
     private val voiceOverViewModel: VoiceViewmodelFactory by instance()
 
@@ -122,9 +112,10 @@ class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
     }
 
     private fun enableLineBar() {
-        binding.barVisualize.setColor(ContextCompat.getColor(this, R.color.grey))
+     /*   binding.barVisualize.setColor(ContextCompat.getColor(this, R.color.grey))
         binding.barVisualize.setDensity(70f);
-        binding.barVisualize.setPlayer(mediaPlayer!!.audioSessionId)
+        binding.barVisualize.setPlayer(mediaPlayer!!.audioSessionId)*/
+        binding.waveseek.setSampleFrom(intArrayOf( ))
     }
 
     override fun onBack() {
@@ -169,7 +160,8 @@ class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
                 )
             }
         }
-        binding.barVisualize.setPlayer(mediaPlayer!!.audioSessionId)
+        binding.waveseek.setSampleFrom(viewmodel.audioFileNameWithPath.toString())
+      //  binding.barVisualize.setPlayer(mediaPlayer!!.audioSessionId)
     }
 
 
@@ -206,6 +198,8 @@ class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
             }
         }
         mediaRecorder?.start()
+
+        binding.waveseek.setSampleFrom(intArrayOf(mediaRecorder!!.maxAmplitude.toInt()))
 
 
     }
