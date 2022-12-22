@@ -3,13 +3,13 @@ package com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.mes
 import android.view.View
 import android.widget.RadioGroup
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 1/28/2021.
  * Email: vivekpcst.kumar@gmail.com.
  */
-class MessagingViewmodel(val homeRepositry: HomeRepositry): ViewModel() {
+class MessagingViewmodel(val homeRepositry: HomeRepository): ViewModel() {
 
     var messagingEventListener: MessagingEventListener?= null
 

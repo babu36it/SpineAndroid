@@ -37,7 +37,7 @@ import com.wiesoftware.spine.data.adapter.OwnPostAdapter
 import com.wiesoftware.spine.data.net.reponses.EventsRecord
 import com.wiesoftware.spine.data.net.reponses.PostData
 import com.wiesoftware.spine.data.net.reponses.ProfileData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivitySomeOneProfileBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.events.EVE_RECORD
@@ -49,13 +49,10 @@ import com.wiesoftware.spine.ui.home.menus.spine.postdetails.PostDetailsActivity
 import com.wiesoftware.spine.ui.home.menus.spine.viewmedia.ViewMediaInLargeActivity
 import com.wiesoftware.spine.util.*
 import constant.StringContract
-import kotlinx.android.synthetic.main.cat_item.*
-import kotlinx.android.synthetic.main.poor_quality_or_spam.view.*
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button91
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button92
 import kotlinx.android.synthetic.main.report_reason.*
 import kotlinx.android.synthetic.main.report_reason.view.*
-import kotlinx.android.synthetic.main.why_r_u_reporting.view.*
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.imageButton66
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.radioGroup
 import kotlinx.coroutines.launch
@@ -75,7 +72,7 @@ class SomeOneProfileActivity : AppCompatActivity(),KodeinAware, SomeoneProfileEv
 
     override val kodein by kodein()
     val factory: SomeoneProfileViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivitySomeOneProfileBinding
     lateinit var userId: String
     lateinit var cUserId: String

@@ -12,15 +12,12 @@ import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.db.entities.User
-import com.wiesoftware.spine.data.repo.AuthRepositry
+import com.wiesoftware.spine.data.repo.AuthRepository
 import com.wiesoftware.spine.databinding.ActivityLoginBinding
 import com.wiesoftware.spine.ui.auth.otp.OtpActivity
-import com.wiesoftware.spine.ui.auth.fb.FbEmailActivity
-import com.wiesoftware.spine.ui.auth.fb.fbId
 import com.wiesoftware.spine.ui.auth.forgotpassword.ForgotPasswordActivity
 import com.wiesoftware.spine.ui.auth.register.RegisterActivity
 import com.wiesoftware.spine.ui.home.HomeActivity
-import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.AccountSettingsActivity
 import com.wiesoftware.spine.util.*
 import kotlinx.coroutines.launch
 import org.json.JSONException
@@ -36,7 +33,7 @@ class LoginActivity : AppCompatActivity(), LoginEventListener, KodeinAware {
     private val factory: LoginViewModelFactory by instance()
     lateinit var binding: ActivityLoginBinding
     lateinit var viewModel: LoginViewModel
-    val authRepositry: AuthRepositry by instance()
+    val authRepositry: AuthRepository by instance()
 
     var isFromLoginAPI: Boolean = false
 

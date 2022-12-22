@@ -10,11 +10,11 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 android {
     compileSdkVersion 31
-    buildToolsVersion "30.0.3"
+  //  buildToolsVersion "31.0.0"
 
     defaultConfig {
         applicationId "com.wiesoftware.spine"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 31
         versionCode 1
         versionName "1.0.0"
@@ -43,6 +43,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    configurations {
+        all*.exclude group: 'xpp3', module: 'xpp3'
+        implementation.exclude group: "org.apache.httpcomponents", module: "httpclient"
+    }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -64,27 +69,28 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.21"
     implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'com.google.android.material:material:1.3.0-alpha04'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+   // implementation 'com.google.android.material:material:1.3.0-alpha04'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.google.android.gms:play-services-places:17.0.0'
     implementation 'com.google.android.libraries.places:places:2.4.0'
 
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.10"
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.21"
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1'
 
     implementation 'org.kodein.di:kodein-di-generic-jvm:6.2.1'
     implementation 'org.kodein.di:kodein-di-framework-android-x:6.2.1'
@@ -99,11 +105,11 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     implementation 'com.facebook.android:facebook-login:5.15.3'
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.preference:preference:1.2.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
     implementation "androidx.viewpager2:viewpager2:1.0.0"
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
     def camerax_version = '1.0.0-rc01'
     implementation "androidx.camera:camera-core:$camerax_version"
@@ -112,7 +118,7 @@ dependencies {
     implementation "androidx.camera:camera-view:1.0.0-alpha20"
 
     implementation 'com.google.android.exoplayer:exoplayer:2.10.0'
-    implementation "androidx.browser:browser:1.3.0"
+    implementation "androidx.browser:browser:1.4.0"
 
     implementation 'com.cometchat:pro-android-chat-sdk:2.4.1'
     implementation project(path: ':uikit-kotlin')
@@ -133,12 +139,11 @@ dependencies {
     kapt "androidx.databinding:databinding-compiler:4.1.3"
 
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
-    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.sdp:sdp-android:1.1.0'
     implementation 'com.tbuonomo:dotsindicator:4.2'
     implementation "me.relex:circleindicator:2.1.6"
     implementation 'io.github.chaosleung:pinview:1.4.4'
-//    implementation 'me.relex:circleindicator:2.1.6'
-//    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:3.0.3'
+
     // Add the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-auth-ktx'

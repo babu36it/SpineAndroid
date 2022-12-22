@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.wiesoftware.spine.R
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityPracticionerSelectionListBinding
 import com.wiesoftware.spine.ui.home.menus.events.maps.MapviewEventsActivity
 import org.kodein.di.KodeinAware
@@ -23,7 +23,7 @@ class PracticionerSelectionListActivity : AppCompatActivity(), KodeinAware, Sele
     lateinit var binding: ActivityPracticionerSelectionListBinding
     lateinit var viewmodel: SearchPracticionerViewmodel
     val factory: PracticionerModelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

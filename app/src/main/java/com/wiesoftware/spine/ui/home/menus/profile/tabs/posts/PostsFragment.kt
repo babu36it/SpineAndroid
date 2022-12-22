@@ -12,18 +12,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.OwnPostAdapter
-import com.wiesoftware.spine.data.net.reponses.DemoPostData
 import com.wiesoftware.spine.data.net.reponses.PostData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentPostsBinding
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.AddPostActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
 import com.wiesoftware.spine.ui.home.menus.spine.postdetails.PostDetailsActivity
-import com.wiesoftware.spine.ui.home.menus.spine.viewmedia.ViewMediaInLargeActivity
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
 import kotlinx.coroutines.launch
@@ -38,7 +34,7 @@ class PostsFragment : Fragment(), KodeinAware, PostEventListner,
 
     override val kodein by kodein()
     private val factory: PostViewmodelFactory by instance()
-    private val homeRepositry: HomeRepositry by instance()
+    private val homeRepositry: HomeRepository by instance()
     lateinit var binding: FragmentPostsBinding
     var userId: String = ""
 

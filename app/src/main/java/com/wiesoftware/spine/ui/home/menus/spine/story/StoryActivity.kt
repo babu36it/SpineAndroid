@@ -15,12 +15,9 @@ import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.StoriesAdapter
 import com.wiesoftware.spine.data.adapter.StoryAdapter
 import com.wiesoftware.spine.data.net.reponses.AllUsersData
-import com.wiesoftware.spine.data.net.reponses.FollwingData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityStoryBinding
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
-import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
-import com.wiesoftware.spine.ui.home.menus.spine.foryou.STORY_IMAGE
 import com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.ViewStoryActivity
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
@@ -39,7 +36,7 @@ class StoryActivity : AppCompatActivity(),KodeinAware, StoryEventListener,
 
     override val kodein by kodein()
     private val factory: StoryViewmodelFactory by instance()
-    private val homeRepositry : HomeRepositry by instance()
+    private val homeRepositry : HomeRepository by instance()
 
     lateinit var binding: ActivityStoryBinding
     lateinit var userId: String

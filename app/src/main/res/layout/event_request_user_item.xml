@@ -36,6 +36,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/eight"
+        android:paddingEnd="@dimen/eight"
         android:layout_marginStart="@dimen/eight"
         android:layout_marginEnd="@dimen/eight"
         android:text="@{viewmodel.title}"
@@ -44,6 +45,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView24" />
 
     <ImageButton
+        android:contentDescription="@string/app_name"
         android:id="@+id/imageButton37"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,6 +58,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageButton38" />
 
     <ImageButton
+        android:contentDescription="@string/app_name"
         android:id="@+id/imageButton38"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,6 +76,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/eight"
+        android:paddingEnd="@dimen/eight"
         android:text="@{viewmodel.email}"
         android:textColor="@color/dark_gray_text"
         android:textStyle="bold"
@@ -86,6 +90,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/eight"
+        android:paddingEnd="@dimen/eight"
         android:text="@{viewmodel.message}"
         android:textColor="@color/dark_gray_text"
         android:textStyle="bold"

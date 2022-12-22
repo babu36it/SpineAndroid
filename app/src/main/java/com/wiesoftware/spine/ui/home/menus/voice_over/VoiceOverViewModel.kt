@@ -3,11 +3,9 @@ package com.wiesoftware.spine.ui.home.menus.voice_over
 import android.view.View
 import androidx.lifecycle.ViewModel
 
-import com.wiesoftware.spine.data.repo.HomeRepositry
-import java.io.File
-import java.io.Serializable
+import com.wiesoftware.spine.data.repo.HomeRepository
 
-class VoiceOverViewModel(val homeRepositry: HomeRepositry) : ViewModel(){
+class VoiceOverViewModel(val homeRepositry: HomeRepository) : ViewModel(){
 
     var voiceOverListener: VoiceOverListner?=null
     var    userId:String=""
@@ -37,9 +35,5 @@ class VoiceOverViewModel(val homeRepositry: HomeRepositry) : ViewModel(){
     fun onStartRecording(view : View){
         voiceOverListener?. onStartRecordings()
     }
-
-
-
-
 
 }

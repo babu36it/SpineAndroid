@@ -117,7 +117,6 @@
                 android:id="@+id/rrff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_weight="1"
                 android:gravity="end">
 
@@ -132,6 +131,7 @@
                     app:civ_border_width="@dimen/dp1" />
 
                 <ImageView
+                    android:contentDescription="@string/app_name"
                     android:id="@+id/imageButton46"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
                     android:layout_toLeftOf="@id/imageView26"
                     android:padding="@dimen/eight"
                     android:src="@drawable/ic_bookmark"
-                    android:tint="@color/gray_tint" />
+                    app:tint="@color/gray_tint" />
             </RelativeLayout>
 
 

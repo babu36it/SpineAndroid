@@ -33,7 +33,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></androidx.viewpager2.widget.ViewPager2>
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_layout"
@@ -154,16 +154,15 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_7sdp"
-                            android:drawableStart="@drawable/ic_new_event"
+                            app:drawableStartCompat="@drawable/ic_new_event"
                             android:drawablePadding="@dimen/eight"
-                            android:drawableTint="@color/white"
+                            app:drawableTint="@color/white"
                             android:fontFamily="@font/poppin_regular"
                             android:padding="0dp"
                             android:text="Sat, 09 May 2020"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_12sdp"
                             android:textStyle="bold"
-                            app:layout_constraintEnd_toStartOf="@+id/imageButton21"
                             app:layout_constraintStart_toStartOf="@+id/textView115"
                             app:layout_constraintTop_toBottomOf="@+id/textView115" />
 
@@ -184,9 +183,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_7sdp"
-                            android:drawableStart="@drawable/ic_new_location"
+                            app:drawableStartCompat="@drawable/ic_new_location"
                             android:drawablePadding="@dimen/eight"
-                            android:drawableTint="@color/white"
+                            app:drawableTint="@color/white"
                             android:text="Online"
                             style="@style/OnlyText"
                             android:textStyle="bold"
@@ -214,9 +213,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_7sdp"
-                            android:drawableStart="@drawable/ic_keyboard_arrow_up_green_24dp"
+                            app:drawableStartCompat="@drawable/ic_keyboard_arrow_up_green_24dp"
                             android:drawablePadding="@dimen/eight"
-                            android:drawableTint="@color/white"
+                            app:drawableTint="@color/white"
                             android:text="Website"
                             style="@style/OnlyText"
                             android:textStyle="bold"
@@ -233,9 +232,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_7sdp"
-                            android:drawableStart="@drawable/ic_new_mic"
+                            app:drawableStartCompat="@drawable/ic_new_mic"
                             android:drawablePadding="@dimen/eight"
-                            android:drawableTint="@color/white"
+                            app:drawableTint="@color/white"
                             android:text="@string/hosted_in"
                             style="@style/OnlyText"
                             android:textStyle="bold"
@@ -280,6 +279,7 @@
                         android:layout_marginTop="@dimen/_4sdp"
                         android:fontFamily="@font/poppins_regular"
                         android:paddingStart="@dimen/sixteen"
+                        android:paddingEnd="@dimen/sixteen"
                         android:text=""
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/_9sdp" />
@@ -575,6 +575,7 @@
         </ScrollView>
 
         <ImageButton
+            android:contentDescription="@string/app_name"
             android:id="@+id/imageButton17"
             style="@style/BackButton"
             android:layout_width="wrap_content"
@@ -585,6 +586,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
+            android:contentDescription="@string/app_name"
             android:id="@+id/imageButton18"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
@@ -599,6 +601,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
+            android:contentDescription="@string/app_name"
             android:id="@+id/imageButton19"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
@@ -615,6 +618,7 @@
             />
 
         <ImageButton
+            android:contentDescription="@string/app_name"
             android:id="@+id/imageButton20"
             android:layout_width="@dimen/_20"
             android:layout_height="@dimen/_20"

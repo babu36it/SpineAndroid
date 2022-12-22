@@ -48,7 +48,8 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.PodcastSubcategoryAdapter
 import com.wiesoftware.spine.data.net.reponses.*
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.EventRepositry
+import com.wiesoftware.spine.data.repo.SettingsRepository
 import com.wiesoftware.spine.databinding.ActivityAddEventBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.events.EVE_RECORD
@@ -104,7 +105,8 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     lateinit var photoURI: Uri
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val eventRepositry: EventRepositry by instance()
+    val settingsRepositry: SettingsRepository by instance()
     val factory: AddEventsViewmodelFactory by instance()
     lateinit var binding: ActivityAddEventBinding
     var peviewlangague: String = ""
@@ -189,7 +191,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     override fun onAddNewCategory(category: String) {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.addPodcastSubcategory(parent_id, category)
+                val res = eventRepositry.addPodcastSubcategory(parent_id, category)
                 if (res.status) {
                     binding.editTextTextPersonName31.setText("")
                     getSubcatgery()
@@ -445,7 +447,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     private fun getLanguages() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getPodcastLanguage()
+                val res = settingsRepositry.getLanguages()
                 if (res.status) {
                     lanngData = res.data
                     setLanguages(lanngData)
@@ -460,7 +462,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     private fun getTimeSlot() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getTimeZoneResponse()
+                val res = eventRepositry.getTimeZoneResponse()
                 if (res.status) {
                     timeData = res.data
                     setTimeZone(timeData)
@@ -530,7 +532,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     private fun getEventCategories(value: String) {
         lifecycleScope.launch {
             try {
-                val catRes = homeRepositry.getEventCatRes(value)
+                val catRes = eventRepositry.getEventCatRes(value)
                 if (catRes.status) {
                     catData = catRes.data
                     setEventCategories(catData)
@@ -590,7 +592,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
     private fun getSubcatgery() {
         lifecycleScope.launch {
             try {
-                val res = homeRepositry.getPodcastSubcategory(parent_id)
+                val res = eventRepositry.getPodcastSubcategory(parent_id)
                 if (res.status) {
                      subCatedataList = res.data
                     binding.recyclerView9.also {
@@ -801,7 +803,7 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
 //            flag = 1
 //            lifecycleScope.launch {
 //                try {
-//                    val res = homeRepositry.addUserEvent(
+//                    val res = eventRepositry.addUserEvent(
 //                        status,
 //                        uid,
 //                        types,
@@ -909,6 +911,9 @@ class AddEventActivity : AppCompatActivity(), KodeinAware, AddEventsListener,
         }
         else if (language == "") {
             Utils.showToast(this, "Select Language")
+            // binding.et104.error = "Required.";binding.et104.requestFocus(); return
+        } else if (attendees == "" || attendees == "0") {
+            Utils.showToast(this, "Enter Max Attendees")
             // binding.et104.error = "Required.";binding.et104.requestFocus(); return
         }
         else {

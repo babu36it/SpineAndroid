@@ -2,14 +2,14 @@ package com.wiesoftware.spine.ui.home.menus.podcasts.podcastdetails
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 2/18/2021.
  * Email: vivekpcst.kumar@gmail.com.
  */
 @Suppress("UNCHECKED_CAST")
-class PodcastDetailsViewmodelFactory(val homeRepositry: HomeRepositry): ViewModelProvider.NewInstanceFactory() {
+class PodcastDetailsViewmodelFactory(val homeRepositry: HomeRepository): ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return PodcastDetailsViewmodel(homeRepositry) as T

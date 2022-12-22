@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="facebook_app_id">792925301515255</string>
     <string name="fb_login_protocol_scheme">fb792925301515255</string>
 
@@ -59,7 +59,7 @@
     <string name="you">You</string>
     <string name="view_profile">View Profile</string>
     <string name="follow">Follow</string>
-    <string name="inspirational_thoughts_and_wisdom_to_encourage">Inspirational thoughts and wisdom to encourage...</string>
+    <string name="inspirational_thoughts_and_wisdom_to_encourage">Inspirational thoughts and wisdom to encourage…</string>
     <string name="discover_moments_of_people_s_lifes_and_get_inspired_by_them">Discover moments of People\'s lifes and get inspired by them.</string>
     <string name="follows">+ Follow</string>
     <string name="settings">Settings</string>
@@ -78,15 +78,15 @@
     <string name="logout">LOGOUT</string>
     <string name="comments">COMMENTS</string>
     <string name="post">Post</string>
-    <string name="add_a_comment">Add a comment...</string>
+    <string name="add_a_comment">Add a comment…</string>
     <string name="followers">Followers</string>
     <string name="reply">Reply</string>
     <string name="what_would_you_like_to_post">What would you like to post?</string>
     <string name="post_a_question_or_thought">Post a question or thought</string>
-    <string name="post_a_picture_or_video">Post a picture or video</string>
+    <string name="post_a_picture_or_video">Post a picture or vídeo</string>
     <string name="post_a_story">Post a story</string>
     <string name="add_story">ADD STORY</string>
-    <string name="add_image_s_or_video_s">Add image(s) or video(s)</string>
+    <string name="add_image_s_or_video_s">Add image(s) or vídeo(s)</string>
     <string name="add_title">Give your story a meaning</string>
     <string name="want_to_give_your_story_a_title_or_motto">Want to give your story a title or motto?</string>
     <string name="allow_comments">Allow comments</string>
@@ -95,9 +95,9 @@
     <string name="preview">Preview</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
-    <string name="use_camera">Use camera</string>
-    <string name="choose_existing_photo_or_video">Choose existing photo or video</string>
-    <string name="camera_permission">Please allow permission to take photo or video.</string>
+    <string name="use_camera">Use câmera</string>
+    <string name="choose_existing_photo_or_video">Choose existing photo or vídeo</string>
+    <string name="camera_permission">Please allow permission to take photo or vídeo.</string>
     <string name="post_a_question_or_share_what_s_on_your_mind">Post a question or share what\'s on your mind</string>
     <string name="save">Save</string>
     <string name="add_profile_image">ADD PROFILE IMAGE</string>
@@ -119,7 +119,7 @@
     <string name="trending">Trending</string>
     <string name="members">Members</string>
     <string name="discover_people_on_spine_you_might_want_to_follow">Discover people on Spine you might want to follow.</string>
-    <string name="type_comment">Type comment...</string>
+    <string name="type_comment">Type comment…</string>
     <string name="select_followers">Select Followers</string>
     <string name="add_hashtags">Add Hashtags</string>
     <string name="enter_up_to_5_hastags_e_g_lorem_lorem">Enter up to 5 hastags, e.g. #lorem #lorem</string>
@@ -348,7 +348,7 @@
     <string name="fake_profile">Fake profile</string>
     <string name="search_hashtag">Search hashtag</string>
     <string name="photo">Photo</string>
-    <string name="video">Video</string>
+    <string name="video">Vídeo</string>
     <string name="featured_post">Featured post</string>
     <string name="post_a_podcast">Post a podcast</string>
     <string name="what_s_the_link_to_your_podcast_s_rss_feed">What’s the link to your podcast’s RSS feed?</string>
@@ -373,7 +373,7 @@
     <string name="review_podcast">Review podcast</string>
     <string name="submit">Submit</string>
     <string name="question_or_thought">Question or thought</string>
-    <string name="picture_or_video">Image/Video</string>
+    <string name="picture_or_video">Image/Vídeo</string>
     <string name="story">Story</string>
     <string name="event">Event</string>
     <string name="podcast">Podcast</string>
@@ -388,10 +388,10 @@
     <string name="ad_type">Ad Type</string>
     <string name="select_ad_duration">Select Ad Duration</string>
     <string name="select_ad_type">Select Ad Type</string>
-    <string name="add_an_image_or_video">Add an image or video</string>
+    <string name="add_an_image_or_video">Add an image or vídeo</string>
     <string name="promote_your_ad_optional">Promote your ad</string>
     <string name="where_your_ad_links_to">Where your ad links to</string>
-    <string name="add_1_2_lines_of_additional_text_to_promote_your_ad">Add 1-2 lines of additional text to promote your ad</string>
+    <string name="add_1_2_lines_of_additional_text_to_promote_your_ad">Add 1–2 lines of additional text to promote your ad</string>
     <string name="destination_website">Destination website</string>
     <string name="my_ads">My Ads</string>
     <string name="thank_you">THANK YOU</string>
@@ -445,7 +445,7 @@
     <string name="str_categories_like">Categories I like</string>
     <string name="str_offer_description">Offer Discription</string>
     <string name="str_add_description">Add a description</string>
-    <string name="str_key_performance_area">Key performance areas and methods</string>
+    <string name="str_key_performance_area">Key performance áreas and methods</string>
     <string name="str_desease">Desease patterns I treat</string>
     <string name="str_categories">Categories</string>
     <string name="str_multiple_choice">Multiple choice</string>
@@ -494,4 +494,30 @@
     <string name="your_selection_practicioner">Your selection of practicioner</string>
     <string name="practicioner">Practicioners</string>
     <string name="str_metaverse">Metaverse</string>
+    <string name="e_g_http_zoom" tools:ignore="DuplicateDefinition">e.g http://zoom…</string>
+    <string name="voice_over">Voice Over</string>
+    <string name="add_image_or_video">Add image or video</string>
+    <string name="add_voice_over">Add voiceover (max 2 min)</string>
+    <string name="mark_friend">Mark Friends</string>
+    <string name="would_you_like_to_promote"><u>Would you like to promote your post, click here</u></string>
+    <string name="about">ABOUT</string>
+    <string name="_40">40</string>
+    <string name="_10_00">10:00</string>
+    <string name="eur">EUR</string>
+    <string name="your_event_is_live_on_the_spiritual_nnetwork_app">Your event is live on the Spiritual\nNetwork App.</string>
+    <string name="go_to_event">GO TO EVENT</string>
+    <string name="add_another_event">ADD ANOTHER EVENT</string>
+    <string name="post_an_event">Post an event</string>
+    <string name="add_image_s">Add Image(s)</string>
+    <string name="_90">90</string>
+    <string name="vsking_vivek">Vsking vivek</string>
+    <string name="practicionar_listing">Practicionar listing</string>
+    <string name="company_listing">Company listing</string>
+    <string name="_140">140</string>
+    <string name="street">Street</string>
+    <string name="metaverse_address">Metaverse Address</string>
+    <string name="company_name">Company Name</string>
+    <string name="_0_5_hashtags">(0/5 hashtags)</string>
+    <string name="str_no_followers_record">No Followers Record</string>
+    <string name="str_no_following_record">No Following Record</string>
 </resources>

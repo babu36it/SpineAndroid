@@ -262,7 +262,6 @@
             android:fontFamily="@font/poppins_bold"
             android:text="0"
             android:textColor="@color/text_black"
-            android:textFontWeight="800"
             app:layout_constraintEnd_toEndOf="@+id/button57"
             app:layout_constraintStart_toStartOf="@+id/button57"
             app:layout_constraintTop_toBottomOf="@+id/view22" />
@@ -273,7 +272,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:text="0"
-            android:textFontWeight="800"
             app:layout_constraintEnd_toEndOf="@+id/button58"
             app:layout_constraintStart_toStartOf="@+id/button58"
             app:layout_constraintTop_toTopOf="@+id/textView157" />
@@ -284,7 +282,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:text="0"
-            android:textFontWeight="800"
             app:layout_constraintEnd_toEndOf="@+id/button59"
             app:layout_constraintStart_toStartOf="@+id/button59"
             app:layout_constraintTop_toTopOf="@+id/textView158" />
@@ -298,7 +295,6 @@
             android:onClick="@{viewmodel.onPost}"
             android:text="@string/post"
             android:textColor="@color/text_black"
-            android:textFontWeight="800"
             app:layout_constraintStart_toStartOf="@+id/view22"
             app:layout_constraintTop_toBottomOf="@+id/textView157" />
 
@@ -326,7 +322,6 @@
             android:onClick="@{viewmodel.onEvents}"
             android:text="@string/events"
             android:textColor="@color/text_black_light"
-            android:textFontWeight="800"
             app:layout_constraintStart_toEndOf="@+id/button57"
             app:layout_constraintTop_toBottomOf="@+id/textView158" />
 
@@ -340,7 +335,6 @@
             android:onClick="@{viewmodel.onPods}"
             android:text="@string/pods"
             android:textColor="@color/text_black_light"
-            android:textFontWeight="800"
             app:layout_constraintStart_toEndOf="@+id/button58"
             app:layout_constraintTop_toBottomOf="@+id/textView159" />
 

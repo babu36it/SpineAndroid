@@ -15,6 +15,7 @@
         tools:context=".ui.home.menus.profile.follow.FollowActivity">
 
         <ImageButton
+            android:contentDescription="@string/app_name"
             android:onClick="@{viewmodel.onBack}"
             android:id="@+id/imageButton27"
             android:layout_width="wrap_content"

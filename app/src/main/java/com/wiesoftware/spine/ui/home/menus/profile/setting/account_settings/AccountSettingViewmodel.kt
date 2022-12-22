@@ -2,13 +2,13 @@ package com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 1/21/2021.
  * Email: vivekpcst.kumar@gmail.com.
  */
-class AccountSettingViewmodel(val homeRepositry: HomeRepositry): ViewModel() {
+class AccountSettingViewmodel(val homeRepositry: HomeRepository): ViewModel() {
 
     var accountSettingEventListener: AccountSettingEventListener? = null
 

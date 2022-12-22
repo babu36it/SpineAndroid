@@ -3,7 +3,6 @@ package com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory.previewstor
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -26,34 +25,26 @@ import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
-import com.google.android.exoplayer2.upstream.cache.CacheDataSourceFactory
-import com.google.android.exoplayer2.util.Util
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
-import com.wiesoftware.spine.SpineApplication
 import com.wiesoftware.spine.data.adapter.SelectStoryTimeAdapter
 import com.wiesoftware.spine.data.net.reponses.StoryMothData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityPreviewStoryBinding
 import com.wiesoftware.spine.ui.home.HomeActivity
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory.StoryPreview
-import com.wiesoftware.spine.ui.home.menus.spine.foryou.STORY_IMAGE
 import com.wiesoftware.spine.util.hide
 import com.wiesoftware.spine.util.show
 import com.wiesoftware.spine.util.toast
 import kotlinx.android.synthetic.main.fragment_story_display.*
 import kotlinx.android.synthetic.main.select_time_bootom_sheet.view.*
-import kotlinx.android.synthetic.main.why_r_u_reporting.view.*
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.cardView2
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.imageButton66
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -69,7 +60,7 @@ class PreviewStoryActivity : AppCompatActivity(),KodeinAware, PreviewStoryEventL
     }
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityPreviewStoryBinding
     var photoUri: Uri? = null
     var currentPhotoPath=""

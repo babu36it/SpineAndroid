@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.net.reponses.HashtagData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityTrendingCatBinding
 import com.wiesoftware.spine.util.toast
 import kotlinx.coroutines.launch
@@ -29,7 +29,7 @@ class TrendingCatActivity : AppCompatActivity(),KodeinAware, TrendingCatEventLis
 
     override val kodein by kodein()
     val factory: TrendingCatViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityTrendingCatBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -20,17 +20,14 @@ import com.wiesoftware.spine.data.adapter.ListenPodcastAdapter
 import com.wiesoftware.spine.data.net.reponses.PodDatas
 import com.wiesoftware.spine.data.net.reponses.RssItem
 import com.wiesoftware.spine.data.net.reponses.episode.EpisodeData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.data.repo.RssRepository
 import com.wiesoftware.spine.databinding.FragmentListenPodcastsBinding
 import com.wiesoftware.spine.ui.home.menus.podcasts.podcastdetails.PodcastDetailActivity
 import com.wiesoftware.spine.ui.home.menus.podcasts.userpodcast.UserPodcastActivity
 import com.wiesoftware.spine.ui.home.menus.podcasts.watch.WatchPodcastsFragment
-import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
-import com.wiesoftware.spine.ui.home.menus.spine.foryou.STORY_IMAGE
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
-import com.wiesoftware.spine.util.POD_FILE_BASE
 import com.wiesoftware.spine.util.toast
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
@@ -43,7 +40,7 @@ class ListenPodcastsFragment : Fragment(), KodeinAware, ListenPodcastAdapter.Pod
     override val kodein by kodein()
 
     val rssRepository: RssRepository by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     val factory: ListenPodcastViewmodelFactory by instance()
     var episodeDataList: ArrayList<EpisodeData> = arrayListOf()
     lateinit var binding: FragmentListenPodcastsBinding

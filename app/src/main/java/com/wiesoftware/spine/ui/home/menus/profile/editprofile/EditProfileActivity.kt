@@ -38,15 +38,14 @@ import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.MultiLanguageAdapter
 import com.wiesoftware.spine.data.net.reponses.EventCatData
 import com.wiesoftware.spine.data.net.reponses.LangData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.SettingsRepository
 import com.wiesoftware.spine.databinding.ActivityEditProfileBinding
 import com.wiesoftware.spine.ui.home.menus.events.addevents.MutilpeSpineCatAdapter
-import com.wiesoftware.spine.ui.home.menus.events.addevents.SpinerCatAdapter
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
 import com.wiesoftware.spine.util.toast
-import kotlinx.android.synthetic.main.activity_add_event.*
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.adp_lng_selections.*
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
@@ -93,7 +92,8 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
 
     override val kodein by kodein()
     val factory: EditProfileViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
+    val settingsRepository: SettingsRepository by instance()
     lateinit var binding: ActivityEditProfileBinding
     lateinit var editProfileViewModel: EditProfileViewmodel
     lateinit var user_id: String
@@ -425,7 +425,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
                         //llCompanyListing.visibility = View.VISIBLE
                         binding.llTabbar.visibility = View.VISIBLE
                         editProfileViewModel.accountType = "1"
-
+                        editProfileViewModel.listingType = "1"
                         binding.tvSwitch.text = getString(R.string.back_to_normal_account)
 
                         binding.switchButton.isChecked = true
@@ -639,7 +639,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
                         this@EditProfileActivity,
                         res.message,
                         Toast.LENGTH_SHORT
-                    ).duration
+                    ).show()
                 }
             } catch (e: ApiException) {
                 e.printStackTrace()
@@ -1077,7 +1077,7 @@ class EditProfileActivity : AppCompatActivity(), KodeinAware, EditProfileEventLi
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getPodcastLanguage()
+                val res = settingsRepository.getLanguages()
                 if (res.status) {
                     dismissProgressDailog()
                     lanngData = res.data

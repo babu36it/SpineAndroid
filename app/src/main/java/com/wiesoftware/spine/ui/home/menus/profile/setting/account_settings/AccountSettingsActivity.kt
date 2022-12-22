@@ -5,11 +5,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -18,21 +16,18 @@ import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.db.entities.User
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityAccountSettingsBinding
 import com.wiesoftware.spine.ui.auth.WelcomeActivity
-import com.wiesoftware.spine.ui.auth.welcome.SplashActivity
 import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.change_email.ChangeEmailActivity
 import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.deactiveaccount.DeactivateActivity
 import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.deleteAccount.DeleteAccouontActivity
 import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.language.SelectLanguageActivity
-import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.language.SelectLanguageActivity.Companion.LANG_NAME
 import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.messaging.MessagingActivity
 import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.saveEventCalendar.SaveEventToCalActivity
 import com.wiesoftware.spine.ui.home.menus.profile.setting.currency.CurrencyActivity
 import com.wiesoftware.spine.util.*
 import kotlinx.android.synthetic.main.change_password.*
-import kotlinx.android.synthetic.main.eve_msg_dialog.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -46,7 +41,7 @@ class AccountSettingsActivity : AppCompatActivity(),KodeinAware, AccountSettingE
 
     override val kodein by kodein()
     val factory: AccountSettingViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityAccountSettingsBinding
     var userId: String=""
     lateinit var c_user: User

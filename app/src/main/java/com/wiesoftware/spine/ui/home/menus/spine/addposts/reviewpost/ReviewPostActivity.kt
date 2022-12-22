@@ -4,22 +4,18 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityReviewPostBinding
 import com.wiesoftware.spine.ui.home.HomeActivity
-import com.wiesoftware.spine.ui.home.menus.profile.setting.account_settings.saveEventCalendar.SaveEventToCalActivity
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.hashtags.HASHTAG
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.postthought.COLOR_ID
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.postthought.PostThoughtActivity
@@ -27,11 +23,6 @@ import com.wiesoftware.spine.ui.home.menus.spine.addposts.postthought.THOUGHT
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.previewpost.PreviewPostActivity
 import com.wiesoftware.spine.util.*
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -44,7 +35,7 @@ class ReviewPostActivity : AppCompatActivity(), KodeinAware, ReviewPostEventList
     }
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     val factory: ReviewPostViewmodelFactory by instance()
     lateinit var binding: ActivityReviewPostBinding
     lateinit var user_id: String

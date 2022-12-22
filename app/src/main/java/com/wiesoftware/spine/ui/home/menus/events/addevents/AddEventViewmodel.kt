@@ -2,13 +2,13 @@ package com.wiesoftware.spine.ui.home.menus.events.addevents
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.EventRepositry
 
 /**
  * Created by Vivek kumar on 11/13/2020.
  * E-mail:- vivekpcst.kumar@gmail.com
  */
-class AddEventViewmodel(val homeRepositry: HomeRepositry):ViewModel() {
+class AddEventViewmodel(val eventRepositry: EventRepositry):ViewModel() {
 
     var addEventsListener: AddEventsListener?=null
     var title: String=""
@@ -22,7 +22,7 @@ class AddEventViewmodel(val homeRepositry: HomeRepositry):ViewModel() {
     var bookeventurl:String=""
     var checkcomment:Boolean=true
 
-    fun getLoggedInUser()=homeRepositry.getUser()
+    fun getLoggedInUser()=eventRepositry.getUser()
 
     fun onCheckedChange(on:Boolean){
         addEventsListener?.onAllowComments(on)

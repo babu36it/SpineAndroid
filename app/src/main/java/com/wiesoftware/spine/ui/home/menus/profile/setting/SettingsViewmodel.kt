@@ -2,17 +2,14 @@ package com.wiesoftware.spine.ui.home.menus.profile.setting
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.wiesoftware.spine.data.repo.HomeRepositry
-import com.wiesoftware.spine.util.Coroutines
-import kotlinx.coroutines.launch
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 10/6/2020.
  * E-mail:- vivekpcst.kumar@gmail.com
  */
 class SettingsViewmodel(
-    val homeRepositry: HomeRepositry
+    val homeRepositry: HomeRepository
 ) : ViewModel() {
 
     fun getUser()= homeRepositry.getUser()

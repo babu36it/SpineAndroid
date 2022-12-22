@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="facebook_app_id">792925301515255</string>
+    <string name="fb_login_protocol_scheme">fb792925301515255</string>
     <string name="choose_file">Choose File</string>
     <string name="support">Support</string>
     <string name="help">Help</string>
@@ -93,12 +95,38 @@
     <string name="spine_dumy_description">Our future reality depends on what we do now,in this present movement.</string>
     <string name="oliver">Oliver Reese</string>
     <string name="unkonwn">Unknown</string>
-    <string name="search_practicioner">Search Practicioners</string>
+    <string name="search_practicioner">Search Practitioners</string>
     <string name="str_key_performance_method">Key performance  and methods (multiple choice)</string>
     <string name="str_desease_pattern">Desease patterns ( multiple choice )</string>
     <string name="categories_selection">Categories ( multiple selection )</string>
-    <string name="find_practicioners">Find Practicioners</string>
-    <string name="your_selection_practicioner">Your selection of practicioner</string>
-    <string name="practicioner">Practicioners</string>
+    <string name="find_practicioners">Find Practitioners</string>
+    <string name="your_selection_practicioner">Your selection of practitioner</string>
+    <string name="practicioner">Practitioners</string>
     <string name="str_metaverse">Metaverse</string>
+    <string name="e_g_http_zoom" tools:ignore="DuplicateDefinition">e.g http://zoom…</string>
+    <string name="voice_over">Voice Over</string>
+    <string name="add_image_or_video">Add image or video</string>
+    <string name="add_voice_over">Add voiceover (max 2 min)</string>
+    <string name="mark_friend">Mark Friends</string>
+    <string name="would_you_like_to_promote"><u>Would you like to promote your post, click here</u></string>
+    <string name="about">ABOUT</string>
+    <string name="_40">40</string>
+    <string name="_10_00">10:00</string>
+    <string name="eur">EUR</string>
+    <string name="your_event_is_live_on_the_spiritual_nnetwork_app">Your event is live on the Spiritual\nNetwork App.</string>
+    <string name="go_to_event">GO TO EVENT</string>
+    <string name="add_another_event">ADD ANOTHER EVENT</string>
+    <string name="post_an_event">Post an event</string>
+    <string name="add_image_s">Add Image(s)</string>
+    <string name="_90">90</string>
+    <string name="vsking_vivek">Vsking vivek</string>
+    <string name="practicionar_listing">Practicionar listing</string>
+    <string name="company_listing">Company listing</string>
+    <string name="_140">140</string>
+    <string name="street">Street</string>
+    <string name="metaverse_address">Metaverse Address</string>
+    <string name="company_name">Company Name</string>
+    <string name="_0_5_hashtags">(0/5 hashtags)</string>
+    <string name="str_no_followers_record">No Followers Record</string>
+    <string name="str_no_following_record">No Following Record</string>
 </resources>

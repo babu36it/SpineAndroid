@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.wiesoftware.spine.R
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityPracticionersBinding
 
 import kotlinx.android.synthetic.main.eve_cat_selection.*
@@ -29,7 +29,7 @@ class PracticionersActivity : AppCompatActivity(), KodeinAware, SearchEventListe
     lateinit var binding: ActivityPracticionersBinding
     lateinit var viewmodel: SearchPracticionerViewmodel
     val factory: PracticionerModelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_practicioners)

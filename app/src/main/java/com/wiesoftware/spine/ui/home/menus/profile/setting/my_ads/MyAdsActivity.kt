@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityMyAdsBinding
 import com.wiesoftware.spine.ui.home.menus.profile.setting.my_ads.Inprogress.InProgressAdapter
 import com.wiesoftware.spine.ui.home.menus.profile.setting.my_ads.current.CurrentAdapter
@@ -30,7 +30,7 @@ class MyAdsActivity : AppCompatActivity(), KodeinAware, MyAdsEventListener {
 
     override val kodein by kodein()
     lateinit var binding: ActivityMyAdsBinding
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var userId: String
     lateinit var inProgressAdapter: InProgressAdapter
     lateinit var currentAdapter: CurrentAdapter

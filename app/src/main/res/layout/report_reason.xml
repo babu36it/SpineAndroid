@@ -8,6 +8,7 @@
 
 
     <ImageButton
+        android:contentDescription="@string/app_name"
         android:id="@+id/imageButton66"
         android:layout_width="@dimen/_150dp"
         android:layout_height="@dimen/eight"
@@ -91,6 +92,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView259">
 
         <EditText
+            android:hint="descriptions"
             android:id="@+id/editTextTextPersonName26"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_100"

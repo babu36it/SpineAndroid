@@ -20,7 +20,7 @@ import com.cometchat.pro.models.User
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.EveMessageAdapter
 import com.wiesoftware.spine.data.net.reponses.EveMsgUserData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentMsgBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.profile.chat.ChatActivity
@@ -32,7 +32,6 @@ import com.wiesoftware.spine.util.toast
 import constant.StringContract
 import kotlinx.coroutines.launch
 import listeners.OnItemClickListener
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
@@ -44,7 +43,7 @@ class MsgFragment : Fragment(),KodeinAware, EveMessageAdapter.OnUserChatListener
 
     override val kodein by kodein()
     val factory: MsgFragmentViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: FragmentMsgBinding
     lateinit var user_id: String
     lateinit var userName: String

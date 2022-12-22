@@ -4,13 +4,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 11/25/2020.
  * E-mail:- vivekpcst.kumar@gmail.com
  */
-class EditProfileViewmodel(val homeRepositry: HomeRepositry) : ViewModel() {
+class EditProfileViewmodel(val homeRepositry: HomeRepository) : ViewModel() {
 
     var normalname: String = ""
     var proffessionalname: String = ""
@@ -303,5 +303,6 @@ class EditProfileViewmodel(val homeRepositry: HomeRepositry) : ViewModel() {
     fun onLanguageSelect(view: View) {
         editProfileEventListener?.onLanguageSelect()
     }
+
 
 }

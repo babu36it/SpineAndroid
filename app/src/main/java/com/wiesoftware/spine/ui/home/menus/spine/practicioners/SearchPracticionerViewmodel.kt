@@ -2,13 +2,13 @@ package com.wiesoftware.spine.ui.home.menus.spine.practicioners
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 12/16/2020.
  * E-mail:- vivekpcst.kumar@gmail.com
  */
-class SearchPracticionerViewmodel(val homeRepositry: HomeRepositry): ViewModel() {
+class SearchPracticionerViewmodel(val homeRepositry: HomeRepository): ViewModel() {
 
     var location: String=""
     var category: String=""

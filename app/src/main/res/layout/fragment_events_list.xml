@@ -11,58 +11,66 @@
     </data>
 
 
-    <LinearLayout
-        android:id="@+id/events"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
         android:orientation="vertical"
-        tools:context=".ui.home.menus.profile.tabs.events.EventsFragment">
-
-        <RelativeLayout
-            android:id="@+id/rlFilterData"
-            android:layout_width="match_parent"
-            android:visibility="gone"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp4">
-
-            <TextView
-                android:id="@+id/textView33"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/eight"
-                android:layout_marginEnd="@dimen/eight"
-                android:layout_centerVertical="true"
-                android:fontFamily="@font/poppins_bold"
-                android:text=""
-                android:textColor="@color/text_black"
-                android:textSize="@dimen/_12sdp" />
-
-            <TextView
-                android:id="@+id/textedit_fltr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edit"
-                android:layout_centerVertical="true"
-                android:fontFamily="@font/poppins_bold"
-                android:layout_marginEnd="@dimen/eight"
-                android:layout_toEndOf="@+id/textView33"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/_12sdp" />
-
-            <ImageView
-                android:id="@+id/txt_cross"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
-                android:layout_toRightOf="@+id/textedit_fltr"
-                android:src="@drawable/ic_close_circle"
-                app:tint="@color/black_overlay"/>
-
-        </RelativeLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvEventList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/events"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/eight" />
-    </LinearLayout>
+            android:orientation="vertical"
+            tools:context=".ui.home.menus.profile.tabs.events.EventsFragment">
+
+            <RelativeLayout
+                android:id="@+id/rlFilterData"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp4">
+
+                <TextView
+                    android:id="@+id/textView33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/eight"
+                    android:layout_marginEnd="@dimen/eight"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text=""
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:id="@+id/textedit_fltr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/poppins_bold"
+                    android:layout_marginEnd="@dimen/eight"
+                    android:layout_toEndOf="@+id/textView33"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_12sdp" />
+
+                <ImageView
+                    android:id="@+id/txt_cross"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_toRightOf="@+id/textedit_fltr"
+                    android:src="@drawable/ic_close_circle"
+                    app:tint="@color/black_overlay"/>
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvEventList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/eight" />
+        </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 </layout>

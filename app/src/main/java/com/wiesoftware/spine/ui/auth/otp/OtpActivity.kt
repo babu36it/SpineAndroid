@@ -7,7 +7,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -16,7 +15,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.db.entities.User
-import com.wiesoftware.spine.data.repo.AuthRepositry
+import com.wiesoftware.spine.data.repo.AuthRepository
 import com.wiesoftware.spine.databinding.ActivityOtpBinding
 import com.wiesoftware.spine.ui.auth.number.NumberActivity
 import com.wiesoftware.spine.ui.auth.register.RegisterActivity
@@ -35,7 +34,7 @@ class OtpActivity : AppCompatActivity(), OtpEventListener, KodeinAware {
     override val kodein by kodein()
 
     private val factory: OtpViewModelFactory by instance()
-    private val authRepository: AuthRepositry by instance()
+    private val authRepository: AuthRepository by instance()
     lateinit var binding: ActivityOtpBinding
     lateinit var userRes: User
     var enteredotp: String = ""

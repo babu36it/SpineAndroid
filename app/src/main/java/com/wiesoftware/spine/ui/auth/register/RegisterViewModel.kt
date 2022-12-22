@@ -2,14 +2,12 @@ package com.wiesoftware.spine.ui.auth.register
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.AuthRepositry
+import com.wiesoftware.spine.data.repo.AuthRepository
 import com.wiesoftware.spine.util.Utils
 import com.wiesoftware.spine.util.Utils.Companion.isValidPassword
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 
 class RegisterViewModel(
-    private val authRepositry: AuthRepositry
+    private val authRepositry: AuthRepository
 ) : ViewModel() {
 
     var registerEventListener: RegisterEventListener? = null

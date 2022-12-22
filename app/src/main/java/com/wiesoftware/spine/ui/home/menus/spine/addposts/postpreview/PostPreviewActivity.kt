@@ -10,29 +10,23 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.bumptech.glide.Glide
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.PreviewImageSliderAdapter
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityPostPreviewBinding
 import com.wiesoftware.spine.ui.home.HomeActivity
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.postmedia.PostPreview
 import com.wiesoftware.spine.util.ApiException
-import com.wiesoftware.spine.util.NoInternetException
 import com.wiesoftware.spine.util.toast
-import kotlinx.android.synthetic.main.fragment_story_display.*
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 import java.io.File
-import java.io.Serializable
 
 class PostPreviewActivity : AppCompatActivity(),KodeinAware, PostPreviewEventListener {
 
@@ -43,7 +37,7 @@ class PostPreviewActivity : AppCompatActivity(),KodeinAware, PostPreviewEventLis
     override val kodein by kodein()
     lateinit var binding: ActivityPostPreviewBinding
     var userId:String=""
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
 
     var selectedHashtags: String=""
     var currentPhotoPathList: MutableList<String> = mutableListOf()

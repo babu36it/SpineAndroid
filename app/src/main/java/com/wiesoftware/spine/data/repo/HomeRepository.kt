@@ -18,7 +18,7 @@ import okhttp3.ResponseBody
  * Created by Vivek kumar on 8/13/2020.
  * E-mail:- vivekpcst.kumar@gmail.com
  */
-class HomeRepositry(
+class HomeRepository(
     private val api: Api,
     private val db: AppDatabase
 ) : SafeApiRequest() {
@@ -261,13 +261,6 @@ class HomeRepositry(
         return apiRequest { api.followUnfollowImpluse(user_id, status) }
     }
 
-    suspend fun deactivateAccount(): SingleRes {
-        return apiRequest { api.deactivateAccount() }
-    }
-
-    suspend fun deleteSpineAccount(): SingleRes {
-        return apiRequest { api.deactivateAccount() }
-    }
 
     suspend fun increasePodcastViews(podcast_id: String): SingleRes {
         return apiRequest { api.increasePodcastViews(podcast_id) }
@@ -323,84 +316,13 @@ class HomeRepositry(
         }
     }
 
-    suspend fun getCurrency(): CurrencyRes {
-        return apiRequest { api.getCurrency() }
-    }
 
     suspend fun getEventDetails(event_id: String, userId: String): EventDetailsRes {
         return apiRequest { api.getEventDetails(event_id) }
     }
 
-    suspend fun saveStatusToCalendarStatus(calender_status: String): SingleRes {
-        return apiRequest { api.saveStatusToCalendarStatus(calender_status) }
-    }
 
-    suspend fun whoCanMessage(message_auth: String): SingleRes {
-        return apiRequest { api.whoCanMessage(message_auth) }
-    }
 
-    suspend fun requestToChangeEmail(email: String): SingleRes {
-        return apiRequest { api.requestToChangeEmail(email) }
-    }
-
-    suspend fun requestToPrivarcySetting(
-        p_findability: String,
-        p_customization: String,
-        p_necessary: String,
-        p_personalized: String
-    ): SingleRes {
-        return apiRequest {
-            api.getAllPrivarcySettings(
-                p_findability, p_customization, p_necessary,
-                p_personalized
-            )
-        }
-    }
-
-    suspend fun getAllEmailNotification(
-        e_notify_status: String,
-        e_event_attach_status: String,
-        e_message_status: String,
-        e_comment_reply_status: String,
-        e_event_podcast_status: String,
-        e_update_from_spine_status: String,
-        e_spine_surveys_status: String
-    ): SingleRes {
-        return apiRequest {
-            api.getAllEmailNotification(
-                e_notify_status, e_event_attach_status,
-                e_message_status, e_comment_reply_status,
-                e_event_podcast_status, e_update_from_spine_status,
-                e_spine_surveys_status
-            )
-        }
-    }
-
-    suspend fun getAllMobileNotifications(
-        m_notify_status: String,
-        m_like_notify_status: String,
-        m_comment_notify_status: String,
-        m_update_and_reminders_status: String,
-        m_save_event_reminders_status: String,
-        m_message_status: String,
-        m_follow_status: String,
-        m_spine_impulse_status: String,
-        m_any_post_status: String
-    ): SingleRes {
-        return apiRequest {
-            api.getAllMobileNotifications(
-                m_notify_status,
-                m_like_notify_status,
-                m_comment_notify_status,
-                m_update_and_reminders_status,
-                m_save_event_reminders_status,
-                m_message_status,
-                m_follow_status,
-                m_spine_impulse_status,
-                m_any_post_status
-            )
-        }
-    }
 
     suspend fun getQuetionsThought(title: String, postType: String, hashTags: String): SingleRes {
         return apiRequest {
@@ -425,16 +347,16 @@ class HomeRepositry(
     }
 
 
-    suspend fun getEventRequestUserList(page: Int,perPage: Int,userId: String): EventRequestResponse{
+    suspend fun getEventRequestUserList(
+        page: Int,
+        perPage: Int,
+        userId: String
+    ): EventRequestResponse {
         return apiRequest { api.getEventRequestUserList(page, perPage) }
     }
 
-    suspend fun changeBookingStatus(event_booking_id: String,status: String): SingleRes{
+    suspend fun changeBookingStatus(event_booking_id: String, status: String): SingleRes {
         return apiRequest { api.changeBookingStatus(event_booking_id, status) }
-    }
-
-    suspend fun getPodcastLanguage(): LangRes {
-        return apiRequest { api.getPodcastLanguage() }
     }
 
     suspend fun getTimeZoneResponse(): TimeZoneResponse {
@@ -491,6 +413,10 @@ class HomeRepositry(
         return apiRequest { api.unFollowUser(user_id, unfollow_user_id) }
     }
 
+    suspend fun addFollowunFollow(followUnfollowUserId: String): SingleRes {
+        return apiRequest { api.addFollowunFollow(followUnfollowUserId) }
+    }
+
     suspend fun getFollowingList(page: Int, per_page: Int, user_id: String): FollowersRes {
         return apiRequest { api.getFollowingList(page, per_page, user_id) }
     }
@@ -530,8 +456,29 @@ class HomeRepositry(
         return apiRequest { api.getOwnEvents() }
     }
 
-    suspend fun getFilteredEventList(page: String,per_page: String,user_id: String,lat: String,lon: String,distance: String,start_date: String,end_date:String,category: String): EventsRes{
-        return  apiRequest { api.getFilteredEvents(page, per_page,  lat, lon, distance, start_date, end_date,category) }
+    suspend fun getFilteredEventList(
+        page: String,
+        per_page: String,
+        user_id: String,
+        lat: String,
+        lon: String,
+        distance: String,
+        start_date: String,
+        end_date: String,
+        category: String
+    ): EventsRes {
+        return apiRequest {
+            api.getFilteredEvents(
+                page,
+                per_page,
+                lat,
+                lon,
+                distance,
+                start_date,
+                end_date,
+                category
+            )
+        }
     }
 
     suspend fun getNearbyEvents(

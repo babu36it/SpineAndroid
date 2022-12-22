@@ -26,7 +26,6 @@
         app:civ_border_color="@color/text_white"
         app:civ_border_width="2dp"
         app:civ_circle_background_color="@color/gray_tint"
-        app:layout_constraintBottom_toBottomOf="@+id/view6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

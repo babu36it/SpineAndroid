@@ -29,7 +29,7 @@
                 android:background="@android:color/transparent"
                 android:padding="@dimen/_10sdp"
                 android:src="@drawable/ic_back"
-                android:tint="@color/text_black"
+                android:backgroundTint="@color/text_black"
                 android:visibility="visible" />
 
             <TextView
@@ -41,7 +41,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_toRightOf="@id/imageView7"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:gravity="center"
                 android:textStyle="bold"

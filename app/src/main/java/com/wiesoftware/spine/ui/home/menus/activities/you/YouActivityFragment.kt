@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.ActivityForYouAdapter
 import com.wiesoftware.spine.data.net.reponses.ActivitiesData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentYouActivityBinding
 import com.wiesoftware.spine.ui.home.menus.activities.following.FollowingActivityAdapter
 import com.wiesoftware.spine.ui.home.menus.activities.following.FollowingActivityFragment
@@ -36,7 +36,7 @@ class YouActivityFragment : Fragment(),KodeinAware,
     override val kodein by kodein()
     lateinit var binding: FragmentYouActivityBinding
     private val factory: YouActivityViewmodelFactory by instance()
-    private val homeRepositry: HomeRepositry by instance()
+    private val homeRepositry: HomeRepository by instance()
 
     lateinit var user_id: String
 

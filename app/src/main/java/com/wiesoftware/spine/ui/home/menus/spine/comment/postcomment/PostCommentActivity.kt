@@ -16,16 +16,14 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.adapter.SpineCommentDataAdapter
 import com.wiesoftware.spine.data.net.reponses.SpineCommentData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityPostCommentBinding
-import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SOMEONE_U_ID
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
 import com.wiesoftware.spine.ui.home.menus.spine.comment.reply.RepliesActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.POST_ID
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
-import com.wiesoftware.spine.util.toast
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -42,7 +40,7 @@ class PostCommentActivity : AppCompatActivity(),KodeinAware, PostCommentEventLis
     override val kodein by kodein()
     lateinit var binding: ActivityPostCommentBinding
     val factory: PostCommentViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var user_id:  String
     lateinit var post_id: String
     var comment_id:String="0"

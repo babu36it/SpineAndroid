@@ -20,7 +20,7 @@ import com.wiesoftware.spine.data.adapter.SearchForUContentAdapter
 import com.wiesoftware.spine.data.net.reponses.AllUsersData
 import com.wiesoftware.spine.data.net.reponses.HashtagData
 import com.wiesoftware.spine.data.net.reponses.PostData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentHomeSearchBinding
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
@@ -52,7 +52,7 @@ class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
 
     override val kodein by kodein()
     lateinit var binding: FragmentHomeSearchBinding
-    val homeRepositry : HomeRepositry by instance()
+    val homeRepositry : HomeRepository by instance()
     var mContext : Context? = null
     var dataList: MutableList<HashtagData> = mutableListOf()
     var adapter: HashtagAutocompleteAdapter =HashtagAutocompleteAdapter(dataList,this@HomeSearchFragment)

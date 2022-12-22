@@ -2,13 +2,13 @@ package com.wiesoftware.spine.ui.home.menus.podcasts.podcastdetails
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 2/18/2021.
  * Email: vivekpcst.kumar@gmail.com.
  */
-class PodcastDetailsViewmodel(val homeRepositry: HomeRepositry): ViewModel() {
+class PodcastDetailsViewmodel(val homeRepositry: HomeRepository): ViewModel() {
     var podcastDetailsEventListener: PodcastDetailsEventListener? =null
 
     fun  getLoggedInUser()=homeRepositry.getUser()

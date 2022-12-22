@@ -2,14 +2,13 @@ package com.wiesoftware.spine.ui.home.menus.profile.myprofile
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
-import kotlinx.android.synthetic.main.activity_my_profile.view.*
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 1/20/2021.
  * Email: vivekpcst.kumar@gmail.com.
  */
-class MyProfileViewmodel(val homeRepositry: HomeRepositry): ViewModel() {
+class MyProfileViewmodel(val homeRepositry: HomeRepository): ViewModel() {
 
     var myProfileEventListener: MyProfileEventListener?= null
 

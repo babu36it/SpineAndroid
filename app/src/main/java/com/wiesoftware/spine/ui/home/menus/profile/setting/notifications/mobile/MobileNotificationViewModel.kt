@@ -1,13 +1,13 @@
 package com.wiesoftware.spine.ui.home.menus.profile.setting.notifications.mobile
 
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 2/23/2021.
  * Email: vivekpcst.kumar@gmail.com.
  */
-class MobileNotificationViewModel(val homeRepositry: HomeRepositry): ViewModel() {
+class MobileNotificationViewModel(val homeRepositry: HomeRepository): ViewModel() {
     var mobileNotificationEventListener: MobileNotificationEventListener? =null
 
     fun getLoggedInUser()=homeRepositry.getUser()

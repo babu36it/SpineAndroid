@@ -2,14 +2,14 @@ package com.wiesoftware.spine.ui.home.menus.spine.impulse
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 9/24/2020.
  * E-mail:- vivekpcst.kumar@gmail.com
  */
 class ImpulseViewmodel(
-    private val homeRepositry: HomeRepositry
+    private val homeRepositry: HomeRepository
 ): ViewModel() {
 
     var impulseEventListener: ImpulseEventListener?= null

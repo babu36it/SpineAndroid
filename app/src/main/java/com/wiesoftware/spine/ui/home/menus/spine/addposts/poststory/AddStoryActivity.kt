@@ -29,13 +29,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.wiesoftware.spine.BuildConfig
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
-import com.wiesoftware.spine.data.adapter.StoryImageCommonAdapter
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityAddStoryBinding
 import com.wiesoftware.spine.ui.home.HomeActivity
 import com.wiesoftware.spine.ui.home.camera.*
@@ -46,7 +44,6 @@ import com.wiesoftware.spine.util.putAny
 import com.wiesoftware.spine.util.toast
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -90,7 +87,7 @@ class AddStoryActivity : AppCompatActivity(), AddStoryEventListener,
     lateinit var binding: ActivityAddStoryBinding
     lateinit var viewmodel: AddStoryViewmodel
     lateinit var userid: String
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     val factory: AddStoryViewmodelFactory by instance()
     lateinit var progressDialog: ProgressDialog
 

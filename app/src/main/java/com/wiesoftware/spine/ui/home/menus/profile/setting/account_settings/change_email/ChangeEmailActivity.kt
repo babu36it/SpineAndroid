@@ -18,13 +18,13 @@ import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.db.entities.User
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.SettingsRepository
 import com.wiesoftware.spine.databinding.ActivityChangeEmailBinding
 import com.wiesoftware.spine.ui.auth.WelcomeActivity
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
 import com.wiesoftware.spine.util.hideKeyboard
-import kotlinx.android.synthetic.main.join_layout.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -39,7 +39,8 @@ class ChangeEmailActivity : AppCompatActivity(), KodeinAware, ChangeEmailEventLi
     override val kodein by kodein()
     lateinit var binding: ActivityChangeEmailBinding
     lateinit var userId: String
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
+    val settingsRepository: SettingsRepository by instance()
     val factory: ChangeEmailViewmodelFactory by instance()
     var isLogin = true
     lateinit var user: User
@@ -97,7 +98,7 @@ class ChangeEmailActivity : AppCompatActivity(), KodeinAware, ChangeEmailEventLi
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.requestToChangeEmail(email)
+                val res = settingsRepository.requestToChangeEmail(email)
                 if (res.status){
                     dismissProgressDailog()
                     emailChangedDialog(res.message)

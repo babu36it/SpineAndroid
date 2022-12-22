@@ -11,7 +11,6 @@ import android.os.Bundle
 import android.view.ContextThemeWrapper
 import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.PopupMenu
 import android.widget.RadioButton
@@ -44,7 +43,7 @@ import com.wiesoftware.spine.data.adapter.SpineCommentDataAdapter
 import com.wiesoftware.spine.data.net.reponses.FollowersData
 import com.wiesoftware.spine.data.net.reponses.PostData
 import com.wiesoftware.spine.data.net.reponses.SpineCommentData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityPostDetailsBinding
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
 import com.wiesoftware.spine.ui.home.menus.profile.tabs.posts.PostsFragment
@@ -60,14 +59,12 @@ import com.wiesoftware.spine.util.NoInternetException
 import com.wiesoftware.spine.util.hideKeyboard
 import com.wiesoftware.spine.util.toast
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
-import kotlinx.android.synthetic.main.poor_quality_or_spam.view.*
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button91
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button92
 import kotlinx.android.synthetic.main.report_reason.*
 import kotlinx.android.synthetic.main.report_reason.view.*
 import kotlinx.android.synthetic.main.share_bottomsheet.*
 import kotlinx.android.synthetic.main.share_bottomsheet.view.*
-import kotlinx.android.synthetic.main.why_r_u_reporting.view.*
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.cardView2
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.imageButton66
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.radioGroup
@@ -86,7 +83,7 @@ class PostDetailsActivity : AppCompatActivity(),KodeinAware, PostDetailEventList
     }
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityPostDetailsBinding
     var cUserId="";var fUserId=""
     var postId=""

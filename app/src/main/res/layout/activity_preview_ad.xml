@@ -21,6 +21,7 @@
             android:layout_height="@dimen/_50sdp">
 
             <ImageButton
+                android:contentDescription="@string/app_name"
                 android:id="@+id/imageButton79"
                 style="@style/BackButton"
                 android:layout_width="wrap_content"
@@ -113,6 +114,7 @@
                 app:layout_constraintTop_toTopOf="@+id/textView311" />
 
             <ImageView
+                android:contentDescription="@string/app_name"
                 android:id="@+id/imageView46"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -130,6 +132,7 @@
                 android:layout_marginEnd="@dimen/eight"
                 android:fontFamily="@font/poppins_bold"
                 android:paddingStart="@dimen/eight"
+                android:paddingEnd="@dimen/eight"
                 android:text="@string/promoted_by"
                 android:textColor="@color/text_black"
                 android:textSize="@dimen/_12sdp"
@@ -153,6 +156,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView311" />
 
             <ImageView
+                android:contentDescription="@string/app_name"
                 android:id="@+id/imageView47"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_250"
@@ -193,6 +197,7 @@
                 app:layout_constraintStart_toStartOf="@+id/imageView47" />
 
             <ImageButton
+                android:contentDescription="@string/app_name"
                 android:id="@+id/imageButton83"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -260,6 +265,7 @@
                 app:layout_constraintTop_toTopOf="@+id/textVieweve311" />
 
             <ImageView
+                android:contentDescription="@string/app_name"
                 android:id="@+id/imageVieweve46"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -277,6 +283,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:layout_marginEnd="@dimen/eight"
                 android:paddingStart="@dimen/eight"
+                android:paddingEnd="@dimen/eight"
                 android:textSize="@dimen/_12sdp"
                 android:text="@string/promoted_by"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -300,6 +307,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textVieweve311" />
 
             <ImageView
+                android:contentDescription="@string/app_name"
                 android:id="@+id/imageVieweve47"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_250"
@@ -333,9 +341,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/eight"
                 android:layout_marginEnd="@dimen/eight"
-                android:drawableStart="@drawable/ic_location"
+                app:drawableStartCompat="@drawable/ic_location"
                 android:drawablePadding="@dimen/eight"
-                android:drawableTint="@color/text_white"
+                app:drawableTint="@color/text_white"
                 android:layout_margin="@dimen/_8sdp"
                 android:text="Bihar India | 2 days"
                 android:textAlignment="textStart"
@@ -345,6 +353,7 @@
                 app:layout_constraintStart_toStartOf="@+id/imageVieweve47" />
 
             <ImageButton
+                android:contentDescription="@string/app_name"
                 android:id="@+id/imageButtoneve83"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -434,6 +443,7 @@
                 app:layout_constraintTop_toTopOf="@+id/textViewpod311" />
 
             <ImageView
+                android:contentDescription="@string/app_name"
                 android:id="@+id/imageViewpod46"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -453,6 +463,7 @@
                 android:layout_marginTop="@dimen/eight"
                 android:layout_marginEnd="@dimen/eight"
                 android:paddingStart="@dimen/eight"
+                android:paddingEnd="@dimen/eight"
                 android:text="@string/promoted_by"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageViewpod45"
@@ -475,6 +486,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewpod311" />
 
             <ImageView
+                android:contentDescription="@string/app_name"
                 android:id="@+id/imageViewpod47"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_250"
@@ -519,6 +531,7 @@
                 app:layout_constraintStart_toStartOf="@+id/imageViewpod47" />
 
             <ImageButton
+                android:contentDescription="@string/app_name"
                 android:id="@+id/imageButtonpod83"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

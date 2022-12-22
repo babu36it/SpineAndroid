@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityFollowBinding
 import com.wiesoftware.spine.ui.home.menus.profile.follow.followers.FollowersFragment
 import com.wiesoftware.spine.ui.home.menus.profile.follow.following.FollowingFragment
@@ -26,7 +26,7 @@ class FollowActivity : AppCompatActivity(),KodeinAware, FollowEventListener {
 
     override val kodein by kodein()
     val factory: FollowViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     var userId: String=""
 
     lateinit var binding: ActivityFollowBinding

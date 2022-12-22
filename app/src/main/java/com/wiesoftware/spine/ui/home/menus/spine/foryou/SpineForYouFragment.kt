@@ -28,7 +28,7 @@ import org.kodein.di.android.BuildConfig
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.*
 import com.wiesoftware.spine.data.net.reponses.*
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentSpineForYouBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
@@ -36,7 +36,6 @@ import com.wiesoftware.spine.ui.home.menus.profile.myprofile.MyProfileActivity
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity.Companion.IS_FOLLOW_ACTION
 import com.wiesoftware.spine.ui.home.menus.profile.tabs.posts.PostsFragment
-import com.wiesoftware.spine.ui.home.menus.spine.categories.TrendingCatActivity
 import com.wiesoftware.spine.ui.home.menus.spine.comment.impulsecomment.ImpulseCommentActivity
 import com.wiesoftware.spine.ui.home.menus.spine.comment.postcomment.PostCommentActivity
 import com.wiesoftware.spine.ui.home.menus.spine.homefeed.FeedAdapter
@@ -89,7 +88,7 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
     override val kodeinContext = kcontext<Fragment>(this)
     override val kodein by kodein()
     private val factory: SpineForYouViewModelFactory by instance()
-    private val homeRepositry: HomeRepositry by instance()
+    private val homeRepositry: HomeRepository by instance()
     val data: MutableMap<String, String> = HashMap<String, String>()
     var reportTitle = "";
     var reportReason = "";

@@ -33,7 +33,7 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.net.reponses.FollowersData
 import com.wiesoftware.spine.data.net.reponses.PodcastDetailsData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityPodcastDetailBinding
 import com.wiesoftware.spine.ui.home.menus.podcasts.watch.WatchPodcastsFragment.Companion.POD_ID
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
@@ -44,7 +44,6 @@ import com.wiesoftware.spine.util.NoInternetException
 import com.wiesoftware.spine.util.POD_FILE_BASE
 import com.wiesoftware.spine.util.toast
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
-import kotlinx.android.synthetic.main.poor_quality_or_spam.view.*
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button91
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button92
 import kotlinx.android.synthetic.main.report_reason.*
@@ -53,7 +52,6 @@ import kotlinx.android.synthetic.main.share_bottomsheet.*
 import kotlinx.android.synthetic.main.share_bottomsheet.cardView2
 import kotlinx.android.synthetic.main.share_bottomsheet.imageButton66
 import kotlinx.android.synthetic.main.share_bottomsheet.view.*
-import kotlinx.android.synthetic.main.why_r_u_reporting.view.*
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.radioGroup
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
@@ -75,7 +73,7 @@ class PodcastDetailActivity : AppCompatActivity(),KodeinAware, PodcastDetailsEve
 
     override val kodein by kodein()
     val factory: PodcastDetailsViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityPodcastDetailBinding
     lateinit var userId: String
     lateinit var podId: String

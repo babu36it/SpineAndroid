@@ -2,7 +2,7 @@ package com.wiesoftware.spine.ui.auth.otp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.wiesoftware.spine.data.repo.AuthRepositry
+import com.wiesoftware.spine.data.repo.AuthRepository
 
 /**
  * Created by Vivek kumar on 8/4/2020.
@@ -10,7 +10,7 @@ import com.wiesoftware.spine.data.repo.AuthRepositry
  */
 @Suppress("UNCHECKED_CAST")
 class OtpViewModelFactory(
-    private val authRepositry: AuthRepositry
+    private val authRepositry: AuthRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

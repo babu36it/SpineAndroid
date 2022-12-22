@@ -2,13 +2,13 @@ package com.wiesoftware.spine.ui.home.menus.profile.setting.help.privacy
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 
 /**
  * Created by Vivek kumar on 2/22/2021.
  * Email: vivekpcst.kumar@gmail.com.
  */
-class PrivacySettingViewmodel(val homeRepositry: HomeRepositry) : ViewModel() {
+class PrivacySettingViewmodel(val homeRepositry: HomeRepository) : ViewModel() {
     var privacySettingEventListener: PrivacySettingEventListener? = null
 
     fun getLoggedInUser() = homeRepositry.getUser()

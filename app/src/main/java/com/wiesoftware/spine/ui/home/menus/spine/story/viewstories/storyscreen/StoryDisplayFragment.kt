@@ -8,7 +8,6 @@ import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.net.Uri
 import android.os.Bundle
-import android.text.format.DateFormat
 import android.view.*
 import android.widget.FrameLayout
 import android.widget.RadioButton
@@ -39,14 +38,12 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.SpineApplication
 import com.wiesoftware.spine.data.adapter.SelectStoryTimeAdapter
 import com.wiesoftware.spine.data.net.reponses.*
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentStoryDisplayBinding
 import com.wiesoftware.spine.ui.home.menus.profile.myprofile.MyProfileActivity
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
 import com.wiesoftware.spine.ui.home.menus.spine.comment.storycomment.StoryCommentActivity
-import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.STORY_IMAGE
-import com.wiesoftware.spine.ui.home.menus.spine.selectfollowers.SelectFollowersActivity
 import com.wiesoftware.spine.ui.home.menus.spine.selectfollowers.SelectFollowersAdapter
 import com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.ViewStoryActivity
 import com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.customstoryview.StoriesProgressView
@@ -54,7 +51,6 @@ import com.wiesoftware.spine.util.*
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 
 import kotlinx.android.synthetic.main.fragment_story_display.*
-import kotlinx.android.synthetic.main.poor_quality_or_spam.view.*
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button91
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button92
 import kotlinx.android.synthetic.main.report_reason.*
@@ -63,12 +59,10 @@ import kotlinx.android.synthetic.main.select_time_bootom_sheet.view.*
 import kotlinx.android.synthetic.main.share_bottomsheet.*
 import kotlinx.android.synthetic.main.share_bottomsheet.textView256
 import kotlinx.android.synthetic.main.share_bottomsheet.view.*
-import kotlinx.android.synthetic.main.why_r_u_reporting.view.*
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.cardView2
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.imageButton66
 import kotlinx.android.synthetic.main.why_r_u_reporting.view.radioGroup
 import kotlinx.coroutines.launch
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
@@ -82,7 +76,7 @@ class StoryDisplayFragment : Fragment(),
     SelectFollowersAdapter.FollowersEventListener, SelectStoryTimeAdapter.OnTimeSelectedListener {
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: FragmentStoryDisplayBinding
     var storyUserName=""
     private val position: Int by

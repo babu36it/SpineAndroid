@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.wiesoftware.spine.R
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityVoiceOverPreviewBinding
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -28,7 +28,7 @@ import java.io.IOException
 class VoiceOverPreviewActivity : AppCompatActivity() , KodeinAware{
     override val kodein by kodein()
     lateinit var viewmodel: VoiceOverViewModel
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     private val voiceOverViewModel: VoiceViewmodelFactory by instance()
     lateinit var binding: ActivityVoiceOverPreviewBinding
     // creating a variable for mediaplayer class

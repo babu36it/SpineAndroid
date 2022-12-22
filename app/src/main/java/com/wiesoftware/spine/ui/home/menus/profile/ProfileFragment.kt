@@ -22,9 +22,8 @@ import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
 import com.wiesoftware.spine.R
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentProfileBinding
-import com.wiesoftware.spine.ui.home.menus.events.addevents.AddEventActivity
 import com.wiesoftware.spine.ui.home.menus.events.addordup.AddOrDupEventActivity
 import com.wiesoftware.spine.ui.home.menus.podcasts.addrss.AddRssActivity
 import com.wiesoftware.spine.ui.home.menus.profile.follow.FollowActivity
@@ -36,7 +35,6 @@ import com.wiesoftware.spine.ui.home.menus.profile.tabs.bookmark.BookmarkFragmen
 import com.wiesoftware.spine.ui.home.menus.profile.tabs.events.EventsFragment
 import com.wiesoftware.spine.ui.home.menus.profile.tabs.podcasts.PodcastFragment
 import com.wiesoftware.spine.ui.home.menus.profile.tabs.posts.PostsFragment
-import com.wiesoftware.spine.ui.home.menus.spine.addposts.AddPostActivity
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.postmedia.PostMediaActivity
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory.AddStoryActivity
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.postthought.PostThoughtActivity
@@ -59,7 +57,7 @@ class ProfileFragment : Fragment(), KodeinAware, ProfileFragmentEventListener {
     lateinit var binding: FragmentProfileBinding
     lateinit var viewModel: ProfileFragmentViewModel
     val factory: ProfileFragmentViewModelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var user_id: String
     var followers: String = "30k"
     var following: String = "30k"

@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
-import com.wiesoftware.spine.data.repo.HomeRepositry
 import com.wiesoftware.spine.data.repo.RssRepository
 import com.wiesoftware.spine.databinding.ActivityAddRssBinding
 import com.wiesoftware.spine.ui.home.menus.podcasts.addrss.entercode.EnterCodeActivity
@@ -20,7 +19,6 @@ import com.wiesoftware.spine.util.Prefs
 import com.wiesoftware.spine.util.putAny
 import com.wiesoftware.spine.util.toast
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance

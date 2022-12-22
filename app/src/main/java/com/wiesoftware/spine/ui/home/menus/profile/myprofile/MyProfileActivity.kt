@@ -38,12 +38,11 @@ import com.wiesoftware.spine.data.adapter.ListPodcastAdapter
 import com.wiesoftware.spine.data.adapter.OwnEventAdapter
 import com.wiesoftware.spine.data.adapter.OwnPostAdapter
 import com.wiesoftware.spine.data.net.reponses.*
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityMyProfileBinding
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.events.EVE_RECORD
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
-import com.wiesoftware.spine.ui.home.menus.podcasts.MyListPodcastAdapter
 import com.wiesoftware.spine.ui.home.menus.profile.editprofile.EditProfileActivity
 import com.wiesoftware.spine.ui.home.menus.profile.follow.FollowActivity
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
@@ -90,7 +89,7 @@ ListPodcastAdapter.OnPodEveListener{
 
     override val kodein by kodein()
     val factory: MyProfileViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     var userId: String = ""
     lateinit var binding: ActivityMyProfileBinding
     var followers: String = "0"
@@ -159,15 +158,15 @@ ListPodcastAdapter.OnPodEveListener{
             intent.putExtra(ViewMediaInLargeActivity.MEDIA_TYPE, "0")
             startActivity(intent)
         }
-        followers = profileData.followers_records_count
-        following = profileData.following_records_count
-        val displayName = profileData.display_name ?: profileData.name
-        val category = profileData.categoryName
-        val bgImg = profileData.bg_image
-        val post = profileData.post_records_count
-        val event = profileData.event_records_count
-        val pod = profileData.event_records_count
-        bgImage = img + bgImg
+         followers=profileData.followers_records_count
+         following=profileData.following_records_count
+        val displayName=profileData.display_name ?: profileData.name
+        val category=profileData.categoryName
+        val bgImg=profileData.bg_image
+        val post=profileData.post_records_count
+        val event=profileData.event_records_count
+        val pod=profileData.pod_records_count
+        bgImage=img+bgImg
         Glide.with(binding.imageView18)
             .load(bgImage)
             .into(binding.imageView18)

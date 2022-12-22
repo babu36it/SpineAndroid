@@ -11,9 +11,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
+import com.wiesoftware.spine.data.repo.SettingsRepository
 import com.wiesoftware.spine.databinding.FragmentEmailNotificationBinding
-import com.wiesoftware.spine.ui.home.menus.profile.setting.help.privacy.PrivacySettingActivity
 import com.wiesoftware.spine.util.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
@@ -26,7 +26,7 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
 
     override val kodein by kodein()
     val factory: EmailNotificationViewModelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val settingsRepository: SettingsRepository by instance()
     lateinit var binding: FragmentEmailNotificationBinding
     lateinit var userId: String
     lateinit var progressDialog: ProgressDialog
@@ -192,7 +192,7 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getAllEmailNotification(status, "", "", "", "", "", "")
+                val res = settingsRepository.getEmailNotification(status, "", "", "", "", "", "")
                 if (res.status) {
                     dismissProgressDailog()
                     val emailstatus = if (status == "0") {
@@ -225,7 +225,7 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getAllEmailNotification("", status, "", "", "", "", "")
+                val res = settingsRepository.getEmailNotification("", status, "", "", "", "", "")
                 if (res.status) {
                     dismissProgressDailog()
                     val eventAttachStatus = if (status == "0") {
@@ -256,7 +256,7 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getAllEmailNotification("", "", status, "", "", "", "")
+                val res = settingsRepository.getEmailNotification("", "", status, "", "", "", "")
                 if (res.status) {
                     dismissProgressDailog()
                     val messageAttachStatus = if (status == "0") {
@@ -287,7 +287,7 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getAllEmailNotification("", "", "", status, "", "", "")
+                val res = settingsRepository.getEmailNotification("", "", "", status, "", "", "")
                 if (res.status) {
                     dismissProgressDailog()
                     val commentStatus = if (status == "0") {
@@ -318,7 +318,7 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getAllEmailNotification("", "", "", "", status, "", "")
+                val res = settingsRepository.getEmailNotification("", "", "", "", status, "", "")
                 if (res.status) {
                     dismissProgressDailog()
                     val eventPodStatus = if (status == "0") {
@@ -349,7 +349,7 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getAllEmailNotification("", "", "", "", "", status, "")
+                val res = settingsRepository.getEmailNotification("", "", "", "", "", status, "")
                 if (res.status) {
                     dismissProgressDailog()
                     val spineHqStatus = if (status == "0") {
@@ -379,7 +379,7 @@ class EmailNotificationFragment : Fragment(), KodeinAware, EmailNotificationEven
         lifecycleScope.launch {
             try {
                 showProgressDialog()
-                val res = homeRepositry.getAllEmailNotification("", "", "", "", "", "", status)
+                val res = settingsRepository.getEmailNotification("", "", "", "", "", "", status)
                 if (res.status) {
                     dismissProgressDailog()
                     val spineServeyStatus = if (status == "0") {

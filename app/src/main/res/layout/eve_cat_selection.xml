@@ -20,7 +20,7 @@
             style="@style/TitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_back_black"
+            android:drawableStart="@drawable/ic_back_black"
             android:text="Select Categories"
             android:textAlignment="center"
             android:layout_marginTop="@dimen/_16sdp"
@@ -58,12 +58,13 @@
             app:cardCornerRadius="@dimen/_6sdp">
 
             <EditText
+                android:inputType="text"
                 android:id="@+id/edt_search_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:layout_marginHorizontal="@dimen/eight"
-                android:drawableLeft="@drawable/ic_search"
+                android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="@dimen/_3sdp"
                 android:hint="Search Categories"
                 android:maxLines="1"

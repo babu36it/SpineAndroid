@@ -3,16 +3,14 @@ package com.wiesoftware.spine.ui.auth.forgotpassword
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.wiesoftware.spine.R
-import com.wiesoftware.spine.data.repo.AuthRepositry
+import com.wiesoftware.spine.data.repo.AuthRepository
 import com.wiesoftware.spine.databinding.ActivityForgotPasswordBinding
 import com.wiesoftware.spine.util.toast
 import kotlinx.coroutines.launch
 import org.json.JSONObject
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -21,7 +19,7 @@ class ForgotPasswordActivity : AppCompatActivity(), KodeinAware, ForgotPasswordE
 
     override val kodein by kodein()
     lateinit var binding: ActivityForgotPasswordBinding
-    val authRepository: AuthRepositry by instance()
+    val authRepository: AuthRepository by instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

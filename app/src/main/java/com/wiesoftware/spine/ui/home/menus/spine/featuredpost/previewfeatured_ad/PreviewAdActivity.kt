@@ -23,7 +23,7 @@ import com.paypal.android.sdk.payments.*
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.net.Api
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityPreviewAdBinding
 import com.wiesoftware.spine.ui.home.menus.spine.featuredpost.EventAdData
 import com.wiesoftware.spine.ui.home.menus.spine.featuredpost.FeaturedPostActivity
@@ -36,7 +36,6 @@ import com.wiesoftware.spine.ui.home.menus.spine.featuredpost.PodAdData
 import com.wiesoftware.spine.ui.home.menus.spine.featuredpost.thankyou_featured.ThanksFeaturedActivity
 import com.wiesoftware.spine.util.toast
 import kotlinx.android.synthetic.main.bottomsheet_payment_option.view.*
-import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -58,7 +57,7 @@ class PreviewAdActivity : AppCompatActivity(), KodeinAware, PreviewAdEventListen
     }
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityPreviewAdBinding
     var adType = 0
 

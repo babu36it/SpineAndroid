@@ -76,7 +76,7 @@ class EventListAdapter(
         try {
             val date1: Date = simpleDateFormat.parse(eve_date)
             val dd = SimpleDateFormat("EEE, dd MMM yyyy", Locale.getDefault())
-            val ss: String = dd.format(date1).toUpperCase()
+            val ss: String = dd.format(date1).uppercase(Locale.getDefault())
             Log.e("fmtDate: ", ss)
             if (value == 1) {
                 holder.rvEventListItemBinding.textView33.text = ss

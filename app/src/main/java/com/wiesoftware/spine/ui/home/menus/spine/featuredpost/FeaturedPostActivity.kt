@@ -1,6 +1,7 @@
 package com.wiesoftware.spine.ui.home.menus.spine.featuredpost
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
@@ -36,7 +37,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.android.gms.location.*
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -52,7 +52,7 @@ import com.wiesoftware.spine.data.adapter.AdDurationAdapter
 import com.wiesoftware.spine.data.adapter.AdsTypeAdapter
 import com.wiesoftware.spine.data.net.reponses.AdDurationData
 import com.wiesoftware.spine.data.net.reponses.adsmanagment.AdsTypeData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityFeaturedPost1Binding
 import com.wiesoftware.spine.ui.home.camera.CustomCameraActivity
 import com.wiesoftware.spine.ui.home.menus.events.TimezoneData
@@ -65,7 +65,6 @@ import kotlinx.android.synthetic.main.activity_featured_post1.*
 import kotlinx.android.synthetic.main.ad_duration_layout.view.*
 import kotlinx.android.synthetic.main.ad_type.view.*
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
-import kotlinx.android.synthetic.main.select_ad_type_layout.view.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -86,7 +85,7 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
 
     override val kodein by kodein()
     lateinit var binding: ActivityFeaturedPost1Binding
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var userId: String
     var adDurationDataList: ArrayList<AdDurationData>? = arrayListOf()
     var adsType: ArrayList<AdsTypeData>? = arrayListOf()
@@ -1021,6 +1020,7 @@ class FeaturedPostActivity : AppCompatActivity(), KodeinAware, FeaturedPostEvent
         dialog.show()
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun loadWebView(p0: CharSequence?) {
         wvAdLink!!.settings.loadsImagesAutomatically = true
         wvAdLink!!.settings.javaScriptEnabled = true

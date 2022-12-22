@@ -2,10 +2,10 @@ package com.wiesoftware.spine.ui.auth.number
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.wiesoftware.spine.data.repo.AuthRepositry
+import com.wiesoftware.spine.data.repo.AuthRepository
 
 class NumberViewModel(
-    private val authRepositry: AuthRepositry
+    private val authRepositry: AuthRepository
 ) : ViewModel() {
     var numberEventListener: NumberEventListener?=null
     var phone_number:String?=null

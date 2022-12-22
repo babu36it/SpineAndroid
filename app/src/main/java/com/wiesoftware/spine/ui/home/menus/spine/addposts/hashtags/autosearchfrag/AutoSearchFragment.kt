@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.HashtagAutocompleteAdapter
 import com.wiesoftware.spine.data.net.reponses.HashtagData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentAutoSearchBinding
 import com.wiesoftware.spine.util.ApiException
 import com.wiesoftware.spine.util.NoInternetException
@@ -31,7 +31,7 @@ class AutoSearchFragment : Fragment(),KodeinAware,
     HashtagAutocompleteAdapter.OnHashtagSelectedListener, AutoSearchEventListener {
 
     override val kodein by kodein()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: FragmentAutoSearchBinding
     var userId: String=""
     var dataList: MutableList<HashtagData> = mutableListOf()

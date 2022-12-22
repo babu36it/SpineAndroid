@@ -23,6 +23,7 @@
             android:gravity="center_vertical">
 
             <ImageButton
+                android:contentDescription="@string/app_name"
                 android:id="@+id/imageButton36"
                 style="@style/BackButton"
                 android:layout_width="wrap_content"
@@ -63,7 +64,6 @@
             android:id="@+id/view14"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_below="@id/rrMain"
             android:layout_marginTop="8dp"
             android:background="@color/gray_tint" />
 
@@ -109,6 +109,7 @@
                         android:textStyle="bold" />
 
                     <ImageView
+                        android:contentDescription="@string/app_name"
                         android:id="@+id/imageView39"
                         android:layout_width="@dimen/_150dp"
                         android:layout_height="@dimen/_150dp"
@@ -170,6 +171,7 @@
                     android:maxLines="1"
                     android:padding="@dimen/_8sdp"
                     android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
                     android:singleLine="true"
                     android:text="@={viewmodel.title}"
                     android:textColorHint="@color/dark_gray_day_night"
@@ -234,7 +236,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shadow_box"
-                    android:drawableRight="@drawable/ic_arrow_right"
+                    app:drawableRightCompat="@drawable/ic_arrow_right"
                     android:text="@string/select"
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -349,6 +351,7 @@
                         android:orientation="horizontal">
 
                         <ImageButton
+                            android:contentDescription="@string/app_name"
                             android:id="@+id/imageButton73"
                             android:layout_width="@dimen/_20sdp"
                             android:layout_height="@dimen/_20sdp"
@@ -390,7 +393,7 @@
                             android:layout_marginTop="@dimen/_5sdp"
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:layout_marginBottom="@dimen/_5sdp"
-                            android:layout_toLeftOf="@id/button101"
+                            android:layout_toStartOf="@id/button101"
                             android:elevation="@dimen/_5sdp"
                             android:ems="10"
                             android:fontFamily="@font/poppins_semi_bold"
@@ -441,7 +444,7 @@
                             android:textSize="@dimen/_11sdp"
                             android:textStyle="bold" />
 
-                        <Switch
+                        <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/switch7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -456,8 +459,6 @@
                         style="@style/ButtonRound"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/_28sdp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/eight"
@@ -479,11 +480,11 @@
                     android:layout_marginStart="@dimen/sixteen"
                     android:layout_marginEnd="@dimen/sixteen"
                     android:background="@drawable/shadow_box"
-                    android:drawableRight="@drawable/ic_arrow_right"
+                    app:drawableRightCompat="@drawable/ic_arrow_right"
                     android:elevation="@dimen/eight"
                     android:onClick="@{viewmodel.onSelectCategories}"
                     android:padding="@dimen/sixteen"
-                    android:text="  Select"
+                    android:text="@string/select"
                     android:textColor="@color/text_black"
                     app:layout_constraintBottom_toBottomOf="@+id/button75"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -505,6 +506,7 @@
                     app:layout_constraintTop_toTopOf="@+id/button76" />
 
                 <ImageView
+                    android:contentDescription="@string/app_name"
                     android:id="@+id/ivCover"
                     android:layout_width="@dimen/_120dp"
                     android:layout_height="@dimen/_120dp"

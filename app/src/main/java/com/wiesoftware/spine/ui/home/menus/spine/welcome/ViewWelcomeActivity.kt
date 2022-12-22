@@ -10,7 +10,7 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.RuntimeLocaleChanger
 import com.wiesoftware.spine.data.net.reponses.WelcomeData
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityViewWelcomeBinding
 import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
 import com.wiesoftware.spine.util.ApiException
@@ -30,7 +30,7 @@ class ViewWelcomeActivity : AppCompatActivity(),KodeinAware, ViewWelcomeEventLis
 
     override val kodein by kodein()
     val factory: ViewWelcomeViewmodelFactory by instance()
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     lateinit var binding: ActivityViewWelcomeBinding
     lateinit var viewmodel: ViewWelcomeViewmodel
     override fun onCreate(savedInstanceState: Bundle?) {
