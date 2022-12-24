@@ -49,7 +49,7 @@ import org.kodein.di.generic.instance
  */
 class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
     SpineFragment.OnSearchHomeListener, HashtagAutocompleteAdapter.OnHashtagSelectedListener,
-    /*RecommendedFollowersAdapter.RecommendedFollowersListener,*/
+    RecommendedFollowersAdapter.RecommendedFollowersListener,
     SearchForUContentAdapter.SearchForUContentListener /*CategoryAdapter.HashtagEventListener */ {
 
     override val kodein by kodein()
@@ -362,7 +362,7 @@ class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
                     )
                 )
 
-                var mAdapter = BaseAdapter<AllUsersData>(requireContext())
+             /*   var mAdapter = BaseAdapter<AllUsersData>(requireContext())
                 mAdapter!!.listOfItems = allUsersData
                 mAdapter!!.expressionViewHolderBinding = { data, viewBinding, context ->
                     val holder = viewBinding as RecMembersItemBinding
@@ -401,13 +401,13 @@ class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
                         viewGroup,
                         false
                     )
-                }
+                }*/
                 binding.rvHomeSearch.also {
                     it.layoutManager =
                         LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
                     it.setHasFixedSize(true)
                     it.adapter =
-                        mAdapter//RecommendedFollowersAdapter(allUsersData,this@HomeSearchFragment)
+                        RecommendedFollowersAdapter(allUsersData,this@HomeSearchFragment)
                 }
             } catch (e: ApiException) {
                 e.printStackTrace()
@@ -493,7 +493,7 @@ class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
 
     }
 
-    fun onFollowClick(allUsersData: AllUsersData, position: Int) {
+   override fun onFollowClick(allUsersData: AllUsersData, position: Int) {
         lifecycleScope.launch {
             try {
                 val res = homeRepositry.addUserFollow(userId, allUsersData.usersId)
@@ -508,13 +508,13 @@ class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
         }
     }
 
-    fun onViewProfile(allUsersData: AllUsersData) {
+    override fun onViewProfile(allUsersData: AllUsersData) {
         val intent = Intent(requireContext(), SomeOneProfileActivity::class.java)
         intent.putExtra(SomeOneProfileActivity.SOME_ONES_USER_ID, allUsersData.usersId)
         startActivity(intent)
     }
 
-    fun onUnfollowUser(allUsersData: AllUsersData, position: Int) {
+    override  fun onUnfollowUser(allUsersData: AllUsersData, position: Int) {
         lifecycleScope.launch {
             try {
                 val unfollowUserId = allUsersData.usersId
