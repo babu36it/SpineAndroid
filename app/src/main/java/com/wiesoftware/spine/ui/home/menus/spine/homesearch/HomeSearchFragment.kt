@@ -50,7 +50,7 @@ import org.kodein.di.generic.instance
 class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
     SpineFragment.OnSearchHomeListener, HashtagAutocompleteAdapter.OnHashtagSelectedListener,
     /*RecommendedFollowersAdapter.RecommendedFollowersListener,*/
-    SearchForUContentAdapter.SearchForUContentListener /*CategoryAdapter.HashtagEventListener */{
+    SearchForUContentAdapter.SearchForUContentListener /*CategoryAdapter.HashtagEventListener */ {
 
     override val kodein by kodein()
     lateinit var binding: FragmentHomeSearchBinding
@@ -160,11 +160,32 @@ class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
     override fun onPracticioner() {
         dataList.clear()
         lifecycleScope.launch {
+            var listString = ArrayList<String>(10)
+            listString.add("1")
+            listString.add("1")
+            listString.add("1")
+            listString.add("1")
+            listString.add("1")
+            listString.add("1")
+            listString.add("1")
+
+            var mAdapter = BaseAdapter<String>(requireContext())
+            mAdapter!!.listOfItems = listString
+            mAdapter!!.expressionViewHolderBinding = { data, viewBinding, context ->
+                var holder = viewBinding as PractSelectedResultListitemBinding
+            }
+            mAdapter!!.expressionOnCreateViewHolder = { viewGroup ->
+                PractSelectedResultListitemBinding.inflate(
+                    LayoutInflater.from(viewGroup.context),
+                    viewGroup,
+                    false
+                )
+            }
             binding.rvHomeSearch.also {
                 it.layoutManager =
                     LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
                 it.setHasFixedSize(true)
-                it.adapter = PractSelectlistAdapter(requireContext())
+                it.adapter = mAdapter
             }
 
             binding.button102.setBackgroundResource(0)
@@ -195,13 +216,12 @@ class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
                     R.color.text_white
                 )
             )
-        }
 
+        }
     }
 
     override fun onCategories() {
         dataList.clear()
-
         dataList.add(HashtagData("", "Boxing", "", "", "306,325"))
         dataList.add(HashtagData("", "Yoga", "", "", "306,325"))
         dataList.add(HashtagData("", "Life Transformation", "", "", "306,325"))
@@ -210,7 +230,7 @@ class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
         mAdapter!!.listOfItems = dataList
         mAdapter!!.expressionViewHolderBinding = { data, viewBinding, context ->
             var holder = viewBinding as CatItemBinding
-            holder.model=data
+            holder.model = data
             holder.follow.setOnClickListener {
                 //listener.
                 onTrendingFollow(data)
@@ -223,312 +243,312 @@ class HomeSearchFragment : Fragment(), KodeinAware, HomeSearchEventListener,
                 false
             )
         }
-            binding.rvHomeSearch.also {
-                it.layoutManager =
-                    LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-                it.setHasFixedSize(true)
-                it.adapter = mAdapter //CategoryAdapter(dataList, this)
-            }
-            binding.button102.setBackgroundResource(0)
-            binding.button103.setBackgroundResource(0)
-            binding.buttonPracticioners.setBackgroundResource(0)
-            binding.button104.setBackgroundResource(R.drawable.black_round_background)
-            binding.button102.setTextColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.text_black
-                )
-            )
-            binding.button103.setTextColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.text_black
-                )
-            )
-            binding.buttonPracticioners.setTextColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.text_black
-                )
-            )
-            binding.button104.setTextColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.text_white
-                )
-            )
-
+        binding.rvHomeSearch.also {
+            it.layoutManager =
+                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            it.setHasFixedSize(true)
+            it.adapter = mAdapter //CategoryAdapter(dataList, this)
         }
+        binding.button102.setBackgroundResource(0)
+        binding.button103.setBackgroundResource(0)
+        binding.buttonPracticioners.setBackgroundResource(0)
+        binding.button104.setBackgroundResource(R.drawable.black_round_background)
+        binding.button102.setTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.text_black
+            )
+        )
+        binding.button103.setTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.text_black
+            )
+        )
+        binding.buttonPracticioners.setTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.text_black
+            )
+        )
+        binding.button104.setTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.text_white
+            )
+        )
+
+    }
 
 
-        private fun getMembers() {
+    private fun getMembers() {
 
-            lifecycleScope.launch {
-                try {
-                    /*val allUsersRes=homeRepositry.getAllUsers(1,100,userId)   Temp commented MT
-                    if (allUsersRes.status){
-                        BASE_IMAGE =allUsersRes.image
-                        val allUsersData=allUsersRes.data
-                        binding.rvHomeSearch.also {
-                            it.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
-                            it.setHasFixedSize(true)
-                            it.adapter= RecommendedFollowersAdapter(allUsersData,this@HomeSearchFragment)
-                        }
-                    }*/
-                    var allUsersData: ArrayList<AllUsersData> = ArrayList()
-                    allUsersData.add(
-                        AllUsersData(
-                            "",
-                            "Lorem Ipsome",
-                            "Craig Warner",
-                            "1",
-                            "",
-                            "",
-                            "",
-                            "Craig Warner",
-                            ""
-                        )
+        lifecycleScope.launch {
+            try {
+                /*val allUsersRes=homeRepositry.getAllUsers(1,100,userId)   Temp commented MT
+                if (allUsersRes.status){
+                    BASE_IMAGE =allUsersRes.image
+                    val allUsersData=allUsersRes.data
+                    binding.rvHomeSearch.also {
+                        it.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
+                        it.setHasFixedSize(true)
+                        it.adapter= RecommendedFollowersAdapter(allUsersData,this@HomeSearchFragment)
+                    }
+                }*/
+                var allUsersData: ArrayList<AllUsersData> = ArrayList()
+                allUsersData.add(
+                    AllUsersData(
+                        "",
+                        "Lorem Ipsome",
+                        "Craig Warner",
+                        "1",
+                        "",
+                        "",
+                        "",
+                        "Craig Warner",
+                        ""
                     )
-                    allUsersData.add(
-                        AllUsersData(
-                            "",
-                            "Lorem Ipsome",
-                            "Craig Warner",
-                            "1",
-                            "",
-                            "",
-                            "",
-                            "Craig Warner",
-                            ""
-                        )
+                )
+                allUsersData.add(
+                    AllUsersData(
+                        "",
+                        "Lorem Ipsome",
+                        "Craig Warner",
+                        "1",
+                        "",
+                        "",
+                        "",
+                        "Craig Warner",
+                        ""
                     )
-                    allUsersData.add(
-                        AllUsersData(
-                            "",
-                            "Lorem Ipsome",
-                            "Craig Warner",
-                            "1",
-                            "",
-                            "",
-                            "",
-                            "Craig Warner",
-                            ""
-                        )
+                )
+                allUsersData.add(
+                    AllUsersData(
+                        "",
+                        "Lorem Ipsome",
+                        "Craig Warner",
+                        "1",
+                        "",
+                        "",
+                        "",
+                        "Craig Warner",
+                        ""
                     )
-                    allUsersData.add(
-                        AllUsersData(
-                            "",
-                            "Lorem Ipsome",
-                            "Craig Warner",
-                            "1",
-                            "",
-                            "",
-                            "",
-                            "Craig Warner",
-                            ""
-                        )
+                )
+                allUsersData.add(
+                    AllUsersData(
+                        "",
+                        "Lorem Ipsome",
+                        "Craig Warner",
+                        "1",
+                        "",
+                        "",
+                        "",
+                        "Craig Warner",
+                        ""
                     )
-                    allUsersData.add(
-                        AllUsersData(
-                            "",
-                            "Lorem Ipsome",
-                            "Craig Warner",
-                            "1",
-                            "",
-                            "",
-                            "",
-                            "Craig Warner",
-                            ""
-                        )
+                )
+                allUsersData.add(
+                    AllUsersData(
+                        "",
+                        "Lorem Ipsome",
+                        "Craig Warner",
+                        "1",
+                        "",
+                        "",
+                        "",
+                        "Craig Warner",
+                        ""
                     )
+                )
 
-                    var mAdapter = BaseAdapter<AllUsersData>(requireContext())
-                    mAdapter!!.listOfItems = allUsersData
-                    mAdapter!!.expressionViewHolderBinding = { data, viewBinding, context ->
-                        val holder = viewBinding as RecMembersItemBinding
-                        holder.textView84.text = data.displayName
-                        holder.textView85.text = data.town
+                var mAdapter = BaseAdapter<AllUsersData>(requireContext())
+                mAdapter!!.listOfItems = allUsersData
+                mAdapter!!.expressionViewHolderBinding = { data, viewBinding, context ->
+                    val holder = viewBinding as RecMembersItemBinding
+                    holder.textView84.text = data.displayName
+                    holder.textView85.text = data.town
+                    if (data.followStatus.equals("1")) {
+                        holder.followBtn.text = getString(R.string.following)
+                    } else {
+                        holder.followBtn.text = getString(R.string.follows)
+                    }
+
+                    holder.followBtn.setOnClickListener {
+
                         if (data.followStatus.equals("1")) {
-                            holder.followBtn.text = getString(R.string.following)
-                        } else {
+                            //listener.
+                            onUnfollowUser(data, 0)
                             holder.followBtn.text = getString(R.string.follows)
-                        }
-
-                        holder.followBtn.setOnClickListener {
-
-                            if (data.followStatus.equals("1")) {
-                                //listener.
-                                onUnfollowUser(data, 0)
-                                holder.followBtn.text = getString(R.string.follows)
-                            } else {
-                                //listener.
-                                onFollowClick(data, 0)
-                                holder.followBtn.text = getString(R.string.following)
-                            }
-                        }
-                        holder.imageView9.setOnClickListener {
+                        } else {
                             //listener.
-                            onViewProfile(data)
-                        }
-                        holder.textView84.setOnClickListener {
-                            //listener.
-                            onViewProfile(data)
+                            onFollowClick(data, 0)
+                            holder.followBtn.text = getString(R.string.following)
                         }
                     }
-                    mAdapter!!.expressionOnCreateViewHolder = { viewGroup ->
-                        RecMembersItemBinding.inflate(
-                            LayoutInflater.from(viewGroup.context),
-                            viewGroup,
-                            false
-                        )
+                    holder.imageView9.setOnClickListener {
+                        //listener.
+                        onViewProfile(data)
                     }
-                    binding.rvHomeSearch.also {
-                        it.layoutManager =
-                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-                        it.setHasFixedSize(true)
-                        it.adapter =
-                            mAdapter//RecommendedFollowersAdapter(allUsersData,this@HomeSearchFragment)
+                    holder.textView84.setOnClickListener {
+                        //listener.
+                        onViewProfile(data)
                     }
-                } catch (e: ApiException) {
-                    e.printStackTrace()
-                } catch (e: NoInternetException) {
-                    e.printStackTrace()
                 }
+                mAdapter!!.expressionOnCreateViewHolder = { viewGroup ->
+                    RecMembersItemBinding.inflate(
+                        LayoutInflater.from(viewGroup.context),
+                        viewGroup,
+                        false
+                    )
+                }
+                binding.rvHomeSearch.also {
+                    it.layoutManager =
+                        LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+                    it.setHasFixedSize(true)
+                    it.adapter =
+                        mAdapter//RecommendedFollowersAdapter(allUsersData,this@HomeSearchFragment)
+                }
+            } catch (e: ApiException) {
+                e.printStackTrace()
+            } catch (e: NoInternetException) {
+                e.printStackTrace()
             }
-
         }
 
-        private fun getUserHashtags() {
-            lifecycleScope.launch {
-                try {
-                    // val res=homeRepositry.getUserHashtags()   MT comment for prototype
-                    /* if (!res.status){
-                         dataList=res.data
-                         adapter= HashtagAutocompleteAdapter(dataList,this@HomeSearchFragment)
-                         binding.rvHomeSearch.also {
-                             it.layoutManager=
-                                 LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
-                             it.setHasFixedSize(true)
-                             it.adapter=adapter
-                             adapter.notifyDataSetChanged()
-                         }
+    }
+
+    private fun getUserHashtags() {
+        lifecycleScope.launch {
+            try {
+                // val res=homeRepositry.getUserHashtags()   MT comment for prototype
+                /* if (!res.status){
+                     dataList=res.data
+                     adapter= HashtagAutocompleteAdapter(dataList,this@HomeSearchFragment)
+                     binding.rvHomeSearch.also {
+                         it.layoutManager=
+                             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
+                         it.setHasFixedSize(true)
+                         it.adapter=adapter
+                         adapter.notifyDataSetChanged()
                      }
-     */
-                    dataList.add(HashtagData("", "#lamborgini", "", "", "306,325"))
-                    dataList.add(HashtagData("", "#lamborgini", "", "", "306,325"))
-                    dataList.add(HashtagData("", "#lamborgini", "", "", "306,325"))
-                    dataList.add(HashtagData("", "#lamborgini", "", "", "306,325"))
-                    var mAdapter = BaseAdapter<HashtagData>(requireContext())
-                    mAdapter!!.listOfItems = dataList
-                    mAdapter!!.expressionViewHolderBinding = { data, viewBinding, context ->
-                        var holder = viewBinding as HashtagAutoItemBinding
-                        holder.model = data
-                        holder.textView268.setOnClickListener {
-                            //listener.
-                            onHashtagSelected(data)
-                        }
-                        /*temp code*/
-                        holder.textView268.text = data.hash_title
-                        holder.textView271.text = data.totalCount
+                 }
+ */
+                dataList.add(HashtagData("", "#lamborgini", "", "", "306,325"))
+                dataList.add(HashtagData("", "#lamborgini", "", "", "306,325"))
+                dataList.add(HashtagData("", "#lamborgini", "", "", "306,325"))
+                dataList.add(HashtagData("", "#lamborgini", "", "", "306,325"))
+                var mAdapter = BaseAdapter<HashtagData>(requireContext())
+                mAdapter!!.listOfItems = dataList
+                mAdapter!!.expressionViewHolderBinding = { data, viewBinding, context ->
+                    var holder = viewBinding as HashtagAutoItemBinding
+                    holder.model = data
+                    holder.textView268.setOnClickListener {
+                        //listener.
+                        onHashtagSelected(data)
                     }
-                    //adapter= HashtagAutocompleteAdapter(dataList,this@HomeSearchFragment)
-                    mAdapter!!.expressionOnCreateViewHolder = { viewGroup ->
-                        HashtagAutoItemBinding.inflate(
-                            LayoutInflater.from(viewGroup.context),
-                            viewGroup,
-                            false
-                        )
-                    }
-                    binding.rvHomeSearch.also {
-                        it.layoutManager =
-                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-                        it.setHasFixedSize(true)
-                        it.adapter = mAdapter
-                        adapter.notifyDataSetChanged()
-                    }
-                } catch (e: ApiException) {
-                    e.printStackTrace()
-                } catch (e: NoInternetException) {
-                    e.printStackTrace()
+                    /*temp code*/
+                    holder.textView268.text = data.hash_title
+                    holder.textView271.text = data.totalCount
                 }
-            }
-        }
-
-        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-            super.onViewCreated(view, savedInstanceState)
-            mContext = requireContext()
-        }
-
-
-        override fun onSearch(context: Context, searchTeaxt: String) {
-            // mContext=context
-            if (mContext != null) {
-                searchTeaxt.toast(requireContext())
-                adapter.filter.filter(searchTeaxt)
-            }
-
-        }
-
-        override fun onHashtagSelected(hashtagData: HashtagData) {
-
-        }
-
-        fun onFollowClick(allUsersData: AllUsersData, position: Int) {
-            lifecycleScope.launch {
-                try {
-                    val res = homeRepositry.addUserFollow(userId, allUsersData.usersId)
-                    if (res.status) {
-                        getString(R.string.following).toast(requireContext())
-                    }
-                } catch (e: ApiException) {
-                    e.printStackTrace()
-                } catch (e: NoInternetException) {
-                    e.printStackTrace()
+                //adapter= HashtagAutocompleteAdapter(dataList,this@HomeSearchFragment)
+                mAdapter!!.expressionOnCreateViewHolder = { viewGroup ->
+                    HashtagAutoItemBinding.inflate(
+                        LayoutInflater.from(viewGroup.context),
+                        viewGroup,
+                        false
+                    )
                 }
-            }
-        }
-
-        fun onViewProfile(allUsersData: AllUsersData) {
-            val intent = Intent(requireContext(), SomeOneProfileActivity::class.java)
-            intent.putExtra(SomeOneProfileActivity.SOME_ONES_USER_ID, allUsersData.usersId)
-            startActivity(intent)
-        }
-
-        fun onUnfollowUser(allUsersData: AllUsersData, position: Int) {
-            lifecycleScope.launch {
-                try {
-                    val unfollowUserId = allUsersData.usersId
-                    val res = homeRepositry.unFollowUser(userId, unfollowUserId)
-                    if (res.status) {
-                        "User unfollowed".toast(requireContext())
-                    }
-                } catch (e: ApiException) {
-                    e.printStackTrace()
-                } catch (e: NoInternetException) {
-                    e.printStackTrace()
+                binding.rvHomeSearch.also {
+                    it.layoutManager =
+                        LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+                    it.setHasFixedSize(true)
+                    it.adapter = mAdapter
+                    // adapter.notifyDataSetChanged()
                 }
+            } catch (e: ApiException) {
+                e.printStackTrace()
+            } catch (e: NoInternetException) {
+                e.printStackTrace()
             }
-        }
-
-        override fun onPostDetails(postData: PostData) {
-            if (postData.eventPost.equals("1")) {
-                val intent = Intent(requireContext(), EventDetailActivity::class.java)
-                intent.putExtra(SpineForYouFragment.IS_EVE_FROM_POST, true)
-                intent.putExtra(SpineForYouFragment.EVENT_POST_ID, postData.id)
-                intent.putExtra("event_id", postData.id)
-                startActivity(intent)
-
-
-            } else {
-                val intent = Intent(requireContext(), PostDetailsActivity::class.java)
-                intent.putExtra(PostsFragment.POST_DATA, postData)
-                intent.putExtra(PostsFragment.BASE_POST_IMG, POST_BASE_IMG_FILE)
-                intent.putExtra(PostsFragment.PROFILE_IMG_BASE, POST_BASE_IMG_PRO)
-                startActivity(intent)
-            }
-        }
-
-         fun onTrendingFollow(hashtag: HashtagData) {
-
         }
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mContext = requireContext()
+    }
+
+
+    override fun onSearch(context: Context, searchTeaxt: String) {
+        // mContext=context
+        if (mContext != null) {
+            searchTeaxt.toast(requireContext())
+            adapter.filter.filter(searchTeaxt)
+        }
+
+    }
+
+    override fun onHashtagSelected(hashtagData: HashtagData) {
+
+    }
+
+    fun onFollowClick(allUsersData: AllUsersData, position: Int) {
+        lifecycleScope.launch {
+            try {
+                val res = homeRepositry.addUserFollow(userId, allUsersData.usersId)
+                if (res.status) {
+                    getString(R.string.following).toast(requireContext())
+                }
+            } catch (e: ApiException) {
+                e.printStackTrace()
+            } catch (e: NoInternetException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun onViewProfile(allUsersData: AllUsersData) {
+        val intent = Intent(requireContext(), SomeOneProfileActivity::class.java)
+        intent.putExtra(SomeOneProfileActivity.SOME_ONES_USER_ID, allUsersData.usersId)
+        startActivity(intent)
+    }
+
+    fun onUnfollowUser(allUsersData: AllUsersData, position: Int) {
+        lifecycleScope.launch {
+            try {
+                val unfollowUserId = allUsersData.usersId
+                val res = homeRepositry.unFollowUser(userId, unfollowUserId)
+                if (res.status) {
+                    "User unfollowed".toast(requireContext())
+                }
+            } catch (e: ApiException) {
+                e.printStackTrace()
+            } catch (e: NoInternetException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    override fun onPostDetails(postData: PostData) {
+        if (postData.eventPost.equals("1")) {
+            val intent = Intent(requireContext(), EventDetailActivity::class.java)
+            intent.putExtra(SpineForYouFragment.IS_EVE_FROM_POST, true)
+            intent.putExtra(SpineForYouFragment.EVENT_POST_ID, postData.id)
+            intent.putExtra("event_id", postData.id)
+            startActivity(intent)
+
+
+        } else {
+            val intent = Intent(requireContext(), PostDetailsActivity::class.java)
+            intent.putExtra(PostsFragment.POST_DATA, postData)
+            intent.putExtra(PostsFragment.BASE_POST_IMG, POST_BASE_IMG_FILE)
+            intent.putExtra(PostsFragment.PROFILE_IMG_BASE, POST_BASE_IMG_PRO)
+            startActivity(intent)
+        }
+    }
+
+    fun onTrendingFollow(hashtag: HashtagData) {
+
+    }
+}
