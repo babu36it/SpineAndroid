@@ -54,8 +54,6 @@ class HashtagAutocompleteAdapter(val dataList: MutableList<HashtagData>, val lis
     }
 
     override fun getFilter(): Filter {
-
-
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
