@@ -10,7 +10,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 android {
     compileSdkVersion 31
-  //  buildToolsVersion "31.0.0"
+    //buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.wiesoftware.spine"
@@ -41,11 +41,6 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    configurations {
-        all*.exclude group: 'xpp3', module: 'xpp3'
-        implementation.exclude group: "org.apache.httpcomponents", module: "httpclient"
     }
 
     kotlinOptions {

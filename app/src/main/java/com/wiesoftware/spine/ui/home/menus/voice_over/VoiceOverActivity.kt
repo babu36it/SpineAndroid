@@ -30,7 +30,8 @@ import com.esafirm.imagepicker.features.ReturnMode
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.wiesoftware.spine.BuildConfig
 import com.wiesoftware.spine.R
-import com.wiesoftware.spine.data.repo.HomeRepositry
+import com.wiesoftware.spine.data.repo.HomeRepository
+
 import com.wiesoftware.spine.databinding.ActivityVoiceOverBinding
 import com.wiesoftware.spine.ui.home.menus.spine.addposts.poststory.SelectedImageAdapter
 import com.wiesoftware.spine.util.UriPathHelper
@@ -51,7 +52,7 @@ class VoiceOverActivity : AppCompatActivity(), KodeinAware, VoiceOverListner {
     override val kodein by kodein()
     lateinit var viewmodel: VoiceOverViewModel
     lateinit var binding: ActivityVoiceOverBinding
-    val homeRepositry: HomeRepositry by instance()
+    val homeRepositry: HomeRepository by instance()
     private val voiceOverViewModel: VoiceViewmodelFactory by instance()
 
     // creating a variable for media recorder object class.

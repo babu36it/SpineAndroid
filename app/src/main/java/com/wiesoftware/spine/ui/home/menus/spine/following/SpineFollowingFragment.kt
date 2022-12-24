@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -25,17 +26,19 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.wiesoftware.spine.BuildConfig
 import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.FollowingContentAdapter
-import com.wiesoftware.spine.data.adapter.FollowingStoriesAdapter
 import com.wiesoftware.spine.data.net.reponses.FollowersData
 import com.wiesoftware.spine.data.net.reponses.FollwingData
 import com.wiesoftware.spine.data.net.reponses.PostData
 import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.FragmentSpineFollowingBinding
-
+import com.wiesoftware.spine.databinding.StoriesFollowingItemBinding
 import com.wiesoftware.spine.ui.home.menus.profile.someonesprofile.SomeOneProfileActivity
 import com.wiesoftware.spine.ui.home.menus.profile.tabs.posts.PostsFragment
 import com.wiesoftware.spine.ui.home.menus.spine.comment.postcomment.PostCommentActivity
-import com.wiesoftware.spine.ui.home.menus.spine.foryou.*
+import com.wiesoftware.spine.ui.home.menus.spine.foryou.BASE_IMAGE
+import com.wiesoftware.spine.ui.home.menus.spine.foryou.POST_BASE_IMG_FILE
+import com.wiesoftware.spine.ui.home.menus.spine.foryou.POST_BASE_IMG_PRO
+import com.wiesoftware.spine.ui.home.menus.spine.foryou.POST_ID
 import com.wiesoftware.spine.ui.home.menus.spine.homefeed.FeedAdapter
 import com.wiesoftware.spine.ui.home.menus.spine.homefeed.HomeFeedModel
 import com.wiesoftware.spine.ui.home.menus.spine.impulse.ImpulseActivity
@@ -61,7 +64,7 @@ import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 
 class SpineFollowingFragment : Fragment(), KodeinAware, SpineFollowingEventListener,
-    FollowingStoriesAdapter.FollowingStoryEventListener,
+    /* FollowingStoriesAdapter.FollowingStoryEventListener,*/
     FollowingContentAdapter.FollowingContentEventListener,
     SelectFollowersAdapter.FollowersEventListener, FeedAdapter.FeedEventListener {
 
@@ -88,7 +91,7 @@ class SpineFollowingFragment : Fragment(), KodeinAware, SpineFollowingEventListe
             user_id = user.users_id!!
             setFollowers()
             getFollowingStories()
-         //   getFollowingContent()  Temp commented MT
+            //   getFollowingContent()  Temp commented MT
             getHomeFeedTemp()
         })
 
@@ -136,19 +139,44 @@ class SpineFollowingFragment : Fragment(), KodeinAware, SpineFollowingEventListe
                          it.adapter = FollowingStoriesAdapter(storyData, this@SpineFollowingFragment)
                      }
                  }*/
-                var storyData : MutableList<FollwingData> = ArrayList()
-                storyData.add(FollwingData("Sophia","", ArrayList(),"",""))
-                storyData.add(FollwingData("Oliver","",ArrayList(),"",""))
-                storyData.add(FollwingData("Sophia","",ArrayList(),"",""))
-                storyData.add(FollwingData("Brendon","",ArrayList(),"",""))
-                storyData.add(FollwingData("Dale","",ArrayList(),"",""))
-                storyData.add(FollwingData("David","",ArrayList(),"",""))
+                var storyData: MutableList<FollwingData> = ArrayList()
+                storyData.add(FollwingData("Sophia", "", ArrayList(), "", ""))
+                storyData.add(FollwingData("Oliver", "", ArrayList(), "", ""))
+                storyData.add(FollwingData("Sophia", "", ArrayList(), "", ""))
+                storyData.add(FollwingData("Brendon", "", ArrayList(), "", ""))
+                storyData.add(FollwingData("Dales", "", ArrayList(), "", ""))
+                storyData.add(FollwingData("David", "", ArrayList(), "", ""))
+
+                var mAdapter = BaseAdapter<FollwingData>(requireContext())
+                mAdapter!!.listOfItems = storyData
+                mAdapter!!.expressionViewHolderBinding = { data, viewBinding, context ->
+                    var holder = viewBinding as StoriesFollowingItemBinding
+                    holder.model = data
+                    /*val img=storyData[position].stories_data[0].media_file   Temp commented MT
+                    Glide.with(holder.storiesFollowingItemBinding.circleImageView2)
+                        .load(STORY_IMAGE+img)
+                        .placeholder(R.drawable.ef_folder_placeholder)
+                        .into(holder.storiesFollowingItemBinding.circleImageView2)
+            */
+                    holder.textView26.text = data.name
+                    holder.circleImageView2.setOnClickListener {
+                        onClick(data)
+                    }
+                }
+                mAdapter!!.expressionOnCreateViewHolder = { viewGroup ->
+                    StoriesFollowingItemBinding.inflate(
+                        LayoutInflater.from(viewGroup.context),
+                        viewGroup,
+                        false
+                    )
+                }
                 binding.rvFollowingStories.also {
                     it.layoutManager =
                         LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
                     it.setHasFixedSize(true)
-                    it.adapter = FollowingStoriesAdapter(storyData, this@SpineFollowingFragment)
+                    it.adapter = mAdapter
                 }
+
             } catch (e: ApiException) {
                 e.printStackTrace()
             } catch (e: NoInternetException) {
@@ -158,16 +186,16 @@ class SpineFollowingFragment : Fragment(), KodeinAware, SpineFollowingEventListe
 
     }
 
-    private fun getHomeFeedTemp(){
+    private fun getHomeFeedTemp() {
         Coroutines.main {
             try {
 
-                var homeFeedList = ArrayList<HomeFeedModel> ()
-                homeFeedList.add(HomeFeedModel(1,"PROMOTED",0))
-                homeFeedList.add(HomeFeedModel(2,"SPINE",0))
-                homeFeedList.add(HomeFeedModel(4,"PROMOTED",0))
-                homeFeedList.add(HomeFeedModel(3,"ONLINE",0))
-                homeFeedList.add(HomeFeedModel(3,"LOCAL",0))
+                var homeFeedList = ArrayList<HomeFeedModel>()
+                homeFeedList.add(HomeFeedModel(1, "PROMOTED", 0))
+                homeFeedList.add(HomeFeedModel(2, "SPINE", 0))
+                homeFeedList.add(HomeFeedModel(4, "PROMOTED", 0))
+                homeFeedList.add(HomeFeedModel(3, "ONLINE", 0))
+                homeFeedList.add(HomeFeedModel(3, "LOCAL", 0))
                 binding.rvHomeFeed.also {
                     it.layoutManager = LinearLayoutManager(
                         requireContext(),
@@ -188,7 +216,8 @@ class SpineFollowingFragment : Fragment(), KodeinAware, SpineFollowingEventListe
         }
     }
 
-    override fun onClick(storyData: FollwingData) {
+    fun onClick(storyData: FollwingData) {
+        Log.e("storyData.name", storyData.name)
         startActivity(Intent(requireContext(), ViewStoryActivity::class.java))
     }
 
@@ -831,8 +860,8 @@ class SpineFollowingFragment : Fragment(), KodeinAware, SpineFollowingEventListe
     }
 
     override fun onViewSomeonesProfile(postData: HomeFeedModel) {
-        val intent= Intent(requireContext(), SomeOneProfileActivity::class.java)
-        intent.putExtra(SomeOneProfileActivity.SOME_ONES_USER_ID,postData.text)
+        val intent = Intent(requireContext(), SomeOneProfileActivity::class.java)
+        intent.putExtra(SomeOneProfileActivity.SOME_ONES_USER_ID, postData.text)
         startActivity(intent)
     }
 

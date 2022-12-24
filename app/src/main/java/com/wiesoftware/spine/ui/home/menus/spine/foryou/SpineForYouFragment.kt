@@ -29,7 +29,7 @@ import com.wiesoftware.spine.R
 import com.wiesoftware.spine.data.adapter.*
 import com.wiesoftware.spine.data.net.reponses.*
 import com.wiesoftware.spine.data.repo.HomeRepository
-import com.wiesoftware.spine.databinding.FragmentSpineForYouBinding
+import com.wiesoftware.spine.databinding.*
 import com.wiesoftware.spine.ui.home.menus.events.B_IMG_URL
 import com.wiesoftware.spine.ui.home.menus.events.event_details.EventDetailActivity
 import com.wiesoftware.spine.ui.home.menus.profile.myprofile.MyProfileActivity
@@ -50,6 +50,9 @@ import com.wiesoftware.spine.ui.home.menus.spine.story.viewstories.ViewStoryActi
 import com.wiesoftware.spine.ui.home.menus.spine.viewmedia.ViewMediaInLargeActivity
 import com.wiesoftware.spine.ui.home.menus.spine.welcome.ViewWelcomeActivity
 import com.wiesoftware.spine.util.*
+import com.wiesoftware.spine.util.feedGeneric.FeedViewHolderFactory
+import com.wiesoftware.spine.util.feedGeneric.GenericAdapter
+import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.bottomsheet_picker.view.*
 import kotlinx.android.synthetic.main.fragment_spine_for_you.*
 import kotlinx.android.synthetic.main.poor_quality_or_spam.view.button91
@@ -143,25 +146,25 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
 
         getTrendingCat()
 
-       /* binding.rvForYouContent.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    // Show your view again.. If you want to show them..
-                    binding.constraintLayout. animate()
-                        .alpha(1.0f)
-                        .setDuration(300);
-                    binding.constraintLayout.visibility=View.VISIBLE
-                } else if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
-                    // Hide your view..
-                    binding.constraintLayout. animate()
-                        .alpha(0.0f)
-                        .setDuration(200);
-                    binding.constraintLayout.visibility=View.GONE
-                }
-                super.onScrollStateChanged(recyclerView, newState)
+        /* binding.rvForYouContent.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                     // Show your view again.. If you want to show them..
+                     binding.constraintLayout. animate()
+                         .alpha(1.0f)
+                         .setDuration(300);
+                     binding.constraintLayout.visibility=View.VISIBLE
+                 } else if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                     // Hide your view..
+                     binding.constraintLayout. animate()
+                         .alpha(0.0f)
+                         .setDuration(200);
+                     binding.constraintLayout.visibility=View.GONE
+                 }
+                 super.onScrollStateChanged(recyclerView, newState)
 
-            }
-           *//* override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+             }
+            *//* override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
 
 
                 if (recyclerView.canScrollVertically(RecyclerView.FOCUS_DOWN)) {
@@ -201,8 +204,8 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
                     POST_BASE_IMG_PRO = postRes.profilImage
                     val postList: List<PostData> = postRes.data
                     for ((position, data) in postList.withIndex()) {
-                        if(data.files != null) {
-                            if(data.files.contains(",")) {
+                        if (data.files != null) {
+                            if (data.files.contains(",")) {
                                 var filesData = data.files.split(",")
                                 postList[position].files = filesData[0]
                             }
@@ -273,7 +276,7 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
                     val hashtagDataList = hashtagRes.data
                     try {
                         //binding.tvYoga.setText(hashtagDataList[0].hash_title)
-                       // binding.tvMeditation.setText(hashtagDataList[1].hash_title)
+                        // binding.tvMeditation.setText(hashtagDataList[1].hash_title)
                     } catch (e: Exception) {
 
                     }
@@ -339,37 +342,40 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
         }
 
     }
+
     /*MT all feed with dummy data*/
-    private fun getHomeFeedTemp(){
-        Coroutines.main {
-            try {
+    private fun getHomeFeedTemp() {
 
+        try {
+            lifecycleScope.launch {
                 var homeFeedList = ArrayList<HomeFeedModel> ()
-                homeFeedList.add(HomeFeedModel(1,"PROMOTED",0))
-                homeFeedList.add(HomeFeedModel(2,"SPINE",0))
-                homeFeedList.add(HomeFeedModel(4,"PROMOTED",0))
-                homeFeedList.add(HomeFeedModel(3,"ONLINE",0))
-                homeFeedList.add(HomeFeedModel(3,"LOCAL",0))
+                     homeFeedList.add(HomeFeedModel(1,"PROMOTED",0))
+                     homeFeedList.add(HomeFeedModel(2,"SPINE",0))
+                     homeFeedList.add(HomeFeedModel(4,"PROMOTED",0))
+                     homeFeedList.add(HomeFeedModel(3,"ONLINE",0))
+                     homeFeedList.add(HomeFeedModel(3,"LOCAL",0))
 
-                binding.rvHomeFeed.also {
-                    it.layoutManager = LinearLayoutManager(
-                        requireContext(),
-                        RecyclerView.VERTICAL,
-                        false
-                    )
-                    it.setHasFixedSize(true)
-                    it.adapter = FeedAdapter(homeFeedList, this)
-                }
+                     binding.rvHomeFeed.also {
+                         it.layoutManager = LinearLayoutManager(
+                             requireContext(),
+                             RecyclerView.VERTICAL,
+                             false
+                         )
+                         it.setHasFixedSize(true)
+                         it.adapter = FeedAdapter(homeFeedList, this@SpineForYouFragment)
+                     }
 
-            } catch (e: ApiException) {
-                e.printStackTrace()
-                context?.let { "${e.message}".toast(it) }
-            } catch (e: NoInternetException) {
-                e.printStackTrace()
-                context?.let { "${e.message}".toast(it) }
             }
+        } catch (e: ApiException) {
+            e.printStackTrace()
+            context?.let { "${e.message}".toast(it) }
+        } catch (e: NoInternetException) {
+            e.printStackTrace()
+            context?.let { "${e.message}".toast(it) }
         }
+
     }
+
     private fun getSpineImpulse() {
         Coroutines.main {
             try {
@@ -1223,9 +1229,10 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
         }
 
     }
+
     /*MT temp click event*/
     override fun onPromotedClicked(postData: HomeFeedModel) {
-       Log.d("---->Click",postData.text)
+        Log.d("---->Click", postData.text)
     }
 
     override fun viewAllSpineImpulse_(postData: HomeFeedModel) {
@@ -1233,8 +1240,8 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
     }
 
     override fun onViewSomeonesProfile(postData: HomeFeedModel) {
-        val intent= Intent(requireContext(), SomeOneProfileActivity::class.java)
-        intent.putExtra(SomeOneProfileActivity.SOME_ONES_USER_ID,postData.text)
+        val intent = Intent(requireContext(), SomeOneProfileActivity::class.java)
+        intent.putExtra(SomeOneProfileActivity.SOME_ONES_USER_ID, postData.text)
         startActivity(intent)
     }
 
@@ -1247,15 +1254,15 @@ class SpineForYouFragment : Fragment(), KodeinAware, SpineForYouEventListener,
         var isViewShown = true
         this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                when{
-                    dy> 0 && isViewShown -> {
+                when {
+                    dy > 0 && isViewShown -> {
                         isViewShown = false
                         hiddenView.animate()
                             .translationX(translationX)
                             .translationY(translationY)
                             .duration = duration
                     }
-                    dy < 0 && !isViewShown ->{
+                    dy < 0 && !isViewShown -> {
                         isViewShown = true
                         hiddenView.animate()
                             .translationX(0f)
