@@ -3,6 +3,7 @@ package com.wiesoftware.spine.ui.home.menus.spine.practicioners
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -11,9 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.wiesoftware.spine.R
+import com.wiesoftware.spine.data.net.reponses.SpineImpulseData
 import com.wiesoftware.spine.data.repo.HomeRepository
 import com.wiesoftware.spine.databinding.ActivityPracticionerSelectionListBinding
+import com.wiesoftware.spine.databinding.ImpulseContentItemBinding
+import com.wiesoftware.spine.databinding.PractSelectedResultListitemBinding
 import com.wiesoftware.spine.ui.home.menus.events.maps.MapviewEventsActivity
+import com.wiesoftware.spine.util.BaseAdapter
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -37,17 +42,39 @@ class PracticionerSelectionListActivity : AppCompatActivity(), KodeinAware, Sele
         binding.viewmodel = viewmodel
 
         viewmodel.selectedPageClick = this
-       viewmodel.sendDateToOther= Gson().fromJson(intent.getStringExtra("data"),SendDateToOther::class.java)
+        viewmodel.sendDateToOther =
+            Gson().fromJson(intent.getStringExtra("data"), SendDateToOther::class.java)
 
-        Log.e("data",viewmodel.sendDateToOther.category)
-       Log.e("data",viewmodel.sendDateToOther.location!!)
+        Log.e("data", viewmodel.sendDateToOther.category)
+        Log.e("data", viewmodel.sendDateToOther.location!!)
+        var listString = ArrayList<String>(10)
+        listString.add("1")
+        listString.add("1")
+        listString.add("1")
+        listString.add("1")
+        listString.add("1")
+        listString.add("1")
+        listString.add("1")
+        var mAdapter = BaseAdapter<String>(this@PracticionerSelectionListActivity)
+        mAdapter!!.listOfItems = listString
+        mAdapter!!.expressionViewHolderBinding = { data, viewBinding, context ->
+            var holder = viewBinding as PractSelectedResultListitemBinding
+        }
+        mAdapter!!.expressionOnCreateViewHolder = { viewGroup ->
+            PractSelectedResultListitemBinding.inflate(
+                LayoutInflater.from(viewGroup.context),
+                viewGroup,
+                false
+            )
+        }
         binding.rvselecctionList.also {
             it.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
             it.setHasFixedSize(true)
-            it.adapter = PractSelectlistAdapter(this)
+            it.adapter = mAdapter//PractSelectlistAdapter(this)
         }
 
-        if(viewmodel.sendDateToOther.category.isEmpty() || viewmodel.sendDateToOther.location!!.isEmpty())  binding.rlFilterData.visibility=View.GONE
+        if (viewmodel.sendDateToOther.category.isEmpty() || viewmodel.sendDateToOther.location!!.isEmpty()) binding.rlFilterData.visibility =
+            View.GONE
 
     }
 

@@ -17,6 +17,7 @@
 
 
         <RelativeLayout
+            android:padding="@dimen/dp4"
             android:visibility="gone"
             android:id="@+id/rrPostVideo"
             android:layout_width="match_parent"
@@ -33,6 +34,7 @@
                 app:image="@{model1.files}" />
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/ivvideo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

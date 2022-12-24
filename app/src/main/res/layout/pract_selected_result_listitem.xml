@@ -1,44 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/text_white"
-    android:layout_margin="@dimen/_4sdp"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:id="@+id/llProfilePic"
-        android:layout_width="wrap_content"
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@color/text_white"
+        android:layout_margin="@dimen/_4sdp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleImageView3"
-            android:layout_width="@dimen/profile_size"
-            android:layout_height="@dimen/profile_size"
-            android:layout_marginStart="@dimen/_4sdp"
-            android:layout_marginTop="@dimen/sixteen"
-            android:src="@drawable/profile_circle"
-             />
-
-        <TextView
-            android:id="@+id/textView35"
+        <LinearLayout
+            android:id="@+id/llProfilePic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:singleLine="true"
-            android:text="Craig"
-            style="@style/SimpleText"
-            android:textColor="@color/text_black"
-            android:textSize="@dimen/_10sdp" />
-        <!-- android:text="@{model.displayName ?? model.useName}"-->
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </LinearLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImageView3"
+                android:layout_width="@dimen/profile_size"
+                android:layout_height="@dimen/profile_size"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/sixteen"
+                android:src="@drawable/profile_circle" />
 
+            <TextView
+                android:id="@+id/textView35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:singleLine="true"
+                android:text="Craig"
+                style="@style/SimpleText"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_10sdp" />
+            <!-- android:text="@{model.displayName ?? model.useName}"-->
+
+        </LinearLayout>
 
 
         <View
@@ -71,7 +75,7 @@
             app:layout_constraintEnd_toStartOf="@+id/imageButton7"
             app:layout_constraintStart_toEndOf="@+id/llProfilePic"
             app:layout_constraintTop_toTopOf="parent" />
-           <!--android:text="@{model.type.equals(`1`) ? `ONLINE EVENT`: `LOCAL EVENT`}"-->
+        <!--android:text="@{model.type.equals(`1`) ? `ONLINE EVENT`: `LOCAL EVENT`}"-->
 
 
         <ImageButton
@@ -97,7 +101,7 @@
             app:layout_constraintEnd_toEndOf="@+id/textView36"
             app:layout_constraintStart_toStartOf="@+id/textView36"
             app:layout_constraintTop_toBottomOf="@+id/textView36" />
-    <!--android:text="@{model.title}"-->
+        <!--android:text="@{model.title}"-->
 
 
         <TextView
@@ -111,26 +115,22 @@
             android:textColor="@color/text_black"
             app:layout_constraintStart_toStartOf="@+id/textView37"
             app:layout_constraintTop_toBottomOf="@+id/textView37"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewLocation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Berlyn, Germany"
-        android:maxLines="2"
-        android:textSize="@dimen/_10sdp"
-        android:ellipsize="end"
-        app:layout_constraintEnd_toEndOf="@+id/textViewDescription"
-        app:layout_constraintStart_toStartOf="@+id/textViewDescription"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
-         <!--   android:text="@{model.location}"-->
-
-
+        <TextView
+            android:id="@+id/textViewLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Berlyn, Germany"
+            android:maxLines="2"
+            android:textSize="@dimen/_10sdp"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toEndOf="@+id/textViewDescription"
+            app:layout_constraintStart_toStartOf="@+id/textViewDescription"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
+        <!--   android:text="@{model.location}"-->
 
 
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
